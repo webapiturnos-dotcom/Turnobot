@@ -3,9 +3,21 @@
 <body style="background:#000;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0">
 <div>Cargando…</div>
 <script>
-fetch('app.html?t=' + Date.now(), { cache: 'no-store' })
-  .then(r => r.text())
-  .then(html => { document.open(); document.write(html); document.close(); })
-  .catch(() => { document.body.innerHTML = '<div style="text-align:center">No se pudo cargar. Revisa tu conexión y desliza para recargar.</div>'; });
+async function boot() {
+  // Purga cualquier Service Worker y caché viejos de versiones anteriores de esta PWA
+  if ('serviceWorker' in navigator) {
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for (const r of regs) await r.unregister();
+  }
+  if ('caches' in window) {
+    const keys = await caches.keys();
+    for (const k of keys) await caches.delete(k);
+  }
+  fetch('app.html?t=' + Date.now(), { cache: 'no-store' })
+    .then(r => r.text())
+    .then(html => { document.open(); document.write(html); document.close(); })
+    .catch(() => { document.body.innerHTML = '<div style="text-align:center">No se pudo cargar. Revisa tu conexión y desliza para recargar.</div>'; });
+}
+boot();
 </script>
 </body></html>
