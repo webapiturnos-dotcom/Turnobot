@@ -1284,7 +1284,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   ══════════════════ -->
   <div class="screen" id="screen-home">
     <div class="app-header">
-      <div class="header-logo">Turno<span>Bot</span></div>
+      <div>
+        <div class="header-logo">Turno<span>Bot</span></div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;"></div>
+      </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
         <div>
@@ -2523,8 +2526,17 @@ async function TB_syncFromSheet(manual) {
         if (photosRes.photos[norm]) local[norm] = photosRes.photos[norm];
       });
       PHOTO_save(local);
+      if (manual && currentUser) {
+        const miNorm = normalizeName(currentUser.nombre);
+        if (!photosRes.photos[miNorm]) {
+          console.warn('TB: mi norm', miNorm, 'no está en getPhotos. Claves recibidas:', Object.keys(photosRes.photos));
+          showToast('warning', '⚠️ Foto no encontrada en la Sheet', `Buscando "${miNorm}" — no llegó en la respuesta del backend.`);
+        }
+      }
     }
     if (manual) showToast('success', '🔄 Sincronizado', 'Usuarios y fotos actualizados desde la Sheet.');
+    TB_lastSyncOk = new Date();
+    TB_renderBuildInfo();
   } finally {
     TB_SYNCING = false;
     TB_SYNC_PROMISE = null;
@@ -3045,6 +3057,7 @@ function initHomeScreen() {
     const el = document.getElementById(id);
     if (el) renderAvatar(el, currentUser.nombre);
   });
+  TB_renderBuildInfo();
 
   // Para el admin, la pestaña "Mi Turno" es donde vive el panel de administración
   // (cargar/actualizar la malla en PDF). Se relabela para que sea obvio.
@@ -3123,8 +3136,18 @@ async function tryAutoLogin() {
 // para que nunca quede información antigua "pegada". La URL de la Sheet
 // NO se borra (para no perder la conexión), y nada se pierde de verdad
 // porque justo después se vuelve a traer todo fresco desde la Sheet.
-const TB_APP_VERSION = '2026-08-07.2035';
+const TB_APP_VERSION = '2026-08-07.2046';
 const TB_VERSION_KEY = 'tb_app_version';
+let TB_lastSyncOk = null;
+function TB_renderBuildInfo() {
+  const el = document.getElementById('tb-build-info');
+  if (!el) return;
+  const publicado = TB_APP_VERSION.replace('.', ' · ').replace(/(\d{4})-(\d{2})-(\d{2})/, '$3/$2/$1');
+  const sync = TB_lastSyncOk
+    ? TB_lastSyncOk.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    : 'pendiente';
+  el.textContent = `Publicado ${publicado} · Sync ${sync}`;
+}
 function TB_clearStaleCacheIfNewVersion() {
   try {
     const stored = localStorage.getItem(TB_VERSION_KEY);
@@ -3171,6 +3194,7 @@ async function TB_refrescarApp() {
     });
   }
   showToast('success', '🔄 Actualizado', 'Datos sincronizados con la Sheet.');
+  TB_renderBuildInfo();
 }
 
 // ═══════════════════════════════════════════════════
