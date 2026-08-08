@@ -1285,6 +1285,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   <div class="screen" id="screen-home">
     <div class="app-header">
       <div class="header-logo">Turno<span>Bot</span></div>
+      <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:none;color:var(--gris);font-size:18px;cursor:pointer;padding:6px;">🔄</button>
       <div class="header-user" onclick="showMainScreen('profile')">
         <div>
           <div class="header-name" id="header-name">Moi</div>
@@ -2437,7 +2438,9 @@ function TB_getSheetUrl() {
 function TB_setSheetUrl(url) { try { localStorage.setItem(TB_SHEET_KEY, (url || '').trim()); } catch {} }
 
 // Llamada genérica al backend. GET para leer, POST (text/plain, sin preflight) para escribir.
-async function TB_api(action, payload) {
+// Reintenta automáticamente si la red falla (típico en datos móviles inestables) antes de darse por vencido.
+async function TB_api(action, payload, _intento) {
+  const intento = _intento || 1;
   const url = TB_getSheetUrl();
   if (!url) return null;
   try {
@@ -2449,7 +2452,11 @@ async function TB_api(action, payload) {
     }
     return await res.json();
   } catch (e) {
-    console.warn('TB_api error en', action, e);
+    if (intento < 4) {
+      await new Promise(r => setTimeout(r, 900 * intento));
+      return TB_api(action, payload, intento + 1);
+    }
+    console.warn('TB_api error en', action, 'tras', intento, 'intentos', e);
     return null;
   }
 }
@@ -2484,7 +2491,7 @@ async function TB_ensureSynced() {
   try {
     await Promise.race([
       TB_SYNC_PROMISE,
-      new Promise(resolve => setTimeout(resolve, 7000)) // no dejar a nadie esperando para siempre si la Sheet no responde
+      new Promise(resolve => setTimeout(resolve, 15000)) // no dejar a nadie esperando para siempre si la Sheet no responde
     ]);
   } catch {}
 }
@@ -3113,7 +3120,7 @@ async function tryAutoLogin() {
 // para que nunca quede información antigua "pegada". La URL de la Sheet
 // NO se borra (para no perder la conexión), y nada se pierde de verdad
 // porque justo después se vuelve a traer todo fresco desde la Sheet.
-const TB_APP_VERSION = '2026-08-07.1713';
+const TB_APP_VERSION = '2026-08-07.2003';
 const TB_VERSION_KEY = 'tb_app_version';
 function TB_clearStaleCacheIfNewVersion() {
   try {
@@ -3130,12 +3137,14 @@ function TB_clearStaleCacheIfNewVersion() {
 
 // ── INIT ──────────────────────────────────────────
 (async () => {
-  // Mostrar splash, intentar auto-login
+  // Mostrar splash, verificar conexión con la Sheet ANTES de dejar entrar
   showScreen('splash');
   TB_clearStaleCacheIfNewVersion();
+  if (typeof showLoader === 'function' && TB_getSheetUrl()) showLoader('Verificando información...');
   TB_SYNC_PROMISE = TB_syncFromSheet(); // arranca ya, pero queda "reservada" para que login/registro la esperen
-  await tryAutoLogin();
   await TB_ensureSynced();
+  if (typeof hideLoader === 'function') hideLoader();
+  await tryAutoLogin();
   if (currentUser) {
     // Por si llegó una foto o dato más nuevo de la Sheet justo después del auto-login.
     ['header-avatar', 'turns-avatar', 'aqp-avatar', 'profile-avatar-big'].forEach(id => {
@@ -3144,6 +3153,22 @@ function TB_clearStaleCacheIfNewVersion() {
     });
   }
 })();
+
+// ── Refrescar app: reintenta la sincronización con la Sheet a demanda ──
+// Útil como botón "Actualizar" en cualquier pantalla, sin recargar la página entera.
+async function TB_refrescarApp() {
+  showLoader('Verificando información...');
+  TB_SYNC_PROMISE = TB_syncFromSheet(true);
+  await TB_ensureSynced();
+  hideLoader();
+  if (currentUser) {
+    ['header-avatar', 'turns-avatar', 'aqp-avatar', 'profile-avatar-big'].forEach(id => {
+      const av = document.getElementById(id);
+      if (av) renderAvatar(av, currentUser.nombre);
+    });
+  }
+  showToast('success', '🔄 Actualizado', 'Datos sincronizados con la Sheet.');
+}
 
 // ═══════════════════════════════════════════════════
 //   FASE 2 — LÓGICA: HOME + RANKING + NOTIFICACIONES
