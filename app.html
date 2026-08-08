@@ -928,6 +928,16 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .break-time { font-size:12px; color:var(--gris); }
 .break-status { font-size:20px; flex-shrink:0; }
 
+/* ── Horas de la semana ── */
+.horas-semana-row { display:flex; gap:12px; }
+.horas-semana-block {
+  flex:1; text-align:center; background:var(--glass); border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm); padding:14px 10px;
+}
+.hs-label { font-size:11px; color:var(--gris); margin-bottom:6px; }
+.hs-val { font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--blanco); }
+.hs-val.completo { color:var(--verde); }
+
 /* ── Solicitud / Incapacidad ── */
 .solicitud-panel, .incap-panel, .consultas-panel {
   background:var(--glass); border:1px solid var(--glass-border);
@@ -1481,13 +1491,25 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
 
-      <!-- ── Breaks / Descansos ── -->
+      <!-- ── Horas de la semana ── -->
       <div class="breaks-panel">
         <div class="section-header">
-          <div class="section-title">☕ Mis Descansos</div>
-          <div class="section-sub">Seguimiento de breaks</div>
+          <div class="section-title">⏱️ Horas de la Semana</div>
+          <div class="section-sub">Meta: 42h semanales</div>
         </div>
-        <div class="breaks-list" id="breaks-list"></div>
+        <div class="horas-semana-row">
+          <div class="horas-semana-block">
+            <div class="hs-label">Trabajadas</div>
+            <div class="hs-val" id="hs-trabajadas">0h 0m</div>
+          </div>
+          <div class="horas-semana-block">
+            <div class="hs-label">Faltan</div>
+            <div class="hs-val" id="hs-faltan">42h 0m</div>
+          </div>
+        </div>
+        <div class="jornada-bar-bg" style="margin-top:12px">
+          <div class="jornada-bar-fill" id="hs-fill" style="width:0%"></div>
+        </div>
       </div>
 
       <!-- ── Solicitud de cambio de turno ── -->
@@ -3218,7 +3240,7 @@ async function tryAutoLogin() {
 // para que nunca quede información antigua "pegada". La URL de la Sheet
 // NO se borra (para no perder la conexión), y nada se pierde de verdad
 // porque justo después se vuelve a traer todo fresco desde la Sheet.
-const TB_APP_VERSION = '2026-08-08.1644';
+const TB_APP_VERSION = '2026-08-08.1728';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -3608,7 +3630,7 @@ function F3_renderAdminView() {
   document.getElementById('tc-horas').textContent = '—';
   const jw = document.querySelector('.jornada-bar-wrap'); if (jw) jw.style.display = 'none';
   document.getElementById('timeline-list').innerHTML = '<div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div>';
-  document.getElementById('breaks-list').innerHTML = '';
+  F3_renderHorasSemanaVacio();
 }
 
 function F3_renderSinDatos(user) {
@@ -3622,7 +3644,7 @@ function F3_renderSinDatos(user) {
   document.getElementById('tc-horas').textContent = '—';
   const jw = document.querySelector('.jornada-bar-wrap'); if (jw) jw.style.display = 'none';
   document.getElementById('timeline-list').innerHTML = '<div class="turno-empty-state">No encontramos tu nombre en la malla cargada actualmente. Contacta a Moisés para verificar.</div>';
-  document.getElementById('breaks-list').innerHTML = '';
+  F3_renderHorasSemanaVacio();
 }
 
 function F3_renderDateChips(canonico) {
@@ -3684,11 +3706,27 @@ function F3_loadTurnoData(user, canonico, fechaISO) {
   }
 }
 
+// Devuelve 'pasado' | 'hoy' | 'futuro' comparando una fechaISO contra la fecha real actual.
+function F3_diaEstado(fechaISO) {
+  const today = MALLA_todayISO();
+  if (fechaISO < today) return 'pasado';
+  if (fechaISO > today) return 'futuro';
+  return 'hoy';
+}
+
+function F3_setBadge(el, texto, color) {
+  el.textContent = texto;
+  el.style.borderColor = color + '55';
+  el.style.color = color;
+  el.style.background = color + '18';
+}
+
 function F3_renderTurno(user, t) {
   const nombre1 = (user.nombre||'').split(' ')[0];
   document.getElementById('tc-nombre').textContent = nombre1;
 
-  const esHoy = t.fechaISO === MALLA_todayISO();
+  const diaEstado = F3_diaEstado(t.fechaISO); // 'pasado' | 'hoy' | 'futuro'
+  const esHoy = diaEstado === 'hoy';
   const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
   const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   const dObj = new Date(t.fechaISO + 'T00:00:00');
@@ -3708,39 +3746,43 @@ function F3_renderTurno(user, t) {
     document.getElementById('tc-salida').textContent = '--:--';
     document.getElementById('tc-horas').textContent = '—';
     if (sinTurnoAsignado) {
-      badge.textContent = '🕓 Por asignar';
-      badge.style.borderColor = '#8888a055'; badge.style.color = 'var(--gris)'; badge.style.background = 'rgba(255,255,255,0.03)';
+      F3_setBadge(badge, '🕓 Por asignar', 'var(--gris)');
     } else {
-      badge.textContent = t.estado === 'DESCANSO' ? '😌 Descanso' : t.estado;
-      badge.style.borderColor = '#f59e0b55'; badge.style.color = '#f59e0b'; badge.style.background = '#f59e0b18';
+      F3_setBadge(badge, t.estado === 'DESCANSO' ? '😌 Descanso' : t.estado, '#f59e0b');
     }
     if (jornadaWrap) jornadaWrap.style.display = 'none';
     document.getElementById('timeline-list').innerHTML = sinTurnoAsignado
       ? '<div class="turno-empty-state">🕓 Tu horario para este día todavía no ha sido publicado. Consulta con Moisés.</div>'
       : '<div class="turno-empty-state">🌴 Este día no trabajas. ¡Disfruta tu descanso!</div>';
-    document.getElementById('breaks-list').innerHTML = sinTurnoAsignado
-      ? '<div class="activity-empty">Sin horario publicado para este día.</div>'
-      : '<div class="activity-empty">Sin breaks — día de descanso.</div>';
     if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
   } else {
     document.getElementById('tc-entrada').textContent = t.entradaDisplay || t.entrada || '--:--';
     document.getElementById('tc-salida').textContent  = t.salidaDisplay  || t.salida  || '--:--';
     document.getElementById('tc-horas').textContent   = t.horas || '—';
-    badge.textContent = 'Activo';
-    badge.style.borderColor = '#10b98155'; badge.style.color = '#10b981'; badge.style.background = '#10b98118';
     if (jornadaWrap) jornadaWrap.style.display = '';
-    F3_renderTimeline(t);
-    F3_renderBreaks(t);
-    if (esHoy) {
-      F3_startJornadaBar(t);
-    } else {
-      if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
-      const fill = document.getElementById('jornada-fill');
-      const pctEl = document.getElementById('jornada-pct');
+    F3_renderTimeline(t, diaEstado);
+
+    if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
+    const fill = document.getElementById('jornada-fill');
+    const pctEl = document.getElementById('jornada-pct');
+
+    if (diaEstado === 'pasado') {
+      // Día que ya pasó: jornada completa e inactiva.
+      if (fill) fill.style.width = '100%';
+      if (pctEl) pctEl.textContent = '100%';
+      F3_setBadge(badge, '✅ Completado', '#10b981');
+    } else if (diaEstado === 'futuro') {
+      // Día que aún no llega: jornada sin iniciar.
       if (fill) fill.style.width = '0%';
       if (pctEl) pctEl.textContent = '0%';
+      F3_setBadge(badge, '📅 Programado', 'var(--gris)');
+    } else {
+      // Hoy: barra en vivo, sincronizada con la hora actual.
+      F3_startJornadaBar(t);
     }
   }
+
+  F3_renderHorasSemana(user);
 
   // Prellenar fecha de solicitud con hoy
   const fh = document.getElementById('sol-fecha');
@@ -3765,7 +3807,10 @@ function F3_parse12hToMin(str) {
   return h * 60 + min;
 }
 
-function F3_renderTimeline(t) {
+// diaEstado: 'pasado' | 'hoy' | 'futuro' — controla si los eventos se marcan
+// según la hora real (hoy) o de forma fija (pasado = todo completado, futuro = todo pendiente).
+function F3_renderTimeline(t, diaEstado) {
+  diaEstado = diaEstado || F3_diaEstado(t.fechaISO);
   const list = document.getElementById('timeline-list');
   list.innerHTML = '';
 
@@ -3790,8 +3835,14 @@ function F3_renderTimeline(t) {
   eventos.forEach(ev => {
     const evMin = ev.rel;
     let estado = 'pending';
-    if (nowMin > evMin + 15) estado = 'done';
-    else if (Math.abs(nowMin - evMin) <= 15) estado = 'current';
+    if (diaEstado === 'pasado') {
+      estado = 'done';
+    } else if (diaEstado === 'futuro') {
+      estado = 'pending';
+    } else {
+      if (nowMin > evMin + 15) estado = 'done';
+      else if (Math.abs(nowMin - evMin) <= 15) estado = 'current';
+    }
 
     const item = document.createElement('div');
     item.className = 'timeline-item';
@@ -3803,33 +3854,6 @@ function F3_renderTimeline(t) {
         <div class="tl-label">${ev.label}</div>
         <div class="tl-status ${estado}">${statusText}</div>
       </div>`;
-    list.appendChild(item);
-  });
-}
-
-function F3_renderBreaks(t) {
-  const list = document.getElementById('breaks-list');
-  list.innerHTML = '';
-  if (!t.detalle || !t.detalle.length) {
-    list.innerHTML = '<div class="activity-empty">Sin registros de break para este día.</div>';
-    return;
-  }
-  const now = new Date();
-  const nowMin = now.getHours()*60 + now.getMinutes();
-  const icons = { 'Break 1':'☕', 'Break 2':'☕', 'Salida almuerzo':'🍽️', 'Regreso almuerzo':'🍽️' };
-
-  t.detalle.forEach(d => {
-    const min = F3_parse12hToMin(d.value);
-    const cumplido = min !== null && nowMin > min;
-    const item = document.createElement('div');
-    item.className = 'break-item';
-    item.innerHTML = `
-      <div class="break-icon">${icons[d.label] || '📌'}</div>
-      <div class="break-info">
-        <div class="break-name">${d.label}</div>
-        <div class="break-time">${d.value}</div>
-      </div>
-      <div class="break-status">${min === null ? '—' : (cumplido ? '✅' : '⏳')}</div>`;
     list.appendChild(item);
   });
 }
@@ -3852,9 +3876,16 @@ function F3_startJornadaBar(t) {
     if (fill) fill.style.width = pct + '%';
     if (pctEl) pctEl.textContent = pct + '%';
 
-    // El timeline y los breaks se re-marcan en vivo a medida que el reloj avanza
-    F3_renderTimeline(t);
-    F3_renderBreaks(t);
+    // Cuando la jornada de hoy se cumple al 100%, pasa a inactiva/completada.
+    const badge = document.getElementById('tc-badge');
+    if (badge) {
+      if (progreso >= 1) F3_setBadge(badge, '✅ Completado', '#10b981');
+      else F3_setBadge(badge, '🟢 Activo', '#10b981');
+    }
+
+    // El timeline y las horas de la semana se re-marcan en vivo a medida que el reloj avanza
+    F3_renderTimeline(t, 'hoy');
+    F3_renderHorasSemana(window.TurnoBotApp && window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser);
 
     // Hook Fase 3 progreso
     if (window.TurnoBotApp && typeof window.TurnoBotApp.onJornadaUpdate === 'function') {
@@ -3863,6 +3894,83 @@ function F3_startJornadaBar(t) {
   }
   update();
   FASE3_State.jornadaInterval = setInterval(update, 30000);
+}
+
+// ── Horas de la semana (reemplaza el antiguo panel "Mis Descansos") ──
+// Suma las horas ya trabajadas en la semana calendario actual (lunes a domingo):
+// los días pasados cuentan completos, el día de hoy cuenta según la hora actual,
+// y los días futuros no suman todavía. Meta legal: 42 horas semanales.
+function F3_getWeekRange(fechaISO) {
+  const d = new Date(fechaISO + 'T00:00:00');
+  const dow = d.getDay(); // 0=Dom..6=Sáb
+  const diffLunes = (dow === 0 ? -6 : 1 - dow);
+  const lunes = new Date(d); lunes.setDate(d.getDate() + diffLunes);
+  const domingo = new Date(lunes); domingo.setDate(lunes.getDate() + 6);
+  const toISO = x => `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`;
+  return { start: toISO(lunes), end: toISO(domingo) };
+}
+
+function F3_formatMin(min) {
+  min = Math.max(0, Math.round(min));
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  return `${h}h ${m}m`;
+}
+
+function F3_calcularHorasSemana(canonico) {
+  const todayISO = MALLA_todayISO();
+  const { start, end } = F3_getWeekRange(todayISO);
+  const registros = MALLA_recordsFor(canonico).filter(r => r.fechaISO >= start && r.fechaISO <= end);
+
+  const now = new Date();
+  const nowMin = now.getHours()*60 + now.getMinutes();
+  const metaMin = 42 * 60;
+
+  let trabajadasMin = 0;
+  registros.forEach(r => {
+    const sinTurno = r.estado === 'ACTIVO' && r.entrada === '00:00' && r.salida === '00:00';
+    if (r.estado !== 'ACTIVO' || sinTurno || !r.entrada || !r.salida) return;
+
+    let entMin = F3_toMin(r.entrada);
+    let salMin = F3_toMin(r.salida);
+    if (salMin <= entMin) salMin += 24*60; // turno nocturno
+    const duracion = salMin - entMin;
+
+    if (r.fechaISO < todayISO) {
+      trabajadasMin += duracion;
+    } else if (r.fechaISO === todayISO) {
+      trabajadasMin += Math.max(0, Math.min(duracion, nowMin - entMin));
+    }
+  });
+
+  return { trabajadasMin, restanteMin: Math.max(0, metaMin - trabajadasMin), metaMin };
+}
+
+function F3_renderHorasSemana(user) {
+  const trabajadasEl = document.getElementById('hs-trabajadas');
+  const faltanEl = document.getElementById('hs-faltan');
+  const fillEl = document.getElementById('hs-fill');
+  if (!trabajadasEl || !faltanEl || !fillEl) return;
+
+  const canonico = user && (user.mallaNombre || user.nombre);
+  if (!canonico) { F3_renderHorasSemanaVacio(); return; }
+
+  const { trabajadasMin, restanteMin, metaMin } = F3_calcularHorasSemana(canonico);
+  const pct = Math.max(0, Math.min(100, Math.round((trabajadasMin / metaMin) * 100)));
+
+  trabajadasEl.textContent = F3_formatMin(trabajadasMin);
+  faltanEl.textContent = restanteMin <= 0 ? '¡Completo! 🎉' : F3_formatMin(restanteMin);
+  faltanEl.classList.toggle('completo', restanteMin <= 0);
+  fillEl.style.width = pct + '%';
+}
+
+function F3_renderHorasSemanaVacio() {
+  const trabajadasEl = document.getElementById('hs-trabajadas');
+  const faltanEl = document.getElementById('hs-faltan');
+  const fillEl = document.getElementById('hs-fill');
+  if (trabajadasEl) trabajadasEl.textContent = '0h 0m';
+  if (faltanEl) { faltanEl.textContent = '42h 0m'; faltanEl.classList.remove('completo'); }
+  if (fillEl) fillEl.style.width = '0%';
 }
 
 function F3_renderConsultaLog() {
