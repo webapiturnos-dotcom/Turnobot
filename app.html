@@ -2295,13 +2295,30 @@ function MALLA_parseText(text) {
   return records;
 }
 
+// Corrige registros que ya quedaron guardados en localStorage con la cédula
+// pegada adelante del nombre (formato de malla anterior a la corrección del
+// parser). No afecta registros nuevos, que ya salen limpios de MALLA_parseText.
+function MALLA_limpiarCedulas() {
+  let huboCambios = false;
+  MALLA_DATA.forEach(r => {
+    const m = /^(\d{6,12})\s+(.+)$/.exec(r.nombre || '');
+    if (m) {
+      if (!r.cedula) r.cedula = m[1];
+      r.nombre = m[2].trim();
+      r.nombreNorm = normalizeName(r.nombre);
+      huboCambios = true;
+    }
+  });
+  if (huboCambios) MALLA_persist();
+}
+
 function MALLA_init() {
   try { MALLA_LAST_RAW_TEXT = localStorage.getItem(MALLA_RAWTEXT_KEY) || null; } catch {}
   try {
     const stored = localStorage.getItem(MALLA_STORAGE_KEY);
     if (stored) {
       const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed) && parsed.length) { MALLA_DATA = parsed; return; }
+      if (Array.isArray(parsed) && parsed.length) { MALLA_DATA = parsed; MALLA_limpiarCedulas(); return; }
     }
   } catch {}
   MALLA_DATA = MALLA_parseText(MALLA_RAW_DEFAULT);
@@ -2355,6 +2372,7 @@ function MALLA_ingestText(text, sourceLabel) {
     return false;
   }
   MALLA_DATA = parsed;
+  MALLA_limpiarCedulas(); // red de seguridad por si el formato pegado trae cédula fuera de 6-12 dígitos
   MALLA_LAST_RAW_TEXT = text;
   try { localStorage.setItem(MALLA_RAWTEXT_KEY, text); } catch {}
   MALLA_persist();
@@ -3240,7 +3258,7 @@ async function tryAutoLogin() {
 // para que nunca quede información antigua "pegada". La URL de la Sheet
 // NO se borra (para no perder la conexión), y nada se pierde de verdad
 // porque justo después se vuelve a traer todo fresco desde la Sheet.
-const TB_APP_VERSION = '2026-08-08.1728';
+const TB_APP_VERSION = '2026-08-08.1755';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
