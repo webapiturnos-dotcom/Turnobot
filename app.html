@@ -3018,10 +3018,15 @@ async function doLogin() {
       clearPin('pin-inputs');
       return;
     }
+    // Autosana el nombre guardado en la cuenta contra la malla actual: si la malla
+    // se actualizó/limpió después del registro (p. ej. ya no trae la cédula pegada
+    // adelante), se refresca aquí para que no quede una versión vieja "pegada" en
+    // la cuenta para siempre.
+    if (acc.nombre !== canonico) acc.nombre = canonico;
     sessionToken = 'local-token-' + norm;
     currentUser = {
-      nombre: acc.nombre,
-      mallaNombre: acc.nombre,
+      nombre: canonico,
+      mallaNombre: canonico,
       codigoMaya: acc.codigoMaya || '—',
       rol: acc.rol || 'asesor',
       email: acc.email || '',
@@ -3241,6 +3246,25 @@ async function tryAutoLogin() {
   try {
     sessionToken = token;
     currentUser = JSON.parse(user);
+    // Autosana el nombre en caché contra la malla actual: si la malla se
+    // actualizó o se le limpió la cédula pegada desde el último login, se
+    // refresca aquí el nombre guardado en la sesión y en la cuenta para que
+    // nunca quede una versión vieja "pegada" mostrándose en blanco o con
+    // números adelante.
+    if (currentUser && !currentUser.isAdmin && !currentUser.isDelegated) {
+      const canonico = MALLA_matchName(currentUser.mallaNombre || currentUser.nombre);
+      if (canonico && (canonico !== currentUser.nombre || canonico !== currentUser.mallaNombre)) {
+        currentUser.nombre = canonico;
+        currentUser.mallaNombre = canonico;
+        localStorage.setItem('tb_user', JSON.stringify(currentUser));
+        const norm = normalizeName(canonico);
+        const accounts = ACC_load();
+        if (accounts[norm] && accounts[norm].nombre !== canonico) {
+          accounts[norm].nombre = canonico;
+          ACC_save(accounts);
+        }
+      }
+    }
     initHomeScreen();
     showScreen('home');
     document.getElementById('splash-back-btn').style.display = 'block';
@@ -3258,7 +3282,7 @@ async function tryAutoLogin() {
 // para que nunca quede información antigua "pegada". La URL de la Sheet
 // NO se borra (para no perder la conexión), y nada se pierde de verdad
 // porque justo después se vuelve a traer todo fresco desde la Sheet.
-const TB_APP_VERSION = '2026-08-08.1755';
+const TB_APP_VERSION = '2026-08-08.1909';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -3740,7 +3764,9 @@ function F3_setBadge(el, texto, color) {
 }
 
 function F3_renderTurno(user, t) {
-  const nombre1 = (user.nombre||'').split(' ')[0];
+  // Red de seguridad: si por algún motivo el nombre llega vacío (cuenta vieja
+  // corrupta, cédula sin nombre, etc.) nunca se deja el campo en blanco.
+  const nombre1 = ((user.nombre||'').split(' ')[0]) || user.codigoMaya || 'Usuario';
   document.getElementById('tc-nombre').textContent = nombre1;
 
   const diaEstado = F3_diaEstado(t.fechaISO); // 'pasado' | 'hoy' | 'futuro'
