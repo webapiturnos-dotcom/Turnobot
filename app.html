@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="es" data-theme="morado"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -9,6 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+// Aplica el tema guardado ANTES de pintar, para evitar parpadeo del tema por defecto.
+(function(){ try { var t = localStorage.getItem('tb_theme'); if (t && t !== 'original') document.documentElement.setAttribute('data-theme', t); } catch(e) {} })();
+</script>
 <style>
 /* ═══════════════════════════════════════════════════
    VARIABLES & RESET
@@ -16,6 +20,7 @@
 :root {
   --rojo: #e50914;
   --rojo2: #ff2d37;
+  --rojo-rgb: 229,9,20;
   --negro: #0a0a0f;
   --negro2: #111118;
   --negro3: #1a1a24;
@@ -44,6 +49,17 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ═══════════════════════════════════════════════════
+   TEMAS DE COLOR — activados con data-theme en <html>
+   Todos mantienen el fondo negro original (igual que el
+   tema Azul); cada tema solo cambia el color de acento
+   que reemplaza al rojo fluorescente en toda la app.
+═══════════════════════════════════════════════════ */
+html[data-theme="morado"]   { --rojo: #7c3aed; --rojo2: #9d5cff; --rojo-rgb: 124,58,237; }
+html[data-theme="esmeralda"]{ --rojo: #059669; --rojo2: #10b981; --rojo-rgb: 5,150,105; }
+html[data-theme="atardecer"]{ --rojo: #ea580c; --rojo2: #fb923c; --rojo-rgb: 234,88,12; }
+html[data-theme="azul"]     { --rojo: #2563eb; --rojo2: #38bdf8; --rojo-rgb: 37,99,235; }
+
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--blanco); font-family:var(--font-body); }
 
@@ -52,7 +68,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ */
 #app {
   width:100%; height:100%; position:relative;
-  background: radial-gradient(ellipse at top right, rgba(229,9,20,0.08) 0%, transparent 50%),
+  background: radial-gradient(ellipse at top right, rgba(var(--rojo-rgb),0.08) 0%, transparent 50%),
               radial-gradient(ellipse at bottom left, rgba(30,58,138,0.06) 0%, transparent 50%),
               var(--negro);
 }
@@ -91,8 +107,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   50%      { transform:translateY(-8px) scale(1.02); }
 }
 @keyframes glowPulse {
-  0%,100% { box-shadow: 0 0 20px rgba(229,9,20,0.3), 0 0 60px rgba(229,9,20,0.1); }
-  50%      { box-shadow: 0 0 40px rgba(229,9,20,0.6), 0 0 100px rgba(229,9,20,0.2); }
+  0%,100% { box-shadow: 0 0 20px rgba(var(--rojo-rgb),0.3), 0 0 60px rgba(var(--rojo-rgb),0.1); }
+  50%      { box-shadow: 0 0 40px rgba(var(--rojo-rgb),0.6), 0 0 100px rgba(var(--rojo-rgb),0.2); }
 }
 @keyframes glowPulseBlue {
   0%,100% { box-shadow: 0 0 24px rgba(37,99,235,0.5), 0 0 70px rgba(37,99,235,0.18); }
@@ -102,8 +118,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   to { transform:rotate(360deg); }
 }
 @keyframes adminGlow {
-  0%,100% { box-shadow: 0 0 0 2px var(--rojo), 0 0 20px rgba(229,9,20,0.4); }
-  50%      { box-shadow: 0 0 0 3px var(--rojo2), 0 0 40px rgba(229,9,20,0.7); }
+  0%,100% { box-shadow: 0 0 0 2px var(--rojo), 0 0 20px rgba(var(--rojo-rgb),0.4); }
+  50%      { box-shadow: 0 0 0 3px var(--rojo2), 0 0 40px rgba(var(--rojo-rgb),0.7); }
 }
 @keyframes slideInRight {
   from { transform:translateX(100%); opacity:0; }
@@ -212,9 +228,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
 .btn-primary {
   background: linear-gradient(135deg, var(--rojo), var(--rojo2));
-  color:#fff; box-shadow:0 4px 24px rgba(229,9,20,0.4);
+  color:#fff; box-shadow:0 4px 24px rgba(var(--rojo-rgb),0.4);
 }
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(229,9,20,0.5); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(var(--rojo-rgb),0.5); }
 
 .btn-secondary {
   background:var(--glass); border:1px solid var(--glass-border); color:var(--blanco);
@@ -240,7 +256,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   font-family:var(--font-body); font-size:15px; outline:none;
   transition:var(--transition);
 }
-.form-input:focus { border-color:var(--rojo); background:rgba(229,9,20,0.05); }
+.form-input:focus { border-color:var(--rojo); background:rgba(var(--rojo-rgb),0.05); }
 .form-input::placeholder { color:var(--gris); }
 .form-input.error { border-color:#f87171; }
 
@@ -349,18 +365,18 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   50%      { opacity:0.6; transform:scale(0.9); }
 }
 @keyframes adminAuraGlow {
-  0%,100% { box-shadow: 0 0 0 3px rgba(229,9,20,0.5), 0 0 30px rgba(229,9,20,0.2), inset 0 0 20px rgba(229,9,20,0.05); }
-  50%      { box-shadow: 0 0 0 4px rgba(255,45,55,0.8), 0 0 60px rgba(229,9,20,0.4), inset 0 0 30px rgba(229,9,20,0.1); }
+  0%,100% { box-shadow: 0 0 0 3px rgba(var(--rojo-rgb),0.5), 0 0 30px rgba(var(--rojo-rgb),0.2), inset 0 0 20px rgba(var(--rojo-rgb),0.05); }
+  50%      { box-shadow: 0 0 0 4px rgba(255,45,55,0.8), 0 0 60px rgba(var(--rojo-rgb),0.4), inset 0 0 30px rgba(var(--rojo-rgb),0.1); }
 }
 @keyframes teaserPulse {
-  0%,100% { border-color: rgba(229,9,20,0.2); }
-  50%      { border-color: rgba(229,9,20,0.5); }
+  0%,100% { border-color: rgba(var(--rojo-rgb),0.2); }
+  50%      { border-color: rgba(var(--rojo-rgb),0.5); }
 }
 
 /* ── Notificaciones strip ── */
 .notif-strip {
-  background: linear-gradient(90deg, rgba(229,9,20,0.08), rgba(229,9,20,0.04));
-  border-bottom: 1px solid rgba(229,9,20,0.15);
+  background: linear-gradient(90deg, rgba(var(--rojo-rgb),0.08), rgba(var(--rojo-rgb),0.04));
+  border-bottom: 1px solid rgba(var(--rojo-rgb),0.15);
   padding: 8px 20px; overflow:hidden;
 }
 .notif-strip-inner {
@@ -394,11 +410,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
 }
 .day-stat-card.highlight {
-  background: linear-gradient(135deg, rgba(229,9,20,0.12), rgba(229,9,20,0.05));
-  border-color: rgba(229,9,20,0.25);
+  background: linear-gradient(135deg, rgba(var(--rojo-rgb),0.12), rgba(var(--rojo-rgb),0.05));
+  border-color: rgba(var(--rojo-rgb),0.25);
 }
 .day-stat-card.highlight::before {
-  background: linear-gradient(90deg, transparent, rgba(229,9,20,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--rojo-rgb),0.4), transparent);
 }
 .day-stat-icon { font-size:20px; margin-bottom:6px; }
 .day-stat-value {
@@ -423,8 +439,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 /* ── Admin Quick Panel ── */
 .admin-quick-panel {
   margin:14px 20px 0;
-  background: linear-gradient(135deg, rgba(229,9,20,0.1), rgba(10,10,15,0.9));
-  border:1px solid rgba(229,9,20,0.3); border-radius:var(--radius);
+  background: linear-gradient(135deg, rgba(var(--rojo-rgb),0.1), rgba(10,10,15,0.9));
+  border:1px solid rgba(var(--rojo-rgb),0.3); border-radius:var(--radius);
   padding:20px; backdrop-filter:blur(16px);
   animation:slideUp 0.45s ease 0.15s both;
   animation: adminAuraGlow 3s ease-in-out infinite, slideUp 0.45s ease 0.15s both;
@@ -450,7 +466,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .aqp-nombre { font-family:var(--font-display); font-size:17px; font-weight:800; }
 .aqp-badge {
   font-size:11px; color:var(--rojo2); letter-spacing:0.3px;
-  background:rgba(229,9,20,0.1); border:1px solid rgba(229,9,20,0.2);
+  background:rgba(var(--rojo-rgb),0.1); border:1px solid rgba(var(--rojo-rgb),0.2);
   border-radius:20px; padding:2px 8px; display:inline-block; margin-top:4px;
 }
 .aqp-indicators { display:flex; flex-direction:column; align-items:center; gap:6px; }
@@ -532,7 +548,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .rank-card.pos-1 { background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(245,158,11,0.04)); border-color:rgba(245,158,11,0.3); animation:rankGold 3s ease-in-out infinite, rankSlide 0.4s ease both; }
 .rank-card.pos-2 { background:linear-gradient(135deg,rgba(160,160,180,0.10),rgba(160,160,180,0.03)); border-color:rgba(180,180,200,0.2); }
 .rank-card.pos-3 { background:linear-gradient(135deg,rgba(180,100,40,0.10),rgba(180,100,40,0.03)); border-color:rgba(205,127,50,0.2); }
-.rank-card.is-me  { border-color:rgba(229,9,20,0.35); }
+.rank-card.is-me  { border-color:rgba(var(--rojo-rgb),0.35); }
 .rank-card.pos-1::before { background:linear-gradient(to bottom,#f59e0b,#fcd34d); }
 .rank-card.pos-2::before { background:linear-gradient(to bottom,#9ca3af,#d1d5db); }
 .rank-card.pos-3::before { background:linear-gradient(to bottom,#92400e,#d97706); }
@@ -570,7 +586,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
 .me-tag {
   position:absolute; top:6px; right:8px;
-  background:rgba(229,9,20,0.15); border:1px solid rgba(229,9,20,0.3);
+  background:rgba(var(--rojo-rgb),0.15); border:1px solid rgba(var(--rojo-rgb),0.3);
   color:var(--rojo2); font-size:9px; padding:2px 6px; border-radius:10px;
   font-weight:600; letter-spacing:0.3px;
 }
@@ -590,13 +606,19 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .activity-text { flex:1; font-size:13px; color:rgba(240,240,245,0.8); }
 .activity-text strong { color:var(--blanco); }
 .activity-time { font-size:11px; color:var(--gris); flex-shrink:0; }
+.activity-del-btn {
+  flex-shrink:0; background:none; border:none; color:var(--gris);
+  font-size:13px; cursor:pointer; padding:2px 4px; line-height:1;
+  border-radius:6px; transition:var(--transition);
+}
+.activity-del-btn:active { background:var(--glass-hover); color:var(--rojo2); }
 .activity-empty { text-align:center; padding:20px; color:var(--gris); font-size:13px; }
 
 /* ── Turno Teaser (Fase 3 connector) ── */
 .turno-teaser {
   margin:14px 20px 0;
-  background:linear-gradient(135deg,rgba(229,9,20,0.06),rgba(10,10,15,0.8));
-  border:1px solid rgba(229,9,20,0.2); border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,rgba(var(--rojo-rgb),0.06),rgba(10,10,15,0.8));
+  border:1px solid rgba(var(--rojo-rgb),0.2); border-radius:var(--radius-sm);
   padding:16px 18px; display:flex; align-items:center; justify-content:space-between;
   cursor:pointer; transition:var(--transition);
   animation:teaserPulse 3s ease-in-out infinite, slideUp 0.45s ease 0.35s both;
@@ -607,7 +629,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .tt-title { font-family:var(--font-display); font-size:15px; font-weight:700; }
 .tt-sub { font-size:12px; color:var(--gris); margin-top:2px; }
 .tt-badge {
-  background:rgba(229,9,20,0.15); border:1px solid rgba(229,9,20,0.3);
+  background:rgba(var(--rojo-rgb),0.15); border:1px solid rgba(var(--rojo-rgb),0.3);
   color:var(--rojo2); font-size:11px; font-weight:600;
   padding:4px 10px; border-radius:20px; letter-spacing:0.3px;
 }
@@ -622,7 +644,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ */
 #screen-login {
   min-height:100vh;
-  background: radial-gradient(ellipse at top, rgba(229,9,20,0.10) 0%, var(--negro) 60%);
+  background: radial-gradient(ellipse at top, rgba(var(--rojo-rgb),0.10) 0%, var(--negro) 60%);
 }
 
 .login-wrap {
@@ -668,7 +690,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   transition:var(--transition); font-family:var(--font-display);
   caret-color:var(--rojo);
 }
-.pin-input:focus { border-color:var(--rojo); background:rgba(229,9,20,0.05); }
+.pin-input:focus { border-color:var(--rojo); background:rgba(var(--rojo-rgb),0.05); }
 
 .error-msg {
   background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);
@@ -688,8 +710,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
 /* Admin welcome */
 .admin-welcome {
-  background: linear-gradient(135deg, rgba(229,9,20,0.15), rgba(229,9,20,0.05));
-  border:1px solid rgba(229,9,20,0.3); border-radius:var(--radius);
+  background: linear-gradient(135deg, rgba(var(--rojo-rgb),0.15), rgba(var(--rojo-rgb),0.05));
+  border:1px solid rgba(var(--rojo-rgb),0.3); border-radius:var(--radius);
   padding:20px; text-align:center; margin-bottom:16px;
   animation:fadeUp 0.4s ease both, adminGlow 2s ease-in-out infinite;
   display:none;
@@ -733,7 +755,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
    SCREEN: RECUPERAR CONTRASEÑA
 ═══════════════════════════════════════════════════ */
 #screen-forgot {
-  background: radial-gradient(ellipse at top left, rgba(229,9,20,0.06) 0%, var(--negro) 60%);
+  background: radial-gradient(ellipse at top left, rgba(var(--rojo-rgb),0.06) 0%, var(--negro) 60%);
 }
 .forgot-wrap {
   flex:1; padding:40px 24px; max-width:420px; margin:0 auto; width:100%;
@@ -791,7 +813,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 }
 .quick-card.qc-almuerzo .qc-icon { background:rgba(16,185,129,0.12); }
 .quick-card.qc-break .qc-icon { background:rgba(37,99,235,0.12); }
-.quick-card.qc-buzon .qc-icon { background:rgba(229,9,20,0.12); }
+.quick-card.qc-buzon .qc-icon { background:rgba(var(--rojo-rgb),0.12); }
 .qc-title { font-family:var(--font-display); font-size:14px; font-weight:700; }
 .qc-sub { font-size:11px; color:var(--gris); margin-top:2px; }
 .qc-arrow { color:var(--gris); font-size:16px; flex-shrink:0; }
@@ -817,8 +839,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 }
 .buzon-msg.mine {
   align-self:flex-end;
-  background:linear-gradient(135deg, rgba(229,9,20,0.22), rgba(229,9,20,0.08));
-  border-color:rgba(229,9,20,0.3);
+  background:linear-gradient(135deg, rgba(var(--rojo-rgb),0.22), rgba(var(--rojo-rgb),0.08));
+  border-color:rgba(var(--rojo-rgb),0.3);
 }
 .buzon-msg-name { font-size:11px; font-weight:700; color:var(--rojo2); margin-bottom:2px; }
 .buzon-msg.mine .buzon-msg-name { color:#fff; opacity:0.85; }
@@ -881,7 +903,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   border-radius:20px; padding:10px 16px; color:var(--blanco); font-size:14px;
   font-family:var(--font-body); resize:none; max-height:90px; line-height:1.3;
 }
-.buzon-input:focus { outline:none; border-color:rgba(229,9,20,0.4); }
+.buzon-input:focus { outline:none; border-color:rgba(var(--rojo-rgb),0.4); }
 .buzon-send {
   flex-shrink:0; width:42px; height:42px; border-radius:50%;
   background:var(--rojo); border:none; color:#fff; font-size:17px; cursor:pointer;
@@ -898,10 +920,21 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   z-index:999; flex-direction:column; gap:16px;
 }
 .loader-wrap.show { display:flex; }
+@property --pct {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
 .loader {
-  width:40px; height:40px; border:3px solid var(--glass-border);
-  border-top-color:var(--rojo); border-radius:50%;
-  animation:spin 0.8s linear infinite;
+  width:40px; height:40px; border-radius:50%;
+  --pct: 0;
+  background: conic-gradient(var(--rojo) calc(var(--pct) * 1%), var(--glass-border) 0%);
+  animation: loaderFill 1.4s ease-in-out infinite;
+}
+@keyframes loaderFill {
+  0%   { --pct: 0; }
+  55%  { --pct: 100; }
+  100% { --pct: 100; }
 }
 .loader-text { font-size:14px; color:var(--gris); }
 
@@ -940,11 +973,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ */
 .admin-notif {
   position:fixed; bottom:90px; right:16px;
-  background:var(--negro3); border:1px solid rgba(229,9,20,0.4);
+  background:var(--negro3); border:1px solid rgba(var(--rojo-rgb),0.4);
   border-radius:var(--radius-sm); padding:14px 16px;
   max-width:280px; z-index:500;
   animation:slideInRight 0.4s ease;
-  box-shadow:0 8px 32px rgba(229,9,20,0.2);
+  box-shadow:0 8px 32px rgba(var(--rojo-rgb),0.2);
 }
 .admin-notif-title { font-size:13px; font-weight:700; color:var(--rojo); margin-bottom:4px; }
 .admin-notif-msg { font-size:12px; color:var(--gris); line-height:1.4; }
@@ -974,8 +1007,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
    FASE 3 — ESTILOS: PANTALLA TURNO
 ═══════════════════════════════════════════════════ */
 @keyframes turnoGlow {
-  0%,100% { box-shadow: 0 0 24px rgba(229,9,20,0.2), inset 0 0 30px rgba(229,9,20,0.04); }
-  50%      { box-shadow: 0 0 48px rgba(229,9,20,0.4), inset 0 0 50px rgba(229,9,20,0.08); }
+  0%,100% { box-shadow: 0 0 24px rgba(var(--rojo-rgb),0.2), inset 0 0 30px rgba(var(--rojo-rgb),0.04); }
+  50%      { box-shadow: 0 0 48px rgba(var(--rojo-rgb),0.4), inset 0 0 50px rgba(var(--rojo-rgb),0.08); }
 }
 @keyframes barFill {
   from { width:0%; }
@@ -984,8 +1017,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
 /* ── Tarjeta turno principal ── */
 .turno-card {
-  background: linear-gradient(135deg, rgba(229,9,20,0.1), rgba(10,10,15,0.95));
-  border:1px solid rgba(229,9,20,0.3); border-radius:var(--radius);
+  background: linear-gradient(135deg, rgba(var(--rojo-rgb),0.1), rgba(10,10,15,0.95));
+  border:1px solid rgba(var(--rojo-rgb),0.3); border-radius:var(--radius);
   padding:20px; backdrop-filter:blur(16px);
   animation: turnoGlow 3s ease-in-out infinite, slideUp 0.4s ease both;
 }
@@ -993,7 +1026,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .turno-card-label { font-size:12px; color:var(--gris); letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px; }
 .turno-card-nombre { font-family:var(--font-display); font-size:22px; font-weight:800; }
 .turno-card-badge {
-  background:rgba(229,9,20,0.15); border:1px solid rgba(229,9,20,0.35);
+  background:rgba(var(--rojo-rgb),0.15); border:1px solid rgba(var(--rojo-rgb),0.35);
   color:var(--rojo2); font-size:12px; font-weight:700;
   padding:6px 12px; border-radius:20px; white-space:nowrap;
 }
@@ -1062,7 +1095,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   animation:slideUp 0.4s ease 0.2s both;
 }
 .incap-panel { border-color:rgba(245,158,11,0.2); }
-.consultas-panel { border-color:rgba(229,9,20,0.25); }
+.consultas-panel { border-color:rgba(var(--rojo-rgb),0.25); }
 .consultas-list { display:flex; flex-direction:column; gap:8px; }
 .consulta-item {
   display:flex; align-items:center; gap:10px; padding:8px 12px;
@@ -1088,7 +1121,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .date-chip .dc-num { font-family:var(--font-display); font-weight:800; font-size:16px; }
 .date-chip .dc-dot { width:5px; height:5px; border-radius:50%; background:var(--verde); margin-top:2px; }
 .date-chip.descanso .dc-dot { background:var(--naranja); }
-.date-chip.active { background:linear-gradient(135deg, var(--rojo), var(--rojo2)); border-color:transparent; box-shadow:0 4px 18px rgba(229,9,20,0.4); }
+.date-chip.active { background:linear-gradient(135deg, var(--rojo), var(--rojo2)); border-color:transparent; box-shadow:0 4px 18px rgba(var(--rojo-rgb),0.4); }
 .date-chip.active .dc-dow, .date-chip.active .dc-num { color:#fff; }
 .date-chip.active .dc-dot { background:#fff; }
 .date-chip:not(.active):active { background:var(--glass-hover); }
@@ -1138,10 +1171,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .team-row-badge.sindatos { color:var(--gris); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); }
 .team-empty { text-align:center; padding:18px; color:var(--gris); font-size:13px; }
 .deleg-row-btn {
-  flex-shrink:0; background:rgba(229,9,20,0.12); border:1px solid rgba(229,9,20,0.35);
+  flex-shrink:0; background:rgba(var(--rojo-rgb),0.12); border:1px solid rgba(var(--rojo-rgb),0.35);
   color:var(--rojo2); font-size:12px; font-weight:600; padding:7px 12px; border-radius:10px; cursor:pointer;
 }
-.deleg-row-btn:hover { background:rgba(229,9,20,0.22); }
+.deleg-row-btn:hover { background:rgba(var(--rojo-rgb),0.22); }
 
 /* ═══════════════════════════════════════════════════
    PERFIL
@@ -1182,9 +1215,16 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
+
+<!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
+     entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
+<div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: ADRIANA — lo que hagas aquí es real (queda a su nombre)</span>
+  <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      APP
@@ -1413,7 +1453,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 08/08/2026 · 1057 · Sync 10:18:28 p. m.</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 08/08/2026 · 1057</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1473,7 +1513,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Panel admin rápido (100% local) ────── -->
-      <div class="admin-quick-panel" id="admin-quick-panel" style="display: none;">
+      <div class="admin-quick-panel" id="admin-quick-panel" style="display: block;">
         <div class="aqp-header">
           <div class="aqp-avatar-wrap">
             <div class="aqp-avatar" id="aqp-avatar">M</div>
@@ -1486,11 +1526,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="aqp-stats-row">
           <div class="aqp-stat" id="aqp-total">
-            <div class="aqp-stat-v" id="aqp-total-v">23</div>
+            <div class="aqp-stat-v" id="aqp-total-v">29</div>
             <div class="aqp-stat-l">Personas en malla</div>
           </div>
           <div class="aqp-stat" id="aqp-pending">
-            <div class="aqp-stat-v" id="aqp-pend-v">138</div>
+            <div class="aqp-stat-v" id="aqp-pend-v">174</div>
             <div class="aqp-stat-l">Turnos cargados</div>
           </div>
           <div class="aqp-stat">
@@ -1504,9 +1544,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="activity-panel" id="activity-panel">
         <div class="section-header">
           <div class="section-title">⚡ Actividad Reciente</div>
-          <div class="section-sub">Últimas acciones</div>
+          <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Mi Turno</strong> · Consultado</div><div class="activity-time">22:18</div></div><div class="activity-item"><div class="activity-icon">🗂️</div><div class="activity-text"><strong>Malla actualizada</strong> desde Malla del 10 al 15 de agosto.pdf · 174 turnos</div><div class="activity-time">22:18</div></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Mi Turno</strong> · Consultado</div><div class="activity-time">22:17</div></div><div class="activity-item"><div class="activity-icon">🔄</div><div class="activity-text"><strong>MELANYS</strong> solicitó cambio de turno con <strong>ZUANY</strong></div><div class="activity-time">22:17</div></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 3/08/2026</div><div class="activity-time">22:16</div></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno del 10/08/2026</div><div class="activity-time">01:18</div><button type="button" class="activity-del-btn" data-aid="34" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno del 10/08/2026</div><div class="activity-time">01:18</div><button type="button" class="activity-del-btn" data-aid="32" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1569,7 +1609,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Lunes 3 Ago</div>
+            <div class="turno-card-label">Tu turno · Lunes 10 Ago</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -1593,10 +1633,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="jornada-bar-wrap" style="display: none;">
           <div class="jornada-bar-label">
             <span>Progreso jornada</span>
-            <span id="jornada-pct">100%</span>
+            <span id="jornada-pct">0%</span>
           </div>
           <div class="jornada-bar-bg">
-            <div class="jornada-bar-fill" id="jornada-fill" style="width: 100%;"></div>
+            <div class="jornada-bar-fill" id="jornada-fill" style="width: 0%;"></div>
           </div>
         </div>
       </div>
@@ -1605,7 +1645,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Lunes 3 Ago</div>
+          <div class="section-sub" id="timeline-fecha">Lunes 10 Ago</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -1637,7 +1677,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:18</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:18</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1663,9 +1703,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
           Al actualizar (PDF, .txt/.csv o texto pegado) se descarga automáticamente un HTML con la malla ya incrustada. Comparte ese archivo con el equipo — se abre igual en Android y iPhone.
         </div>
-        <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_downloadUpdatedHTML() ? showToast('success','⬇️ HTML descargado','Listo para compartir con el equipo.') : showToast('error','⚠️ Nada que descargar','Actualiza la malla primero.')">
+        <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_downloadBtnClick()">
           ⬇️ Descargar HTML actualizado
         </button>
+        <button type="button" id="buzon-toggle-btn" class="btn btn-primary w-full" style="margin-top:10px" onclick="BUZON_toggleEnabled()">✅ Habilitar Buzón</button>
       </div>
 
       <!-- ── Turnos de todo el equipo (solo admin) ── -->
@@ -1682,147 +1723,147 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como AMIRA ROSA CAMACHO CANTILLO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">AMIRA ROSA CAMACHO CANTILLO</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA MARTINEZ CAMARGO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Diosibel Maria Gonzalez Marchena" style="cursor: pointer;">
       <div>
         <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ESPERANZA ISABEL PARADA DE LA CRUZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
       <div>
         <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como HOMERO LEONEL DIAZ ORTEGA" style="cursor: pointer;">
       <div>
         <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
       <div>
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como LILIBETH ROMERO ALVAREZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">LILIBETH ROMERO ALVAREZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
       <div>
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
       <div>
         <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Wandi Vanessa Tafur Sanjuan" style="cursor: pointer;">
       <div>
         <div class="team-row-name">Wandi Vanessa Tafur Sanjuan</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YANILETH DAYANA TORRES PEREZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row">
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ZUANY SOFIA RENDON SINCELEJO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ZUANY SOFIA RENDON SINCELEJO</div>
         <div class="team-row-sub">No hay turno para esa fecha</div>
@@ -1877,20 +1918,30 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
       <div style="flex:1">
+        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 LILIBETH ROMERO ALVAREZ</div>
+        <div class="team-row-sub">Fecha: 2026-08-10T00:00:00.000Z · B</div>
+        <div class="team-row-sub" style="color:var(--rojo)">Estado: rechazado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 ZUANY SOFIA RENDON SINCELEJO</div>
+        <div class="team-row-sub">Fecha: 2026-08-08T00:00:00.000Z · G</div>
+        <div class="team-row-sub" style="color:var(--rojo)">Estado: rechazado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 ADRIANA ANILLO BOLÍVAR</div>
         <div class="team-row-sub">Fecha: 2026-08-08T00:00:00.000Z · Jajjabbe</div>
-        <div class="team-row-sub" style="color:var(--naranja)">Estado: pendiente</div>
-      </div><div style="display: flex; gap: 6px;"><button class="deleg-row-btn">✅</button><button class="deleg-row-btn">❌</button></div></div><div class="team-row">
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">Moisés Elias Rojas Vasquez 🔄 ALEXANDRA HURTADO BARROSO</div>
         <div class="team-row-sub">Fecha: 2026-08-07T00:00:00.000Z · T</div>
-        <div class="team-row-sub" style="color:var(--naranja)">Estado: pendiente</div>
-      </div><div style="display: flex; gap: 6px;"><button class="deleg-row-btn">✅</button><button class="deleg-row-btn">❌</button></div></div><div class="team-row">
+        <div class="team-row-sub" style="color:var(--rojo)">Estado: rechazado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 ADRIANA ANILLO BOLÍVAR</div>
         <div class="team-row-sub">Fecha: 2026-08-07T00:00:00.000Z · G</div>
-        <div class="team-row-sub" style="color:var(--naranja)">Estado: pendiente</div>
-      </div><div style="display: flex; gap: 6px;"><button class="deleg-row-btn">✅</button><button class="deleg-row-btn">❌</button></div></div><div class="team-row">
+        <div class="team-row-sub" style="color:var(--rojo)">Estado: rechazado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">Moisés Elias Rojas Vasquez 🔄 ADRIANA ANILLO BOLÍVAR</div>
         <div class="team-row-sub">Fecha: 2026-08-08T00:00:00.000Z · N</div>
@@ -1924,11 +1975,6 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 ADRIANA ANILLO BOLÍVAR</div>
         <div class="team-row-sub">Fecha: 2026-08-08T00:00:00.000Z · prueba</div>
-        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">Fecha: 2026-08-07T00:00:00.000Z · n</div>
         <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
       </div></div></div>
       </div>
@@ -2091,15 +2137,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="file" id="profile-photo-input" accept="image/*" onchange="PROFILE_onPhotoSelected(event)">
           </label>
         </div>
-        <div class="profile-name" id="profile-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Asesor</span></div>
+        <div class="profile-name" id="profile-name">Moi</div>
+        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Administrador</span></div>
         <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: block;">Quitar foto de perfil</div>
       </div>
 
       <div class="profile-section">
         <div class="profile-info-row">
           <span class="lbl">Usuario Maya</span>
-          <span class="val" id="profile-maya">MELANYS</span>
+          <span class="val" id="profile-maya">1999</span>
         </div>
         <div class="profile-info-row">
           <span class="lbl">Accesos totales</span>
@@ -2108,7 +2154,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Apodo (solo asesores): cómo quieren que les aparezca su nombre ── -->
-      <div class="profile-section" id="profile-apodo-section" style="display: block;">
+      <div class="profile-section" id="profile-apodo-section" style="display: none;">
         <div class="form-group">
           <label class="form-label">Tu apodo (cómo quieres que te llamen)</label>
           <div style="display:flex; gap:8px;">
@@ -2119,7 +2165,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
       </div>
 
-      <div class="profile-section" id="profile-admin-link" style="display: none;">
+      <!-- ── Tema de color (solo admin: los asesores reciben el tema
+           que Moi elija al publicar el HTML, no lo pueden cambiar) ── -->
+      <div class="profile-section" id="profile-theme-section" style="display: block;">
+        <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
+        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
+        <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
+      </div>
+
+      <div class="profile-section" id="profile-admin-link" style="display: block;">
         <button class="btn btn-secondary w-full" onclick="showMainScreen('turns')">
           👑 Ir al Panel de Administración
         </button>
@@ -2246,7 +2300,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -2282,7 +2336,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="nav-icon">🕐</div>
         <div class="nav-label" id="nav-turns-label-4">Mi Turno</div>
       </div>
-      <div class="nav-item active" onclick="showMainScreen('novedades')">
+      <div class="nav-item" onclick="showMainScreen('novedades')">
         <div class="nav-icon">📋</div>
         <div class="nav-label">Novedades</div>
       </div>
@@ -2694,8 +2748,8 @@ function MALLA_ingestText(text, sourceLabel) {
   // con todo el equipo (Android/iPhone) sin depender de datos guardados en cada
   // dispositivo.
   if (currentUser && currentUser.isAdmin) {
-    setTimeout(() => {
-      const ok = MALLA_downloadUpdatedHTML();
+    setTimeout(async () => {
+      const ok = await MALLA_downloadWithThemePrompt();
       if (ok) {
         showToast('success', '⬇️ HTML descargado', 'Comparte este archivo con el equipo: ya trae la malla actualizada.');
       } else {
@@ -2720,6 +2774,10 @@ function MALLA_buildUpdatedHTML() {
   html = html.replace(
     /const MALLA_RAW_DEFAULT = `[\s\S]*?`;/,
     'const MALLA_RAW_DEFAULT = `' + escaped + '`;'
+  );
+  html = html.replace(
+    /const BUZON_ENABLED_DEFAULT = (true|false);/,
+    'const BUZON_ENABLED_DEFAULT = ' + (BUZON_isEnabled() ? 'true' : 'false') + ';'
   );
   return html;
 }
@@ -3081,8 +3139,70 @@ function TEAM_render() {
         <div class="team-row-sub">${sub}</div>
       </div>
       <div class="team-row-badge ${badgeClass}">${badgeText}</div>`;
+    row.style.cursor = 'pointer';
+    row.title = 'Toca para entrar en Modo Asesor y navegar como ' + nombre;
+    row.onclick = () => TEAM_enterModoAsesor(nombre);
     cont.appendChild(row);
   });
+}
+
+// ── Modo Asesor: el admin "entra" a la app tal cual la vería ese asesor,
+// sin cerrar su propia sesión, para poder probar navegación real. ─────────
+// OJO: como el backend (TB_api) no usa token, cualquier incapacidad,
+// cambio de turno o mensaje del buzón que se envíe estando en Modo Asesor
+// queda registrado de verdad a nombre de ese asesor en la Sheet — es un
+// modo de navegación real, no una simulación aislada.
+let MODO_ASESOR_BACKUP = null;
+let MODO_ASESOR_NOMBRE = null;
+
+function TEAM_enterModoAsesor(nombre) {
+  if (!MODO_ASESOR_BACKUP) {
+    MODO_ASESOR_BACKUP = { user: currentUser, token: sessionToken };
+  }
+  const norm = normalizeName(nombre);
+  const acc = ACC_load()[norm];
+  currentUser = {
+    nombre: nombre,
+    mallaNombre: nombre,
+    codigoMaya: (acc && acc.codigoMaya) || '—',
+    rol: (acc && acc.rol) || 'asesor',
+    email: (acc && acc.email) || '',
+    apodo: (acc && acc.apodo) || '',
+    isAdmin: false,
+    loginCount: (acc && acc.loginCount) || 1
+  };
+  sessionToken = 'modo-asesor-' + norm;
+  MODO_ASESOR_NOMBRE = nombre;
+
+  FASE2_State.initialized = false;
+  FASE3_State.selectedDate = null;
+
+  const banner = document.getElementById('modo-asesor-banner');
+  if (banner) {
+    document.getElementById('modo-asesor-banner-text').textContent = '🕵️ Modo Asesor: ' + nombre.split(' ')[0] + ' — lo que hagas aquí es real (queda a su nombre)';
+    banner.style.display = 'flex';
+  }
+
+  initHomeScreen();
+  showScreen('home');
+  showToast('info', '🕵️ Modo Asesor activo', `Navegando como ${nombre.split(' ')[0]}. Toca "Salir" para volver a tu panel.`);
+}
+
+function TEAM_salirModoAsesor() {
+  if (!MODO_ASESOR_BACKUP) return;
+  currentUser = MODO_ASESOR_BACKUP.user;
+  sessionToken = MODO_ASESOR_BACKUP.token;
+  MODO_ASESOR_BACKUP = null;
+  MODO_ASESOR_NOMBRE = null;
+
+  FASE2_State.initialized = false;
+  FASE3_State.selectedDate = null;
+
+  const banner = document.getElementById('modo-asesor-banner');
+  if (banner) banner.style.display = 'none';
+
+  initHomeScreen();
+  showScreen('turns');
 }
 
 if (typeof pdfjsLib !== 'undefined') {
@@ -3090,6 +3210,87 @@ if (typeof pdfjsLib !== 'undefined') {
 }
 
 MALLA_init();
+
+// ── Temas de color (solo cambian variables CSS vía data-theme) ──
+const THEME_KEY = 'tb_theme';
+const THEMES = [
+  { id: 'original',   label: '🔴 Original' },
+  { id: 'morado',     label: '🟣 Morado' },
+  { id: 'esmeralda',  label: '🟢 Esmeralda' },
+  { id: 'atardecer',  label: '🟠 Atardecer' },
+  { id: 'azul',       label: '🔵 Azul' },
+];
+function THEME_get() {
+  try { return localStorage.getItem(THEME_KEY) || 'original'; } catch { return 'original'; }
+}
+function THEME_apply(id) {
+  if (id === 'original') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', id);
+}
+function THEME_set(id) {
+  try { localStorage.setItem(THEME_KEY, id); } catch {}
+  THEME_apply(id);
+  THEME_renderPicker();
+}
+function THEME_renderPicker() {
+  const cont = document.getElementById('theme-picker');
+  if (!cont) return;
+  const actual = THEME_get();
+  cont.innerHTML = '';
+  THEMES.forEach(t => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn ' + (t.id === actual ? 'btn-primary' : 'btn-secondary');
+    btn.style.cssText = 'flex:1 1 calc(50% - 4px); min-width:120px; padding:10px 8px; font-size:13px;';
+    btn.textContent = t.label;
+    btn.onclick = () => THEME_set(t.id);
+    cont.appendChild(btn);
+  });
+}
+THEME_apply(THEME_get());
+
+// ── Antes de publicar el HTML: preguntar con qué tema sale por defecto ──
+function THEME_promptExport() {
+  return new Promise(resolve => {
+    const actual = THEME_get();
+    const actualLabel = (THEMES.find(t => t.id === actual) || THEMES[0]).label;
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+    const card = document.createElement('div');
+    card.style.cssText = 'background:var(--negro2);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:20px;max-width:340px;width:100%;box-shadow:var(--shadow);';
+    card.innerHTML = '<div style="font-family:var(--font-display);font-weight:800;font-size:16px;margin-bottom:6px;color:var(--blanco)">🎨 ¿Con qué tema publicas?</div><div style="font-size:12px;color:var(--gris);margin-bottom:16px;">Este HTML se compartirá con el equipo. Elige cómo se ve por defecto al abrirlo por primera vez.</div>';
+    const btnOriginal = document.createElement('button');
+    btnOriginal.type = 'button';
+    btnOriginal.className = 'btn btn-secondary w-full';
+    btnOriginal.style.marginBottom = '8px';
+    btnOriginal.textContent = '🔴 Publicar con el Original';
+    btnOriginal.onclick = () => { document.body.removeChild(overlay); resolve('original'); };
+    card.appendChild(btnOriginal);
+    if (actual !== 'original') {
+      const btnActual = document.createElement('button');
+      btnActual.type = 'button';
+      btnActual.className = 'btn btn-primary w-full';
+      btnActual.textContent = 'Publicar con ' + actualLabel;
+      btnActual.onclick = () => { document.body.removeChild(overlay); resolve(actual); };
+      card.appendChild(btnActual);
+    }
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+  });
+}
+async function MALLA_downloadWithThemePrompt(filename) {
+  const elegido = await THEME_promptExport();
+  const previo = THEME_get();
+  THEME_apply(elegido);
+  const ok = MALLA_downloadUpdatedHTML(filename);
+  THEME_apply(previo); // restaura lo que Moi está viendo, sin tocar su preferencia guardada
+  return ok;
+}
+async function MALLA_downloadBtnClick() {
+  const ok = await MALLA_downloadWithThemePrompt();
+  ok ? showToast('success', '⬇️ HTML descargado', 'Listo para compartir con el equipo.')
+     : showToast('error', '⚠️ Nada que descargar', 'Actualiza la malla primero.');
+}
 
 
 // ── Navegación ────────────────────────────────────
@@ -3517,7 +3718,8 @@ function initHomeScreen() {
 
   // Reloj
   updateClock();
-  setInterval(updateClock, 1000);
+  if (window.TB_clockTimer) clearInterval(window.TB_clockTimer);
+  window.TB_clockTimer = setInterval(updateClock, 1000);
 
   // ── HOOK: disparar cuando home esté listo ──
   if (window.TurnoBotApp && typeof window.TurnoBotApp.onHomeReady === 'function') {
@@ -3616,17 +3818,14 @@ async function tryAutoLogin() {
 // fallar por algún motivo, el buzón igual se vuelve a llenar solo al
 // abrirlo, porque siempre sincroniza el historial completo desde su propio
 // backend (ver BUZON_refresh).
-const TB_APP_VERSION = '2026-08-09.0032';
+const TB_APP_VERSION = '2026-08-09.0121';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
   const el = document.getElementById('tb-build-info');
   if (!el) return;
   const publicado = TB_APP_VERSION.replace('.', ' · ').replace(/(\d{4})-(\d{2})-(\d{2})/, '$3/$2/$1');
-  const sync = TB_lastSyncOk
-    ? TB_lastSyncOk.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-    : 'pendiente';
-  el.textContent = `Publicado ${publicado} · Sync ${sync}`;
+  el.textContent = `Publicado ${publicado}`;
 }
 function TB_clearStaleCacheIfNewVersion() {
   try {
@@ -3850,18 +4049,37 @@ function renderActivityLog() {
   visibles.slice(-5).reverse().forEach(a => {
     const el = document.createElement('div');
     el.className = 'activity-item';
-    el.innerHTML = `<div class="activity-icon">${a.icon}</div><div class="activity-text">${a.text}</div><div class="activity-time">${a.time}</div>`;
+    el.innerHTML = `<div class="activity-icon">${a.icon}</div><div class="activity-text">${a.text}</div><div class="activity-time">${a.time}</div><button type="button" class="activity-del-btn" data-aid="${a.id}" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button>`;
     list.appendChild(el);
   });
+}
+
+// Borra una notificación puntual (asesor o admin, es el mismo panel).
+// Funciona tanto para las generadas en esta sesión (tienen data-aid, y se
+// quitan también del arreglo para que no vuelvan a aparecer) como para las
+// que ya venían escritas en el HTML (sin data-aid: solo se quita la tarjeta).
+function fase2DeleteActivity(btn) {
+  const aid = btn.dataset.aid;
+  if (aid) FASE2_State.activityLog = FASE2_State.activityLog.filter(a => String(a.id) !== aid);
+  const item = btn.closest('.activity-item');
+  if (item) item.remove();
+}
+
+// Borra toda la Actividad Reciente visible (asesor o admin).
+function fase2ClearActivity() {
+  FASE2_State.activityLog = [];
+  const list = document.getElementById('activity-list');
+  if (list) list.innerHTML = '';
 }
 
 // El parámetro cat clasifica la actividad para el filtro de renderActivityLog.
 // Si se omite, la actividad queda registrada pero no se muestra en el home
 // (se conserva por si otra pantalla del bot la necesita, sin alterar esa lógica).
+let FASE2_ACTIVITY_SEQ = 0;
 function fase2AddActivity(icon, text, cat) {
   const now = new Date();
   const time = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
-  FASE2_State.activityLog.push({ icon, text, time, cat: cat || 'general' });
+  FASE2_State.activityLog.push({ id: ++FASE2_ACTIVITY_SEQ, icon, text, time, cat: cat || 'general' });
   if (FASE2_State.initialized) renderActivityLog();
 }
 
@@ -3971,6 +4189,9 @@ function P_initProfile() {
   const adminLink = document.getElementById('profile-admin-link');
   if (adminLink) adminLink.style.display = user.isAdmin ? 'block' : 'none';
 
+  const themeSection = document.getElementById('profile-theme-section');
+  if (themeSection) themeSection.style.display = user.isAdmin ? 'block' : 'none';
+
   // Apodo: disponible para los asesores (el admin ya tiene el suyo aparte).
   const apodoSection = document.getElementById('profile-apodo-section');
   if (apodoSection) {
@@ -3978,6 +4199,8 @@ function P_initProfile() {
     const apodoInput = document.getElementById('profile-apodo-input');
     if (apodoInput) apodoInput.value = user.apodo || '';
   }
+
+  if (user.isAdmin && typeof THEME_renderPicker === 'function') THEME_renderPicker();
 }
 
 function P_guardarApodo() {
@@ -4122,6 +4345,7 @@ function F3_initTurns() {
     MALLA_refreshStatus();
     F3_renderAdminView();
     TEAM_render();
+    BUZON_renderAdminToggle();
     if (user.isSuperAdmin) { DELEG_render(); TB_renderSheetStatus(); }
     return;
   }
@@ -4934,6 +5158,36 @@ const BUZON_STORAGE_KEY = 'tb_buzon_msgs';
 const BUZON_SEEN_KEY = 'tb_buzon_seen';
 let BUZON_MSGS = [];
 
+// ── Habilitar/deshabilitar el Buzón mientras no esté listo ──────────
+// BUZON_ENABLED_DEFAULT queda "horneado" en el HTML que se publica (igual
+// que la malla, ver MALLA_buildUpdatedHTML), así que el equipo recibe el
+// buzón apagado o encendido según lo que Moi elija justo antes de publicar.
+// El admin siempre puede entrar igual (para probar), aunque esté apagado.
+const BUZON_ENABLED_DEFAULT = false;
+const BUZON_ENABLED_OVERRIDE_KEY = 'tb_buzon_enabled_override';
+function BUZON_isEnabled() {
+  try {
+    const v = localStorage.getItem(BUZON_ENABLED_OVERRIDE_KEY);
+    if (v === null) return BUZON_ENABLED_DEFAULT;
+    return v === '1';
+  } catch { return BUZON_ENABLED_DEFAULT; }
+}
+function BUZON_setEnabled(v) {
+  try { localStorage.setItem(BUZON_ENABLED_OVERRIDE_KEY, v ? '1' : '0'); } catch {}
+  BUZON_renderAdminToggle();
+  showToast(v ? 'success' : 'info',
+    v ? '✅ Buzón habilitado' : '🚧 Buzón deshabilitado',
+    v ? 'Los asesores ya pueden entrar al buzón.' : 'Los asesores verán "En construcción" al intentar entrar.');
+}
+function BUZON_toggleEnabled() { BUZON_setEnabled(!BUZON_isEnabled()); }
+function BUZON_renderAdminToggle() {
+  const btn = document.getElementById('buzon-toggle-btn');
+  if (!btn) return;
+  const on = BUZON_isEnabled();
+  btn.textContent = on ? '🚧 Deshabilitar Buzón' : '✅ Habilitar Buzón';
+  btn.className = 'btn ' + (on ? 'btn-secondary' : 'btn-primary') + ' w-full';
+}
+
 // ── Conector propio del buzón (separado del principal) ──────
 // Pega aquí la URL /exec de TU Apps Script del buzón cuando la
 // tengas lista y probada. Mientras esté vacío ('') el buzón
@@ -4989,6 +5243,10 @@ let BUZON_polling = false; // evita que se amontonen peticiones si la red va len
 
 function BUZON_open() {
   if (!currentUser) return;
+  if (!BUZON_isEnabled() && !currentUser.isAdmin) {
+    showToast('info', '🚧 En construcción', 'El buzón de sugerencias todavía no está disponible.');
+    return;
+  }
   BUZON_MSGS = BUZON_load();
   BUZON_render();
   showScreen('buzon');
