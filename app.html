@@ -79,6 +79,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 @keyframes pulse {
   0%,100% { opacity:1; } 50% { opacity:0.5; }
 }
+@keyframes replyBtnGlow {
+  0%,100% { box-shadow:0 0 4px 1px rgba(57,255,140,0.55), 0 0 0 1px rgba(57,255,140,0.7); background:#39ff8c; color:#04220f; }
+  50%     { box-shadow:0 0 11px 4px rgba(57,255,140,0.95), 0 0 0 1px rgba(57,255,140,1); background:#7dffb0; color:#04220f; }
+}
 @keyframes spin {
   to { transform:rotate(360deg); }
 }
@@ -752,25 +756,138 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .greeting-hello { color:var(--gris); font-size:14px; }
 .greeting-name { font-family:var(--font-display); font-size:24px; font-weight:800; }
 .greeting-name span { color:var(--rojo); }
+.greeting-name .greeting-clock {
+  display:inline-flex; align-items:center; gap:3px; vertical-align:middle;
+  font-size:12px; font-weight:600; color:var(--gris); margin-left:8px;
+  background:var(--glass); border:1px solid var(--glass-border);
+  padding:3px 9px; border-radius:20px;
+}
+.greeting-sub { font-size:12px; color:var(--gris); margin-top:6px; }
 .greeting-role {
   display:inline-flex; align-items:center; gap:6px; margin-top:6px;
   background:var(--glass); border:1px solid var(--glass-border);
   padding:4px 12px; border-radius:20px; font-size:12px; color:var(--gris);
 }
 
-.home-stats {
-  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+.online-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--verde); margin-right:4px; animation:pulse 2s infinite; }
+
+/* ── Accesos rápidos (compañeros / buzón) ── */
+.home-quick-actions {
+  display:flex; flex-direction:column; gap:10px;
   animation:fadeUp 0.5s ease 0.1s both;
 }
-.stat-card {
+.quick-card {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
   background:var(--glass); border:1px solid var(--glass-border);
-  border-radius:var(--radius-sm); padding:16px;
+  border-radius:var(--radius-sm); padding:14px 16px;
+  cursor:pointer; transition:var(--transition);
 }
-.stat-icon { font-size:24px; margin-bottom:8px; }
-.stat-value { font-family:var(--font-display); font-size:28px; font-weight:800; }
-.stat-label { font-size:12px; color:var(--gris); margin-top:2px; }
+.quick-card:active { transform:scale(0.98); }
+.qc-left { display:flex; align-items:center; gap:12px; }
+.qc-icon {
+  font-size:20px; width:40px; height:40px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,0.05);
+}
+.quick-card.qc-almuerzo .qc-icon { background:rgba(16,185,129,0.12); }
+.quick-card.qc-break .qc-icon { background:rgba(37,99,235,0.12); }
+.quick-card.qc-buzon .qc-icon { background:rgba(229,9,20,0.12); }
+.qc-title { font-family:var(--font-display); font-size:14px; font-weight:700; }
+.qc-sub { font-size:11px; color:var(--gris); margin-top:2px; }
+.qc-arrow { color:var(--gris); font-size:16px; flex-shrink:0; }
 
-.online-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--verde); margin-right:4px; animation:pulse 2s infinite; }
+/* ── Compañeros de break / almuerzo ── */
+.comp-summary {
+  background:var(--glass); border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm); padding:16px; text-align:center;
+}
+.comp-summary-icon { font-size:26px; margin-bottom:6px; }
+.comp-summary-title { font-family:var(--font-display); font-size:16px; font-weight:800; }
+.comp-summary-sub { font-size:12px; color:var(--gris); margin-top:4px; }
+
+/* ── Buzón de sugerencias (chat grupal) ── */
+.buzon-content {
+  flex:1; padding:16px 16px calc(96px + env(safe-area-inset-bottom));
+  display:flex; flex-direction:column; gap:10px;
+}
+.buzon-msg {
+  max-width:82%; padding:10px 12px; border-radius:14px;
+  background:rgba(255,255,255,0.05); border:1px solid var(--glass-border);
+  align-self:flex-start; position:relative;
+}
+.buzon-msg.mine {
+  align-self:flex-end;
+  background:linear-gradient(135deg, rgba(229,9,20,0.22), rgba(229,9,20,0.08));
+  border-color:rgba(229,9,20,0.3);
+}
+.buzon-msg-name { font-size:11px; font-weight:700; color:var(--rojo2); margin-bottom:2px; }
+.buzon-msg.mine .buzon-msg-name { color:#fff; opacity:0.85; }
+.buzon-msg-text { font-size:13px; line-height:1.4; white-space:pre-wrap; word-break:break-word; }
+.buzon-msg-time { font-size:10px; color:var(--gris); margin-top:4px; text-align:right; }
+.buzon-empty { text-align:center; padding:40px 20px; color:var(--gris); font-size:13px; }
+
+/* ── Separador de fecha (estilo WhatsApp) ── */
+.buzon-date-sep { display:flex; justify-content:center; margin:6px 0; }
+.buzon-date-sep span {
+  background:rgba(255,255,255,0.07); border:1px solid var(--glass-border);
+  color:var(--gris); font-size:11px; font-weight:600;
+  padding:5px 14px; border-radius:20px; letter-spacing:0.2px;
+}
+
+/* ── Responder a un mensaje (estilo WhatsApp/Telegram) ── */
+.buzon-reply-btn {
+  position:absolute; top:-8px; right:-8px; width:26px; height:26px;
+  border-radius:50%; border:1.5px solid rgba(57,255,140,0.9);
+  font-size:13px; font-weight:700; cursor:pointer; display:flex;
+  align-items:center; justify-content:center;
+  animation:replyBtnGlow 1.4s ease-in-out infinite;
+  z-index:2;
+}
+.buzon-quote {
+  border-left:3px solid var(--rojo2); background:rgba(255,255,255,0.05);
+  border-radius:6px; padding:5px 8px; margin-bottom:6px;
+}
+.buzon-quote-name { font-size:10px; font-weight:700; color:var(--rojo2); }
+.buzon-quote-text {
+  font-size:11px; color:var(--gris); overflow:hidden; text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.buzon-reply-bar {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:8px 14px; background:rgba(255,255,255,0.06);
+  border-top:1px solid var(--glass-border); border-left:3px solid var(--rojo2);
+}
+.buzon-reply-bar-name { font-size:11px; font-weight:700; color:var(--rojo2); }
+.buzon-reply-bar-text {
+  font-size:11px; color:var(--gris); overflow:hidden; text-overflow:ellipsis;
+  white-space:nowrap; max-width:260px;
+}
+.buzon-reply-bar-close {
+  flex-shrink:0; background:none; border:none; color:var(--gris);
+  font-size:16px; cursor:pointer; padding:2px 6px;
+}
+.buzon-fixed-bottom {
+  position:fixed; left:0; right:0; bottom:0; z-index:100;
+  display:flex; flex-direction:column;
+  background:rgba(10,10,15,0.95); backdrop-filter:blur(20px);
+}
+.buzon-inputbar {
+  display:flex; align-items:flex-end; gap:8px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--glass-border);
+}
+.buzon-input {
+  flex:1; background:rgba(255,255,255,0.06); border:1px solid var(--glass-border);
+  border-radius:20px; padding:10px 16px; color:var(--blanco); font-size:14px;
+  font-family:var(--font-body); resize:none; max-height:90px; line-height:1.3;
+}
+.buzon-input:focus { outline:none; border-color:rgba(229,9,20,0.4); }
+.buzon-send {
+  flex-shrink:0; width:42px; height:42px; border-radius:50%;
+  background:var(--rojo); border:none; color:#fff; font-size:17px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; transition:var(--transition);
+}
+.buzon-send:active { transform:scale(0.92); }
 
 /* ═══════════════════════════════════════════════════
    LOADER
@@ -1296,7 +1413,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 08/08/2026 · 1057 · Sync 04:43:22 p. m.</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 08/08/2026 · 1057 · Sync 10:18:28 p. m.</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1310,50 +1427,48 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello">Bienvenido de nuevo,</div>
-        <div class="greeting-name" id="home-name">Moi 👑</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
+        <div class="greeting-name"><span id="home-name">Moi 👑</span> <span class="greeting-clock" id="greeting-clock">🕑 <span id="greeting-clock-val">22:18</span></span></div>
         <div>
           <span class="greeting-role">
             <span class="online-dot"></span>
             <span id="home-role">Administrador</span>
           </span>
         </div>
+        <div class="greeting-sub" id="greeting-sub">Un gusto saludarte 👋</div>
       </div>
 
-      <div class="home-stats">
-        <div class="stat-card">
-          <div class="stat-icon">🕑</div>
-          <div class="stat-value" id="stat-hora">16:43</div>
-          <div class="stat-label">Hora actual</div>
+      <!-- ── Accesos rápidos ─────────────── -->
+      <div class="home-quick-actions" id="home-quick-actions">
+        <div class="quick-card qc-almuerzo" onclick="COMP_open('almuerzo')">
+          <div class="qc-left">
+            <div class="qc-icon">🍽️</div>
+            <div>
+              <div class="qc-title">Mis compañeros de almuerzo</div>
+              <div class="qc-sub">Quiénes almuerzan a tu misma hora hoy</div>
+            </div>
+          </div>
+          <div class="qc-arrow">→</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">👤</div>
-          <div class="stat-value" id="stat-accesos">1</div>
-          <div class="stat-label">Accesos totales</div>
+        <div class="quick-card qc-break" onclick="COMP_open('break')">
+          <div class="qc-left">
+            <div class="qc-icon">☕</div>
+            <div>
+              <div class="qc-title">Mis compañeros de break</div>
+              <div class="qc-sub">Quiénes comparten tu break hoy</div>
+            </div>
+          </div>
+          <div class="qc-arrow">→</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">🟢</div>
-          <div class="stat-value" id="stat-online">1</div>
-          <div class="stat-label">En línea ahora</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🏢</div>
-          <div class="stat-value">MPC</div>
-          <div class="stat-label">Claro Colombia</div>
-        </div>
-      </div>
-
-      <!-- ── Stats del día ─────────────── -->
-      <div class="home-day-stats" id="home-day-stats">
-        <div class="day-stat-card">
-          <div class="day-stat-icon">📅</div>
-          <div class="day-stat-value" id="ds-fecha">Sáb 8 Ago</div>
-          <div class="day-stat-label">Hoy</div>
-        </div>
-        <div class="day-stat-card highlight">
-          <div class="day-stat-icon">✅</div>
-          <div class="day-stat-value" id="ds-consultas">2</div>
-          <div class="day-stat-label">Consultas hoy</div>
+        <div class="quick-card qc-buzon" onclick="BUZON_open()">
+          <div class="qc-left">
+            <div class="qc-icon" style="position:relative">💬<span class="badge-msg" id="buzon-badge" style="display:none">0</span></div>
+            <div>
+              <div class="qc-title">Buzón de sugerencias</div>
+              <div class="qc-sub">Chat abierto del equipo</div>
+            </div>
+          </div>
+          <div class="qc-arrow">→</div>
         </div>
       </div>
 
@@ -1371,15 +1486,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="aqp-stats-row">
           <div class="aqp-stat" id="aqp-total">
-            <div class="aqp-stat-v" id="aqp-total-v">29</div>
+            <div class="aqp-stat-v" id="aqp-total-v">23</div>
             <div class="aqp-stat-l">Personas en malla</div>
           </div>
           <div class="aqp-stat" id="aqp-pending">
-            <div class="aqp-stat-v" id="aqp-pend-v">174</div>
+            <div class="aqp-stat-v" id="aqp-pend-v">138</div>
             <div class="aqp-stat-l">Turnos cargados</div>
           </div>
           <div class="aqp-stat">
-            <div class="aqp-stat-v" id="aqp-online-v">23</div>
+            <div class="aqp-stat-v" id="aqp-online-v">26</div>
             <div class="aqp-stat-l">Cuentas registradas</div>
           </div>
         </div>
@@ -1391,7 +1506,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <div class="section-sub">Últimas acciones</div>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Mi Turno</strong> · Consultado</div><div class="activity-time">16:43</div></div><div class="activity-item"><div class="activity-icon">🗂️</div><div class="activity-text"><strong>Malla actualizada</strong> desde Malla del 10 al 15 de agosto.pdf · 174 turnos</div><div class="activity-time">16:43</div></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Mi Turno</strong> · Consultado</div><div class="activity-time">16:42</div></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Mi Turno</strong> · Consultado</div><div class="activity-time">22:18</div></div><div class="activity-item"><div class="activity-icon">🗂️</div><div class="activity-text"><strong>Malla actualizada</strong> desde Malla del 10 al 15 de agosto.pdf · 174 turnos</div><div class="activity-time">22:18</div></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Mi Turno</strong> · Consultado</div><div class="activity-time">22:17</div></div><div class="activity-item"><div class="activity-icon">🔄</div><div class="activity-text"><strong>MELANYS</strong> solicitó cambio de turno con <strong>ZUANY</strong></div><div class="activity-time">22:17</div></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 3/08/2026</div><div class="activity-time">22:16</div></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1450,7 +1565,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno de hoy</div>
+            <div class="turno-card-label">Tu turno · Lunes 3 Ago</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -1474,10 +1589,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="jornada-bar-wrap" style="display: none;">
           <div class="jornada-bar-label">
             <span>Progreso jornada</span>
-            <span id="jornada-pct">0%</span>
+            <span id="jornada-pct">100%</span>
           </div>
           <div class="jornada-bar-bg">
-            <div class="jornada-bar-fill" id="jornada-fill" style="width:0%"></div>
+            <div class="jornada-bar-fill" id="jornada-fill" style="width: 100%;"></div>
           </div>
         </div>
       </div>
@@ -1486,7 +1601,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Viernes 7 Ago</div>
+          <div class="section-sub" id="timeline-fecha">Lunes 3 Ago</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -1508,7 +1623,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
         </div>
         <div class="jornada-bar-bg" style="margin-top:12px">
-          <div class="jornada-bar-fill" id="hs-fill" style="width:0%"></div>
+          <div class="jornada-bar-fill" id="hs-fill" style="width: 0%;"></div>
         </div>
       </div>
 
@@ -1533,8 +1648,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
           <div class="malla-status" id="sol-preview" style="display: none; margin-bottom: 4px; line-height: 1.6;">
     <b>Así quedaría si se aprueba:</b><br>
-    Tú (Moisés): tu turno actual es <b>Sin turno registrado ese día</b> → pasarías a tener el de ADRIANA.<br>
-    ADRIANA: su turno actual es <b>Sin turno registrado ese día</b> → pasaría a tener el tuyo.<br>
+    Tú (MELANYS): tu turno actual es <b>8:00 a. m. → 12:00 p. m. (4h)</b> → pasarías a tener el de ZUANY.<br>
+    ZUANY: su turno actual es <b>8:00 a. m. → 2:00 p. m. (6h)</b> → pasaría a tener el tuyo.<br>
     <span style="color:var(--gris)">Esto es una vista previa; el cambio real lo confirma Moisés al aprobar la solicitud.</span></div>
           <button class="btn btn-primary w-full" onclick="F3_solicitarCambio()">
             📤 Enviar Solicitud
@@ -1583,7 +1698,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">13:31</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">22:15</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1922,6 +2037,99 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   </div>
 
   <!-- ══════════════════
+       COMPAÑEROS (break / almuerzo)
+  ══════════════════ -->
+  <div class="screen" id="screen-companeros">
+    <div class="app-header">
+      <button class="back-btn" style="margin:0;padding:0 8px" onclick="showScreen('home')">←</button>
+      <div class="header-logo" id="comp-header-title">Mis <span>Compañeros de Break</span></div>
+      <div style="width:32px"></div>
+    </div>
+    <div class="turns-content">
+      <div class="comp-summary" id="comp-summary">
+    <div class="comp-summary-icon">☕</div>
+    <div class="comp-summary-title">Tu break de hoy: 10:00 a. m.</div>
+    <div class="comp-summary-sub">Compañeros con el mismo horario hoy</div></div>
+      <div class="team-list" id="comp-list">
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
+          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+        </div>
+        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+      </div>
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+        </div>
+        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+      </div>
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+        </div>
+        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+      </div>
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
+          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+        </div>
+        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════
+       BUZÓN DE SUGERENCIAS (chat grupal)
+  ══════════════════ -->
+  <div class="screen" id="screen-buzon">
+    <div class="app-header">
+      <button class="back-btn" style="margin:0;padding:0 8px" onclick="BUZON_close()">←</button>
+      <div class="header-logo">Buzón de <span>Sugerencias</span></div>
+      <button type="button" onclick="BUZON_refresh(true)" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;">🔄</button>
+    </div>
+    <div class="buzon-content" id="buzon-content"><div class="buzon-date-sep"><span>Hoy</span></div><div class="buzon-msg" data-id="local-1786244603469-dy6nt">
+      <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786244603469-dy6nt')" title="Responder">↩</button>
+      <div class="buzon-msg-name">Moi</div>
+      
+      <div class="buzon-msg-text">Hola</div>
+      <div class="buzon-msg-time">22:03</div>
+    </div><div class="buzon-msg" data-id="local-1786244608002-eslib">
+      <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786244608002-eslib')" title="Responder">↩</button>
+      <div class="buzon-msg-name">Moi</div>
+      
+      <div class="buzon-quote">
+        <div class="buzon-quote-name">Tú</div>
+        <div class="buzon-quote-text">Hola</div>
+      </div>
+      <div class="buzon-msg-text">Hos</div>
+      <div class="buzon-msg-time">22:03</div>
+    </div><div class="buzon-msg" data-id="local-1786244893400-l8q3h">
+      <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786244893400-l8q3h')" title="Responder">↩</button>
+      <div class="buzon-msg-name">Moi</div>
+      
+      <div class="buzon-msg-text">Hola</div>
+      <div class="buzon-msg-time">22:08</div>
+    </div><div class="buzon-msg mine" data-id="local-1786245320911-yl4t1">
+      <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786245320911-yl4t1')" title="Responder">↩</button>
+      <div class="buzon-msg-name">Tú</div>
+      
+      <div class="buzon-msg-text">Hola</div>
+      <div class="buzon-msg-time">22:15</div>
+    </div></div>
+    <div class="buzon-fixed-bottom" id="buzon-fixed-bottom">
+      <div class="buzon-reply-bar" id="buzon-reply-bar" style="display:none"></div>
+      <div class="buzon-inputbar">
+        <textarea class="buzon-input" id="buzon-input" rows="1" placeholder="Escribe una sugerencia..." onkeydown="BUZON_onKeydown(event)"></textarea>
+        <button class="buzon-send" onclick="BUZON_send()" title="Enviar">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════
        PERFIL
   ══════════════════ -->
   <div class="screen" id="screen-profile">
@@ -1940,15 +2148,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="file" id="profile-photo-input" accept="image/*" onchange="PROFILE_onPhotoSelected(event)">
           </label>
         </div>
-        <div class="profile-name" id="profile-name">Moi</div>
-        <div class="profile-role" id="profile-role">Administrador</div>
+        <div class="profile-name" id="profile-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="profile-role" id="profile-role">Asesor</div>
         <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: block;">Quitar foto de perfil</div>
       </div>
 
       <div class="profile-section">
         <div class="profile-info-row">
           <span class="lbl">Usuario Maya</span>
-          <span class="val" id="profile-maya">1999</span>
+          <span class="val" id="profile-maya">MELANYS</span>
         </div>
         <div class="profile-info-row">
           <span class="lbl">Accesos totales</span>
@@ -1956,7 +2164,19 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
       </div>
 
-      <div class="profile-section" id="profile-admin-link" style="display: block;">
+      <!-- ── Apodo (solo asesores): cómo quieren que les aparezca su nombre ── -->
+      <div class="profile-section" id="profile-apodo-section" style="display: block;">
+        <div class="form-group">
+          <label class="form-label">Tu apodo (cómo quieres que te llamen)</label>
+          <div style="display:flex; gap:8px;">
+            <input type="text" class="form-input" id="profile-apodo-input" placeholder="Ej: Eve, Jhon, Cari..." maxlength="20">
+            <button class="btn btn-secondary" style="flex-shrink:0; width:auto; padding:0 16px;" onclick="P_guardarApodo()">Guardar</button>
+          </div>
+          <div style="font-size:11px; color:var(--gris); margin-top:2px;">Si lo dejas vacío, se usará tu nombre de siempre. Solo cambia cómo te ven a ti, no tu nombre oficial de la malla.</div>
+        </div>
+      </div>
+
+      <div class="profile-section" id="profile-admin-link" style="display: none;">
         <button class="btn btn-secondary w-full" onclick="showMainScreen('turns')">
           👑 Ir al Panel de Administración
         </button>
@@ -2636,6 +2856,10 @@ async function TB_syncFromSheet(manual) {
             nombre: remote.nombre, codigoMaya: remote.codigoMaya, rol: remote.rol,
             email: remote.email, pass: remote.pass, createdAt: remote.createdAt || Date.now(),
             loginCount: (local[norm] && local[norm].loginCount) || remote.loginCount || 0,
+            // El apodo es opcional: si la Sheet ya lo trae se usa ese; si no,
+            // se conserva el que ya estaba guardado en este dispositivo para
+            // no perderlo (el backend principal no necesita cambiar nada).
+            apodo: remote.apodo || (local[norm] && local[norm].apodo) || '',
             _updatedAt: remote.updatedAt
           };
         }
@@ -3030,6 +3254,7 @@ async function doLogin() {
       codigoMaya: acc.codigoMaya || '—',
       rol: acc.rol || 'asesor',
       email: acc.email || '',
+      apodo: acc.apodo || '',
       isAdmin: false,
       loginCount: (acc.loginCount || 0) + 1
     };
@@ -3167,7 +3392,7 @@ function doForgotStep2() {
 function initHomeScreen() {
   if (!currentUser) return;
   const nombre1 = currentUser.nombre.split(' ')[0];
-  const displayNombre = currentUser.isAdmin ? (currentUser.apodo || 'Moi') : nombre1;
+  const displayNombre = currentUser.apodo || (currentUser.isAdmin ? 'Moi' : nombre1);
 
   document.getElementById('home-name').textContent = currentUser.isAdmin
     ? `${displayNombre} 👑`
@@ -3175,7 +3400,14 @@ function initHomeScreen() {
   document.getElementById('home-role').textContent = rolLabel(currentUser.rol);
   document.getElementById('header-name').textContent = displayNombre;
   document.getElementById('header-role').textContent = rolLabel(currentUser.rol);
-  document.getElementById('stat-accesos').textContent = currentUser.loginCount || 1;
+
+  // Saludo personalizado según la hora del día (mañana/tarde/noche), igual
+  // para todos: administrador y asesores.
+  const gh = document.getElementById('greeting-hello');
+  const gs = document.getElementById('greeting-sub');
+  if (gh) gh.textContent = `${getSaludoHora()},`;
+  if (gs) gs.textContent = 'Un gusto saludarte 👋';
+
 
   const av = document.getElementById('header-avatar');
   renderAvatar(av, currentUser.nombre);
@@ -3212,8 +3444,16 @@ function updateClock() {
   const now = new Date();
   const h = String(now.getHours()).padStart(2,'0');
   const m = String(now.getMinutes()).padStart(2,'0');
-  const el = document.getElementById('stat-hora');
+  const el = document.getElementById('greeting-clock-val');
   if (el) el.textContent = `${h}:${m}`;
+}
+
+// Saludo según la hora: Buenos días / Buenas tardes / Buenas noches
+function getSaludoHora() {
+  const h = new Date().getHours();
+  if (h >= 5 && h < 12) return 'Buenos días';
+  if (h >= 12 && h < 19) return 'Buenas tardes';
+  return 'Buenas noches';
 }
 
 function rolLabel(rol) {
@@ -3282,7 +3522,16 @@ async function tryAutoLogin() {
 // para que nunca quede información antigua "pegada". La URL de la Sheet
 // NO se borra (para no perder la conexión), y nada se pierde de verdad
 // porque justo después se vuelve a traer todo fresco desde la Sheet.
-const TB_APP_VERSION = '2026-08-08.1909';
+//
+// SEGURO DEL BUZÓN: el historial del buzón de sugerencias (tb_buzon_msgs)
+// y su contador de no leídos (tb_buzon_seen) quedan SIEMPRE respaldados
+// antes de este borrado y restaurados justo después — sin importar cuántas
+// veces se actualice la malla o se publique una nueva versión del archivo,
+// el chat nunca se pierde. Además, aunque el respaldo local llegara a
+// fallar por algún motivo, el buzón igual se vuelve a llenar solo al
+// abrirlo, porque siempre sincroniza el historial completo desde su propio
+// backend (ver BUZON_refresh).
+const TB_APP_VERSION = '2026-08-08.2220';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -3299,13 +3548,24 @@ function TB_clearStaleCacheIfNewVersion() {
     const stored = localStorage.getItem(TB_VERSION_KEY);
     if (stored === TB_APP_VERSION) return false;
     const sheetUrl = localStorage.getItem(TB_SHEET_KEY);
+    // Respaldo del buzón ANTES de borrar nada (seguro anti-pérdida).
+    // Se usan las claves literales ('tb_buzon_msgs' / 'tb_buzon_seen') y no
+    // las constantes BUZON_*, porque esta función corre muy al inicio del
+    // arranque de la app, antes de que el bloque del buzón (más abajo en el
+    // archivo) haya definido esas constantes.
+    const buzonMsgsBackup = localStorage.getItem('tb_buzon_msgs');
+    const buzonSeenBackup = localStorage.getItem('tb_buzon_seen');
     [ACCOUNTS_KEY, DELEGATES_KEY, MALLA_STORAGE_KEY, MALLA_RAWTEXT_KEY, 'tb_token', 'tb_user']
       .forEach(k => localStorage.removeItem(k));
     if (sheetUrl) localStorage.setItem(TB_SHEET_KEY, sheetUrl);
+    // Restaurar el buzón intacto, pase lo que pase con el resto de la caché.
+    if (buzonMsgsBackup) localStorage.setItem('tb_buzon_msgs', buzonMsgsBackup);
+    if (buzonSeenBackup) localStorage.setItem('tb_buzon_seen', buzonSeenBackup);
     localStorage.setItem(TB_VERSION_KEY, TB_APP_VERSION);
     return true;
   } catch { return false; }
 }
+
 
 // ── INIT ──────────────────────────────────────────
 (async () => {
@@ -3368,16 +3628,18 @@ function fase2Init(user) {
   renderAdminPanel(user);
   renderActivityLog();
   updateTurnoTeaser(user);
+
+  // Buzón de sugerencias: cargar caché local y mostrar contador de no leídos
+  BUZON_MSGS = BUZON_load();
+  BUZON_updateBadge();
+  BUZON_refresh(false);
 }
 
 // ── Stats del día ─────────────────────────────────
+// (Las tarjetas de fecha/consultas del home se retiraron por no tener uso;
+// se conserva el contador interno por si otra pantalla lo necesita.)
 function renderDayStats(user) {
-  const now = new Date();
-  const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-  const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const fechaStr = `${dias[now.getDay()]} ${now.getDate()} ${meses[now.getMonth()]}`;
-  document.getElementById('ds-fecha').textContent = fechaStr;
-  document.getElementById('ds-consultas').textContent = FASE2_State.userConsultas;
+  FASE2_State.userConsultas = FASE2_State.userConsultas || 0;
 }
 
 // ── Panel admin rápido (datos locales: malla + cuentas) ──
@@ -3426,7 +3688,6 @@ function updateTurnoTeaser(user) {
 function onTurnoTeaserClick() {
   fase2AddActivity('🕐', '<strong>Turno</strong> · Consultado');
   FASE2_State.userConsultas++;
-  document.getElementById('ds-consultas').textContent = FASE2_State.userConsultas;
   F3_initTurns();
   showScreen('turns');
 }
@@ -3466,8 +3727,6 @@ window.showMainScreen = function(name) {
     showScreen('turns');
     fase2AddActivity && fase2AddActivity('🕐', '<strong>Mi Turno</strong> · Consultado');
     FASE2_State.userConsultas++;
-    const dsC = document.getElementById('ds-consultas');
-    if (dsC) dsC.textContent = FASE2_State.userConsultas;
   } else {
     // Perfil: pantalla real para todos (asesores y administrador), con
     // foto de perfil editable. El administrador además tiene un acceso
@@ -3483,7 +3742,7 @@ function P_initProfile() {
   if (!user) { showScreen('login'); return; }
 
   const nombre1 = (user.nombre || '').split(' ')[0];
-  document.getElementById('profile-name').textContent = user.isAdmin ? (user.apodo || nombre1) : (user.nombre || nombre1);
+  document.getElementById('profile-name').textContent = user.apodo ? user.apodo : (user.isAdmin ? nombre1 : (user.nombre || nombre1));
   document.getElementById('profile-role').textContent = rolLabel(user.rol);
   document.getElementById('profile-maya').textContent = user.codigoMaya || '—';
   document.getElementById('profile-accesos').textContent = user.loginCount || 1;
@@ -3496,6 +3755,37 @@ function P_initProfile() {
 
   const adminLink = document.getElementById('profile-admin-link');
   if (adminLink) adminLink.style.display = user.isAdmin ? 'block' : 'none';
+
+  // Apodo: disponible para los asesores (el admin ya tiene el suyo aparte).
+  const apodoSection = document.getElementById('profile-apodo-section');
+  if (apodoSection) {
+    apodoSection.style.display = user.isAdmin ? 'none' : 'block';
+    const apodoInput = document.getElementById('profile-apodo-input');
+    if (apodoInput) apodoInput.value = user.apodo || '';
+  }
+}
+
+function P_guardarApodo() {
+  const user = window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+  if (!user || user.isAdmin) return;
+  const input = document.getElementById('profile-apodo-input');
+  const apodo = (input ? input.value : '').trim().slice(0, 20);
+
+  user.apodo = apodo || undefined;
+  currentUser = user;
+  localStorage.setItem('tb_user', JSON.stringify(currentUser));
+
+  const norm = normalizeName(user.nombre);
+  const accounts = ACC_load();
+  if (accounts[norm]) {
+    accounts[norm].apodo = apodo || '';
+    ACC_save(accounts);
+    TB_api('saveUser', Object.assign({ norm }, accounts[norm]));
+  }
+
+  P_initProfile();
+  initHomeScreen();
+  showToast('success', '✅ Apodo actualizado', apodo ? `Ahora te vas a ver como "${apodo}".` : 'Se quitó el apodo, se usará tu nombre de siempre.');
 }
 
 function PROFILE_onPhotoSelected(event) {
@@ -4324,6 +4614,382 @@ function F3_horaStr(d) {
 // ── Exponer Fase 3 globalmente ────────────────────
 window.FASE3_State = FASE3_State;
 window.F3_consultaLog = F3_consultaLog;
+
+// ═══════════════════════════════════════════════════
+//   COMPAÑEROS DE BREAK / ALMUERZO
+//   Usa los mismos datos ya parseados de la malla
+//   (MALLA_recordForDate) para comparar horarios de
+//   break y almuerzo del día de hoy entre compañeros.
+// ═══════════════════════════════════════════════════
+function COMP_open(tipo) {
+  if (!currentUser) return;
+  const hoyISO = MALLA_todayISO();
+  const miRegistro = MALLA_recordForDate(currentUser.nombre, hoyISO);
+
+  const titleEl = document.getElementById('comp-header-title');
+  const summaryEl = document.getElementById('comp-summary');
+  const listEl = document.getElementById('comp-list');
+
+  const cfg = tipo === 'almuerzo'
+    ? { icon: '🍽️', titulo: 'Almuerzo', labels: ['Salida almuerzo'] }
+    : { icon: '☕', titulo: 'Break', labels: ['Break 1', 'Break 2'] };
+
+  titleEl.innerHTML = `Mis <span>${cfg.titulo === 'Almuerzo' ? 'Compañeros de Almuerzo' : 'Compañeros de Break'}</span>`;
+
+  if (!miRegistro || miRegistro.estado !== 'ACTIVO' || !miRegistro.detalle || !miRegistro.detalle.length) {
+    summaryEl.innerHTML = `
+      <div class="comp-summary-icon">${cfg.icon}</div>
+      <div class="comp-summary-title">Sin turno registrado hoy</div>
+      <div class="comp-summary-sub">No tienes un horario de ${cfg.titulo.toLowerCase()} cargado para el día de hoy.</div>`;
+    listEl.innerHTML = '';
+    showScreen('companeros');
+    fase2AddActivity && fase2AddActivity(cfg.icon, `<strong>Compañeros de ${cfg.titulo}</strong> · Consultado`);
+    return;
+  }
+
+  // Mis horas de break/almuerzo de hoy (puede haber 1 o 2 según el tipo)
+  const misHoras = miRegistro.detalle
+    .filter(d => cfg.labels.includes(d.label))
+    .map(d => d.value);
+
+  if (!misHoras.length) {
+    summaryEl.innerHTML = `
+      <div class="comp-summary-icon">${cfg.icon}</div>
+      <div class="comp-summary-title">Hoy no tienes ${cfg.titulo.toLowerCase()}</div>
+      <div class="comp-summary-sub">Tu turno de hoy no trae horario de ${cfg.titulo.toLowerCase()} asignado.</div>`;
+    listEl.innerHTML = '';
+    showScreen('companeros');
+    return;
+  }
+
+  summaryEl.innerHTML = `
+    <div class="comp-summary-icon">${cfg.icon}</div>
+    <div class="comp-summary-title">Tu ${cfg.titulo.toLowerCase()} de hoy: ${misHoras.join(' · ')}</div>
+    <div class="comp-summary-sub">Compañeros con el mismo horario hoy</div>`;
+
+  // Buscar entre todos los registros de HOY quién comparte alguna de mis horas
+  const miNombreNorm = normalizeName(currentUser.nombre);
+  const registrosHoy = MALLA_DATA.filter(r => r.fechaISO === hoyISO && r.estado === 'ACTIVO' && r.nombreNorm !== miNombreNorm);
+
+  const coincidencias = [];
+  const vistos = new Set();
+  registrosHoy.forEach(r => {
+    if (vistos.has(r.nombreNorm)) return;
+    const horasSuyas = (r.detalle || []).filter(d => cfg.labels.includes(d.label)).map(d => d.value);
+    const comparte = horasSuyas.find(h => misHoras.includes(h));
+    if (comparte) {
+      coincidencias.push({ nombre: r.nombre, hora: comparte });
+      vistos.add(r.nombreNorm);
+    }
+  });
+
+  coincidencias.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+  if (!coincidencias.length) {
+    listEl.innerHTML = `<div class="team-empty">Hoy no hay compañeros con el mismo horario de ${cfg.titulo.toLowerCase()}.</div>`;
+  } else {
+    listEl.innerHTML = coincidencias.map(c => `
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">${c.nombre}</div>
+          <div class="team-row-sub">${cfg.titulo} a las ${c.hora}</div>
+        </div>
+        <div class="team-row-badge activo">${cfg.icon} ${c.hora}</div>
+      </div>`).join('');
+  }
+
+  showScreen('companeros');
+  fase2AddActivity && fase2AddActivity(cfg.icon, `<strong>Compañeros de ${cfg.titulo}</strong> · Consultado`);
+}
+
+// ═══════════════════════════════════════════════════
+//   BUZÓN DE SUGERENCIAS (chat grupal del equipo)
+//   Backend INDEPENDIENTE del backend principal (TB_api /
+//   TB_DEFAULT_SHEET_URL): el buzón tiene su propia Google Sheet
+//   y su propio Apps Script, con su propia URL soldada aquí abajo
+//   en BUZON_DEFAULT_SHEET_URL. Así, actualizar/soldar uno nunca
+//   afecta al otro. Mientras BUZON_DEFAULT_SHEET_URL esté vacío,
+//   el buzón funciona en modo 100% local (cada quien ve solo lo
+//   que escribió en su propio celular) — apenas se pegue la URL
+//   del conector del buzón ahí abajo, empieza a compartirse entre
+//   todo el equipo automáticamente, sin tocar nada más.
+// ═══════════════════════════════════════════════════
+const BUZON_STORAGE_KEY = 'tb_buzon_msgs';
+const BUZON_SEEN_KEY = 'tb_buzon_seen';
+let BUZON_MSGS = [];
+
+// ── Conector propio del buzón (separado del principal) ──────
+// Pega aquí la URL /exec de TU Apps Script del buzón cuando la
+// tengas lista y probada. Mientras esté vacío ('') el buzón
+// sigue funcionando localmente sin romperse.
+const BUZON_DEFAULT_SHEET_URL = '';
+function BUZON_getSheetUrl() {
+  return BUZON_DEFAULT_SHEET_URL;
+}
+// Llamada genérica al backend del buzón (independiente de TB_api).
+// Mismo patrón de reintentos que TB_api, pero apuntando a su propia URL.
+async function BUZON_api(action, payload, _intento) {
+  const url = BUZON_getSheetUrl();
+  if (!url) return null; // sin conector configurado todavía → modo local
+  const intento = _intento || 1;
+  try {
+    let res;
+    if (payload) {
+      res = await fetch(url, { method: 'POST', body: JSON.stringify(Object.assign({ action }, payload)) });
+    } else {
+      res = await fetch(url + '?action=' + encodeURIComponent(action));
+    }
+    return await res.json();
+  } catch (e) {
+    if (intento < 4) {
+      await new Promise(r => setTimeout(r, 900 * intento));
+      return BUZON_api(action, payload, intento + 1);
+    }
+    console.warn('BUZON_api error en', action, 'tras', intento, 'intentos', e);
+    return null;
+  }
+}
+
+function BUZON_load() {
+  try { return JSON.parse(localStorage.getItem(BUZON_STORAGE_KEY) || '[]'); } catch { return []; }
+}
+function BUZON_save(msgs) {
+  try { localStorage.setItem(BUZON_STORAGE_KEY, JSON.stringify(msgs)); } catch {}
+}
+
+// Nombre que se muestra: el apodo si el asesor se puso uno, si no su nombre
+// (igual patrón que ya usa el admin con "Moi"). No cambia el nombre oficial
+// de la malla, solo cómo aparece en el buzón/saludo/perfil.
+function displayName(user) {
+  if (!user) return '';
+  const nombre1 = (user.nombre || '').split(' ')[0];
+  return (user.apodo && user.apodo.trim()) || nombre1;
+}
+
+// ── Polling en vivo (cada 1s mientras el buzón esté abierto) ──
+const BUZON_POLL_MS = 1000;
+let BUZON_pollTimer = null;
+let BUZON_polling = false; // evita que se amontonen peticiones si la red va lenta
+
+function BUZON_open() {
+  if (!currentUser) return;
+  BUZON_MSGS = BUZON_load();
+  BUZON_render();
+  showScreen('buzon');
+  setTimeout(() => {
+    const c = document.getElementById('buzon-content');
+    if (c) c.scrollTop = c.scrollHeight;
+    const inp = document.getElementById('buzon-input');
+    if (inp) inp.focus();
+  }, 50);
+  // Marcar como vistos todos los mensajes actuales (para el contador de no leídos)
+  try { localStorage.setItem(BUZON_SEEN_KEY, String(BUZON_MSGS.length)); } catch {}
+  BUZON_updateBadge();
+  BUZON_refresh(false);
+
+  // Refresco en vivo: mientras la pantalla esté abierta, se consulta cada
+  // 1 segundo. Se detiene automáticamente al salir (BUZON_close).
+  if (BUZON_pollTimer) clearInterval(BUZON_pollTimer);
+  BUZON_pollTimer = setInterval(() => {
+    if (BUZON_polling) return; // ya hay una consulta en curso, no amontonar
+    BUZON_polling = true;
+    BUZON_refresh(false).finally(() => { BUZON_polling = false; });
+  }, BUZON_POLL_MS);
+
+  fase2AddActivity && fase2AddActivity('💬', '<strong>Buzón de sugerencias</strong> · Abierto');
+}
+
+// Se usa desde el botón "←" del buzón: apaga el refresco en vivo antes de salir.
+function BUZON_close() {
+  if (BUZON_pollTimer) { clearInterval(BUZON_pollTimer); BUZON_pollTimer = null; }
+  BUZON_cancelReply();
+  showScreen('home');
+}
+
+async function BUZON_refresh(manual) {
+  if (!BUZON_getSheetUrl()) {
+    if (manual) showToast('info', 'ℹ️ Buzón local', 'Aún no se conectó el buzón a un backend compartido; los mensajes quedan solo en este dispositivo.');
+    return;
+  }
+  if (manual) showLoader && showLoader('Sincronizando buzón...');
+  const res = await BUZON_api('getSuggestions');
+  if (manual) hideLoader && hideLoader();
+  if (res && Array.isArray(res.suggestions)) {
+    // Combina lo remoto con lo local (por si algo se envió sin conexión)
+    const porId = new Map();
+    BUZON_MSGS.forEach(m => porId.set(m.id, m));
+    res.suggestions.forEach(m => porId.set(m.id, m));
+    const nuevos = BUZON_MSGS.length !== porId.size;
+    BUZON_MSGS = Array.from(porId.values()).sort((a, b) => (a.fecha || 0) - (b.fecha || 0));
+    BUZON_save(BUZON_MSGS);
+    if (nuevos || manual) BUZON_render();
+    if (manual) showToast('success', '🔄 Buzón sincronizado', 'Se actualizaron las sugerencias del equipo.');
+  } else if (manual) {
+    showToast('warning', '⚠️ Sin conexión al buzón compartido', 'Mostrando solo lo guardado en este dispositivo.');
+  }
+  BUZON_updateBadge();
+}
+
+function BUZON_render() {
+  const cont = document.getElementById('buzon-content');
+  if (!cont) return;
+  if (!BUZON_MSGS.length) {
+    cont.innerHTML = '<div class="buzon-empty" id="buzon-empty">Aún no hay sugerencias. ¡Sé el primero en escribir! ✍️</div>';
+    return;
+  }
+  const miNorm = normalizeName(currentUser.nombre);
+  // ¿el usuario tenía scroll hasta abajo antes de repintar? Si sí, lo mantenemos abajo.
+  const alFondo = (cont.scrollTop + cont.clientHeight) >= (cont.scrollHeight - 40);
+  let ultimoDiaKey = null;
+  cont.innerHTML = BUZON_MSGS.map(m => {
+    const mine = normalizeName(m.autorNombre || m.nombre || '') === miNorm;
+    const fecha = m.fecha ? new Date(m.fecha) : null;
+    const hora = fecha ? `${String(fecha.getHours()).padStart(2,'0')}:${String(fecha.getMinutes()).padStart(2,'0')}` : '';
+    const nombreMostrar = mine ? 'Tú' : (m.nombre || 'Anónimo');
+    const cita = m.replyToId ? `
+      <div class="buzon-quote">
+        <div class="buzon-quote-name">${BUZON_escape(m.replyToNombre || 'Anónimo')}</div>
+        <div class="buzon-quote-text">${BUZON_escape(m.replyToMensaje || '')}</div>
+      </div>` : '';
+
+    // Separador de fecha (estilo WhatsApp): aparece la primera vez que se
+    // pasa a un día distinto dentro del chat, ordenado del más viejo al más nuevo.
+    let separador = '';
+    if (fecha) {
+      const diaKey = `${fecha.getFullYear()}-${fecha.getMonth()}-${fecha.getDate()}`;
+      if (diaKey !== ultimoDiaKey) {
+        separador = `<div class="buzon-date-sep"><span>${BUZON_fechaLabel(fecha)}</span></div>`;
+        ultimoDiaKey = diaKey;
+      }
+    }
+
+    return `${separador}<div class="buzon-msg${mine ? ' mine' : ''}" data-id="${m.id}">
+      <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('${m.id}')" title="Responder">↩</button>
+      <div class="buzon-msg-name">${nombreMostrar}</div>
+      ${cita}
+      <div class="buzon-msg-text">${BUZON_escape(m.mensaje || '')}</div>
+      <div class="buzon-msg-time">${hora}</div>
+    </div>`;
+  }).join('');
+  if (alFondo) cont.scrollTop = cont.scrollHeight;
+}
+
+function BUZON_escape(str) {
+  return (str || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+// Etiqueta del separador de fecha, igual que WhatsApp: "Hoy", "Ayer" o la
+// fecha completa (con año solo si es de un año distinto al actual).
+function BUZON_fechaLabel(fecha) {
+  const hoy = new Date();
+  const ayer = new Date(hoy); ayer.setDate(hoy.getDate() - 1);
+  const mismoDia = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  if (mismoDia(fecha, hoy)) return 'Hoy';
+  if (mismoDia(fecha, ayer)) return 'Ayer';
+  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const base = `${dias[fecha.getDay()]}, ${fecha.getDate()} de ${meses[fecha.getMonth()]}`;
+  return fecha.getFullYear() === hoy.getFullYear() ? base : `${base} de ${fecha.getFullYear()}`;
+}
+
+function BUZON_onKeydown(ev) {
+  if (ev.key === 'Enter' && !ev.shiftKey) {
+    ev.preventDefault();
+    BUZON_send();
+  }
+}
+
+// ── Responder a un mensaje (como en WhatsApp/Telegram) ──
+let BUZON_replyTarget = null;
+
+function BUZON_selectReply(id) {
+  const m = BUZON_MSGS.find(x => x.id === id);
+  if (!m) return;
+  const miNorm = normalizeName(currentUser.nombre);
+  const mine = normalizeName(m.autorNombre || m.nombre || '') === miNorm;
+  BUZON_replyTarget = {
+    id: m.id,
+    nombre: mine ? 'Tú' : (m.nombre || 'Anónimo'),
+    mensaje: m.mensaje || ''
+  };
+  BUZON_renderReplyBar();
+  const inp = document.getElementById('buzon-input');
+  if (inp) inp.focus();
+}
+
+function BUZON_cancelReply() {
+  BUZON_replyTarget = null;
+  BUZON_renderReplyBar();
+}
+
+function BUZON_renderReplyBar() {
+  const bar = document.getElementById('buzon-reply-bar');
+  if (!bar) return;
+  if (!BUZON_replyTarget) { bar.style.display = 'none'; bar.innerHTML = ''; return; }
+  const snippet = BUZON_replyTarget.mensaje.length > 80
+    ? BUZON_replyTarget.mensaje.slice(0, 80) + '…'
+    : BUZON_replyTarget.mensaje;
+  bar.style.display = 'flex';
+  bar.innerHTML = `
+    <div class="buzon-reply-bar-info">
+      <div class="buzon-reply-bar-name">Respondiendo a ${BUZON_escape(BUZON_replyTarget.nombre)}</div>
+      <div class="buzon-reply-bar-text">${BUZON_escape(snippet)}</div>
+    </div>
+    <button type="button" class="buzon-reply-bar-close" onclick="BUZON_cancelReply()" title="Cancelar">✕</button>`;
+}
+
+async function BUZON_send() {
+  const input = document.getElementById('buzon-input');
+  if (!input) return;
+  const texto = input.value.trim();
+  if (!texto || !currentUser) return;
+
+  const msg = {
+    id: 'local-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+    autorNombre: currentUser.nombre,       // nombre oficial (para saber cuáles son "míos")
+    nombre: displayName(currentUser),       // apodo si tiene, si no su nombre (lo que se ve)
+    mensaje: texto,
+    fecha: Date.now()
+  };
+  if (BUZON_replyTarget) {
+    msg.replyToId = BUZON_replyTarget.id;
+    msg.replyToNombre = BUZON_replyTarget.nombre;
+    msg.replyToMensaje = BUZON_replyTarget.mensaje;
+  }
+  BUZON_MSGS.push(msg);
+  BUZON_save(BUZON_MSGS);
+  BUZON_cancelReply();
+  BUZON_render();
+  input.value = '';
+  try { localStorage.setItem(BUZON_SEEN_KEY, String(BUZON_MSGS.length)); } catch {}
+  BUZON_updateBadge();
+
+  const res = await BUZON_api('postSuggestion', {
+    id: msg.id, autorNombre: msg.autorNombre, nombre: msg.nombre, mensaje: msg.mensaje, fecha: msg.fecha,
+    replyToId: msg.replyToId || '', replyToNombre: msg.replyToNombre || '', replyToMensaje: msg.replyToMensaje || ''
+  });
+  if (!res || !res.ok) {
+    if (BUZON_getSheetUrl()) {
+      showToast('warning', '⚠️ Guardado solo en este equipo', 'No se pudo enviar al buzón compartido. Se reintentará al sincronizar.');
+    }
+    // Si aún no hay conector configurado (BUZON_DEFAULT_SHEET_URL vacío),
+    // no se muestra advertencia: es esperado que quede solo local por ahora.
+  }
+}
+
+function BUZON_updateBadge() {
+  const badge = document.getElementById('buzon-badge');
+  if (!badge) return;
+  let seen = 0;
+  try { seen = parseInt(localStorage.getItem(BUZON_SEEN_KEY) || '0', 10); } catch {}
+  const noLeidos = Math.max(0, BUZON_MSGS.length - seen);
+  if (noLeidos > 0) {
+    badge.textContent = noLeidos > 9 ? '9+' : String(noLeidos);
+    badge.style.display = 'flex';
+  } else {
+    badge.style.display = 'none';
+  }
+}
 
 </script>
 
