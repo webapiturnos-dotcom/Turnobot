@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="morado"><head>
+<html lang="es" data-theme="medianoche"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -1217,12 +1217,18 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   <div class="loader"></div>
   <div class="loader-text" id="loader-text">Verificando cuenta...</div>
 </div>
-<div class="toast-container" id="toasts"></div>
+<div class="toast-container" id="toasts"><div class="toast success" data-expires="1786399796857">
+    <div class="toast-icon">✅</div>
+    <div class="toast-body">
+      <div class="toast-title">✅ Ausencia aplicada</div>
+      <div class="toast-msg">KAREN: 1 día(s) marcados como ⛔ Suspensión.</div>
+    </div>
+    <button class="toast-close" type="button" aria-label="Cerrar" onclick="TOAST_dismiss(this.closest('.toast'))">✕</button></div></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: ADRIANA — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: KAREN — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1453,7 +1459,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 08/08/2026 · 1057</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 09/08/2026 · 0121</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1467,7 +1473,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1534,7 +1540,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <div class="aqp-stat-l">Turnos cargados</div>
           </div>
           <div class="aqp-stat">
-            <div class="aqp-stat-v" id="aqp-online-v">26</div>
+            <div class="aqp-stat-v" id="aqp-online-v">29</div>
             <div class="aqp-stat-l">Cuentas registradas</div>
           </div>
         </div>
@@ -1546,7 +1552,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno del 10/08/2026</div><div class="activity-time">01:18</div><button type="button" class="activity-del-btn" data-aid="34" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno del 10/08/2026</div><div class="activity-time">01:18</div><button type="button" class="activity-del-btn" data-aid="32" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🚫</div><div class="activity-text"><strong>KAREN</strong> marcado como <strong>⛔ Suspensión</strong> (1 día)</div><div class="activity-time">17:09</div><button type="button" class="activity-del-btn" data-aid="15" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1609,10 +1615,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Lunes 10 Ago</div>
+            <div class="turno-card-label">Tu turno de hoy</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
-          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
+          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(16, 185, 129, 0.333); color: rgb(16, 185, 129); background: rgba(16, 185, 129, 0.094);">✅ Completado</div>
         </div>
         <div class="turno-horario-row">
           <div class="turno-hora-block">
@@ -1633,10 +1639,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="jornada-bar-wrap" style="display: none;">
           <div class="jornada-bar-label">
             <span>Progreso jornada</span>
-            <span id="jornada-pct">0%</span>
+            <span id="jornada-pct">100%</span>
           </div>
           <div class="jornada-bar-bg">
-            <div class="jornada-bar-fill" id="jornada-fill" style="width: 0%;"></div>
+            <div class="jornada-bar-fill" id="jornada-fill" style="width: 100%;"></div>
           </div>
         </div>
       </div>
@@ -1647,7 +1653,37 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">📋 Timeline del Día</div>
           <div class="section-sub" id="timeline-fecha">Lunes 10 Ago</div>
         </div>
-        <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
+        <div class="timeline-list" id="timeline-list"><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">8:00 a. m.</div>
+        <div class="tl-label">🟢 Inicio turno</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">10:00 a. m.</div>
+        <div class="tl-label">☕ Break 1</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">12:00 p. m.</div>
+        <div class="tl-label">☕ Salida almuerzo</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">2:30 p. m.</div>
+        <div class="tl-label">☕ Break 2</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">4:00 p. m.</div>
+        <div class="tl-label">🔴 Fin de turno</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div></div>
       </div>
 
       <!-- ── Horas de la semana ── -->
@@ -1677,7 +1713,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:18</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:18</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">01:17</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1723,152 +1759,81 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como AMIRA ROSA CAMACHO CANTILLO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">AMIRA ROSA CAMACHO CANTILLO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA MARTINEZ CAMARGO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Diosibel Maria Gonzalez Marchena" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ESPERANZA ISABEL PARADA DE LA CRUZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como HOMERO LEONEL DIAZ ORTEGA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
       <div>
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
       <div>
         <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como LILIBETH ROMERO ALVAREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">LILIBETH ROMERO ALVAREZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
+      <div class="team-row-badge activo">Activo</div></div></div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
+
+      <!-- ── Mover horas entre días (quitar hora hoy, sumarla mañana) ── -->
+      <div class="malla-panel" id="mover-admin-panel" style="display: block;">
+        <div class="section-header">
+          <div class="section-title">↔️ Mover Horas Entre Días</div>
+          <div class="section-sub">Quita horas de un día y súmalas a otro: en el día de origen se adelanta la salida, en el de destino se adelanta la entrada</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Persona</label>
+          <select class="form-input" id="mover-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
+        </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Día de origen (se le quita)</label>
+            <input type="date" class="form-input" id="mover-origen">
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Día de destino (se le suma)</label>
+            <input type="date" class="form-input" id="mover-destino">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Horas a mover</label>
+          <input type="number" class="form-input" id="mover-horas" value="1" min="0.5" step="0.5">
+        </div>
+        <button class="btn btn-primary w-full" onclick="MOVER_aplicar()">✅ Aplicar movimiento de horas</button>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          Regla: en el día de origen la salida se adelanta esas horas (la entrada no cambia); en el día de destino la entrada se adelanta esas horas (la salida no cambia). La columna Horas de ambos días se ajusta sola. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
+        </div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Wandi Vanessa Tafur Sanjuan" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">Wandi Vanessa Tafur Sanjuan</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YANILETH DAYANA TORRES PEREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ZUANY SOFIA RENDON SINCELEJO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ZUANY SOFIA RENDON SINCELEJO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div></div>
+
+      <!-- ── Marcar ausencia total: Incapacidad / Permiso / Suspensión ── -->
+      <div class="malla-panel" id="ausencia-admin-panel" style="display: block;">
+        <div class="section-header">
+          <div class="section-title">🚫 Marcar Ausencia Total</div>
+          <div class="section-sub">Incapacidad, permiso o suspensión — se refleja en el calendario y el timeline sin ningún turno programado</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Persona</label>
+          <select class="form-input" id="ausencia-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
+        </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Desde</label>
+            <input type="date" class="form-input" id="ausencia-desde">
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Hasta</label>
+            <input type="date" class="form-input" id="ausencia-hasta">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de ausencia</label>
+          <select class="form-input" id="ausencia-tipo">
+            <option value="INCAPACIDAD">🏥 Incapacidad</option>
+            <option value="PERMISO">📋 Permiso</option>
+            <option value="SUSPENSION">⛔ Suspensión</option>
+          </select>
+        </div>
+        <button class="btn btn-primary w-full" onclick="AUSENCIA_aplicar()">✅ Aplicar ausencia</button>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          Se borra el horario de esos días para esa persona (queda sin entrada/salida) y el Estado cambia al tipo elegido. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
+        </div>
       </div>
 
       <!-- ── Accesos de administrador delegados (solo Moisés) ── -->
@@ -2300,7 +2265,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -2447,7 +2412,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
  14/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
  15/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
  10/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
- 11/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+11/08/2026	SUSPENSION	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES
  12/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  14/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
@@ -3818,7 +3783,7 @@ async function tryAutoLogin() {
 // fallar por algún motivo, el buzón igual se vuelve a llenar solo al
 // abrirlo, porque siempre sincroniza el historial completo desde su propio
 // backend (ver BUZON_refresh).
-const TB_APP_VERSION = '2026-08-09.0121';
+const TB_APP_VERSION = '2026-08-10.1710';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -4341,10 +4306,16 @@ function F3_initTurns() {
   if (solpanel) solpanel.style.display = user.isAdmin ? 'block' : 'none';
   const incapAdminPanel = document.getElementById('incap-admin-panel');
   if (incapAdminPanel) incapAdminPanel.style.display = user.isAdmin ? 'block' : 'none';
+  const ausenciaPanel = document.getElementById('ausencia-admin-panel');
+  if (ausenciaPanel) ausenciaPanel.style.display = user.isAdmin ? 'block' : 'none';
+  const moverPanel = document.getElementById('mover-admin-panel');
+  if (moverPanel) moverPanel.style.display = user.isAdmin ? 'block' : 'none';
   if (user.isAdmin) {
     MALLA_refreshStatus();
     F3_renderAdminView();
     TEAM_render();
+    AUSENCIA_populateSelect();
+    MOVER_populateSelect();
     BUZON_renderAdminToggle();
     if (user.isSuperAdmin) { DELEG_render(); TB_renderSheetStatus(); }
     return;
@@ -4515,19 +4486,31 @@ function F3_renderTurno(user, t) {
   // turno asignado" para no mostrar una barra de jornada rota o un timeline vacío.
   const sinTurnoAsignado = t.estado === 'ACTIVO' && t.entrada === '00:00' && t.salida === '00:00';
 
+  // Estados de ausencia total marcados por el admin (ver AUSENCIA_aplicar):
+  // días sin ningún turno programado, con badge y mensaje propios en vez del
+  // genérico de "Descanso".
+  const AUSENCIA_INFO = {
+    INCAPACIDAD: { badge: '🏥 Incapacidad', color: 'var(--rojo)', msg: '🏥 Este día quedó registrado como <b>incapacidad</b>. No tienes turno programado.' },
+    PERMISO:     { badge: '📋 Permiso',     color: 'var(--azul2)', msg: '📋 Este día quedó registrado como <b>permiso</b>. No tienes turno programado.' },
+    SUSPENSION:  { badge: '⛔ Suspensión',  color: 'var(--rojo)', msg: '⛔ Este día quedó registrado como <b>suspensión</b>. No tienes turno programado.' },
+  };
+
   if (t.estado !== 'ACTIVO' || sinTurnoAsignado) {
     document.getElementById('tc-entrada').textContent = '--:--';
     document.getElementById('tc-salida').textContent = '--:--';
     document.getElementById('tc-horas').textContent = '—';
+    const ausInfo = AUSENCIA_INFO[t.estado];
     if (sinTurnoAsignado) {
       F3_setBadge(badge, '🕓 Por asignar', 'var(--gris)');
+    } else if (ausInfo) {
+      F3_setBadge(badge, ausInfo.badge, ausInfo.color);
     } else {
       F3_setBadge(badge, t.estado === 'DESCANSO' ? '😌 Descanso' : t.estado, '#f59e0b');
     }
     if (jornadaWrap) jornadaWrap.style.display = 'none';
     document.getElementById('timeline-list').innerHTML = sinTurnoAsignado
       ? '<div class="turno-empty-state">🕓 Tu horario para este día todavía no ha sido publicado. Consulta con Moisés.</div>'
-      : '<div class="turno-empty-state">🌴 Este día no trabajas. ¡Disfruta tu descanso!</div>';
+      : `<div class="turno-empty-state">${ausInfo ? ausInfo.msg : '🌴 Este día no trabajas. ¡Disfruta tu descanso!'}</div>`;
     if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
   } else {
     document.getElementById('tc-entrada').textContent = t.entradaDisplay || t.entrada || '--:--';
@@ -4587,6 +4570,17 @@ function F3_renderTimeline(t, diaEstado) {
   diaEstado = diaEstado || F3_diaEstado(t.fechaISO);
   const list = document.getElementById('timeline-list');
   list.innerHTML = '';
+
+  // Si este turno vino de un cambio aprobado (ver CAMBIO_registrar), avisa
+  // con quién se intercambió, arriba de los eventos del día.
+  const companeroCambio = CAMBIO_get(t.fechaISO, t.nombreNorm);
+  if (companeroCambio) {
+    const banner = document.createElement('div');
+    banner.className = 'turno-empty-state';
+    banner.style.cssText = 'background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.3);color:var(--azul2);margin-bottom:10px;text-align:left;';
+    banner.innerHTML = `🔄 Turno cambiado con <b>${companeroCambio}</b>`;
+    list.appendChild(banner);
+  }
 
   const now = new Date();
   const nowMin = now.getHours()*60 + now.getMinutes();
@@ -4955,6 +4949,213 @@ function TB_toISODate(v) {
   return null;
 }
 
+// ── Registro de "turno cambiado" para mostrarlo en el timeline del día ──
+// Guarda, por fecha + persona, con quién intercambió el turno ese día, para
+// que F3_renderTimeline pueda mostrar el aviso "🔄 Turno cambiado con X".
+// Es puramente informativo (no toca el horario en sí, que ya se intercambia
+// en TB_aplicarCambioTurnoEnMalla).
+const TURNOS_CAMBIADOS_KEY = 'tb_turnos_cambiados_v1';
+function CAMBIO_load() { try { return JSON.parse(localStorage.getItem(TURNOS_CAMBIADOS_KEY)) || {}; } catch { return {}; } }
+function CAMBIO_save(all) { try { localStorage.setItem(TURNOS_CAMBIADOS_KEY, JSON.stringify(all)); } catch {} }
+function CAMBIO_registrar(fechaISO, normA, nombreA, normB, nombreB) {
+  const all = CAMBIO_load();
+  all[`${fechaISO}|${normA}`] = nombreB;
+  all[`${fechaISO}|${normB}`] = nombreA;
+  CAMBIO_save(all);
+}
+function CAMBIO_get(fechaISO, norm) {
+  const all = CAMBIO_load();
+  return all[`${fechaISO}|${norm}`] || null;
+}
+
+// ── Helpers de tiempo para mover horas entre días ──
+function TB_timeTokensToMin(tStr, apTok) {
+  let [h, m] = tStr.split(':').map(Number);
+  const ap = (apTok || '').replace('.', '').toLowerCase();
+  if (ap === 'p' && h < 12) h += 12;
+  if (ap === 'a' && h === 12) h = 0;
+  return h * 60 + (m || 0);
+}
+function TB_minToTimeTokens(totalMin) {
+  const min = ((Math.round(totalMin) % 1440) + 1440) % 1440;
+  const h24 = Math.floor(min / 60), m = min % 60;
+  const ap = h24 < 12 ? 'a' : 'p';
+  let h12 = h24 % 12; if (h12 === 0) h12 = 12;
+  return [`${h12}:${String(m).padStart(2, '0')}:00`, `${ap}.`, 'm.'];
+}
+function TB_esTokenHora(tok) { return /^\d{1,2}:\d{2}:\d{2}$/.test(tok || ''); }
+function TB_esTokenAmPm(tok) { return /^[ap]\.?$/i.test(tok || ''); }
+function TB_durTokenToMin(tok) {
+  const [h, m] = tok.split(':').map(Number);
+  return h * 60 + (m || 0);
+}
+function TB_minToDurToken(totalMin) {
+  const min = Math.max(0, Math.round(totalMin));
+  const h = Math.floor(min / 60), m = min % 60;
+  return `${h}:${String(m).padStart(2, '0')}:00`;
+}
+
+// ── Admin: mueve N minutos de horario de un día a otro día de la misma
+// persona. Regla fija: en el día de ORIGEN se adelanta la SALIDA (entra
+// igual, sale más temprano); en el día de DESTINO se adelanta la ENTRADA
+// (entra más temprano, sale igual). Ajusta también la columna Horas de
+// ambos días. Trabaja sobre el texto crudo de la malla, igual que el
+// cambio de turno y las ausencias, para que quede incrustado al descargar.
+function TB_moverHorasEntreDias(nombreInput, fechaOrigenISO, fechaDestinoISO, minutos) {
+  const canon = MALLA_matchName(nombreInput);
+  if (!canon || !fechaOrigenISO || !fechaDestinoISO || !minutos) return { ok: false, motivo: 'datos' };
+  const norm = normalizeName(canon);
+
+  const raw = MALLA_LAST_RAW_TEXT || (function() {
+    try { return localStorage.getItem(MALLA_RAWTEXT_KEY); } catch { return null; }
+  })() || MALLA_RAW_DEFAULT;
+
+  const lines = raw.split(/\r?\n/);
+  let idxOrig = -1, idxDest = -1;
+
+  lines.forEach((rawLine, i) => {
+    const line = rawLine.trim();
+    if (!line) return;
+    const tokens = line.split(/\s+/);
+    if (tokens.length < 3) return;
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(tokens[0])) return;
+    const [d, m, y] = tokens[0].split('/').map(Number);
+    const lineISO = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    if (lineISO !== fechaOrigenISO && lineISO !== fechaDestinoISO) return;
+
+    const rest = tokens.slice(2);
+    let idx = rest.findIndex(t => TB_esTokenHora(t));
+    if (idx === -1) idx = rest.length;
+    const nombreTokens = rest.slice(0, idx);
+    if (normalizeName(nombreTokens.join(' ')) !== norm) return;
+
+    if (lineISO === fechaOrigenISO && idxOrig === -1) idxOrig = i;
+    if (lineISO === fechaDestinoISO && idxDest === -1) idxDest = i;
+  });
+
+  if (idxOrig === -1) return { ok: false, motivo: 'sin_origen' };
+  if (idxDest === -1) return { ok: false, motivo: 'sin_destino' };
+
+  function procesarLinea(i, tipo) {
+    const tokens = lines[i].trim().split(/\s+/);
+    const rest = tokens.slice(2);
+    let idx = rest.findIndex(t => TB_esTokenHora(t));
+    if (idx === -1) idx = rest.length;
+    const nombreTokens = rest.slice(0, idx);
+    const sched = rest.slice(idx);
+
+    if (sched.length < 6 || !TB_esTokenHora(sched[0]) || !TB_esTokenAmPm(sched[1]) || !TB_esTokenHora(sched[3]) || !TB_esTokenAmPm(sched[4])) {
+      return { error: 'formato' }; // horario del día con un formato no reconocible (p.ej. sin entrada/salida)
+    }
+
+    const entradaMin = TB_timeTokensToMin(sched[0], sched[1]);
+    const salidaMin  = TB_timeTokensToMin(sched[3], sched[4]);
+
+    if (tipo === 'origen') {
+      const nuevaSalidaMin = salidaMin - minutos;
+      if (nuevaSalidaMin <= entradaMin) return { error: 'muy_corto' };
+      const tok = TB_minToTimeTokens(nuevaSalidaMin);
+      sched[3] = tok[0]; sched[4] = tok[1]; sched[5] = tok[2];
+    } else {
+      const nuevaEntradaMin = entradaMin - minutos;
+      if (nuevaEntradaMin >= salidaMin) return { error: 'muy_largo' };
+      const tok = TB_minToTimeTokens(nuevaEntradaMin);
+      sched[0] = tok[0]; sched[1] = tok[1]; sched[2] = tok[2];
+    }
+
+    // Ajusta la columna Horas (última posición) si es un token de duración real
+    const lastIdx = sched.length - 1;
+    if (lastIdx >= 6 && TB_esTokenHora(sched[lastIdx]) && !TB_esTokenAmPm(sched[lastIdx - 1])) {
+      const durMin = TB_durTokenToMin(sched[lastIdx]);
+      const nuevaDur = tipo === 'origen' ? durMin - minutos : durMin + minutos;
+      sched[lastIdx] = TB_minToDurToken(nuevaDur);
+    }
+
+    lines[i] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
+    return { ok: true };
+  }
+
+  const resOrig = procesarLinea(idxOrig, 'origen');
+  if (!resOrig.ok) return { ok: false, motivo: resOrig.error };
+  const resDest = procesarLinea(idxDest, 'destino');
+  if (!resDest.ok) return { ok: false, motivo: resDest.error };
+
+  const newRaw = lines.join('\n');
+  const parsed = MALLA_parseText(newRaw);
+  if (!parsed.length) return { ok: false, motivo: 'parseo' };
+
+  MALLA_DATA = parsed;
+  MALLA_LAST_RAW_TEXT = newRaw;
+  try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
+  MALLA_persist();
+  MALLA_refreshStatus();
+  return { ok: true };
+}
+
+// ── UI: panel "Mover Horas Entre Días" ──
+function MALLA_poblarSelectPersonas(id) {
+  const sel = document.getElementById(id);
+  if (!sel) return;
+  const actual = sel.value;
+  const nombres = MALLA_getNames().slice().sort((a, b) => a.localeCompare(b));
+  sel.innerHTML = nombres.map(n => `<option value="${n}">${n}</option>`).join('');
+  if (actual && nombres.includes(actual)) sel.value = actual;
+}
+function MOVER_populateSelect() {
+  MALLA_poblarSelectPersonas('mover-nombre');
+  const origenEl = document.getElementById('mover-origen');
+  const destinoEl = document.getElementById('mover-destino');
+  if (origenEl && !origenEl.value) origenEl.value = MALLA_todayISO();
+  if (destinoEl && !destinoEl.value) {
+    const d = new Date(); d.setDate(d.getDate() + 1);
+    destinoEl.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+}
+
+function MOVER_aplicar() {
+  const nombre  = document.getElementById('mover-nombre').value;
+  const origen  = document.getElementById('mover-origen').value;
+  const destino = document.getElementById('mover-destino').value;
+  const horas   = parseFloat(document.getElementById('mover-horas').value);
+  if (!nombre) { showToast('error', '❌ Error', 'Selecciona una persona.'); return; }
+  if (!origen || !destino) { showToast('error', '❌ Error', 'Selecciona ambas fechas.'); return; }
+  if (origen === destino) { showToast('error', '❌ Error', 'Elige dos fechas distintas.'); return; }
+  if (!horas || horas <= 0) { showToast('error', '❌ Error', 'Indica cuántas horas mover (mayor a 0).'); return; }
+
+  const minutos = Math.round(horas * 60);
+  const res = TB_moverHorasEntreDias(nombre, origen, destino, minutos);
+
+  const motivos = {
+    sin_origen:  'No encontré el turno de esa persona en el día de origen dentro de la malla.',
+    sin_destino: 'No encontré el turno de esa persona en el día de destino dentro de la malla.',
+    muy_corto:   'No se puede: la salida del día de origen quedaría antes o igual que su entrada. Prueba con menos horas.',
+    muy_largo:   'No se puede: la entrada del día de destino quedaría antes o igual que su salida. Prueba con menos horas.',
+    formato:     'El horario de uno de esos días no tiene un formato reconocible (falta entrada/salida) para moverlo automáticamente.',
+    parseo:      'Algo salió mal al reconstruir la malla. No se aplicó ningún cambio.',
+    datos:       'Faltan datos.',
+  };
+
+  if (!res.ok) {
+    showToast('error', '⚠️ No se pudo mover', motivos[res.motivo] || 'No se pudo aplicar el cambio.');
+    return;
+  }
+
+  showToast('success', '✅ Horas movidas', `${nombre.split(' ')[0]}: se movió ${horas}h de ${origen} hacia ${destino}. Entrada/salida se ajustaron solas.`);
+  if (typeof fase2AddActivity === 'function')
+    fase2AddActivity('↔️', `Se movió ${horas}h de <strong>${nombre.split(' ')[0]}</strong> del ${origen} al ${destino}`, 'cambio');
+
+  TEAM_render();
+  const user = window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+  if (user && !user.isAdmin && user.mallaNombre && normalizeName(user.mallaNombre) === normalizeName(nombre)) {
+    F3_renderDateChips(user.mallaNombre);
+  }
+
+  setTimeout(() => {
+    const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_horas.html`);
+    if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con las horas ya movidas. Publícalo cuando quieras.');
+  }, 400);
+}
+
 // ── Aplica un cambio de turno aprobado directamente en la malla local ──
 // Intercambia las columnas de horario (entrada/salida/breaks/almuerzo/horas)
 // entre los dos asesores para la fecha solicitada, dejando fecha/estado/
@@ -5009,7 +5210,97 @@ function TB_aplicarCambioTurnoEnMalla(fechaRaw, nombreSolicitante, nombreCompane
   try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
   MALLA_persist();
   MALLA_refreshStatus();
+  CAMBIO_registrar(fechaISO, normA, canonA, normB, canonB);
   return true;
+}
+
+// ── Admin: marca ausencia total (Incapacidad / Permiso / Suspensión) ──
+// Reemplaza el Estado de una persona en cada fecha del rango dentro de la
+// malla cruda y borra su horario esos días (entrada/salida/breaks/horas),
+// dejando el día sin ninguna programación — igual que hace un "Descanso",
+// pero con el tipo elegido. Trabaja sobre el texto crudo, igual que el
+// cambio de turno, para que quede incrustado al descargar el HTML.
+function MALLA_setEstadoRango(nombreInput, desdeISO, hastaISO, tipo) {
+  const canon = MALLA_matchName(nombreInput);
+  if (!canon || !desdeISO || !hastaISO || !tipo) return 0;
+  const norm = normalizeName(canon);
+  if (desdeISO > hastaISO) { const t = desdeISO; desdeISO = hastaISO; hastaISO = t; }
+
+  const raw = MALLA_LAST_RAW_TEXT || (function() {
+    try { return localStorage.getItem(MALLA_RAWTEXT_KEY); } catch { return null; }
+  })() || MALLA_RAW_DEFAULT;
+
+  const lines = raw.split(/\r?\n/);
+  let cambios = 0;
+
+  lines.forEach((rawLine, i) => {
+    const line = rawLine.trim();
+    if (!line) return;
+    const tokens = line.split(/\s+/);
+    if (tokens.length < 3) return;
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(tokens[0])) return;
+    const [d, m, y] = tokens[0].split('/').map(Number);
+    const lineISO = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    if (lineISO < desdeISO || lineISO > hastaISO) return;
+
+    const rest = tokens.slice(2);
+    let idx = rest.findIndex(t => /^\d{1,2}:\d{2}:\d{2}$/.test(t));
+    if (idx === -1) idx = rest.length;
+    const nombreTokens = rest.slice(0, idx);
+    if (normalizeName(nombreTokens.join(' ')) !== norm) return;
+
+    // Deja fecha + nuevo Estado + nombre, sin horario: día sin programación.
+    lines[i] = [tokens[0], tipo, ...nombreTokens].join('\t');
+    cambios++;
+  });
+
+  if (!cambios) return 0;
+
+  const newRaw = lines.join('\n');
+  const parsed = MALLA_parseText(newRaw);
+  if (!parsed.length) return 0;
+
+  MALLA_DATA = parsed;
+  MALLA_LAST_RAW_TEXT = newRaw;
+  try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
+  MALLA_persist();
+  MALLA_refreshStatus();
+  return cambios;
+}
+
+// ── UI: panel "Marcar Ausencia Total" ──
+function AUSENCIA_populateSelect() { MALLA_poblarSelectPersonas('ausencia-nombre'); }
+
+function AUSENCIA_aplicar() {
+  const nombre = document.getElementById('ausencia-nombre').value;
+  const desde  = document.getElementById('ausencia-desde').value;
+  const hasta  = document.getElementById('ausencia-hasta').value || desde;
+  const tipo   = document.getElementById('ausencia-tipo').value;
+  if (!nombre) { showToast('error', '❌ Error', 'Selecciona una persona.'); return; }
+  if (!desde)  { showToast('error', '❌ Error', 'Selecciona la fecha "Desde".'); return; }
+
+  const cambios = MALLA_setEstadoRango(nombre, desde, hasta, tipo);
+  if (!cambios) {
+    showToast('error', '⚠️ No se encontraron fechas', 'No hay turnos de esa persona en ese rango dentro de la malla cargada.');
+    return;
+  }
+
+  const tipoLabel = tipo === 'INCAPACIDAD' ? '🏥 Incapacidad' : tipo === 'PERMISO' ? '📋 Permiso' : '⛔ Suspensión';
+  showToast('success', '✅ Ausencia aplicada', `${nombre.split(' ')[0]}: ${cambios} día(s) marcados como ${tipoLabel}.`);
+  if (typeof fase2AddActivity === 'function')
+    fase2AddActivity('🚫', `<strong>${nombre.split(' ')[0]}</strong> marcado como <strong>${tipoLabel}</strong> (${cambios} día${cambios===1?'':'s'})`, 'cambio');
+
+  // Refresca vistas que puedan estar mostrando a esa persona ahora mismo
+  TEAM_render();
+  const user = window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+  if (user && !user.isAdmin && user.mallaNombre && normalizeName(user.mallaNombre) === normalizeName(nombre)) {
+    F3_renderDateChips(user.mallaNombre);
+  }
+
+  setTimeout(() => {
+    const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_ausencia.html`);
+    if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con la ausencia ya aplicada. Publícalo cuando quieras.');
+  }, 400);
 }
 
 // ── Vista admin: incapacidades recibidas en la Sheet ──
