@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="medianoche"><head>
+<html lang="es" data-theme="morado"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -1215,15 +1215,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
+  <div class="loader-text" id="loader-text">Actualizando...</div>
 </div>
-<div class="toast-container" id="toasts"><div class="toast success" data-expires="1786399796857">
-    <div class="toast-icon">✅</div>
-    <div class="toast-body">
-      <div class="toast-title">✅ Ausencia aplicada</div>
-      <div class="toast-msg">KAREN: 1 día(s) marcados como ⛔ Suspensión.</div>
-    </div>
-    <button class="toast-close" type="button" aria-label="Cerrar" onclick="TOAST_dismiss(this.closest('.toast'))">✕</button></div></div>
+<div class="toast-container" id="toasts"></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
@@ -1459,7 +1453,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 09/08/2026 · 0121</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 10/08/2026 · 1710</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1473,7 +1467,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1552,7 +1546,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🚫</div><div class="activity-text"><strong>KAREN</strong> marcado como <strong>⛔ Suspensión</strong> (1 día)</div><div class="activity-time">17:09</div><button type="button" class="activity-del-btn" data-aid="15" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">✅</div><div class="activity-text">Tu solicitud de cambio con <strong>VIVIANA</strong> fue <strong>aprobada</strong></div><div class="activity-time">20:28</div><button type="button" class="activity-del-btn" data-aid="7" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🔄</div><div class="activity-text"><strong>KAREN</strong> solicitó cambio de turno con <strong>VIVIANA</strong></div><div class="activity-time">20:27</div><button type="button" class="activity-del-btn" data-aid="5" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🔄</div><div class="activity-text"><strong>KAREN</strong> solicitó cambio de turno con <strong>VIVIANA</strong></div><div class="activity-time">20:27</div><button type="button" class="activity-del-btn" data-aid="4" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1618,7 +1612,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <div class="turno-card-label">Tu turno de hoy</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
-          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(16, 185, 129, 0.333); color: rgb(16, 185, 129); background: rgba(16, 185, 129, 0.094);">✅ Completado</div>
+          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
         </div>
         <div class="turno-horario-row">
           <div class="turno-hora-block">
@@ -1653,37 +1647,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">📋 Timeline del Día</div>
           <div class="section-sub" id="timeline-fecha">Lunes 10 Ago</div>
         </div>
-        <div class="timeline-list" id="timeline-list"><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">8:00 a. m.</div>
-        <div class="tl-label">🟢 Inicio turno</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">10:00 a. m.</div>
-        <div class="tl-label">☕ Break 1</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">12:00 p. m.</div>
-        <div class="tl-label">☕ Salida almuerzo</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">2:30 p. m.</div>
-        <div class="tl-label">☕ Break 2</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">4:00 p. m.</div>
-        <div class="tl-label">🔴 Fin de turno</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div></div>
+        <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
 
       <!-- ── Horas de la semana ── -->
@@ -1856,7 +1820,12 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <button class="btn btn-primary w-full" style="margin-top:10px" onclick="DELEG_grantHandler()">
           👑 Otorgar acceso total
         </button>
-        <div class="team-list" id="deleg-list" style="margin-top:14px"><div class="team-empty">Todavía no has dado accesos delegados.</div></div>
+        <div class="team-list" id="deleg-list" style="margin-top:14px"><div class="team-row">
+      <div>
+        <div class="team-row-name">Ana</div>
+        <div class="team-row-sub">Acceso total desde 10/8/2026</div>
+      </div>
+      <button class="deleg-row-btn" type="button">🗑️ Quitar</button></div></div>
       </div>
 
       <!-- ── Conexión con Google Sheet (solo Moisés) ── -->
@@ -1882,6 +1851,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES 🔄 VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">Fecha: 2026-08-14T00:00:00.000Z · Cita médica</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 LILIBETH ROMERO ALVAREZ</div>
         <div class="team-row-sub">Fecha: 2026-08-10T00:00:00.000Z · B</div>
@@ -1996,42 +1970,56 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   <div class="screen" id="screen-companeros">
     <div class="app-header">
       <button class="back-btn" style="margin:0;padding:0 8px" onclick="showScreen('home')">←</button>
-      <div class="header-logo" id="comp-header-title">Mis <span>Compañeros de Break</span></div>
+      <div class="header-logo" id="comp-header-title">Mis <span>Compañeros de Almuerzo</span></div>
       <div style="width:32px"></div>
     </div>
     <div class="turns-content">
       <div class="comp-summary" id="comp-summary">
-    <div class="comp-summary-icon">☕</div>
-    <div class="comp-summary-title">Tu break de hoy: 10:00 a. m.</div>
+    <div class="comp-summary-icon">🍽️</div>
+    <div class="comp-summary-title">Tu almuerzo de hoy: 12:00 p. m.</div>
     <div class="comp-summary-sub">Compañeros con el mismo horario hoy</div></div>
       <div class="team-list" id="comp-list">
       <div class="team-row">
         <div>
-          <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
-          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+          <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
+          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
         </div>
-        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
       </div>
       <div class="team-row">
         <div>
-          <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+          <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
+          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
         </div>
-        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
       </div>
       <div class="team-row">
         <div>
-          <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+          <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
+          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
         </div>
-        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
       </div>
       <div class="team-row">
         <div>
-          <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-          <div class="team-row-sub">Break a las 10:00 a. m.</div>
+          <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
+          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
         </div>
-        <div class="team-row-badge activo">☕ 10:00 a. m.</div>
+        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
+      </div>
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
+          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
+        </div>
+        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
+      </div>
+      <div class="team-row">
+        <div>
+          <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
+          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
+        </div>
+        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
       </div></div>
     </div>
   </div>
@@ -2191,7 +2179,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="section-title">📋 ¿Qué necesitas registrar?</div>
         <div class="section-sub">Elige una opción</div>
       </div>
-      <div id="nov-selector" style="display:flex; flex-direction:column; gap:12px; margin-bottom:16px;">
+      <div id="nov-selector" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
         <div class="quick-card" onclick="NOV_seleccionar('incapacidad')">
           <div class="qc-left">
             <div class="qc-icon">🏥</div>
@@ -2214,11 +2202,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
       </div>
 
-      <button class="btn btn-secondary w-full" id="nov-volver-btn" style="display:none; margin-bottom:16px;" onclick="NOV_volver()">
+      <button class="btn btn-secondary w-full" id="nov-volver-btn" style="display: none; margin-bottom: 16px;" onclick="NOV_volver()">
         ← Elegir otra opción
       </button>
 
-      <div id="nov-forms-wrap" style="display:none;">
+      <div id="nov-forms-wrap" style="display: none;">
 <div id="nov-form-incapacidad" style="display:none">
       <!-- ── Registro de incapacidad ── -->
       <div class="incap-panel">
@@ -2255,7 +2243,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
       </div>
 </div>
-<div id="nov-form-cambio" style="display:none">
+<div id="nov-form-cambio" style="display: block;">
       <!-- ── Solicitud de cambio de turno ── -->
       <div class="solicitud-panel" id="solicitud-panel">
         <div class="section-header">
@@ -2277,8 +2265,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
           <div class="malla-status" id="sol-preview" style="display: none; margin-bottom: 4px; line-height: 1.6;">
     <b>Así quedaría si se aprueba:</b><br>
-    Tú (MELANYS): tu turno actual es <b>8:00 a. m. → 12:00 p. m. (4h)</b> → pasarías a tener el de ZUANY.<br>
-    ZUANY: su turno actual es <b>8:00 a. m. → 2:00 p. m. (6h)</b> → pasaría a tener el tuyo.<br>
+    Tú (KAREN): tu turno actual es <b>8:00 a. m. → 4:30 p. m. (7h 30m)</b> → pasarías a tener el de VIVIANA.<br>
+    VIVIANA: su turno actual es <b>10:30 a. m. → 7:00 p. m. (7h 30m)</b> → pasaría a tener el tuyo.<br>
     <span style="color:var(--gris)">Esto es una vista previa; el cambio real lo confirma Moisés al aprobar la solicitud.</span></div>
           <button class="btn btn-primary w-full" onclick="F3_solicitarCambio()">
             📤 Enviar Solicitud
@@ -2415,7 +2403,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
 11/08/2026	SUSPENSION	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES
  12/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 14/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+14/08/2026	ACTIVO	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES	10:30:00	a.	m.	7:00:00	p.	m.	12:15:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
  15/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
  10/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
@@ -2445,7 +2433,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
  11/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  12/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+14/08/2026	ACTIVO	1045676520	VIVIANA	ESTER	CUMPLIDO	VALENCIA	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
  15/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
  10/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
@@ -3783,7 +3771,7 @@ async function tryAutoLogin() {
 // fallar por algún motivo, el buzón igual se vuelve a llenar solo al
 // abrirlo, porque siempre sincroniza el historial completo desde su propio
 // backend (ver BUZON_refresh).
-const TB_APP_VERSION = '2026-08-10.1710';
+const TB_APP_VERSION = '2026-08-10.2031';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
