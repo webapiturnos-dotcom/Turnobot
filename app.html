@@ -1222,7 +1222,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: KAREN — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: VIVIANA — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1546,7 +1546,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">✅</div><div class="activity-text">Tu solicitud de cambio con <strong>VIVIANA</strong> fue <strong>aprobada</strong></div><div class="activity-time">20:28</div><button type="button" class="activity-del-btn" data-aid="7" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🔄</div><div class="activity-text"><strong>KAREN</strong> solicitó cambio de turno con <strong>VIVIANA</strong></div><div class="activity-time">20:27</div><button type="button" class="activity-del-btn" data-aid="5" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🔄</div><div class="activity-text"><strong>KAREN</strong> solicitó cambio de turno con <strong>VIVIANA</strong></div><div class="activity-time">20:27</div><button type="button" class="activity-del-btn" data-aid="4" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">✅</div><div class="activity-text">Tu solicitud de cambio con <strong>KAREN</strong> fue <strong>aprobada</strong></div><div class="activity-time">22:01</div><button type="button" class="activity-del-btn" data-aid="11" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1612,7 +1612,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <div class="turno-card-label">Tu turno de hoy</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
-          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
+          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(16, 185, 129, 0.333); color: rgb(16, 185, 129); background: rgba(16, 185, 129, 0.094);">✅ Completado</div>
         </div>
         <div class="turno-horario-row">
           <div class="turno-hora-block">
@@ -1647,7 +1647,37 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">📋 Timeline del Día</div>
           <div class="section-sub" id="timeline-fecha">Lunes 10 Ago</div>
         </div>
-        <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
+        <div class="timeline-list" id="timeline-list"><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">11:00 a. m.</div>
+        <div class="tl-label">🟢 Inicio turno</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">12:30 p. m.</div>
+        <div class="tl-label">☕ Break 1</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">2:00 p. m.</div>
+        <div class="tl-label">☕ Salida almuerzo</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">4:45 p. m.</div>
+        <div class="tl-label">☕ Break 2</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div><div class="timeline-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-body">
+        <div class="tl-time">7:00 p. m.</div>
+        <div class="tl-label">🔴 Fin de turno</div>
+        <div class="tl-status done">✓ Completado</div>
+      </div></div></div>
       </div>
 
       <!-- ── Horas de la semana ── -->
@@ -1671,17 +1701,94 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
       </div>
 
+      <!-- ── Panel de administración: selector tipo "Home de Novedades" ──
+           En vez de mostrar las 9 secciones seguidas (scroll interminable),
+           se eligen con botones y solo se muestra la sección elegida. ── -->
+      <div class="section-header" id="admin-selector-header" style="display: none;">
+        <div class="section-title">🛠️ Panel de Administración</div>
+        <div class="section-sub">Elige qué quieres consultar o actualizar</div>
+      </div>
+      <div id="admin-selector" style="display: none; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+        <div class="quick-card" onclick="ADMIN_seleccionar('consultas-panel')">
+          <div class="qc-left"><div class="qc-icon">👑</div><div>
+            <div class="qc-title">Log de Consultas</div>
+            <div class="qc-sub">Quién consultó qué turno</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" onclick="ADMIN_seleccionar('malla-panel')">
+          <div class="qc-left"><div class="qc-icon">🗂️</div><div>
+            <div class="qc-title">Actualizar Malla de Turnos</div>
+            <div class="qc-sub">Sube el archivo nuevo y descarga el HTML</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" onclick="ADMIN_seleccionar('team-panel')">
+          <div class="qc-left"><div class="qc-icon">👥</div><div>
+            <div class="qc-title">Turnos de Todo el Equipo</div>
+            <div class="qc-sub">Consulta el turno de cualquier asesor</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" onclick="ADMIN_seleccionar('mover-admin-panel')">
+          <div class="qc-left"><div class="qc-icon">↔️</div><div>
+            <div class="qc-title">Mover Horas Entre Días</div>
+            <div class="qc-sub">Quita horas de un día y súmalas a otro</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" onclick="ADMIN_seleccionar('ausencia-admin-panel')">
+          <div class="qc-left"><div class="qc-icon">🚫</div><div>
+            <div class="qc-title">Marcar Ausencia Total</div>
+            <div class="qc-sub">Incapacidad, permiso o suspensión</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" onclick="ADMIN_seleccionar('solicitudes-admin-panel')">
+          <div class="qc-left"><div class="qc-icon">🔄</div><div>
+            <div class="qc-title">Solicitudes de Cambio</div>
+            <div class="qc-sub">Aprueba o rechaza cambios de turno</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" onclick="ADMIN_seleccionar('incap-admin-panel')">
+          <div class="qc-left"><div class="qc-icon">🏥</div><div>
+            <div class="qc-title">Incapacidades Recibidas</div>
+            <div class="qc-sub">Historial con foto, sincronizado desde la Sheet</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-delegate" style="display: flex;" onclick="ADMIN_seleccionar('delegate-panel')">
+          <div class="qc-left"><div class="qc-icon">🔑</div><div>
+            <div class="qc-title">Accesos de Administrador</div>
+            <div class="qc-sub">Da o quita permisos totales a alguien más</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-sheet" style="display: flex;" onclick="ADMIN_seleccionar('sheet-panel')">
+          <div class="qc-left"><div class="qc-icon">📊</div><div>
+            <div class="qc-title">Conexión con Google Sheet</div>
+            <div class="qc-sub">Contraseñas, fotos, solicitudes e incapacidades</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary w-full" id="admin-volver-btn" style="display: block; margin-bottom: 16px;" onclick="ADMIN_volver()">
+        ← Elegir otra opción
+      </button>
+
       <!-- ── Log de consultas (solo admin) ── -->
-      <div class="consultas-panel" id="consultas-panel" style="display: block;">
+      <div class="consultas-panel admin-subpanel" id="consultas-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">17:08</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:00</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
-      <div class="malla-panel" id="malla-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: block;">
         <div class="section-header">
           <div class="section-title">🗂️ Actualizar Malla de Turnos</div>
           <div class="section-sub">Sube el nuevo archivo y todo el equipo se actualiza</div>
@@ -1710,7 +1817,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Turnos de todo el equipo (solo admin) ── -->
-      <div class="malla-panel" id="team-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="team-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">👥 Turnos de Todo el Equipo</div>
           <div class="section-sub">Consulta el turno de cualquier asesor por fecha</div>
@@ -1723,21 +1830,16 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
       <div>
-        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
         <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
       </div>
       <div class="team-row-badge activo">Activo</div></div></div>
       </div>
 
       <!-- ── Mover horas entre días (quitar hora hoy, sumarla mañana) ── -->
-      <div class="malla-panel" id="mover-admin-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="mover-admin-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">↔️ Mover Horas Entre Días</div>
           <div class="section-sub">Quita horas de un día y súmalas a otro: en el día de origen se adelanta la salida, en el de destino se adelanta la entrada</div>
@@ -1767,7 +1869,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Marcar ausencia total: Incapacidad / Permiso / Suspensión ── -->
-      <div class="malla-panel" id="ausencia-admin-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="ausencia-admin-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🚫 Marcar Ausencia Total</div>
           <div class="section-sub">Incapacidad, permiso o suspensión — se refleja en el calendario y el timeline sin ningún turno programado</div>
@@ -1801,7 +1903,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Accesos de administrador delegados (solo Moisés) ── -->
-      <div class="malla-panel" id="delegate-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="delegate-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🔑 Accesos de Administrador</div>
           <div class="section-sub">Da permisos totales a alguien más, o quítaselos</div>
@@ -1829,7 +1931,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Conexión con Google Sheet (solo Moisés) ── -->
-      <div class="malla-panel" id="sheet-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="sheet-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">📊 Conexión con Google Sheet</div>
           <div class="section-sub">Contraseñas, fotos, solicitudes e incapacidades se guardan aquí</div>
@@ -1844,13 +1946,18 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Solicitudes de cambio de turno recibidas (solo admin) ── -->
-      <div class="malla-panel" id="solicitudes-admin-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="solicitudes-admin-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🔄 Solicitudes de Cambio de Turno</div>
           <div class="section-sub">Aprueba o rechaza lo que llega a la Sheet</div>
         </div>
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA 🔄 KAREN LISETH DE LA ASUNCION CERVANTES</div>
+        <div class="team-row-sub">Fecha: 2026-08-14T00:00:00.000Z · Cita médica</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES 🔄 VIVIANA ESTER CUMPLIDO VALENCIA</div>
         <div class="team-row-sub">Fecha: 2026-08-14T00:00:00.000Z · Cita médica</div>
@@ -1919,7 +2026,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Incapacidades recibidas (solo admin) ── -->
-      <div class="malla-panel" id="incap-admin-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="incap-admin-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🏥 Incapacidades Recibidas</div>
           <div class="section-sub">Historial con foto, sincronizado desde la Sheet</div>
@@ -2253,7 +2360,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -2265,8 +2372,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
           <div class="malla-status" id="sol-preview" style="display: none; margin-bottom: 4px; line-height: 1.6;">
     <b>Así quedaría si se aprueba:</b><br>
-    Tú (KAREN): tu turno actual es <b>8:00 a. m. → 4:30 p. m. (7h 30m)</b> → pasarías a tener el de VIVIANA.<br>
-    VIVIANA: su turno actual es <b>10:30 a. m. → 7:00 p. m. (7h 30m)</b> → pasaría a tener el tuyo.<br>
+    Tú (VIVIANA): tu turno actual es <b>8:00 a. m. → 4:30 p. m. (7h 30m)</b> → pasarías a tener el de KAREN.<br>
+    KAREN: su turno actual es <b>10:30 a. m. → 7:00 p. m. (7h 30m)</b> → pasaría a tener el tuyo.<br>
     <span style="color:var(--gris)">Esto es una vista previa; el cambio real lo confirma Moisés al aprobar la solicitud.</span></div>
           <button class="btn btn-primary w-full" onclick="F3_solicitarCambio()">
             📤 Enviar Solicitud
@@ -2403,7 +2510,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
 11/08/2026	SUSPENSION	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES
  12/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
-14/08/2026	ACTIVO	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES	10:30:00	a.	m.	7:00:00	p.	m.	12:15:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
+14/08/2026	ACTIVO	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
  15/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
  10/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
@@ -2433,7 +2540,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
  11/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  12/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
-14/08/2026	ACTIVO	1045676520	VIVIANA	ESTER	CUMPLIDO	VALENCIA	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
+14/08/2026	ACTIVO	1045676520	VIVIANA	ESTER	CUMPLIDO	VALENCIA	10:30:00	a.	m.	7:00:00	p.	m.	12:15:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
  15/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
  10/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
@@ -2624,17 +2731,44 @@ function MALLA_limpiarCedulas() {
   if (huboCambios) MALLA_persist();
 }
 
+// Huella simple (no criptográfica) del texto de la malla incrustada en este
+// HTML, para detectar si el archivo que se está abriendo trae una malla más
+// nueva que la que quedó guardada en este dispositivo.
+function MALLA_hashTexto(str) {
+  let h = 0;
+  const s = str || '';
+  for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) | 0; }
+  return `${s.length}:${h}`;
+}
+const MALLA_DEFAULT_HASH_KEY = 'tb_malla_default_hash_v1';
+
 function MALLA_init() {
   try { MALLA_LAST_RAW_TEXT = localStorage.getItem(MALLA_RAWTEXT_KEY) || null; } catch {}
+  const hashActualDelArchivo = MALLA_hashTexto(MALLA_RAW_DEFAULT);
   try {
     const stored = localStorage.getItem(MALLA_STORAGE_KEY);
-    if (stored) {
+    const hashGuardado = localStorage.getItem(MALLA_DEFAULT_HASH_KEY);
+    // ── Seguro anti-fallas: malla desactualizada en caché ──
+    // Cuando el admin actualiza la malla y reparte un HTML nuevo, cada
+    // dispositivo que ya tenía una malla guardada en localStorage seguía
+    // usando esa versión vieja para siempre (localStorage tenía prioridad
+    // sobre el HTML nuevo), aunque el archivo recibido ya trajera a alguien
+    // agregado o un turno corregido. Por eso a algunos asesores no les
+    // aparecían compañeros nuevos (p. ej. Karen) al pedir un cambio de turno.
+    // Ahora se compara la malla incrustada en ESTE archivo contra la huella
+    // de la última vez que se guardó: si cambió, se descarta el caché viejo
+    // y se toma la malla nueva del archivo, sin depender de subir un número
+    // de versión a mano.
+    if (stored && hashGuardado === hashActualDelArchivo) {
       const parsed = JSON.parse(stored);
       if (Array.isArray(parsed) && parsed.length) { MALLA_DATA = parsed; MALLA_limpiarCedulas(); return; }
     }
   } catch {}
   MALLA_DATA = MALLA_parseText(MALLA_RAW_DEFAULT);
-  try { localStorage.setItem(MALLA_STORAGE_KEY, JSON.stringify(MALLA_DATA)); } catch {}
+  try {
+    localStorage.setItem(MALLA_STORAGE_KEY, JSON.stringify(MALLA_DATA));
+    localStorage.setItem(MALLA_DEFAULT_HASH_KEY, hashActualDelArchivo);
+  } catch {}
 }
 function MALLA_persist() {
   try { localStorage.setItem(MALLA_STORAGE_KEY, JSON.stringify(MALLA_DATA)); } catch {}
@@ -3174,11 +3308,31 @@ const THEMES = [
   { id: 'azul',       label: '🔵 Azul' },
 ];
 function THEME_get() {
-  try { return localStorage.getItem(THEME_KEY) || 'original'; } catch { return 'original'; }
+  try {
+    const guardado = localStorage.getItem(THEME_KEY);
+    if (guardado) return guardado;
+  } catch {}
+  // ── Seguro anti-fallas: respetar el tema con el que se publicó el HTML ──
+  // Antes, si el dispositivo no tenía todavía una preferencia guardada,
+  // esta función devolvía 'original' a la fuerza — ignorando el color que
+  // el admin haya elegido al exportar (MALLA_downloadWithThemePrompt ya deja
+  // ese color puesto como atributo data-theme del <html> del archivo). Por
+  // eso en varios iPhone/Android, que abrían el archivo por primera vez,
+  // nunca se veía el color nuevo. Ahora, si no hay preferencia propia
+  // guardada, se usa el data-theme con el que el archivo ya viene.
+  try {
+    const deArchivo = document.documentElement.getAttribute('data-theme');
+    if (deArchivo) return deArchivo;
+  } catch {}
+  return 'original';
 }
 function THEME_apply(id) {
   if (id === 'original') document.documentElement.removeAttribute('data-theme');
   else document.documentElement.setAttribute('data-theme', id);
+  // Seguro anti-fallas: algunos navegadores móviles no repintan de inmediato
+  // las variables CSS tras cambiar el atributo data-theme. Forzar una
+  // lectura de layout (offsetHeight) obliga un reflow/repintado real.
+  void document.documentElement.offsetHeight;
 }
 function THEME_set(id) {
   try { localStorage.setItem(THEME_KEY, id); } catch {}
@@ -3771,7 +3925,7 @@ async function tryAutoLogin() {
 // fallar por algún motivo, el buzón igual se vuelve a llenar solo al
 // abrirlo, porque siempre sincroniza el historial completo desde su propio
 // backend (ver BUZON_refresh).
-const TB_APP_VERSION = '2026-08-10.2031';
+const TB_APP_VERSION = '2026-08-10.2202';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -3997,8 +4151,20 @@ function renderActivityLog() {
     if (a.cat === 'consulta' && !isAdmin) return false; // "quién consultó su turno" es solo del admin
     return true;
   });
-  if (visibles.length === 0) return;
+  // ── Seguro anti-fallas: notificaciones que "reaparecían" tras borrarlas ──
+  // Antes, cuando no había nada nuevo que mostrar (visibles.length === 0),
+  // la función se detenía aquí SIN limpiar list.innerHTML. Si el HTML que
+  // se está usando venía exportado con notificaciones ya escritas de una
+  // sesión anterior (esta pantalla se incrusta tal cual al descargar el
+  // HTML actualizado), esas tarjetas quedaban ahí para siempre: el botón
+  // de borrar solo las quitaba de la pantalla en ese momento, pero como
+  // nunca se volvía a limpiar/reconstruir la lista, cualquier cosa que
+  // las tocara de nuevo (o simplemente reabrir la app) las dejaba tal cual
+  // seguían escritas en el archivo. Ahora siempre se limpia y reconstruye
+  // la lista desde los datos reales (asesor o admin, es el mismo panel),
+  // así que un borrado queda definitivo.
   list.innerHTML = '';
+  if (visibles.length === 0) return;
   visibles.slice(-5).reverse().forEach(a => {
     const el = document.createElement('div');
     el.className = 'activity-item';
@@ -4110,6 +4276,19 @@ function NOV_seleccionar(tipo) {
   wrap.style.display = 'block';
   formIncap.style.display = tipo === 'incapacidad' ? 'block' : 'none';
   formCambio.style.display = tipo === 'cambio' ? 'block' : 'none';
+
+  // ── Seguro anti-fallas: cambio de turno ──
+  // El <select> de compañeros solo se llenaba cuando el asesor pasaba antes
+  // por la pantalla "Mi Turno" (F3_initTurns → F3_populateCompanero). Si
+  // entraba directo a Novedades → Cambio de turno, el select se quedaba con
+  // lo último que hubiera quedado en el HTML (a veces vacío o incompleto,
+  // por ejemplo sin un compañero recién agregado a la malla). Ahora se
+  // refresca aquí mismo, siempre con los datos más recientes de la malla,
+  // cada vez que se abre esta opción.
+  if (tipo === 'cambio') {
+    const user = window.TurnoBotApp && window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+    if (user) F3_populateCompanero(user);
+  }
 }
 
 function NOV_volver() {
@@ -4120,6 +4299,40 @@ function NOV_volver() {
   selector.style.display = 'flex';
   if (volverBtn) volverBtn.style.display = 'none';
   wrap.style.display = 'none';
+}
+
+// ── Panel de Administración: selector tipo "Home de Novedades" ──
+// Igual que NOV_seleccionar/NOV_volver pero para las 9 secciones del admin,
+// así se evita el scroll largo: solo se ve la sección elegida a la vez.
+function ADMIN_seleccionar(panelId) {
+  const selectorHeader = document.getElementById('admin-selector-header');
+  const selector = document.getElementById('admin-selector');
+  const volverBtn = document.getElementById('admin-volver-btn');
+  if (!selector) return;
+  selectorHeader && (selectorHeader.style.display = 'none');
+  selector.style.display = 'none';
+  if (volverBtn) volverBtn.style.display = 'block';
+  document.querySelectorAll('.admin-subpanel').forEach(p => {
+    p.style.display = (p.id === panelId) ? 'block' : 'none';
+  });
+  // Refrescar datos de la sección al abrirla, por si cambiaron desde la última vez.
+  if (panelId === 'team-panel') TEAM_render();
+  if (panelId === 'mover-admin-panel') MOVER_populateSelect();
+  if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
+  if (panelId === 'delegate-panel') DELEG_render();
+  if (panelId === 'sheet-panel') TB_renderSheetStatus();
+  if (panelId === 'solicitudes-admin-panel') TB_renderSolicitudesAdmin();
+  if (panelId === 'incap-admin-panel') TB_renderIncapacidadesAdmin();
+}
+function ADMIN_volver() {
+  const selectorHeader = document.getElementById('admin-selector-header');
+  const selector = document.getElementById('admin-selector');
+  const volverBtn = document.getElementById('admin-volver-btn');
+  if (!selector) return;
+  selectorHeader && (selectorHeader.style.display = 'block');
+  selector.style.display = 'flex';
+  if (volverBtn) volverBtn.style.display = 'none';
+  document.querySelectorAll('.admin-subpanel').forEach(p => { p.style.display = 'none'; });
 }
 
 // ── Pantalla de Perfil ────────────────────────────
@@ -4279,33 +4492,26 @@ function F3_initTurns() {
   const av = document.getElementById('turns-avatar');
   if (av) { renderAvatar(av, user.nombre); if (user.isAdmin) av.classList.add('admin'); }
 
-  // Mostrar panel admin
-  const cpanel = document.getElementById('consultas-panel');
-  if (cpanel) cpanel.style.display = user.isAdmin ? 'block' : 'none';
-  const mpanel = document.getElementById('malla-panel');
-  if (mpanel) mpanel.style.display = user.isAdmin ? 'block' : 'none';
-  const tpanel = document.getElementById('team-panel');
-  if (tpanel) tpanel.style.display = user.isAdmin ? 'block' : 'none';
-  const dpanel = document.getElementById('delegate-panel');
-  if (dpanel) dpanel.style.display = (user.isAdmin && user.isSuperAdmin) ? 'block' : 'none';
-  const shpanel = document.getElementById('sheet-panel');
-  if (shpanel) shpanel.style.display = (user.isAdmin && user.isSuperAdmin) ? 'block' : 'none';
-  const solpanel = document.getElementById('solicitudes-admin-panel');
-  if (solpanel) solpanel.style.display = user.isAdmin ? 'block' : 'none';
-  const incapAdminPanel = document.getElementById('incap-admin-panel');
-  if (incapAdminPanel) incapAdminPanel.style.display = user.isAdmin ? 'block' : 'none';
-  const ausenciaPanel = document.getElementById('ausencia-admin-panel');
-  if (ausenciaPanel) ausenciaPanel.style.display = user.isAdmin ? 'block' : 'none';
-  const moverPanel = document.getElementById('mover-admin-panel');
-  if (moverPanel) moverPanel.style.display = user.isAdmin ? 'block' : 'none';
+  // Mostrar panel admin: selector de botones (evita el scroll largo) en vez
+  // de las 9 secciones abiertas a la vez. Cada sección se abre bajo demanda
+  // con ADMIN_seleccionar() y se refresca sola al abrirse.
+  const selectorHeader = document.getElementById('admin-selector-header');
+  const selector = document.getElementById('admin-selector');
+  const adminVolverBtn = document.getElementById('admin-volver-btn');
+  if (selector) {
+    selectorHeader && (selectorHeader.style.display = user.isAdmin ? 'block' : 'none');
+    selector.style.display = user.isAdmin ? 'flex' : 'none';
+    if (adminVolverBtn) adminVolverBtn.style.display = 'none';
+  }
+  const dbtn = document.getElementById('admin-btn-delegate');
+  if (dbtn) dbtn.style.display = (user.isAdmin && user.isSuperAdmin) ? 'flex' : 'none';
+  const sbtn = document.getElementById('admin-btn-sheet');
+  if (sbtn) sbtn.style.display = (user.isAdmin && user.isSuperAdmin) ? 'flex' : 'none';
+  document.querySelectorAll('.admin-subpanel').forEach(p => { p.style.display = 'none'; });
   if (user.isAdmin) {
     MALLA_refreshStatus();
     F3_renderAdminView();
-    TEAM_render();
-    AUSENCIA_populateSelect();
-    MOVER_populateSelect();
     BUZON_renderAdminToggle();
-    if (user.isSuperAdmin) { DELEG_render(); TB_renderSheetStatus(); }
     return;
   }
   // Buscar el nombre canónico de esta persona dentro de la malla cargada
@@ -4321,9 +4527,30 @@ function F3_populateCompanero(user) {
   const sel = document.getElementById('sol-companero');
   if (!sel) return;
   const propio = normalizeName((user.mallaNombre || user.nombre || ''));
-  const nombres = MALLA_getNames().filter(n => normalizeName(n) !== propio);
+  const previo = sel.value;
+
+  // ── Seguro anti-fallas: no depender solo de la malla ──
+  // Si a alguien todavía no le han cargado su horario del día en la malla
+  // (por ejemplo, entró hace poco), MALLA_getNames() no lo incluye y no
+  // aparecería como opción para pedirle un cambio de turno. Se completa la
+  // lista con las cuentas ya registradas (ACC_load), para que cualquier
+  // compañero con cuenta activa siempre sea seleccionable.
+  const vistos = new Map();
+  MALLA_getNames().forEach(n => vistos.set(normalizeName(n), n));
+  try {
+    const cuentas = ACC_load();
+    Object.keys(cuentas).forEach(norm => {
+      if (!vistos.has(norm) && cuentas[norm] && cuentas[norm].nombre) {
+        vistos.set(norm, cuentas[norm].nombre);
+      }
+    });
+  } catch {}
+  vistos.delete(propio);
+
+  const nombres = Array.from(vistos.values()).sort((a, b) => a.localeCompare(b));
   sel.innerHTML = '<option value="">Selecciona un compañero...</option>' +
     nombres.map(n => `<option value="${n}">${n}</option>`).join('');
+  if (previo && nombres.includes(previo)) sel.value = previo;
   F3_actualizarPreviewCambio();
 }
 
@@ -5395,9 +5622,14 @@ function COMP_open(tipo) {
   registrosHoy.forEach(r => {
     if (vistos.has(r.nombreNorm)) return;
     const horasSuyas = (r.detalle || []).filter(d => cfg.labels.includes(d.label)).map(d => d.value);
-    const comparte = horasSuyas.find(h => misHoras.includes(h));
-    if (comparte) {
-      coincidencias.push({ nombre: r.nombre, hora: comparte });
+    // ── Seguro anti-fallas: mostrar TODAS las horas que coincidan ──
+    // Antes se usaba .find(), que se queda con la primera coincidencia y
+    // descarta el resto: si dos personas compartían Break 1 Y Break 2 el
+    // mismo día, solo se mostraba el Break 1. Con .filter() se recogen
+    // todas las coincidencias de esa persona para ese tipo (break/almuerzo).
+    const comparte = horasSuyas.filter(h => misHoras.includes(h));
+    if (comparte.length) {
+      coincidencias.push({ nombre: r.nombre, horas: comparte });
       vistos.add(r.nombreNorm);
     }
   });
@@ -5411,9 +5643,9 @@ function COMP_open(tipo) {
       <div class="team-row">
         <div>
           <div class="team-row-name">${c.nombre}</div>
-          <div class="team-row-sub">${cfg.titulo} a las ${c.hora}</div>
+          <div class="team-row-sub">${cfg.titulo} a las ${c.horas.join(' y ')}</div>
         </div>
-        <div class="team-row-badge activo">${cfg.icon} ${c.hora}</div>
+        <div class="team-row-badge activo">${cfg.icon} ${c.horas.join(' · ')}</div>
       </div>`).join('');
   }
 
