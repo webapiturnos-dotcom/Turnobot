@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
 <script>
 // Aplica el tema guardado ANTES de pintar, para evitar parpadeo del tema por defecto.
 (function(){ try { var t = localStorage.getItem('tb_theme'); if (t && t !== 'original') document.documentElement.setAttribute('data-theme', t); } catch(e) {} })();
@@ -1170,6 +1171,19 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .team-row-badge.descanso { color:var(--naranja); background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); }
 .team-row-badge.sindatos { color:var(--gris); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); }
 .team-empty { text-align:center; padding:18px; color:var(--gris); font-size:13px; }
+.deleg-perms-grid { display:flex; flex-direction:column; gap:6px; margin-top:6px; }
+.deleg-perm-item {
+  display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--gris);
+  background:rgba(255,255,255,0.03); border:1px solid var(--glass-border);
+  border-radius:var(--radius-xs); padding:8px 10px; cursor:pointer;
+}
+.deleg-perm-item input { flex-shrink:0; width:16px; height:16px; }
+.deleg-perm-todo { border-color:rgba(var(--rojo-rgb),0.35); background:rgba(var(--rojo-rgb),0.08); color:var(--texto); }
+.deleg-perm-badge {
+  display:inline-block; font-size:10px; font-weight:600; padding:2px 7px; border-radius:12px;
+  background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); color:var(--gris);
+  margin:2px 4px 0 0;
+}
 .deleg-row-btn {
   flex-shrink:0; background:rgba(var(--rojo-rgb),0.12); border:1px solid rgba(var(--rojo-rgb),0.35);
   color:var(--rojo2); font-size:12px; font-weight:600; padding:7px 12px; border-radius:10px; cursor:pointer;
@@ -1215,7 +1229,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Actualizando...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1546,7 +1560,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">✅</div><div class="activity-text">Tu solicitud de cambio con <strong>KAREN</strong> fue <strong>aprobada</strong></div><div class="activity-time">22:01</div><button type="button" class="activity-del-btn" data-aid="11" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1612,7 +1626,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <div class="turno-card-label">Tu turno de hoy</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
-          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(16, 185, 129, 0.333); color: rgb(16, 185, 129); background: rgba(16, 185, 129, 0.094);">✅ Completado</div>
+          <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
         </div>
         <div class="turno-horario-row">
           <div class="turno-hora-block">
@@ -1647,37 +1661,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">📋 Timeline del Día</div>
           <div class="section-sub" id="timeline-fecha">Lunes 10 Ago</div>
         </div>
-        <div class="timeline-list" id="timeline-list"><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">11:00 a. m.</div>
-        <div class="tl-label">🟢 Inicio turno</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">12:30 p. m.</div>
-        <div class="tl-label">☕ Break 1</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">2:00 p. m.</div>
-        <div class="tl-label">☕ Salida almuerzo</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">4:45 p. m.</div>
-        <div class="tl-label">☕ Break 2</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div><div class="timeline-item">
-      <div class="tl-dot done"></div>
-      <div class="tl-body">
-        <div class="tl-time">7:00 p. m.</div>
-        <div class="tl-label">🔴 Fin de turno</div>
-        <div class="tl-status done">✓ Completado</div>
-      </div></div></div>
+        <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
 
       <!-- ── Horas de la semana ── -->
@@ -1709,52 +1693,59 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="section-sub">Elige qué quieres consultar o actualizar</div>
       </div>
       <div id="admin-selector" style="display: none; flex-direction: column; gap: 12px; margin-bottom: 16px;">
-        <div class="quick-card" onclick="ADMIN_seleccionar('consultas-panel')">
+        <div class="quick-card" id="admin-btn-consultas" onclick="ADMIN_seleccionar('consultas-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">👑</div><div>
             <div class="qc-title">Log de Consultas</div>
             <div class="qc-sub">Quién consultó qué turno</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
-        <div class="quick-card" onclick="ADMIN_seleccionar('malla-panel')">
+        <div class="quick-card" id="admin-btn-malla" onclick="ADMIN_seleccionar('malla-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">🗂️</div><div>
             <div class="qc-title">Actualizar Malla de Turnos</div>
             <div class="qc-sub">Sube el archivo nuevo y descarga el HTML</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
-        <div class="quick-card" onclick="ADMIN_seleccionar('team-panel')">
+        <div class="quick-card" id="admin-btn-team" onclick="ADMIN_seleccionar('team-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">👥</div><div>
             <div class="qc-title">Turnos de Todo el Equipo</div>
             <div class="qc-sub">Consulta el turno de cualquier asesor</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
-        <div class="quick-card" onclick="ADMIN_seleccionar('mover-admin-panel')">
+        <div class="quick-card" id="admin-btn-mover" onclick="ADMIN_seleccionar('mover-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">↔️</div><div>
             <div class="qc-title">Mover Horas Entre Días</div>
             <div class="qc-sub">Quita horas de un día y súmalas a otro</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
-        <div class="quick-card" onclick="ADMIN_seleccionar('ausencia-admin-panel')">
+        <div class="quick-card" id="admin-btn-ausencia" onclick="ADMIN_seleccionar('ausencia-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">🚫</div><div>
             <div class="qc-title">Marcar Ausencia Total</div>
             <div class="qc-sub">Incapacidad, permiso o suspensión</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
-        <div class="quick-card" onclick="ADMIN_seleccionar('solicitudes-admin-panel')">
+        <div class="quick-card" id="admin-btn-solicitudes" onclick="ADMIN_seleccionar('solicitudes-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">🔄</div><div>
             <div class="qc-title">Solicitudes de Cambio</div>
             <div class="qc-sub">Aprueba o rechaza cambios de turno</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
-        <div class="quick-card" onclick="ADMIN_seleccionar('incap-admin-panel')">
+        <div class="quick-card" id="admin-btn-incap" onclick="ADMIN_seleccionar('incap-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">🏥</div><div>
             <div class="qc-title">Incapacidades Recibidas</div>
             <div class="qc-sub">Historial con foto, sincronizado desde la Sheet</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-accesos" onclick="ADMIN_seleccionar('accesos-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">🔐</div><div>
+            <div class="qc-title">Historial de Accesos</div>
+            <div class="qc-sub">Cuántas veces y qué días ha entrado cada asesor</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
@@ -1812,6 +1803,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_downloadBtnClick()">
           ⬇️ Descargar HTML actualizado
+        </button>
+        <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}.xlsx`)">
+          📊 Descargar Excel (igual al PDF)
         </button>
         <button type="button" id="buzon-toggle-btn" class="btn btn-primary w-full" style="margin-top:10px" onclick="BUZON_toggleEnabled()">✅ Habilitar Buzón</button>
       </div>
@@ -1902,14 +1896,171 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
       </div>
 
+      <!-- ── Historial de accesos: cuántas veces y qué días ha entrado cada asesor ── -->
+      <div class="malla-panel admin-subpanel" id="accesos-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">🔐 Historial de Accesos</div>
+          <div class="section-sub">Cuántas veces y en qué fechas ha iniciado sesión cada asesor</div>
+        </div>
+        <div class="form-group" style="margin-bottom:10px">
+          <input type="text" class="form-input" id="accesos-filter" placeholder="Buscar nombre..." oninput="ACCESOS_render()">
+        </div>
+        <div class="team-list" id="accesos-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> AMIRA ROSA CAMACHO CANTILLO</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> JENNIFER MORALES MENDOZA</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> LILIBETH ROMERO ALVAREZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> Wandi Vanessa Tafur Sanjuan</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name"> ZUANY SOFIA RENDON SINCELEJO</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
+        <div class="team-row-sub">🔑 1 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="team-row-sub">🔑 1 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
+        <div class="team-row-sub">🔑 0 accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
+      </div></div></div>
+      </div>
+
       <!-- ── Accesos de administrador delegados (solo Moisés) ── -->
       <div class="malla-panel admin-subpanel" id="delegate-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🔑 Accesos de Administrador</div>
-          <div class="section-sub">Da permisos totales a alguien más, o quítaselos</div>
+          <div class="section-sub">Da acceso a alguien más y elige exactamente qué puede ver o hacer</div>
         </div>
         <div class="malla-status" style="margin-bottom:12px">
-          Quien entre con estos datos verá y podrá administrar todo, igual que tú.
+          Marca "Acceso total" para que vea y administre todo igual que tú, o marca solo las opciones puntuales que quieres darle (por ejemplo, solo incapacidades, o solo turnos de asesores).
         </div>
         <div class="flex-row" style="gap:10px">
           <div class="form-group" style="flex:2;margin:0">
@@ -1919,13 +2070,30 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="deleg-pin" placeholder="PIN 4 dígitos" maxlength="4" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
+        <div class="form-group" style="margin-top:6px">
+          <label class="form-label">¿Qué puede ver o hacer esta persona?</label>
+          <div class="deleg-perms-grid" id="deleg-perms-grid">
+            <label class="deleg-perm-item deleg-perm-todo">
+              <input type="checkbox" id="deleg-perm-todo" onchange="DELEG_onTodoToggle()"> <b>👑 Acceso total (todo, como antes)</b>
+            </label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-consultas" class="deleg-perm-part"> 👑 Log de consultas</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-malla" class="deleg-perm-part"> 🗂️ Actualizar malla de turnos</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-turnos" class="deleg-perm-part"> 👥 Turnos de los asesores</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-mover" class="deleg-perm-part"> ↔️ Mover horas entre días</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-ausencia" class="deleg-perm-part"> 🚫 Marcar ausencia total</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-solicitudes" class="deleg-perm-part"> 🔄 Solicitudes de cambio</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-incapacidades" class="deleg-perm-part"> 🏥 Ver incapacidades</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-accesos" class="deleg-perm-part"> 🔐 Historial de accesos</label>
+          </div>
+        </div>
         <button class="btn btn-primary w-full" style="margin-top:10px" onclick="DELEG_grantHandler()">
-          👑 Otorgar acceso total
+          👑 Otorgar acceso
         </button>
         <div class="team-list" id="deleg-list" style="margin-top:14px"><div class="team-row">
       <div>
-        <div class="team-row-name">Ana</div>
-        <div class="team-row-sub">Acceso total desde 10/8/2026</div>
+        <div class="team-row-name">Any</div>
+        <div class="team-row-sub">Acceso desde 11/8/2026</div>
+        <div style="margin-top:6px"><span class="deleg-perm-badge">👥 Turnos de asesores</span><span class="deleg-perm-badge">↔️ Mover horas</span><span class="deleg-perm-badge">🔄 Solicitudes</span></div>
       </div>
       <button class="deleg-row-btn" type="button">🗑️ Quitar</button></div></div>
       </div>
@@ -2869,6 +3037,123 @@ function MALLA_buildUpdatedHTML() {
   return html;
 }
 
+// ── Exporta la malla actual a Excel (.xlsx), replicando exactamente el
+// diseño visual del PDF original: mismo orden de columnas, mismos colores
+// de fondo (Fecha en azul, Estado en dorado, Nombre y Horas en gris),
+// mismas fuentes en blanco/negrita donde corresponde y mismos bordes.
+// Se genera siempre a partir de MALLA_DATA, que es la fuente de verdad
+// tras cualquier cambio de turno, movimiento de horas o ausencia aplicada.
+const MALLA_EXCEL_COLORS = {
+  header:  'FF4472C4', // azul del encabezado
+  fecha:   'FF4472C4', // azul (misma columna en header y cuerpo)
+  estado:  'FFFFD966', // dorado del badge ACTIVO/etc.
+  nombre:  'FFD9D9D9', // gris claro
+  horas:   'FFD9D9D9', // gris claro
+  blanco:  'FFFFFFFF'
+};
+
+// Reparte los valores de detalle (Break I / Break II / Almuerzo) en las
+// columnas correctas según cuántos existan ese día, igual que en el PDF:
+// 3 valores → Break I, Break II, Almuerzo · 2 valores → Break I, Almuerzo
+// (sin Break II) · 1 valor → solo Break I · 0 → todo vacío.
+function MALLA_mapDetalleColumnas(detalle) {
+  const vals = (detalle || []).map(d => d.value);
+  if (vals.length >= 3) return { breakI: vals[0], breakII: vals[1], almuerzo: vals[2] };
+  if (vals.length === 2) return { breakI: vals[0], breakII: '', almuerzo: vals[1] };
+  if (vals.length === 1) return { breakI: vals[0], breakII: '', almuerzo: '' };
+  return { breakI: '', breakII: '', almuerzo: '' };
+}
+
+async function MALLA_buildExcelWorkbook() {
+  const wb = new ExcelJS.Workbook();
+  const ws = wb.addWorksheet('Malla', { views: [{ state: 'frozen', ySplit: 1 }] });
+
+  const columnas = [
+    { header: 'Fecha',     key: 'fecha',    width: 12 },
+    { header: 'Estado',    key: 'estado',   width: 9  },
+    { header: 'No Cedula', key: 'cedula',   width: 12 },
+    { header: 'Nombre',    key: 'nombre',   width: 40 },
+    { header: 'ENTRADA',   key: 'entrada',  width: 12 },
+    { header: 'SALIDA',    key: 'salida',   width: 12 },
+    { header: 'BREAK I',   key: 'breakI',   width: 12 },
+    { header: 'BREAK II',  key: 'breakII',  width: 12 },
+    { header: 'ALMUERZO',  key: 'almuerzo', width: 12 },
+    { header: 'Horas',     key: 'horas',    width: 8  }
+  ];
+  ws.columns = columnas;
+
+  const thin = { style: 'thin', color: { argb: 'FF000000' } };
+  const bordeCompleto = { top: thin, bottom: thin, left: thin, right: thin };
+
+  // Encabezado
+  const headerRow = ws.getRow(1);
+  headerRow.eachCell(cell => {
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.header } };
+    cell.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 9 };
+    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+    cell.border = bordeCompleto;
+  });
+  headerRow.height = 16;
+
+  MALLA_DATA.forEach(r => {
+    const { breakI, breakII, almuerzo } = MALLA_mapDetalleColumnas(r.detalle);
+    const row = ws.addRow({
+      fecha: r.fechaOriginal,
+      estado: r.estado,
+      cedula: r.cedula || '',
+      nombre: r.nombre,
+      entrada: r.entradaDisplay || '',
+      salida: r.salidaDisplay || '',
+      breakI, breakII, almuerzo,
+      horas: r.horas || ''
+    });
+    row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+      cell.border = bordeCompleto;
+      cell.font = { size: 9 };
+      cell.alignment = { vertical: 'middle', horizontal: colNumber === 4 ? 'left' : 'center' };
+    });
+    // Columna Fecha (1): fondo azul, texto blanco y negrita
+    const cFecha = row.getCell(1);
+    cFecha.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.fecha } };
+    cFecha.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 9 };
+    // Columna Estado (2): fondo dorado, texto negro y negrita
+    const cEstado = row.getCell(2);
+    cEstado.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.estado } };
+    cEstado.font = { bold: true, color: { argb: 'FF000000' }, size: 9 };
+    // Columna Nombre (4): fondo gris
+    row.getCell(4).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.nombre } };
+    // Columna Horas (10): fondo gris
+    row.getCell(10).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.horas } };
+  });
+
+  return wb;
+}
+
+async function MALLA_exportExcel(filename) {
+  try {
+    if (typeof ExcelJS === 'undefined') {
+      showToast('error', '⚠️ No se pudo exportar', 'La librería de Excel no cargó (revisa tu conexión).');
+      return false;
+    }
+    const wb = await MALLA_buildExcelWorkbook();
+    const buffer = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename || `TurnoBot_MPC_${MALLA_todayISO()}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    return true;
+  } catch (e) {
+    console.error('MALLA_exportExcel error:', e);
+    showToast('error', '⚠️ No se pudo exportar', 'Ocurrió un error generando el Excel.');
+    return false;
+  }
+}
+
 function MALLA_downloadUpdatedHTML(filename) {
   try {
     const html = MALLA_buildUpdatedHTML();
@@ -3086,6 +3371,9 @@ async function TB_syncFromSheet(manual) {
             nombre: remote.nombre, codigoMaya: remote.codigoMaya, rol: remote.rol,
             email: remote.email, pass: remote.pass, createdAt: remote.createdAt || Date.now(),
             loginCount: (local[norm] && local[norm].loginCount) || remote.loginCount || 0,
+            // Igual que loginCount: si ya había fechas de acceso guardadas en este
+            // dispositivo, se conservan (la Sheet remota no maneja este dato hoy).
+            loginDates: (local[norm] && local[norm].loginDates) || remote.loginDates || [],
             // El apodo es opcional: si la Sheet ya lo trae se usa ese; si no,
             // se conserva el que ya estaba guardado en este dispositivo para
             // no perderlo (el backend principal no necesita cambiar nada).
@@ -3124,13 +3412,26 @@ async function TB_syncFromSheet(manual) {
 // acceso que entra con permisos totales de administrador (ver y actualizar
 // la malla de todo el equipo), y revocarlo cuando quiera.
 const DELEGATES_KEY = 'tb_delegated_admins_v1';
+// Mapa panel → llave de permiso. 'delegate-panel' y 'sheet-panel' quedan
+// siempre reservados solo para el superadmin (ya estaba así antes).
+const DELEG_PANEL_PERM_MAP = {
+  'consultas-panel': 'consultas',
+  'malla-panel': 'malla',
+  'team-panel': 'turnos',
+  'mover-admin-panel': 'mover',
+  'ausencia-admin-panel': 'ausencia',
+  'solicitudes-admin-panel': 'solicitudes',
+  'incap-admin-panel': 'incapacidades',
+  'accesos-admin-panel': 'accesos'
+};
+const DELEG_PERM_KEYS = ['consultas','malla','turnos','mover','ausencia','solicitudes','incapacidades','accesos'];
 function DELEG_load() { try { return JSON.parse(localStorage.getItem(DELEGATES_KEY)) || {}; } catch { return {}; } }
 function DELEG_save(all) { try { localStorage.setItem(DELEGATES_KEY, JSON.stringify(all)); } catch {} }
-function DELEG_grant(nombre, pin) {
+function DELEG_grant(nombre, pin, perms) {
   const norm = normalizeName(nombre);
   if (!norm) return false;
   const all = DELEG_load();
-  all[norm] = { nombre: nombre.trim(), pass: ACC_hash(pin), grantedAt: Date.now() };
+  all[norm] = { nombre: nombre.trim(), pass: ACC_hash(pin), grantedAt: Date.now(), perms: perms || { todo: true } };
   DELEG_save(all);
   return true;
 }
@@ -3138,6 +3439,29 @@ function DELEG_revoke(norm) {
   const all = DELEG_load();
   delete all[norm];
   DELEG_save(all);
+}
+// ¿El usuario actual (si es delegado, no superadmin) tiene permiso para este panel?
+// El superadmin y los admins delegados con "todo" siempre pasan. Un admin delegado
+// sin "todo" solo pasa si tiene marcada la llave puntual de ese panel.
+function DELEG_hasPermPanel(panelId) {
+  if (!currentUser || !currentUser.isAdmin) return false;
+  if (currentUser.isSuperAdmin) return true;
+  // Estos dos paneles quedan siempre reservados solo al superadmin (Moisés),
+  // incluso para un acceso delegado con "todo" — igual que ya era antes.
+  if (panelId === 'delegate-panel' || panelId === 'sheet-panel') return false;
+  if (!currentUser.isDelegated) return true; // no debería pasar, pero no bloquea admins no-delegados
+  const perms = currentUser.delegPerms || { todo: true };
+  if (perms.todo) return true;
+  const key = DELEG_PANEL_PERM_MAP[panelId];
+  return !!(key && perms[key]);
+}
+
+function DELEG_onTodoToggle() {
+  const todo = document.getElementById('deleg-perm-todo').checked;
+  document.querySelectorAll('.deleg-perm-part').forEach(chk => {
+    chk.disabled = todo;
+    if (todo) chk.checked = false;
+  });
 }
 
 function DELEG_grantHandler() {
@@ -3147,21 +3471,43 @@ function DELEG_grantHandler() {
   const pin = (pinEl.value || '').trim();
   if (!nombre) { showToast('error', '❌ Falta el nombre', 'Escribe el nombre de la persona.'); return; }
   if (!/^\d{4}$/.test(pin)) { showToast('error', '❌ PIN inválido', 'El PIN debe tener 4 dígitos numéricos.'); return; }
-  DELEG_grant(nombre, pin);
+  const todo = document.getElementById('deleg-perm-todo').checked;
+  const perms = { todo };
+  let algunPermiso = todo;
+  if (!todo) {
+    DELEG_PERM_KEYS.forEach(key => {
+      const chk = document.getElementById('deleg-perm-' + key);
+      const val = !!(chk && chk.checked);
+      perms[key] = val;
+      if (val) algunPermiso = true;
+    });
+  }
+  if (!algunPermiso) { showToast('error', '❌ Elige qué puede hacer', 'Marca "Acceso total" o al menos una opción puntual.'); return; }
+  DELEG_grant(nombre, pin, perms);
   nombreEl.value = '';
   pinEl.value = '';
-  showToast('success', '👑 Acceso otorgado', `${nombre.split(' ')[0]} ya puede entrar con permisos totales.`);
-  if (typeof fase2AddActivity === 'function') fase2AddActivity('🔑', `<strong>${nombre.split(' ')[0]}</strong> recibió acceso total de administrador`);
+  document.getElementById('deleg-perm-todo').checked = false;
+  DELEG_PERM_KEYS.forEach(key => {
+    const chk = document.getElementById('deleg-perm-' + key);
+    if (chk) { chk.checked = false; chk.disabled = false; }
+  });
+  showToast('success', '👑 Acceso otorgado', `${nombre.split(' ')[0]} ya puede entrar con el acceso que elegiste.`);
+  if (typeof fase2AddActivity === 'function') fase2AddActivity('🔑', `<strong>${nombre.split(' ')[0]}</strong> recibió un acceso delegado`);
   DELEG_render();
 }
 
 function DELEG_revokeHandler(norm, nombreCorto) {
   DELEG_revoke(norm);
-  showToast('info', '🗑️ Acceso eliminado', `${nombreCorto} ya no tiene permisos de administrador.`);
-  if (typeof fase2AddActivity === 'function') fase2AddActivity('🔒', `Se quitó el acceso total de <strong>${nombreCorto}</strong>`);
+  showToast('info', '🗑️ Acceso eliminado', `${nombreCorto} ya no tiene acceso delegado.`);
+  if (typeof fase2AddActivity === 'function') fase2AddActivity('🔒', `Se quitó el acceso delegado de <strong>${nombreCorto}</strong>`);
   DELEG_render();
 }
 
+const DELEG_PERM_LABELS = {
+  todo: '👑 Todo', consultas: '👑 Consultas', malla: '🗂️ Malla', turnos: '👥 Turnos de asesores',
+  mover: '↔️ Mover horas', ausencia: '🚫 Ausencias', solicitudes: '🔄 Solicitudes',
+  incapacidades: '🏥 Incapacidades', accesos: '🔐 Historial de accesos'
+};
 function DELEG_render() {
   const cont = document.getElementById('deleg-list');
   if (!cont) return;
@@ -3176,10 +3522,15 @@ function DELEG_render() {
     const row = document.createElement('div');
     row.className = 'team-row';
     const fecha = d.grantedAt ? new Date(d.grantedAt).toLocaleDateString('es-CO') : '';
+    const perms = d.perms || { todo: true };
+    const badgesHtml = perms.todo
+      ? `<span class="deleg-perm-badge">${DELEG_PERM_LABELS.todo}</span>`
+      : DELEG_PERM_KEYS.filter(k => perms[k]).map(k => `<span class="deleg-perm-badge">${DELEG_PERM_LABELS[k]}</span>`).join('');
     row.innerHTML = `
       <div>
         <div class="team-row-name">${d.nombre}</div>
-        <div class="team-row-sub">Acceso total desde ${fecha}</div>
+        <div class="team-row-sub">Acceso desde ${fecha}</div>
+        <div style="margin-top:6px">${badgesHtml || '<span class="deleg-perm-badge">Sin permisos</span>'}</div>
       </div>
       <button class="deleg-row-btn" type="button">🗑️ Quitar</button>`;
     row.querySelector('.deleg-row-btn').onclick = () => DELEG_revokeHandler(norm, d.nombre.split(' ')[0]);
@@ -3187,7 +3538,40 @@ function DELEG_render() {
   });
 }
 
-// ── Turnos de todo el equipo (vista admin) ──
+// ── Historial de accesos (solo lectura): cuántas veces y qué fechas
+// ha iniciado sesión cada asesor registrado. ─────────────────────
+function ACCESOS_render() {
+  const cont = document.getElementById('accesos-list');
+  if (!cont) return;
+  const filtro = normalizeName(document.getElementById('accesos-filter')?.value || '');
+  const accounts = ACC_load();
+  let entries = Object.entries(accounts);
+  if (filtro) entries = entries.filter(([, acc]) => normalizeName(acc.nombre || '').includes(filtro));
+  entries.sort((a, b) => (a[1].nombre || '').localeCompare(b[1].nombre || ''));
+
+  if (!entries.length) {
+    cont.innerHTML = '<div class="team-empty">No hay cuentas registradas que coincidan.</div>';
+    return;
+  }
+  cont.innerHTML = '';
+  entries.forEach(([, acc]) => {
+    const fechas = Array.isArray(acc.loginDates) ? acc.loginDates.slice(-8).reverse() : [];
+    const fechasTxt = fechas.length
+      ? fechas.map(f => new Date(f).toLocaleString('es-CO', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })).join(' · ')
+      : 'Sin registros de fecha todavía';
+    const row = document.createElement('div');
+    row.className = 'team-row';
+    row.innerHTML = `
+      <div style="flex:1">
+        <div class="team-row-name">${acc.nombre}</div>
+        <div class="team-row-sub">🔑 ${acc.loginCount || 0} accesos</div>
+        <div class="team-row-sub" style="margin-top:4px">${fechasTxt}${fechas.length === 8 ? ' (últimos 8)' : ''}</div>
+      </div>`;
+    cont.appendChild(row);
+  });
+}
+
+
 function TEAM_render() {
   const cont = document.getElementById('team-list');
   const dateEl = document.getElementById('team-date');
@@ -3598,6 +3982,7 @@ async function doLogin() {
   const delegAcc = delegates[normDeleg];
   if (delegAcc && delegAcc.pass === ACC_hash(pwd)) {
     sessionToken = 'local-delegate-token-' + normDeleg;
+    const perms = delegAcc.perms || { todo: true };
     currentUser = {
       nombre: delegAcc.nombre,
       codigoMaya: 'DELEGADO',
@@ -3605,6 +3990,7 @@ async function doLogin() {
       isAdmin: true,
       isSuperAdmin: false,
       isDelegated: true,
+      delegPerms: perms,
       apodo: delegAcc.nombre.split(' ')[0],
       loginCount: 1
     };
@@ -3612,7 +3998,7 @@ async function doLogin() {
     localStorage.setItem('tb_user', JSON.stringify(currentUser));
     clearPin('pin-inputs');
     initHomeScreen();
-    showToast('success', '👑 ¡Bienvenido!', `Hola ${currentUser.apodo}, tienes acceso total de administrador.`);
+    showToast('success', '👑 ¡Bienvenido!', `Hola ${currentUser.apodo}, ya tienes tu acceso activo.`);
     showScreen('home');
     return;
   }
@@ -3652,6 +4038,11 @@ async function doLogin() {
       loginCount: (acc.loginCount || 0) + 1
     };
     acc.loginCount = currentUser.loginCount;
+    // Registro de accesos: fecha (y hora) de cada login, para que el admin
+    // pueda consultar cuántas veces y en qué fechas ha entrado cada asesor.
+    if (!Array.isArray(acc.loginDates)) acc.loginDates = [];
+    acc.loginDates.push(new Date().toISOString());
+    if (acc.loginDates.length > 60) acc.loginDates = acc.loginDates.slice(-60);
     accounts[norm] = acc;
     ACC_save(accounts);
     localStorage.setItem('tb_token', sessionToken);
@@ -3925,7 +4316,7 @@ async function tryAutoLogin() {
 // fallar por algún motivo, el buzón igual se vuelve a llenar solo al
 // abrirlo, porque siempre sincroniza el historial completo desde su propio
 // backend (ver BUZON_refresh).
-const TB_APP_VERSION = '2026-08-10.2202';
+const TB_APP_VERSION = '2026-08-11.1934';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -4305,6 +4696,10 @@ function NOV_volver() {
 // Igual que NOV_seleccionar/NOV_volver pero para las 9 secciones del admin,
 // así se evita el scroll largo: solo se ve la sección elegida a la vez.
 function ADMIN_seleccionar(panelId) {
+  if (!DELEG_hasPermPanel(panelId)) {
+    showToast('error', '🔒 Sin permiso', 'No tienes acceso a esta sección.');
+    return;
+  }
   const selectorHeader = document.getElementById('admin-selector-header');
   const selector = document.getElementById('admin-selector');
   const volverBtn = document.getElementById('admin-volver-btn');
@@ -4323,6 +4718,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'sheet-panel') TB_renderSheetStatus();
   if (panelId === 'solicitudes-admin-panel') TB_renderSolicitudesAdmin();
   if (panelId === 'incap-admin-panel') TB_renderIncapacidadesAdmin();
+  if (panelId === 'accesos-admin-panel') ACCESOS_render();
 }
 function ADMIN_volver() {
   const selectorHeader = document.getElementById('admin-selector-header');
@@ -4507,6 +4903,19 @@ function F3_initTurns() {
   if (dbtn) dbtn.style.display = (user.isAdmin && user.isSuperAdmin) ? 'flex' : 'none';
   const sbtn = document.getElementById('admin-btn-sheet');
   if (sbtn) sbtn.style.display = (user.isAdmin && user.isSuperAdmin) ? 'flex' : 'none';
+  // El resto de botones del panel admin: si es un acceso delegado limitado
+  // (no "todo"), solo se muestran los que esa persona tiene permitidos.
+  const DELEG_BTN_ID_MAP = {
+    'consultas-panel': 'admin-btn-consultas', 'malla-panel': 'admin-btn-malla',
+    'team-panel': 'admin-btn-team', 'mover-admin-panel': 'admin-btn-mover',
+    'ausencia-admin-panel': 'admin-btn-ausencia', 'solicitudes-admin-panel': 'admin-btn-solicitudes',
+    'incap-admin-panel': 'admin-btn-incap', 'accesos-admin-panel': 'admin-btn-accesos'
+  };
+  Object.keys(DELEG_BTN_ID_MAP).forEach(panelId => {
+    const btn = document.getElementById(DELEG_BTN_ID_MAP[panelId]);
+    if (!btn) return;
+    btn.style.display = (user.isAdmin && DELEG_hasPermPanel(panelId)) ? 'flex' : 'none';
+  });
   document.querySelectorAll('.admin-subpanel').forEach(p => { p.style.display = 'none'; });
   if (user.isAdmin) {
     MALLA_refreshStatus();
@@ -5141,6 +5550,7 @@ async function TB_responderSolicitud(sol, estado) {
         } else {
           showToast('error', '⚠️ No se pudo descargar', 'Usa el botón "Descargar HTML actualizado" en Malla.');
         }
+        MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}_cambio.xlsx`);
       }, 400);
     } else {
       showToast('info', 'ℹ️ Aprobado sin tocar la malla', 'No encontré ese turno exacto en la malla local; ajústalo manualmente si hace falta.');
@@ -5368,6 +5778,7 @@ function MOVER_aplicar() {
   setTimeout(() => {
     const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_horas.html`);
     if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con las horas ya movidas. Publícalo cuando quieras.');
+    MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}_horas.xlsx`);
   }, 400);
 }
 
@@ -5515,6 +5926,7 @@ function AUSENCIA_aplicar() {
   setTimeout(() => {
     const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_ausencia.html`);
     if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con la ausencia ya aplicada. Publícalo cuando quieras.');
+    MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}_ausencia.xlsx`);
   }, 400);
 }
 
