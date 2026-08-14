@@ -4859,7 +4859,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-08-13.2259';
+const TB_APP_VERSION = '2026-08-13.2322';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -5872,12 +5872,29 @@ function F3_calcularHorasSemana(canonico) {
     let entMin = F3_toMin(r.entrada);
     let salMin = F3_toMin(r.salida);
     if (salMin <= entMin) salMin += 24*60; // turno nocturno
-    const duracion = salMin - entMin;
+    const duracionBruta = salMin - entMin; // entrada→salida SIN descontar breaks/almuerzo
+
+    // Horas netas del día (ya sin descansos), tal como vienen calculadas en
+    // la columna "Horas" de la malla (p. ej. "7:30:00"). Antes se sumaba la
+    // duracionBruta completa (entrada a salida) sin restar los descansos, lo
+    // que inflaba el contador semanal por encima de las horas reales
+    // trabajadas.
+    let netaMin = duracionBruta;
+    if (r.horasRaw) {
+      const partes = r.horasRaw.split(':').map(Number);
+      if (!isNaN(partes[0])) netaMin = partes[0] * 60 + (partes[1] || 0);
+    }
 
     if (r.fechaISO < todayISO) {
-      trabajadasMin += duracion;
+      trabajadasMin += netaMin;
     } else if (r.fechaISO === todayISO) {
-      trabajadasMin += Math.max(0, Math.min(duracion, nowMin - entMin));
+      // Día en curso: se prorratea lo neto según cuánto ha avanzado el
+      // tramo bruto (entrada→ahora), para que a media jornada refleje
+      // aproximadamente las horas netas ya cumplidas y, al llegar la hora
+      // de salida, coincida exactamente con netaMin.
+      const elapsedBruto = Math.max(0, Math.min(duracionBruta, nowMin - entMin));
+      const proporcion = duracionBruta > 0 ? (netaMin / duracionBruta) : 0;
+      trabajadasMin += elapsedBruto * proporcion;
     }
   });
 
