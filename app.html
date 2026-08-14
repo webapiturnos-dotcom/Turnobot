@@ -1171,6 +1171,40 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .team-row-badge.descanso { color:var(--naranja); background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); }
 .team-row-badge.sindatos { color:var(--gris); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); }
 .team-empty { text-align:center; padding:18px; color:var(--gris); font-size:13px; }
+
+/* ── Timeline de accesos (módulo Historial de Accesos) ── */
+.ah-tl-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.ah-tl-sheet {
+  width: 100%; max-width: 480px; max-height: 78vh;
+  background: var(--negro2); border: 1px solid var(--glass-border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: var(--shadow);
+  padding: 18px 16px 22px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.ah-tl-header { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.ah-tl-titulo { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
+.ah-tl-sub { font-size: 12px; color: var(--gris); margin-top: 4px; }
+.ah-tl-close {
+  background: var(--glass); border: 1px solid var(--glass-border); color: var(--blanco);
+  width: 30px; height: 30px; border-radius: 50%; font-size: 14px; cursor: pointer; flex-shrink: 0;
+}
+.ah-tl-list { flex: 1; min-height: 0; overflow-y: auto; margin-top: 6px; padding-right: 2px; }
+.ah-tl-item { display: flex; gap: 12px; padding: 8px 2px; position: relative; }
+.ah-tl-item:not(:last-child)::before {
+  content: ''; position: absolute; left: 5px; top: 22px; bottom: -8px; width: 2px;
+  background: var(--glass-border);
+}
+.ah-tl-dot {
+  width: 12px; height: 12px; border-radius: 50%; background: var(--rojo);
+  margin-top: 3px; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(var(--rojo-rgb),0.15);
+}
+.ah-tl-fecha { font-size: 13px; font-weight: 600; text-transform: capitalize; }
+.ah-tl-hora { font-size: 12px; color: var(--gris); margin-top: 1px; }
 .deleg-perms-grid { display:flex; flex-direction:column; gap:6px; margin-top:6px; }
 .deleg-perm-item {
   display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--gris);
@@ -1229,14 +1263,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Consultando incapacidades...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: VIVIANA — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: ELIACID — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1289,11 +1323,12 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
       <button class="back-btn" onclick="showScreen('splash')">← Volver</button>
 
-      <!-- Admin welcome (se muestra al escribir 1999) -->
+      <!-- Saludo animado: se muestra al escribir un nombre reconocido (admin o
+           cualquier persona de la malla actual). Ver checkAdminName(). -->
       <div class="admin-welcome show" id="admin-welcome">
-        <div style="font-size:36px;margin-bottom:8px">👑</div>
-        <div class="admin-welcome-name">¡Bienvenido, Moi!</div>
-        <div class="admin-welcome-sub">Administrador · Control total activo</div>
+        <div style="font-size:36px;margin-bottom:8px" id="admin-welcome-icon">👑</div>
+        <div class="admin-welcome-name" id="admin-welcome-name">¡Bienvenido, Moi!</div>
+        <div class="admin-welcome-sub" id="admin-welcome-sub">Administrador · Control total activo</div>
       </div>
 
       <div class="login-logo">
@@ -1467,7 +1502,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 12/08/2026 · 1631</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 12/08/2026 · 1900</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1481,7 +1516,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1589,7 +1624,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
       <div class="nav-item active" id="nav-turns" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
-        <div class="nav-label" id="nav-turns-label">Admin</div>
+        <div class="nav-label" id="nav-turns-label">Configuración</div>
       </div>
       <div class="nav-item" id="nav-novedades" onclick="showMainScreen('novedades')">
         <div class="nav-icon">📋</div>
@@ -1659,7 +1694,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Lunes 10 Ago</div>
+          <div class="section-sub" id="timeline-fecha">Jueves 13 Ago</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -1775,7 +1810,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:00</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:45</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1804,7 +1839,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_downloadBtnClick()">
           ⬇️ Descargar HTML actualizado
         </button>
-        <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}.xlsx`)">
+        <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}.xlsx`)">
           📊 Descargar Excel (igual al PDF)
         </button>
         <button type="button" id="buzon-toggle-btn" class="btn btn-primary w-full" style="margin-top:10px" onclick="BUZON_toggleEnabled()">✅ Habilitar Buzón</button>
@@ -1824,152 +1859,17 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como AMIRA ROSA CAMACHO CANTILLO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">AMIRA ROSA CAMACHO CANTILLO</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA MARTINEZ CAMARGO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Diosibel Maria Gonzalez Marchena" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ESPERANZA ISABEL PARADA DE LA CRUZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como HOMERO LEONEL DIAZ ORTEGA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+        <div class="team-row-sub">10:30 a. m. → 7:00 p. m.</div>
       </div>
       <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+        <div class="team-row-sub">10:30 a. m. → 7:00 p. m.</div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como LILIBETH ROMERO ALVAREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">LILIBETH ROMERO ALVAREZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Wandi Vanessa Tafur Sanjuan" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">Wandi Vanessa Tafur Sanjuan</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YANILETH DAYANA TORRES PEREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ZUANY SOFIA RENDON SINCELEJO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ZUANY SOFIA RENDON SINCELEJO</div>
-        <div class="team-row-sub">Sin turno asignado</div>
-      </div>
-      <div class="team-row-badge descanso">INCAPACIDAD</div></div></div>
+      <div class="team-row-badge activo">Activo</div></div></div>
       </div>
 
       <!-- ── Mover horas entre días (quitar hora hoy, sumarla mañana) ── -->
@@ -2045,152 +1945,28 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="form-group" style="margin-bottom:10px">
           <input type="text" class="form-input" id="accesos-filter" placeholder="Buscar nombre..." oninput="ACCESOS_render()">
         </div>
-        <div class="team-list" id="accesos-list"><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> AMIRA ROSA CAMACHO CANTILLO</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> LILIBETH ROMERO ALVAREZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> Wandi Vanessa Tafur Sanjuan</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name"> ZUANY SOFIA RENDON SINCELEJO</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">🔑 1 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
+        <div class="team-list" id="accesos-list"><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 1 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div><div class="team-row">
-      <div style="flex:1">
-        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">🔑 0 accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha todavía</div>
-      </div></div></div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div></div>
+      </div>
+
+      <!-- ── Timeline de accesos de un asesor (SEGURO: datos de ACCESS_HISTORY_KEY, sobreviven a actualizaciones del HTML) ── -->
+      <div id="ah-timeline-overlay" class="ah-tl-overlay" style="display: none;" onclick="if(event.target===this) ACCESOS_closeTimeline()">
+        <div class="ah-tl-sheet">
+          <div class="ah-tl-header">
+            <div>
+              <div class="ah-tl-titulo" id="ah-tl-nombre">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+              <div class="ah-tl-sub" id="ah-tl-total">🔑 1 accesos en total (de por vida)</div>
+            </div>
+            <button type="button" class="ah-tl-close" onclick="ACCESOS_closeTimeline()">✕</button>
+          </div>
+          <div class="ah-tl-sub" style="padding:0 4px 10px">Todos los accesos registrados (se conservan hasta que se cargue una malla con fechas nuevas)</div>
+          <div class="ah-tl-list" id="ah-tl-list"><div class="team-empty">Sin accesos registrados todavía.</div></div>
+        </div>
       </div>
 
       <!-- ── Accesos de administrador delegados (solo Moisés) ── -->
@@ -2232,8 +2008,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="team-list" id="deleg-list" style="margin-top:14px"><div class="team-row">
       <div>
         <div class="team-row-name">Any</div>
-        <div class="team-row-sub">Acceso desde 11/8/2026</div>
-        <div style="margin-top:6px"><span class="deleg-perm-badge">👥 Turnos de asesores</span><span class="deleg-perm-badge">↔️ Mover horas</span><span class="deleg-perm-badge">🔄 Solicitudes</span></div>
+        <div class="team-row-sub">Acceso desde 13/8/2026</div>
+        <div style="margin-top:6px"><span class="deleg-perm-badge">🗂️ Malla</span><span class="deleg-perm-badge">👥 Turnos de asesores</span><span class="deleg-perm-badge">↔️ Mover horas</span><span class="deleg-perm-badge">🔄 Solicitudes</span><span class="deleg-perm-badge">🏥 Incapacidades</span></div>
       </div>
       <button class="deleg-row-btn" type="button">🗑️ Quitar</button></div></div>
       </div>
@@ -2261,6 +2037,16 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS 🔄 ANDREA CAROLINA AGUERO ARENAS</div>
+        <div class="team-row-sub">Fecha: 2026-08-13T00:00:00.000Z · Cam</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA 🔄 KAREN LISETH DE LA ASUNCION CERVANTES</div>
+        <div class="team-row-sub">Fecha: 2026-08-14T00:00:00.000Z · Cambio 💱</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS 🔄 ANDREA CAROLINA AGUERO ARENAS</div>
         <div class="team-row-sub">Fecha: 2026-08-13T00:00:00.000Z · Calamidad familiar</div>
@@ -2416,7 +2202,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
       <div class="nav-item">
         <div class="nav-icon">🕐</div>
-        <div class="nav-label" id="nav-turns-label-2">Admin</div>
+        <div class="nav-label" id="nav-turns-label-2">Configuración</div>
       </div>
       <div class="nav-item" onclick="showMainScreen('novedades')">
         <div class="nav-icon">📋</div>
@@ -2440,52 +2226,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     </div>
     <div class="turns-content">
       <div class="comp-summary" id="comp-summary">
-    <div class="comp-summary-icon">🍽️</div>
-    <div class="comp-summary-title">Tu almuerzo de hoy: 12:00 p. m.</div>
-    <div class="comp-summary-sub">Compañeros con el mismo horario hoy</div></div>
-      <div class="team-list" id="comp-list">
-      <div class="team-row">
-        <div>
-          <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
-        </div>
-        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
-      </div>
-      <div class="team-row">
-        <div>
-          <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
-          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
-        </div>
-        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
-      </div>
-      <div class="team-row">
-        <div>
-          <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
-          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
-        </div>
-        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
-      </div>
-      <div class="team-row">
-        <div>
-          <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
-          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
-        </div>
-        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
-      </div>
-      <div class="team-row">
-        <div>
-          <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
-        </div>
-        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
-      </div>
-      <div class="team-row">
-        <div>
-          <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-          <div class="team-row-sub">Almuerzo a las 12:00 p. m.</div>
-        </div>
-        <div class="team-row-badge activo">🍽️ 12:00 p. m.</div>
-      </div></div>
+      <div class="comp-summary-icon">🍽️</div>
+      <div class="comp-summary-title">Sin turno registrado hoy</div>
+      <div class="comp-summary-sub">No tienes un horario de almuerzo cargado para el día de hoy.</div></div>
+      <div class="team-list" id="comp-list"></div>
     </div>
   </div>
 
@@ -2498,15 +2242,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="header-logo">Buzón de <span>Sugerencias</span></div>
       <button type="button" onclick="BUZON_refresh(true)" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;">🔄</button>
     </div>
-    <div class="buzon-content" id="buzon-content"><div class="buzon-date-sep"><span>Hoy</span></div><div class="buzon-msg" data-id="local-1786244603469-dy6nt">
+    <div class="buzon-content" id="buzon-content"><div class="buzon-date-sep"><span>Sábado, 8 de agosto</span></div><div class="buzon-msg mine" data-id="local-1786244603469-dy6nt">
       <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786244603469-dy6nt')" title="Responder">↩</button>
-      <div class="buzon-msg-name">Moi</div>
+      <div class="buzon-msg-name">Tú</div>
       
       <div class="buzon-msg-text">Hola</div>
       <div class="buzon-msg-time">22:03</div>
-    </div><div class="buzon-msg" data-id="local-1786244608002-eslib">
+    </div><div class="buzon-msg mine" data-id="local-1786244608002-eslib">
       <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786244608002-eslib')" title="Responder">↩</button>
-      <div class="buzon-msg-name">Moi</div>
+      <div class="buzon-msg-name">Tú</div>
       
       <div class="buzon-quote">
         <div class="buzon-quote-name">Tú</div>
@@ -2514,15 +2258,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
       <div class="buzon-msg-text">Hos</div>
       <div class="buzon-msg-time">22:03</div>
-    </div><div class="buzon-msg" data-id="local-1786244893400-l8q3h">
+    </div><div class="buzon-msg mine" data-id="local-1786244893400-l8q3h">
       <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786244893400-l8q3h')" title="Responder">↩</button>
-      <div class="buzon-msg-name">Moi</div>
+      <div class="buzon-msg-name">Tú</div>
       
       <div class="buzon-msg-text">Hola</div>
       <div class="buzon-msg-time">22:08</div>
-    </div><div class="buzon-msg mine" data-id="local-1786245320911-yl4t1">
+    </div><div class="buzon-msg" data-id="local-1786245320911-yl4t1">
       <button type="button" class="buzon-reply-btn" onclick="BUZON_selectReply('local-1786245320911-yl4t1')" title="Responder">↩</button>
-      <div class="buzon-msg-name">Tú</div>
+      <div class="buzon-msg-name">Mely</div>
       
       <div class="buzon-msg-text">Hola</div>
       <div class="buzon-msg-time">22:15</div>
@@ -2587,7 +2331,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
            que Moi elija al publicar el HTML, no lo pueden cambiar) ── -->
       <div class="profile-section" id="profile-theme-section" style="display: block;">
         <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
-        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
+        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
         <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
       </div>
 
@@ -2614,7 +2358,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
       <div class="nav-item" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
-        <div class="nav-label" id="nav-turns-label-3">Mi Turno</div>
+        <div class="nav-label" id="nav-turns-label-3">Configuración</div>
       </div>
       <div class="nav-item" onclick="showMainScreen('novedades')">
         <div class="nav-icon">📋</div>
@@ -2718,7 +2462,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -2730,8 +2474,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
           <div class="malla-status" id="sol-preview" style="display: none; margin-bottom: 4px; line-height: 1.6;">
     <b>Así quedaría si se aprueba:</b><br>
-    Tú (VIVIANA): tu turno actual es <b>8:00 a. m. → 4:30 p. m. (7h 30m)</b> → pasarías a tener el de KAREN.<br>
-    KAREN: su turno actual es <b>10:30 a. m. → 7:00 p. m. (7h 30m)</b> → pasaría a tener el tuyo.<br>
+    Tú (ELIACID): tu turno actual es <b>8:00 a. m. → 4:30 p. m. (7h 30m)</b> → pasarías a tener el de ANDREA.<br>
+    ANDREA: su turno actual es <b>10:30 a. m. → 7:00 p. m. (7h 30m)</b> → pasaría a tener el tuyo.<br>
     <span style="color:var(--gris)">Esto es una vista previa; el cambio real lo confirma Moisés al aprobar la solicitud.</span></div>
           <button class="btn btn-primary w-full" onclick="F3_solicitarCambio()">
             📤 Enviar Solicitud
@@ -2752,7 +2496,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
       <div class="nav-item" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
-        <div class="nav-label" id="nav-turns-label-4">Mi Turno</div>
+        <div class="nav-label" id="nav-turns-label-4">Configuración</div>
       </div>
       <div class="nav-item" onclick="showMainScreen('novedades')">
         <div class="nav-icon">📋</div>
@@ -2868,7 +2612,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
 11/08/2026	SUSPENSION	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES
  12/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
-14/08/2026	ACTIVO	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
+14/08/2026	ACTIVO	1143163924	KAREN	LISETH	DE	LA	ASUNCION	CERVANTES	10:30:00	a.	m.	7:00:00	p.	m.	12:15:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
  15/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
  10/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
@@ -2898,7 +2642,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
  11/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  12/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
-14/08/2026	ACTIVO	1045676520	VIVIANA	ESTER	CUMPLIDO	VALENCIA	10:30:00	a.	m.	7:00:00	p.	m.	12:15:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
+14/08/2026	ACTIVO	1045676520	VIVIANA	ESTER	CUMPLIDO	VALENCIA	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
  15/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
  10/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
@@ -2915,6 +2659,188 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALID
  10/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
  11/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
 12/08/2026	INCAPACIDAD	1007787002	ZUANY	SOFIA	RENDON	SINCELEJO
+ 13/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1084796250   AMIRA ROSA CAMACHO CANTILLO   7:30:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:30:00
+ 11/08/2026   ACTIVO   1084796250   AMIRA ROSA CAMACHO CANTILLO   7:30:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:30:00
+ 12/08/2026   ACTIVO   1084796250   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1084796250   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 14/08/2026   ACTIVO   1084796250   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 15/08/2026   ACTIVO   1084796250   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   4:00:00
+ 10/08/2026   ACTIVO   1048331324   ANDREA MARTINEZ CAMARGO   7:30:00 a. m.   5:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:30:00
+ 11/08/2026   ACTIVO   1048331324   ANDREA MARTINEZ CAMARGO   7:30:00 a. m.   5:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:30:00
+ 12/08/2026   ACTIVO   1048331324   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1048331324   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 14/08/2026   ACTIVO   1048331324   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 15/08/2026   ACTIVO   1048331324   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   4:00:00
+ 10/08/2026   ACTIVO   1007833158   ESPERANZA ISABEL PARADA DE LA CRUZ   7:30:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:30:00
+ 11/08/2026   ACTIVO   1007833158   ESPERANZA ISABEL PARADA DE LA CRUZ   7:30:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:30:00
+ 12/08/2026   ACTIVO   1007833158   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1007833158   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 14/08/2026   ACTIVO   1007833158   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 15/08/2026   ACTIVO   1007833158   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   12:00:00 p. m.   10:00:00 a. m.   4:00:00
+ 10/08/2026   ACTIVO   2000000715   HOMERO LEONEL DIAZ ORTEGA   7:30:00 a. m.   5:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:30:00
+ 11/08/2026   ACTIVO   2000000715   HOMERO LEONEL DIAZ ORTEGA   7:30:00 a. m.   5:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:30:00
+ 12/08/2026   ACTIVO   2000000715   HOMERO LEONEL DIAZ ORTEGA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   2000000715   HOMERO LEONEL DIAZ ORTEGA   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 14/08/2026   ACTIVO   2000000715   HOMERO LEONEL DIAZ ORTEGA   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 15/08/2026   ACTIVO   2000000715   HOMERO LEONEL DIAZ ORTEGA   11:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   4:00:00
+ 10/08/2026   ACTIVO   1067875309   LILIBETH ROMERO ALVAREZ   7:30:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:30:00
+ 11/08/2026   ACTIVO   1067875309   LILIBETH ROMERO ALVAREZ   7:30:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:30:00
+ 12/08/2026   ACTIVO   1067875309   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1067875309   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 14/08/2026   ACTIVO   1067875309   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 15/08/2026   ACTIVO   1067875309   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   4:00:00
+ 10/08/2026   ACTIVO   1043135638   YANILETH DAYANA TORRES PEREZ   7:30:00 a. m.   5:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:30:00
+ 11/08/2026   ACTIVO   1043135638   YANILETH DAYANA TORRES PEREZ   7:30:00 a. m.   5:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:30:00
+ 12/08/2026   ACTIVO   1043135638   YANILETH DAYANA TORRES PEREZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1043135638   YANILETH DAYANA TORRES PEREZ   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 14/08/2026   ACTIVO   1043135638   YANILETH DAYANA TORRES PEREZ   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 15/08/2026   ACTIVO   1043135638   YANILETH DAYANA TORRES PEREZ   11:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   4:00:00`;
+
+// Línea base de la malla (para la hoja "Cambios de Turno" del Excel, ver
+// MALLA_detectarCambiosDeTurno). Se incrusta igual que MALLA_RAW_DEFAULT al
+// publicar, pero solo se actualiza cuando la malla trae fechas nuevas de
+// verdad (ver MALLA_capturarBaseline) — así el Excel siempre puede comparar
+// "malla inicial cargada vs. descargada" sin importar cuántas veces se
+// vuelva a publicar el mismo periodo.
+const MALLA_BASELINE_DEFAULT = `Fecha   Estado   No Cedula   Nombre   ENTRADA   SALIDA   BREAK I   BREAK II   ALMUERZO   Horas
+ 10/08/2026   ACTIVO   1052073041   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1052073041   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1052073041   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1052073041   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1052073041   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1052073041   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1043173377   ALEXANDRA HURTADO BARROSO   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1043173377   ALEXANDRA HURTADO BARROSO   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1043173377   ALEXANDRA HURTADO BARROSO   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1043173377   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1043173377   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1043173377   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1140848985   ANDREA CAROLINA AGUERO ARENAS   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1140848985   ANDREA CAROLINA AGUERO ARENAS   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1140848985   ANDREA CAROLINA AGUERO ARENAS   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1140848985   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1140848985   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1140848985   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1043149396   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1043149396   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1043149396   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1043149396   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1043149396   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1043149396   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1129502500   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1129502500   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1129502500   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1129502500   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1129502500   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1129502500   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1045681118   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1045681118   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1045681118   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1045681118   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1045681118   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1045681118   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1049264688   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1049264688   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1049264688   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1049264688   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1049264688   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1049264688   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1043117681   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1043117681   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1043117681   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1043117681   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1043117681   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1043117681   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1081826720   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1081826720   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1081826720   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1081826720   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1081826720   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1081826720   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1080431428   GREY MAR NORIEGA ALGARIN   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1080431428   GREY MAR NORIEGA ALGARIN   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1080431428   GREY MAR NORIEGA ALGARIN   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1080431428   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1080431428   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1080431428   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1148700504   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1148700504   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1148700504   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1148700504   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1148700504   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1148700504   JENNIFER MORALES MENDOZA   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1140853664   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1140853664   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1140853664   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1140853664   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1140853664   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1140853664   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1044430639   JUAN DAVID ECHEVERRIA PRINCE   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1044430639   JUAN DAVID ECHEVERRIA PRINCE   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1044430639   JUAN DAVID ECHEVERRIA PRINCE   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1044430639   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1044430639   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1044430639   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1046697894   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1143163924   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1001878765   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1044425294   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1044425294   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1044425294   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1044425294   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1044425294   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1044425294   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1048264352   MELANYS DANIELA SOBRINO DE LA HOZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1048264352   MELANYS DANIELA SOBRINO DE LA HOZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+12/08/2026   ACTIVO   1048264352   MELANYS DANIELA SOBRINO DE LA HOZ   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1048264352   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1048264352   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1048264352   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1143168079   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1143168079   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1143168079   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1143168079   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1143168079   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1143168079   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1045676520   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   7:00:00 p. m.   12:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1192788548   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
+ 10/08/2026   ACTIVO   1123622129   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1123622129   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1123622129   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   7:00:00 p. m.   12:30:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:00:00
+ 13/08/2026   ACTIVO   1123622129   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 14/08/2026   ACTIVO   1123622129   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 15/08/2026   ACTIVO   1123622129   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   3:00:00 p. m.   10:00:00 a. m.   12:30:00 p. m.   6:00:00
+ 10/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 11/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
+ 12/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
  13/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
  14/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
  15/08/2026   ACTIVO   1007787002   ZUANY SOFIA RENDON SINCELEJO   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   11:30:00 a. m.   6:00:00
@@ -3041,9 +2967,14 @@ function MALLA_parseText(text) {
     if (units[1] && units[1].type === 'time') { salida24 = MALLA_to24h(units[1]); salidaDisplay = MALLA_to12h(units[1]); }
 
     let restUnits = units.slice(2);
-    let horasDisplay = null;
+    let horasDisplay = null, horasRaw = null;
     if (restUnits.length && restUnits[restUnits.length - 1].type === 'duration') {
-      horasDisplay = MALLA_formatHoras(restUnits[restUnits.length - 1].value);
+      // horasRaw conserva el texto EXACTO de la malla original (p. ej. "7:00:00"),
+      // tal cual viene en el PDF, para que el Excel exportado sea 100% fiel a la
+      // "foto" original. horasDisplay ("7h 30m") sigue usándose solo para las
+      // vistas dentro de la app (timeline del asesor, tarjeta de turno, etc.).
+      horasRaw = restUnits[restUnits.length - 1].value;
+      horasDisplay = MALLA_formatHoras(horasRaw);
       restUnits = restUnits.slice(0, -1);
     }
     // La malla usa "12:00:00 a. m." como relleno cuando una columna (break/almuerzo)
@@ -3066,6 +2997,7 @@ function MALLA_parseText(text) {
       entrada: entrada24, salida: salida24,
       entradaDisplay, salidaDisplay,
       horas: horasDisplay,
+      horasRaw,
       detalle
     });
   }
@@ -3127,6 +3059,17 @@ function MALLA_init() {
     localStorage.setItem(MALLA_STORAGE_KEY, JSON.stringify(MALLA_DATA));
     localStorage.setItem(MALLA_DEFAULT_HASH_KEY, hashActualDelArchivo);
   } catch {}
+  // Este archivo trae una malla distinta a la que este dispositivo conocía
+  // (hash distinto) — esto cubre TANTO cargar la malla desde el panel
+  // "Actualizar Malla" COMO editar MALLA_RAW_DEFAULT a mano en el archivo y
+  // republicarlo (tu flujo habitual), que antes NO disparaba la captura de
+  // línea base porque nunca pasa por MALLA_ingestText. Se reusa la misma
+  // comparación de fechas: si son fechas realmente nuevas, ESTA malla recién
+  // abierta (antes de cualquier cambio que hagas después) queda guardada
+  // como línea base para el Excel. Si son las mismas fechas de siempre
+  // (solo republicaste con una corrección de código), la línea base no se
+  // toca y los cambios que ya habías hecho se siguen detectando.
+  MALLA_checkNewDatesAndResetHistory(MALLA_DATA, MALLA_RAW_DEFAULT);
 }
 function MALLA_persist() {
   try { localStorage.setItem(MALLA_STORAGE_KEY, JSON.stringify(MALLA_DATA)); } catch {}
@@ -3177,6 +3120,10 @@ function MALLA_ingestText(text, sourceLabel) {
   }
   MALLA_DATA = parsed;
   MALLA_limpiarCedulas(); // red de seguridad por si el formato pegado trae cédula fuera de 6-12 dígitos
+  // Si esta malla trae fechas que nunca se habían cargado (p. ej. la semana
+  // siguiente), se reinicia el historial de accesos (ver comentario en la
+  // función). Si es la misma malla de siempre, el historial no se toca.
+  MALLA_checkNewDatesAndResetHistory(parsed, text);
   MALLA_LAST_RAW_TEXT = text;
   try { localStorage.setItem(MALLA_RAWTEXT_KEY, text); } catch {}
   MALLA_persist();
@@ -3194,6 +3141,8 @@ function MALLA_ingestText(text, sourceLabel) {
   // dispositivo.
   if (currentUser && currentUser.isAdmin) {
     setTimeout(async () => {
+      const quiere = await TB_promptDescargarOSeguir('La malla ya quedó actualizada. ¿Descargas ya el HTML para publicarlo, o sigues configurando?');
+      if (!quiere) return;
       const ok = await MALLA_downloadWithThemePrompt();
       if (ok) {
         showToast('success', '⬇️ HTML descargado', 'Comparte este archivo con el equipo: ya trae la malla actualizada.');
@@ -3224,6 +3173,29 @@ function MALLA_buildUpdatedHTML() {
     /const BUZON_ENABLED_DEFAULT = (true|false);/,
     'const BUZON_ENABLED_DEFAULT = ' + (BUZON_isEnabled() ? 'true' : 'false') + ';'
   );
+  // Incrusta el registro de "turno cambiado" (CAMBIO_load) para que el
+  // letrero sobreviva a esta publicación sin importar qué tanto se edite
+  // el código alrededor (ver TB_CAMBIOS_init / CAMBIO_registrar).
+  try {
+    const cambiosJSON = JSON.stringify(CAMBIO_load());
+    html = html.replace(
+      /const TB_CAMBIOS_DEFAULT = \{[\s\S]*?\};/,
+      'const TB_CAMBIOS_DEFAULT = ' + cambiosJSON + ';'
+    );
+  } catch (e) { console.error('No se pudo incrustar TB_CAMBIOS_DEFAULT:', e); }
+  // Incrusta la línea base de la malla (ver MALLA_capturarBaseline) para
+  // que la hoja "Cambios de Turno" del Excel pueda seguir comparando
+  // "inicial vs. descargada" en cualquier dispositivo que abra este HTML.
+  try {
+    let baselineRaw = null;
+    try { baselineRaw = localStorage.getItem(MALLA_BASELINE_KEY); } catch {}
+    if (!baselineRaw) baselineRaw = MALLA_BASELINE_DEFAULT || raw; // primera publicación: la malla actual es la línea base
+    const baselineEscaped = MALLA_escapeForTemplate(baselineRaw);
+    html = html.replace(
+      /const MALLA_BASELINE_DEFAULT = `[\s\S]*?`;/,
+      'const MALLA_BASELINE_DEFAULT = `' + baselineEscaped + '`;'
+    );
+  } catch (e) { console.error('No se pudo incrustar MALLA_BASELINE_DEFAULT:', e); }
   return html;
 }
 
@@ -3239,7 +3211,14 @@ const MALLA_EXCEL_COLORS = {
   estado:  'FFFFD966', // dorado del badge ACTIVO/etc.
   nombre:  'FFD9D9D9', // gris claro
   horas:   'FFD9D9D9', // gris claro
-  blanco:  'FFFFFFFF'
+  blanco:  'FFFFFFFF',
+  // Color de letra para rellenar los espacios en blanco de una ausencia con
+  // la palabra de la novedad (ver MALLA_buildExcelWorkbook)
+  novedad: {
+    INCAPACIDAD: 'FFC00000', // rojo
+    PERMISO:     'FF00B050', // verde
+    SUSPENSION:  'FFC00000'  // rojo
+  }
 };
 
 // Reparte los valores de detalle (Break I / Break II / Almuerzo) en las
@@ -3268,7 +3247,7 @@ async function MALLA_buildExcelWorkbook() {
     { header: 'BREAK I',   key: 'breakI',   width: 12 },
     { header: 'BREAK II',  key: 'breakII',  width: 12 },
     { header: 'ALMUERZO',  key: 'almuerzo', width: 12 },
-    { header: 'Horas',     key: 'horas',    width: 8  }
+    { header: 'Horas',     key: 'horas',    width: 10 }
   ];
   ws.columns = columnas;
 
@@ -3295,12 +3274,22 @@ async function MALLA_buildExcelWorkbook() {
       entrada: r.entradaDisplay || '',
       salida: r.salidaDisplay || '',
       breakI, breakII, almuerzo,
-      horas: r.horas || ''
+      // Se usa horasRaw (texto exacto de la malla, p. ej. "7:00:00") en vez del
+      // horasDisplay legible de la app ("7h"), para que el Excel sea 100% fiel
+      // al formato del PDF original.
+      horas: r.horasRaw || r.horas || ''
     });
     row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
       cell.border = bordeCompleto;
       cell.font = { size: 9 };
       cell.alignment = { vertical: 'middle', horizontal: colNumber === 4 ? 'left' : 'center' };
+      // Fuerza tipo texto en TODAS las celdas de datos: así Excel nunca
+      // reinterpreta valores como "7:00:00" como una hora real (que se vería
+      // como "7:00:00 a. m." o distinto según la config regional del equipo
+      // que lo abra), manteniéndolos idénticos a como aparecen en el PDF.
+      if (cell.value !== null && cell.value !== undefined && cell.value !== '') {
+        cell.numFmt = '@';
+      }
     });
     // Columna Fecha (1): fondo azul, texto blanco y negrita
     const cFecha = row.getCell(1);
@@ -3314,9 +3303,140 @@ async function MALLA_buildExcelWorkbook() {
     row.getCell(4).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.nombre } };
     // Columna Horas (10): fondo gris
     row.getCell(10).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.horas } };
+
+    // ── Ausencias (Incapacidad/Permiso/Suspensión): rellenar los espacios en
+    // blanco (ENTRADA, SALIDA, BREAK I, BREAK II, ALMUERZO, Horas) con la
+    // misma palabra de la novedad, coloreada según el tipo — así se ve de un
+    // vistazo qué días quedaron sin horario y por qué, sin dejar celdas vacías
+    // que parezcan un error de carga. ──
+    const estadoUpper = (r.estado || '').toUpperCase();
+    const colorNovedad = MALLA_EXCEL_COLORS.novedad[estadoUpper];
+    if (colorNovedad) {
+      [5, 6, 7, 8, 9, 10].forEach(col => {
+        const cell = row.getCell(col);
+        if (cell.value === null || cell.value === undefined || cell.value === '') {
+          cell.value = r.estado;
+          cell.numFmt = '@';
+          cell.font = { size: 9, bold: true, color: { argb: colorNovedad } };
+        }
+      });
+    }
   });
 
+  // ── Hoja 2: resumen de cambios de turno ──
+  MALLA_buildExcelHojaCambios(wb);
+
   return wb;
+}
+
+// ── Hoja "Cambios de Turno": compara la malla tal como se cargó por
+// primera vez (MALLA_BASELINE_KEY, ver MALLA_capturarBaseline) contra la
+// malla actual (MALLA_DATA) para detectar automáticamente si hubo o no
+// cambios de turno y quién cambió con quién — sin depender únicamente de
+// que el cambio se haya hecho desde el botón de "Solicitudes" (por si se
+// movió a mano). Se complementa con el registro CAMBIO_load(), que trae el
+// nombre exacto de la contraparte cuando el cambio sí se hizo por ahí.
+function MALLA_buildExcelHojaCambios(wb) {
+  const ws = wb.addWorksheet('Cambios de Turno', { views: [{ state: 'frozen', ySplit: 1 }] });
+  ws.columns = [
+    { header: 'Fecha',              key: 'fecha',   width: 14 },
+    { header: 'Asesor',             key: 'a',       width: 34 },
+    { header: 'Cambió con',         key: 'b',       width: 34 },
+    { header: 'Horario original',   key: 'orig',    width: 20 },
+    { header: 'Horario actual',     key: 'act',     width: 20 },
+  ];
+  const headerRow = ws.getRow(1);
+  headerRow.eachCell(cell => {
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: MALLA_EXCEL_COLORS.header } };
+    cell.font = { bold: true, color: { argb: 'FFFFFFFF' }, size: 9 };
+    cell.alignment = { vertical: 'middle', horizontal: 'center' };
+  });
+  headerRow.height = 16;
+
+  const baseline = MALLA_getBaselineData();
+  const cambios = MALLA_detectarCambiosDeTurno(baseline, MALLA_DATA);
+
+  if (!cambios.length) {
+    ws.addRow({ fecha: 'Sin cambios de turno detectados frente a la malla inicial cargada.' });
+    return;
+  }
+  cambios.forEach(c => {
+    const row = ws.addRow({ fecha: c.fechaOriginal, a: c.nombreA, b: c.nombreB || '— (horario modificado, sin pareja identificada)', orig: c.origA, act: c.actA });
+    row.eachCell(cell => { cell.font = { size: 9 }; cell.alignment = { vertical: 'middle' }; });
+  });
+}
+
+// Guarda la malla tal como se cargó la primera vez (antes de cualquier
+// cambio de turno/hora/ausencia) para poder compararla más adelante.
+// Solo se reemplaza cuando llega una malla con fechas nuevas de verdad
+// (mismo criterio que MALLA_checkNewDatesAndResetHistory), nunca por un
+// cambio de turno o por reeditar/republicar el mismo archivo.
+const MALLA_BASELINE_KEY = 'tb_malla_baseline_v1';
+function MALLA_getBaselineData() {
+  try {
+    const raw = localStorage.getItem(MALLA_BASELINE_KEY);
+    if (raw) return MALLA_parseText(raw);
+  } catch {}
+  // Si aún no hay baseline guardada localmente (dispositivo nuevo o HTML
+  // recién abierto), se usa la que trae incrustada este mismo archivo; si
+  // tampoco trae ninguna (HTML muy viejo, antes de este cambio), se usa la
+  // malla actual como último recurso, aunque en ese caso no habrá cambios
+  // que comparar hasta la próxima carga de malla.
+  if (MALLA_BASELINE_DEFAULT) return MALLA_parseText(MALLA_BASELINE_DEFAULT);
+  return MALLA_parseText(MALLA_RAW_DEFAULT);
+}
+function MALLA_capturarBaseline(rawText) {
+  try { localStorage.setItem(MALLA_BASELINE_KEY, rawText); } catch {}
+}
+
+// Compara baseline vs actual por (fecha + nombre): si el horario
+// (entrada/salida) cambió, se marca como cambio. Cuando dos personas de la
+// misma fecha intercambiaron exactamente su horario entre sí, se emparejan
+// como "cambió con". El registro CAMBIO_load() (más preciso, trae el nombre
+// exacto del compañero aunque el horario no calce perfecto) tiene prioridad
+// cuando existe.
+function MALLA_detectarCambiosDeTurno(baseline, actual) {
+  const baseMap = new Map();
+  (baseline || []).forEach(r => baseMap.set(`${r.fechaISO}|${r.nombreNorm}`, r));
+
+  const cambiosPorFecha = new Map(); // fechaISO -> [{norm, nombre, orig, act, fechaOriginal}]
+  (actual || []).forEach(r => {
+    const base = baseMap.get(`${r.fechaISO}|${r.nombreNorm}`);
+    if (!base) return; // persona/fecha nueva, no es un "cambio de turno"
+    const origHorario = `${base.entradaDisplay || base.estado || ''} → ${base.salidaDisplay || ''}`;
+    const actHorario = `${r.entradaDisplay || r.estado || ''} → ${r.salidaDisplay || ''}`;
+    if (origHorario === actHorario) return;
+    if (!cambiosPorFecha.has(r.fechaISO)) cambiosPorFecha.set(r.fechaISO, []);
+    cambiosPorFecha.get(r.fechaISO).push({ norm: r.nombreNorm, nombre: r.nombre, orig: origHorario, act: actHorario, fechaOriginal: r.fechaOriginal });
+  });
+
+  const resultado = [];
+  const yaEmparejado = new Set();
+  cambiosPorFecha.forEach((lista, fechaISO) => {
+    lista.forEach(item => {
+      if (yaEmparejado.has(item.norm)) return;
+      // 1) Prioridad: registro exacto de CAMBIO_registrar (viene del botón de swap)
+      const companero = CAMBIO_get(fechaISO, item.norm);
+      let pareja = null;
+      if (companero) {
+        pareja = lista.find(o => o.nombre === companero || normalizeName(o.nombre) === normalizeName(companero));
+      }
+      // 2) Si no hay registro, buscar a alguien cuyo horario actual coincida
+      //    con el original de este (intercambio detectado por comparación pura)
+      if (!pareja) {
+        pareja = lista.find(o => o.norm !== item.norm && !yaEmparejado.has(o.norm) && o.act === item.orig && item.act === o.orig);
+      }
+      if (pareja) { yaEmparejado.add(item.norm); yaEmparejado.add(pareja.norm); }
+      resultado.push({
+        fechaOriginal: item.fechaOriginal,
+        nombreA: item.nombre,
+        nombreB: pareja ? pareja.nombre : (companero || null),
+        origA: item.orig,
+        actA: item.act
+      });
+    });
+  });
+  return resultado;
 }
 
 async function MALLA_exportExcel(filename) {
@@ -3331,7 +3451,7 @@ async function MALLA_exportExcel(filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename || `TurnoBot_MPC_${MALLA_todayISO()}.xlsx`;
+    a.download = filename || `Malla-Modificada_${MALLA_todayISO()}.xlsx`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -3352,7 +3472,7 @@ function MALLA_downloadUpdatedHTML(filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename || `TurnoBot_MPC_${MALLA_todayISO()}.html`;
+    a.download = filename || `Turno_${MALLA_todayISO()}.html`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -3415,6 +3535,75 @@ function MALLA_applyPastedText() {
 function ACC_load() { try { return JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {}; } catch { return {}; } }
 function ACC_save(all) { try { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(all)); } catch {} }
 function ACC_hash(pin) { return btoa('tbmpc_' + pin + '_2026'); }
+
+// ── SEGURO: Historial de accesos (100% independiente de ACCOUNTS_KEY) ──
+// Vive en su propia llave, que NUNCA se incluye en la limpieza por versión
+// nueva (ver TB_clearStaleCacheIfNewVersion), así que sobrevive intacto a
+// cualquier actualización del archivo HTML. Cada acceso queda registrado
+// con fecha y hora exactas para poder mostrar el timeline completo al
+// tocar el perfil del asesor. El contador "total" es de por vida (nunca
+// se borra); el arreglo "dates" se conserva completo y solo se reinicia
+// cuando se carga una malla con fechas nuevas (ver AH_pruneDates y
+// MALLA_checkNewDatesAndResetHistory más abajo).
+const ACCESS_HISTORY_KEY = 'tb_access_history_v1';
+// ── Fechas ya vistas por la malla (para saber cuándo es una malla REALMENTE
+// nueva) ── Vive aparte de ACCESS_HISTORY_KEY; ver MALLA_checkNewDatesAndResetHistory.
+const MALLA_KNOWN_DATES_KEY = 'tb_malla_known_dates_v1';
+function AH_load() { try { return JSON.parse(localStorage.getItem(ACCESS_HISTORY_KEY)) || {}; } catch { return {}; } }
+function AH_save(all) { try { localStorage.setItem(ACCESS_HISTORY_KEY, JSON.stringify(all)); } catch {} }
+// Ya NO se recorta por tiempo (antes se perdían accesos de más de 7 días).
+// El historial de accesos ahora solo se reinicia cuando se carga una malla
+// (PDF/texto) que trae fechas que nunca se habían cargado antes — ver
+// MALLA_checkNewDatesAndResetHistory, llamada desde MALLA_ingestText. Mientras
+// la malla siga siendo "la misma" (mismas fechas), el historial se conserva
+// intacto sin importar cuánto tiempo pase.
+function AH_pruneDates(dates) {
+  if (!Array.isArray(dates)) return [];
+  return dates;
+}
+// Compara las fechas de la malla recién cargada contra las últimas fechas
+// conocidas: si aparece alguna fecha nueva (malla realmente distinta, p. ej.
+// se cargó el PDF de la semana siguiente), se reinicia el historial de
+// accesos. Si son las mismas fechas de siempre (se volvió a pegar/cargar la
+// misma malla), el historial de accesos NO se toca.
+function MALLA_checkNewDatesAndResetHistory(parsed, rawText) {
+  try {
+    const nuevasFechas = Array.from(new Set((parsed || []).map(r => r.fechaISO).filter(Boolean)));
+    if (!nuevasFechas.length) return;
+    let conocidas = [];
+    try { conocidas = JSON.parse(localStorage.getItem(MALLA_KNOWN_DATES_KEY)) || []; } catch {}
+    const conocidasSet = new Set(conocidas);
+    const hayFechaNueva = nuevasFechas.some(f => !conocidasSet.has(f));
+    if (hayFechaNueva && conocidas.length) {
+      AH_save({});
+      // La malla cambió de verdad (fechas distintas): los letreros de
+      // "turno cambiado" de la malla anterior ya no aplican, así que el
+      // registro se reinicia junto con el historial de accesos.
+      CAMBIO_save({});
+    }
+    // Cada vez que llega una malla con fechas nuevas (incluida la primera
+    // carga), se guarda como línea base para poder comparar "inicial vs
+    // descargada" en la hoja "Cambios de Turno" del Excel (ver
+    // MALLA_detectarCambiosDeTurno). Si son las mismas fechas de siempre
+    // (solo se corrigió un turno puntual), la baseline NO se toca, para
+    // que los cambios sigan siendo detectables.
+    if (hayFechaNueva) MALLA_capturarBaseline(rawText || MALLA_LAST_RAW_TEXT || '');
+    localStorage.setItem(MALLA_KNOWN_DATES_KEY, JSON.stringify(nuevasFechas));
+  } catch (e) { console.error('MALLA_checkNewDatesAndResetHistory error:', e); }
+}
+// Registra un acceso nuevo del asesor `norm` (nombre normalizado) y
+// devuelve su historial actualizado: { nombre, total, dates }.
+function AH_registerLogin(norm, nombreCanonico) {
+  const all = AH_load();
+  const entry = all[norm] || { nombre: nombreCanonico, total: 0, dates: [] };
+  entry.nombre = nombreCanonico;
+  entry.total = (entry.total || 0) + 1;
+  entry.dates = AH_pruneDates(entry.dates);
+  entry.dates.push(new Date().toISOString());
+  all[norm] = entry;
+  AH_save(all);
+  return entry;
+}
 
 // ── Fotos de perfil (100% local, guardadas por nombre normalizado) ──
 const PHOTOS_KEY = 'tb_photos_v1';
@@ -3557,13 +3746,17 @@ async function TB_syncFromSheet(manual) {
       Object.keys(usersRes.users).forEach(norm => {
         const remote = usersRes.users[norm];
         if (!local[norm] || (remote.updatedAt && remote.updatedAt > (local[norm]._updatedAt || 0))) {
+          // El historial de accesos (SEGURO) vive aparte en ACCESS_HISTORY_KEY
+          // y nunca se pierde, así que siempre manda sobre lo que traiga la
+          // Sheet o lo que hubiera quedado en la cuenta local.
+          const histPrevia = AH_load()[norm];
           local[norm] = {
             nombre: remote.nombre, codigoMaya: remote.codigoMaya, rol: remote.rol,
             email: remote.email, pass: remote.pass, createdAt: remote.createdAt || Date.now(),
-            loginCount: (local[norm] && local[norm].loginCount) || remote.loginCount || 0,
+            loginCount: (histPrevia && histPrevia.total) || (local[norm] && local[norm].loginCount) || remote.loginCount || 0,
             // Igual que loginCount: si ya había fechas de acceso guardadas en este
             // dispositivo, se conservan (la Sheet remota no maneja este dato hoy).
-            loginDates: (local[norm] && local[norm].loginDates) || remote.loginDates || [],
+            loginDates: (histPrevia && histPrevia.dates) || (local[norm] && local[norm].loginDates) || remote.loginDates || [],
             // El apodo es opcional: si la Sheet ya lo trae se usa ese; si no,
             // se conserva el que ya estaba guardado en este dispositivo para
             // no perderlo (el backend principal no necesita cambiar nada).
@@ -3729,36 +3922,95 @@ function DELEG_render() {
 }
 
 // ── Historial de accesos (solo lectura): cuántas veces y qué fechas
-// ha iniciado sesión cada asesor registrado. ─────────────────────
+// ha iniciado sesión cada asesor registrado. Los datos salen de
+// ACCESS_HISTORY_KEY (SEGURO, ver AH_load/AH_registerLogin), así que este
+// listado sobrevive intacto a cualquier actualización del HTML y solo se
+// reinicia cuando se carga una malla con fechas nuevas (ver
+// MALLA_checkNewDatesAndResetHistory). Cada fila es tocable: abre el
+// timeline completo del asesor (ver ACCESOS_openTimeline).
 function ACCESOS_render() {
   const cont = document.getElementById('accesos-list');
   if (!cont) return;
   const filtro = normalizeName(document.getElementById('accesos-filter')?.value || '');
   const accounts = ACC_load();
-  let entries = Object.entries(accounts);
-  if (filtro) entries = entries.filter(([, acc]) => normalizeName(acc.nombre || '').includes(filtro));
-  entries.sort((a, b) => (a[1].nombre || '').localeCompare(b[1].nombre || ''));
+  const historial = AH_load();
+  // Unión de cuentas registradas + cualquier historial ya guardado (por si
+  // una cuenta se volviera a crear distinta, el historial de accesos no se pierde).
+  const normsUnion = new Set([...Object.keys(accounts), ...Object.keys(historial)]);
+  let entries = Array.from(normsUnion).map(norm => {
+    const acc = accounts[norm] || {};
+    const h = historial[norm] || {};
+    return {
+      norm,
+      nombre: acc.nombre || h.nombre || norm,
+      total: h.total || acc.loginCount || 0,
+      dates: AH_pruneDates(h.dates || acc.loginDates || [])
+    };
+  });
+  if (filtro) entries = entries.filter(e => normalizeName(e.nombre).includes(filtro));
+  entries.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
   if (!entries.length) {
     cont.innerHTML = '<div class="team-empty">No hay cuentas registradas que coincidan.</div>';
     return;
   }
   cont.innerHTML = '';
-  entries.forEach(([, acc]) => {
-    const fechas = Array.isArray(acc.loginDates) ? acc.loginDates.slice(-8).reverse() : [];
+  entries.forEach(e => {
+    const fechas = e.dates.slice(-3).reverse();
     const fechasTxt = fechas.length
-      ? fechas.map(f => new Date(f).toLocaleString('es-CO', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })).join(' · ')
-      : 'Sin registros de fecha todavía';
+      ? fechas.map(f => new Date(f).toLocaleString('es-CO', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })).join(' · ')
+      : 'Sin registros de fecha esta semana';
     const row = document.createElement('div');
     row.className = 'team-row';
+    row.style.cursor = 'pointer';
     row.innerHTML = `
       <div style="flex:1">
-        <div class="team-row-name">${acc.nombre}</div>
-        <div class="team-row-sub">🔑 ${acc.loginCount || 0} accesos</div>
-        <div class="team-row-sub" style="margin-top:4px">${fechasTxt}${fechas.length === 8 ? ' (últimos 8)' : ''}</div>
-      </div>`;
+        <div class="team-row-name">${e.nombre}</div>
+        <div class="team-row-sub">🔑 ${e.total} accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">${fechasTxt}</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div>`;
+    row.onclick = () => ACCESOS_openTimeline(e.norm);
     cont.appendChild(row);
   });
+}
+
+// ── Timeline de accesos del asesor (tocar el perfil en el módulo de
+// Historial de Accesos). Muestra hora y fecha de cada acceso de la última
+// semana, más el contador total de por vida. ─────────────────────────────
+function ACCESOS_openTimeline(norm) {
+  const accounts = ACC_load();
+  const historial = AH_load();
+  const acc = accounts[norm] || {};
+  const h = historial[norm] || {};
+  const nombre = acc.nombre || h.nombre || norm;
+  const total = h.total || acc.loginCount || 0;
+  const dates = AH_pruneDates(h.dates || acc.loginDates || []).slice().reverse();
+
+  const itemsHtml = dates.length
+    ? dates.map(iso => {
+        const d = new Date(iso);
+        const fecha = d.toLocaleDateString('es-CO', { weekday: 'long', day: '2-digit', month: 'long' });
+        const hora = d.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+        return `<div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">${fecha}</div>
+            <div class="ah-tl-hora">🕒 ${hora}</div>
+          </div>
+        </div>`;
+      }).join('')
+    : '<div class="team-empty">Sin accesos registrados todavía.</div>';
+
+  const overlay = document.getElementById('ah-timeline-overlay');
+  document.getElementById('ah-tl-nombre').textContent = nombre;
+  document.getElementById('ah-tl-total').textContent = `🔑 ${total} accesos en total (de por vida)`;
+  document.getElementById('ah-tl-list').innerHTML = itemsHtml;
+  overlay.style.display = 'flex';
+}
+function ACCESOS_closeTimeline() {
+  const overlay = document.getElementById('ah-timeline-overlay');
+  if (overlay) overlay.style.display = 'none';
 }
 
 
@@ -3871,6 +4123,7 @@ if (typeof pdfjsLib !== 'undefined') {
 }
 
 MALLA_init();
+TB_CAMBIOS_init();
 
 // ── Temas de color (solo cambian variables CSS vía data-theme) ──
 const THEME_KEY = 'tb_theme';
@@ -3955,6 +4208,35 @@ function THEME_promptExport() {
       btnActual.onclick = () => { document.body.removeChild(overlay); resolve(actual); };
       card.appendChild(btnActual);
     }
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+  });
+}
+// ── Antes de descargar automáticamente tras un cambio: preguntar ──
+// Antes, cada actualización de malla, cambio de turno, movimiento de horas
+// o ausencia disparaba una descarga automática del HTML (y del Excel) sin
+// preguntar, interrumpiendo si Moi seguía corrigiendo/configurando algo más.
+// Ahora se pregunta primero; la función de descarga en sí no cambia.
+function TB_promptDescargarOSeguir(msg) {
+  return new Promise(resolve => {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+    const card = document.createElement('div');
+    card.style.cssText = 'background:var(--negro2);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:20px;max-width:340px;width:100%;box-shadow:var(--shadow);';
+    card.innerHTML = '<div style="font-family:var(--font-display);font-weight:800;font-size:16px;margin-bottom:6px;color:var(--blanco)">⬇️ ¿Descargar ahora?</div><div style="font-size:12px;color:var(--gris);margin-bottom:16px;">' + (msg || 'El cambio ya quedó guardado. ¿Quieres descargar el HTML y el Excel actualizados, o prefieres seguir configurando primero?') + '</div>';
+    const btnDescargar = document.createElement('button');
+    btnDescargar.type = 'button';
+    btnDescargar.className = 'btn btn-primary w-full';
+    btnDescargar.style.marginBottom = '8px';
+    btnDescargar.textContent = '⬇️ Descargar ahora';
+    btnDescargar.onclick = () => { document.body.removeChild(overlay); resolve(true); };
+    const btnSeguir = document.createElement('button');
+    btnSeguir.type = 'button';
+    btnSeguir.className = 'btn btn-secondary w-full';
+    btnSeguir.textContent = '⚙️ Continuar configurando';
+    btnSeguir.onclick = () => { document.body.removeChild(overlay); resolve(false); };
+    card.appendChild(btnDescargar);
+    card.appendChild(btnSeguir);
     overlay.appendChild(card);
     document.body.appendChild(overlay);
   });
@@ -4100,13 +4382,68 @@ function clearPin(containerId) {
 }
 
 // ── Admin detection por NOMBRE ────────────────────
+// ── Mensajes de bienvenida aleatorios para cualquier asesor cuyo nombre
+// coincida con la malla cargada (no para el admin, que tiene su propio
+// texto). Nunca mencionan "control total" ni "acceso total" — eso es
+// exclusivo del saludo del admin.
+const WELCOME_MESSAGES = [
+  '¡Un gusto tenerte por acá!',
+  '¡Qué bien te ves hoy! Vamos con toda 💪',
+  'Bienvenido de nuevo, hoy siento que será un gran día.',
+  'Nos alegra verte por acá ✨',
+  '¡Éxitos en tu turno de hoy!',
+  '¡Qué alegría verte! A darlo todo hoy.',
+  'Bienvenido, que tengas un turno increíble.',
+  '¡Aquí vamos de nuevo! Buena energía para hoy 🙌',
+  '¡Bienvenido! Que este turno te rinda genial.',
+  'Un placer verte otra vez por acá 😊'
+];
+// Recuerda el último nombre que hizo match, para no re-sortear el mensaje en
+// cada tecla que se escribe (solo cuando cambia la persona reconocida).
+let LOGIN_WELCOME_LAST_MATCH = null;
+let LOGIN_WELCOME_LAST_MSG = null;
+
 function checkAdminName(val) {
   const welcome = document.getElementById('admin-welcome');
-  const normalized = val.trim().toLowerCase();
-  if (normalized === 'moises elias rojas vasquez' || normalized === 'moises rojas' || normalized === 'moisés elias rojas vasquez' || normalized === 'moisés rojas' || normalized === 'moi') {
+  const iconEl = document.getElementById('admin-welcome-icon');
+  const nameEl = document.getElementById('admin-welcome-name');
+  const subEl = document.getElementById('admin-welcome-sub');
+  if (!welcome) return;
+  const raw = val || '';
+  const normalized = raw.trim().toLowerCase();
+  const esAdmin = normalized === 'moises elias rojas vasquez' || normalized === 'moises rojas' || normalized === 'moisés elias rojas vasquez' || normalized === 'moisés rojas' || normalized === 'moi';
+
+  if (esAdmin) {
+    LOGIN_WELCOME_LAST_MATCH = null; // para que el próximo asesor distinto sí sortee un mensaje nuevo
+    if (iconEl) iconEl.textContent = '👑';
+    if (nameEl) nameEl.textContent = '¡Bienvenido, Moi!';
+    if (subEl) subEl.textContent = 'Administrador · Control total activo';
+    welcome.classList.add('show');
+    return;
+  }
+
+  // Cualquier otro nombre: si coincide con alguien de la malla actual, recibe
+  // el mismo saludo animado, con un mensaje amistoso aleatorio.
+  const trimmed = raw.trim();
+  if (trimmed.length < 3 || typeof MALLA_matchName !== 'function') {
+    welcome.classList.remove('show');
+    LOGIN_WELCOME_LAST_MATCH = null;
+    return;
+  }
+  const canon = MALLA_matchName(trimmed);
+  if (canon) {
+    if (canon !== LOGIN_WELCOME_LAST_MATCH) {
+      LOGIN_WELCOME_LAST_MATCH = canon;
+      LOGIN_WELCOME_LAST_MSG = WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)];
+    }
+    const primerNombre = canon.split(' ')[0];
+    if (iconEl) iconEl.textContent = '✨';
+    if (nameEl) nameEl.textContent = `¡Hola, ${primerNombre}!`;
+    if (subEl) subEl.textContent = LOGIN_WELCOME_LAST_MSG;
     welcome.classList.add('show');
   } else {
     welcome.classList.remove('show');
+    LOGIN_WELCOME_LAST_MATCH = null;
   }
 }
 
@@ -4216,6 +4553,12 @@ async function doLogin() {
     // adelante), se refresca aquí para que no quede una versión vieja "pegada" en
     // la cuenta para siempre.
     if (acc.nombre !== canonico) acc.nombre = canonico;
+    // Registro de accesos (SEGURO): fecha y hora de cada login, guardado en
+    // su propia llave (ACCESS_HISTORY_KEY) que nunca se borra al actualizar
+    // el HTML. acc.loginCount/acc.loginDates se mantienen también solo por
+    // compatibilidad, pero el dato que manda para el conteo total y el
+    // timeline es siempre AH_registerLogin.
+    const hist = AH_registerLogin(norm, canonico);
     sessionToken = 'local-token-' + norm;
     currentUser = {
       nombre: canonico,
@@ -4225,14 +4568,10 @@ async function doLogin() {
       email: acc.email || '',
       apodo: acc.apodo || '',
       isAdmin: false,
-      loginCount: (acc.loginCount || 0) + 1
+      loginCount: hist.total
     };
-    acc.loginCount = currentUser.loginCount;
-    // Registro de accesos: fecha (y hora) de cada login, para que el admin
-    // pueda consultar cuántas veces y en qué fechas ha entrado cada asesor.
-    if (!Array.isArray(acc.loginDates)) acc.loginDates = [];
-    acc.loginDates.push(new Date().toISOString());
-    if (acc.loginDates.length > 60) acc.loginDates = acc.loginDates.slice(-60);
+    acc.loginCount = hist.total;
+    acc.loginDates = hist.dates;
     accounts[norm] = acc;
     ACC_save(accounts);
     localStorage.setItem('tb_token', sessionToken);
@@ -4392,17 +4731,15 @@ function initHomeScreen() {
   });
   TB_renderBuildInfo();
 
-  // Para el admin, la pestaña "Mi Turno" es donde vive el panel de administración
-  // (cargar/actualizar la malla en PDF). Se relabela para que sea obvio.
-  const navLabel1 = document.getElementById('nav-turns-label');
-  const navLabel2 = document.getElementById('nav-turns-label-2');
-  if (currentUser.isAdmin) {
-    if (navLabel1) navLabel1.textContent = 'Admin';
-    if (navLabel2) navLabel2.textContent = 'Admin';
-  } else {
-    if (navLabel1) navLabel1.textContent = 'Mi Turno';
-    if (navLabel2) navLabel2.textContent = 'Mi Turno';
-  }
+  // "Mi Turno" es una opción exclusiva de asesores. Para el admin y para
+  // cualquier acceso delegado (currentUser.isAdmin también es true en ese
+  // caso), esa pestaña lleva al panel de administración y se relabela como
+  // "Configuración". Se actualizan las 4 copias del nav inferior (una por
+  // pantalla) para que ninguna se quede mostrando "Mi Turno" por error.
+  const navTurnsLabels = ['nav-turns-label', 'nav-turns-label-2', 'nav-turns-label-3', 'nav-turns-label-4']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  const labelTexto = currentUser.isAdmin ? 'Configuración' : 'Mi Turno';
+  navTurnsLabels.forEach(el => { el.textContent = labelTexto; });
 
   // Reloj
   updateClock();
@@ -4506,7 +4843,23 @@ async function tryAutoLogin() {
 // fallar por algún motivo, el buzón igual se vuelve a llenar solo al
 // abrirlo, porque siempre sincroniza el historial completo desde su propio
 // backend (ver BUZON_refresh).
-const TB_APP_VERSION = '2026-08-12.1647';
+//
+// SEGURO DE DELEGADOS: DELEGATES_KEY (tb_delegated_admins_v1) YA NO se
+// incluye en el borrado de abajo. Una designación de administrador
+// delegado no depende de la versión del archivo ni de la malla, así que
+// no hay ninguna razón para perderla al publicar una actualización — se
+// queda intacta hasta que Moisés la quite manualmente desde su panel.
+// Tampoco se borra al cerrar sesión: doLogout() solo limpia tb_token y
+// tb_user (la sesión activa), nunca DELEGATES_KEY.
+//
+// SEGURO DEL HISTORIAL DE ACCESOS: vive en ACCESS_HISTORY_KEY
+// (tb_access_history_v1, ver AH_load/AH_registerLogin), una llave aparte
+// que tampoco aparece nunca en el borrado de abajo, así que el registro
+// de fecha/hora de cada acceso de los asesores sobrevive intacto a
+// cualquier actualización del HTML. Lo único que lo reinicia es cargar una
+// malla (PDF/texto) con fechas que nunca se habían visto — ver
+// MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
+const TB_APP_VERSION = '2026-08-13.2256';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -4527,7 +4880,10 @@ function TB_clearStaleCacheIfNewVersion() {
     // archivo) haya definido esas constantes.
     const buzonMsgsBackup = localStorage.getItem('tb_buzon_msgs');
     const buzonSeenBackup = localStorage.getItem('tb_buzon_seen');
-    [ACCOUNTS_KEY, DELEGATES_KEY, MALLA_STORAGE_KEY, MALLA_RAWTEXT_KEY, 'tb_token', 'tb_user']
+    // DELEGATES_KEY y ACCESS_HISTORY_KEY quedan fuera de esta lista a propósito
+    // (ver los comentarios "SEGURO DE DELEGADOS" y "SEGURO DEL HISTORIAL DE
+    // ACCESOS" arriba): así nunca se tocan al publicar una nueva versión.
+    [ACCOUNTS_KEY, MALLA_STORAGE_KEY, MALLA_RAWTEXT_KEY, 'tb_token', 'tb_user']
       .forEach(k => localStorage.removeItem(k));
     if (sheetUrl) localStorage.setItem(TB_SHEET_KEY, sheetUrl);
     // Restaurar el buzón intacto, pase lo que pase con el resto de la caché.
@@ -5733,14 +6089,16 @@ async function TB_responderSolicitud(sol, estado) {
   if (estado === 'aprobado') {
     const aplicado = TB_aplicarCambioTurnoEnMalla(sol.fecha_turno, sol.solicitante, sol.companero);
     if (aplicado) {
-      setTimeout(() => {
-        const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_cambio.html`);
+      setTimeout(async () => {
+        const quiere = await TB_promptDescargarOSeguir('El cambio de turno ya quedó aplicado en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+        if (!quiere) return;
+        const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_cambio.html`);
         if (ok) {
           showToast('success', '⬇️ HTML actualizado', 'Se descargó con el cambio de turno ya aplicado. Publícalo cuando quieras.');
         } else {
           showToast('error', '⚠️ No se pudo descargar', 'Usa el botón "Descargar HTML actualizado" en Malla.');
         }
-        MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}_cambio.xlsx`);
+        MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_cambio.xlsx`);
       }, 400);
     } else {
       showToast('info', 'ℹ️ Aprobado sin tocar la malla', 'No encontré ese turno exacto en la malla local; ajústalo manualmente si hace falta.');
@@ -5781,6 +6139,31 @@ function CAMBIO_registrar(fechaISO, normA, nombreA, normB, nombreB) {
 function CAMBIO_get(fechaISO, norm) {
   const all = CAMBIO_load();
   return all[`${fechaISO}|${norm}`] || null;
+}
+
+// ── Persistencia del registro de cambios a través de publicaciones ──
+// Antes, TURNOS_CAMBIADOS_KEY vivía solo en localStorage del dispositivo
+// donde se hizo el cambio: al editar/mejorar Turno.html y republicar, el
+// letrero "🔄 Turno cambiado con X" desaparecía aunque el horario siguiera
+// intercambiado, porque el archivo nuevo no traía ese registro. Ahora, igual
+// que MALLA_RAW_DEFAULT, el registro se incrusta en el HTML al descargar
+// (ver MALLA_buildUpdatedHTML) y se fusiona con el local al abrir el archivo,
+// así que sobrevive a cualquier edición o mejora del código. Solo se reinicia
+// cuando llega una malla con fechas realmente nuevas (ver
+// MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
+// archivo.
+const TB_CAMBIOS_DEFAULT = {"2026-08-14|VIVIANA ESTER CUMPLIDO VALENCIA":"KAREN LISETH DE LA ASUNCION CERVANTES","2026-08-14|KAREN LISETH DE LA ASUNCION CERVANTES":"VIVIANA ESTER CUMPLIDO VALENCIA","2026-08-13|ELIACID DAVID SANDOVAL PORRAS":"ANDREA CAROLINA AGUERO ARENAS","2026-08-13|ANDREA CAROLINA AGUERO ARENAS":"ELIACID DAVID SANDOVAL PORRAS"};
+function TB_CAMBIOS_init() {
+  try {
+    const embebidos = TB_CAMBIOS_DEFAULT || {};
+    if (!Object.keys(embebidos).length) return;
+    const local = CAMBIO_load();
+    let cambio = false;
+    Object.keys(embebidos).forEach(k => {
+      if (!(k in local)) { local[k] = embebidos[k]; cambio = true; }
+    });
+    if (cambio) CAMBIO_save(local);
+  } catch (e) { console.error('TB_CAMBIOS_init error:', e); }
 }
 
 // ── Helpers de tiempo para mover horas entre días ──
@@ -5965,10 +6348,12 @@ function MOVER_aplicar() {
     F3_renderDateChips(user.mallaNombre);
   }
 
-  setTimeout(() => {
-    const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_horas.html`);
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('Las horas ya quedaron movidas en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+    if (!quiere) return;
+    const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_horas.html`);
     if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con las horas ya movidas. Publícalo cuando quieras.');
-    MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}_horas.xlsx`);
+    MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_horas.xlsx`);
   }, 400);
 }
 
@@ -6113,10 +6498,12 @@ function AUSENCIA_aplicar() {
     F3_renderDateChips(user.mallaNombre);
   }
 
-  setTimeout(() => {
-    const ok = MALLA_downloadUpdatedHTML(`TurnoBot_MPC_${MALLA_todayISO()}_ausencia.html`);
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('La ausencia ya quedó aplicada en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+    if (!quiere) return;
+    const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_ausencia.html`);
     if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con la ausencia ya aplicada. Publícalo cuando quieras.');
-    MALLA_exportExcel(`TurnoBot_MPC_${MALLA_todayISO()}_ausencia.xlsx`);
+    MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_ausencia.xlsx`);
   }, 400);
 }
 
