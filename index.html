@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TurnoBot Â· MPC</title></head>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TurnoBot · MPC</title></head>
 <body style="background:#000;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0">
-<div>Cargandoâ€¦</div>
+<div>Cargando…</div>
 <script>
 async function boot() {
-  // Purga cualquier Service Worker y cachÃ© viejos de versiones anteriores de esta PWA
+  // Purga cualquier Service Worker y caché viejos de versiones anteriores de esta PWA
   if ('serviceWorker' in navigator) {
     const regs = await navigator.serviceWorker.getRegistrations();
     for (const r of regs) await r.unregister();
@@ -16,7 +16,7 @@ async function boot() {
   fetch('app.html?t=' + Date.now(), { cache: 'no-store' })
     .then(r => r.text())
     .then(html => { document.open(); document.write(html); document.close(); })
-    .catch(() => { document.body.innerHTML = '<div style="text-align:center">No se pudo cargar. Revisa tu conexiÃ³n y desliza para recargar.</div>'; });
+    .catch(() => { document.body.innerHTML = '<div style="text-align:center">No se pudo cargar. Revisa tu conexión y desliza para recargar.</div>'; });
 }
 boot();
 </script>
