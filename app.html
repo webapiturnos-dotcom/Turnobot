@@ -1263,7 +1263,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Leyendo archivo...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1502,7 +1502,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 13/08/2026 · 2322</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 15/08/2026 · 1012</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1516,7 +1516,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenos días,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1575,11 +1575,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="aqp-stats-row">
           <div class="aqp-stat" id="aqp-total">
-            <div class="aqp-stat-v" id="aqp-total-v">29</div>
+            <div class="aqp-stat-v" id="aqp-total-v">28</div>
             <div class="aqp-stat-l">Personas en malla</div>
           </div>
           <div class="aqp-stat" id="aqp-pending">
-            <div class="aqp-stat-v" id="aqp-pend-v">174</div>
+            <div class="aqp-stat-v" id="aqp-pend-v">168</div>
             <div class="aqp-stat-l">Turnos cargados</div>
           </div>
           <div class="aqp-stat">
@@ -3590,6 +3590,10 @@ function AH_registerLogin(norm, nombreCanonico) {
   entry.dates.push(new Date().toISOString());
   all[norm] = entry;
   AH_save(all);
+  // Envía el acceso a la Sheet (fire-and-forget, sin bloquear el login) para
+  // que quede visible en el timeline de admin sin importar el dispositivo.
+  // TB_api ya reintenta solo y nunca lanza error si falla la red.
+  TB_api('logAccess', { norm, nombre: nombreCanonico });
   return entry;
 }
 
@@ -4847,7 +4851,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-08-15.1012';
+const TB_APP_VERSION = '2026-08-17.1516';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -5002,6 +5006,53 @@ async function ADMIN_pollNovedades() {
     fase2AddActivity('🏥', `<strong>${(inc.nombre || '').split(' ')[0]}</strong> registró incapacidad`, 'incapacidad');
   });
   NOV_guardarVistos('tb_nov_vistos_incap', vistosIncap);
+
+  // Historial de accesos: trae los logins registrados desde cualquier
+  // dispositivo (ver AH_registerLogin) y los fusiona con el historial local
+  // (SEGURO, ACCESS_HISTORY_KEY) para que el timeline de admin quede completo.
+  const resAcc = await TB_api('getAccessHistory');
+  const remoteHist = (resAcc && resAcc.history) || null;
+  if (remoteHist) {
+    const local = AH_load();
+    const vistosAcceso = NOV_vistos('tb_nov_vistos_acceso');
+    let huboNuevo = false;
+    Object.keys(remoteHist).forEach(norm => {
+      const r = remoteHist[norm];
+      const l = local[norm] || { nombre: r.nombre, total: 0, dates: [] };
+      const fechasUnidas = Array.from(new Set([...(l.dates || []), ...(r.dates || [])])).sort();
+      local[norm] = { nombre: r.nombre || l.nombre, total: Math.max(l.total || 0, fechasUnidas.length), dates: fechasUnidas };
+      (r.dates || []).forEach(iso => {
+        const clave = norm + '|' + iso;
+        if (vistosAcceso.has(clave)) return;
+        vistosAcceso.add(clave);
+        huboNuevo = true;
+        fase2AddActivity('🔑', `<strong>${(local[norm].nombre || '').split(' ')[0]}</strong> inició sesión`, 'acceso');
+      });
+    });
+    NOV_guardarVistos('tb_nov_vistos_acceso', vistosAcceso);
+    if (huboNuevo) { AH_save(local); if (typeof ACCESOS_render === 'function') ACCESOS_render(); }
+  }
+
+  // Log de consultas: trae las consultas de turno registradas desde
+  // cualquier dispositivo (ver F3_loadTurnoData) y las fusiona con el log
+  // local en memoria (F3_consultaLog) para el panel "Log de consultas".
+  const resCons = await TB_api('getConsultas');
+  const remoteCons = (resCons && resCons.consultas) || [];
+  if (remoteCons.length) {
+    const vistosConsulta = NOV_vistos('tb_nov_vistos_consulta');
+    let huboNuevaConsulta = false;
+    remoteCons.slice().reverse().forEach(c => {
+      const clave = `${c.norm}|${c.fecha}`;
+      if (vistosConsulta.has(clave)) return;
+      vistosConsulta.add(clave);
+      huboNuevaConsulta = true;
+      const entry = { icon: '🕐', usuario: c.nombre, codigoMaya: c.codigoMaya || '—', turno: c.turno || '', hora: new Date(c.fecha).toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }) };
+      F3_consultaLog.unshift(entry);
+      fase2AddActivity('🕐', `<strong>${(c.nombre || '').split(' ')[0]}</strong> consultó su turno`, 'consulta');
+    });
+    NOV_guardarVistos('tb_nov_vistos_consulta', vistosConsulta);
+    if (huboNuevaConsulta && typeof F3_renderConsultaLog === 'function') F3_renderConsultaLog();
+  }
 }
 
 // Asesor: revisa sus propias solicitudes de cambio y avisa cuando cambian de
@@ -5063,7 +5114,7 @@ function renderAdminPanel(user) {
 //   por dueño (ver ASESOR_pollRespuestas), así que siempre es visible para quien la recibe
 // Cualquier otra categoría (accesos, registro, navegación, malla, aperturas propias
 // de pantalla, etc.) queda fuera de esta lista a propósito.
-const ACTIVITY_VISIBLE_CATS = ['buzon', 'incapacidad', 'cambio', 'consulta', 'respuesta'];
+const ACTIVITY_VISIBLE_CATS = ['buzon', 'incapacidad', 'cambio', 'consulta', 'respuesta', 'acceso'];
 
 function renderActivityLog() {
   const list = document.getElementById('activity-list');
@@ -5074,6 +5125,7 @@ function renderActivityLog() {
   const visibles = FASE2_State.activityLog.filter(a => {
     if (!ACTIVITY_VISIBLE_CATS.includes(a.cat)) return false;
     if (a.cat === 'consulta' && !isAdmin) return false; // "quién consultó su turno" es solo del admin
+    if (a.cat === 'acceso' && !isAdmin) return false; // "quién inició sesión" es solo del admin
     return true;
   });
   // ── Seguro anti-fallas: notificaciones que "reaparecían" tras borrarlas ──
@@ -5594,6 +5646,13 @@ function F3_loadTurnoData(user, canonico, fechaISO) {
   };
   F3_consultaLog.unshift(logEntry);
   F3_renderConsultaLog();
+
+  // Envía la consulta a la Sheet (fire-and-forget) para que el admin la vea
+  // sin importar en qué dispositivo consultó el asesor su turno.
+  TB_api('logConsulta', {
+    norm: normalizeName(user.nombre), nombre: user.nombre,
+    codigoMaya: user.codigoMaya || '', turno: logEntry.turno
+  });
 
   // Registrar en actividad local (solo visible para el admin; ver nota de
   // limitación de sincronización junto a ADMIN_pollNovedades)
