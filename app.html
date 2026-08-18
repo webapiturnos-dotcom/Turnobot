@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="morado"><head>
+<html lang="es" data-theme="azul"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -1263,14 +1263,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: ELIACID — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: ADRIANA — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1309,9 +1309,6 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           📝 Registrarse
         </button>
       </div>
-      <button class="btn btn-ghost" id="splash-back-btn" style="display: block;" onclick="showScreen('home')">
-        ← Volver al inicio
-      </button>
     </div>
   </div>
 
@@ -1516,7 +1513,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1595,7 +1592,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno</div><div class="activity-time">00:23</div><button type="button" class="activity-del-btn" data-aid="179" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno</div><div class="activity-time">00:23</div><button type="button" class="activity-del-btn" data-aid="178" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno del 17/08/2026</div><div class="activity-time">00:23</div><button type="button" class="activity-del-btn" data-aid="177" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>ADRIANA</strong> consultó su turno del 18/08/2026</div><div class="activity-time">00:23</div><button type="button" class="activity-del-btn" data-aid="175" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1658,7 +1655,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno de hoy</div>
+            <div class="turno-card-label">Tu turno · Lunes 17 Ago</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -1682,10 +1679,10 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="jornada-bar-wrap" style="display: none;">
           <div class="jornada-bar-label">
             <span>Progreso jornada</span>
-            <span id="jornada-pct">100%</span>
+            <span id="jornada-pct">0%</span>
           </div>
           <div class="jornada-bar-bg">
-            <div class="jornada-bar-fill" id="jornada-fill" style="width: 100%;"></div>
+            <div class="jornada-bar-fill" id="jornada-fill" style="width: 0%;"></div>
           </div>
         </div>
       </div>
@@ -1694,7 +1691,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Jueves 13 Ago</div>
+          <div class="section-sub" id="timeline-fecha">Lunes 17 Ago</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -1810,7 +1807,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:46</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">22:45</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">22:43</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">12:23 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">12:23 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">00:23</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ADRIANA ANILLO BOLÍVAR</span><span style="color:var(--gris);font-size:11px">00:23</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">11:46 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">YULISSA LILIANA PEREZ SALCEDO</span><span style="color:var(--gris);font-size:11px">11:30 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">YULISSA LILIANA PEREZ SALCEDO</span><span style="color:var(--gris);font-size:11px">11:30 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ANDREA CAROLINA AGUERO ARENAS</span><span style="color:var(--gris);font-size:11px">11:17 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ANDREA CAROLINA AGUERO ARENAS</span><span style="color:var(--gris);font-size:11px">11:17 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">10:04 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1859,15 +1856,145 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como AMIRA ROSA CAMACHO CANTILLO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">AMIRA ROSA CAMACHO CANTILLO</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA MARTINEZ CAMARGO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Diosibel Maria Gonzalez Marchena" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
       <div>
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">10:30 a. m. → 7:00 p. m.</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ESPERANZA ISABEL PARADA DE LA CRUZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como HOMERO LEONEL DIAZ ORTEGA" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
       </div>
       <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">10:30 a. m. → 7:00 p. m.</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como LILIBETH ROMERO ALVAREZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">LILIBETH ROMERO ALVAREZ</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
+        <div class="team-row-sub">11:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como Wandi Vanessa Tafur Sanjuan" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">Wandi Vanessa Tafur Sanjuan</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YANILETH DAYANA TORRES PEREZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
+        <div class="team-row-sub">8:00 a. m. → 4:00 p. m.</div>
       </div>
       <div class="team-row-badge activo">Activo</div></div></div>
       </div>
@@ -1947,8 +2074,176 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="team-list" id="accesos-list"><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
-        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="team-row-name"> AMIRA ROSA CAMACHO CANTILLO</div>
         <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:26 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 08:08 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:25 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name"> LILIBETH ROMERO ALVAREZ</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name"> MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name"> Wandi Vanessa Tafur Sanjuan</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:23 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name"> ZUANY SOFIA RENDON SINCELEJO</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:40 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:25 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:39 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:37 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 09:50 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:58 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:26 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 10:02 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="team-row-sub">🔑 4 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">18/8, 12:19 a. m. · 18/8, 12:11 a. m. · 17/8, 11:46 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">YANILETH DAYANA TORRES PEREZ</div>
+        <div class="team-row-sub">🔑 1 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">17/8, 06:31 p. m.</div>
+      </div>
+      <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
+      <div style="flex:1">
+        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
+        <div class="team-row-sub">🔑 0 accesos en total</div>
         <div class="team-row-sub" style="margin-top:4px">Sin registros de fecha esta semana</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div></div>
@@ -2331,7 +2626,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
            que Moi elija al publicar el HTML, no lo pueden cambiar) ── -->
       <div class="profile-section" id="profile-theme-section" style="display: block;">
         <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
-        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
+        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
         <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
       </div>
 
@@ -2462,7 +2757,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -3547,7 +3842,9 @@ function AH_save(all) { try { localStorage.setItem(ACCESS_HISTORY_KEY, JSON.stri
 // intacto sin importar cuánto tiempo pase.
 function AH_pruneDates(dates) {
   if (!Array.isArray(dates)) return [];
-  return dates;
+  // Compatibilidad: entradas viejas eran solo un ISO string; las nuevas son
+  // { fecha, dispositivo } para dejar constancia de qué celular se usó.
+  return dates.map(d => (typeof d === 'string') ? { fecha: d, dispositivo: '' } : d);
 }
 // Compara las fechas de la malla recién cargada contra las últimas fechas
 // conocidas: si aparece alguna fecha nueva (malla realmente distinta, p. ej.
@@ -3581,19 +3878,20 @@ function MALLA_checkNewDatesAndResetHistory(parsed, rawText) {
 }
 // Registra un acceso nuevo del asesor `norm` (nombre normalizado) y
 // devuelve su historial actualizado: { nombre, total, dates }.
-function AH_registerLogin(norm, nombreCanonico) {
+async function AH_registerLogin(norm, nombreCanonico) {
   const all = AH_load();
   const entry = all[norm] || { nombre: nombreCanonico, total: 0, dates: [] };
   entry.nombre = nombreCanonico;
   entry.total = (entry.total || 0) + 1;
   entry.dates = AH_pruneDates(entry.dates);
-  entry.dates.push(new Date().toISOString());
+  const dispositivo = await TB_detectarDispositivo();
+  entry.dates.push({ fecha: new Date().toISOString(), dispositivo });
   all[norm] = entry;
   AH_save(all);
   // Envía el acceso a la Sheet (fire-and-forget, sin bloquear el login) para
   // que quede visible en el timeline de admin sin importar el dispositivo.
   // TB_api ya reintenta solo y nunca lanza error si falla la red.
-  TB_api('logAccess', { norm, nombre: nombreCanonico });
+  TB_api('logAccess', { norm, nombre: nombreCanonico, dispositivo });
   return entry;
 }
 
@@ -3950,7 +4248,7 @@ function ACCESOS_render() {
   entries.forEach(e => {
     const fechas = e.dates.slice(-3).reverse();
     const fechasTxt = fechas.length
-      ? fechas.map(f => new Date(f).toLocaleString('es-CO', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })).join(' · ')
+      ? fechas.map(f => new Date(f.fecha).toLocaleString('es-CO', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) + (f.dispositivo ? ` (📱 ${f.dispositivo})` : '')).join(' · ')
       : 'Sin registros de fecha esta semana';
     const row = document.createElement('div');
     row.className = 'team-row';
@@ -3980,15 +4278,17 @@ function ACCESOS_openTimeline(norm) {
   const dates = AH_pruneDates(h.dates || acc.loginDates || []).slice().reverse();
 
   const itemsHtml = dates.length
-    ? dates.map(iso => {
-        const d = new Date(iso);
+    ? dates.map(item => {
+        const d = new Date(item.fecha);
         const fecha = d.toLocaleDateString('es-CO', { weekday: 'long', day: '2-digit', month: 'long' });
         const hora = d.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+        const dispHtml = item.dispositivo ? `<div class="ah-tl-hora">📱 ${item.dispositivo}</div>` : '';
         return `<div class="ah-tl-item">
           <div class="ah-tl-dot"></div>
           <div class="ah-tl-body">
             <div class="ah-tl-fecha">${fecha}</div>
             <div class="ah-tl-hora">🕒 ${hora}</div>
+            ${dispHtml}
           </div>
         </div>`;
       }).join('')
@@ -4550,7 +4850,7 @@ async function doLogin() {
     // el HTML. acc.loginCount/acc.loginDates se mantienen también solo por
     // compatibilidad, pero el dato que manda para el conteo total y el
     // timeline es siempre AH_registerLogin.
-    const hist = AH_registerLogin(norm, canonico);
+    const hist = await AH_registerLogin(norm, canonico);
     sessionToken = 'local-token-' + norm;
     currentUser = {
       nombre: canonico,
@@ -4808,10 +5108,15 @@ async function tryAutoLogin() {
           ACC_save(accounts);
         }
       }
+      // Cada vez que el asesor entra a la app —así sea con la sesión ya
+      // guardada, sin volver a teclear el PIN— debe quedar registrado en el
+      // timeline de accesos. Antes esto solo se registraba en el login
+      // manual (doLogin), así que reabrir la app no dejaba constancia.
+      const normAcceso = normalizeName(canonico || currentUser.nombre);
+      AH_registerLogin(normAcceso, canonico || currentUser.nombre);
     }
     initHomeScreen();
     showScreen('home');
-    document.getElementById('splash-back-btn').style.display = 'block';
     return true;
   } catch {}
   localStorage.removeItem('tb_token');
@@ -4851,7 +5156,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-08-17.1516';
+const TB_APP_VERSION = '2026-08-18.0024';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -5019,10 +5324,14 @@ async function ADMIN_pollNovedades() {
     Object.keys(remoteHist).forEach(norm => {
       const r = remoteHist[norm];
       const l = local[norm] || { nombre: r.nombre, total: 0, dates: [] };
-      const fechasUnidas = Array.from(new Set([...(l.dates || []), ...(r.dates || [])])).sort();
+      const lDates = AH_pruneDates(l.dates || []);
+      const rDates = AH_pruneDates(r.dates || []);
+      const porFecha = new Map();
+      [...lDates, ...rDates].forEach(item => porFecha.set(item.fecha, item));
+      const fechasUnidas = Array.from(porFecha.values()).sort((a, b) => a.fecha.localeCompare(b.fecha));
       local[norm] = { nombre: r.nombre || l.nombre, total: Math.max(l.total || 0, fechasUnidas.length), dates: fechasUnidas };
-      (r.dates || []).forEach(iso => {
-        const clave = norm + '|' + iso;
+      rDates.forEach(item => {
+        const clave = norm + '|' + item.fecha;
         if (vistosAcceso.has(clave)) return;
         vistosAcceso.add(clave);
         huboNuevo = true;
@@ -5629,6 +5938,76 @@ function F3_renderDateChips(canonico) {
 function F3_selectDate(canonico, fechaISO) {
   FASE3_State.selectedDate = fechaISO;
   F3_renderDateChips(canonico);
+}
+
+// Tabla de prefijos/patrones típicos de modelo → marca, para poder mostrar
+// "Samsung SM-A125M" en vez de solo el código del modelo quando la marca no
+// viene explícita en el string que entrega el navegador.
+const TB_MARCA_PATTERNS = [
+  [/^SM-|^GT-/i, 'Samsung'],
+  [/Pixel/i, 'Google'],
+  [/Redmi|POCO/i, 'Xiaomi'],
+  [/^moto\s|Motorola/i, 'Motorola'],
+  [/^CPH/i, 'Oppo'],
+  [/^RMX/i, 'Realme'],
+  [/^V2\d{3}|vivo/i, 'Vivo'],
+  [/Huawei|^ELS-|^VOG-|^ANA-/i, 'Huawei'],
+  [/Honor/i, 'Honor'],
+  [/Infinix/i, 'Infinix'],
+  [/Tecno/i, 'Tecno'],
+  [/OnePlus/i, 'OnePlus'],
+  [/ZTE/i, 'ZTE'],
+  [/Nokia/i, 'Nokia'],
+  [/^LG-/i, 'LG'],
+];
+function TB_marcaDesdeModelo(modelo) {
+  for (const [re, marca] of TB_MARCA_PATTERNS) {
+    if (re.test(modelo)) return marca;
+  }
+  return '';
+}
+
+// Detecta marca y modelo reales del celular usado para consultar/ingresar.
+// IMPORTANTE: desde ~2022 Chrome en Android "recorta" el user-agent clásico
+// por privacidad (solo entrega "Android 10; K", sin marca ni modelo), así
+// que para obtener el modelo real hay que pedirlo explícitamente por la API
+// de User-Agent Client Hints (navigator.userAgentData), disponible en
+// Chrome/Edge/Samsung Internet sobre HTTPS. Si el navegador no la soporta
+// (Firefox, Safari) se cae al user-agent clásico como respaldo.
+async function TB_detectarDispositivo() {
+  const ua = navigator.userAgent || '';
+
+  // iOS: Safari/WebView no exponen el modelo exacto de hardware por ninguna
+  // API web; solo se puede distinguir iPhone/iPad de forma genérica.
+  if (/iPhone/i.test(ua)) return 'iPhone';
+  if (/iPad/i.test(ua)) return 'iPad';
+
+  if (navigator.userAgentData && typeof navigator.userAgentData.getHighEntropyValues === 'function') {
+    try {
+      const hints = await navigator.userAgentData.getHighEntropyValues(['model']);
+      if (hints && hints.model) {
+        const marca = TB_marcaDesdeModelo(hints.model);
+        return (marca ? marca + ' ' : '') + hints.model;
+      }
+    } catch (e) { /* sin permiso o no soportado: sigue con el respaldo */ }
+  }
+
+  // Respaldo con el user-agent clásico (formato típico:
+  // "Linux; Android 13; SM-A125M)" o "Linux; Android 13; Redmi Note 12)")
+  const m = ua.match(/Android[^;]*;\s*([^)]+)\)/i);
+  if (m && m[1]) {
+    const modelo = m[1].replace(/Build\/.*/i, '').trim();
+    if (modelo && !/^K$/i.test(modelo)) {
+      const marca = TB_marcaDesdeModelo(modelo);
+      return (marca ? marca + ' ' : '') + modelo;
+    }
+  }
+
+  if (/Android/i.test(ua)) return 'Android (modelo no disponible)';
+  if (/Windows/i.test(ua)) return 'PC (Windows)';
+  if (/Macintosh/i.test(ua)) return 'Mac';
+  if (/Linux/i.test(ua)) return 'Linux';
+  return 'Desconocido';
 }
 
 function F3_loadTurnoData(user, canonico, fechaISO) {
