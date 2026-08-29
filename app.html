@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="atardecer"><head>
+<html lang="es" data-theme="morado"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -1263,7 +1263,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Leyendo archivo...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1499,7 +1499,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 26/08/2026 · 1419</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 27/08/2026 · 1904</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1513,7 +1513,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenos días,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1592,7 +1592,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">19:01</div><button type="button" class="activity-del-btn" data-aid="36" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">19:01</div><button type="button" class="activity-del-btn" data-aid="35" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">19:01</div><button type="button" class="activity-del-btn" data-aid="34" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">19:01</div><button type="button" class="activity-del-btn" data-aid="33" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 29/08/2026</div><div class="activity-time">19:01</div><button type="button" class="activity-del-btn" data-aid="30" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1807,7 +1807,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">07:01 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:59 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:59 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">19:01</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">19:00</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">18:59</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">18:59</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Diosibel Maria Gonzalez Marchena</span><span style="color:var(--gris);font-size:11px">06:39 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Diosibel Maria Gonzalez Marchena</span><span style="color:var(--gris);font-size:11px">06:39 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">10:48 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Diosibel Maria Gonzalez Marchena</span><span style="color:var(--gris);font-size:11px">07:24 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Diosibel Maria Gonzalez Marchena</span><span style="color:var(--gris);font-size:11px">07:24 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Diosibel Maria Gonzalez Marchena</span><span style="color:var(--gris);font-size:11px">07:24 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">10:25 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">10:25 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">10:24 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">10:24 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">10:24 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">10:24 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1988,8 +1988,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 4 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">24/8, 12:10 p. m. · 23/8, 05:18 p. m. · 23/8, 02:02 p. m.</div>
+        <div class="team-row-sub">🔑 5 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/8, 12:03 p. m. · 24/8, 12:10 p. m. · 23/8, 05:18 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2018,8 +2018,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">Diosibel Maria Gonzalez Marchena</div>
-        <div class="team-row-sub">🔑 10 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/8, 06:39 p. m. · 27/8, 06:53 a. m. · 24/8, 09:15 p. m.</div>
+        <div class="team-row-sub">🔑 11 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">29/8, 07:24 a. m. · 27/8, 06:39 p. m. · 27/8, 06:53 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2048,8 +2048,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">HOMERO LEONEL DIAZ ORTEGA</div>
-        <div class="team-row-sub">🔑 6 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/8, 08:55 a. m. · 23/8, 11:55 a. m. · 22/8, 07:29 p. m.</div>
+        <div class="team-row-sub">🔑 7 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/8, 08:15 p. m. · 27/8, 08:55 a. m. · 23/8, 11:55 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2060,8 +2060,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">🔑 6 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">24/8, 12:04 p. m. · 23/8, 11:37 a. m. · 23/8, 10:14 a. m.</div>
+        <div class="team-row-sub">🔑 7 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/8, 10:24 p. m. · 24/8, 12:04 p. m. · 23/8, 11:37 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2084,14 +2084,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 21 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/8, 12:07 p. m. · 25/8, 09:46 p. m. · 25/8, 09:30 p. m.</div>
+        <div class="team-row-sub">🔑 22 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">29/8, 10:48 a. m. · 26/8, 12:07 p. m. · 25/8, 09:46 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 3 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">24/8, 03:16 p. m. · 24/8, 03:15 p. m. · 23/8, 11:29 a. m.</div>
+        <div class="team-row-sub">🔑 6 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/8, 11:31 a. m. · 28/8, 11:31 a. m. · 28/8, 08:22 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2484,24 +2484,24 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="file" id="profile-photo-input" accept="image/*" onchange="PROFILE_onPhotoSelected(event)">
           </label>
         </div>
-        <div class="profile-name" id="profile-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Asesor</span></div>
+        <div class="profile-name" id="profile-name">Moi</div>
+        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Administrador</span></div>
         <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: block;">Quitar foto de perfil</div>
       </div>
 
       <div class="profile-section">
         <div class="profile-info-row">
           <span class="lbl">Usuario Maya</span>
-          <span class="val" id="profile-maya">MELANYS</span>
+          <span class="val" id="profile-maya">1999</span>
         </div>
         <div class="profile-info-row">
           <span class="lbl">Accesos totales</span>
-          <span class="val" id="profile-accesos">21</span>
+          <span class="val" id="profile-accesos">1</span>
         </div>
       </div>
 
       <!-- ── Apodo (solo asesores): cómo quieren que les aparezca su nombre ── -->
-      <div class="profile-section" id="profile-apodo-section" style="display: block;">
+      <div class="profile-section" id="profile-apodo-section" style="display: none;">
         <div class="form-group">
           <label class="form-label">Tu apodo (cómo quieres que te llamen)</label>
           <div style="display:flex; gap:8px;">
@@ -2514,13 +2514,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
       <!-- ── Tema de color (solo admin: los asesores reciben el tema
            que Moi elija al publicar el HTML, no lo pueden cambiar) ── -->
-      <div class="profile-section" id="profile-theme-section" style="display: none;">
+      <div class="profile-section" id="profile-theme-section" style="display: block;">
         <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
-        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
+        <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
         <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
       </div>
 
-      <div class="profile-section" id="profile-admin-link" style="display: none;">
+      <div class="profile-section" id="profile-admin-link" style="display: block;">
         <button class="btn btn-secondary w-full" onclick="showMainScreen('turns')">
           👑 Ir al Panel de Administración
         </button>
@@ -2709,174 +2709,174 @@ let sessionToken = null;
 //   reales cargados desde el archivo de Moisés.
 // ══════════════════════════════════════════════════
 const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I   BREAK II   ALMUERZO   Horas
- 24/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 25/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 26/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 27/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 28/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 29/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ
- 24/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
-27/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
-28/08/2026	ACTIVO	LILIBETH	ROMERO	ALVAREZ	10:00:00	a.	m.	7:00:00	p.	m.	12:00:00	p.	m.	4:45:00	p.	m.	2:00:00	p.	m.	8:00:00
- 29/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
-28/08/2026	ACTIVO	MELANYS	DANIELA	SOBRINO	DE	LA	HOZ	8:00:00	a.	m.	3:00:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	6:00:00
-29/08/2026	ACTIVO	MELANYS	DANIELA	SOBRINO	DE	LA	HOZ	9:00:00	a.	m.	3:00:00	p.	m.	1:30:00	p.	m.	12:00:00	a.	m.	12:00:00	a.	m.	6:00:00
- 24/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00`;
+ 31/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
+ 1/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
+ 2/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 3/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 4/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 5/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ
+ 31/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+3/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00`;
 
 // Línea base de la malla (para la hoja "Cambios de Turno" del Excel, ver
 // MALLA_detectarCambiosDeTurno). Se incrusta igual que MALLA_RAW_DEFAULT al
@@ -2885,174 +2885,174 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
 // "malla inicial cargada vs. descargada" sin importar cuántas veces se
 // vuelva a publicar el mismo periodo.
 const MALLA_BASELINE_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I   BREAK II   ALMUERZO   Horas
- 24/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 25/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 26/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 27/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 28/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 29/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ
- 24/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
-27/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
- 24/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 25/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 26/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 27/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 28/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
- 29/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00`;
+ 31/08/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   AMIRA ROSA CAMACHO CANTILLO   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
+ 1/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
+ 2/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 3/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 4/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 5/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ
+ 31/08/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   Diosibel Maria Gonzalez Marchena   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   HOMERO LEONEL DIAZ ORTEGA   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+3/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   LILIBETH ROMERO ALVAREZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   Wandi Vanessa Tafur Sanjuan   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   YANILETH DAYANA TORRES PEREZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00
+ 31/08/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
+ 1/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 2/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 3/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 4/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 5/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:00:00 a. m.   4:00:00`;
 
 const MALLA_STORAGE_KEY = 'tb_malla_data_v1';
 const ACCOUNTS_KEY = 'tb_accounts_v1';
@@ -5046,7 +5046,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-08-27.1904';
+const TB_APP_VERSION = '2026-08-29.1129';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6485,7 +6485,7 @@ function CAMBIO_get(fechaISO, norm) {
 // cuando llega una malla con fechas realmente nuevas (ver
 // MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
 // archivo.
-const TB_CAMBIOS_DEFAULT = {"2026-08-28|MELANYS DANIELA SOBRINO DE LA HOZ":"LILIBETH ROMERO ALVAREZ","2026-08-28|LILIBETH ROMERO ALVAREZ":"MELANYS DANIELA SOBRINO DE LA HOZ"};
+const TB_CAMBIOS_DEFAULT = {};
 function TB_CAMBIOS_init() {
   try {
     const embebidos = TB_CAMBIOS_DEFAULT || {};
