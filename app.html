@@ -1263,7 +1263,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Leyendo archivo...</div>
+  <div class="loader-text" id="loader-text">Actualizando...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1499,7 +1499,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 05/09/2026 · 1430</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 07/09/2026 · 1907</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1572,7 +1572,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="aqp-stats-row">
           <div class="aqp-stat" id="aqp-total">
-            <div class="aqp-stat-v" id="aqp-total-v">26</div>
+            <div class="aqp-stat-v" id="aqp-total-v">27</div>
             <div class="aqp-stat-l">Personas en malla</div>
           </div>
           <div class="aqp-stat" id="aqp-pending">
@@ -1592,7 +1592,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>AMIRA</strong> consultó su turno</div><div class="activity-time">16:58</div><button type="button" class="activity-del-btn" data-aid="16" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>AMIRA</strong> consultó su turno</div><div class="activity-time">16:58</div><button type="button" class="activity-del-btn" data-aid="15" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>AMIRA</strong> consultó su turno</div><div class="activity-time">16:58</div><button type="button" class="activity-del-btn" data-aid="14" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>AMIRA</strong> consultó su turno</div><div class="activity-time">16:58</div><button type="button" class="activity-del-btn" data-aid="13" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>AMIRA</strong> consultó su turno</div><div class="activity-time">16:58</div><button type="button" class="activity-del-btn" data-aid="12" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1807,7 +1807,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">AMIRA ROSA CAMACHO CANTILLO</span><span style="color:var(--gris);font-size:11px">12:52 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">AMIRA ROSA CAMACHO CANTILLO</span><span style="color:var(--gris);font-size:11px">12:52 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">AMIRA ROSA CAMACHO CANTILLO</span><span style="color:var(--gris);font-size:11px">12:52 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">AMIRA ROSA CAMACHO CANTILLO</span><span style="color:var(--gris);font-size:11px">12:52 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">AMIRA ROSA CAMACHO CANTILLO</span><span style="color:var(--gris);font-size:11px">12:52 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">AMIRA ROSA CAMACHO CANTILLO</span><span style="color:var(--gris);font-size:11px">12:51 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ESPERANZA ISABEL PARADA DE LA CRUZ</span><span style="color:var(--gris);font-size:11px">11:19 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ESPERANZA ISABEL PARADA DE LA CRUZ</span><span style="color:var(--gris);font-size:11px">11:19 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ESPERANZA ISABEL PARADA DE LA CRUZ</span><span style="color:var(--gris);font-size:11px">11:19 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ESPERANZA ISABEL PARADA DE LA CRUZ</span><span style="color:var(--gris);font-size:11px">11:19 a. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">ELIACID DAVID SANDOVAL PORRAS</span><span style="color:var(--gris);font-size:11px">01:24 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">10:46 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:02 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ANDREA MARTINEZ CAMARGO</span><span style="color:var(--gris);font-size:11px">12:13 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ANDREA MARTINEZ CAMARGO</span><span style="color:var(--gris);font-size:11px">12:13 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ANDREA MARTINEZ CAMARGO</span><span style="color:var(--gris);font-size:11px">12:13 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ANDREA MARTINEZ CAMARGO</span><span style="color:var(--gris);font-size:11px">12:13 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JOCELINE CAROLINE DE LA ROSA GOMEZ</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JOCELINE CAROLINE DE LA ROSA GOMEZ</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JOCELINE CAROLINE DE LA ROSA GOMEZ</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -1940,32 +1940,32 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="team-list" id="accesos-list"><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> AMIRA ROSA CAMACHO CANTILLO</div>
-        <div class="team-row-sub">🔑 11 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/9, 12:51 p. m. · 5/9, 03:05 p. m. · 5/9, 02:07 p. m.</div>
+        <div class="team-row-sub">🔑 12 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 08:49 p. m. · 7/9, 12:51 p. m. · 5/9, 03:05 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">🔑 8 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 03:08 p. m. · 29/8, 01:42 p. m. · 26/8, 01:38 p. m.</div>
+        <div class="team-row-sub">🔑 11 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:14 p. m. · 7/9, 07:13 p. m. · 7/9, 07:13 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">🔑 8 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/9, 01:53 p. m. · 5/9, 02:41 p. m. · 29/8, 03:21 p. m.</div>
+        <div class="team-row-sub">🔑 10 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/9, 09:16 p. m. · 7/9, 07:11 p. m. · 6/9, 01:53 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> LILIBETH ROMERO ALVAREZ</div>
-        <div class="team-row-sub">🔑 8 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/9, 07:53 a. m. · 5/9, 03:04 p. m. · 5/9, 09:18 a. m.</div>
+        <div class="team-row-sub">🔑 9 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:10 p. m. · 7/9, 07:53 a. m. · 5/9, 03:04 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">🔑 7 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 02:38 p. m. · 4/9, 09:36 a. m. · 31/8, 09:27 a. m.</div>
+        <div class="team-row-sub">🔑 9 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:15 p. m. · 7/9, 07:14 p. m. · 5/9, 02:38 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -1982,32 +1982,32 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">🔑 6 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 03:55 p. m. · 5/9, 03:54 p. m. · 29/8, 12:23 p. m.</div>
+        <div class="team-row-sub">🔑 7 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:14 p. m. · 5/9, 03:55 p. m. · 5/9, 03:54 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 11 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/9, 03:45 p. m. · 3/9, 09:53 p. m. · 30/8, 03:41 a. m.</div>
+        <div class="team-row-sub">🔑 13 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/9, 12:28 p. m. · 7/9, 07:17 p. m. · 6/9, 03:45 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ANDREA MARTINEZ CAMARGO</div>
-        <div class="team-row-sub">🔑 27 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/9, 08:39 p. m. · 6/9, 08:38 p. m. · 6/9, 05:53 p. m.</div>
+        <div class="team-row-sub">🔑 31 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">9/9, 12:03 a. m. · 8/9, 12:10 a. m. · 7/9, 07:43 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">🔑 5 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 02:43 p. m. · 31/8, 09:01 a. m. · 29/8, 12:25 p. m.</div>
+        <div class="team-row-sub">🔑 7 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:11 p. m. · 7/9, 07:10 p. m. · 5/9, 02:43 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">🔑 10 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/9, 10:31 a. m. · 5/9, 03:06 p. m. · 29/8, 03:05 p. m.</div>
+        <div class="team-row-sub">🔑 11 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 11:19 p. m. · 7/9, 10:31 a. m. · 5/9, 03:06 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2024,20 +2024,20 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">🔑 10 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 03:17 p. m. · 5/9, 03:17 p. m. · 5/9, 03:16 p. m.</div>
+        <div class="team-row-sub">🔑 13 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">9/9, 01:24 p. m. · 9/9, 01:24 p. m. · 7/9, 07:39 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ESPERANZA ISABEL PARADA DE LA CRUZ</div>
-        <div class="team-row-sub">🔑 11 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/9, 11:19 a. m. · 6/9, 11:53 p. m. · 5/9, 10:48 a. m.</div>
+        <div class="team-row-sub">🔑 12 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:24 p. m. · 7/9, 11:19 a. m. · 6/9, 11:53 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">🔑 6 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/9, 05:50 p. m. · 5/9, 03:55 p. m. · 29/8, 12:19 p. m.</div>
+        <div class="team-row-sub">🔑 9 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/9, 02:40 p. m. · 7/9, 07:42 p. m. · 7/9, 07:41 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2060,44 +2060,44 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">🔑 14 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/9, 09:41 a. m. · 6/9, 10:11 p. m. · 5/9, 02:36 p. m.</div>
+        <div class="team-row-sub">🔑 15 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 07:22 p. m. · 7/9, 09:41 a. m. · 6/9, 10:11 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">🔑 3 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 03:04 p. m. · 29/8, 12:34 p. m. · 23/8, 03:26 p. m.</div>
+        <div class="team-row-sub">🔑 4 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">9/9, 02:52 p. m. · 5/9, 03:04 p. m. · 29/8, 12:34 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 5 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 06:34 p. m. · 29/8, 03:20 p. m. · 29/8, 01:14 p. m.</div>
+        <div class="team-row-sub">🔑 7 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/9, 07:38 a. m. · 7/9, 08:19 p. m. · 5/9, 06:34 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">🔑 7 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 02:53 p. m. · 29/8, 08:04 p. m. · 27/8, 08:16 a. m.</div>
+        <div class="team-row-sub">🔑 8 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/9, 09:37 a. m. · 5/9, 02:53 p. m. · 29/8, 08:04 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 27 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 02:41 p. m. · 31/8, 07:29 a. m. · 30/8, 10:31 a. m.</div>
+        <div class="team-row-sub">🔑 33 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">9/9, 10:46 a. m. · 9/9, 06:02 a. m. · 8/9, 03:26 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 10 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/9, 11:36 a. m. · 5/9, 07:36 p. m. · 2/9, 08:30 a. m.</div>
+        <div class="team-row-sub">🔑 12 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">9/9, 01:23 p. m. · 7/9, 07:32 p. m. · 6/9, 11:36 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">🔑 7 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/9, 09:28 a. m. · 5/9, 06:20 p. m. · 31/8, 07:43 a. m.</div>
+        <div class="team-row-sub">🔑 8 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">7/9, 08:19 p. m. · 7/9, 09:28 a. m. · 5/9, 06:20 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2108,8 +2108,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">🔑 10 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/9, 05:38 p. m. · 5/9, 05:02 p. m. · 5/9, 04:31 p. m.</div>
+        <div class="team-row-sub">🔑 16 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/9, 11:00 p. m. · 8/9, 09:35 p. m. · 8/9, 02:51 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div></div>
       </div>
@@ -2197,6 +2197,26 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ 🔄 JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
+        <div class="team-row-sub">Fecha: 2026-09-11T00:00:00.000Z · Motivo personales</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS 🔄 YULISSA LILIANA PEREZ SALCEDO</div>
+        <div class="team-row-sub">Fecha: 2026-09-11T00:00:00.000Z · Motivos de exámenes médicos</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL 🔄 VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">Fecha: 2026-09-11T00:00:00.000Z · Diligencia personal</div>
+        <div class="team-row-sub" style="color:var(--naranja)">Estado: pendiente</div>
+      </div><div style="display: flex; gap: 6px;"><button class="deleg-row-btn">✅</button><button class="deleg-row-btn">❌</button></div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL 🔄 VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">Fecha: 2026-09-11T00:00:00.000Z · Diligencia personal</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ 🔄 LILIBETH ROMERO ALVAREZ</div>
         <div class="team-row-sub">Fecha: 2026-08-28T00:00:00.000Z · Cit de ecografía de mama</div>
@@ -2739,7 +2759,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  8/09/2026   ACTIVO   ESPERANZA ISABEL PARADA DE LA CRUZ   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
  9/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:00:00 p. m.   9:45:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
  10/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 11/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+11/09/2026	ACTIVO	ELIACID	DAVID	SANDOVAL	PORRAS	10:30:00	a.	m.	7:00:00	p.	m.	11:45:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
  12/09/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   11:30:00 a. m.   6:00:00
  7/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
  8/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
@@ -2775,7 +2795,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  8/09/2026   ACTIVO   ANDREA MARTINEZ CAMARGO   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:45:00 p. m.   1:30:00 p. m.   6:00:00
  9/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  10/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+11/09/2026	ACTIVO	JOCELINE	CAROLINE	DE	LA	ROSA	GOMEZ	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
  12/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   3:00:00 p. m.   9:45:00 a. m.   12:00:00 a. m.   12:30:00 p. m.   6:00:00
  7/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  8/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:45:00 p. m.   1:30:00 p. m.   6:00:00
@@ -2787,7 +2807,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  8/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  9/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   4:00:00 p. m.   9:45:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:00:00
  10/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 11/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+11/09/2026	ACTIVO	JULIETH	PAOLA	PERALTA	MARTINEZ	10:30:00	a.	m.	7:00:00	p.	m.	11:45:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
  12/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   11:30:00 a. m.   6:00:00
  7/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  8/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:45:00 p. m.   1:30:00 p. m.   6:00:00
@@ -2823,13 +2843,13 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  8/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  9/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:00:00
  10/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 11/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+11/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:30:00	a.	m.	7:00:00	p.	m.	11:45:00	p.	m.	4:30:00	p.	m.	1:30:00	p.	m.	7:30:00
  12/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:30:00 p. m.   6:00:00
  7/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:45:00 p. m.   1:30:00 p. m.   6:00:00
  8/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  9/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  10/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+11/09/2026	ACTIVO	VIVIANA	ESTER	CUMPLIDO	VALENCIA	8:00:00	a.	m.	4:30:00	p.	m.	10:15:00	a.	m.	2:45:00	p.	m.	1:00:00	p.	m.	7:30:00
  12/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   3:00:00 p. m.   9:45:00 a. m.   12:00:00 a. m.   12:30:00 p. m.   6:00:00
  7/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   11:00:00 a. m.   7:00:00 p. m.   12:15:00 p. m.   4:45:00 p. m.   1:30:00 p. m.   6:00:00
  8/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
@@ -2841,7 +2861,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  8/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   #N/D   #N/D   #N/D   #N/D   #N/D   #N/D
  9/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   11:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   7:00:00
  10/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+11/09/2026	ACTIVO	YULISSA	LILIANA	PEREZ	SALCEDO	8:00:00	a.	m.	4:30:00	p.	m.	10:00:00	a.	m.	2:30:00	p.	m.	12:00:00	p.	m.	7:30:00
  12/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   3:00:00 p. m.   9:45:00 a. m.   12:00:00 a. m.   12:30:00 p. m.   6:00:00`;
 
 // Línea base de la malla (para la hoja "Cambios de Turno" del Excel, ver
@@ -5000,7 +5020,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-07.1907';
+const TB_APP_VERSION = '2026-09-09.1518';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6439,7 +6459,7 @@ function CAMBIO_get(fechaISO, norm) {
 // cuando llega una malla con fechas realmente nuevas (ver
 // MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
 // archivo.
-const TB_CAMBIOS_DEFAULT = {};
+const TB_CAMBIOS_DEFAULT = {"2026-09-11|NEVIS CAROLINA JIMENEZ MARMOL":"VIVIANA ESTER CUMPLIDO VALENCIA","2026-09-11|VIVIANA ESTER CUMPLIDO VALENCIA":"NEVIS CAROLINA JIMENEZ MARMOL","2026-09-11|ELIACID DAVID SANDOVAL PORRAS":"YULISSA LILIANA PEREZ SALCEDO","2026-09-11|YULISSA LILIANA PEREZ SALCEDO":"ELIACID DAVID SANDOVAL PORRAS","2026-09-11|JULIETH PAOLA PERALTA MARTINEZ":"JOCELINE CAROLINE DE LA ROSA GOMEZ","2026-09-11|JOCELINE CAROLINE DE LA ROSA GOMEZ":"JULIETH PAOLA PERALTA MARTINEZ"};
 function TB_CAMBIOS_init() {
   try {
     const embebidos = TB_CAMBIOS_DEFAULT || {};
