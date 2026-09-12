@@ -5391,7 +5391,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-12.1215';
+const TB_APP_VERSION = '2026-09-12.1224';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6425,10 +6425,13 @@ function F3_renderTimeline(t, diaEstado) {
 
   (t.detalle || []).forEach(d => {
     const min = F3_parse12hToMin(d.value);
-    // Ícono según el tipo real (almuerzo vs. break), para que en la línea de
-    // tiempo del turno se distinga de un vistazo y no se confunda con un break.
-    const icono = /almuerzo/i.test(d.label) ? '🍽️' : '☕';
-    if (min !== null) eventos.push({ time: d.value, label: `${icono} ${d.label}`, rel: min });
+    // Ícono y duración según el tipo real (almuerzo vs. break), para que en
+    // la línea de tiempo del turno quede claro cuánto dura cada uno: los
+    // breaks son de 15 min y el almuerzo de 1 hora.
+    const esAlmuerzo = /almuerzo/i.test(d.label);
+    const icono = esAlmuerzo ? '🍽️' : '☕';
+    const duracion = esAlmuerzo ? '1 hora' : '15 min';
+    if (min !== null) eventos.push({ time: d.value, label: `${icono} ${d.label} · ${duracion}`, rel: min });
   });
 
   eventos.push({ time: t.salidaDisplay || t.salida, label: '🔴 Fin de turno', rel: salMin });
@@ -7247,8 +7250,8 @@ function COMP_open(tipo) {
   const listEl = document.getElementById('comp-list');
 
   const cfg = tipo === 'almuerzo'
-    ? { icon: '🍽️', titulo: 'Almuerzo', labels: ['Salida almuerzo'] }
-    : { icon: '☕', titulo: 'Break', labels: ['Break 1', 'Break 2'] };
+    ? { icon: '🍽️', titulo: 'Almuerzo', labels: ['Salida almuerzo'], duracion: '1 hora' }
+    : { icon: '☕', titulo: 'Break', labels: ['Break 1', 'Break 2'], duracion: '15 min' };
 
   titleEl.innerHTML = `Mis <span>${cfg.titulo === 'Almuerzo' ? 'Compañeros de Almuerzo' : 'Compañeros de Break'}</span>`;
 
@@ -7281,7 +7284,7 @@ function COMP_open(tipo) {
   summaryEl.innerHTML = `
     <div class="comp-summary-icon">${cfg.icon}</div>
     <div class="comp-summary-title">Tu ${cfg.titulo.toLowerCase()} de hoy: ${misHoras.join(' · ')}</div>
-    <div class="comp-summary-sub">Compañeros con el mismo horario hoy</div>`;
+    <div class="comp-summary-sub">Dura ${cfg.duracion} · Compañeros con el mismo horario hoy</div>`;
 
   // Buscar entre todos los registros de HOY quién comparte alguna de mis horas
   const miNombreNorm = normalizeName(currentUser.nombre);
