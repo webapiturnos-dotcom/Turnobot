@@ -199,6 +199,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .splash-title span { color:var(--azul2); }
 
 .splash-sub { color:rgba(160,185,255,0.7); font-size:14px; letter-spacing:0.5px; }
+.splash-dev-credit { margin-top:18px; color:rgba(160,185,255,0.45); font-size:11px; letter-spacing:0.4px; }
+.splash-dev-credit strong { color:rgba(160,185,255,0.7); font-weight:500; }
 
 .splash-btns { display:flex; flex-direction:column; gap:12px; width:100%; max-width:300px; margin-top:8px; }
 .splash-btns .btn-primary {
@@ -1309,6 +1311,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           📝 Registrarse
         </button>
       </div>
+      <div class="splash-dev-credit">Desarrollado por <strong>Moisés Rojas</strong></div>
     </div>
   </div>
 
@@ -3397,6 +3400,21 @@ function MALLA_formatHoras(val) {
   return m ? `${h}h ${m}m` : `${h}h`;
 }
 
+// Reparte las etiquetas de Break I / Break II / Almuerzo según cuántos
+// valores trae la malla ese día (no por posición fija). Sábados/domingos
+// suelen traer turnos cortos donde falta el Break II o el almuerzo, y esta
+// es la única función que decide el orden — así la pantalla de "Mi Turno",
+// los compañeros de break/almuerzo y el Excel exportado quedan consistentes.
+function MALLA_labelsParaDetalle(cantidad) {
+  switch (cantidad) {
+    case 1: return ['Break 1'];
+    case 2: return ['Break 1', 'Salida almuerzo'];
+    case 3: return ['Break 1', 'Break 2', 'Salida almuerzo'];
+    case 4: return ['Break 1', 'Break 2', 'Salida almuerzo', 'Regreso almuerzo'];
+    default: return [];
+  }
+}
+
 function MALLA_parseText(text) {
   const lines = (text || '').split(/\r?\n/);
   const records = [];
@@ -3471,7 +3489,17 @@ function MALLA_parseText(text) {
     // no aplica ese día — típico de sábados/domingos sin almuerzo. Se descarta para
     // que solo se muestren los breaks/almuerzo que realmente existen ese día.
     restUnits = restUnits.filter(u => !(u.type === 'time' && u.value === '12:00:00' && u.ampm === 'AM'));
-    const labels = ['Break 1', 'Break 2', 'Salida almuerzo', 'Regreso almuerzo'];
+    // ── Corrección: etiquetar por CANTIDAD de valores, no por posición fija ──
+    // Antes se usaba siempre ['Break 1','Break 2','Salida almuerzo','Regreso
+    // almuerzo'] por posición. Eso funcionaba bien cuando había 3 valores
+    // (Break1+Break2+Almuerzo), pero fallaba en turnos cortos de fin de
+    // semana con solo 2 valores: el almuerzo quedaba mal etiquetado como
+    // "Break 2" y confundía a los asesores. La regla real de la malla es:
+    //   1 valor  → turno corto, solo Break 1 (sin almuerzo)
+    //   2 valores→ turno de más de 4h, Break 1 + Almuerzo (sin Break 2)
+    //   3 valores→ turno completo, Break 1 + Break 2 + Almuerzo
+    //   4 valores→ caso raro con almuerzo de salida y regreso separados
+    const labels = MALLA_labelsParaDetalle(restUnits.length);
     const detalle = restUnits.map((u, k) => ({
       label: labels[k] || `Registro ${k + 1}`,
       value: u.type === 'time' ? MALLA_to12h(u) : u.value
@@ -3721,7 +3749,7 @@ function MALLA_mapDetalleColumnas(detalle) {
   if (vals.length === 2) return { breakI: vals[0], breakII: '', almuerzo: vals[1] };
   if (vals.length === 1) return { breakI: vals[0], breakII: '', almuerzo: '' };
   return { breakI: '', breakII: '', almuerzo: '' };
-}
+} // Misma regla que MALLA_labelsParaDetalle (ver MALLA_parseText), aplicada aquí en forma de objeto en vez de etiquetas.
 
 async function MALLA_buildExcelWorkbook() {
   const wb = new ExcelJS.Workbook();
@@ -5363,7 +5391,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-12.1155';
+const TB_APP_VERSION = '2026-09-12.1215';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6397,7 +6425,10 @@ function F3_renderTimeline(t, diaEstado) {
 
   (t.detalle || []).forEach(d => {
     const min = F3_parse12hToMin(d.value);
-    if (min !== null) eventos.push({ time: d.value, label: `☕ ${d.label}`, rel: min });
+    // Ícono según el tipo real (almuerzo vs. break), para que en la línea de
+    // tiempo del turno se distinga de un vistazo y no se confunda con un break.
+    const icono = /almuerzo/i.test(d.label) ? '🍽️' : '☕';
+    if (min !== null) eventos.push({ time: d.value, label: `${icono} ${d.label}`, rel: min });
   });
 
   eventos.push({ time: t.salidaDisplay || t.salida, label: '🔴 Fin de turno', rel: salMin });
