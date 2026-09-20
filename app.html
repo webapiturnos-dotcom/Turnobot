@@ -3473,15 +3473,103 @@ function MALLA_labelsParaDetalle(cantidad) {
   }
 }
 
+// ══════════════════════════════════════════════════
+//   AUXILIARES POR CABECERA (Break I / Break II / Almuerzo)
+//   Primero se lee QUÉ COLUMNA es cada auxiliar según la cabecera de la
+//   malla (así un auxiliar vacío no "corre" a los demás). Si la fila no
+//   trae información de posición, se usa la LEY DE CAMPOS de siempre
+//   (MALLA_labelsParaDetalle: por cantidad de valores).
+//   Si ambas discrepan, decide MALLA_AUX_PRIORIDAD ('cabecera' | 'campos')
+//   y la fila queda marcada con auxConflicto para poder revisarla.
+// ══════════════════════════════════════════════════
+const MALLA_AUX_PRIORIDAD = 'cabecera';
+const MALLA_AUX_VERSION = 2; // sube este número si cambia la lógica y hay que releer la malla guardada
+const MALLA_AUX_LABEL = { break1: 'Break 1', break2: 'Break 2', almuerzo: 'Salida almuerzo' };
+const MALLA_RE_B1 = /break\s*(?:i|1|uno)(?![a-z0-9])/i;
+const MALLA_RE_B2 = /break\s*(?:ii|2|dos)(?![a-z0-9])/i;
+
+function MALLA_splitCeldas(line) { return (line || '').trim().split(/\t|\s{2,}/).map(c => c.trim()); }
+
+// Lee la fila de cabecera. Devuelve el orden de los auxiliares tal como
+// aparecen y (si el separador lo permite) su índice de celda.
+function MALLA_parseCabecera(line) {
+  const l = (line || '').trim();
+  if (!/almuerzo/i.test(l) || !/break/i.test(l)) return null;
+  const res = { break1: MALLA_RE_B1, break2: MALLA_RE_B2, almuerzo: /almuerzo/i };
+  const order = Object.keys(res)
+    .map(k => ({ k, i: (res[k].exec(l) || { index: -1 }).index }))
+    .filter(o => o.i >= 0).sort((a, b) => a.i - b.i).map(o => o.k);
+  if (order.length < 2) return null;
+  const celdas = MALLA_splitCeldas(l);
+  const cellRe = { break1: /^break\s*(?:i|1|uno)$/i, break2: /^break\s*(?:ii|2|dos)$/i, almuerzo: /^almuerzo$/i };
+  const idx = {};
+  order.forEach(k => { idx[k] = celdas.findIndex(c => cellRe[k].test(c)); });
+  return { order, idx, n: celdas.length };
+}
+
+// Celda de auxiliar → '' (vacía o relleno 12:00:00 a. m.), "h:mm a. m." o undefined (no es hora)
+function MALLA_celdaAux(txt) {
+  const t = (txt || '').trim();
+  if (!t) return '';
+  const m = /^(\d{1,2}):(\d{2})(?::\d{2})?\s*([ap])\.?\s*m\.?$/i.exec(t);
+  if (!m) return undefined;
+  const am = m[3].toLowerCase() === 'a';
+  if (+m[1] === 12 && +m[2] === 0 && am) return '';
+  return MALLA_to12h({ value: `${m[1]}:${m[2]}`, ampm: am ? 'AM' : 'PM' });
+}
+
+// Devuelve el detalle etiquetado POR CABECERA, o null si la fila no trae
+// posición confiable (en ese caso aplica la ley de campos).
+function MALLA_detallePorCabecera(cab, line, unidades) {
+  if (!cab) return null;
+  let vals = null;
+  // 1) Por celdas (Excel con tabuladores / columnas separadas): respeta las celdas vacías
+  const celdas = MALLA_splitCeldas(line);
+  if (celdas.length === cab.n && cab.order.every(k => cab.idx[k] >= 0)) {
+    const tmp = {};
+    const ok = cab.order.every(k => { const v = MALLA_celdaAux(celdas[cab.idx[k]]); tmp[k] = v; return v !== undefined; });
+    if (ok) vals = tmp;
+  }
+  // 2) Por posición de las horas: hay una hora (o relleno 12:00 a. m.) por cada columna auxiliar
+  if (!vals && unidades.length === cab.order.length && unidades.every(u => u.type === 'time')) {
+    vals = {};
+    cab.order.forEach((k, i) => {
+      const u = unidades[i];
+      vals[k] = (u.value === '12:00:00' && u.ampm === 'AM') ? '' : MALLA_to12h(u);
+    });
+  }
+  if (!vals) return null;
+  return cab.order.filter(k => vals[k]).map(k => ({ label: MALLA_AUX_LABEL[k], value: vals[k] }));
+}
+function MALLA_mismoDetalle(a, b) {
+  return a.length === b.length && a.every((d, i) => d.label === b[i].label && d.value === b[i].value);
+}
+
+// Revisión: filas donde la cabecera y la ley de campos no coinciden.
+// Uso en consola: MALLA_auditarAuxiliares()
+function MALLA_auditarAuxiliares() {
+  const filas = MALLA_DATA.filter(r => r.auxConflicto).map(r => ({
+    fecha: r.fechaOriginal, nombre: r.nombre,
+    aplicado: (r.detalle || []).map(d => `${d.label} ${d.value}`).join(' | ')
+  }));
+  console.table(filas);
+  return filas;
+}
+
 function MALLA_parseText(text) {
   const lines = (text || '').split(/\r?\n/);
   const records = [];
+  let cabecera = null; // cabecera vigente (se relee si se repite por página)
   for (const raw of lines) {
     const line = raw.trim();
     if (!line) continue;
     const tokens = line.split(/\s+/);
     if (tokens.length < 3) continue;
-    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(tokens[0])) continue; // salta encabezados
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(tokens[0])) {
+      const cab = MALLA_parseCabecera(line);
+      if (cab) cabecera = cab;
+      continue; // salta encabezados
+    }
 
     const fechaOriginal = tokens[0];
     const estado = tokens[1].toUpperCase();
@@ -3546,6 +3634,7 @@ function MALLA_parseText(text) {
     // La malla usa "12:00:00 a. m." como relleno cuando una columna (break/almuerzo)
     // no aplica ese día — típico de sábados/domingos sin almuerzo. Se descarta para
     // que solo se muestren los breaks/almuerzo que realmente existen ese día.
+    const unidadesCrudas = restUnits; // con los rellenos 12:00 a. m. (marcan la columna vacía)
     restUnits = restUnits.filter(u => !(u.type === 'time' && u.value === '12:00:00' && u.ampm === 'AM'));
     // ── Corrección: etiquetar por CANTIDAD de valores, no por posición fija ──
     // Antes se usaba siempre ['Break 1','Break 2','Salida almuerzo','Regreso
@@ -3558,10 +3647,17 @@ function MALLA_parseText(text) {
     //   3 valores→ turno completo, Break 1 + Break 2 + Almuerzo
     //   4 valores→ caso raro con almuerzo de salida y regreso separados
     const labels = MALLA_labelsParaDetalle(restUnits.length);
-    const detalle = restUnits.map((u, k) => ({
+    const detallePorCampos = restUnits.map((u, k) => ({
       label: labels[k] || `Registro ${k + 1}`,
       value: u.type === 'time' ? MALLA_to12h(u) : u.value
     }));
+    // Lectura por cabecera (si la fila trae posición); si no, queda la ley de campos.
+    const detallePorCab = MALLA_detallePorCabecera(cabecera, line, unidadesCrudas);
+    let detalle = detallePorCampos, auxOrigen = 'campos', auxConflicto = false;
+    if (detallePorCab) {
+      auxConflicto = !MALLA_mismoDetalle(detallePorCab, detallePorCampos);
+      if (MALLA_AUX_PRIORIDAD === 'cabecera') { detalle = detallePorCab; auxOrigen = 'cabecera'; }
+    }
 
     const [d, m, y] = fechaOriginal.split('/').map(Number);
     const fechaISO = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
@@ -3574,7 +3670,9 @@ function MALLA_parseText(text) {
       entradaDisplay, salidaDisplay,
       horas: horasDisplay,
       horasRaw,
-      detalle
+      detalle,
+      auxOrigen, auxV: MALLA_AUX_VERSION,
+      ...(auxConflicto ? { auxConflicto: true } : {})
     });
   }
   return records;
@@ -3627,7 +3725,16 @@ function MALLA_init() {
     // de versión a mano.
     if (stored && hashGuardado === hashActualDelArchivo) {
       const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed) && parsed.length) { MALLA_DATA = parsed; MALLA_limpiarCedulas(); return; }
+      if (Array.isArray(parsed) && parsed.length) {
+        MALLA_DATA = parsed;
+        // Lo guardado se leyó con la lógica anterior (sin cabecera): se relee del texto crudo vigente
+        // (incluye cambios de turno/ausencias ya aplicados) para que los auxiliares salgan por cabecera.
+        if (!MALLA_DATA.every(r => r.auxV === MALLA_AUX_VERSION)) {
+          const re = MALLA_parseText(MALLA_LAST_RAW_TEXT || MALLA_RAW_DEFAULT);
+          if (re.length) { MALLA_DATA = re; MALLA_persist(); }
+        }
+        MALLA_limpiarCedulas(); return;
+      }
     }
   } catch {}
   MALLA_DATA = MALLA_parseText(MALLA_RAW_DEFAULT);
@@ -3705,7 +3812,8 @@ function MALLA_ingestText(text, sourceLabel) {
   MALLA_persist();
   MALLA_refreshStatus();
   const personas = MALLA_getNames().length;
-  showToast('success', '✅ Malla actualizada', `${parsed.length} registros · ${personas} personas cargadas.`);
+  const nConf = parsed.filter(r => r.auxConflicto).length;
+  showToast('success', '✅ Malla actualizada', `${parsed.length} registros · ${personas} personas cargadas.` + (nConf ? ` · ${nConf} filas con auxiliares distintos entre cabecera y campos (MALLA_auditarAuxiliares())` : ''));
   if (typeof fase2AddActivity === 'function') fase2AddActivity('🗂️', `<strong>Malla actualizada</strong> desde ${sourceLabel} · ${parsed.length} turnos`);
   if (currentUser && !currentUser.isAdmin) {
     const canon = currentUser.mallaNombre || MALLA_matchName(currentUser.nombre);
@@ -3802,7 +3910,15 @@ const MALLA_EXCEL_COLORS = {
 // 3 valores → Break I, Break II, Almuerzo · 2 valores → Break I, Almuerzo
 // (sin Break II) · 1 valor → solo Break I · 0 → todo vacío.
 function MALLA_mapDetalleColumnas(detalle) {
-  const vals = (detalle || []).map(d => d.value);
+  // Si el detalle trae etiquetas conocidas, cada valor va a SU columna (Break II no se corre a Almuerzo)
+  const colPorLabel = { 'Break 1': 'breakI', 'Break 2': 'breakII', 'Salida almuerzo': 'almuerzo' };
+  const d = detalle || [];
+  if (d.length && d.every(x => colPorLabel[x.label] || x.label === 'Regreso almuerzo')) {
+    const out = { breakI: '', breakII: '', almuerzo: '' };
+    d.forEach(x => { const c = colPorLabel[x.label]; if (c) out[c] = x.value; });
+    return out;
+  }
+  const vals = (detalle || []).map(x => x.value);
   if (vals.length >= 3) return { breakI: vals[0], breakII: vals[1], almuerzo: vals[2] };
   if (vals.length === 2) return { breakI: vals[0], breakII: '', almuerzo: vals[1] };
   if (vals.length === 1) return { breakI: vals[0], breakII: '', almuerzo: '' };
@@ -4059,10 +4175,65 @@ function MALLA_downloadUpdatedHTML(filename) {
     return false;
   }
 }
+// ── PDF: si una columna auxiliar viene vacía no hay texto que la marque y los
+// demás auxiliares "se corren". Aquí se lee la cabecera del PDF (posición X de
+// ENTRADA/SALIDA/BREAK I/BREAK II/ALMUERZO/Horas) y, en cada fila, se inserta el
+// relleno estándar "12:00:00 a. m." en la columna que quedó vacía. El parser ya
+// descarta ese relleno, pero ahora sabe en qué columna estaba.
+function MALLA_pdfLeerCabecera(items) {
+  const s = items.map(i => i.str).join(' ');
+  if (!/break/i.test(s) || !/almuerzo/i.test(s)) return null;
+  let pos = 0;
+  const rangos = items.map(i => { const r = { a: pos, b: pos + i.str.length, x0: i.x, x1: i.x + (i.w || 0) }; pos += i.str.length + 1; return r; });
+  const buscar = re => {
+    const m = re.exec(s); if (!m) return null;
+    const a = m.index, b = m.index + m[0].length;
+    const t = rangos.filter(r => r.a < b && r.b > a);
+    return t.length ? { x0: Math.min(...t.map(r => r.x0)), x1: Math.max(...t.map(r => r.x1)) } : null;
+  };
+  const cab = { entrada: buscar(/entrada/i), salida: buscar(/salida/i), break1: buscar(MALLA_RE_B1),
+                break2: buscar(MALLA_RE_B2), almuerzo: buscar(/almuerzo/i), horas: buscar(/horas/i) };
+  return (cab.entrada && cab.salida && cab.break1 && cab.almuerzo) ? cab : null;
+}
+function MALLA_pdfRellenarAux(items, cab) {
+  const texto = items.map(i => i.str).join(' ');
+  const horaRe = /^\d{1,2}:\d{2}(:\d{2})?$/, ampmRe = /^(?:[ap]\.?|m\.?|[ap]\.?\s*m\.?)$/i;
+  const celdas = [];
+  for (let i = 0; i < items.length; i++) {
+    const t = items[i].str.trim();
+    if (horaRe.test(t) || /^\d{1,2}:\d{2}(:\d{2})?\s*[ap]\.?\s*m\.?$/i.test(t)) {
+      let x1 = items[i].x + (items[i].w || 0), j = i + 1;
+      while (j < items.length && j - i <= 2 && ampmRe.test(items[j].str.trim())) { x1 = items[j].x + (items[j].w || 0); j++; }
+      celdas.push({ x0: items[i].x, x1 });
+      i = j - 1;
+    }
+  }
+  const claves = Object.keys(cab).filter(k => cab[k]);
+  const ocupadas = {};
+  for (const c of celdas) {
+    const cx = (c.x0 + c.x1) / 2;
+    let mejor = null, mejorS = -Infinity;
+    claves.forEach(k => {
+      const h = cab[k], ov = Math.min(c.x1, h.x1) - Math.max(c.x0, h.x0), dc = Math.abs(cx - (h.x0 + h.x1) / 2);
+      const sc = ov > 0 ? 1e6 + ov - dc : -dc;
+      if (sc > mejorS) { mejorS = sc; mejor = k; }
+    });
+    if (ocupadas[mejor]) return texto; // ambiguo: se deja la fila como venía
+    ocupadas[mejor] = true;
+  }
+  if (!ocupadas.entrada || !ocupadas.salida) return texto; // fila sin turno (ausencia, etc.)
+  const extra = [];
+  ['break1', 'break2', 'almuerzo'].forEach(k => {
+    if (cab[k] && !ocupadas[k]) extra.push({ x: (cab[k].x0 + cab[k].x1) / 2, w: 0, str: '12:00:00 a. m.' });
+  });
+  if (!extra.length) return texto;
+  return items.concat(extra).sort((a, b) => a.x - b.x).map(i => i.str).join(' ');
+}
 async function MALLA_extractPdfText(file) {
   const buf = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
   let lines = [];
+  let cabPdf = null; // cabecera vigente (por si solo aparece en la primera página)
   for (let p = 1; p <= pdf.numPages; p++) {
     const page = await pdf.getPage(p);
     const content = await page.getTextContent();
@@ -4070,12 +4241,18 @@ async function MALLA_extractPdfText(file) {
     content.items.forEach(item => {
       const y = Math.round(item.transform[5] / 3) * 3;
       if (!buckets.has(y)) buckets.set(y, []);
-      buckets.get(y).push({ x: item.transform[4], str: item.str });
+      buckets.get(y).push({ x: item.transform[4], w: item.width || 0, str: item.str });
     });
     const rows = Array.from(buckets.entries()).sort((a, b) => b[0] - a[0]);
     rows.forEach(([, items]) => {
       items.sort((a, b) => a.x - b.x);
-      lines.push(items.map(i => i.str).join(' '));
+      const texto = items.map(i => i.str).join(' ');
+      try {
+        const cab = MALLA_pdfLeerCabecera(items);
+        if (cab) { cabPdf = cab; lines.push(texto); return; }
+        if (cabPdf && /^\s*\d{1,2}\/\d{1,2}\/\d{4}(\s|$)/.test(texto)) { lines.push(MALLA_pdfRellenarAux(items, cabPdf)); return; }
+      } catch (e) { console.error('Auxiliares PDF:', e); }
+      lines.push(texto);
     });
   }
   return lines.join('\n');
@@ -5449,7 +5626,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-19.2132';
+const TB_APP_VERSION = '2026-09-19.2207';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
