@@ -1848,6 +1848,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}.xlsx`)">
           📊 Descargar Excel (igual al PDF)
         </button>
+        <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_downloadOfficeBtnClick()">
+          🏢 Descargar HTML de Oficina (sin conexiones, para intranet)
+        </button>
         <button type="button" id="buzon-toggle-btn" class="btn btn-primary w-full" style="margin-top:10px" onclick="BUZON_toggleEnabled()">✅ Habilitar Buzón</button>
       </div>
 
@@ -3434,6 +3437,14 @@ const MALLA_BASELINE_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BRE
 
 const MALLA_STORAGE_KEY = 'tb_malla_data_v1';
 const ACCOUNTS_KEY = 'tb_accounts_v1';
+// ── VERSIÓN DE OFICINA (sin conexiones a la Sheet, para intranet) ──
+// TB_MODO_OFICINA_DEFAULT queda en false en el archivo normal. Al generar el
+// HTML de oficina (ver MALLA_buildOfficeHTML) se reemplaza por true, y con
+// eso TB_api/BUZON_api dejan de intentar cualquier fetch. TB_ACCOUNTS_DEFAULT
+// se hornea con las cuentas (usuario+contraseña) vigentes en ese momento, para
+// que el login funcione 100% local. Ver ACC_seedFromDefault más abajo.
+const TB_MODO_OFICINA_DEFAULT = false;
+const TB_ACCOUNTS_DEFAULT = {};
 let MALLA_DATA = [];
 
 function normalizeName(s) {
@@ -4174,6 +4185,73 @@ function MALLA_downloadUpdatedHTML(filename) {
     return false;
   }
 }
+
+// ── Versión de OFICINA: mismo HTML autocontenido, pero sin ninguna
+// conexión externa (ni Google Fonts, ni CDN de pdf.js/exceljs, ni fetch al
+// Apps Script) y sin las funciones que dependen de esa conexión (Novedades:
+// cambios de turno/incapacidades, y el Buzón). Sirve para subirla tal cual a
+// una intranet corporativa sin salida a internet: el asesor solo entra a
+// consultar su turno. Las cuentas (usuario+contraseña) quedan horneadas en
+// el archivo para que el login funcione 100% local (ver ACC_seedFromDefault:
+// si no cambiaron, quedan indexadas igual; si la contraseña cambió, se
+// actualiza al descargar de nuevo esta versión). ──
+function MALLA_buildOfficeHTML() {
+  let html = MALLA_buildUpdatedHTML();
+  if (!html) return null;
+
+  html = html.replace(
+    /const TB_MODO_OFICINA_DEFAULT = (true|false);/,
+    'const TB_MODO_OFICINA_DEFAULT = true;'
+  );
+
+  const cuentasJSON = JSON.stringify(ACC_load());
+  html = html.replace(
+    /const TB_ACCOUNTS_DEFAULT = \{\};/,
+    'const TB_ACCOUNTS_DEFAULT = ' + cuentasJSON + ';'
+  );
+
+  // Sin Google Fonts ni CDN externos (pdf.js/exceljs no hacen falta para
+  // solo consultar el turno; usan fuente de respaldo del sistema).
+  html = html
+    .replace(/<link rel="preconnect"[^>]*>\s*/g, '')
+    .replace(/<link[^>]*fonts\.googleapis[^>]*>\s*/g, '')
+    .replace(/<script src="https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/pdf\.js[^"]*"><\/script>\s*/g, '')
+    .replace(/<script src="https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/exceljs[^"]*"><\/script>\s*/g, '');
+
+  // Oculta Novedades (cambio de turno/incapacidad) y el Buzón: en esta
+  // versión el asesor solo consulta su turno.
+  html = html.replace('</head>',
+    '<style>[onclick*="novedades"],.qc-buzon{display:none!important}</style></head>'
+  );
+
+  return html;
+}
+
+function MALLA_downloadOfficeHTML(filename) {
+  try {
+    const html = MALLA_buildOfficeHTML();
+    if (!html) return false;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename || `Turno_Oficina_${MALLA_todayISO()}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    return true;
+  } catch (e) {
+    console.error('MALLA_downloadOfficeHTML error:', e);
+    return false;
+  }
+}
+
+function MALLA_downloadOfficeBtnClick() {
+  const ok = MALLA_downloadOfficeHTML();
+  ok ? showToast('success', '🏢 HTML de oficina descargado', 'Sin conexiones externas, listo para la intranet.')
+     : showToast('error', '⚠️ Nada que descargar', 'Actualiza la malla primero.');
+}
 // ── PDF: si una columna auxiliar viene vacía no hay texto que la marque y los
 // demás auxiliares "se corren". Aquí se lee la cabecera del PDF (posición X de
 // ENTRADA/SALIDA/BREAK I/BREAK II/ALMUERZO/Horas) y, en cada fila, se inserta el
@@ -4290,6 +4368,36 @@ function MALLA_applyPastedText() {
 function ACC_load() { try { return JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {}; } catch { return {}; } }
 function ACC_save(all) { try { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(all)); } catch {} }
 function ACC_hash(pin) { return btoa('tbmpc_' + pin + '_2026'); }
+
+// Fusiona las cuentas horneadas en el archivo (TB_ACCOUNTS_DEFAULT, solo
+// existe con datos reales en la versión de oficina) con las que ya tiene
+// este dispositivo: si el usuario y la contraseña no cambiaron, se deja tal
+// cual (queda indexado igual, sin tocar apodo/foto/loginCount locales); si
+// la contraseña o el nombre sí cambiaron, se actualizan esos campos. Así,
+// cada vez que se reparte un HTML de oficina nuevo, el que ya tenía cuenta
+// registrada en su navegador queda al día sin necesitar ninguna conexión.
+function ACC_seedFromDefault() {
+  try {
+    if (typeof TB_ACCOUNTS_DEFAULT === 'undefined') return;
+    const local = ACC_load();
+    let changed = false;
+    Object.keys(TB_ACCOUNTS_DEFAULT).forEach(norm => {
+      const def = TB_ACCOUNTS_DEFAULT[norm];
+      const cur = local[norm];
+      if (!cur) {
+        local[norm] = Object.assign({}, def);
+        changed = true;
+      } else if (cur.pass !== def.pass || cur.nombre !== def.nombre) {
+        cur.pass = def.pass;
+        cur.nombre = def.nombre;
+        if (def.codigoMaya) cur.codigoMaya = def.codigoMaya;
+        if (def.rol) cur.rol = def.rol;
+        changed = true;
+      }
+    });
+    if (changed) ACC_save(local);
+  } catch (e) { console.error('ACC_seedFromDefault error:', e); }
+}
 
 // ── SEGURO: Historial de accesos (100% independiente de ACCOUNTS_KEY) ──
 // Vive en su propia llave, que NUNCA se incluye en la limpieza por versión
@@ -4440,6 +4548,9 @@ function TB_setSheetUrl(url) { try { localStorage.setItem(TB_SHEET_KEY, (url || 
 // Llamada genérica al backend. GET para leer, POST (text/plain, sin preflight) para escribir.
 // Reintenta automáticamente si la red falla (típico en datos móviles inestables) antes de darse por vencido.
 async function TB_api(action, payload, _intento) {
+  // Versión de oficina: cero conexiones, ni siquiera el intento (la intranet
+  // corporativa no tiene salida a internet).
+  if (TB_MODO_OFICINA_DEFAULT) return null;
   const intento = _intento || 1;
   const url = TB_getSheetUrl();
   if (!url) return null;
@@ -5628,7 +5739,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-20.1050';
+const TB_APP_VERSION = '2026-09-21.1827';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -5669,6 +5780,7 @@ function TB_clearStaleCacheIfNewVersion() {
   // Mostrar splash, verificar conexión con la Sheet ANTES de dejar entrar
   showScreen('splash');
   TB_clearStaleCacheIfNewVersion();
+  ACC_seedFromDefault();
   if (typeof showLoader === 'function' && TB_getSheetUrl()) showLoader('Verificando información...');
   TB_SYNC_PROMISE = TB_syncFromSheet(); // arranca ya, pero queda "reservada" para que login/registro la esperen
   await TB_ensureSynced();
@@ -7620,6 +7732,7 @@ function BUZON_getSheetUrl() {
 // Llamada genérica al backend del buzón (independiente de TB_api).
 // Mismo patrón de reintentos que TB_api, pero apuntando a su propia URL.
 async function BUZON_api(action, payload, _intento) {
+  if (TB_MODO_OFICINA_DEFAULT) return null;
   const url = BUZON_getSheetUrl();
   if (!url) return null; // sin conector configurado todavía → modo local
   const intento = _intento || 1;
