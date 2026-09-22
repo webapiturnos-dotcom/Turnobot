@@ -332,6 +332,218 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   gap:4px; padding:8px 4px; cursor:pointer; transition:var(--transition);
   color:var(--gris); position:relative;
 }
+/* ── Mascota EVA ── */
+#tb-eva-wrap {
+  position: fixed;
+  right: 14px;
+  bottom: 104px;
+  width: 46px;
+  height: 58px;
+  z-index: 40;
+  cursor: pointer;
+  pointer-events: auto;
+  display: none;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+  animation: tbEvaFloat 3.4s ease-in-out infinite;
+  transition: transform .15s ease;
+}
+#tb-eva-wrap:active { transform: scale(0.92); }
+#tb-eva-platform {
+  position: fixed;
+  right: 12px;
+  bottom: 78px;
+  z-index: 40;
+  width: 50px;
+  text-align: center;
+  display: none;
+  background: linear-gradient(135deg,#22c3f2,#0a6ea8);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+  cursor: pointer;
+  animation: tbPlatPulse 2.4s ease-in-out infinite;
+}
+@keyframes tbPlatPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+  50% { transform: scale(1.06); box-shadow: 0 4px 14px rgba(34,195,242,.55); }
+}
+#tb-eva-svg { width: 100%; height: 100%; display: block; }
+#tb-eva-eyes { animation: tbEvaBlink 4.5s ease-in-out infinite; transform-origin: 60px 38px; }
+#tb-eva-arm-left { animation: tbEvaWaveL 2.6s ease-in-out infinite; }
+#tb-eva-arm-right { animation: tbEvaWaveR 2.6s ease-in-out infinite .3s; }
+#tb-eva-mouth { opacity: 0; transition: opacity .35s ease; }
+#tb-eva-mouth.tb-eva-smile { opacity: 1; }
+@keyframes tbEvaFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes tbEvaBlink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.12); }
+}
+@keyframes tbEvaWaveL {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+}
+@keyframes tbEvaWaveR {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(14deg); }
+}
+/* Acrobacia: se agrega/quita la clase .tb-eva-trick por JS de vez en cuando */
+#tb-eva-wrap.tb-eva-trick {
+  animation: tbEvaTrick 1.1s cubic-bezier(.34,1.56,.64,1) 1;
+}
+@keyframes tbEvaTrick {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  35%  { transform: translateY(-26px) rotate(180deg) scale(1.08); }
+  70%  { transform: translateY(-10px) rotate(360deg) scale(1.04); }
+  100% { transform: translateY(0) rotate(360deg) scale(1); }
+}
+.tb-eva-bubble {
+  position: absolute;
+  bottom: 64px;
+  right: 0;
+  max-width: 168px;
+  background: #fff;
+  color: #0b1c33;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 8px 10px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+  white-space: normal;
+}
+.tb-eva-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+@media (max-width: 360px) {
+  #tb-eva-wrap { width: 38px; height: 48px; right: 10px; bottom: 96px; }
+  #tb-eva-platform { right: 8px; bottom: 74px; width: 44px; font-size: 9px; }
+}
+
+/* ── EVA Arcade: minijuegos para el rato ── */
+.arcade-overlay {
+  position: fixed; inset: 0; z-index: 10000;
+  background: linear-gradient(160deg,#0b1c33,#101a2e 60%);
+  display: none; flex-direction: column;
+  color: #fff;
+}
+.arcade-screen { display: none; flex-direction: column; height: 100%; padding: 16px; box-sizing: border-box; }
+.arcade-screen h2 { margin: 6px 0 2px; text-align: center; }
+.arcade-screen > p { text-align: center; color: #9fb3d1; margin: 0 0 18px; font-size: 13px; }
+.arcade-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  max-width: 340px; margin: 0 auto; width: 100%;
+}
+.arcade-card {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px; padding: 18px 8px; text-align: center; font-size: 13px;
+  font-weight: 600; cursor: pointer; line-height: 1.8; transition: transform .15s ease, background .15s ease;
+}
+.arcade-card:active { transform: scale(0.95); background: rgba(255,255,255,0.14); }
+.arcade-card span.emoji { font-size: 28px; display: block; }
+#arcade-menu .btn { max-width: 340px; margin: 18px auto 0; }
+.arcade-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px; gap: 6px;
+}
+.arcade-topbar button {
+  flex: 1;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; font-size: 11px; font-weight: 700; padding: 7px 6px;
+  border-radius: 10px; cursor: pointer; white-space: nowrap;
+}
+.arcade-score-row { text-align: center; font-size: 13px; font-weight: 700; color: #aef1ff; margin-bottom: 10px; }
+#arcade-game-area {
+  position: relative; flex: 1; display: flex; align-items: center;
+  justify-content: center; overflow: hidden;
+}
+.arcade-pause-overlay {
+  position: absolute; inset: 0; z-index: 5;
+  background: rgba(11,28,51,0.75); display: flex; align-items: center;
+  justify-content: center; font-size: 18px; font-weight: 700;
+}
+/* Memoria */
+.arcade-memo-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  width: 100%; max-width: 320px;
+}
+.arcade-memo-card {
+  aspect-ratio: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; cursor: pointer;
+}
+.arcade-memo-card.open { background: rgba(34,195,242,0.25); }
+.arcade-memo-card.matched { background: rgba(34,197,94,0.25); border-color: rgba(34,197,94,0.4); }
+/* Atrapa */
+.arcade-atrapa-area { position: absolute; inset: 0; }
+.arcade-atrapa-item {
+  position: absolute; font-size: 28px; cursor: pointer; user-select: none;
+  transform: translateZ(0);
+}
+.arcade-gameover { text-align: center; font-size: 16px; font-weight: 700; margin: auto; }
+/* Gato (3 en raya) */
+.arcade-gato-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  width: 100%; max-width: 240px; margin: 0 auto;
+}
+.arcade-gato-cell {
+  aspect-ratio: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 30px; cursor: pointer;
+}
+.arcade-gato-msg { text-align: center; margin-top: 14px; font-size: 15px; font-weight: 700; }
+/* EVA Voladora */
+.arcade-fly-area {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 10px;
+  background: linear-gradient(180deg,#1b3a63,#0b1c33 85%);
+}
+.arcade-fly-eva { position: absolute; left: 50px; top: 90px; will-change: transform, top; }
+.arcade-fly-pipe {
+  position: absolute; width: 44px; background: linear-gradient(90deg,#22c3f2,#0a6ea8);
+  border-radius: 6px; will-change: left;
+}
+/* EVA Saltarina */
+.arcade-run-area {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 10px;
+  background: linear-gradient(180deg,#1b3a63,#0b1c33 85%);
+}
+.arcade-run-ground {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+  background: rgba(255,255,255,0.25);
+}
+.arcade-run-eva {
+  position: absolute; left: 40px; bottom: 6px; will-change: transform;
+}
+.arcade-run-spike {
+  position: absolute; bottom: 4px; font-size: 26px; color: #f59e0b; will-change: left;
+}
+/* Culebrita y Tetris */
+.arcade-canvas { display: block; background: #0b1c33; border-radius: 10px; touch-action: none; }
+.arcade-snake-wrap, .arcade-tetris-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; width: 100%; height: 100%;
+}
+#arcade-snake-canvas { width: min(78vw, 260px); height: auto; aspect-ratio: 14 / 18; }
+#arcade-tetris-canvas { width: min(52vw, 190px); height: auto; aspect-ratio: 8 / 16; }
+.arcade-dpad { display: grid; grid-template-columns: repeat(3, 44px); grid-template-rows: repeat(3, 40px); gap: 4px; justify-content: center; }
+.arcade-dpad-btn {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; font-size: 16px; border-radius: 8px; cursor: pointer;
+}
+.arcade-dpad-up    { grid-column: 2; grid-row: 1; }
+.arcade-dpad-left  { grid-column: 1; grid-row: 2; }
+.arcade-dpad-right { grid-column: 3; grid-row: 2; }
+.arcade-dpad-down  { grid-column: 2; grid-row: 3; }
+.arcade-tetris-controls { display: flex; gap: 8px; }
+.arcade-tetris-controls .arcade-dpad-btn { width: 46px; height: 40px; font-size: 18px; }
+
 .nav-item.active { color:var(--rojo); }
 .nav-item::before {
   content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
@@ -1276,6 +1488,86 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
+<!-- ── Mascota EVA: solo decorativa/interactiva, no bloquea nada de la
+     app (pointer-events limitado a ella misma, z-index bajo el de
+     modales/toasts/nav). Aparece igual en la versión web y en la de
+     oficina porque vive en el HTML base que ambas comparten. ── -->
+<div id="tb-eva-wrap" onclick="TB_EVA_click()" title="EVA" role="button" aria-label="EVA, la asistente de TurnoBot" class="" style="display: block;">
+  <svg id="tb-eva-svg" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="tbEvaShine" cx="35%" cy="25%" r="75%">
+        <stop offset="0%" stop-color="#ffffff"></stop>
+        <stop offset="55%" stop-color="#eef3fb"></stop>
+        <stop offset="100%" stop-color="#c9d6ea"></stop>
+      </radialGradient>
+      <radialGradient id="tbEvaEye" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#aef1ff"></stop>
+        <stop offset="60%" stop-color="#22c3f2"></stop>
+        <stop offset="100%" stop-color="#0a6ea8"></stop>
+      </radialGradient>
+    </defs>
+    <ellipse cx="35" cy="120" rx="7" ry="24" fill="url(#tbEvaShine)"></ellipse>
+    <ellipse cx="85" cy="120" rx="7" ry="24" fill="url(#tbEvaShine)"></ellipse>
+    <path d="M60 62 C88 62 100 82 100 108 C100 132 82 146 60 146 C38 146 20 132 20 108 C20 82 32 62 60 62 Z" fill="url(#tbEvaShine)"></path>
+    <g id="tb-eva-arm-left" style="transform-origin:23px 76px;">
+      <ellipse cx="23" cy="90" rx="6" ry="17" fill="url(#tbEvaShine)"></ellipse>
+    </g>
+    <g id="tb-eva-arm-right" style="transform-origin:97px 76px;">
+      <ellipse cx="97" cy="90" rx="6" ry="17" fill="url(#tbEvaShine)"></ellipse>
+    </g>
+    <g id="tb-eva-head">
+      <ellipse cx="60" cy="38" rx="42" ry="34" fill="url(#tbEvaShine)"></ellipse>
+      <ellipse cx="60" cy="38" rx="30" ry="21" fill="#0b1c33"></ellipse>
+      <g id="tb-eva-eyes">
+        <ellipse cx="49" cy="38" rx="7" ry="9" fill="url(#tbEvaEye)"></ellipse>
+        <ellipse cx="71" cy="38" rx="7" ry="9" fill="url(#tbEvaEye)"></ellipse>
+      </g>
+      <path id="tb-eva-mouth" d="M50 50 Q60 58 70 50" fill="none" stroke="#aef1ff" stroke-width="3" stroke-linecap="round" class=""></path>
+    </g>
+  </svg>
+  <div id="tb-eva-bubble" class="tb-eva-bubble">¡Ánimo con la jornada! 💪</div>
+</div>
+
+<div id="tb-eva-platform" onclick="ARCADE_open()" role="button" aria-label="Jugar minijuegos con EVA" style="display: block;">🕹️<br>Jugar</div>
+
+<!-- ── EVA Arcade: minijuegos cortos para el rato en el trabajo. Vive
+     aparte de la app (overlay de pantalla completa) y no toca ninguna
+     pantalla ni dato de turnos/malla. Igual en la versión web y la de
+     oficina. ── -->
+<div id="arcade-overlay" class="arcade-overlay" style="display: none;">
+  <div id="arcade-menu" class="arcade-screen" style="display: flex;">
+    <h2>🎮 EVA Arcade</h2>
+    <p>Para el rato — elige un juego</p>
+    <div class="arcade-grid">
+      <div class="arcade-card" onclick="ARCADE_startGame('volar')"><span class="emoji">🕊️</span>EVA Voladora</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('saltar')"><span class="emoji">🏃</span>EVA Saltarina</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('memoria')"><span class="emoji">🧠</span>Memoria</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('atrapa')"><span class="emoji">🎯</span>Atrapa</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('gato')"><span class="emoji">❌⭕</span>3 en raya</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('culebrita')"><span class="emoji">🐍</span>Culebrita</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('tetris')"><span class="emoji">🧱</span>Tetris</div>
+    </div>
+    <button class="btn btn-secondary" onclick="ARCADE_close()">⬅ Volver a TurnoBot</button>
+  </div>
+  <div id="arcade-game" class="arcade-screen" style="display: none;">
+    <div class="arcade-topbar">
+      <button onclick="ARCADE_backToMenu()">⬅ Volver</button>
+      <button onclick="ARCADE_restart()">🔄 Reiniciar</button>
+      <button id="arcade-pause-btn" onclick="ARCADE_togglePause()">⏸ Pausa</button>
+    </div>
+    <div id="arcade-score" class="arcade-score-row">Líneas: 0</div>
+    <div id="arcade-game-area"><div class="arcade-tetris-wrap">
+      <canvas id="arcade-tetris-canvas" class="arcade-canvas" width="160" height="320"></canvas>
+      <div class="arcade-tetris-controls">
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_move(-1)">◀</button>
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_rotate()">⟳</button>
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_move(1)">▶</button>
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_softDrop()">⤓</button>
+      </div>
+    </div></div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════
      APP
 ═══════════════════════════════════════════════════ -->
@@ -1502,7 +1794,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 21/09/2026 · 1827</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 15/09/2026 · 0906</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1516,7 +1808,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -2782,6 +3074,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <div class="profile-section">
+        <label style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+          <span>🔔 Avisos por voz (break, almuerzo, salida)</span>
+          <input type="checkbox" id="voz-toggle" onchange="VOZ_setEnabled(this.checked)" style="width:20px; height:20px;">
+        </label>
+        <div style="font-size:11px; color:var(--gris); margin-top:4px;">Te avisa hablando cuando llega la hora de tu break, almuerzo o salida. Funciona sin internet, pero solo mientras esta pestaña esté abierta.</div>
+        <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="VOZ_probar()">🔊 Escuchar un aviso de prueba</button>
+      </div>
+
+      <div class="profile-section">
         <button class="btn btn-danger w-full" onclick="doLogout()">
           🔒 Cerrar sesión
         </button>
@@ -3001,11 +3302,11 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  25/9/2026 ACTIVO BRIANIS MILETH TORRES MÁRQUEZ 7:00:00 a. m. 2:00:00 p. m. 9:00:00 a. m. 12:00:00 p. m. 12:00:00 a. m. 7:00:00
  26/9/2026 ACTIVO BRIANIS MILETH TORRES MÁRQUEZ 8:00:00 a. m. 3:00:00 p. m. 9:30:00 a. m. 12:00:00 a. m. 11:30:00 a. m. 6:00:00
  21/9/2026 ACTIVO CARLOS ENRIQUE GUZMAN JIMENEZ 8:30:00 a. m. 5:00:00 p. m. 10:00:00 a. m. 3:00:00 p. m. 12:30:00 p. m. 7:30:00
-22/9/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	7:30:00	a.	m.	5:00:00	p.	m.	10:00:00	a.	m.	3:00:00	p.	m.	12:30:00	p.	m.	8:30:00
-23/9/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	5:00:00	p.	m.	9:45:00	a.	m.	3:00:00	p.	m.	12:30:00	p.	m.	8:00:00
+ 22/9/2026 ACTIVO CARLOS ENRIQUE GUZMAN JIMENEZ 8:30:00 a. m. 5:00:00 p. m. 10:00:00 a. m. 3:00:00 p. m. 12:30:00 p. m. 7:30:00
+ 23/9/2026 ACTIVO CARLOS ENRIQUE GUZMAN JIMENEZ 9:00:00 a. m. 5:00:00 p. m. 9:45:00 a. m. 3:00:00 p. m. 12:30:00 p. m. 7:00:00
  24/9/2026 ACTIVO CARLOS ENRIQUE GUZMAN JIMENEZ 9:00:00 a. m. 5:00:00 p. m. 9:45:00 a. m. 3:00:00 p. m. 12:30:00 p. m. 7:00:00
  25/9/2026 ACTIVO CARLOS ENRIQUE GUZMAN JIMENEZ 9:00:00 a. m. 5:00:00 p. m. 9:45:00 a. m. 3:00:00 p. m. 12:30:00 p. m. 7:00:00
-26/9/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	1:00:00	p.	m.	9:45:00	a.	m.	12:00:00	a.	m.	12:30:00	p.	m.	4:00:00
+ 26/9/2026 ACTIVO CARLOS ENRIQUE GUZMAN JIMENEZ 8:00:00 a. m. 3:00:00 p. m. 9:45:00 a. m. 12:00:00 a. m. 12:30:00 p. m. 6:00:00
  21/9/2026 ACTIVO CAROLL DAYANA BERDUGO BERDUGO 12:00:00 p. m. 7:00:00 p. m. 2:15:00 p. m. 4:45:00 p. m. 12:00:00 a. m. 7:00:00
  22/9/2026 ACTIVO CAROLL DAYANA BERDUGO BERDUGO 12:00:00 p. m. 7:00:00 p. m. 2:15:00 p. m. 4:45:00 p. m. 12:00:00 a. m. 7:00:00
  23/9/2026 ACTIVO CAROLL DAYANA BERDUGO BERDUGO 12:00:00 p. m. 7:00:00 p. m. 2:15:00 p. m. 4:45:00 p. m. 12:00:00 a. m. 7:00:00
@@ -3097,7 +3398,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  25/9/2026 ACTIVO JUAN DAVID ECHEVERRIA PRINCE 10:00:00 a. m. 7:00:00 p. m. 11:45:00 p. m. 4:45:00 p. m. 1:30:00 p. m. 8:00:00
  26/9/2026 ACTIVO JUAN DAVID ECHEVERRIA PRINCE 8:00:00 a. m. 3:00:00 p. m. 9:30:00 a. m. 12:00:00 a. m. 12:30:00 p. m. 6:00:00
  21/9/2026 ACTIVO JULIETH PAOLA PERALTA MARTINEZ 7:00:00 a. m. 2:15:00 p. m. 9:30:00 a. m. 12:15:00 p. m. 12:00:00 a. m. 7:15:00
-22/9/2026	ACTIVO	JULIETH	PAOLA	PERALTA	MARTINEZ	8:30:00	a.	m.	5:00:00	p.	m.	10:15:00	a.	m.	3:15:00	p.	m.	1:00:00	p.	m.	7:30:00
+ 22/9/2026 ACTIVO JULIETH PAOLA PERALTA MARTINEZ 7:00:00 a. m. 2:15:00 p. m. 9:30:00 a. m. 12:15:00 p. m. 12:00:00 a. m. 7:15:00
  23/9/2026 ACTIVO JULIETH PAOLA PERALTA MARTINEZ 7:00:00 a. m. 2:15:00 p. m. 9:30:00 a. m. 12:15:00 p. m. 12:00:00 a. m. 7:15:00
  24/9/2026 ACTIVO JULIETH PAOLA PERALTA MARTINEZ 7:00:00 a. m. 2:15:00 p. m. 9:30:00 a. m. 12:15:00 p. m. 12:00:00 a. m. 7:15:00
  25/9/2026 ACTIVO JULIETH PAOLA PERALTA MARTINEZ 7:00:00 a. m. 2:00:00 p. m. 9:30:00 a. m. 12:15:00 p. m. 12:00:00 a. m. 7:00:00
@@ -3145,7 +3446,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  25/9/2026 ACTIVO MELANYS DANIELA SOBRINO DE LA HOZ 10:00:00 a. m. 7:00:00 p. m. 12:00:00 p. m. 4:30:00 p. m. 2:30:00 p. m. 8:00:00
  26/9/2026 ACTIVO MELANYS DANIELA SOBRINO DE LA HOZ 8:00:00 a. m. 3:00:00 p. m. 9:30:00 a. m. 12:00:00 a. m. 11:30:00 a. m. 6:00:00
  21/9/2026 ACTIVO NEVIS CAROLINA JIMENEZ MARMOL 8:30:00 a. m. 5:00:00 p. m. 10:15:00 a. m. 3:15:00 p. m. 1:00:00 p. m. 7:30:00
-22/9/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:00:00	a.	m.	2:15:00	p.	m.	9:30:00	a.	m.	12:15:00	p.	m.	12:00:00	a.	m.	7:15:00
+ 22/9/2026 ACTIVO NEVIS CAROLINA JIMENEZ MARMOL 8:30:00 a. m. 5:00:00 p. m. 10:15:00 a. m. 3:15:00 p. m. 1:00:00 p. m. 7:30:00
  23/9/2026 ACTIVO NEVIS CAROLINA JIMENEZ MARMOL 9:00:00 a. m. 5:00:00 p. m. 10:15:00 a. m. 3:15:00 p. m. 1:00:00 p. m. 7:00:00
  24/9/2026 ACTIVO NEVIS CAROLINA JIMENEZ MARMOL 9:00:00 a. m. 5:00:00 p. m. 10:15:00 a. m. 3:15:00 p. m. 1:00:00 p. m. 7:00:00
  25/9/2026 ACTIVO NEVIS CAROLINA JIMENEZ MARMOL 9:00:00 a. m. 5:00:00 p. m. 10:15:00 a. m. 3:15:00 p. m. 1:00:00 p. m. 7:00:00
@@ -3871,6 +4172,16 @@ function MALLA_buildUpdatedHTML() {
       'const TB_CAMBIOS_DEFAULT = ' + cambiosJSON + ';'
     );
   } catch (e) { console.error('No se pudo incrustar TB_CAMBIOS_DEFAULT:', e); }
+  // Igual que arriba, pero para el letrero de "horas movidas" (ver
+  // HORAS_registrar / TB_HORAS_init): que sobreviva a cualquier
+  // republicación o dispositivo nuevo (incluida la versión de oficina).
+  try {
+    const horasJSON = JSON.stringify(HORAS_load());
+    html = html.replace(
+      /const TB_HORAS_DEFAULT = \{[\s\S]*?\};/,
+      'const TB_HORAS_DEFAULT = ' + horasJSON + ';'
+    );
+  } catch (e) { console.error('No se pudo incrustar TB_HORAS_DEFAULT:', e); }
   // Incrusta la línea base de la malla (ver MALLA_capturarBaseline) para
   // que la hoja "Cambios de Turno" del Excel pueda seguir comparando
   // "inicial vs. descargada" en cualquier dispositivo que abra este HTML.
@@ -4439,6 +4750,7 @@ function MALLA_checkNewDatesAndResetHistory(parsed, rawText) {
       // "turno cambiado" de la malla anterior ya no aplican, así que el
       // registro se reinicia junto con el historial de accesos.
       CAMBIO_save({});
+      HORAS_save({});
     }
     // Cada vez que llega una malla con fechas nuevas (incluida la primera
     // carga), se guarda como línea base para poder comparar "inicial vs
@@ -4992,7 +5304,6 @@ if (typeof pdfjsLib !== 'undefined') {
 }
 
 MALLA_init();
-TB_CAMBIOS_init();
 
 // ── Temas de color (solo cambian variables CSS vía data-theme) ──
 const THEME_KEY = 'tb_theme';
@@ -5133,6 +5444,10 @@ function showScreen(name) {
     el.classList.add('active');
     el.scrollTop = 0;
   }
+  // EVA (y el botón "Jugar") solo deben verse una vez adentro, con sesión
+  // iniciada. En splash/login/registro/recuperar contraseña se ocultan.
+  const PANTALLAS_SIN_SESION = ['splash', 'login', 'register', 'forgot'];
+  TB_EVA_setVisible(!PANTALLAS_SIN_SESION.includes(name));
   // El aviso "¡Bienvenido, Moi!" solo debe verse si lo que hay ESCRITO en el
   // campo de nombre coincide con el admin. Se recalcula cada vez que se entra
   // a esta pantalla para que nunca quede pegado de una visita anterior.
@@ -5733,7 +6048,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-21.1901';
+const TB_APP_VERSION = '2026-09-22.1832';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6214,6 +6529,8 @@ function P_initProfile() {
   document.getElementById('profile-role-text').textContent = rolLabel(user.rol);
   document.getElementById('profile-maya').textContent = user.codigoMaya || '—';
   document.getElementById('profile-accesos').textContent = user.loginCount || 1;
+  const vozChk = document.getElementById('voz-toggle');
+  if (vozChk) vozChk.checked = VOZ_isEnabled();
 
   const bigAv = document.getElementById('profile-avatar-big');
   renderAvatar(bigAv, user.nombre);
@@ -6756,6 +7073,18 @@ function F3_renderTimeline(t, diaEstado) {
     list.appendChild(banner);
   }
 
+  const horasMovidas = HORAS_get(t.fechaISO, t.nombreNorm);
+  if (horasMovidas) {
+    const banner2 = document.createElement('div');
+    banner2.className = 'turno-empty-state';
+    banner2.style.cssText = 'background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);color:#b45309;margin-bottom:10px;text-align:left;';
+    const texto = horasMovidas.tipo === 'origen'
+      ? `⏱️ Se movieron ${horasMovidas.horas}h de este día hacia el <b>${horasMovidas.otraFecha}</b>`
+      : `⏱️ Este día recibió ${horasMovidas.horas}h movidas del <b>${horasMovidas.otraFecha}</b>`;
+    banner2.innerHTML = texto;
+    list.appendChild(banner2);
+  }
+
   const now = new Date();
   const nowMin = now.getHours()*60 + now.getMinutes();
 
@@ -7179,7 +7508,7 @@ function CAMBIO_get(fechaISO, norm) {
 // cuando llega una malla con fechas realmente nuevas (ver
 // MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
 // archivo.
-const TB_CAMBIOS_DEFAULT = {"2026-09-22|NEVIS CAROLINA JIMENEZ MARMOL":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-22|JULIETH PAOLA PERALTA MARTINEZ":"NEVIS CAROLINA JIMENEZ MARMOL"};
+const TB_CAMBIOS_DEFAULT = {};
 function TB_CAMBIOS_init() {
   try {
     const embebidos = TB_CAMBIOS_DEFAULT || {};
@@ -7192,6 +7521,28 @@ function TB_CAMBIOS_init() {
     if (cambio) CAMBIO_save(local);
   } catch (e) { console.error('TB_CAMBIOS_init error:', e); }
 }
+// Antes esta llamada vivía arriba (justo tras MALLA_init), pero
+// TB_CAMBIOS_DEFAULT se declara aquí abajo: llamarla antes de que el motor
+// de JS llegue a esta línea lanzaba un ReferenceError en cada carga, y por
+// eso el letrero embebido nunca se fusionaba en un navegador nuevo (como
+// los de la intranet de oficina). Se llama justo aquí para garantizar que
+// el const ya exista.
+TB_CAMBIOS_init();
+
+const TB_HORAS_DEFAULT = {};
+function TB_HORAS_init() {
+  try {
+    const embebidos = TB_HORAS_DEFAULT || {};
+    if (!Object.keys(embebidos).length) return;
+    const local = HORAS_load();
+    let cambio = false;
+    Object.keys(embebidos).forEach(k => {
+      if (!(k in local)) { local[k] = embebidos[k]; cambio = true; }
+    });
+    if (cambio) HORAS_save(local);
+  } catch (e) { console.error('TB_HORAS_init error:', e); }
+}
+TB_HORAS_init();
 
 // ── Helpers de tiempo para mover horas entre días ──
 function TB_timeTokensToMin(tStr, apTok) {
@@ -7314,7 +7665,898 @@ function TB_moverHorasEntreDias(nombreInput, fechaOrigenISO, fechaDestinoISO, mi
   try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
   MALLA_persist();
   MALLA_refreshStatus();
+  HORAS_registrar(fechaOrigenISO, norm, minutos, fechaDestinoISO);
   return { ok: true };
+}
+
+// ── Registro de "horas movidas" para mostrarlo en el timeline del día,
+// igual que CAMBIO_registrar con el cambio de turno. Puramente informativo:
+// el horario en sí ya quedó ajustado arriba en TB_moverHorasEntreDias. Se
+// guarda por fecha+persona (tanto en el día de origen como en el de destino)
+// y, al igual que TURNOS_CAMBIADOS_KEY, se incrusta en el HTML al descargar
+// (ver MALLA_buildUpdatedHTML / TB_HORAS_DEFAULT) para que sobreviva a
+// cualquier republicación o dispositivo nuevo, incluida la versión de
+// oficina. ──
+const HORAS_MOVIDAS_KEY = 'tb_horas_movidas_v1';
+function HORAS_load() { try { return JSON.parse(localStorage.getItem(HORAS_MOVIDAS_KEY)) || {}; } catch { return {}; } }
+function HORAS_save(all) { try { localStorage.setItem(HORAS_MOVIDAS_KEY, JSON.stringify(all)); } catch {} }
+function HORAS_registrar(fechaOrigenISO, norm, minutos, fechaDestinoISO) {
+  const all = HORAS_load();
+  const horasTxt = (minutos / 60).toFixed(minutos % 60 === 0 ? 0 : 1).replace(/\.0$/, '');
+  const [ay, am, ad] = fechaDestinoISO.split('-');
+  const [oy, om, od] = fechaOrigenISO.split('-');
+  all[`${fechaOrigenISO}|${norm}`] = { tipo: 'origen', horas: horasTxt, otraFecha: `${ad}/${am}` };
+  all[`${fechaDestinoISO}|${norm}`] = { tipo: 'destino', horas: horasTxt, otraFecha: `${od}/${om}` };
+  HORAS_save(all);
+}
+function HORAS_get(fechaISO, norm) {
+  const all = HORAS_load();
+  return all[`${fechaISO}|${norm}`] || null;
+}
+
+// ── Avisos por voz (break, almuerzo, salida) ──────────────────────────
+// Usa la Web Speech API del propio navegador (habla local, sin conexión:
+// funciona igual en la versión de oficina). Revisa cada 20s el turno de
+// HOY del asesor con la sesión activa y, si el reloj llega exactamente a
+// la hora de un evento, lo anuncia una sola vez. Requiere que la pestaña
+// siga abierta (no hay notificación en segundo plano): es una limitación
+// del navegador, no del código.
+const TB_VOZ_KEY = 'tb_voz_enabled_v1';
+function VOZ_isEnabled() {
+  try { const v = localStorage.getItem(TB_VOZ_KEY); return v === null ? true : v === '1'; }
+  catch { return true; }
+}
+function VOZ_setEnabled(on) { try { localStorage.setItem(TB_VOZ_KEY, on ? '1' : '0'); } catch {} }
+// Botón "Escuchar un aviso de prueba": suena aunque el interruptor esté
+// apagado, solo para que el asesor sepa cómo se oye (no cuenta como un
+// aviso real, no marca nada como "avisado").
+function VOZ_probar() {
+  const primerNombre = (currentUser && (currentUser.apodo || currentUser.nombre) || 'Compañero').split(' ')[0];
+  const texto = `${primerNombre}, este es un aviso de prueba. Así sonará cuando llegue tu break, tu almuerzo o tu salida.`;
+  VOZ_hablar(texto);
+  if (typeof showToast === 'function') showToast('info', '🔊 Aviso de prueba', texto);
+  if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
+}
+function VOZ_hablar(texto) {
+  try {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(texto);
+    u.lang = 'es-ES';
+    u.rate = 1;
+    speechSynthesis.speak(u);
+  } catch (e) { console.error('VOZ_hablar error:', e); }
+}
+
+const TB_VOZ_State = { fecha: null, avisados: {} };
+function TB_VOZ_tick() {
+  try {
+    if (!VOZ_isEnabled()) return;
+    if (!currentUser || currentUser.isAdmin) return; // el aviso es para el turno propio del asesor
+    const hoyISO = MALLA_todayISO();
+    if (TB_VOZ_State.fecha !== hoyISO) { TB_VOZ_State.fecha = hoyISO; TB_VOZ_State.avisados = {}; }
+
+    const t = MALLA_recordForDate(currentUser.mallaNombre, hoyISO);
+    if (!t || !t.entrada || !t.salida) return;
+
+    const now = new Date();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    const primerNombre = (currentUser.apodo || currentUser.nombre || '').split(' ')[0];
+
+    const eventos = [];
+    (t.detalle || []).forEach((d, i) => {
+      const min = F3_parse12hToMin(d.value);
+      if (min === null) return;
+      const esAlmuerzo = /almuerzo/i.test(d.label);
+      eventos.push({
+        key: 'detalle-' + i,
+        rel: min,
+        texto: esAlmuerzo
+          ? `${primerNombre}, es hora de tu almuerzo.`
+          : `${primerNombre}, es hora de tu break.`
+      });
+    });
+    const salMin = F3_toMin(t.salida);
+    if (salMin !== null && salMin !== 0) {
+      eventos.push({ key: 'salida', rel: salMin, texto: `${primerNombre}, tu turno terminó. ¡Buen descanso!` });
+    }
+
+    eventos.forEach(ev => {
+      if (nowMin === ev.rel && !TB_VOZ_State.avisados[ev.key]) {
+        TB_VOZ_State.avisados[ev.key] = true;
+        VOZ_hablar(ev.texto);
+        if (typeof showToast === 'function') showToast('info', '🔔 Aviso de turno', ev.texto);
+        if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
+      }
+    });
+  } catch (e) { console.error('TB_VOZ_tick error:', e); }
+}
+setInterval(TB_VOZ_tick, 20000);
+
+// ── Mascota EVA: interactiva pero decorativa, no afecta ninguna función
+// real de la app. Al tocarla muestra una frase; cuando suena un aviso de
+// voz (TB_VOZ_tick) reacciona con un pequeño gesto. ──
+const TB_EVA_FRASES = [
+  '¡Hola! Soy EVA 👋',
+  '¿Ya revisaste tu turno de hoy?',
+  '¡Ánimo con la jornada! 💪',
+  'Activa mis avisos por voz en tu Perfil 🔔',
+  'Si algo no cuadra en tu horario, avísale a Moi.'
+];
+let TB_EVA_bubbleTimer = null;
+function TB_EVA_mostrarBurbuja(texto) {
+  const bubble = document.getElementById('tb-eva-bubble');
+  if (!bubble) return;
+  bubble.textContent = texto;
+  bubble.classList.add('show');
+  clearTimeout(TB_EVA_bubbleTimer);
+  TB_EVA_bubbleTimer = setTimeout(() => bubble.classList.remove('show'), 3200);
+}
+function TB_EVA_click() {
+  TB_EVA_mostrarBurbuja(TB_EVA_FRASES[Math.floor(Math.random() * TB_EVA_FRASES.length)]);
+  TB_EVA_sonreir();
+}
+// EVA y el botón "Jugar" solo existen dentro de la app, con sesión activa.
+// Si se oculta mientras el Arcade está abierto (p. ej. por cierre de
+// sesión), se cierra también el Arcade para no dejar un juego corriendo
+// de fondo sin la mascota visible.
+function TB_EVA_setVisible(visible) {
+  const wrap = document.getElementById('tb-eva-wrap');
+  const plataforma = document.getElementById('tb-eva-platform');
+  if (wrap) wrap.style.display = visible ? 'block' : 'none';
+  if (plataforma) plataforma.style.display = visible ? 'block' : 'none';
+  if (!visible) {
+    const overlay = document.getElementById('arcade-overlay');
+    if (overlay && overlay.classList.contains('tb-arcade-open') && typeof ARCADE_close === 'function') {
+      ARCADE_close();
+    }
+  }
+}
+function TB_EVA_sonreir(ms) {
+  const boca = document.getElementById('tb-eva-mouth');
+  if (!boca) return;
+  boca.classList.add('tb-eva-smile');
+  clearTimeout(TB_EVA_sonreir._t);
+  TB_EVA_sonreir._t = setTimeout(() => boca.classList.remove('tb-eva-smile'), ms || 1800);
+}
+function TB_EVA_trick() {
+  const wrap = document.getElementById('tb-eva-wrap');
+  if (!wrap || wrap.classList.contains('tb-eva-trick')) return;
+  wrap.classList.add('tb-eva-trick');
+  TB_EVA_sonreir(1200);
+  setTimeout(() => wrap.classList.remove('tb-eva-trick'), 1150);
+}
+
+// ═══════════════════════════════════════════════════
+//   EVA ARCADE — minijuegos para el rato
+// ═══════════════════════════════════════════════════
+const ARCADE_State = { paused: false, current: null };
+// Se declaran aquí (y no más abajo, junto a cada juego) para que
+// ARCADE_stopCurrentGame() pueda usarlas sin importar en qué momento se
+// llame — igual que el bug que se corrigió con TB_CAMBIOS_DEFAULT: un
+// `let`/`const` está en zona muerta hasta que el motor llega físicamente a
+// esa línea, y showScreen('splash') (que oculta a EVA y de paso intenta
+// cerrar el Arcade) se ejecuta muy al principio de la carga.
+let ARCADE_MEMO = null;
+let ARCADE_ATRAPA = null;
+let ARCADE_GATO = null;
+let ARCADE_FLY = null;
+let ARCADE_RUN = null;
+let ARCADE_SNAKE = null;
+let ARCADE_TETRIS = null;
+
+function ARCADE_open() {
+  const overlay = document.getElementById('arcade-overlay');
+  overlay.style.display = 'flex';
+  overlay.classList.add('tb-arcade-open');
+  document.getElementById('arcade-menu').style.display = 'flex';
+  document.getElementById('arcade-game').style.display = 'none';
+}
+function ARCADE_close() {
+  ARCADE_stopCurrentGame();
+  const overlay = document.getElementById('arcade-overlay');
+  overlay.style.display = 'none';
+  overlay.classList.remove('tb-arcade-open');
+}
+function ARCADE_backToMenu() {
+  ARCADE_stopCurrentGame();
+  document.getElementById('arcade-menu').style.display = 'flex';
+  document.getElementById('arcade-game').style.display = 'none';
+}
+function ARCADE_restart() {
+  if (ARCADE_State.current) ARCADE_startGame(ARCADE_State.current);
+}
+function ARCADE_stopCurrentGame() {
+  if (ARCADE_ATRAPA) {
+    ARCADE_ATRAPA.running = false;
+    if (ARCADE_ATRAPA.raf) cancelAnimationFrame(ARCADE_ATRAPA.raf);
+    ARCADE_ATRAPA = null;
+  }
+  if (ARCADE_FLY) {
+    ARCADE_FLY.running = false;
+    if (ARCADE_FLY.raf) cancelAnimationFrame(ARCADE_FLY.raf);
+    ARCADE_FLY = null;
+  }
+  if (ARCADE_RUN) {
+    ARCADE_RUN.running = false;
+    if (ARCADE_RUN.raf) cancelAnimationFrame(ARCADE_RUN.raf);
+    ARCADE_RUN = null;
+  }
+  if (ARCADE_SNAKE) {
+    ARCADE_SNAKE.running = false;
+    if (ARCADE_SNAKE.timer) clearInterval(ARCADE_SNAKE.timer);
+    document.removeEventListener('keydown', ARCADE_SNAKE_key);
+    ARCADE_SNAKE = null;
+  }
+  if (ARCADE_TETRIS) {
+    ARCADE_TETRIS.running = false;
+    if (ARCADE_TETRIS.timer) clearInterval(ARCADE_TETRIS.timer);
+    document.removeEventListener('keydown', ARCADE_TETRIS_key);
+    ARCADE_TETRIS = null;
+  }
+  ARCADE_State.current = null;
+  ARCADE_State.paused = false;
+  const btn = document.getElementById('arcade-pause-btn');
+  if (btn) btn.textContent = '⏸ Pausa';
+  const overlay = document.getElementById('arcade-pause-overlay');
+  if (overlay) overlay.remove();
+}
+function ARCADE_startGame(name) {
+  ARCADE_stopCurrentGame();
+  ARCADE_State.current = name;
+  document.getElementById('arcade-menu').style.display = 'none';
+  document.getElementById('arcade-game').style.display = 'flex';
+  if (name === 'memoria') ARCADE_MEMO_start();
+  else if (name === 'atrapa') ARCADE_ATRAPA_start();
+  else if (name === 'gato') ARCADE_GATO_start();
+  else if (name === 'volar') ARCADE_FLY_start();
+  else if (name === 'saltar') ARCADE_RUN_start();
+  else if (name === 'culebrita') ARCADE_SNAKE_start();
+  else if (name === 'tetris') ARCADE_TETRIS_start();
+}
+function ARCADE_togglePause() {
+  ARCADE_State.paused = !ARCADE_State.paused;
+  const btn = document.getElementById('arcade-pause-btn');
+  if (btn) btn.textContent = ARCADE_State.paused ? '▶️ Reanudar' : '⏸ Pausa';
+  const area = document.getElementById('arcade-game-area');
+  let overlay = document.getElementById('arcade-pause-overlay');
+  if (ARCADE_State.paused) {
+    if (!overlay && area) {
+      overlay = document.createElement('div');
+      overlay.id = 'arcade-pause-overlay';
+      overlay.className = 'arcade-pause-overlay';
+      overlay.textContent = '⏸ Pausado';
+      area.appendChild(overlay);
+    }
+  } else if (overlay) {
+    overlay.remove();
+  }
+}
+function ARCADE_setScore(txt) {
+  const el = document.getElementById('arcade-score');
+  if (el) el.textContent = txt;
+}
+
+// ── Juego 1: Memoria ──
+const ARCADE_MEMO_EMOJIS = ['🍎','🚗','🎵','⚽','🌟','🍕','🐱','🎈'];
+function ARCADE_MEMO_start() {
+  const pool = [...ARCADE_MEMO_EMOJIS, ...ARCADE_MEMO_EMOJIS]
+    .map((e, i) => ({ id: i, emoji: e, open: false, matched: false }));
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  ARCADE_MEMO = { cards: pool, flipped: [], matched: 0, moves: 0, lock: false };
+  ARCADE_setScore('Movimientos: 0');
+  ARCADE_MEMO_render();
+}
+function ARCADE_MEMO_render() {
+  const area = document.getElementById('arcade-game-area');
+  if (!area) return;
+  area.innerHTML = '<div class="arcade-memo-grid">' + ARCADE_MEMO.cards.map(c =>
+    `<div class="arcade-memo-card ${c.open || c.matched ? 'open' : ''} ${c.matched ? 'matched' : ''}" onclick="ARCADE_MEMO_flip(${c.id})">` +
+    `<span>${c.open || c.matched ? c.emoji : '❔'}</span></div>`
+  ).join('') + '</div>';
+}
+function ARCADE_MEMO_flip(id) {
+  if (ARCADE_State.paused || !ARCADE_MEMO || ARCADE_MEMO.lock) return;
+  const card = ARCADE_MEMO.cards.find(c => c.id === id);
+  if (!card || card.open || card.matched) return;
+  card.open = true;
+  ARCADE_MEMO.flipped.push(card);
+  ARCADE_MEMO_render();
+  if (ARCADE_MEMO.flipped.length === 2) {
+    ARCADE_MEMO.moves++;
+    ARCADE_setScore('Movimientos: ' + ARCADE_MEMO.moves);
+    ARCADE_MEMO.lock = true;
+    const [a, b] = ARCADE_MEMO.flipped;
+    setTimeout(() => {
+      if (!ARCADE_MEMO) return;
+      if (a.emoji === b.emoji) { a.matched = true; b.matched = true; ARCADE_MEMO.matched += 2; }
+      else { a.open = false; b.open = false; }
+      ARCADE_MEMO.flipped = [];
+      ARCADE_MEMO.lock = false;
+      ARCADE_MEMO_render();
+      if (ARCADE_MEMO.matched === ARCADE_MEMO.cards.length) {
+        ARCADE_setScore('¡Completado en ' + ARCADE_MEMO.moves + ' movimientos! 🎉');
+      }
+    }, 650);
+  }
+}
+
+// ── Juego 2: Atrapa ──
+function ARCADE_ATRAPA_start() {
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = '<div id="arcade-atrapa-area" class="arcade-atrapa-area"></div>';
+  ARCADE_ATRAPA = { score: 0, vidas: 3, items: [], raf: null, lastSpawn: 0, running: true };
+  ARCADE_setScore('Puntos: 0 · Vidas: ❤️❤️❤️');
+  ARCADE_ATRAPA.raf = requestAnimationFrame(ARCADE_ATRAPA_loop);
+}
+function ARCADE_ATRAPA_loop(ts) {
+  if (!ARCADE_ATRAPA || !ARCADE_ATRAPA.running) return;
+  if (!ARCADE_State.paused) {
+    if (!ARCADE_ATRAPA.lastSpawn || ts - ARCADE_ATRAPA.lastSpawn > 850) {
+      ARCADE_ATRAPA.lastSpawn = ts;
+      ARCADE_ATRAPA_spawn();
+    }
+    const area = document.getElementById('arcade-atrapa-area');
+    if (area) {
+      const h = area.clientHeight;
+      ARCADE_ATRAPA.items.forEach(it => { it.y += 2.4; it.el.style.top = it.y + 'px'; });
+      ARCADE_ATRAPA.items = ARCADE_ATRAPA.items.filter(it => {
+        if (it.y > h) {
+          it.el.remove();
+          ARCADE_ATRAPA.vidas--;
+          ARCADE_ATRAPA_updateScore();
+          if (ARCADE_ATRAPA.vidas <= 0) { ARCADE_ATRAPA_gameOver(); }
+          return false;
+        }
+        return true;
+      });
+    }
+  }
+  if (ARCADE_ATRAPA && ARCADE_ATRAPA.running) {
+    ARCADE_ATRAPA.raf = requestAnimationFrame(ARCADE_ATRAPA_loop);
+  }
+}
+function ARCADE_ATRAPA_spawn() {
+  const area = document.getElementById('arcade-atrapa-area');
+  if (!area) return;
+  const emojis = ['⭐', '🎁', '💎', '🍀'];
+  const el = document.createElement('div');
+  el.className = 'arcade-atrapa-item';
+  el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  const x = Math.max(0, Math.random() * (area.clientWidth - 34));
+  el.style.left = x + 'px';
+  el.style.top = '-30px';
+  el.onclick = () => {
+    if (ARCADE_State.paused || !ARCADE_ATRAPA) return;
+    ARCADE_ATRAPA.items = ARCADE_ATRAPA.items.filter(it => it.el !== el);
+    el.remove();
+    ARCADE_ATRAPA.score++;
+    ARCADE_ATRAPA_updateScore();
+  };
+  area.appendChild(el);
+  ARCADE_ATRAPA.items.push({ el, y: -30 });
+}
+function ARCADE_ATRAPA_updateScore() {
+  if (!ARCADE_ATRAPA) return;
+  ARCADE_setScore('Puntos: ' + ARCADE_ATRAPA.score + ' · Vidas: ' + '❤️'.repeat(Math.max(ARCADE_ATRAPA.vidas, 0)));
+}
+function ARCADE_ATRAPA_gameOver() {
+  ARCADE_ATRAPA.running = false;
+  if (ARCADE_ATRAPA.raf) cancelAnimationFrame(ARCADE_ATRAPA.raf);
+  const area = document.getElementById('arcade-atrapa-area');
+  if (area) area.innerHTML = '<div class="arcade-gameover">💥 ¡Se acabó!<br>Puntos: ' + ARCADE_ATRAPA.score + '</div>';
+}
+
+// ── Juego 3: 3 en raya (contra EVA) ──
+const ARCADE_GATO_LINEAS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function ARCADE_GATO_start() {
+  ARCADE_GATO = { board: Array(9).fill(null), over: false };
+  ARCADE_setScore('Tú: ❌ · EVA: ⭕');
+  ARCADE_GATO_render();
+}
+function ARCADE_GATO_render() {
+  const area = document.getElementById('arcade-game-area');
+  if (!area) return;
+  area.innerHTML = '<div><div class="arcade-gato-grid">' + ARCADE_GATO.board.map((v, i) =>
+    `<div class="arcade-gato-cell" onclick="ARCADE_GATO_play(${i})">${v === 'X' ? '❌' : v === 'O' ? '⭕' : ''}</div>`
+  ).join('') + '</div><div id="arcade-gato-msg" class="arcade-gato-msg"></div></div>';
+}
+function ARCADE_GATO_play(i) {
+  if (ARCADE_State.paused || !ARCADE_GATO || ARCADE_GATO.over || ARCADE_GATO.board[i]) return;
+  ARCADE_GATO.board[i] = 'X';
+  if (ARCADE_GATO_checkEnd()) return;
+  ARCADE_GATO_render();
+  setTimeout(ARCADE_GATO_ai, 450);
+}
+function ARCADE_GATO_ai() {
+  if (!ARCADE_GATO || ARCADE_GATO.over) return;
+  const board = ARCADE_GATO.board;
+  const empty = board.map((v, i) => v ? null : i).filter(v => v !== null);
+  if (!empty.length) return;
+  function buscar(sym) {
+    for (const [a, b, c] of ARCADE_GATO_LINEAS) {
+      const vals = [board[a], board[b], board[c]];
+      if (vals.filter(v => v === sym).length === 2 && vals.includes(null)) {
+        return [a, b, c][vals.indexOf(null)];
+      }
+    }
+    return null;
+  }
+  let mov = buscar('O');
+  if (mov === null) mov = buscar('X');
+  if (mov === null) mov = board[4] === null ? 4 : empty[Math.floor(Math.random() * empty.length)];
+  board[mov] = 'O';
+  if (!ARCADE_GATO_checkEnd()) ARCADE_GATO_render();
+}
+function ARCADE_GATO_checkEnd() {
+  const board = ARCADE_GATO.board;
+  for (const [a, b, c] of ARCADE_GATO_LINEAS) {
+    if (board[a] && board[a] === board[b] && board[b] === board[c]) {
+      ARCADE_GATO.over = true;
+      ARCADE_GATO_render();
+      document.getElementById('arcade-gato-msg').textContent = board[a] === 'X' ? '🎉 ¡Ganaste!' : '🤖 Ganó EVA';
+      return true;
+    }
+  }
+  if (board.every(v => v)) {
+    ARCADE_GATO.over = true;
+    ARCADE_GATO_render();
+    document.getElementById('arcade-gato-msg').textContent = '🤝 Empate';
+    return true;
+  }
+  return false;
+}
+
+// Mini-EVA reutilizable para los juegos donde ella es la protagonista.
+// Reaprovecha los mismos degradados (tbEvaShine/tbEvaEye) definidos en el
+// SVG principal de la mascota — un id de degradado en SVG es válido para
+// todo el documento, no solo dentro de su propio <svg>.
+function ARCADE_evaSpriteSVG(w, h) {
+  return `<svg viewBox="0 0 60 74" width="${w}" height="${h}">
+    <ellipse cx="30" cy="55" rx="15" ry="18" fill="url(#tbEvaShine)"/>
+    <ellipse cx="30" cy="20" rx="21" ry="17" fill="url(#tbEvaShine)"/>
+    <ellipse cx="30" cy="20" rx="15" ry="10.5" fill="#0b1c33"/>
+    <ellipse cx="24" cy="20" rx="3.6" ry="4.6" fill="url(#tbEvaEye)"/>
+    <ellipse cx="36" cy="20" rx="3.6" ry="4.6" fill="url(#tbEvaEye)"/>
+  </svg>`;
+}
+
+// ── Juego 4: EVA Voladora (estilo Flappy) ──
+const ARCADE_FLY_EVA_SIZE = 40, ARCADE_FLY_EVA_LEFT = 50;
+function ARCADE_FLY_start() {
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = `<div id="arcade-fly-area" class="arcade-fly-area" onclick="ARCADE_FLY_flap()">
+      <div id="arcade-fly-eva" class="arcade-fly-eva">${ARCADE_evaSpriteSVG(ARCADE_FLY_EVA_SIZE, ARCADE_FLY_EVA_SIZE + 10)}</div>
+    </div>`;
+  ARCADE_FLY = { y: 90, vy: 0, score: 0, obstacles: [], raf: null, lastSpawn: 0, running: true, started: false };
+  ARCADE_setScore('Puntos: 0 — toca para volar');
+  ARCADE_FLY.raf = requestAnimationFrame(ARCADE_FLY_loop);
+}
+function ARCADE_FLY_flap() {
+  if (!ARCADE_FLY || !ARCADE_FLY.running || ARCADE_State.paused) return;
+  ARCADE_FLY.started = true;
+  ARCADE_FLY.vy = -5.3;
+}
+function ARCADE_FLY_loop(ts) {
+  if (!ARCADE_FLY || !ARCADE_FLY.running) return;
+  if (!ARCADE_State.paused) {
+    const area = document.getElementById('arcade-fly-area');
+    if (area) {
+      const h = area.clientHeight || 260;
+      if (ARCADE_FLY.started) {
+        ARCADE_FLY.vy += 0.22;
+        ARCADE_FLY.y += ARCADE_FLY.vy;
+      }
+      if (ARCADE_FLY.y < 0) { ARCADE_FLY.y = 0; ARCADE_FLY.vy = 0; }
+      const evaEl = document.getElementById('arcade-fly-eva');
+      if (evaEl) {
+        evaEl.style.top = ARCADE_FLY.y + 'px';
+        const ang = Math.max(-25, Math.min(75, ARCADE_FLY.vy * 4));
+        evaEl.style.transform = 'rotate(' + ang + 'deg)';
+      }
+      if (ARCADE_FLY.y > h - ARCADE_FLY_EVA_SIZE) { ARCADE_FLY_gameOver(); return; }
+
+      if (ARCADE_FLY.started && (!ARCADE_FLY.lastSpawn || ts - ARCADE_FLY.lastSpawn > 2100)) {
+        ARCADE_FLY.lastSpawn = ts;
+        ARCADE_FLY_spawnObstacle(area);
+      }
+      const evaLeft = ARCADE_FLY_EVA_LEFT + 6, evaRight = evaLeft + ARCADE_FLY_EVA_SIZE - 12;
+      ARCADE_FLY.obstacles.forEach(ob => {
+        ob.x -= 1.9;
+        ob.topEl.style.left = ob.x + 'px';
+        ob.botEl.style.left = ob.x + 'px';
+        if (!ob.passed && ob.x + 44 < evaLeft) {
+          ob.passed = true;
+          ARCADE_FLY.score++;
+          ARCADE_setScore('Puntos: ' + ARCADE_FLY.score);
+        }
+        const obLeft = ob.x + 4, obRight = ob.x + 40;
+        if (evaRight > obLeft && evaLeft < obRight) {
+          if (ARCADE_FLY.y + 6 < ob.gapTop || ARCADE_FLY.y + ARCADE_FLY_EVA_SIZE - 6 > ob.gapTop + ob.gapSize) {
+            ARCADE_FLY_gameOver();
+          }
+        }
+      });
+      ARCADE_FLY.obstacles = ARCADE_FLY.obstacles.filter(ob => {
+        if (ob.x < -50) { ob.topEl.remove(); ob.botEl.remove(); return false; }
+        return true;
+      });
+    }
+  }
+  if (ARCADE_FLY && ARCADE_FLY.running) ARCADE_FLY.raf = requestAnimationFrame(ARCADE_FLY_loop);
+}
+function ARCADE_FLY_spawnObstacle(area) {
+  const h = area.clientHeight || 260;
+  const gapSize = 145;
+  const gapTop = 16 + Math.random() * Math.max(20, h - gapSize - 32);
+  const topEl = document.createElement('div');
+  topEl.className = 'arcade-fly-pipe';
+  topEl.style.top = '0px';
+  topEl.style.height = gapTop + 'px';
+  topEl.style.left = area.clientWidth + 'px';
+  const botEl = document.createElement('div');
+  botEl.className = 'arcade-fly-pipe';
+  botEl.style.top = (gapTop + gapSize) + 'px';
+  botEl.style.height = Math.max(0, h - gapTop - gapSize) + 'px';
+  botEl.style.left = area.clientWidth + 'px';
+  area.appendChild(topEl);
+  area.appendChild(botEl);
+  ARCADE_FLY.obstacles.push({ x: area.clientWidth, topEl, botEl, gapTop, gapSize, passed: false });
+}
+function ARCADE_FLY_gameOver() {
+  if (!ARCADE_FLY || !ARCADE_FLY.running) return;
+  ARCADE_FLY.running = false;
+  if (ARCADE_FLY.raf) cancelAnimationFrame(ARCADE_FLY.raf);
+  const area = document.getElementById('arcade-fly-area');
+  if (area) {
+    const go = document.createElement('div');
+    go.className = 'arcade-gameover';
+    go.innerHTML = '💥 ¡Choque!<br>Puntos: ' + ARCADE_FLY.score;
+    area.appendChild(go);
+  }
+}
+
+// ── Juego 5: EVA Saltarina (estilo Geometry Dash) ──
+const ARCADE_RUN_EVA_LEFT = 40, ARCADE_RUN_EVA_W = 38;
+function ARCADE_RUN_start() {
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = `<div id="arcade-run-area" class="arcade-run-area" onclick="ARCADE_RUN_jump()">
+      <div class="arcade-run-ground"></div>
+      <div id="arcade-run-eva" class="arcade-run-eva">${ARCADE_evaSpriteSVG(ARCADE_RUN_EVA_W, ARCADE_RUN_EVA_W + 10)}</div>
+    </div>`;
+  ARCADE_RUN = { y: 0, vy: 0, jumping: false, score: 0, obstacles: [], raf: null, lastSpawn: 0, running: true };
+  ARCADE_setScore('Puntos: 0 — toca para saltar');
+  ARCADE_RUN.raf = requestAnimationFrame(ARCADE_RUN_loop);
+}
+function ARCADE_RUN_jump() {
+  if (!ARCADE_RUN || !ARCADE_RUN.running || ARCADE_State.paused) return;
+  if (!ARCADE_RUN.jumping) { ARCADE_RUN.jumping = true; ARCADE_RUN.vy = -11.5; }
+}
+function ARCADE_RUN_loop(ts) {
+  if (!ARCADE_RUN || !ARCADE_RUN.running) return;
+  if (!ARCADE_State.paused) {
+    const area = document.getElementById('arcade-run-area');
+    if (area) {
+      if (ARCADE_RUN.jumping) {
+        ARCADE_RUN.vy += 0.5;
+        ARCADE_RUN.y += ARCADE_RUN.vy;
+        if (ARCADE_RUN.y >= 0) { ARCADE_RUN.y = 0; ARCADE_RUN.vy = 0; ARCADE_RUN.jumping = false; }
+      }
+      const evaEl = document.getElementById('arcade-run-eva');
+      if (evaEl) evaEl.style.transform = 'translateY(' + ARCADE_RUN.y + 'px) rotate(' + (ARCADE_RUN.jumping ? -18 : 0) + 'deg)';
+
+      const speed = 3.2 + Math.min(2.2, ARCADE_RUN.score * 0.05);
+      const intervalo = Math.max(950, 1700 - ARCADE_RUN.score * 15);
+      if (!ARCADE_RUN.lastSpawn || ts - ARCADE_RUN.lastSpawn > intervalo) {
+        ARCADE_RUN.lastSpawn = ts;
+        ARCADE_RUN_spawn(area);
+      }
+      const evaLeft = ARCADE_RUN_EVA_LEFT + 6, evaRight = evaLeft + ARCADE_RUN_EVA_W - 12;
+      ARCADE_RUN.obstacles.forEach(ob => {
+        ob.x -= speed;
+        ob.el.style.left = ob.x + 'px';
+        if (!ob.passed && ob.x + 20 < evaLeft) {
+          ob.passed = true;
+          ARCADE_RUN.score++;
+          ARCADE_setScore('Puntos: ' + ARCADE_RUN.score);
+        }
+        const obLeft = ob.x + 5, obRight = ob.x + 15;
+        if (evaRight > obLeft && evaLeft < obRight && ARCADE_RUN.y > -14) {
+          ARCADE_RUN_gameOver();
+        }
+      });
+      ARCADE_RUN.obstacles = ARCADE_RUN.obstacles.filter(ob => {
+        if (ob.x < -30) { ob.el.remove(); return false; }
+        return true;
+      });
+    }
+  }
+  if (ARCADE_RUN && ARCADE_RUN.running) ARCADE_RUN.raf = requestAnimationFrame(ARCADE_RUN_loop);
+}
+function ARCADE_RUN_spawn(area) {
+  const el = document.createElement('div');
+  el.className = 'arcade-run-spike';
+  el.textContent = '▲';
+  el.style.left = area.clientWidth + 'px';
+  area.appendChild(el);
+  ARCADE_RUN.obstacles.push({ x: area.clientWidth, el, passed: false });
+}
+function ARCADE_RUN_gameOver() {
+  if (!ARCADE_RUN || !ARCADE_RUN.running) return;
+  ARCADE_RUN.running = false;
+  if (ARCADE_RUN.raf) cancelAnimationFrame(ARCADE_RUN.raf);
+  const area = document.getElementById('arcade-run-area');
+  if (area) {
+    const go = document.createElement('div');
+    go.className = 'arcade-gameover';
+    go.innerHTML = '💥 ¡Chocaste!<br>Puntos: ' + ARCADE_RUN.score;
+    area.appendChild(go);
+  }
+}
+
+// ── Juego 6: Culebrita (con carita de EVA en la cabeza) ──
+const ARCADE_SNAKE_COLS = 14, ARCADE_SNAKE_ROWS = 18;
+function ARCADE_SNAKE_start() {
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = `<div class="arcade-snake-wrap">
+      <canvas id="arcade-snake-canvas" class="arcade-canvas" width="280" height="360"></canvas>
+      <div class="arcade-dpad">
+        <button class="arcade-dpad-btn arcade-dpad-up" onclick="ARCADE_SNAKE_dir(0,-1)">▲</button>
+        <button class="arcade-dpad-btn arcade-dpad-left" onclick="ARCADE_SNAKE_dir(-1,0)">◀</button>
+        <button class="arcade-dpad-btn arcade-dpad-right" onclick="ARCADE_SNAKE_dir(1,0)">▶</button>
+        <button class="arcade-dpad-btn arcade-dpad-down" onclick="ARCADE_SNAKE_dir(0,1)">▼</button>
+      </div>
+    </div>`;
+  const body = [{ x: 6, y: 9 }, { x: 5, y: 9 }, { x: 4, y: 9 }];
+  ARCADE_SNAKE = {
+    body, dir: { x: 1, y: 0 }, nextDir: { x: 1, y: 0 },
+    food: ARCADE_SNAKE_randFood(body),
+    score: 0, running: true, timer: null, speedMs: 170
+  };
+  ARCADE_setScore('Puntos: 0');
+  ARCADE_SNAKE_draw();
+  ARCADE_SNAKE.timer = setInterval(ARCADE_SNAKE_tick, ARCADE_SNAKE.speedMs);
+  document.addEventListener('keydown', ARCADE_SNAKE_key);
+}
+function ARCADE_SNAKE_key(e) {
+  if (!ARCADE_SNAKE) return;
+  const map = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
+  const d = map[e.key];
+  if (d) { e.preventDefault(); ARCADE_SNAKE_dir(d[0], d[1]); }
+}
+function ARCADE_SNAKE_dir(x, y) {
+  if (!ARCADE_SNAKE || !ARCADE_SNAKE.running) return;
+  if (ARCADE_SNAKE.dir.x === -x && ARCADE_SNAKE.dir.y === -y) return; // no se puede invertir sobre sí misma
+  ARCADE_SNAKE.nextDir = { x, y };
+}
+function ARCADE_SNAKE_randFood(body) {
+  let pos;
+  do {
+    pos = { x: Math.floor(Math.random() * ARCADE_SNAKE_COLS), y: Math.floor(Math.random() * ARCADE_SNAKE_ROWS) };
+  } while (body.some(s => s.x === pos.x && s.y === pos.y));
+  return pos;
+}
+function ARCADE_SNAKE_tick() {
+  if (!ARCADE_SNAKE || !ARCADE_SNAKE.running || ARCADE_State.paused) return;
+  const s = ARCADE_SNAKE;
+  s.dir = s.nextDir;
+  const head = { x: s.body[0].x + s.dir.x, y: s.body[0].y + s.dir.y };
+  if (head.x < 0 || head.x >= ARCADE_SNAKE_COLS || head.y < 0 || head.y >= ARCADE_SNAKE_ROWS ||
+      s.body.some(seg => seg.x === head.x && seg.y === head.y)) {
+    return ARCADE_SNAKE_gameOver();
+  }
+  s.body.unshift(head);
+  if (head.x === s.food.x && head.y === s.food.y) {
+    s.score++;
+    ARCADE_setScore('Puntos: ' + s.score);
+    s.food = ARCADE_SNAKE_randFood(s.body);
+    if (s.score % 4 === 0 && s.speedMs > 80) {
+      s.speedMs -= 10;
+      clearInterval(s.timer);
+      s.timer = setInterval(ARCADE_SNAKE_tick, s.speedMs);
+    }
+  } else {
+    s.body.pop();
+  }
+  ARCADE_SNAKE_draw();
+}
+function ARCADE_SNAKE_draw() {
+  const canvas = document.getElementById('arcade-snake-canvas');
+  if (!canvas || !ARCADE_SNAKE) return;
+  const ctx = canvas.getContext('2d');
+  const cw = canvas.width, ch = canvas.height;
+  const cell = Math.min(cw / ARCADE_SNAKE_COLS, ch / ARCADE_SNAKE_ROWS);
+  ctx.fillStyle = '#0b1c33';
+  ctx.fillRect(0, 0, cw, ch);
+  ctx.font = Math.floor(cell * 0.85) + 'px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('⭐', (ARCADE_SNAKE.food.x + 0.5) * cell, (ARCADE_SNAKE.food.y + 0.5) * cell);
+  ARCADE_SNAKE.body.forEach((seg, i) => {
+    ctx.fillStyle = i === 0 ? '#eef3fb' : '#22c3f2';
+    const pad = i === 0 ? 1 : 2;
+    ctx.fillRect(seg.x * cell + pad, seg.y * cell + pad, cell - pad * 2, cell - pad * 2);
+  });
+  // ojitos celestes en la cabeza, para que se sienta "EVA"
+  const head = ARCADE_SNAKE.body[0];
+  const ex = (head.x + 0.5) * cell, ey = (head.y + 0.5) * cell;
+  ctx.fillStyle = '#0a6ea8';
+  ctx.beginPath(); ctx.arc(ex - cell * 0.15, ey, cell * 0.09, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(ex + cell * 0.15, ey, cell * 0.09, 0, Math.PI * 2); ctx.fill();
+}
+function ARCADE_SNAKE_gameOver() {
+  ARCADE_SNAKE.running = false;
+  clearInterval(ARCADE_SNAKE.timer);
+  document.removeEventListener('keydown', ARCADE_SNAKE_key);
+  const area = document.getElementById('arcade-game-area');
+  const go = document.createElement('div');
+  go.className = 'arcade-gameover';
+  go.innerHTML = '💥 ¡Choque!<br>Puntos: ' + ARCADE_SNAKE.score;
+  area.appendChild(go);
+}
+
+// ── Juego 7: Tetris ──
+const ARCADE_TETRIS_COLS = 8, ARCADE_TETRIS_ROWS = 16;
+const ARCADE_TETRO_SHAPES = {
+  I: [[[0,1],[1,1],[2,1],[3,1]], [[2,0],[2,1],[2,2],[2,3]], [[0,2],[1,2],[2,2],[3,2]], [[1,0],[1,1],[1,2],[1,3]]],
+  O: [[[1,0],[2,0],[1,1],[2,1]], [[1,0],[2,0],[1,1],[2,1]], [[1,0],[2,0],[1,1],[2,1]], [[1,0],[2,0],[1,1],[2,1]]],
+  T: [[[1,0],[0,1],[1,1],[2,1]], [[1,0],[1,1],[2,1],[1,2]], [[0,1],[1,1],[2,1],[1,2]], [[1,0],[0,1],[1,1],[1,2]]],
+  S: [[[1,0],[2,0],[0,1],[1,1]], [[1,0],[1,1],[2,1],[2,2]], [[1,1],[2,1],[0,2],[1,2]], [[0,0],[0,1],[1,1],[1,2]]],
+  Z: [[[0,0],[1,0],[1,1],[2,1]], [[2,0],[1,1],[2,1],[1,2]], [[0,1],[1,1],[1,2],[2,2]], [[1,0],[0,1],[1,1],[0,2]]],
+  J: [[[0,0],[0,1],[1,1],[2,1]], [[1,0],[2,0],[1,1],[1,2]], [[0,1],[1,1],[2,1],[2,2]], [[1,0],[1,1],[0,2],[1,2]]],
+  L: [[[2,0],[0,1],[1,1],[2,1]], [[1,0],[1,1],[1,2],[2,2]], [[0,1],[1,1],[2,1],[0,2]], [[0,0],[1,0],[1,1],[1,2]]],
+};
+const ARCADE_TETRO_COLORS = { I: '#22c3f2', O: '#f5d90a', T: '#a855f7', S: '#22c55e', Z: '#ef4444', J: '#3b82f6', L: '#f59e0b' };
+const ARCADE_TETRO_KEYS = Object.keys(ARCADE_TETRO_SHAPES);
+function ARCADE_TETRIS_start() {
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = `<div class="arcade-tetris-wrap">
+      <canvas id="arcade-tetris-canvas" class="arcade-canvas" width="160" height="320"></canvas>
+      <div class="arcade-tetris-controls">
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_move(-1)">◀</button>
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_rotate()">⟳</button>
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_move(1)">▶</button>
+        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_softDrop()">⤓</button>
+      </div>
+    </div>`;
+  ARCADE_TETRIS = {
+    board: Array.from({ length: ARCADE_TETRIS_ROWS }, () => Array(ARCADE_TETRIS_COLS).fill(null)),
+    piece: null, score: 0, running: true, timer: null, speedMs: 650
+  };
+  ARCADE_setScore('Líneas: 0');
+  ARCADE_TETRIS_spawn();
+  ARCADE_TETRIS_draw();
+  ARCADE_TETRIS.timer = setInterval(ARCADE_TETRIS_tick, ARCADE_TETRIS.speedMs);
+  document.addEventListener('keydown', ARCADE_TETRIS_key);
+}
+function ARCADE_TETRIS_key(e) {
+  if (!ARCADE_TETRIS) return;
+  if (e.key === 'ArrowLeft') ARCADE_TETRIS_move(-1);
+  else if (e.key === 'ArrowRight') ARCADE_TETRIS_move(1);
+  else if (e.key === 'ArrowUp') ARCADE_TETRIS_rotate();
+  else if (e.key === 'ArrowDown') ARCADE_TETRIS_softDrop();
+  else return;
+  e.preventDefault();
+}
+function ARCADE_TETRIS_cells(piece) {
+  return ARCADE_TETRO_SHAPES[piece.type][piece.rot].map(([dx, dy]) => [piece.x + dx, piece.y + dy]);
+}
+function ARCADE_TETRIS_collide(piece) {
+  const b = ARCADE_TETRIS.board;
+  return ARCADE_TETRIS_cells(piece).some(([x, y]) => {
+    if (x < 0 || x >= ARCADE_TETRIS_COLS || y >= ARCADE_TETRIS_ROWS) return true;
+    if (y < 0) return false;
+    return !!b[y][x];
+  });
+}
+function ARCADE_TETRIS_spawn() {
+  const type = ARCADE_TETRO_KEYS[Math.floor(Math.random() * ARCADE_TETRO_KEYS.length)];
+  const piece = { type, rot: 0, x: 2, y: -1 };
+  if (ARCADE_TETRIS_collide(piece)) return ARCADE_TETRIS_gameOver();
+  ARCADE_TETRIS.piece = piece;
+}
+function ARCADE_TETRIS_move(dx) {
+  if (!ARCADE_TETRIS || !ARCADE_TETRIS.running || ARCADE_State.paused || !ARCADE_TETRIS.piece) return;
+  const p = { ...ARCADE_TETRIS.piece, x: ARCADE_TETRIS.piece.x + dx };
+  if (!ARCADE_TETRIS_collide(p)) { ARCADE_TETRIS.piece = p; ARCADE_TETRIS_draw(); }
+}
+function ARCADE_TETRIS_rotate() {
+  if (!ARCADE_TETRIS || !ARCADE_TETRIS.running || ARCADE_State.paused || !ARCADE_TETRIS.piece) return;
+  const base = { ...ARCADE_TETRIS.piece, rot: (ARCADE_TETRIS.piece.rot + 1) % 4 };
+  for (const kick of [0, -1, 1, -2, 2]) {
+    const p = { ...base, x: base.x + kick };
+    if (!ARCADE_TETRIS_collide(p)) { ARCADE_TETRIS.piece = p; ARCADE_TETRIS_draw(); return; }
+  }
+}
+function ARCADE_TETRIS_softDrop() {
+  if (!ARCADE_TETRIS || !ARCADE_TETRIS.running || ARCADE_State.paused) return;
+  ARCADE_TETRIS_tick(true);
+}
+function ARCADE_TETRIS_tick(manual) {
+  if (!ARCADE_TETRIS || !ARCADE_TETRIS.running) return;
+  if (ARCADE_State.paused && !manual) return;
+  const p = { ...ARCADE_TETRIS.piece, y: ARCADE_TETRIS.piece.y + 1 };
+  if (!ARCADE_TETRIS_collide(p)) {
+    ARCADE_TETRIS.piece = p;
+  } else {
+    ARCADE_TETRIS_lock();
+    ARCADE_TETRIS_clearLines();
+    if (ARCADE_TETRIS.running) ARCADE_TETRIS_spawn();
+  }
+  ARCADE_TETRIS_draw();
+}
+function ARCADE_TETRIS_lock() {
+  const b = ARCADE_TETRIS.board;
+  ARCADE_TETRIS_cells(ARCADE_TETRIS.piece).forEach(([x, y]) => { if (y >= 0) b[y][x] = ARCADE_TETRIS.piece.type; });
+}
+function ARCADE_TETRIS_clearLines() {
+  const b = ARCADE_TETRIS.board;
+  let cleared = 0;
+  for (let y = b.length - 1; y >= 0; y--) {
+    if (b[y].every(c => c)) {
+      b.splice(y, 1);
+      b.unshift(Array(ARCADE_TETRIS_COLS).fill(null));
+      cleared++;
+      y++;
+    }
+  }
+  if (cleared) {
+    ARCADE_TETRIS.score += cleared;
+    ARCADE_setScore('Líneas: ' + ARCADE_TETRIS.score);
+    if (ARCADE_TETRIS.speedMs > 220) {
+      ARCADE_TETRIS.speedMs -= cleared * 25;
+      clearInterval(ARCADE_TETRIS.timer);
+      ARCADE_TETRIS.timer = setInterval(ARCADE_TETRIS_tick, ARCADE_TETRIS.speedMs);
+    }
+  }
+}
+function ARCADE_TETRIS_draw() {
+  const canvas = document.getElementById('arcade-tetris-canvas');
+  if (!canvas || !ARCADE_TETRIS) return;
+  const ctx = canvas.getContext('2d');
+  const cell = canvas.width / ARCADE_TETRIS_COLS;
+  ctx.fillStyle = '#0b1c33';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ARCADE_TETRIS.board.forEach((row, y) => row.forEach((c, x) => {
+    if (c) ARCADE_TETRIS_drawCell(ctx, x, y, cell, ARCADE_TETRO_COLORS[c]);
+  }));
+  if (ARCADE_TETRIS.piece) {
+    ARCADE_TETRIS_cells(ARCADE_TETRIS.piece).forEach(([x, y]) => {
+      if (y >= 0) ARCADE_TETRIS_drawCell(ctx, x, y, cell, ARCADE_TETRO_COLORS[ARCADE_TETRIS.piece.type]);
+    });
+  }
+}
+function ARCADE_TETRIS_drawCell(ctx, x, y, cell, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x * cell + 1, y * cell + 1, cell - 2, cell - 2);
+}
+function ARCADE_TETRIS_gameOver() {
+  ARCADE_TETRIS.running = false;
+  clearInterval(ARCADE_TETRIS.timer);
+  document.removeEventListener('keydown', ARCADE_TETRIS_key);
+  const area = document.getElementById('arcade-game-area');
+  const go = document.createElement('div');
+  go.className = 'arcade-gameover';
+  go.innerHTML = '💥 ¡Se llenó el tablero!<br>Líneas: ' + ARCADE_TETRIS.score;
+  area.appendChild(go);
+}
+// Cada tanto, sin que nadie la toque, EVA sonríe o hace una pequeña
+// pirueta — puramente decorativo, en un intervalo aleatorio para que se
+// sienta vivo y no repetitivo.
+function TB_EVA_vidaPropia() {
+  const r = Math.random();
+  if (r < 0.5) TB_EVA_sonreir();
+  else TB_EVA_trick();
+  setTimeout(TB_EVA_vidaPropia, 9000 + Math.random() * 10000);
+}
+setTimeout(TB_EVA_vidaPropia, 6000);
+function TB_EVA_hablar() {
+  const wrap = document.getElementById('tb-eva-wrap');
+  if (wrap) { wrap.style.animation = 'none'; void wrap.offsetWidth; wrap.style.animation = ''; }
+  TB_EVA_mostrarBurbuja('🔔 ¡Es hora!');
 }
 
 // ── UI: panel "Mover Horas Entre Días" ──
