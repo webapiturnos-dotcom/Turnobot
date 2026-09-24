@@ -1477,7 +1477,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Actualizando...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1794,7 +1794,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 22/09/2026 · 1840</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 22/09/2026 · 1904</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1887,7 +1887,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>VIVIANA</strong> consultó su turno</div><div class="activity-time">21:34</div><button type="button" class="activity-del-btn" data-aid="31" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>VIVIANA</strong> consultó su turno</div><div class="activity-time">21:34</div><button type="button" class="activity-del-btn" data-aid="30" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>VIVIANA</strong> consultó su turno</div><div class="activity-time">21:34</div><button type="button" class="activity-del-btn" data-aid="29" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">21:34</div><button type="button" class="activity-del-btn" data-aid="28" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">21:34</div><button type="button" class="activity-del-btn" data-aid="27" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -2102,11 +2102,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:02 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">07:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">19:01</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">19:00</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">19:00</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">09:09 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">09:09 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">09:09 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:06 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:06 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:06 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:06 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:05 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:05 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">05:29 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
-      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🗂️ Actualizar Malla de Turnos</div>
           <div class="section-sub">Sube el nuevo archivo y todo el equipo se actualiza</div>
@@ -2324,8 +2324,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">🔑 23 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">22/9, 07:00 p. m. · 22/9, 05:26 p. m. · 22/9, 12:10 a. m.</div>
+        <div class="team-row-sub">🔑 25 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">23/9, 05:26 p. m. · 22/9, 08:43 p. m. · 22/9, 07:00 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2384,8 +2384,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">GUSTAVO ANDRÉS CERA GONZALEZ</div>
-        <div class="team-row-sub">🔑 13 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">21/9, 06:44 a. m. · 20/9, 04:26 p. m. · 19/9, 09:54 p. m.</div>
+        <div class="team-row-sub">🔑 14 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">22/9, 07:11 p. m. · 21/9, 06:44 a. m. · 20/9, 04:26 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2426,8 +2426,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 31 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">22/9, 09:32 a. m. · 21/9, 08:27 a. m. · 21/9, 08:26 a. m.</div>
+        <div class="team-row-sub">🔑 34 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">23/9, 05:29 p. m. · 23/9, 10:02 a. m. · 23/9, 10:02 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2450,8 +2450,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 48 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">22/9, 09:50 a. m. · 22/9, 09:49 a. m. · 22/9, 07:24 a. m.</div>
+        <div class="team-row-sub">🔑 49 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">23/9, 09:05 p. m. · 22/9, 09:50 a. m. · 22/9, 09:49 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2474,14 +2474,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">🔑 15 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">21/9, 09:28 a. m. · 19/9, 09:43 p. m. · 19/9, 07:21 a. m.</div>
+        <div class="team-row-sub">🔑 16 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">23/9, 09:09 p. m. · 21/9, 09:28 a. m. · 19/9, 09:43 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">WENDI VANESA MOLINA HERRERA</div>
-        <div class="team-row-sub">🔑 15 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">21/9, 01:33 p. m. · 21/9, 07:23 a. m. · 20/9, 05:52 p. m.</div>
+        <div class="team-row-sub">🔑 16 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">23/9, 06:04 a. m. · 21/9, 01:33 p. m. · 21/9, 07:23 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2580,13 +2580,28 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Solicitudes de cambio de turno recibidas (solo admin) ── -->
-      <div class="malla-panel admin-subpanel" id="solicitudes-admin-panel" style="display: none;">
+      <div class="malla-panel admin-subpanel" id="solicitudes-admin-panel" style="display: block;">
         <div class="section-header">
           <div class="section-title">🔄 Solicitudes de Cambio de Turno</div>
           <div class="section-sub">Aprueba o rechaza lo que llega a la Sheet</div>
         </div>
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA 🔄 JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">Fecha: 2026-09-25T00:00:00.000Z · Novedad familiar medica</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL 🔄 JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">Fecha: 2026-09-22T00:00:00.000Z · Diligencia personal</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">GREY MAR NORIEGA ALGARIN 🔄 CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+        <div class="team-row-sub">Fecha: 2026-09-16T00:00:00.000Z · Nn</div>
+        <div class="team-row-sub" style="color:var(--naranja)">Estado: pendiente</div>
+      </div><div style="display: flex; gap: 6px;"><button class="deleg-row-btn">✅</button><button class="deleg-row-btn">❌</button></div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ 🔄 JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
         <div class="team-row-sub">Fecha: 2026-09-11T00:00:00.000Z · Motivo personales</div>
@@ -3242,7 +3257,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  22/9/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   2:15:00 p. m.   9:30:00 a. m.   12:15:00 p. m.   12:00:00 a. m. 7:15:00
  23/9/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   2:15:00 p. m.   9:30:00 a. m.   12:15:00 p. m.   12:00:00 a. m. 7:15:00
  24/9/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   2:15:00 p. m.   9:30:00 a. m.   12:15:00 p. m.   12:00:00 a. m. 7:15:00
- 25/9/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   2:00:00 p. m.   9:30:00 a. m.   12:15:00 p. m.   12:00:00 a. m. 7:00:00
+25/9/2026	ACTIVO	JULIETH	PAOLA	PERALTA	MARTINEZ	10:00:00	a.	m.	7:00:00	p.	m.	12:00:00	p.	m.	4:30:00	p.	m.	2:30:00	p.	m.	8:00:00
  26/9/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   3:00:00 p. m.   9:45:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   6:00:00
  21/9/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:30:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   3:00:00 p. m.   12:30:00 p. m.   7:30:00
  22/9/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:30:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   3:00:00 p. m.   12:30:00 p. m.   7:30:00
@@ -3308,7 +3323,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  22/9/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   12:00:00 p. m.   7:00:00 p. m.   2:00:00 p. m.   4:30:00 p. m.   12:00:00 a. m. 7:00:00
  23/9/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   12:00:00 p. m.   7:00:00 p. m.   2:00:00 p. m.   4:30:00 p. m.   12:00:00 a. m. 7:00:00
  24/9/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   12:00:00 p. m.   7:00:00 p. m.   2:00:00 p. m.   4:30:00 p. m.   12:00:00 a. m. 7:00:00
- 25/9/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   2:30:00 p. m.   8:00:00
+25/9/2026	ACTIVO	VIVIANA	ESTER	CUMPLIDO	VALENCIA	7:00:00	a.	m.	2:00:00	p.	m.	9:30:00	a.	m.	12:15:00	p.	m.	12:00:00	a.	m.	7:00:00
  26/9/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   3:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 11:30:00 a. m.   6:00:00
  21/9/2026   ACTIVO   WENDI VANESA MOLINA HERRERA   8:30:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   3:15:00 p. m.   1:00:00 p. m.   7:30:00
  22/9/2026   ACTIVO   WENDI VANESA MOLINA HERRERA   8:30:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   3:15:00 p. m.   1:00:00 p. m.   7:30:00
@@ -5889,7 +5904,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-22.1904';
+const TB_APP_VERSION = '2026-09-23.2136';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -7349,7 +7364,7 @@ function CAMBIO_get(fechaISO, norm) {
 // cuando llega una malla con fechas realmente nuevas (ver
 // MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
 // archivo.
-const TB_CAMBIOS_DEFAULT = {"2026-09-22|NEVIS CAROLINA JIMENEZ MARMOL":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-22|JULIETH PAOLA PERALTA MARTINEZ":"NEVIS CAROLINA JIMENEZ MARMOL"};
+const TB_CAMBIOS_DEFAULT = {"2026-09-22|NEVIS CAROLINA JIMENEZ MARMOL":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-22|JULIETH PAOLA PERALTA MARTINEZ":"NEVIS CAROLINA JIMENEZ MARMOL","2026-09-25|VIVIANA ESTER CUMPLIDO VALENCIA":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-25|JULIETH PAOLA PERALTA MARTINEZ":"VIVIANA ESTER CUMPLIDO VALENCIA"};
 function TB_CAMBIOS_init() {
   try {
     const embebidos = TB_CAMBIOS_DEFAULT || {};
