@@ -1500,7 +1500,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Leyendo archivo...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1902,11 +1902,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="aqp-stats-row">
           <div class="aqp-stat" id="aqp-total">
-            <div class="aqp-stat-v" id="aqp-total-v">21</div>
+            <div class="aqp-stat-v" id="aqp-total-v">38</div>
             <div class="aqp-stat-l">Personas en malla</div>
           </div>
           <div class="aqp-stat" id="aqp-pending">
-            <div class="aqp-stat-v" id="aqp-pend-v">126</div>
+            <div class="aqp-stat-v" id="aqp-pend-v">228</div>
             <div class="aqp-stat-l">Turnos cargados</div>
           </div>
           <div class="aqp-stat">
@@ -1945,11 +1945,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <!-- Nav inferior -->
     <div class="bottom-nav">
-      <div class="nav-item" id="nav-home" onclick="showMainScreen('home')">
+      <div class="nav-item active" id="nav-home" onclick="showMainScreen('home')">
         <div class="nav-icon">🏠</div>
         <div class="nav-label">Inicio</div>
       </div>
-      <div class="nav-item active" id="nav-turns" onclick="showMainScreen('turns')">
+      <div class="nav-item" id="nav-turns" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
         <div class="nav-label" id="nav-turns-label">Configuración</div>
       </div>
@@ -2189,7 +2189,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">🔑 Acceso Compartido (carpeta de red)</div>
           <div class="section-sub">Cada asesor solo ve su propio usuario y contraseña</div>
         </div>
-        <div class="malla-status" id="shared-status-count">20 cuenta(s) · IP: 192.168.130.36</div>
+        <div class="malla-status" id="shared-status-count">0 cuenta(s) · IP: sin definir</div>
 
         <div style="margin-top:10px">
           <label style="font-size:12px;color:var(--gris);display:block;margin-bottom:6px;">IP o ruta del servidor de la carpeta compartida</label>
@@ -2203,7 +2203,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           Pega abajo una cuenta por línea (usuario, contraseña, nombre completo — igual que en el Excel). El nombre se compara sin tildes ni mayúsculas, así que solo debe coincidir con el nombre de esa persona en la malla.
         </div>
         <div class="malla-paste-toggle" onclick="SHARED_toggleAdminPaste()">Pegar cuentas de la carpeta compartida</div>
-        <div class="malla-paste-wrap show" id="shared-paste-wrap">
+        <div class="malla-paste-wrap" id="shared-paste-wrap">
           <textarea class="form-input" id="shared-paste-text" rows="6" placeholder="aanillo;6c5yh7Bp03oL;Adriana Anillo Bolívar" style="resize:none"></textarea>
           <button class="btn btn-secondary w-full" onclick="SHARED_applyPastedAccounts()">✅ Guardar cuentas pegadas</button>
         </div>
@@ -3491,6 +3491,14 @@ const TB_ACCOUNTS_DEFAULT = {};
 // (normalizeName) para que calce con el nombre del turno de cada asesor.
 const TB_SHARED_ACCESS_DEFAULT = {};
 const TB_SHARED_ACCESS_IP = '';
+// ── Administradores delegados ──
+// DELEGATES_KEY vive en el dispositivo del superadmin (Moisés) y ahí se
+// otorgan/revocan. Igual que las cuentas de TurnoBot y el acceso compartido,
+// se hornea en el HTML de oficina (con nombre, contraseña YA hasheada y los
+// permisos que se le dieron) para que ese delegado pueda entrar como admin
+// desde CUALQUIER dispositivo que abra ese HTML, sin que Moisés tenga que
+// otorgarle el acceso otra vez ahí. Ver DELEG_seedFromDefault más abajo.
+const TB_DELEGATES_DEFAULT = {};
 let MALLA_DATA = [];
 
 function normalizeName(s) {
@@ -4247,10 +4255,12 @@ function MALLA_downloadUpdatedHTML(filename) {
 // Apps Script) y sin las funciones que dependen de esa conexión (Novedades:
 // cambios de turno/incapacidades, y el Buzón). Sirve para subirla tal cual a
 // una intranet corporativa sin salida a internet: el asesor solo entra a
-// consultar su turno. Las cuentas (usuario+contraseña) quedan horneadas en
-// el archivo para que el login funcione 100% local (ver ACC_seedFromDefault:
-// si no cambiaron, quedan indexadas igual; si la contraseña cambió, se
-// actualiza al descargar de nuevo esta versión). ──
+// consultar su turno. Las cuentas (usuario+contraseña), el acceso compartido
+// de la carpeta de red y los administradores delegados quedan horneados en
+// el archivo para que login y permisos funcionen 100% local (ver
+// ACC_seedFromDefault / SHARED_seedFromDefault / DELEG_seedFromDefault:
+// si no cambiaron, quedan indexados igual; si algo cambió, se actualiza al
+// descargar de nuevo esta versión). ──
 function MALLA_buildOfficeHTML() {
   let html = MALLA_buildUpdatedHTML();
   if (!html) return null;
@@ -4276,6 +4286,14 @@ function MALLA_buildOfficeHTML() {
   html = html.replace(
     /const TB_SHARED_ACCESS_IP = '';/,
     'const TB_SHARED_ACCESS_IP = ' + JSON.stringify(sharedData.ip || '') + ';'
+  );
+
+  // Administradores delegados: se hornean con el nombre, la contraseña ya
+  // hasheada y los permisos exactos que Moisés le dio a cada uno, para que
+  // ese acceso funcione desde cualquier dispositivo que abra este HTML.
+  html = html.replace(
+    /const TB_DELEGATES_DEFAULT = \{\};/,
+    'const TB_DELEGATES_DEFAULT = ' + JSON.stringify(DELEG_load()) + ';'
   );
 
   // Sin Google Fonts ni CDN externos (pdf.js/exceljs no hacen falta para
@@ -4923,6 +4941,29 @@ const DELEG_PANEL_PERM_MAP = {
 const DELEG_PERM_KEYS = ['consultas','malla','turnos','mover','ausencia','solicitudes','incapacidades','accesos','accesoCompartido'];
 function DELEG_load() { try { return JSON.parse(localStorage.getItem(DELEGATES_KEY)) || {}; } catch { return {}; } }
 function DELEG_save(all) { try { localStorage.setItem(DELEGATES_KEY, JSON.stringify(all)); } catch {} }
+
+// Fusiona los delegados horneados en el archivo (TB_DELEGATES_DEFAULT, solo
+// existe con datos reales en la versión de oficina) con los que ya tenga
+// este dispositivo — mismo criterio que ACC_seedFromDefault/SHARED_seedFromDefault:
+// si no cambió nada se deja tal cual, y si la contraseña o los permisos
+// cambiaron (porque Moisés volvió a otorgar el acceso con otros permisos)
+// se actualizan.
+function DELEG_seedFromDefault() {
+  try {
+    if (typeof TB_DELEGATES_DEFAULT === 'undefined') return;
+    const local = DELEG_load();
+    let changed = false;
+    Object.keys(TB_DELEGATES_DEFAULT).forEach(norm => {
+      const def = TB_DELEGATES_DEFAULT[norm];
+      const cur = local[norm];
+      if (!cur || cur.pass !== def.pass || JSON.stringify(cur.perms) !== JSON.stringify(def.perms) || cur.nombre !== def.nombre) {
+        local[norm] = Object.assign({}, def);
+        changed = true;
+      }
+    });
+    if (changed) DELEG_save(local);
+  } catch (e) { console.error('DELEG_seedFromDefault error:', e); }
+}
 function DELEG_grant(nombre, pin, perms) {
   const norm = normalizeName(nombre);
   if (!norm) return false;
@@ -5982,7 +6023,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-26.1425';
+const TB_APP_VERSION = '2026-09-26.1433';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6025,6 +6066,7 @@ function TB_clearStaleCacheIfNewVersion() {
   TB_clearStaleCacheIfNewVersion();
   ACC_seedFromDefault();
   SHARED_seedFromDefault();
+  DELEG_seedFromDefault();
   if (typeof showLoader === 'function' && TB_getSheetUrl()) showLoader('Verificando información...');
   TB_SYNC_PROMISE = TB_syncFromSheet(); // arranca ya, pero queda "reservada" para que login/registro la esperen
   await TB_ensureSynced();
