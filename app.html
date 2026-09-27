@@ -1500,14 +1500,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Leyendo archivo...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: CARLOS — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: JENNIFER — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1817,7 +1817,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 23/09/2026 · 2136</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 26/09/2026 · 1440</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1902,11 +1902,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="aqp-stats-row">
           <div class="aqp-stat" id="aqp-total">
-            <div class="aqp-stat-v" id="aqp-total-v">38</div>
+            <div class="aqp-stat-v" id="aqp-total-v">21</div>
             <div class="aqp-stat-l">Personas en malla</div>
           </div>
           <div class="aqp-stat" id="aqp-pending">
-            <div class="aqp-stat-v" id="aqp-pend-v">228</div>
+            <div class="aqp-stat-v" id="aqp-pend-v">126</div>
             <div class="aqp-stat-l">Turnos cargados</div>
           </div>
           <div class="aqp-stat">
@@ -1922,7 +1922,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JENNIFER</strong> consultó su turno</div><div class="activity-time">17:17</div><button type="button" class="activity-del-btn" data-aid="55" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JENNIFER</strong> consultó su turno</div><div class="activity-time">17:17</div><button type="button" class="activity-del-btn" data-aid="54" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1945,11 +1945,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <!-- Nav inferior -->
     <div class="bottom-nav">
-      <div class="nav-item active" id="nav-home" onclick="showMainScreen('home')">
+      <div class="nav-item" id="nav-home" onclick="showMainScreen('home')">
         <div class="nav-icon">🏠</div>
         <div class="nav-label">Inicio</div>
       </div>
-      <div class="nav-item" id="nav-turns" onclick="showMainScreen('turns')">
+      <div class="nav-item active" id="nav-turns" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
         <div class="nav-label" id="nav-turns-label">Configuración</div>
       </div>
@@ -1985,7 +1985,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Sábado 26 Sep</div>
+            <div class="turno-card-label">Tu turno · Lunes 28 Sep</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -2021,7 +2021,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Sábado 26 Sep</div>
+          <div class="section-sub" id="timeline-fecha">Lunes 28 Sep</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -2045,6 +2045,26 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="jornada-bar-bg" style="margin-top:12px">
           <div class="jornada-bar-fill" id="hs-fill" style="width: 0%;"></div>
         </div>
+      </div>
+
+      <!-- ── Calculadora de horas reales (propia, visible solo para asesores) ── -->
+      <div class="breaks-panel" id="mi-calc-panel" style="display:none">
+        <div class="section-header">
+          <div class="section-title">🧮 Calculadora de Horas Reales</div>
+          <div class="section-sub">Elige un rango de días y desmarca los que no quieras contar. El total ya descuenta breaks y almuerzo.</div>
+        </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Desde</label>
+            <input type="date" class="form-input" id="micalc-desde" onchange="MICALC_generarDias()">
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Hasta</label>
+            <input type="date" class="form-input" id="micalc-hasta" onchange="MICALC_generarDias()">
+          </div>
+        </div>
+        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"></div>
+        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 0h 0m</div>
       </div>
 
       <!-- ── Panel de administración: selector tipo "Home de Novedades" ──
@@ -2080,6 +2100,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="qc-left"><div class="qc-icon">↔️</div><div>
             <div class="qc-title">Mover Horas Entre Días</div>
             <div class="qc-sub">Quita horas de un día y súmalas a otro</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-condicion" onclick="ADMIN_seleccionar('condicion-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">⚖️</div><div>
+            <div class="qc-title">Condición Especial de Horario</div>
+            <div class="qc-sub">Ej: salida obligatoria un día fijo, redistribuye el resto</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
@@ -2144,7 +2171,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">10:52 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">10:44 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">GUSTAVO ANDRÉS CERA GONZALEZ</span><span style="color:var(--gris);font-size:11px">08:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">05:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">12:25 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">09:33 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JOCELINE CAROLINE DE LA ROSA GOMEZ</span><span style="color:var(--gris);font-size:11px">08:13 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">WENDI VANESA MOLINA HERRERA</span><span style="color:var(--gris);font-size:11px">08:01 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">05:56 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">08:47 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">05:17 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">05:15 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">17:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">17:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -2189,7 +2216,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">🔑 Acceso Compartido (carpeta de red)</div>
           <div class="section-sub">Cada asesor solo ve su propio usuario y contraseña</div>
         </div>
-        <div class="malla-status" id="shared-status-count">0 cuenta(s) · IP: sin definir</div>
+        <div class="malla-status" id="shared-status-count">20 cuenta(s) · IP: 192.168.130.36</div>
 
         <div style="margin-top:10px">
           <label style="font-size:12px;color:var(--gris);display:block;margin-bottom:6px;">IP o ruta del servidor de la carpeta compartida</label>
@@ -2223,32 +2250,36 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
       <div>
-        <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">7:00 a. m. → 2:15 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">8:30 a. m. → 4:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CAROLL DAYANA BERDUGO BERDUGO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CAROLL DAYANA BERDUGO BERDUGO</div>
-        <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
-      </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">8:30 a. m. → 5:00 p. m.</div>
+        <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
+        <div class="team-row-sub">10:00 a. m. → 7:00 p. m.</div>
       </div>
       <div class="team-row-badge activo">Activo</div></div></div>
+
+        <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) ── -->
+        <div style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
+          <div class="section-header">
+            <div class="section-title">🧮 Calculadora de Horas Reales</div>
+            <div class="section-sub">Elige a la persona y un rango de días; desmarca los días que no quieras contar. El total ya descuenta breaks y almuerzo.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Persona</label>
+            <select class="form-input" id="calc-nombre" onchange="CALC_generarDias()"></select>
+          </div>
+          <div class="flex-row" style="gap:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Desde</label>
+              <input type="date" class="form-input" id="calc-desde" onchange="CALC_generarDias()">
+            </div>
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Hasta</label>
+              <input type="date" class="form-input" id="calc-hasta" onchange="CALC_generarDias()">
+            </div>
+          </div>
+          <div id="calc-dias-list" class="consultas-list" style="margin-top:8px"></div>
+          <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="calc-total">Total real: 0h 0m</div>
+        </div>
       </div>
 
       <!-- ── Mover horas entre días (quitar hora hoy, sumarla mañana) ── -->
@@ -2275,10 +2306,84 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <label class="form-label">Horas a mover</label>
           <input type="number" class="form-input" id="mover-horas" value="1" min="0.5" step="0.5">
         </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">En el día de origen…</label>
+            <select class="form-input" id="mover-modo-origen">
+              <option value="sale_temprano">Sale más temprano (adelanta salida)</option>
+              <option value="entra_tarde">Entra más tarde (retrasa entrada)</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">En el día de destino…</label>
+            <select class="form-input" id="mover-modo-destino">
+              <option value="entra_temprano">Entra más temprano (adelanta entrada)</option>
+              <option value="sale_tarde">Sale más tarde (retrasa salida)</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex-row" style="gap:10px;align-items:flex-end">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Tope de horas por día</label>
+            <input type="number" class="form-input" id="mover-tope" value="9" min="1" step="0.5">
+          </div>
+          <div class="form-group" style="flex:1;margin:0 0 12px 0;">
+            <label style="font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer;">
+              <input type="checkbox" id="mover-recalc-breaks" checked style="width:auto">
+              Recalcular break y almuerzo según el patrón global
+            </label>
+          </div>
+        </div>
         <button class="btn btn-primary w-full" onclick="MOVER_aplicar()">✅ Aplicar movimiento de horas</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
-          Regla: en el día de origen la salida se adelanta esas horas (la entrada no cambia); en el día de destino la entrada se adelanta esas horas (la salida no cambia). La columna Horas de ambos días se ajusta sola. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
+          Por defecto, en el día de origen la salida se adelanta esas horas y en el de destino la entrada se adelanta esas horas; puedes cambiar cada lado para que en vez entre más tarde o salga más tarde. Si el resultado supera el tope de horas por día, no se aplica. Con "Recalcular break y almuerzo" activo, esos horarios se reubican según el patrón típico de la malla (mismo % del turno) en vez de quedar pegados a su hora vieja. La columna Horas de ambos días se ajusta sola. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
         </div>
+      </div>
+
+      <!-- ── Condición especial de horario (ej. salida obligatoria un día fijo) ── -->
+      <div class="malla-panel admin-subpanel" id="condicion-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">⚖️ Condición Especial de Horario</div>
+          <div class="section-sub">Para casos como "debe salir sí o sí a mediodía los sábados": fija ese día y redistribuye la diferencia en el resto de la semana sin superar el tope diario</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Persona</label>
+          <select class="form-input" id="cond-nombre"></select>
+        </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Día fijo de la semana</label>
+            <select class="form-input" id="cond-dia">
+              <option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option>
+              <option value="4">Jueves</option><option value="5">Viernes</option><option value="6" selected>Sábado</option>
+              <option value="0">Domingo</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Semana a aplicar (cualquier día de esa semana)</label>
+            <input type="date" class="form-input" id="cond-semana">
+          </div>
+        </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Hora de salida obligatoria</label>
+            <input type="time" class="form-input" id="cond-hora-salida" value="12:00">
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Horas máximas ese día</label>
+            <input type="number" class="form-input" id="cond-horas-dia" value="4" min="1" step="0.5">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tope de horas en el resto de los días</label>
+          <input type="number" class="form-input" id="cond-tope-otros" value="9" min="1" step="0.5">
+        </div>
+        <button class="btn btn-primary w-full" onclick="COND_aplicar()">✅ Fijar ese día y redistribuir la semana</button>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          El día elegido queda con salida fija y exactamente las horas máximas indicadas; lo que se le quita se reparte entre los demás días de esa semana (entran más temprano o salen más tarde) sin pasar el tope, y ningún día baja de 4 horas. Los breaks y el almuerzo de todos los días tocados se reubican según el patrón global. Puedes guardar la condición para reaplicarla otras semanas.
+        </div>
+        <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="COND_guardar()">💾 Guardar esta condición para reutilizarla</button>
+        <div id="cond-guardadas-list" class="consultas-list" style="margin-top:10px"></div>
       </div>
 
       <!-- ── Marcar ausencia total: Incapacidad / Permiso / Suspensión ── -->
@@ -2333,14 +2438,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">🔑 18 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">20/9, 12:13 p. m. · 19/9, 09:57 p. m. · 19/9, 07:16 p. m.</div>
+        <div class="team-row-sub">🔑 19 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 03:44 p. m. · 20/9, 12:13 p. m. · 19/9, 09:57 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">🔑 19 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">25/9, 08:13 a. m. · 25/9, 08:13 a. m. · 24/9, 06:43 a. m.</div>
+        <div class="team-row-sub">🔑 21 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 04:29 p. m. · 26/9, 04:29 p. m. · 25/9, 08:13 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2375,8 +2480,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 27 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">24/9, 07:14 a. m. · 21/9, 01:22 p. m. · 21/9, 01:16 p. m.</div>
+        <div class="team-row-sub">🔑 28 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 04:23 p. m. · 24/9, 07:14 a. m. · 21/9, 01:22 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2471,8 +2576,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">🔑 8 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">20/9, 12:40 p. m. · 19/9, 09:35 p. m. · 14/9, 08:52 a. m.</div>
+        <div class="team-row-sub">🔑 9 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 04:54 p. m. · 20/9, 12:40 p. m. · 19/9, 09:35 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2483,8 +2588,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">🔑 24 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">24/9, 08:47 p. m. · 20/9, 11:14 a. m. · 19/9, 09:41 p. m.</div>
+        <div class="team-row-sub">🔑 25 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 04:17 p. m. · 24/9, 08:47 p. m. · 20/9, 11:14 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2495,8 +2600,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 38 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 10:51 a. m. · 26/9, 10:44 a. m. · 25/9, 12:25 p. m.</div>
+        <div class="team-row-sub">🔑 39 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 04:32 p. m. · 26/9, 10:51 a. m. · 26/9, 10:44 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2519,8 +2624,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 52 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">25/9, 03:05 p. m. · 25/9, 09:33 a. m. · 25/9, 05:56 a. m.</div>
+        <div class="team-row-sub">🔑 58 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 03:57 p. m. · 26/9, 03:57 p. m. (📱 Motorola motorola edge 60 fusion) · 26/9, 03:56 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2543,8 +2648,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">🔑 16 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">23/9, 09:09 p. m. · 21/9, 09:28 a. m. · 19/9, 09:43 p. m.</div>
+        <div class="team-row-sub">🔑 17 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 03:48 p. m. · 23/9, 09:09 p. m. · 21/9, 09:28 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3148,7 +3253,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -4932,6 +5037,7 @@ const DELEG_PANEL_PERM_MAP = {
   'malla-panel': 'malla',
   'team-panel': 'turnos',
   'mover-admin-panel': 'mover',
+  'condicion-admin-panel': 'mover',
   'ausencia-admin-panel': 'ausencia',
   'solicitudes-admin-panel': 'solicitudes',
   'incap-admin-panel': 'incapacidades',
@@ -6023,7 +6129,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-26.1440';
+const TB_APP_VERSION = '2026-09-27.1803';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6477,8 +6583,9 @@ function ADMIN_seleccionar(panelId) {
     p.style.display = (p.id === panelId) ? 'block' : 'none';
   });
   // Refrescar datos de la sección al abrirla, por si cambiaron desde la última vez.
-  if (panelId === 'team-panel') TEAM_render();
+  if (panelId === 'team-panel') { TEAM_render(); CALC_populate(); }
   if (panelId === 'mover-admin-panel') MOVER_populateSelect();
+  if (panelId === 'condicion-admin-panel') COND_populate();
   if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
   if (panelId === 'delegate-panel') DELEG_render();
   if (panelId === 'sheet-panel') TB_renderSheetStatus();
@@ -6677,6 +6784,7 @@ function F3_initTurns() {
   const DELEG_BTN_ID_MAP = {
     'consultas-panel': 'admin-btn-consultas', 'malla-panel': 'admin-btn-malla',
     'team-panel': 'admin-btn-team', 'mover-admin-panel': 'admin-btn-mover',
+    'condicion-admin-panel': 'admin-btn-condicion',
     'ausencia-admin-panel': 'admin-btn-ausencia', 'solicitudes-admin-panel': 'admin-btn-solicitudes',
     'incap-admin-panel': 'admin-btn-incap', 'accesos-admin-panel': 'admin-btn-accesos',
     'shared-access-panel': 'admin-btn-shared'
@@ -6687,6 +6795,8 @@ function F3_initTurns() {
     btn.style.display = (user.isAdmin && DELEG_hasPermPanel(panelId)) ? 'flex' : 'none';
   });
   document.querySelectorAll('.admin-subpanel').forEach(p => { p.style.display = 'none'; });
+  const miCalcPanel = document.getElementById('mi-calc-panel');
+  if (miCalcPanel) miCalcPanel.style.display = user.isAdmin ? 'none' : 'block';
   if (user.isAdmin) {
     MALLA_refreshStatus();
     F3_renderAdminView();
@@ -6695,10 +6805,14 @@ function F3_initTurns() {
   }
   // Buscar el nombre canónico de esta persona dentro de la malla cargada
   const canonico = user.mallaNombre || MALLA_matchName(user.nombre);
-  if (!canonico) { F3_renderSinDatos(user); F3_populateCompanero(user); return; }
+  if (!canonico) {
+    if (miCalcPanel) miCalcPanel.style.display = 'none';
+    F3_renderSinDatos(user); F3_populateCompanero(user); return;
+  }
   user.mallaNombre = canonico;
   F3_renderDateChips(canonico);
   F3_populateCompanero(user);
+  MICALC_populate(canonico);
 }
 
 // ── Cambio de turno: llenar el select de compañeros y mostrar preview ──
@@ -7488,7 +7602,7 @@ function CAMBIO_get(fechaISO, norm) {
 // cuando llega una malla con fechas realmente nuevas (ver
 // MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
 // archivo.
-const TB_CAMBIOS_DEFAULT = {};
+const TB_CAMBIOS_DEFAULT = {"2026-09-22|NEVIS CAROLINA JIMENEZ MARMOL":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-22|JULIETH PAOLA PERALTA MARTINEZ":"NEVIS CAROLINA JIMENEZ MARMOL","2026-09-25|VIVIANA ESTER CUMPLIDO VALENCIA":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-25|JULIETH PAOLA PERALTA MARTINEZ":"VIVIANA ESTER CUMPLIDO VALENCIA"};
 function TB_CAMBIOS_init() {
   try {
     const embebidos = TB_CAMBIOS_DEFAULT || {};
@@ -7551,20 +7665,222 @@ function TB_minToDurToken(totalMin) {
   return `${h}:${String(m).padStart(2, '0')}:00`;
 }
 
+// ── Lee el texto crudo de la malla actual (misma fuente que usa
+// TB_moverHorasEntreDias) para poder escanearlo o reescribirlo. ──
+function TB_rawMallaActual() {
+  return MALLA_LAST_RAW_TEXT || (function() {
+    try { return localStorage.getItem(MALLA_RAWTEXT_KEY); } catch { return null; }
+  })() || MALLA_RAW_DEFAULT;
+}
+
+// ── Patrón global de breaks/almuerzo ──────────────────────────────────
+// Recorre TODA la malla actual y calcula, para cada columna auxiliar
+// (BREAK I / BREAK II / ALMUERZO), en qué % del turno (entrada→salida)
+// suele caer esa pausa, tomando la mediana entre todas las filas donde esa
+// columna sí aplica. Así, cuando se mueven horas en un día, el break/
+// almuerzo de ESE día se puede reubicar según cómo se comporta el patrón
+// real de toda la malla, no según una regla inventada.
+function TB_calcularPatronGlobal() {
+  const lines = TB_rawMallaActual().split(/\r?\n/);
+  const fracs = { 0: [], 1: [], 2: [] }; // 0=Break I, 1=Break II, 2=Almuerzo
+  lines.forEach(rawLine => {
+    const line = rawLine.trim();
+    if (!line) return;
+    const tokens = line.split(/\s+/);
+    if (tokens.length < 3 || !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(tokens[0])) return;
+    const rest = tokens.slice(2);
+    let idx = rest.findIndex(t => TB_esTokenHora(t));
+    if (idx === -1) return;
+    const sched = rest.slice(idx);
+    if (sched.length < 16 || !TB_esTokenHora(sched[0]) || !TB_esTokenHora(sched[3])) return;
+
+    const entradaMin = TB_timeTokensToMin(sched[0], sched[1]);
+    let salidaMin = TB_timeTokensToMin(sched[3], sched[4]);
+    if (salidaMin <= entradaMin) salidaMin += 1440;
+    const duracion = salidaMin - entradaMin;
+    if (duracion <= 0) return;
+
+    for (let gi = 0; gi < 3; gi++) {
+      const base = 6 + gi * 3;
+      const g = sched.slice(base, base + 3);
+      if (!TB_esTokenHora(g[0]) || !TB_esTokenAmPm(g[1])) continue;
+      if (g[0] === '12:00:00' && /^a\.?$/i.test(g[1])) continue; // relleno = columna sin usar ese día
+      let m = TB_timeTokensToMin(g[0], g[1]);
+      if (m < entradaMin) m += 1440; // por si el break cae ya pasada la medianoche
+      const frac = (m - entradaMin) / duracion;
+      if (frac >= 0 && frac <= 1.2) fracs[gi].push(frac);
+    }
+  });
+  function mediana(arr) {
+    if (!arr.length) return null;
+    const s = arr.slice().sort((a, b) => a - b);
+    const mid = Math.floor(s.length / 2);
+    return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+  }
+  return [mediana(fracs[0]), mediana(fracs[1]), mediana(fracs[2])];
+}
+
+// Placeholder "12:00:00 a. m." = esa columna no aplica ese día.
+function TB_esAuxPlaceholder(g) {
+  return g[0] === '12:00:00' && TB_esTokenAmPm(g[1]) && /^a\.?$/i.test(g[1]);
+}
+function TB_ponerPlaceholderAux(sched, gi) {
+  const base = 6 + gi * 3;
+  sched[base] = '12:00:00'; sched[base + 1] = 'a.'; sched[base + 2] = 'm.';
+}
+
+// Reubica las columnas auxiliares (BREAK I / BREAK II / ALMUERZO) de un
+// `sched` ya con la nueva entrada/duración, usando las fracciones del
+// patrón global. Respeta la misma convención que ya usa la malla real
+// (ver MALLA_labelsParaDetalle): con la jornada comprimida a 4h o menos
+// solo cabe Break 1; hasta 6h, Break 1 + Almuerzo; de ahí para arriba, las
+// 3 pausas. Así un día que se acorta mucho (p. ej. la condición especial)
+// no termina con 3 pausas apretadas en una jornada corta.
+function TB_recalcularAux(sched, entradaMin, duracion, patron) {
+  const habilitado = [true, duracion > 360, duracion > 240]; // BreakI, BreakII, Almuerzo
+  const orden = [0, 2, 1]; // el almuerzo (gi=2) manda antes que Break2 (gi=1) en la convención de conteo
+  for (const gi of orden) {
+    const base = 6 + gi * 3;
+    const g = sched.slice(base, base + 3);
+    const eraPlaceholder = TB_esAuxPlaceholder(g);
+    if (!habilitado[gi]) {
+      if (!eraPlaceholder) TB_ponerPlaceholderAux(sched, gi);
+      continue;
+    }
+    if (eraPlaceholder) continue; // ese día nunca tuvo esa pausa; el patrón no la inventa
+    const frac = patron[gi];
+    if (frac == null) continue;
+    let nuevoMin = entradaMin + frac * duracion;
+    nuevoMin = Math.round(nuevoMin / 5) * 5; // redondeo a 5 minutos
+    const tok = TB_minToTimeTokens(nuevoMin);
+    sched[base] = tok[0]; sched[base + 1] = tok[1]; sched[base + 2] = tok[2];
+  }
+}
+
+// ── Ajusta una sola línea cruda de la malla (entrada y/o salida), con
+// dirección configurable y tope de horas diario, y opcionalmente reubica
+// break/almuerzo según el patrón global. `tipo` es 'origen' (se le QUITAN
+// minutos) o 'destino' (se le SUMAN minutos). `modo` decide cuál extremo
+// del turno se mueve:
+//   origen:  'sale_temprano' (default, adelanta salida) | 'entra_tarde'
+//   destino: 'entra_temprano' (default, adelanta entrada) | 'sale_tarde'
+function TB_ajustarLinea(lines, i, tipo, modo, minutos, opts) {
+  opts = opts || {};
+  const capMin = (opts.capHorasDia != null ? opts.capHorasDia : 9) * 60;
+  const pisoMin = (opts.pisoHorasDia != null ? opts.pisoHorasDia : 4) * 60;
+  const recalcularBreaks = opts.recalcularBreaks !== false;
+
+  const tokens = lines[i].trim().split(/\s+/);
+  const rest = tokens.slice(2);
+  let idx = rest.findIndex(t => TB_esTokenHora(t));
+  if (idx === -1) idx = rest.length;
+  const nombreTokens = rest.slice(0, idx);
+  const sched = rest.slice(idx);
+
+  if (sched.length < 6 || !TB_esTokenHora(sched[0]) || !TB_esTokenAmPm(sched[1]) || !TB_esTokenHora(sched[3]) || !TB_esTokenAmPm(sched[4])) {
+    return { error: 'formato' };
+  }
+
+  let entradaMin = TB_timeTokensToMin(sched[0], sched[1]);
+  let salidaMin = TB_timeTokensToMin(sched[3], sched[4]);
+  if (salidaMin <= entradaMin) salidaMin += 1440;
+
+  // Guarda la columna "Horas" ANTES de tocar nada: esa columna viene neta
+  // (ya descontados los breaks/almuerzo, ver MALLA_parseText), así que no se
+  // recalcula desde entrada→salida en bruto (eso perdería el descuento).
+  // Se le aplica el mismo delta de minutos que se aplica al bruto, igual
+  // que hacía siempre esta función: mover 1h de un lado siempre cambia el
+  // bruto en exactamente esos 60 min sin importar qué extremo se mueva.
+  const lastIdxOrig = sched.length - 1;
+  let horasNetaOriginal = null;
+  if (lastIdxOrig >= 6 && TB_esTokenHora(sched[lastIdxOrig]) && !TB_esTokenAmPm(sched[lastIdxOrig - 1])) {
+    horasNetaOriginal = TB_durTokenToMin(sched[lastIdxOrig]);
+  }
+
+  if (tipo === 'origen') {
+    if (modo === 'entra_tarde') entradaMin += minutos; else salidaMin -= minutos;
+  } else {
+    if (modo === 'sale_tarde') salidaMin += minutos; else entradaMin -= minutos;
+  }
+
+  if (salidaMin <= entradaMin) return { error: tipo === 'origen' ? 'muy_corto' : 'muy_largo' };
+  const nuevaDuracion = salidaMin - entradaMin;
+  if (nuevaDuracion > capMin) return { error: 'excede_max' };
+  if (tipo === 'origen' && nuevaDuracion < pisoMin) return { error: 'bajo_piso' };
+
+  const tokE = TB_minToTimeTokens(entradaMin);
+  const tokS = TB_minToTimeTokens(salidaMin);
+  sched[0] = tokE[0]; sched[1] = tokE[1]; sched[2] = tokE[2];
+  sched[3] = tokS[0]; sched[4] = tokS[1]; sched[5] = tokS[2];
+
+  if (recalcularBreaks && sched.length >= 15) {
+    TB_recalcularAux(sched, entradaMin, nuevaDuracion, opts.patron || TB_calcularPatronGlobal());
+  }
+
+  if (horasNetaOriginal != null) {
+    const nuevaHorasNeta = tipo === 'origen' ? horasNetaOriginal - minutos : horasNetaOriginal + minutos;
+    sched[lastIdxOrig] = TB_minToDurToken(nuevaHorasNeta);
+  }
+
+  lines[i] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
+  return { ok: true, nuevaDuracion, entradaMin, salidaMin };
+}
+
+// Ubica el índice de línea (dentro de `lines`) que corresponde a una fecha
+// ISO + nombre normalizado, reutilizado por mover-horas y por condiciones.
+function TB_buscarLineaIndex(lines, fechaISO, norm) {
+  let encontrado = -1;
+  lines.forEach((rawLine, i) => {
+    if (encontrado !== -1) return;
+    const line = rawLine.trim();
+    if (!line) return;
+    const tokens = line.split(/\s+/);
+    if (tokens.length < 3) return;
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(tokens[0])) return;
+    const [d, m, y] = tokens[0].split('/').map(Number);
+    const lineISO = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    if (lineISO !== fechaISO) return;
+    const rest = tokens.slice(2);
+    let idx = rest.findIndex(t => TB_esTokenHora(t));
+    if (idx === -1) idx = rest.length;
+    const nombreTokens = rest.slice(0, idx);
+    if (normalizeName(nombreTokens.join(' ')) !== norm) return;
+    encontrado = i;
+  });
+  return encontrado;
+}
+
+// Duración actual (en minutos) de una línea cruda ya localizada, o null si
+// no tiene un horario reconocible ese día.
+function TB_duracionLinea(lines, i) {
+  const tokens = lines[i].trim().split(/\s+/);
+  const rest = tokens.slice(2);
+  let idx = rest.findIndex(t => TB_esTokenHora(t));
+  if (idx === -1) idx = rest.length;
+  const sched = rest.slice(idx);
+  if (sched.length < 6 || !TB_esTokenHora(sched[0]) || !TB_esTokenAmPm(sched[1]) || !TB_esTokenHora(sched[3]) || !TB_esTokenAmPm(sched[4])) return null;
+  let entradaMin = TB_timeTokensToMin(sched[0], sched[1]);
+  let salidaMin = TB_timeTokensToMin(sched[3], sched[4]);
+  if (salidaMin <= entradaMin) salidaMin += 1440;
+  return salidaMin - entradaMin;
+}
+
 // ── Admin: mueve N minutos de horario de un día a otro día de la misma
-// persona. Regla fija: en el día de ORIGEN se adelanta la SALIDA (entra
+// persona. Por defecto, en el día de ORIGEN se adelanta la SALIDA (entra
 // igual, sale más temprano); en el día de DESTINO se adelanta la ENTRADA
-// (entra más temprano, sale igual). Ajusta también la columna Horas de
-// ambos días. Trabaja sobre el texto crudo de la malla, igual que el
-// cambio de turno y las ausencias, para que quede incrustado al descargar.
-function TB_moverHorasEntreDias(nombreInput, fechaOrigenISO, fechaDestinoISO, minutos) {
+// (entra más temprano, sale igual) — pero ambos lados se pueden invertir
+// con opts.modoOrigen/opts.modoDestino. Ajusta también la columna Horas de
+// ambos días y, si opts.recalcularBreaks no es false, reubica break/
+// almuerzo según el patrón global. Trabaja sobre el texto crudo de la
+// malla, igual que el cambio de turno y las ausencias, para que quede
+// incrustado al descargar.
+function TB_moverHorasEntreDias(nombreInput, fechaOrigenISO, fechaDestinoISO, minutos, opts) {
+  opts = opts || {};
   const canon = MALLA_matchName(nombreInput);
   if (!canon || !fechaOrigenISO || !fechaDestinoISO || !minutos) return { ok: false, motivo: 'datos' };
   const norm = normalizeName(canon);
 
-  const raw = MALLA_LAST_RAW_TEXT || (function() {
-    try { return localStorage.getItem(MALLA_RAWTEXT_KEY); } catch { return null; }
-  })() || MALLA_RAW_DEFAULT;
+  const raw = TB_rawMallaActual();
 
   const lines = raw.split(/\r?\n/);
   let idxOrig = -1, idxDest = -1;
@@ -7592,48 +7908,17 @@ function TB_moverHorasEntreDias(nombreInput, fechaOrigenISO, fechaDestinoISO, mi
   if (idxOrig === -1) return { ok: false, motivo: 'sin_origen' };
   if (idxDest === -1) return { ok: false, motivo: 'sin_destino' };
 
-  function procesarLinea(i, tipo) {
-    const tokens = lines[i].trim().split(/\s+/);
-    const rest = tokens.slice(2);
-    let idx = rest.findIndex(t => TB_esTokenHora(t));
-    if (idx === -1) idx = rest.length;
-    const nombreTokens = rest.slice(0, idx);
-    const sched = rest.slice(idx);
+  const patron = opts.recalcularBreaks !== false ? TB_calcularPatronGlobal() : null;
+  const ajusteOpts = {
+    capHorasDia: opts.capHorasDia != null ? opts.capHorasDia : 9,
+    pisoHorasDia: opts.pisoHorasDia != null ? opts.pisoHorasDia : 4,
+    recalcularBreaks: opts.recalcularBreaks !== false,
+    patron
+  };
 
-    if (sched.length < 6 || !TB_esTokenHora(sched[0]) || !TB_esTokenAmPm(sched[1]) || !TB_esTokenHora(sched[3]) || !TB_esTokenAmPm(sched[4])) {
-      return { error: 'formato' }; // horario del día con un formato no reconocible (p.ej. sin entrada/salida)
-    }
-
-    const entradaMin = TB_timeTokensToMin(sched[0], sched[1]);
-    const salidaMin  = TB_timeTokensToMin(sched[3], sched[4]);
-
-    if (tipo === 'origen') {
-      const nuevaSalidaMin = salidaMin - minutos;
-      if (nuevaSalidaMin <= entradaMin) return { error: 'muy_corto' };
-      const tok = TB_minToTimeTokens(nuevaSalidaMin);
-      sched[3] = tok[0]; sched[4] = tok[1]; sched[5] = tok[2];
-    } else {
-      const nuevaEntradaMin = entradaMin - minutos;
-      if (nuevaEntradaMin >= salidaMin) return { error: 'muy_largo' };
-      const tok = TB_minToTimeTokens(nuevaEntradaMin);
-      sched[0] = tok[0]; sched[1] = tok[1]; sched[2] = tok[2];
-    }
-
-    // Ajusta la columna Horas (última posición) si es un token de duración real
-    const lastIdx = sched.length - 1;
-    if (lastIdx >= 6 && TB_esTokenHora(sched[lastIdx]) && !TB_esTokenAmPm(sched[lastIdx - 1])) {
-      const durMin = TB_durTokenToMin(sched[lastIdx]);
-      const nuevaDur = tipo === 'origen' ? durMin - minutos : durMin + minutos;
-      sched[lastIdx] = TB_minToDurToken(nuevaDur);
-    }
-
-    lines[i] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
-    return { ok: true };
-  }
-
-  const resOrig = procesarLinea(idxOrig, 'origen');
+  const resOrig = TB_ajustarLinea(lines, idxOrig, 'origen', opts.modoOrigen || 'sale_temprano', minutos, ajusteOpts);
   if (!resOrig.ok) return { ok: false, motivo: resOrig.error };
-  const resDest = procesarLinea(idxDest, 'destino');
+  const resDest = TB_ajustarLinea(lines, idxDest, 'destino', opts.modoDestino || 'entra_temprano', minutos, ajusteOpts);
   if (!resDest.ok) return { ok: false, motivo: resDest.error };
 
   const newRaw = lines.join('\n');
@@ -8548,6 +8833,127 @@ function MALLA_poblarSelectPersonas(id) {
   sel.innerHTML = nombres.map(n => `<option value="${n}">${n}</option>`).join('');
   if (actual && nombres.includes(actual)) sel.value = actual;
 }
+// ── Calculadora de Horas Reales (descuenta breaks y almuerzo) ──
+// Minutos realmente trabajados un día, según la columna "Horas" ya
+// calculada en la malla (que viene neta de descansos); si por algún motivo
+// no hay ese dato, se cae a entrada→salida en bruto como respaldo.
+function TB_horasRealesDia(r) {
+  if (!r || r.estado !== 'ACTIVO' || !r.entrada || !r.salida) return 0;
+  if (r.entrada === '00:00' && r.salida === '00:00') return 0;
+  if (r.horasRaw) {
+    const partes = r.horasRaw.split(':').map(Number);
+    if (!isNaN(partes[0])) return partes[0] * 60 + (partes[1] || 0);
+  }
+  let e = F3_toMin(r.entrada), s = F3_toMin(r.salida);
+  if (s <= e) s += 1440;
+  return s - e;
+}
+function CALC_populate() {
+  MALLA_poblarSelectPersonas('calc-nombre');
+  const hoy = MALLA_todayISO();
+  const desdeEl = document.getElementById('calc-desde');
+  const hastaEl = document.getElementById('calc-hasta');
+  if (desdeEl && !desdeEl.value) { const { start } = F3_getWeekRange(hoy); desdeEl.value = start; }
+  if (hastaEl && !hastaEl.value) { const { end } = F3_getWeekRange(hoy); hastaEl.value = end; }
+  CALC_generarDias();
+}
+function CALC_generarDias() {
+  const nombreEl = document.getElementById('calc-nombre');
+  const desdeEl = document.getElementById('calc-desde');
+  const hastaEl = document.getElementById('calc-hasta');
+  const cont = document.getElementById('calc-dias-list');
+  if (!cont || !nombreEl) return;
+  const nombre = nombreEl.value, desde = desdeEl.value, hasta = hastaEl.value;
+  if (!nombre || !desde || !hasta || desde > hasta) {
+    cont.innerHTML = '<div class="activity-empty">Elige persona y un rango de fechas válido.</div>';
+    CALC_actualizarTotal();
+    return;
+  }
+  const registros = MALLA_recordsFor(nombre);
+  const porFecha = new Map(registros.map(r => [r.fechaISO, r]));
+  const dias = [];
+  let d = new Date(desde + 'T00:00:00');
+  const fin = new Date(hasta + 'T00:00:00');
+  while (d <= fin) {
+    dias.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+    d.setDate(d.getDate() + 1);
+  }
+  cont.innerHTML = dias.map(iso => {
+    const r = porFecha.get(iso);
+    const min = TB_horasRealesDia(r);
+    const texto = (r && r.estado === 'ACTIVO' && min > 0) ? F3_formatMin(min) : (r ? (r.estado || 'Sin turno') : 'Sin datos');
+    const nombreDia = new Date(iso + 'T00:00:00').toLocaleDateString('es-CO', { weekday: 'short', day: '2-digit', month: '2-digit' });
+    return `<label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="${min}" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" ${min > 0 ? 'checked' : ''}>
+      <span style="flex:1">${nombreDia}</span>
+      <span style="color:var(--gris);font-size:11px">${texto}</span>
+    </label>`;
+  }).join('');
+  CALC_actualizarTotal();
+}
+function CALC_actualizarTotal() {
+  const chks = Array.from(document.querySelectorAll('.calc-dia-chk'));
+  const marcados = chks.filter(el => el.checked);
+  const total = marcados.reduce((sum, el) => sum + Number(el.dataset.min || 0), 0);
+  const totalEl = document.getElementById('calc-total');
+  if (totalEl) totalEl.textContent = `Total real: ${F3_formatMin(total)} (${marcados.length} de ${chks.length} días)`;
+}
+
+// ── Calculadora de Horas Reales — versión propia del asesor dentro de
+// "Mi Turno" (mismo cálculo que la del admin en "Turnos de Todo el
+// Equipo", pero fija siempre a su propio nombre canónico; no hay selector
+// de persona). Se activa/oculta desde F3_initTurns según isAdmin. ──
+let MICALC_nombreActual = null;
+function MICALC_populate(canonico) {
+  MICALC_nombreActual = canonico;
+  const hoy = MALLA_todayISO();
+  const desdeEl = document.getElementById('micalc-desde');
+  const hastaEl = document.getElementById('micalc-hasta');
+  if (desdeEl && !desdeEl.value) { const { start } = F3_getWeekRange(hoy); desdeEl.value = start; }
+  if (hastaEl && !hastaEl.value) { const { end } = F3_getWeekRange(hoy); hastaEl.value = end; }
+  MICALC_generarDias();
+}
+function MICALC_generarDias() {
+  const desdeEl = document.getElementById('micalc-desde');
+  const hastaEl = document.getElementById('micalc-hasta');
+  const cont = document.getElementById('micalc-dias-list');
+  if (!cont || !desdeEl) return;
+  const desde = desdeEl.value, hasta = hastaEl.value;
+  if (!MICALC_nombreActual || !desde || !hasta || desde > hasta) {
+    cont.innerHTML = '<div class="activity-empty">Elige un rango de fechas válido.</div>';
+    MICALC_actualizarTotal();
+    return;
+  }
+  const registros = MALLA_recordsFor(MICALC_nombreActual);
+  const porFecha = new Map(registros.map(r => [r.fechaISO, r]));
+  const dias = [];
+  let d = new Date(desde + 'T00:00:00');
+  const fin = new Date(hasta + 'T00:00:00');
+  while (d <= fin) {
+    dias.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+    d.setDate(d.getDate() + 1);
+  }
+  cont.innerHTML = dias.map(iso => {
+    const r = porFecha.get(iso);
+    const min = TB_horasRealesDia(r);
+    const texto = (r && r.estado === 'ACTIVO' && min > 0) ? F3_formatMin(min) : (r ? (r.estado || 'Sin turno') : 'Sin datos');
+    const nombreDia = new Date(iso + 'T00:00:00').toLocaleDateString('es-CO', { weekday: 'short', day: '2-digit', month: '2-digit' });
+    return `<label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="${min}" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" ${min > 0 ? 'checked' : ''}>
+      <span style="flex:1">${nombreDia}</span>
+      <span style="color:var(--gris);font-size:11px">${texto}</span>
+    </label>`;
+  }).join('');
+  MICALC_actualizarTotal();
+}
+function MICALC_actualizarTotal() {
+  const chks = Array.from(document.querySelectorAll('.micalc-dia-chk'));
+  const marcados = chks.filter(el => el.checked);
+  const total = marcados.reduce((sum, el) => sum + Number(el.dataset.min || 0), 0);
+  const totalEl = document.getElementById('micalc-total');
+  if (totalEl) totalEl.textContent = `Total real: ${F3_formatMin(total)} (${marcados.length} de ${chks.length} días)`;
+}
+
 function MOVER_populateSelect() {
   MALLA_poblarSelectPersonas('mover-nombre');
   const origenEl = document.getElementById('mover-origen');
@@ -8570,13 +8976,21 @@ function MOVER_aplicar() {
   if (!horas || horas <= 0) { showToast('error', '❌ Error', 'Indica cuántas horas mover (mayor a 0).'); return; }
 
   const minutos = Math.round(horas * 60);
-  const res = TB_moverHorasEntreDias(nombre, origen, destino, minutos);
+  const modoOrigen = document.getElementById('mover-modo-origen').value;
+  const modoDestino = document.getElementById('mover-modo-destino').value;
+  const tope = parseFloat(document.getElementById('mover-tope').value) || 9;
+  const recalcularBreaks = document.getElementById('mover-recalc-breaks').checked;
+  const res = TB_moverHorasEntreDias(nombre, origen, destino, minutos, {
+    modoOrigen, modoDestino, capHorasDia: tope, recalcularBreaks
+  });
 
   const motivos = {
     sin_origen:  'No encontré el turno de esa persona en el día de origen dentro de la malla.',
     sin_destino: 'No encontré el turno de esa persona en el día de destino dentro de la malla.',
     muy_corto:   'No se puede: la salida del día de origen quedaría antes o igual que su entrada. Prueba con menos horas.',
     muy_largo:   'No se puede: la entrada del día de destino quedaría antes o igual que su salida. Prueba con menos horas.',
+    excede_max:  `No se puede: el día de destino quedaría por encima del tope de ${tope}h. Sube el tope o mueve menos horas.`,
+    bajo_piso:   'No se puede: el día de origen quedaría por debajo del mínimo de 4h ese día.',
     formato:     'El horario de uno de esos días no tiene un formato reconocible (falta entrada/salida) para moverlo automáticamente.',
     parseo:      'Algo salió mal al reconstruir la malla. No se aplicó ningún cambio.',
     datos:       'Faltan datos.',
@@ -8604,6 +9018,218 @@ function MOVER_aplicar() {
     if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con las horas ya movidas. Publícalo cuando quieras.');
     MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_horas.xlsx`);
   }, 400);
+}
+
+// ══════════════════════════════════════════════════
+//   CONDICIÓN ESPECIAL DE HORARIO (ej. "debe salir sí o sí a
+//   mediodía los sábados, solo 4h ese día")
+//   Fija un día de la semana con salida y horas exactas, y reparte la
+//   diferencia (positiva o negativa) entre los demás días ACTIVOS de esa
+//   misma semana, sin pasar el tope diario ni bajar del piso de 4h.
+//   Trabaja sobre el texto crudo, igual que TB_moverHorasEntreDias, y
+//   reutiliza TB_ajustarLinea para que el break/almuerzo de cada día
+//   tocado también se reubique según el patrón global.
+// ══════════════════════════════════════════════════
+function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSalidaStr, horasMax, capOtrosDias) {
+  const canon = MALLA_matchName(nombreInput);
+  if (!canon || diaSemana == null || !semanaRefISO || !horaSalidaStr || !horasMax) return { ok: false, motivo: 'datos' };
+  const norm = normalizeName(canon);
+
+  const { start } = F3_getWeekRange(semanaRefISO);
+  const lunes = new Date(start + 'T00:00:00');
+  const fechasSemana = [];
+  for (let k = 0; k < 7; k++) {
+    const d = new Date(lunes); d.setDate(lunes.getDate() + k);
+    fechasSemana.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+  }
+  const fechaObjetivo = fechasSemana.find(iso => new Date(iso + 'T00:00:00').getDay() === diaSemana);
+  if (!fechaObjetivo) return { ok: false, motivo: 'datos' };
+
+  const raw = TB_rawMallaActual();
+  const lines = raw.split(/\r?\n/);
+
+  const idxObjetivo = TB_buscarLineaIndex(lines, fechaObjetivo, norm);
+  if (idxObjetivo === -1) return { ok: false, motivo: 'sin_dia_fijo' };
+  const duracionOriginalObjetivo = TB_duracionLinea(lines, idxObjetivo);
+  if (duracionOriginalObjetivo == null) return { ok: false, motivo: 'formato_dia_fijo' };
+
+  const [hs, ms] = horaSalidaStr.split(':').map(Number);
+  const salidaObjetivoMin = hs * 60 + (ms || 0);
+  const horasMaxMin = Math.round(horasMax * 60);
+  let entradaObjetivoMin = salidaObjetivoMin - horasMaxMin;
+  if (entradaObjetivoMin < 0) entradaObjetivoMin += 1440;
+
+  const patron = TB_calcularPatronGlobal();
+
+  // Reescribe directamente la línea del día fijo con la nueva entrada/
+  // salida exactas (no usa TB_ajustarLinea porque aquí no "quitamos" ni
+  // "sumamos" minutos: fijamos un horario absoluto).
+  (function reescribirObjetivo() {
+    const tokens = lines[idxObjetivo].trim().split(/\s+/);
+    const rest = tokens.slice(2);
+    let idx = rest.findIndex(t => TB_esTokenHora(t));
+    if (idx === -1) idx = rest.length;
+    const nombreTokens = rest.slice(0, idx);
+    const sched = rest.slice(idx);
+    const tokE = TB_minToTimeTokens(entradaObjetivoMin);
+    const tokS = TB_minToTimeTokens(salidaObjetivoMin);
+    sched[0] = tokE[0]; sched[1] = tokE[1]; sched[2] = tokE[2];
+    sched[3] = tokS[0]; sched[4] = tokS[1]; sched[5] = tokS[2];
+    if (sched.length >= 15) TB_recalcularAux(sched, entradaObjetivoMin, horasMaxMin, patron);
+    const lastIdx = sched.length - 1;
+    if (lastIdx >= 6 && TB_esTokenHora(sched[lastIdx]) && !TB_esTokenAmPm(sched[lastIdx - 1])) {
+      sched[lastIdx] = TB_minToDurToken(horasMaxMin);
+    }
+    lines[idxObjetivo] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
+  })();
+
+  // Diferencia a redistribuir: positiva = hay que SUMAR minutos al resto de
+  // la semana (el día fijo perdió horas); negativa = hay que QUITAR (el día
+  // fijo ganó horas frente a lo que tenía).
+  let restante = duracionOriginalObjetivo - horasMaxMin;
+  const otrosDias = fechasSemana.filter(iso => iso !== fechaObjetivo);
+  const ajusteOpts = { capHorasDia: capOtrosDias, pisoHorasDia: 4, recalcularBreaks: true, patron };
+  const detalle = [];
+
+  for (const iso of otrosDias) {
+    if (Math.abs(restante) < 1) break;
+    const idxDia = TB_buscarLineaIndex(lines, iso, norm);
+    if (idxDia === -1) continue;
+    const duracionDia = TB_duracionLinea(lines, idxDia);
+    if (duracionDia == null) continue; // día libre/sin turno reconocible, se deja igual
+
+    if (restante > 0) {
+      const cupo = Math.max(0, capOtrosDias * 60 - duracionDia);
+      const asignar = Math.min(cupo, restante);
+      if (asignar < 1) continue;
+      const r = TB_ajustarLinea(lines, idxDia, 'destino', 'entra_temprano', asignar, ajusteOpts);
+      if (r.ok) { restante -= asignar; detalle.push({ fecha: iso, minutos: asignar, tipo: 'suma' }); }
+    } else {
+      const cupo = Math.max(0, duracionDia - 4 * 60);
+      const asignar = Math.min(cupo, -restante);
+      if (asignar < 1) continue;
+      const r = TB_ajustarLinea(lines, idxDia, 'origen', 'sale_temprano', asignar, ajusteOpts);
+      if (r.ok) { restante += asignar; detalle.push({ fecha: iso, minutos: asignar, tipo: 'resta' }); }
+    }
+  }
+
+  const newRaw = lines.join('\n');
+  const parsed = MALLA_parseText(newRaw);
+  if (!parsed.length) return { ok: false, motivo: 'parseo' };
+
+  MALLA_DATA = parsed;
+  MALLA_LAST_RAW_TEXT = newRaw;
+  try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
+  MALLA_persist();
+  MALLA_refreshStatus();
+
+  return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle };
+}
+
+function COND_populate() {
+  MALLA_poblarSelectPersonas('cond-nombre');
+  const semanaEl = document.getElementById('cond-semana');
+  if (semanaEl && !semanaEl.value) semanaEl.value = MALLA_todayISO();
+  COND_render();
+}
+
+function COND_leerFormulario() {
+  return {
+    nombre: document.getElementById('cond-nombre').value,
+    diaSemana: parseInt(document.getElementById('cond-dia').value, 10),
+    semana: document.getElementById('cond-semana').value,
+    horaSalida: document.getElementById('cond-hora-salida').value,
+    horasMax: parseFloat(document.getElementById('cond-horas-dia').value),
+    capOtros: parseFloat(document.getElementById('cond-tope-otros').value) || 9,
+  };
+}
+
+const DIAS_SEMANA_LABEL = { 0: 'domingo', 1: 'lunes', 2: 'martes', 3: 'miércoles', 4: 'jueves', 5: 'viernes', 6: 'sábado' };
+
+function COND_aplicar() {
+  const f = COND_leerFormulario();
+  if (!f.nombre) { showToast('error', '❌ Error', 'Selecciona una persona.'); return; }
+  if (!f.semana) { showToast('error', '❌ Error', 'Elige una fecha de referencia para ubicar la semana.'); return; }
+  if (!f.horaSalida || !f.horasMax || f.horasMax <= 0) { showToast('error', '❌ Error', 'Indica la hora de salida y las horas máximas de ese día.'); return; }
+
+  const res = TB_aplicarCondicionSemana(f.nombre, f.diaSemana, f.semana, f.horaSalida, f.horasMax, f.capOtros);
+
+  const motivos = {
+    sin_dia_fijo: `No encontré el turno de esa persona el ${DIAS_SEMANA_LABEL[f.diaSemana]} de esa semana en la malla.`,
+    formato_dia_fijo: 'El horario de ese día no tiene un formato reconocible (falta entrada/salida).',
+    parseo: 'Algo salió mal al reconstruir la malla. No se aplicó ningún cambio.',
+    datos: 'Faltan datos.',
+  };
+  if (!res.ok) {
+    showToast('error', '⚠️ No se pudo aplicar', motivos[res.motivo] || 'No se pudo aplicar la condición.');
+    return;
+  }
+
+  const primerNombre = f.nombre.split(' ')[0];
+  if (Math.abs(res.restanteSinAsignar) >= 1) {
+    showToast('info', '⚠️ Aplicado parcialmente', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}), pero quedaron ${Math.round(Math.abs(res.restanteSinAsignar))} min sin poder redistribuir sin pasar el tope. Revisa esa semana manualmente.`);
+  } else {
+    showToast('success', '✅ Condición aplicada', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}). El resto de la semana se ajustó sin pasar ${f.capOtros}h/día.`);
+  }
+  if (typeof fase2AddActivity === 'function') {
+    fase2AddActivity('⚖️', `Se fijó el ${DIAS_SEMANA_LABEL[f.diaSemana]} de <strong>${primerNombre}</strong> y se redistribuyó su semana`, 'cambio');
+  }
+
+  TEAM_render();
+  CALC_populate();
+
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('La condición ya quedó aplicada en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+    if (!quiere) return;
+    const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_condicion.html`);
+    if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con la condición ya aplicada. Publícalo cuando quieras.');
+    MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_condicion.xlsx`);
+  }, 400);
+}
+
+// ── Condiciones guardadas (para reaplicarlas otras semanas sin repetir
+// todos los campos). Persisten en localStorage, igual que el resto de la
+// app. ──
+const COND_GUARDADAS_KEY = 'tb_condiciones_horario_v1';
+function COND_cargarGuardadas() { try { return JSON.parse(localStorage.getItem(COND_GUARDADAS_KEY)) || []; } catch { return []; } }
+function COND_guardarLista(lista) { try { localStorage.setItem(COND_GUARDADAS_KEY, JSON.stringify(lista)); } catch {} }
+
+function COND_guardar() {
+  const f = COND_leerFormulario();
+  if (!f.nombre || !f.horaSalida || !f.horasMax) { showToast('error', '❌ Error', 'Completa persona, hora de salida y horas máximas antes de guardar.'); return; }
+  const lista = COND_cargarGuardadas();
+  lista.push({ id: Date.now(), nombre: f.nombre, diaSemana: f.diaSemana, horaSalida: f.horaSalida, horasMax: f.horasMax, capOtros: f.capOtros });
+  COND_guardarLista(lista);
+  showToast('success', '💾 Guardada', `Condición de ${f.nombre.split(' ')[0]} guardada. Podrás reaplicarla eligiendo otra semana.`);
+  COND_render();
+}
+function COND_render() {
+  const cont = document.getElementById('cond-guardadas-list');
+  if (!cont) return;
+  const lista = COND_cargarGuardadas();
+  if (!lista.length) { cont.innerHTML = ''; return; }
+  cont.innerHTML = lista.map(c => `
+    <div class="consulta-item">
+      <span>⚖️</span>
+      <span style="flex:1">${c.nombre.split(' ')[0]} · ${DIAS_SEMANA_LABEL[c.diaSemana]} · sale ${c.horaSalida} (${c.horasMax}h)</span>
+      <button class="btn btn-secondary" style="padding:4px 8px;font-size:11px" onclick="COND_aplicarGuardada(${c.id})">Aplicar a esta semana</button>
+      <button class="btn btn-secondary" style="padding:4px 8px;font-size:11px" onclick="COND_eliminarGuardada(${c.id})">🗑️</button>
+    </div>`).join('');
+}
+function COND_aplicarGuardada(id) {
+  const c = COND_cargarGuardadas().find(x => x.id === id);
+  if (!c) return;
+  document.getElementById('cond-nombre').value = c.nombre;
+  document.getElementById('cond-dia').value = c.diaSemana;
+  document.getElementById('cond-hora-salida').value = c.horaSalida;
+  document.getElementById('cond-horas-dia').value = c.horasMax;
+  document.getElementById('cond-tope-otros').value = c.capOtros;
+  if (!document.getElementById('cond-semana').value) document.getElementById('cond-semana').value = MALLA_todayISO();
+  COND_aplicar();
+}
+function COND_eliminarGuardada(id) {
+  COND_guardarLista(COND_cargarGuardadas().filter(x => x.id !== id));
+  COND_render();
 }
 
 // ── Aplica un cambio de turno aprobado directamente en la malla local ──
