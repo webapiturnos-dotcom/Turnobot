@@ -1523,9 +1523,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
-<div class="toast-container" id="toasts"></div>
+<div class="toast-container" id="toasts"><div class="toast success" data-expires="1790562730979" data-closing="1" style="opacity: 0; transition: opacity 0.3s;">
+    <div class="toast-icon">✅</div>
+    <div class="toast-body">
+      <div class="toast-title">📋 Comando copiado</div>
+      <div class="toast-msg">Ábrelo en Termux, pega y presiona Enter.</div>
+    </div>
+    <button class="toast-close" type="button" aria-label="Cerrar" onclick="TOAST_dismiss(this.closest('.toast'))">✕</button></div></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
@@ -1840,7 +1846,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 27/09/2026 · 2110</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 27/09/2026 · 1803</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1945,7 +1951,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="15" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="14" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="13" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno del 28/09/2026</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="10" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno del 28/09/2026</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="9" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Moisés</strong> consultó su turno</div><div class="activity-time">21:31</div><button type="button" class="activity-del-btn" data-aid="21" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Moisés</strong> consultó su turno del 29/09/2026</div><div class="activity-time">21:31</div><button type="button" class="activity-del-btn" data-aid="20" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:30</div><button type="button" class="activity-del-btn" data-aid="19" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:30</div><button type="button" class="activity-del-btn" data-aid="18" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:30</div><button type="button" class="activity-del-btn" data-aid="17" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -2008,7 +2014,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Lunes 28 Sep</div>
+            <div class="turno-card-label">Tu turno · Martes 29 Sep</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -2044,7 +2050,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Lunes 28 Sep</div>
+          <div class="section-sub" id="timeline-fecha">Martes 29 Sep</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -2099,19 +2105,19 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <span style="flex:1">mié, 30/09</span>
       <span style="color:var(--gris);font-size:11px">8h 0m</span>
     </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
       <span style="flex:1">jue, 01/10</span>
-      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
     </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
       <span style="flex:1">vie, 02/10</span>
-      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
     </label><label class="consulta-item" style="cursor:pointer">
       <input type="checkbox" class="micalc-dia-chk" data-min="240" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
       <span style="flex:1">sáb, 03/10</span>
       <span style="color:var(--gris);font-size:11px">4h 0m</span>
     </label></div>
-        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 43h 0m (6 de 6 días)</div>
+        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 11h 30m (2 de 6 días)</div>
       </div>
 
       <!-- ── Panel de administración: selector tipo "Home de Novedades" ──
@@ -2225,7 +2231,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:14 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">21:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">21:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">21:14</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">Moisés Elias Rojas Vasquez</span><span style="color:var(--gris);font-size:11px">09:31 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Moisés Elias Rojas Vasquez</span><span style="color:var(--gris);font-size:11px">21:31</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -2310,7 +2316,27 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+        <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
+        <div class="team-row-sub">8:00 a. m. → 5:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">10:00 a. m. → 7:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+        <div class="team-row-sub">8:00 a. m. → 5:00 p. m.</div>
+      </div>
+      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
       <div>
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
         <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
@@ -2468,7 +2494,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-primary w-full" onclick="COND_aplicar()">✅ Fijar ese día y redistribuir la semana</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
-          El día elegido queda con salida fija y exactamente las horas máximas indicadas; lo que se le quita se reparte entre los demás días de esa semana (entran más temprano o salen más tarde) sin pasar el tope, y ningún día baja de 4 horas. Los breaks y el almuerzo de todos los días tocados se reubican según el patrón global; si un día queda en 7 horas o menos se elimina el almuerzo, quedan solo los breaks y esa hora se suma al horario (columna Horas). Puedes guardar la condición para reaplicarla otras semanas.
+          El día elegido queda con salida fija y exactamente las horas máximas indicadas; lo que se le quita se reparte entre los demás días de esa semana (entran más temprano o salen más tarde) sin pasar el tope, y ningún día baja de 4 horas. La semana nunca puede pasar de 42 horas trabajadas: si al repartir se llega a ese tope, lo que sobra queda sin asignar y se avisa. Los breaks y el almuerzo de todos los días tocados se reubican según el patrón global; si un día queda en 7 horas o menos se elimina el almuerzo, quedan solo los breaks y esa hora se suma al horario (columna Horas). Puedes guardar la condición para reaplicarla otras semanas.
         </div>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="COND_guardar()">💾 Guardar esta condición para reutilizarla</button>
         <div id="cond-guardadas-list" class="consultas-list" style="margin-top:10px"></div>
@@ -2659,8 +2685,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">🔑 29 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 05:53 p. m. · 27/9, 05:47 p. m. · 27/9, 05:16 p. m.</div>
+        <div class="team-row-sub">🔑 30 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 09:22 p. m. · 27/9, 05:53 p. m. · 27/9, 05:47 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2755,8 +2781,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">🔑 10 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 11:44 a. m. · 19/9, 09:37 p. m. · 14/9, 09:20 p. m.</div>
+        <div class="team-row-sub">🔑 11 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 09:05 p. m. · 27/9, 11:44 a. m. · 19/9, 09:37 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2785,14 +2811,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 63 accesos en total</div>
+        <div class="team-row-sub">🔑 60 accesos en total</div>
         <div class="team-row-sub" style="margin-top:4px">27/9, 06:01 p. m. · 27/9, 06:00 p. m. · 27/9, 05:59 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 16 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 07:28 p. m. · 21/9, 01:51 p. m. · 20/9, 12:09 p. m.</div>
+        <div class="team-row-sub">🔑 17 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 09:28 p. m. · 27/9, 07:28 p. m. · 21/9, 01:51 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3731,7 +3757,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <input type="checkbox" id="voz-toggle" onchange="VOZ_setEnabled(this.checked)" style="width:20px; height:20px;">
         </label>
         <div style="font-size:11px; color:var(--gris); margin-top:4px;">Cuando llega la hora de tu break, almuerzo o salida te aparece una notificación en pantalla y suena la voz. Con internet el navegador a veces bloquea la voz hasta que tocas la página: por eso la notificación trae el botón 🔊 Escuchar. Solo funciona mientras esta pestaña esté abierta.</div>
-        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;"></div>
+        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;">✅ Voz lista · ✅ Notificaciones activas</div>
         <button class="btn btn-primary w-full" style="margin-top:8px" onclick="VOZ_activar()">✅ Activar avisos (voz + notificaciones)</button>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="VOZ_probar()">🔊 Escuchar un aviso de prueba</button>
       </div>
@@ -3943,9 +3969,9 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  02/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
+28/09/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	12:00:00	p.	m.	7:00:00	p.	m.	1:40:00	p.	m.	5:10:00	p.	m.	12:00:00	a.	m.	7:00:00
+29/09/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+30/09/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
  01/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
 03/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	8:55:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
@@ -4024,8 +4050,8 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
 28/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	12:00:00	p.	m.	7:00:00	p.	m.	1:40:00	p.	m.	5:10:00	p.	m.	12:00:00	a.	m.	7:00:00
 29/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
 30/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
-01/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
-02/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+ 01/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
  29/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
@@ -6867,7 +6893,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-27.2117';
+const TB_APP_VERSION = '2026-09-27.2132';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -7920,12 +7946,16 @@ function F3_renderTimeline(t, diaEstado) {
     const refTxt = HORAS_refTxt(hm);
     let texto;
     if (hm.tipo === 'origen') {
+      const detTxt = hm.reparto && hm.reparto.length ? HORAS_repartoTxt(hm.reparto, '+') : refTxt;
       texto = hm.cond && hm.otras
-        ? `⚖️ Día fijado por condición especial: se le quitaron ${cantTxt} y se repartieron ${HORAS_fmtMin(hm.repartido || hm.min)} en <b>${refTxt}</b>`
+        ? (hm.otras.length
+            ? `⚖️ Día fijado por condición especial: se le quitaron ${cantTxt} y se repartieron ${HORAS_fmtMin(hm.repartido || hm.min)} así: <b>${detTxt}</b>`
+            : `⚖️ Día fijado por condición especial: se le quitaron ${cantTxt} y no se pudieron repartir en otros días sin pasar el tope diario o las 42 h semanales`)
         : `⏱️ Se movieron ${cantTxt} de este día hacia el <b>${refTxt}</b>${hm.cond ? ' por la condición especial de horario' : ''}`;
     } else {
+      const detTxt2 = hm.reparto && hm.reparto.length ? HORAS_repartoTxt(hm.reparto, '−') : refTxt;
       texto = hm.cond && hm.otras
-        ? `⚖️ Día fijado por condición especial: ganó ${cantTxt} que salieron de <b>${refTxt}</b>`
+        ? `⚖️ Día fijado por condición especial: ganó ${cantTxt} que salieron de <b>${detTxt2}</b>`
         : `⏱️ Este día recibió ${cantTxt}${hm.cond ? ' por la condición especial de horario' : ' movidas'} del <b>${refTxt}</b>`;
     }
     banner2.innerHTML = texto;
@@ -8392,7 +8422,7 @@ function TB_CAMBIOS_init() {
 // el const ya exista.
 TB_CAMBIOS_init();
 
-const TB_HORAS_DEFAULT = {};
+const TB_HORAS_DEFAULT = {"2026-09-29|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-30|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"2","min":120,"repartido":60,"otraFecha":"29/09, 30/09","otras":["2026-09-29","2026-09-30"],"reparto":[{"fecha":"2026-09-29","min":30},{"fecha":"2026-09-30","min":30}],"cond":true}};
 function TB_HORAS_init() {
   try {
     const embebidos = TB_HORAS_DEFAULT || {};
@@ -8778,9 +8808,14 @@ function HORAS_chipHTML(e) {
   let desde = '';
   if (e.otras && e.otras.length) desde = e.otras.length === 1 ? HORAS_diaCorto(e.otras[0]) : `${e.otras.length} días`;
   else if (e.otraISO) desde = HORAS_diaCorto(e.otraISO);
-  else desde = e.otraFecha || '';
+  else desde = (e.cond && e.otras && !e.otras.length) ? 'sin repartir' : (e.otraFecha || '');
   const flecha = recibe ? '←' : '→';
   return `<div class="dc-tag ${recibe ? 'mas' : 'menos'}">${recibe ? '+' : '−'}${cant}</div><div class="dc-from">${flecha} ${desde}</div>`;
+}
+
+// Texto "Lun 28 +30min, Mar 29 +1h" con a qué días y cuánto tiempo se colocó (signo = suma/resta).
+function HORAS_repartoTxt(items, signo) {
+  return (items || []).map(d => `${HORAS_diaCorto(d.fecha)} ${signo || (d.tipo === 'resta' ? '−' : '+')}${HORAS_fmtMin(d.minutos != null ? d.minutos : d.min).replace(' ', '')}`).join(', ');
 }
 
 // Etiquetas de la CONDICIÓN ESPECIAL: el día fijo y cada día que recibió (o cedió)
@@ -8802,7 +8837,7 @@ function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fe
       otraFecha: `${fd}/${fm}`, otraISO: fechaFijaISO, cond: true
     };
   });
-  if (movidos.length && cambioFijoMin) {
+  if (cambioFijoMin) {
     const repartido = movidos.reduce((s, d) => s + d.minutos, 0);
     all[`${fechaFijaISO}|${norm}`] = {
       tipo: cambioFijoMin > 0 ? 'origen' : 'destino',
@@ -8810,7 +8845,10 @@ function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fe
       min: Math.round(Math.abs(cambioFijoMin)),
       repartido: Math.round(repartido),
       otraFecha: movidos.map(d => d.fecha.slice(8) + '/' + d.fecha.slice(5, 7)).join(', '),
-      otras: movidos.map(d => d.fecha), cond: true
+      otras: movidos.map(d => d.fecha),
+      // Detalle por día (fecha + minutos) para mostrar "a qué días y cuánto tiempo" en la etiqueta.
+      reparto: movidos.map(d => ({ fecha: d.fecha, min: Math.round(d.minutos) })),
+      cond: true
     };
   }
   HORAS_save(all);
@@ -10252,6 +10290,33 @@ function MOVER_aplicar() {
 // ══════════════════════════════════════════════════
 // Jornada (entrada→salida) igual o menor a este tope: sin almuerzo, solo breaks.
 const COND_SIN_ALMUERZO_MIN = 7 * 60;
+// Tope de horas trabajadas (columna Horas, netas) por semana para una persona con condición especial.
+const COND_TOPE_SEMANAL_MIN = 42 * 60;
+// Minutos trabajados (netos) de una línea: lee la columna Horas; si no viene, entrada→salida menos almuerzo.
+function TB_netaLinea(lines, i) {
+  const tokens = lines[i].trim().split(/\s+/);
+  const rest = tokens.slice(2);
+  let idx = rest.findIndex(t => TB_esTokenHora(t));
+  if (idx === -1) return null;
+  const sched = rest.slice(idx);
+  const last = sched.length - 1;
+  if (last >= 6 && TB_esTokenHora(sched[last]) && !TB_esTokenAmPm(sched[last - 1])) return TB_durTokenToMin(sched[last]);
+  const dur = TB_duracionLinea(lines, i);
+  if (dur == null) return null;
+  const hayAlm = sched.length >= 15 && !TB_esAuxPlaceholder(sched.slice(12, 15));
+  return dur - (hayAlm ? 60 : 0);
+}
+// Total neto de la semana (solo los días de esa persona presentes en la malla).
+function TB_netaSemana(lines, fechasSemana, norm) {
+  let total = 0;
+  fechasSemana.forEach(iso => {
+    const li = TB_buscarLineaIndex(lines, iso, norm);
+    if (li === -1) return;
+    const n = TB_netaLinea(lines, li);
+    if (n != null) total += n;
+  });
+  return total;
+}
 // ¿Esa línea tiene almuerzo asignado? (true/false, o null si no se reconoce el formato)
 function TB_lineaTieneAlmuerzo(lines, i) {
   const tokens = lines[i].trim().split(/\s+/);
@@ -10341,10 +10406,21 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
 
     if (restante > 0) {
       const cupo = Math.max(0, capOtrosDias * 60 - duracionDia);
-      const asignar = Math.min(cupo, restante);
+      let asignar = Math.min(cupo, restante);
       if (asignar < 1) continue;
-      const r = TB_ajustarLinea(lines, idxDia, 'destino', 'entra_temprano', asignar, ajusteOpts);
-      if (r.ok) { restante -= asignar; detalle.push({ fecha: iso, minutos: asignar, tipo: 'suma' }); }
+      // Tope semanal: el total de la semana no puede pasar de 42 h. Se prueba el cambio y,
+      // si se pasa, se restaura la línea y se reintenta con menos minutos.
+      const lineaOriginal = lines[idxDia];
+      let aplicado = 0;
+      for (let intento = 0; intento < 4 && asignar >= 1; intento++) {
+        const r = TB_ajustarLinea(lines, idxDia, 'destino', 'entra_temprano', asignar, ajusteOpts);
+        if (!r.ok) { lines[idxDia] = lineaOriginal; break; }
+        const exceso = TB_netaSemana(lines, fechasSemana, norm) - COND_TOPE_SEMANAL_MIN;
+        if (exceso <= 0) { aplicado = asignar; break; }
+        lines[idxDia] = lineaOriginal;
+        asignar -= Math.ceil(exceso / 5) * 5;
+      }
+      if (aplicado >= 1) { restante -= aplicado; detalle.push({ fecha: iso, minutos: aplicado, tipo: 'suma' }); }
     } else {
       const cupo = Math.max(0, duracionDia - 4 * 60);
       const asignar = Math.min(cupo, -restante);
@@ -10381,7 +10457,7 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
   // Etiquetas: el día fijo y cada día que recibió/cedió horas quedan marcados con el día de origen/destino.
   try { HORAS_registrarCondicion(fechaObjetivo, norm, detalle, duracionOriginalObjetivo - horasMaxMin, fechasSemana); } catch (e) { console.error('HORAS_registrarCondicion error:', e); }
 
-  return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle, sinAlmuerzo };
+  return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle, sinAlmuerzo, totalSemanaMin: TB_netaSemana(lines, fechasSemana, norm) };
 }
 
 // ── Comando de publicación para Termux (copiar con un toque desde el panel) ──
@@ -10468,13 +10544,17 @@ function COND_aplicar() {
   }
 
   const primerNombre = f.nombre.split(' ')[0];
+  const resumenReparto = (res.detalle || []).length ? ' Reparto: ' + HORAS_repartoTxt(res.detalle) + '.' : '';
   if (Math.abs(res.restanteSinAsignar) >= 1) {
-    showToast('info', '⚠️ Aplicado parcialmente', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}), pero quedaron ${Math.round(Math.abs(res.restanteSinAsignar))} min sin poder redistribuir sin pasar el tope. Revisa esa semana manualmente.`);
+    showToast('info', '⚠️ Aplicado parcialmente', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}), pero quedaron ${Math.round(Math.abs(res.restanteSinAsignar))} min sin poder redistribuir sin pasar el tope diario (${f.capOtros}h) ni el semanal (42h). Revisa esa semana manualmente.${resumenReparto}`);
   } else {
-    showToast('success', '✅ Condición aplicada', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}). El resto de la semana se ajustó sin pasar ${f.capOtros}h/día.${res.sinAlmuerzo && res.sinAlmuerzo.length ? ` Se quitó el almuerzo en ${res.sinAlmuerzo.length} día(s) de 7h o menos.` : ''}`);
+    showToast('success', '✅ Condición aplicada', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}). El resto de la semana se ajustó sin pasar ${f.capOtros}h/día.${res.sinAlmuerzo && res.sinAlmuerzo.length ? ` Se quitó el almuerzo en ${res.sinAlmuerzo.length} día(s) de 7h o menos.` : ''}${resumenReparto}`);
+  }
+  if (res.totalSemanaMin > COND_TOPE_SEMANAL_MIN) {
+    showToast('info', '⚠️ Semana sobre 42 h', `Esa semana ya sumaba ${HORAS_fmtMin(res.totalSemanaMin)} antes de la condición (tope: 42h). Revísala manualmente.`);
   }
   if (typeof fase2AddActivity === 'function') {
-    fase2AddActivity('⚖️', `Se fijó el ${DIAS_SEMANA_LABEL[f.diaSemana]} de <strong>${primerNombre}</strong> y se redistribuyó su semana`, 'cambio');
+    fase2AddActivity('⚖️', `Se fijó el ${DIAS_SEMANA_LABEL[f.diaSemana]} de <strong>${primerNombre}</strong> y se redistribuyó su semana${(res.detalle || []).length ? ' (' + HORAS_repartoTxt(res.detalle) + ')' : ''}`, 'cambio');
   }
 
   TEAM_render();
