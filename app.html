@@ -1529,14 +1529,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: JENNIFER — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: NEVIS — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1574,7 +1574,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <ellipse cx="49" cy="38" rx="7" ry="9" fill="url(#tbEvaEye)"></ellipse>
         <ellipse cx="71" cy="38" rx="7" ry="9" fill="url(#tbEvaEye)"></ellipse>
       </g>
-      <path id="tb-eva-mouth" d="M50 50 Q60 58 70 50" fill="none" stroke="#aef1ff" stroke-width="3" stroke-linecap="round" class=""></path>
+      <path id="tb-eva-mouth" d="M50 50 Q60 58 70 50" fill="none" stroke="#aef1ff" stroke-width="3" stroke-linecap="round" class="tb-eva-smile"></path>
     </g>
   </svg>
   <div id="tb-eva-bubble" class="tb-eva-bubble">¿Ya revisaste tu turno de hoy?</div>
@@ -1860,7 +1860,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1918,7 +1918,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Panel admin rápido (100% local) ────── -->
-      <div class="admin-quick-panel" id="admin-quick-panel" style="display: none;">
+      <div class="admin-quick-panel" id="admin-quick-panel" style="display: block;">
         <div class="aqp-header">
           <div class="aqp-avatar-wrap">
             <div class="aqp-avatar" id="aqp-avatar">M</div>
@@ -1961,7 +1961,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="tt-icon">🕐</div>
           <div>
             <div class="tt-title">Mi Turno Hoy</div>
-            <div class="tt-sub" id="tt-sub">MELANYS, toca aquí para ver tu horario →</div>
+            <div class="tt-sub" id="tt-sub">Moisés, toca aquí para ver tu horario →</div>
           </div>
         </div>
         <div class="tt-badge">Ver Turno →</div>
@@ -1978,7 +1978,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="nav-icon">🏠</div>
         <div class="nav-label">Inicio</div>
       </div>
-      <div class="nav-item" id="nav-turns" onclick="showMainScreen('turns')">
+      <div class="nav-item active" id="nav-turns" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
         <div class="nav-label" id="nav-turns-label">Configuración</div>
       </div>
@@ -1986,7 +1986,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="nav-icon">📋</div>
         <div class="nav-label">Novedades</div>
       </div>
-      <div class="nav-item active" id="nav-profile" onclick="showMainScreen('profile')">
+      <div class="nav-item" id="nav-profile" onclick="showMainScreen('profile')">
         <div class="nav-icon">👤</div>
         <div class="nav-label">Perfil</div>
       </div>
@@ -2014,7 +2014,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Lunes 28 Sep</div>
+            <div class="turno-card-label">Tu turno de hoy</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -2077,7 +2077,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Calculadora de horas reales (propia, visible solo para asesores) ── -->
-      <div class="breaks-panel" id="mi-calc-panel" style="display:none">
+      <div class="breaks-panel" id="mi-calc-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🧮 Calculadora de Horas Reales</div>
           <div class="section-sub">Elige un rango de días y desmarca los que no quieras contar. El total ya descuenta breaks y almuerzo.</div>
@@ -2092,8 +2092,36 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="date" class="form-input" id="micalc-hasta" onchange="MICALC_generarDias()">
           </div>
         </div>
-        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"></div>
-        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 0h 0m</div>
+        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="0" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">lun, 28/09</span>
+      <span style="color:var(--gris);font-size:11px">INCAPACIDAD</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="0" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">mar, 29/09</span>
+      <span style="color:var(--gris);font-size:11px">INCAPACIDAD</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">mié, 30/09</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">jue, 01/10</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">vie, 02/10</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="240" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">sáb, 03/10</span>
+      <span style="color:var(--gris);font-size:11px">4h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="0" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">dom, 04/10</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label></div>
+        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 26h 30m (4 de 7 días)</div>
       </div>
 
       <!-- ── Panel de administración: selector tipo "Home de Novedades" ──
@@ -2214,11 +2242,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">Moisés Elias Rojas Vasquez</span><span style="color:var(--gris);font-size:11px">09:31 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:42 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:42 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">16:42</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">04:41 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
-      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: none;">
+      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: block;">
         <div class="section-header">
           <div class="section-title">🗂️ Actualizar Malla de Turnos</div>
           <div class="section-sub">Sube el nuevo archivo y todo el equipo se actualiza</div>
@@ -2299,175 +2327,15 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
       <div class="fp-row-main">
-        <div class="fp-avatar sm"><img src="https://drive.google.com/uc?export=view&amp;id=1M11BBVi4LSrbnqBlNCdwLrwo_x6X0W3x" alt=""></div>
-        <div>
-          <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">A</div>
-        <div>
-          <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm"><img src="https://drive.google.com/uc?export=view&amp;id=1W0Z93C6RiLk8skk64rLjfOvGhSP7fNNj" alt=""></div>
-        <div>
-          <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">B</div>
-        <div>
-          <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">C</div>
-        <div>
-          <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">C</div>
-        <div>
-          <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">E</div>
-        <div>
-          <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">E</div>
-        <div>
-          <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">G</div>
-        <div>
-          <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">J</div>
-        <div>
-          <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">J</div>
-        <div>
-          <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">J</div>
-        <div>
-          <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">J</div>
-        <div>
-          <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">K</div>
-        <div>
-          <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">K</div>
-        <div>
-          <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHY MORALES SUÁREZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">K</div>
-        <div>
-          <div class="team-row-name">KATHY MORALES SUÁREZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">M</div>
-        <div>
-          <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm"><img src="data:image/jpeg;base64,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" alt=""></div>
-        <div>
-          <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">N</div>
+        <div class="fp-avatar sm"><img src="data:image/jpeg;base64,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" alt=""></div>
         <div>
           <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
+          <div class="team-row-sub">Sin turno asignado</div>
         </div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">V</div>
-        <div>
-          <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
-      <div class="fp-row-main">
-        <div class="fp-avatar sm">Y</div>
-        <div>
-          <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-          <div class="team-row-sub">No hay turno para esa fecha</div>
-        </div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div></div>
+      <div class="team-row-badge descanso">INCAPACIDAD</div></div></div>
 
         <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) ── -->
         <div style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
@@ -2490,35 +2358,35 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             </div>
           </div>
           <div id="calc-dias-list" class="consultas-list" style="margin-top:8px"><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">lun, 21/09</span>
-      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+      <input type="checkbox" class="calc-dia-chk" data-min="480" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">lun, 28/09</span>
+      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="450" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">mar, 29/09</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="450" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">mié, 30/09</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="450" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">jue, 01/10</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="450" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">vie, 02/10</span>
+      <span style="color:var(--gris);font-size:11px">7h 30m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="240" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">sáb, 03/10</span>
+      <span style="color:var(--gris);font-size:11px">4h 0m</span>
     </label><label class="consulta-item" style="cursor:pointer">
       <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">mar, 22/09</span>
-      <span style="color:var(--gris);font-size:11px">Sin datos</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">mié, 23/09</span>
-      <span style="color:var(--gris);font-size:11px">Sin datos</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">jue, 24/09</span>
-      <span style="color:var(--gris);font-size:11px">Sin datos</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">vie, 25/09</span>
-      <span style="color:var(--gris);font-size:11px">Sin datos</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">sáb, 26/09</span>
-      <span style="color:var(--gris);font-size:11px">Sin datos</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
-      <span style="flex:1">dom, 27/09</span>
+      <span style="flex:1">dom, 04/10</span>
       <span style="color:var(--gris);font-size:11px">Sin datos</span>
     </label></div>
-          <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="calc-total">Total real: 0h 0m (0 de 7 días)</div>
+          <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="calc-total">Total real: 42h 0m (6 de 7 días)</div>
         </div>
       </div>
 
@@ -2581,7 +2449,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Fotos de asesores (soldadas al HTML web y de oficina) ── -->
-      <div class="malla-panel admin-subpanel" id="fotos-admin-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="fotos-admin-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">📸 Fotos de Asesores</div>
           <div class="section-sub">Elige la foto de cada asesor. Quedan soldadas al HTML (web y oficina) y no se pierden al actualizar la malla</div>
@@ -2728,21 +2596,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="form-group">
           <label class="form-label">Persona</label>
-          <select class="form-input" id="cond-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+          <select class="form-input" id="cond-nombre" onchange="COND_poblarDias()"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
-        <div class="flex-row" style="gap:10px">
-          <div class="form-group" style="flex:1;margin:0">
-            <label class="form-label">Día fijo de la semana</label>
-            <select class="form-input" id="cond-dia">
-              <option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option>
-              <option value="4">Jueves</option><option value="5">Viernes</option><option value="6" selected="">Sábado</option>
-              <option value="0">Domingo</option>
-            </select>
-          </div>
-          <div class="form-group" style="flex:1;margin:0">
-            <label class="form-label">Semana a aplicar (cualquier día de esa semana)</label>
-            <input type="date" class="form-input" id="cond-semana">
-          </div>
+        <div class="form-group">
+          <label class="form-label">Día a fijar (de la malla cargada)</label>
+          <select class="form-input" id="cond-dia"><option value="2026-09-28">Lunes 28/09</option><option value="2026-09-29">Martes 29/09</option><option value="2026-09-30">Miércoles 30/09</option><option value="2026-10-01">Jueves 01/10</option><option value="2026-10-02">Viernes 02/10</option><option value="2026-10-03">Sábado 03/10</option></select>
         </div>
         <div class="flex-row" style="gap:10px">
           <div class="form-group" style="flex:1;margin:0">
@@ -2774,7 +2632,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="form-group">
           <label class="form-label">Persona</label>
-          <select class="form-input" id="brk-nombre" onchange="BRK_mostrarActual()"></select>
+          <select class="form-input" id="brk-nombre" onchange="BRK_mostrarActual()"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
         <div class="flex-row" style="gap:10px">
           <div class="form-group" style="flex:1;margin:0">
@@ -2787,12 +2645,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
               <option value="mover">↔️ Mover</option>
               <option value="quitar">🗑️ Quitar</option>
               <option value="unificar">🔗 Unificar</option>
+              <option value="tiempo">⏱️ Agregar/quitar tiempo</option>
             </select>
           </div>
         </div>
-        <div class="malla-status" id="brk-actual" style="margin-top:10px;font-size:12px;line-height:1.5;"></div>
+        <div class="malla-status" id="brk-actual" style="margin-top:10px;font-size:12px;line-height:1.5;">Turno 10:00 a. m. – 7:00 p. m.. Pausas: <b>Break 1 12:00 p. m. · Break 2 4:30 p. m. · Almuerzo 1:30 p. m.</b></div>
 
-        <div id="brk-campos-una" style="margin-top:10px">
+        <div id="brk-campos-una" style="margin-top: 10px; display: block;">
           <div class="flex-row" style="gap:10px">
             <div class="form-group" style="flex:1;margin:0">
               <label class="form-label">Pausa</label>
@@ -2800,9 +2659,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
                 <option value="0">Break 1</option><option value="1">Break 2</option><option value="2">Almuerzo</option>
               </select>
             </div>
-            <div class="form-group" style="flex:1;margin:0" id="brk-wrap-hora">
+            <div class="form-group" style="flex: 1 1 0%; margin: 0px; display: block;" id="brk-wrap-hora">
               <label class="form-label">Nueva hora</label>
               <input type="time" class="form-input" id="brk-hora">
+            </div>
+            <div class="form-group" style="flex:1;margin:0;display:none" id="brk-wrap-min">
+              <label class="form-label">Minutos (+ agrega, − quita)</label>
+              <input type="number" class="form-input" id="brk-min" step="1" min="-55" max="45" placeholder="ej. 5 o -5">
             </div>
           </div>
         </div>
@@ -2835,8 +2698,60 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
         <button class="btn btn-primary w-full" style="margin-top:12px" onclick="BRK_aplicar()">✅ Aplicar</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
-          Mover: cambia la hora de una pausa (debe caer dentro del turno y sin cruzarse con otra). Quitar: deja esa pausa sin usar ese día. Unificar: junta dos pausas en un solo bloque continuo (el asesor lo ve como una sola pausa con la duración sumada). Break = 15 min, almuerzo = 1 h. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
+          Mover: cambia la hora de una pausa (debe caer dentro del turno y sin cruzarse con otra). Quitar: deja esa pausa sin usar ese día. Agregar/quitar tiempo: alarga o acorta Break 1 o Break 2 de ese día (mín. 5 min, máx. 60; el break normal es de 15). Unificar: junta dos pausas en un solo bloque continuo (el asesor lo ve como una sola pausa con la duración sumada). Break = 15 min, almuerzo = 1 h. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
         </div>
+        <div style="border-top:1px solid var(--glass-border);margin-top:18px;padding-top:14px">
+          <div class="section-title" style="font-size:14px">⏱️ Ajuste masivo de tiempo</div>
+          <div class="section-sub" style="margin-bottom:10px">Cambia el tiempo de Break 1 y/o Break 2 de varios asesores y varios días de una sola vez</div>
+          <div class="flex-row" style="gap:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Desde</label>
+              <input type="date" class="form-input" id="brk-m-desde" onchange="BRKM_refrescar()">
+            </div>
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Hasta</label>
+              <input type="date" class="form-input" id="brk-m-hasta" onchange="BRKM_refrescar()">
+            </div>
+          </div>
+          <div class="form-label" style="margin-top:10px">Días de la semana</div>
+          <div id="brk-m-dias" style="display:flex;flex-wrap:wrap;gap:6px">
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="1" checked="" onchange="BRKM_refrescar()"> L</label>
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="2" checked="" onchange="BRKM_refrescar()"> M</label>
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="3" checked="" onchange="BRKM_refrescar()"> X</label>
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="4" checked="" onchange="BRKM_refrescar()"> J</label>
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="5" checked="" onchange="BRKM_refrescar()"> V</label>
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="6" checked="" onchange="BRKM_refrescar()"> S</label>
+            <label class="brkm-chip"><input type="checkbox" class="brk-m-dia" value="0" checked="" onchange="BRKM_refrescar()"> D</label>
+          </div>
+          <div class="form-label" style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+            <span>Bloques de hora de entrada (# turnos)</span>
+            <span><a href="#" onclick="BRKM_todos(true);return false" style="color:var(--rojo2);font-size:12px">Todos</a> · <a href="#" onclick="BRKM_todos(false);return false" style="color:var(--rojo2);font-size:12px">Ninguno</a></span>
+          </div>
+          <div id="brk-m-bloques" style="display:flex;flex-wrap:wrap;gap:6px"><label class="brkm-chip"><input type="checkbox" checked=""> 7:00 a. m. · 40</label><label class="brkm-chip"><input type="checkbox"> 8:00 a. m. · 4</label><label class="brkm-chip"><input type="checkbox"> 10:30 a. m. · 39</label></div>
+          <div class="flex-row" style="gap:10px;margin-top:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Pausa</label>
+              <select class="form-input" id="brk-m-pausa">
+                <option value="0">Break 1</option><option value="1">Break 2</option><option value="ambos">Ambos breaks</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Modo</label>
+              <select class="form-input" id="brk-m-modo" onchange="BRKM_modo()">
+                <option value="delta">Sumar / restar</option><option value="objetivo">Dejar en X min</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:10px">
+            <label class="form-label" id="brk-m-min-label">Cada break debe quedar en (minutos, 5 a 60)</label>
+            <input type="number" class="form-input" id="brk-m-min" step="1" placeholder="ej. 20" oninput="BRKM_resumen()">
+          </div>
+          <div class="malla-status" id="brk-m-resumen" style="font-size:12px;line-height:1.5">Se revisarán <b>40</b> turnos (10 asesores, 4 días).</div>
+          <button class="btn btn-primary w-full" style="margin-top:10px" onclick="BRKM_aplicar()">✅ Aplicar a todos los seleccionados</button>
+          <div class="malla-status" id="brk-m-resultado" style="margin-top: 10px; font-size: 12px; line-height: 1.5; display: block;"><b>✅ 40 ajustes aplicados.</b></div>
+        </div>
+        <style>.brkm-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--glass-border);border-radius:999px;font-size:12px;cursor:pointer;background:var(--glass)}.brkm-chip input{width:16px;height:16px}</style>
+
       </div>
 
       <!-- ── Marcar ausencia total: Incapacidad / Permiso / Suspensión ── -->
@@ -2847,7 +2762,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="form-group">
           <label class="form-label">Persona</label>
-          <select class="form-input" id="ausencia-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="Wandi Vanessa Tafur Sanjuan">Wandi Vanessa Tafur Sanjuan</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option><option value="ZUANY SOFIA RENDON SINCELEJO">ZUANY SOFIA RENDON SINCELEJO</option></select>
+          <select class="form-input" id="ausencia-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
         <div class="flex-row" style="gap:10px">
           <div class="form-group" style="flex:1;margin:0">
@@ -2891,8 +2806,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">🔑 19 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 03:44 p. m. · 20/9, 12:13 p. m. · 19/9, 09:57 p. m.</div>
+        <div class="team-row-sub">🔑 21 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/9, 09:09 a. m. · 28/9, 07:22 a. m. · 26/9, 03:44 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2933,8 +2848,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 29 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 06:55 p. m. · 26/9, 04:23 p. m. · 24/9, 07:14 a. m.</div>
+        <div class="team-row-sub">🔑 32 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/9, 09:55 a. m. · 28/9, 07:54 a. m. · 28/9, 06:13 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3029,8 +2944,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">🔑 9 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 04:54 p. m. · 20/9, 12:40 p. m. · 19/9, 09:35 p. m.</div>
+        <div class="team-row-sub">🔑 10 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/9, 07:15 a. m. · 26/9, 04:54 p. m. · 20/9, 12:40 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3053,8 +2968,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 41 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 11:51 a. m. · 27/9, 09:43 a. m. · 26/9, 04:32 p. m.</div>
+        <div class="team-row-sub">🔑 44 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/9, 12:21 p. m. · 28/9, 09:33 a. m. · 28/9, 08:03 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3077,14 +2992,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 64 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 06:01 p. m. · 27/9, 06:01 p. m. (📱 Motorola motorola edge 60 fusion) · 27/9, 06:00 p. m.</div>
+        <div class="team-row-sub">🔑 63 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/9, 07:51 a. m. · 27/9, 09:48 p. m. · 27/9, 09:46 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 17 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 09:28 p. m. · 27/9, 07:28 p. m. · 21/9, 01:51 p. m.</div>
+        <div class="team-row-sub">🔑 18 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">28/9, 11:48 a. m. · 27/9, 09:28 p. m. · 27/9, 07:28 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3975,24 +3890,24 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="file" id="profile-photo-input" accept="image/*" onchange="PROFILE_onPhotoSelected(event)">
           </label>
         </div>
-        <div class="profile-name" id="profile-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Asesor</span></div>
-        <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: none;">Quitar foto de perfil</div>
+        <div class="profile-name" id="profile-name">Moi</div>
+        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Administrador</span></div>
+        <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: block;">Quitar foto de perfil</div>
       </div>
 
       <div class="profile-section">
         <div class="profile-info-row">
           <span class="lbl">Usuario Maya</span>
-          <span class="val" id="profile-maya">MELANYS</span>
+          <span class="val" id="profile-maya">1999</span>
         </div>
         <div class="profile-info-row">
           <span class="lbl">Accesos totales</span>
-          <span class="val" id="profile-accesos">64</span>
+          <span class="val" id="profile-accesos">1</span>
         </div>
       </div>
 
       <!-- ── Apodo (solo asesores): cómo quieren que les aparezca su nombre ── -->
-      <div class="profile-section" id="profile-apodo-section" style="display: block;">
+      <div class="profile-section" id="profile-apodo-section" style="display: none;">
         <div class="form-group">
           <label class="form-label">Tu apodo (cómo quieres que te llamen)</label>
           <div style="display:flex; gap:8px;">
@@ -4005,13 +3920,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
       <!-- ── Tema de color (solo admin: los asesores reciben el tema
            que Moi elija al publicar el HTML, no lo pueden cambiar) ── -->
-      <div class="profile-section" id="profile-theme-section" style="display: none;">
+      <div class="profile-section" id="profile-theme-section" style="display: block;">
         <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
         <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
         <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
       </div>
 
-      <div class="profile-section" id="profile-admin-link" style="display: none;">
+      <div class="profile-section" id="profile-admin-link" style="display: block;">
         <button class="btn btn-secondary w-full" onclick="showMainScreen('turns')">
           👑 Ir al Panel de Administración
         </button>
@@ -4023,7 +3938,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <input type="checkbox" id="voz-toggle" onchange="VOZ_setEnabled(this.checked)" style="width:20px; height:20px;">
         </label>
         <div style="font-size:11px; color:var(--gris); margin-top:4px;">Cuando llega la hora de tu break, almuerzo o salida te aparece una notificación en pantalla y suena la voz. Con internet el navegador a veces bloquea la voz hasta que tocas la página: por eso la notificación trae el botón 🔊 Escuchar. Solo funciona mientras esta pestaña esté abierta.</div>
-        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;">👆 Voz: toca “Activar avisos” una vez · ✅ Notificaciones activas</div>
+        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;">✅ Voz lista · ✅ Notificaciones activas</div>
         <button class="btn btn-primary w-full" style="margin-top:8px" onclick="VOZ_activar()">✅ Activar avisos (voz + notificaciones)</button>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="VOZ_probar()">🔊 Escuchar un aviso de prueba</button>
       </div>
@@ -4149,7 +4064,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -4229,18 +4144,18 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:00:00
  29/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  30/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  01/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
-03/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	8:55:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
+03/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
  28/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  29/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  30/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -4253,17 +4168,17 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   5:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:00:00
  29/09/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
@@ -4271,17 +4186,17 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   JENNIFER MORALES MENDOZA   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   5:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
  29/09/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
@@ -4289,17 +4204,17 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:00:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   8:00:00
  29/09/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
@@ -4307,29 +4222,29 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   11:00:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   5:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
-28/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	12:00:00	p.	m.	7:00:00	p.	m.	1:40:00	p.	m.	5:10:00	p.	m.	12:00:00	a.	m.	7:00:00
-29/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
-30/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+28/09/2026	INCAPACIDAD	NEVIS	CAROLINA	JIMENEZ	MARMOL
+29/09/2026	INCAPACIDAD	NEVIS	CAROLINA	JIMENEZ	MARMOL
+30/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  01/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  03/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   12:00:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   5:00:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 30/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
+ 28/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   5:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 01/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
+ 02/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   KATHY MORALES SUÁREZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:00:00
  29/09/2026   ACTIVO   KATHY MORALES SUÁREZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
@@ -4549,8 +4464,20 @@ function MALLA_labelsParaDetalle(cantidad) {
 //   y la fila queda marcada con auxConflicto para poder revisarla.
 // ══════════════════════════════════════════════════
 const MALLA_AUX_PRIORIDAD = 'cabecera';
-const MALLA_AUX_VERSION = 2; // sube este número si cambia la lógica y hay que releer la malla guardada
+const MALLA_AUX_VERSION = 3; // sube este número si cambia la lógica y hay que releer la malla guardada
 const MALLA_AUX_LABEL = { break1: 'Break 1', break2: 'Break 2', almuerzo: 'Salida almuerzo' };
+// ORDEN FIJO de los auxiliares en TODA la app (timeline, tarjeta, avisos, Excel):
+// Inicio de turno → Break 1 → Break 2 → Almuerzo → Fin de turno.
+// No depende del orden de las columnas de la malla ni de la hora: cada valor se
+// identifica por su CABECERA y luego se acomoda en este orden. Si un auxiliar no
+// aplica ese día, simplemente se omite y el resto sigue en orden.
+const MALLA_AUX_ORDEN = ['Break 1', 'Break 2', 'Salida almuerzo', 'Regreso almuerzo'];
+function MALLA_rangoAux(label) { const i = MALLA_AUX_ORDEN.indexOf(label); return i >= 0 ? i : MALLA_AUX_ORDEN.length; }
+function MALLA_ordenarDetalle(det) {
+  return (det || []).map((d, i) => ({ d, i }))
+    .sort((a, b) => (MALLA_rangoAux(a.d.label) - MALLA_rangoAux(b.d.label)) || (a.i - b.i))
+    .map(o => o.d);
+}
 const MALLA_RE_B1 = /break\s*(?:i|1|uno)(?![a-z0-9])/i;
 const MALLA_RE_B2 = /break\s*(?:ii|2|dos)(?![a-z0-9])/i;
 
@@ -4605,7 +4532,7 @@ function MALLA_detallePorCabecera(cab, line, unidades) {
     });
   }
   if (!vals) return null;
-  return cab.order.filter(k => vals[k]).map(k => ({ label: MALLA_AUX_LABEL[k], value: vals[k] }));
+  return MALLA_ordenarDetalle(cab.order.filter(k => vals[k]).map(k => ({ label: MALLA_AUX_LABEL[k], value: vals[k] })));
 }
 function MALLA_mismoDetalle(a, b) {
   return a.length === b.length && a.every((d, i) => d.label === b[i].label && d.value === b[i].value);
@@ -4724,6 +4651,7 @@ function MALLA_parseText(text) {
       auxConflicto = !MALLA_mismoDetalle(detallePorCab, detallePorCampos);
       if (MALLA_AUX_PRIORIDAD === 'cabecera') { detalle = detallePorCab; auxOrigen = 'cabecera'; }
     }
+    detalle = MALLA_ordenarDetalle(detalle);
 
     const [d, m, y] = fechaOriginal.split('/').map(Number);
     const fechaISO = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
@@ -4944,7 +4872,7 @@ function MALLA_buildUpdatedHTML() {
   } catch (e) { console.error('No se pudo incrustar TB_HORAS_DEFAULT:', e); }
   // Igual para las pausas unificadas y sus notas (ver BRK_* / TB_BREAKS_init).
   try {
-    const breaksJSON = JSON.stringify(BRK_load());
+    const breaksJSON = JSON.stringify(Object.fromEntries(Object.entries(BRK_load()).map(([k, v]) => { const c = Object.assign({}, v); delete c.l; return [k, c]; })));
     html = html.replace(
       /const TB_BREAKS_DEFAULT = \{[\s\S]*?\};/,
       () => 'const TB_BREAKS_DEFAULT = ' + breaksJSON + ';'
@@ -5663,23 +5591,39 @@ function SHARED_seedFromDefault() {
   } catch (e) { console.error('SHARED_seedFromDefault error:', e); }
 }
 
-// Copia usuario/contraseña/IP al portapapeles con respaldo si el navegador
-// no permite Clipboard API (intranets viejas a veces la bloquean).
+// Copia usuario/contraseña/ruta al portapapeles. En la versión de oficina
+// (file:// o intranet http) la Clipboard API suele estar bloqueada, así que:
+//   1) copia clásica (execCommand) dentro del mismo toque, que sí funciona ahí;
+//   2) Clipboard API como segunda opción;
+//   3) último recurso: cuadro con el texto ya seleccionado (Ctrl+C).
+function SHARED_copiarClasico(text) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { ta.setSelectionRange(0, text.length); } catch {}
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return !!ok;
+  } catch { return false; }
+}
 function SHARED_copy(text, label) {
   const done = () => showToast('success', '📋 Copiado', label ? `${label} copiado.` : 'Copiado al portapapeles.');
-  const fail = () => showToast('error', '❌ No se pudo copiar', 'Selecciona y copia el texto a mano.');
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(done).catch(fail);
-  } else {
-    try {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      done();
-    } catch { fail(); }
-  }
+  if (SHARED_copiarClasico(text)) { done(); return; }
+  const ultimo = () => {
+    try { window.prompt('Presiona Ctrl+C y luego Enter para copiar:', text); } catch {}
+    showToast('info', '📋 Copia el texto', 'Quedó seleccionado en el cuadro: Ctrl+C y Enter.');
+  };
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(ultimo);
+      return;
+    }
+  } catch {}
+  ultimo();
 }
 
 // Muestra el acceso compartido SOLO del asesor con sesión iniciada: se
@@ -6925,6 +6869,7 @@ async function doLogin() {
     initHomeScreen();
     showToast('success', '✅ ¡Bienvenido!', `Hola ${currentUser.nombre.split(' ')[0]}, ya estás dentro.`);
     showScreen('home');
+    if (typeof TB_LOCK_evaluar === 'function') TB_LOCK_evaluar();
     return;
   }
 
@@ -7209,7 +7154,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-27.2152';
+const TB_APP_VERSION = '2026-09-28.1643';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8305,28 +8250,33 @@ function F3_renderTimeline(t, diaEstado) {
   const salMin = F3_toMin(t.salida);
 
   const eventos = [
-    { time: t.entradaDisplay || t.entrada, label: '🟢 Inicio turno', rel: entMin },
+    { time: t.entradaDisplay || t.entrada, label: '🟢 Inicio de turno', rel: entMin, ord: 0 },
   ];
 
-  (t.detalle || []).forEach(d => {
+  // Orden fijo (Break 1 → Break 2 → Almuerzo), sin importar el orden de la malla.
+  MALLA_ordenarDetalle(t.detalle).forEach(d => {
     const min = F3_parse12hToMin(d.value);
     // Ícono y duración según el tipo real (almuerzo vs. break), para que en
     // la línea de tiempo del turno quede claro cuánto dura cada uno: los
     // breaks son de 15 min y el almuerzo de 1 hora.
     const esAlmuerzo = /almuerzo/i.test(d.label);
     const icono = esAlmuerzo ? '🍽️' : '☕';
-    const duracion = esAlmuerzo ? '1 hora' : '15 min';
+    // Duración real: 15 min / 1 h, más o menos el ajuste que el admin haya aplicado ese día.
+    const gIdx = BRK_idxLabel(d.label);
+    const durMin = gIdx >= 0 ? BRK_durIdx(t.fechaISO, t.nombreNorm, gIdx) : (esAlmuerzo ? 60 : 15);
+    const duracion = durMin === 60 ? '1 hora' : BRK_fmtDur(durMin);
     if (fusT && d.label === fusT[1]) return; // se pinta dentro del bloque unificado
     if (fusT && d.label === fusT[0] && min !== null) {
-      const total = BRK_durLabel(fusT[0]) + BRK_durLabel(fusT[1]);
-      eventos.push({ time: d.value, label: `🔗 ${BRK_nombreLabel(fusT[0])} + ${BRK_nombreLabel(fusT[1])} unificados · ${BRK_fmtDur(total)}`, rel: min });
+      const total = BRK_durEfectiva(t.fechaISO, t.nombreNorm, fusT[0]) + BRK_durEfectiva(t.fechaISO, t.nombreNorm, fusT[1]);
+      eventos.push({ time: d.value, label: `🔗 ${BRK_nombreLabel(fusT[0])} + ${BRK_nombreLabel(fusT[1])} unificados · ${BRK_fmtDur(total)}`, rel: min, ord: MALLA_rangoAux(fusT[0]) + 1 });
       return;
     }
-    if (min !== null) eventos.push({ time: d.value, label: `${icono} ${d.label} · ${duracion}`, rel: min });
+    if (min !== null) eventos.push({ time: d.value, label: `${icono} ${BRK_nombreLabel(d.label)} · ${duracion}`, rel: min, ord: MALLA_rangoAux(d.label) + 1 });
   });
 
-  eventos.push({ time: t.salidaDisplay || t.salida, label: '🔴 Fin de turno', rel: salMin });
-  eventos.sort((a,b) => a.rel - b.rel);
+  eventos.push({ time: t.salidaDisplay || t.salida, label: '🔴 Fin de turno', rel: salMin, ord: 99 });
+  // Orden por posición fija (Inicio, Break 1, Break 2, Almuerzo, Fin); la hora solo desempata.
+  eventos.sort((a,b) => (a.ord - b.ord) || (a.rel - b.rel));
 
   eventos.forEach(ev => {
     const evMin = ev.rel;
@@ -8748,7 +8698,7 @@ function TB_CAMBIOS_init() {
 // el const ya exista.
 TB_CAMBIOS_init();
 
-const TB_HORAS_DEFAULT = {};
+const TB_HORAS_DEFAULT = {"2026-09-29|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-30|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"2","min":120,"repartido":60,"otraFecha":"29/09, 30/09","otras":["2026-09-29","2026-09-30"],"reparto":[{"fecha":"2026-09-29","min":30},{"fecha":"2026-09-30","min":30}],"cond":true}};
 function TB_HORAS_init() {
   try {
     const embebidos = TB_HORAS_DEFAULT || {};
@@ -9189,7 +9139,7 @@ function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fe
 //   en un registro aparte (igual que HORAS_registrar) que también se hornea.
 // ══════════════════════════════════════════════════
 const BREAKS_KEY = 'tb_breaks_v1';
-const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]}};
+const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]},"2026-09-29|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}}};
 const BRK_LABELS = ['Break 1', 'Break 2', 'Salida almuerzo'];   // = MALLA_AUX_LABEL
 const BRK_NOMBRES = ['Break 1', 'Break 2', 'Almuerzo'];
 const BRK_DUR = [15, 15, 60];                                   // minutos
@@ -9199,16 +9149,31 @@ function BRK_get(fechaISO, norm) { return BRK_load()[`${fechaISO}|${norm}`] || n
 function TB_BREAKS_init() {
   try {
     const emb = TB_BREAKS_DEFAULT || {};
-    if (!Object.keys(emb).length) return;
     const local = BRK_load();
     let cambio = false;
-    Object.keys(emb).forEach(k => { if (!(k in local)) { local[k] = emb[k]; cambio = true; } });
+    Object.keys(emb).forEach(k => {
+      if (!(k in local)) { local[k] = emb[k]; cambio = true; return; }
+      // Entrada que NO se editó en este dispositivo: el ajuste de tiempo del HTML manda,
+      // así un celular que ya tenía el día guardado igual recibe los ajustes nuevos.
+      const a = JSON.stringify(local[k].dur || null), b = JSON.stringify(emb[k].dur || null);
+      if (!local[k].l && a !== b) { if (emb[k].dur) local[k].dur = emb[k].dur; else delete local[k].dur; cambio = true; }
+    });
+    Object.keys(local).forEach(k => { if (!(k in emb) && !local[k].l && local[k].dur) { delete local[k].dur; cambio = true; } });
     if (cambio) BRK_save(local);
   } catch (e) { console.error('TB_BREAKS_init error:', e); }
 }
 TB_BREAKS_init();
 function BRK_idxLabel(label) { return BRK_LABELS.indexOf(label); }
 function BRK_durLabel(label) { const i = BRK_idxLabel(label); return i >= 0 ? BRK_DUR[i] : 15; }
+// Ajuste de tiempo por asesor y día (solo Break 1 y Break 2): el registro guarda los minutos
+// de más o de menos, e.g. dur: { "0": 5, "1": -5 }. Viaja al HTML web y de oficina (TB_BREAKS_DEFAULT).
+function BRK_delta(fechaISO, norm, gi) {
+  const e = BRK_get(fechaISO, norm);
+  const v = e && e.dur ? Number(e.dur[gi]) : 0;
+  return isFinite(v) ? v : 0;
+}
+function BRK_durIdx(fechaISO, norm, gi) { return Math.max(1, BRK_DUR[gi] + BRK_delta(fechaISO, norm, gi)); }
+function BRK_durEfectiva(fechaISO, norm, label) { const i = BRK_idxLabel(label); return i >= 0 ? BRK_durIdx(fechaISO, norm, i) : 15; }
 function BRK_nombreLabel(label) { const i = BRK_idxLabel(label); return i >= 0 ? BRK_NOMBRES[i] : label; }
 function BRK_fmtDur(min) { return min >= 60 && min % 60 === 0 ? `${min / 60} h` : (min > 60 ? `${Math.floor(min / 60)} h ${min % 60} min` : `${min} min`); }
 // Par de pausas unificadas de un día ([primera, segunda] por hora) o null.
@@ -9257,6 +9222,7 @@ function TB_editarPausas(nombreInput, fechaISO, accion, p) {
     sched[b] = t[0]; sched[b + 1] = t[1]; sched[b + 2] = t[2];
   };
   const mins = [getMin(0), getMin(1), getMin(2)];
+  const durs = [0, 1, 2].map(g => BRK_durIdx(fechaISO, norm, g)); // duración real de cada pausa ese día
   const alinear = m => (m < entrada ? m + 1440 : m);
 
   // La columna Horas viene neta: solo el almuerzo (1 h) se descuenta (ver datos de la malla).
@@ -9269,7 +9235,7 @@ function TB_editarPausas(nombreInput, fechaISO, accion, p) {
     if (ini < entrada || ini + dur > salida) return 'fuera_turno';
     for (let g = 0; g < 3; g++) {
       if (ignorar.includes(g) || mins[g] == null) continue;
-      if (ini < mins[g] + BRK_DUR[g] && mins[g] < ini + dur) return 'se_cruza';
+      if (ini < mins[g] + durs[g] && mins[g] < ini + dur) return 'se_cruza';
     }
     return null;
   };
@@ -9277,11 +9243,13 @@ function TB_editarPausas(nombreInput, fechaISO, accion, p) {
   let nota = '';
   let gi = null;
   let unifNueva = null;
+  let tiempoNuevo = null;
+  let soloRegistro = false; // ajuste de tiempo que no cambia el texto de la malla
 
   if (accion === 'mover') {
     gi = p.pausa;
     const ini = alinear(p.minutos);
-    const err = validar(ini, BRK_DUR[gi], [gi]);
+    const err = validar(ini, durs[gi], [gi]);
     if (err) return { ok: false, motivo: err };
     const estaba = mins[gi] != null;
     if (!estaba && gi === 2 && ajustarHoras && neta != null) neta -= 60;
@@ -9293,33 +9261,61 @@ function TB_editarPausas(nombreInput, fechaISO, accion, p) {
     TB_ponerPlaceholderAux(sched, gi);
     if (gi === 2 && ajustarHoras && neta != null) neta += 60;
     nota = `${BRK_NOMBRES[gi]} quitado ese día`;
+  } else if (accion === 'tiempo') {
+    gi = p.pausa;
+    const delta = Math.round(Number(p.delta));
+    if (gi !== 0 && gi !== 1) return { ok: false, motivo: 'solo_breaks' };
+    if (!isFinite(delta) || delta === 0) return { ok: false, motivo: 'datos' };
+    if (mins[gi] == null) return { ok: false, motivo: 'pausa_inactiva' };
+    const nueva = durs[gi] + delta;
+    if (nueva < 5) return { ok: false, motivo: 'dur_minima' };
+    if (nueva > 60) return { ok: false, motivo: 'dur_maxima' };
+    const fusE = BRK_fusion(fechaISO, norm);
+    const enFusion = fusE && fusE.includes(BRK_LABELS[gi]);
+    if (enFusion) {
+      // Pausa unificada: el bloque crece o se achica y la segunda pausa se recorre para seguir pegada.
+      const ia = BRK_idxLabel(fusE[0]), ib = BRK_idxLabel(fusE[1]);
+      const [primero, segundo] = mins[ia] <= mins[ib] ? [ia, ib] : [ib, ia];
+      const d2 = durs.slice(); d2[gi] = nueva;
+      const err = validar(mins[primero], d2[primero] + d2[segundo], [primero, segundo]);
+      if (err) return { ok: false, motivo: err };
+      setMin(segundo, mins[primero] + d2[primero]);
+    } else {
+      const err = validar(mins[gi], nueva, [gi]);
+      if (err) return { ok: false, motivo: err };
+      soloRegistro = true;
+    }
+    nota = `${BRK_NOMBRES[gi]}: ${delta > 0 ? '+' : '−'}${Math.abs(delta)} min (ahora dura ${nueva} min)`;
+    tiempoNuevo = { gi, delta };
   } else if (accion === 'unificar') {
     const a = p.pausaA, b = p.pausaB;
     if (a === b) return { ok: false, motivo: 'misma_pausa' };
     if (mins[a] == null || mins[b] == null) return { ok: false, motivo: 'pausa_inactiva' };
     const [primero, segundo] = mins[a] <= mins[b] ? [a, b] : [b, a];
     const ini = p.minutos != null ? alinear(p.minutos) : mins[primero];
-    const err = validar(ini, BRK_DUR[primero] + BRK_DUR[segundo], [a, b]);
+    const err = validar(ini, durs[primero] + durs[segundo], [a, b]);
     if (err) return { ok: false, motivo: err };
     setMin(primero, ini);
-    setMin(segundo, ini + BRK_DUR[primero]);
+    setMin(segundo, ini + durs[primero]);
     unifNueva = [BRK_LABELS[primero], BRK_LABELS[segundo]];
-    nota = `${BRK_NOMBRES[primero]} + ${BRK_NOMBRES[segundo]} unificados (${BRK_fmtHora(ini)}, ${BRK_fmtDur(BRK_DUR[primero] + BRK_DUR[segundo])} seguidos)`;
+    nota = `${BRK_NOMBRES[primero]} + ${BRK_NOMBRES[segundo]} unificados (${BRK_fmtHora(ini)}, ${BRK_fmtDur(durs[primero] + durs[segundo])} seguidos)`;
   } else {
     return { ok: false, motivo: 'datos' };
   }
 
-  if (neta != null) sched[lastIdx] = TB_minToDurToken(Math.max(0, neta));
-  lines[li] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
+  if (!soloRegistro) {
+    if (neta != null) sched[lastIdx] = TB_minToDurToken(Math.max(0, neta));
+    lines[li] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
 
-  const newRaw = lines.join('\n');
-  const parsed = MALLA_parseText(newRaw);
-  if (!parsed.length) return { ok: false, motivo: 'parseo' };
-  MALLA_DATA = parsed;
-  MALLA_LAST_RAW_TEXT = newRaw;
-  try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
-  MALLA_persist();
-  MALLA_refreshStatus();
+    const newRaw = lines.join('\n');
+    const parsed = MALLA_parseText(newRaw);
+    if (!parsed.length) return { ok: false, motivo: 'parseo' };
+    MALLA_DATA = parsed;
+    MALLA_LAST_RAW_TEXT = newRaw;
+    try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
+    MALLA_persist();
+    MALLA_refreshStatus();
+  }
 
   // Registro (nota del día + marca de unificado). Si se mueve o quita una pausa
   // que estaba unificada, la unificación se deshace.
@@ -9327,14 +9323,127 @@ function TB_editarPausas(nombreInput, fechaISO, accion, p) {
   const key = `${fechaISO}|${norm}`;
   const e = all[key] || { unif: null, notas: [] };
   if (accion === 'unificar') e.unif = unifNueva;
-  else if (e.unif && gi != null && e.unif.includes(BRK_LABELS[gi])) e.unif = null;
+  else if (accion !== 'tiempo' && e.unif && gi != null && e.unif.includes(BRK_LABELS[gi])) e.unif = null;
+  if (tiempoNuevo) {
+    e.dur = e.dur || {};
+    const tot = (Number(e.dur[tiempoNuevo.gi]) || 0) + tiempoNuevo.delta;
+    if (tot === 0) delete e.dur[tiempoNuevo.gi]; else e.dur[tiempoNuevo.gi] = tot;
+    if (!Object.keys(e.dur).length) delete e.dur;
+  }
+  if (accion === 'quitar' && e.dur && gi != null) { delete e.dur[gi]; if (!Object.keys(e.dur).length) delete e.dur; }
   e.notas = (e.notas || []).concat(nota).slice(-4);
+  e.l = 1; // editado en este dispositivo (no se hornea al HTML)
   all[key] = e;
   BRK_save(all);
 
   return { ok: true, nota };
 }
 
+const BRKM_State = { sel: new Set() };
+function BRKM_iso(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+function BRKM_init() {
+  const d1 = document.getElementById('brk-m-desde'), d2 = document.getElementById('brk-m-hasta');
+  if (!d1 || !d2) return;
+  if (!d1.value) {
+    const hoy = MALLA_todayISO();
+    const fechas = MALLA_DATA.map(r => r.fechaISO).filter(f => f >= hoy).sort();
+    d1.value = hoy;
+    d2.value = fechas.length ? fechas[fechas.length - 1] : hoy;
+  }
+  BRKM_refrescar();
+}
+function BRKM_fechas() {
+  const d1 = document.getElementById('brk-m-desde').value, d2 = document.getElementById('brk-m-hasta').value;
+  if (!d1 || !d2 || d2 < d1) return [];
+  const dias = [...document.querySelectorAll('.brk-m-dia:checked')].map(x => Number(x.value));
+  const out = [], d = new Date(d1 + 'T12:00:00'), fin = new Date(d2 + 'T12:00:00');
+  for (let i = 0; i < 93 && d <= fin; i++, d.setDate(d.getDate() + 1)) if (dias.includes(d.getDay())) out.push(BRKM_iso(d));
+  return out;
+}
+function BRKM_registros() {
+  const f = new Set(BRKM_fechas());
+  return MALLA_DATA.filter(r => f.has(r.fechaISO) && r.estado === 'ACTIVO' && r.entrada && r.nombre);
+}
+function BRKM_refrescar() {
+  const box = document.getElementById('brk-m-bloques');
+  if (!box) return;
+  const regs = BRKM_registros();
+  const grupos = {};
+  regs.forEach(r => { const g = grupos[r.entrada] || (grupos[r.entrada] = { n: 0, disp: r.entradaDisplay || r.entrada }); g.n++; });
+  const claves = Object.keys(grupos).sort((a, b) => F3_toMin(a) - F3_toMin(b));
+  BRKM_State.sel.forEach(k => { if (!(k in grupos)) BRKM_State.sel.delete(k); });
+  box.innerHTML = claves.length ? '' : '<span style="font-size:12px;color:var(--gris)">No hay turnos activos en ese rango.</span>';
+  claves.forEach(k => {
+    const l = document.createElement('label');
+    l.className = 'brkm-chip';
+    l.innerHTML = `<input type="checkbox" ${BRKM_State.sel.has(k) ? 'checked' : ''}> ${grupos[k].disp} · ${grupos[k].n}`;
+    l.querySelector('input').onchange = ev => { if (ev.target.checked) BRKM_State.sel.add(k); else BRKM_State.sel.delete(k); BRKM_resumen(); };
+    box.appendChild(l);
+  });
+  BRKM_resumen();
+}
+function BRKM_todos(on) {
+  BRKM_State.sel.clear();
+  if (on) BRKM_registros().forEach(r => BRKM_State.sel.add(r.entrada));
+  BRKM_refrescar();
+}
+function BRKM_modo() {
+  const obj = document.getElementById('brk-m-modo').value === 'objetivo';
+  document.getElementById('brk-m-min-label').textContent = obj ? 'Cada break debe quedar en (minutos, 5 a 60)' : 'Minutos a sumar (+) o restar (−)';
+  document.getElementById('brk-m-min').placeholder = obj ? 'ej. 20' : 'ej. 5 o -5';
+  BRKM_resumen();
+}
+function BRKM_seleccion() { return BRKM_registros().filter(r => BRKM_State.sel.has(r.entrada)); }
+function BRKM_resumen() {
+  const el = document.getElementById('brk-m-resumen');
+  if (!el) return;
+  const sel = BRKM_seleccion();
+  if (!sel.length) { el.textContent = 'Elige al menos un bloque de entrada.'; return; }
+  const personas = new Set(sel.map(r => r.nombreNorm)).size, dias = new Set(sel.map(r => r.fechaISO)).size;
+  el.innerHTML = `Se revisarán <b>${sel.length}</b> turnos (${personas} asesores, ${dias} días).`;
+}
+function BRKM_aplicar() {
+  const sel = BRKM_seleccion();
+  if (!sel.length) { showToast('error', '❌ Error', 'Elige al menos un bloque de entrada.'); return; }
+  const modo = document.getElementById('brk-m-modo').value;
+  const valor = parseInt(document.getElementById('brk-m-min').value, 10);
+  if (!valor || (modo === 'objetivo' && (valor < 5 || valor > 60))) {
+    showToast('error', '❌ Error', modo === 'objetivo' ? 'Indica los minutos finales (entre 5 y 60).' : 'Indica cuántos minutos sumar (ej. 5) o restar (ej. -5).');
+    return;
+  }
+  const pausaSel = document.getElementById('brk-m-pausa').value;
+  const pausas = pausaSel === 'ambos' ? [0, 1] : [parseInt(pausaSel, 10)];
+  const descr = modo === 'objetivo' ? `dejar ${pausas.map(g => BRK_NOMBRES[g]).join(' y ')} en ${valor} min` : `${valor > 0 ? 'sumar' : 'restar'} ${Math.abs(valor)} min a ${pausas.map(g => BRK_NOMBRES[g]).join(' y ')}`;
+  if (!window.confirm(`Vas a ${descr} en ${sel.length} turnos. ¿Aplicar?`)) return;
+
+  const motivos = {
+    fuera_turno: 'quedaría fuera del turno', se_cruza: 'se cruzaría con otra pausa', pausa_inactiva: 'ese día no tiene esa pausa',
+    dur_minima: 'quedaría de menos de 5 min', dur_maxima: 'pasaría de 60 min', ya_igual: 'ya duraba eso'
+  };
+  let ok = 0; const omitidos = {}; const ejemplos = [];
+  sel.forEach(r => pausas.forEach(gi => {
+    const delta = modo === 'objetivo' ? valor - BRK_durIdx(r.fechaISO, r.nombreNorm, gi) : valor;
+    let res = delta === 0 ? { ok: false, motivo: 'ya_igual' } : TB_editarPausas(r.nombre, r.fechaISO, 'tiempo', { pausa: gi, delta, ajustarHoras: false });
+    if (res.ok) { ok++; return; }
+    const m = motivos[res.motivo] ? res.motivo : 'otro';
+    omitidos[m] = (omitidos[m] || 0) + 1;
+    if (ejemplos.length < 8 && m !== 'ya_igual' && m !== 'pausa_inactiva') ejemplos.push(`${r.nombre.split(' ')[0]} ${r.fechaISO.slice(8)}/${r.fechaISO.slice(5, 7)} ${BRK_NOMBRES[gi]}: ${motivos[m] || 'no se pudo'}`);
+  }));
+  const omTxt = Object.keys(omitidos).map(m => `${omitidos[m]} ${motivos[m] || 'no se pudo aplicar'}`).join(' · ');
+  const res = document.getElementById('brk-m-resultado');
+  res.style.display = 'block';
+  res.innerHTML = `<b>✅ ${ok} ajustes aplicados.</b>` + (omTxt ? `<br>Omitidos: ${omTxt}` : '') + (ejemplos.length ? '<br>' + ejemplos.map(NOTI_esc).join('<br>') : '');
+  showToast(ok ? 'success' : 'error', ok ? '✅ Ajuste masivo' : '⚠️ Sin cambios', `${ok} aplicados${omTxt ? ', ' + Object.values(omitidos).reduce((a, b) => a + b, 0) + ' omitidos' : ''}.`);
+  if (!ok) return;
+  if (typeof fase2AddActivity === 'function') fase2AddActivity('☕', `Ajuste masivo de break: ${descr} (${ok} ajustes)`, 'cambio');
+  BRK_mostrarActual(); TEAM_render(); CALC_populate();
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('El ajuste de break ya quedó aplicado. ¿Descargas ya el HTML, o sigues configurando?');
+    if (!quiere) return;
+    const okd = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_breaks.html`);
+    if (okd) showToast('success', '⬇️ HTML actualizado', 'Se descargó con los breaks ajustados. Publícalo cuando quieras.');
+  }, 400);
+}
 function BRK_horaAMin(str) {
   if (!str) return null;
   const [h, m] = str.split(':').map(Number);
@@ -9346,12 +9455,15 @@ function BRK_populate() {
   if (f && !f.value) f.value = MALLA_todayISO();
   BRK_cambiarAccion();
   BRK_mostrarActual();
+  BRKM_init();
 }
 function BRK_cambiarAccion() {
   const acc = document.getElementById('brk-accion').value;
   document.getElementById('brk-campos-una').style.display = acc === 'unificar' ? 'none' : 'block';
   document.getElementById('brk-campos-unif').style.display = acc === 'unificar' ? 'block' : 'none';
   document.getElementById('brk-wrap-hora').style.display = acc === 'mover' ? 'block' : 'none';
+  const wm = document.getElementById('brk-wrap-min');
+  if (wm) wm.style.display = acc === 'tiempo' ? 'block' : 'none';
 }
 function BRK_mostrarActual() {
   const box = document.getElementById('brk-actual');
@@ -9361,7 +9473,7 @@ function BRK_mostrarActual() {
   const canon = MALLA_matchName(nombre);
   const t = canon && fecha ? MALLA_recordForDate(canon, fecha) : null;
   if (!t || t.estado !== 'ACTIVO' || !t.entrada) { box.textContent = 'Ese día esa persona no tiene turno activo en la malla.'; return; }
-  const pausas = (t.detalle || []).map(d => `${BRK_nombreLabel(d.label)} ${d.value}`).join(' · ') || 'sin pausas';
+  const pausas = MALLA_ordenarDetalle(t.detalle).map(d => { const gi = BRK_idxLabel(d.label); const dl = gi >= 0 ? BRK_delta(fecha, t.nombreNorm, gi) : 0; return `${BRK_nombreLabel(d.label)} ${d.value}${dl ? ` (${BRK_durIdx(fecha, t.nombreNorm, gi)} min)` : ''}`; }).join(' · ') || 'sin pausas';
   const fus = BRK_fusion(fecha, t.nombreNorm);
   box.innerHTML = `Turno ${t.entradaDisplay || t.entrada} – ${t.salidaDisplay || t.salida}. Pausas: <b>${pausas}</b>${fus ? ` · 🔗 unificadas: ${BRK_nombreLabel(fus[0])} + ${BRK_nombreLabel(fus[1])}` : ''}`;
 }
@@ -9377,6 +9489,10 @@ function BRK_aplicar() {
     p.minutos = BRK_horaAMin(document.getElementById('brk-hora-u').value);
   } else {
     p.pausa = parseInt(document.getElementById('brk-pausa').value, 10);
+    if (accion === 'tiempo') {
+      p.delta = parseInt(document.getElementById('brk-min').value, 10);
+      if (!p.delta) { showToast('error', '❌ Error', 'Indica cuántos minutos agregar (ej. 5) o quitar (ej. -5).'); return; }
+    }
     if (accion === 'mover') {
       p.minutos = BRK_horaAMin(document.getElementById('brk-hora').value);
       if (p.minutos == null) { showToast('error', '❌ Error', 'Indica la nueva hora.'); return; }
@@ -9391,6 +9507,9 @@ function BRK_aplicar() {
     ya_quitado: 'Esa pausa ya no existe ese día.',
     pausa_inactiva: 'Para unificar, las dos pausas tienen que existir ese día.',
     misma_pausa: 'Elige dos pausas distintas para unificar.',
+    solo_breaks: 'El ajuste de tiempo aplica solo a Break 1 y Break 2.',
+    dur_minima: 'Un break no puede quedar de menos de 5 minutos.',
+    dur_maxima: 'Un break no puede pasar de 60 minutos.',
     parseo: 'Algo salió mal al reconstruir la malla. No se aplicó ningún cambio.',
     datos: 'Faltan datos.'
   };
@@ -9435,12 +9554,49 @@ function VOZ_isEnabled() {
 function VOZ_setEnabled(on) { try { localStorage.setItem(TB_VOZ_KEY, on ? '1' : '0'); } catch {} }
 
 const VOZ_State = { desbloqueada: false, voces: [] };
+// Los motores de voz deletrean las palabras que vienen TODAS EN MAYÚSCULAS
+// (ADRIANA → "a-de-erre-i…"). Se pasan a "Nombre" antes de hablar.
+function VOZ_nombreHablado(n) {
+  let p = String(n || '').trim().split(/[\s_.\-]+/)[0] || '';
+  p = p.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g, '');
+  if (!p) return 'Atención';
+  return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
+}
+function VOZ_limpiarTexto(t) {
+  return String(t == null ? '' : t).replace(/[A-ZÁÉÍÓÚÜÑ]{2,}/g, w => w.charAt(0) + w.slice(1).toLowerCase());
+}
 function VOZ_disponible() { return 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined'; }
 function VOZ_cargarVoces() { try { if (VOZ_disponible()) { const v = speechSynthesis.getVoices(); if (v && v.length) VOZ_State.voces = v; } } catch {} }
 try { VOZ_cargarVoces(); if (VOZ_disponible() && speechSynthesis.addEventListener) speechSynthesis.addEventListener('voiceschanged', VOZ_cargarVoces); } catch {}
+// El navegador NO informa el género de una voz; se reconoce por el nombre.
+// Se prefiere una voz femenina en español (es-CO primero, luego MX/US/419, luego cualquiera).
+// En la versión de oficina (sin internet) se prefieren voces locales, porque las "Online/Google"
+// necesitan conexión. Si el equipo no trae ninguna voz femenina reconocible, se usa la mejor
+// disponible con el tono subido (VOZ_esFemenina = false → pitch más alto).
+const VOZ_RE_HOMBRE = /\b(pablo|raul|jorge|juan|diego|carlos|alvaro|gonzalo|tomas|alonso|lorenzo|andres|enrique|miguel|pedro|federico|arnau|emilio|sergio|oscar|antonio|manuel|jaime|rodrigo|male|hombre|masculin[oa])\b/;
+const VOZ_RE_MUJER = /\b(salome|dalia|sabina|helena|laura|elvira|paulina|monica|paloma|camila|lupe|marisol|elena|lucia|elisa|ximena|valentina|jimena|soledad|francisca|angelica|isabela|maria|mariana|female|mujer|femenin[oa])\b|google espanol/;
+function VOZ_sinTildes(t) { return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+function VOZ_esFemenina(x) {
+  if (!x) return false;
+  const n = VOZ_sinTildes(x.name);
+  return VOZ_RE_MUJER.test(n) && !VOZ_RE_HOMBRE.test(n);
+}
+function VOZ_puntuar(x) {
+  const lang = String(x.lang || '').replace('_', '-');
+  if (!/^es/i.test(lang)) return -1000;
+  const n = VOZ_sinTildes(x.name);
+  let p = 0;
+  if (VOZ_RE_HOMBRE.test(n)) p -= 100;
+  if (VOZ_RE_MUJER.test(n)) p += 100;
+  if (/^es-CO/i.test(lang)) p += 30; else if (/^es-(MX|US|419)/i.test(lang)) p += 20; else p += 5;
+  if (typeof TB_MODO_OFICINA_DEFAULT !== 'undefined' && TB_MODO_OFICINA_DEFAULT) p += x.localService ? 40 : -40;
+  else if (/natural|online/.test(n)) p += 3;
+  return p;
+}
 function VOZ_elegirVoz() {
-  const v = VOZ_State.voces || [];
-  return v.find(x => /^es[-_](CO|MX|US|419)/i.test(x.lang)) || v.find(x => /^es/i.test(x.lang)) || null;
+  const v = (VOZ_State.voces || []).filter(x => VOZ_puntuar(x) > -1000);
+  if (!v.length) return null;
+  return v.map(x => ({ x, p: VOZ_puntuar(x) })).sort((a, b) => b.p - a.p)[0].x;
 }
 
 // Devuelve una promesa: true si el navegador empezó a hablar, false si lo bloqueó
@@ -9452,10 +9608,11 @@ function VOZ_hablar(texto) {
       try { speechSynthesis.cancel(); } catch {}
       try { speechSynthesis.resume(); } catch {}
       VOZ_cargarVoces();
-      const u = new SpeechSynthesisUtterance(texto);
+      const u = new SpeechSynthesisUtterance(VOZ_limpiarTexto(texto));
       const voz = VOZ_elegirVoz();
       if (voz) { u.voice = voz; u.lang = voz.lang; } else { u.lang = 'es-ES'; }
       u.rate = 1; u.volume = 1;
+      u.pitch = VOZ_esFemenina(voz) ? 1 : 1.3; // si no hay voz femenina reconocible, se sube el tono
       let listo = false;
       const fin = ok => { if (!listo) { listo = true; resolve(ok); } };
       u.onstart = () => { VOZ_State.desbloqueada = true; fin(true); };
@@ -9568,7 +9725,7 @@ async function VOZ_activar() {
   setTimeout(VOZ_actualizarEstado, 600);
 }
 function VOZ_probar() {
-  const primerNombre = (currentUser && (currentUser.apodo || currentUser.nombre) || 'Compañero').split(' ')[0];
+  const primerNombre = VOZ_nombreHablado(currentUser && (currentUser.apodo || currentUser.nombre) || 'Compañero');
   const texto = `${primerNombre}, este es un aviso de prueba. Así sonará cuando llegue tu break, tu almuerzo o tu salida.`;
   AVISO_lanzar('🔊 Aviso de prueba', texto).then(() => VOZ_actualizarEstado());
   if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
@@ -9587,7 +9744,7 @@ function TB_VOZ_tick() {
 
     const now = new Date();
     const nowMin = now.getHours() * 60 + now.getMinutes();
-    const primerNombre = (currentUser.apodo || currentUser.nombre || '').split(' ')[0];
+    const primerNombre = VOZ_nombreHablado(currentUser.apodo || currentUser.nombre);
 
     const eventos = [];
     const fus = BRK_fusion(hoyISO, t.nombreNorm); // pausas unificadas: se anuncian una sola vez
@@ -9597,8 +9754,10 @@ function TB_VOZ_tick() {
       if (fus && d.label === fus[1]) return;
       const esAlmuerzo = /almuerzo/i.test(d.label);
       let texto = esAlmuerzo ? `${primerNombre}, es hora de tu almuerzo.` : `${primerNombre}, es hora de tu break.`;
+      const gIdxV = BRK_idxLabel(d.label);
+      if (!esAlmuerzo && gIdxV >= 0 && BRK_delta(hoyISO, t.nombreNorm, gIdxV)) texto = `${primerNombre}, es hora de tu break. Hoy dura ${BRK_durIdx(hoyISO, t.nombreNorm, gIdxV)} minutos.`;
       if (fus && d.label === fus[0]) {
-        const total = BRK_durLabel(fus[0]) + BRK_durLabel(fus[1]);
+        const total = BRK_durEfectiva(hoyISO, t.nombreNorm, fus[0]) + BRK_durEfectiva(hoyISO, t.nombreNorm, fus[1]);
         texto = `${primerNombre}, es hora de tu ${BRK_nombreLabel(fus[0]).toLowerCase()} y tu ${BRK_nombreLabel(fus[1]).toLowerCase()}, unificados: ${BRK_fmtDur(total)} seguidos.`;
       }
       eventos.push({ key: 'detalle-' + i, rel: min, texto });
@@ -9621,6 +9780,126 @@ function TB_VOZ_tick() {
 setInterval(TB_VOZ_tick, 15000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) TB_VOZ_tick(); });
 
+
+
+// ══════════════════════════════════════════════════
+//   CANDADO DE PESTAÑA (solo versión de OFICINA)
+//   Mientras el asesor tenga turno por terminar, intentar cerrar la pestaña
+//   o recargarla muestra la advertencia del navegador ("¿Salir del sitio?").
+//   Un candado visible muestra hasta cuándo dura y permite que el administrador
+//   (Moi) autorice la salida con su usuario y contraseña.
+//   LÍMITE DEL NAVEGADOR: una página web NO puede impedir de verdad que se cierre
+//   la pestaña; solo puede pedir confirmación (el asesor puede pulsar "Salir").
+//   El candado sigue armado aunque el asesor cierre sesión, hasta que acabe el turno.
+// ══════════════════════════════════════════════════
+const TB_LOCK_KEY = 'tb_lock_hasta_v1';   // ms epoch del fin del turno (sessionStorage: vive solo en esta pestaña)
+const TB_LOCK_OK_KEY = 'tb_lock_ok_v1';   // fin de turno para el que el admin ya autorizó salir
+const TB_LOCK_State = { fallos: 0, bloqueadoHasta: 0 };
+function TB_LOCK_leer(k) { try { return Number(sessionStorage.getItem(k)) || 0; } catch { return 0; } }
+function TB_LOCK_escribir(k, v) { try { if (v) sessionStorage.setItem(k, String(v)); else sessionStorage.removeItem(k); } catch {} }
+function TB_LOCK_activo() {
+  if (!TB_MODO_OFICINA_DEFAULT) return false;
+  const hasta = TB_LOCK_leer(TB_LOCK_KEY);
+  if (!hasta || Date.now() >= hasta) return false;
+  return TB_LOCK_leer(TB_LOCK_OK_KEY) !== hasta; // ya autorizado por el admin → libre
+}
+function TB_LOCK_isoDe(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+// Fin del turno (ms) que aún no ha terminado para este asesor, o 0 si no tiene.
+function TB_LOCK_finTurno(user) {
+  const ahora = new Date();
+  for (const delta of [0, -1]) {             // hoy y, por turnos nocturnos, ayer
+    const dia = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate() + delta);
+    const t = MALLA_recordForDate(user.mallaNombre || user.nombre, TB_LOCK_isoDe(dia));
+    if (!t || t.estado !== 'ACTIVO' || !t.entrada || !t.salida) continue;
+    const ent = F3_toMin(t.entrada), sal = F3_toMin(t.salida);
+    if (ent === null || sal === null) continue;
+    const fin = new Date(dia.getFullYear(), dia.getMonth(), dia.getDate(), 0, sal, 0, 0).getTime() + (sal <= ent ? 864e5 : 0);
+    if (fin > ahora.getTime()) return fin;
+  }
+  return 0;
+}
+function TB_LOCK_evaluar() {
+  try {
+    if (!TB_MODO_OFICINA_DEFAULT) return;
+    const u = currentUser;
+    if (u && !u.isAdmin && !u.isDelegated) {
+      const fin = TB_LOCK_finTurno(u);
+      if (fin && fin > TB_LOCK_leer(TB_LOCK_KEY)) TB_LOCK_escribir(TB_LOCK_KEY, fin);
+    }
+    TB_LOCK_pintar();
+  } catch (e) { console.error('TB_LOCK_evaluar error:', e); }
+}
+function TB_LOCK_pintar() {
+  let pill = document.getElementById('tb-lock-pill');
+  if (!TB_LOCK_activo()) { if (pill) pill.remove(); return; }
+  if (!pill) {
+    pill = document.createElement('button');
+    pill.id = 'tb-lock-pill'; pill.type = 'button';
+    pill.style.cssText = 'position:fixed;top:calc(8px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:99990;' +
+      'background:rgba(10,10,15,.92);color:#f0f0f5;border:1px solid rgba(var(--rojo-rgb),.6);border-radius:999px;padding:6px 14px;' +
+      'font:500 12px var(--font-body,sans-serif);cursor:pointer;backdrop-filter:blur(8px);max-width:92vw;white-space:nowrap;';
+    pill.onclick = TB_LOCK_pedirAutorizacion;
+    document.body.appendChild(pill);
+  }
+  const hasta = new Date(TB_LOCK_leer(TB_LOCK_KEY));
+  pill.textContent = `🔒 Pestaña bloqueada hasta las ${BRK_fmtHora(hasta.getHours() * 60 + hasta.getMinutes())} · Autorizar salida`;
+}
+function TB_LOCK_verificarAdmin(usuario, pin) {
+  const n = String(usuario || '').trim().toLowerCase();
+  return ['moises elias rojas vasquez', 'moises rojas', 'moisés elias rojas vasquez', 'moisés rojas', 'moi'].includes(n) && (pin === '1234' || pin === '1999');
+}
+function TB_LOCK_pedirAutorizacion() {
+  if (document.getElementById('tb-lock-modal')) return;
+  const m = document.createElement('div');
+  m.id = 'tb-lock-modal';
+  m.style.cssText = 'position:fixed;inset:0;z-index:99995;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:20px;';
+  m.innerHTML =
+    '<div style="background:var(--negro2,#111118);border:1px solid var(--glass-border,#333);border-radius:16px;padding:20px;width:100%;max-width:340px;color:var(--blanco,#f0f0f5);font-family:var(--font-body,sans-serif)">' +
+      '<div style="font-weight:700;font-size:16px;margin-bottom:4px">🔒 Autorizar salida</div>' +
+      '<div style="font-size:12px;color:var(--gris,#8888a0);margin-bottom:12px">Solo el administrador puede liberar esta pestaña antes de que termine el turno.</div>' +
+      '<input id="tb-lock-user" class="form-input" placeholder="Usuario" autocomplete="off" style="width:100%;margin-bottom:8px">' +
+      '<input id="tb-lock-pin" class="form-input" type="password" inputmode="numeric" maxlength="4" placeholder="Contraseña (4 dígitos)" autocomplete="off" style="width:100%">' +
+      '<div id="tb-lock-err" style="color:#ef4444;font-size:12px;min-height:16px;margin:8px 0 0"></div>' +
+      '<div style="display:flex;gap:8px;margin-top:10px">' +
+        '<button type="button" class="btn btn-secondary" id="tb-lock-cancel" style="flex:1">Cancelar</button>' +
+        '<button type="button" class="btn btn-primary" id="tb-lock-ok" style="flex:1">Autorizar</button>' +
+      '</div></div>';
+  document.body.appendChild(m);
+  const cerrar = () => m.remove();
+  m.querySelector('#tb-lock-cancel').onclick = cerrar;
+  m.addEventListener('click', ev => { if (ev.target === m) cerrar(); });
+  const enviar = () => {
+    const err = m.querySelector('#tb-lock-err');
+    const espera = TB_LOCK_State.bloqueadoHasta - Date.now();
+    if (espera > 0) { err.textContent = `Demasiados intentos. Espera ${Math.ceil(espera / 1000)} s.`; return; }
+    const u = m.querySelector('#tb-lock-user').value, pin = m.querySelector('#tb-lock-pin').value;
+    if (TB_LOCK_verificarAdmin(u, pin)) {
+      TB_LOCK_escribir(TB_LOCK_OK_KEY, TB_LOCK_leer(TB_LOCK_KEY));
+      TB_LOCK_State.fallos = 0;
+      cerrar(); TB_LOCK_pintar();
+      if (typeof showToast === 'function') showToast('success', '🔓 Salida autorizada', 'Ya se puede cerrar la pestaña.');
+    } else {
+      TB_LOCK_State.fallos++;
+      if (TB_LOCK_State.fallos >= 5) { TB_LOCK_State.fallos = 0; TB_LOCK_State.bloqueadoHasta = Date.now() + 60000; err.textContent = 'Demasiados intentos. Espera 60 s.'; }
+      else err.textContent = 'Usuario o contraseña incorrectos.';
+      m.querySelector('#tb-lock-pin').value = '';
+    }
+  };
+  m.querySelector('#tb-lock-ok').onclick = enviar;
+  m.querySelector('#tb-lock-pin').addEventListener('keydown', ev => { if (ev.key === 'Enter') enviar(); });
+  setTimeout(() => { const i = m.querySelector('#tb-lock-user'); if (i) i.focus(); }, 50);
+}
+if (TB_MODO_OFICINA_DEFAULT) {
+  window.addEventListener('beforeunload', e => {
+    if (!TB_LOCK_activo()) return;
+    e.preventDefault();
+    e.returnValue = '';   // Chrome muestra su aviso genérico; no permite texto propio
+    return '';
+  });
+  setInterval(TB_LOCK_evaluar, 5000);
+  setTimeout(TB_LOCK_evaluar, 1500);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) TB_LOCK_evaluar(); });
+}
 
 // ── Mascota EVA: interactiva pero decorativa, no afecta ninguna función
 // real de la app. Al tocarla muestra una frase; cuando suena un aviso de
@@ -10896,16 +11175,54 @@ function COND_registrarSinAlmuerzo(norm, fechasSemana, sinAlmuerzo) {
 
 function COND_populate() {
   MALLA_poblarSelectPersonas('cond-nombre');
-  const semanaEl = document.getElementById('cond-semana');
-  if (semanaEl && !semanaEl.value) semanaEl.value = MALLA_todayISO();
+  COND_poblarDias();
   COND_render();
 }
 
+// Lista SOLO los días con turno de esa persona en la malla que ya está
+// cargada (el valor de cada opción es la fecha ISO). La semana se deduce sola.
+function COND_poblarDias(diaSemanaPreferido) {
+  const selN = document.getElementById('cond-nombre');
+  const sel = document.getElementById('cond-dia');
+  if (!selN || !sel) return false;
+  const previo = sel.value;
+  const canon = MALLA_matchName(selN.value);
+  const recs = canon ? MALLA_recordsFor(canon).filter(r =>
+    r.estado === 'ACTIVO' && r.entrada && r.salida && !(r.entrada === '00:00' && r.salida === '00:00')) : [];
+  if (!recs.length) {
+    sel.innerHTML = '<option value="">Sin turnos en la malla cargada</option>';
+    return false;
+  }
+  const nombresDia = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const dow = iso => new Date(iso + 'T00:00:00').getDay();
+  sel.innerHTML = recs.map(r => {
+    const [y, m, d] = r.fechaISO.split('-');
+    return `<option value="${r.fechaISO}">${nombresDia[dow(r.fechaISO)]} ${d}/${m}</option>`;
+  }).join('');
+  const hoy = new Date(MALLA_todayISO() + 'T00:00:00').getTime();
+  const masCercano = lista => lista.slice().sort((x, y) =>
+    Math.abs(new Date(x.fechaISO + 'T00:00:00').getTime() - hoy) - Math.abs(new Date(y.fechaISO + 'T00:00:00').getTime() - hoy))[0];
+  let elegido = null;
+  if (diaSemanaPreferido != null) {
+    const c = recs.filter(r => dow(r.fechaISO) === diaSemanaPreferido);
+    if (!c.length) return false;
+    elegido = masCercano(c);
+  } else if (previo && recs.some(r => r.fechaISO === previo)) {
+    elegido = recs.find(r => r.fechaISO === previo);
+  } else {
+    const sab = recs.filter(r => dow(r.fechaISO) === 6);
+    elegido = sab.length ? masCercano(sab) : recs[0];
+  }
+  sel.value = elegido.fechaISO;
+  return true;
+}
+
 function COND_leerFormulario() {
+  const fecha = document.getElementById('cond-dia').value;
   return {
     nombre: document.getElementById('cond-nombre').value,
-    diaSemana: parseInt(document.getElementById('cond-dia').value, 10),
-    semana: document.getElementById('cond-semana').value,
+    diaSemana: fecha ? new Date(fecha + 'T00:00:00').getDay() : NaN,
+    semana: fecha,
     horaSalida: document.getElementById('cond-hora-salida').value,
     horasMax: parseFloat(document.getElementById('cond-horas-dia').value),
     capOtros: parseFloat(document.getElementById('cond-tope-otros').value) || 9,
@@ -10917,7 +11234,7 @@ const DIAS_SEMANA_LABEL = { 0: 'domingo', 1: 'lunes', 2: 'martes', 3: 'miércole
 function COND_aplicar() {
   const f = COND_leerFormulario();
   if (!f.nombre) { showToast('error', '❌ Error', 'Selecciona una persona.'); return; }
-  if (!f.semana) { showToast('error', '❌ Error', 'Elige una fecha de referencia para ubicar la semana.'); return; }
+  if (!f.semana) { showToast('error', '❌ Error', 'Esa persona no tiene turnos en la malla cargada.'); return; }
   if (!f.horaSalida || !f.horasMax || f.horasMax <= 0) { showToast('error', '❌ Error', 'Indica la hora de salida y las horas máximas de ese día.'); return; }
 
   const res = TB_aplicarCondicionSemana(f.nombre, f.diaSemana, f.semana, f.horaSalida, f.horasMax, f.capOtros);
@@ -10992,11 +11309,13 @@ function COND_aplicarGuardada(id) {
   const c = COND_cargarGuardadas().find(x => x.id === id);
   if (!c) return;
   document.getElementById('cond-nombre').value = c.nombre;
-  document.getElementById('cond-dia').value = c.diaSemana;
+  if (!COND_poblarDias(c.diaSemana)) {
+    showToast('error', '⚠️ No se pudo aplicar', `No encontré un ${DIAS_SEMANA_LABEL[c.diaSemana]} con turno de esa persona en la malla cargada.`);
+    return;
+  }
   document.getElementById('cond-hora-salida').value = c.horaSalida;
   document.getElementById('cond-horas-dia').value = c.horasMax;
   document.getElementById('cond-tope-otros').value = c.capOtros;
-  if (!document.getElementById('cond-semana').value) document.getElementById('cond-semana').value = MALLA_todayISO();
   COND_aplicar();
 }
 function COND_eliminarGuardada(id) {
