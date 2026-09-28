@@ -1491,6 +1491,29 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 }
 .profile-info-row .lbl { color:var(--gris); }
 .profile-info-row .val { font-weight:600; }
+
+/* ═══════════════════════════════════════════════════
+   ETIQUETAS DE HORAS MOVIDAS (chips de fecha) + AVISOS INTERNOS
+   Van en el CSS base, así viajan idénticos a la versión de oficina.
+═══════════════════════════════════════════════════ */
+.date-chip .dc-tag { font-size:9px; font-weight:700; line-height:1; margin-top:3px; padding:2px 5px; border-radius:6px; white-space:nowrap; background:rgba(245,158,11,0.18); color:var(--naranja); }
+.date-chip .dc-tag.mas { background:rgba(16,185,129,0.18); color:var(--verde); }
+.date-chip .dc-from { font-size:8px; line-height:1; color:var(--gris); margin-top:2px; white-space:nowrap; }
+.date-chip.active .dc-tag { background:rgba(255,255,255,0.25); color:#fff; }
+.date-chip.active .dc-from { color:rgba(255,255,255,0.85); }
+
+#tb-noti-stack { position:fixed; top:calc(env(safe-area-inset-top, 0px) + 10px); left:0; right:0; z-index:99998; display:flex; flex-direction:column; gap:8px; padding:0 12px; align-items:center; pointer-events:none; }
+.tb-noti { pointer-events:auto; width:100%; max-width:440px; display:flex; gap:10px; align-items:flex-start; background:var(--negro3); border:1px solid rgba(var(--rojo-rgb),0.55); border-radius:14px; padding:12px 12px 12px 14px; box-shadow:var(--shadow); animation:fadeUp 0.35s both; }
+.tb-noti-ico { font-size:22px; line-height:1; }
+.tb-noti-body { flex:1; min-width:0; }
+.tb-noti-t { font-family:var(--font-display); font-weight:800; font-size:14px; color:var(--blanco); }
+.tb-noti-x { font-size:13px; color:var(--blanco); margin-top:2px; line-height:1.35; }
+.tb-noti-hint { font-size:11px; color:var(--naranja); margin-top:4px; display:none; }
+.tb-noti.sin-voz .tb-noti-hint { display:block; }
+.tb-noti-btns { margin-top:8px; }
+.tb-noti-listen { border:0; border-radius:10px; padding:8px 14px; font-size:13px; font-weight:700; cursor:pointer; color:#fff; background:linear-gradient(135deg, var(--rojo), var(--rojo2)); }
+.tb-noti.sin-voz .tb-noti-listen { animation:replyBtnGlow 1.2s infinite; }
+.tb-noti-close { border:0; background:transparent; color:var(--gris); font-size:16px; cursor:pointer; padding:0 2px; }
 </style>
 </head>
 <body>
@@ -1500,7 +1523,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1817,7 +1840,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 26/09/2026 · 1440</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 27/09/2026 · 1803</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1831,7 +1854,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -1922,7 +1945,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JENNIFER</strong> consultó su turno</div><div class="activity-time">17:17</div><button type="button" class="activity-del-btn" data-aid="55" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JENNIFER</strong> consultó su turno</div><div class="activity-time">17:17</div><button type="button" class="activity-del-btn" data-aid="54" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">⚖️</div><div class="activity-text">Se fijó el sábado de <strong>CARLOS</strong> y se redistribuyó su semana</div><div class="activity-time">19:31</div><button type="button" class="activity-del-btn" data-aid="30" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">⚖️</div><div class="activity-text">Se fijó el sábado de <strong>CARLOS</strong> y se redistribuyó su semana</div><div class="activity-time">19:30</div><button type="button" class="activity-del-btn" data-aid="29" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">19:28</div><button type="button" class="activity-del-btn" data-aid="28" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">19:28</div><button type="button" class="activity-del-btn" data-aid="27" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">19:28</div><button type="button" class="activity-del-btn" data-aid="26" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -2110,6 +2133,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
+        <div class="quick-card" id="admin-btn-break" onclick="ADMIN_seleccionar('break-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">☕</div><div>
+            <div class="qc-title">Break y Almuerzo</div>
+            <div class="qc-sub">Mover, quitar o unificar las pausas de un día</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
         <div class="quick-card" id="admin-btn-ausencia" onclick="ADMIN_seleccionar('ausencia-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">🚫</div><div>
             <div class="qc-title">Marcar Ausencia Total</div>
@@ -2171,7 +2201,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">05:17 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">05:15 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">17:17</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">17:15</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JENNIFER MORALES MENDOZA</span><span style="color:var(--gris);font-size:11px">04:55 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KATHERINE PAOLA ARIAS JARAMILLO</span><span style="color:var(--gris);font-size:11px">06:57 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -2250,12 +2280,112 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
       <div>
         <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">10:00 a. m. → 7:00 p. m.</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div></div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHY MORALES SUÁREZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">KATHY MORALES SUÁREZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
+      <div>
+        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
+        <div class="team-row-sub">No hay turno para esa fecha</div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div></div>
 
         <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) ── -->
         <div style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
@@ -2265,7 +2395,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
           <div class="form-group">
             <label class="form-label">Persona</label>
-            <select class="form-input" id="calc-nombre" onchange="CALC_generarDias()"></select>
+            <select class="form-input" id="calc-nombre" onchange="CALC_generarDias()"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="flex-row" style="gap:10px">
             <div class="form-group" style="flex:1;margin:0">
@@ -2277,8 +2407,36 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
               <input type="date" class="form-input" id="calc-hasta" onchange="CALC_generarDias()">
             </div>
           </div>
-          <div id="calc-dias-list" class="consultas-list" style="margin-top:8px"></div>
-          <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="calc-total">Total real: 0h 0m</div>
+          <div id="calc-dias-list" class="consultas-list" style="margin-top:8px"><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">lun, 21/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">mar, 22/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">mié, 23/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">jue, 24/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">vie, 25/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">sáb, 26/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="calc-dia-chk" data-min="0" onchange="CALC_actualizarTotal()" style="width:auto;margin-right:8px">
+      <span style="flex:1">dom, 27/09</span>
+      <span style="color:var(--gris);font-size:11px">Sin datos</span>
+    </label></div>
+          <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="calc-total">Total real: 0h 0m (0 de 7 días)</div>
         </div>
       </div>
 
@@ -2329,7 +2487,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           </div>
           <div class="form-group" style="flex:1;margin:0 0 12px 0;">
             <label style="font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer;">
-              <input type="checkbox" id="mover-recalc-breaks" checked style="width:auto">
+              <input type="checkbox" id="mover-recalc-breaks" checked="" style="width:auto">
               Recalcular break y almuerzo según el patrón global
             </label>
           </div>
@@ -2348,14 +2506,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <div class="form-group">
           <label class="form-label">Persona</label>
-          <select class="form-input" id="cond-nombre"></select>
+          <select class="form-input" id="cond-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
         <div class="flex-row" style="gap:10px">
           <div class="form-group" style="flex:1;margin:0">
             <label class="form-label">Día fijo de la semana</label>
             <select class="form-input" id="cond-dia">
               <option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option>
-              <option value="4">Jueves</option><option value="5">Viernes</option><option value="6" selected>Sábado</option>
+              <option value="4">Jueves</option><option value="5">Viernes</option><option value="6" selected="">Sábado</option>
               <option value="0">Domingo</option>
             </select>
           </div>
@@ -2384,6 +2542,79 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="COND_guardar()">💾 Guardar esta condición para reutilizarla</button>
         <div id="cond-guardadas-list" class="consultas-list" style="margin-top:10px"></div>
+      </div>
+
+      <!-- ── Break y almuerzo: mover, quitar o unificar ── -->
+      <div class="malla-panel admin-subpanel" id="break-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">☕ Break y Almuerzo</div>
+          <div class="section-sub">Mueve, quita o unifica las pausas de un asesor en un día concreto</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Persona</label>
+          <select class="form-input" id="brk-nombre" onchange="BRK_mostrarActual()"></select>
+        </div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-input" id="brk-fecha" onchange="BRK_mostrarActual()">
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Acción</label>
+            <select class="form-input" id="brk-accion" onchange="BRK_cambiarAccion()">
+              <option value="mover">↔️ Mover</option>
+              <option value="quitar">🗑️ Quitar</option>
+              <option value="unificar">🔗 Unificar</option>
+            </select>
+          </div>
+        </div>
+        <div class="malla-status" id="brk-actual" style="margin-top:10px;font-size:12px;line-height:1.5;"></div>
+
+        <div id="brk-campos-una" style="margin-top:10px">
+          <div class="flex-row" style="gap:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Pausa</label>
+              <select class="form-input" id="brk-pausa">
+                <option value="0">Break 1</option><option value="1">Break 2</option><option value="2">Almuerzo</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex:1;margin:0" id="brk-wrap-hora">
+              <label class="form-label">Nueva hora</label>
+              <input type="time" class="form-input" id="brk-hora">
+            </div>
+          </div>
+        </div>
+
+        <div id="brk-campos-unif" style="margin-top:10px;display:none">
+          <div class="flex-row" style="gap:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Pausa A</label>
+              <select class="form-input" id="brk-pausa-a">
+                <option value="0" selected>Break 1</option><option value="1">Break 2</option><option value="2">Almuerzo</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Pausa B</label>
+              <select class="form-input" id="brk-pausa-b">
+                <option value="0">Break 1</option><option value="1" selected>Break 2</option><option value="2">Almuerzo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:10px">
+            <label class="form-label">Hora de inicio del bloque (opcional; si la dejas vacía empieza donde empieza la pausa más temprana)</label>
+            <input type="time" class="form-input" id="brk-hora-u">
+          </div>
+        </div>
+
+        <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;cursor:pointer">
+          <input type="checkbox" id="brk-ajustar-horas" checked style="width:18px;height:18px">
+          <span>Ajustar la columna Horas cuando se quite o se agregue el almuerzo (1 h)</span>
+        </label>
+
+        <button class="btn btn-primary w-full" style="margin-top:12px" onclick="BRK_aplicar()">✅ Aplicar</button>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          Mover: cambia la hora de una pausa (debe caer dentro del turno y sin cruzarse con otra). Quitar: deja esa pausa sin usar ese día. Unificar: junta dos pausas en un solo bloque continuo (el asesor lo ve como una sola pausa con la duración sumada). Break = 15 min, almuerzo = 1 h. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
+        </div>
       </div>
 
       <!-- ── Marcar ausencia total: Incapacidad / Permiso / Suspensión ── -->
@@ -2444,8 +2675,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">🔑 21 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 04:29 p. m. · 26/9, 04:29 p. m. · 25/9, 08:13 a. m.</div>
+        <div class="team-row-sub">🔑 24 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 06:37 p. m. · 26/9, 06:37 p. m. · 26/9, 05:30 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2456,8 +2687,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">🔑 13 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">20/9, 11:55 a. m. · 19/9, 09:46 p. m. · 19/9, 09:38 p. m.</div>
+        <div class="team-row-sub">🔑 14 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 03:23 p. m. · 20/9, 11:55 a. m. · 19/9, 09:46 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2474,14 +2705,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">🔑 11 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 09:52 a. m. · 20/9, 01:26 p. m. · 19/9, 09:43 p. m.</div>
+        <div class="team-row-sub">🔑 12 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 03:00 p. m. · 26/9, 09:52 a. m. · 20/9, 01:26 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 28 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 04:23 p. m. · 24/9, 07:14 a. m. · 21/9, 01:22 p. m.</div>
+        <div class="team-row-sub">🔑 29 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 06:55 p. m. · 26/9, 04:23 p. m. · 24/9, 07:14 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2492,14 +2723,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">🔑 13 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">20/9, 08:11 p. m. · 20/9, 12:07 p. m. · 19/9, 09:49 p. m.</div>
+        <div class="team-row-sub">🔑 14 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 04:07 p. m. · 20/9, 08:11 p. m. · 20/9, 12:07 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">🔑 25 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">23/9, 05:26 p. m. · 22/9, 08:43 p. m. · 22/9, 07:00 p. m.</div>
+        <div class="team-row-sub">🔑 29 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 05:53 p. m. · 27/9, 05:47 p. m. · 27/9, 05:16 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2534,8 +2765,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">🔑 21 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">21/9, 06:24 a. m. · 21/9, 06:23 a. m. · 21/9, 06:22 a. m.</div>
+        <div class="team-row-sub">🔑 22 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 11:48 a. m. · 21/9, 06:24 a. m. · 21/9, 06:23 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2546,8 +2777,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">🔑 15 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">20/9, 11:50 a. m. · 20/9, 11:50 a. m. · 19/9, 09:35 p. m.</div>
+        <div class="team-row-sub">🔑 16 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 01:10 p. m. · 20/9, 11:50 a. m. · 20/9, 11:50 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2588,26 +2819,26 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">🔑 25 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 04:17 p. m. · 24/9, 08:47 p. m. · 20/9, 11:14 a. m.</div>
+        <div class="team-row-sub">🔑 27 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">26/9, 05:31 p. m. · 26/9, 05:30 p. m. · 26/9, 04:17 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">🔑 9 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">19/9, 09:37 p. m. · 14/9, 09:20 p. m. · 14/9, 09:02 p. m.</div>
+        <div class="team-row-sub">🔑 10 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 11:44 a. m. · 19/9, 09:37 p. m. · 14/9, 09:20 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 39 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 04:32 p. m. · 26/9, 10:51 a. m. · 26/9, 10:44 a. m.</div>
+        <div class="team-row-sub">🔑 41 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 11:51 a. m. · 27/9, 09:43 a. m. · 26/9, 04:32 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">🔑 11 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">20/9, 03:33 p. m. · 13/9, 10:16 p. m. · 11/9, 01:01 p. m.</div>
+        <div class="team-row-sub">🔑 12 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 06:56 p. m. · 20/9, 03:33 p. m. · 13/9, 10:16 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2624,14 +2855,14 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 58 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">26/9, 03:57 p. m. · 26/9, 03:57 p. m. (📱 Motorola motorola edge 60 fusion) · 26/9, 03:56 p. m.</div>
+        <div class="team-row-sub">🔑 63 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 06:01 p. m. · 27/9, 06:00 p. m. · 27/9, 05:59 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 15 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">21/9, 01:51 p. m. · 20/9, 12:09 p. m. · 12/9, 01:10 p. m.</div>
+        <div class="team-row-sub">🔑 16 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 07:28 p. m. · 21/9, 01:51 p. m. · 20/9, 12:09 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -2672,8 +2903,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">🔑 25 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">21/9, 09:53 a. m. · 21/9, 03:03 a. m. · 20/9, 06:13 p. m.</div>
+        <div class="team-row-sub">🔑 28 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 04:45 p. m. · 27/9, 04:44 p. m. · 27/9, 06:44 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div></div>
       </div>
@@ -2684,12 +2915,453 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="ah-tl-header">
             <div>
               <div class="ah-tl-titulo" id="ah-tl-nombre">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-              <div class="ah-tl-sub" id="ah-tl-total">🔑 1 accesos en total (de por vida)</div>
+              <div class="ah-tl-sub" id="ah-tl-total">🔑 63 accesos en total (de por vida)</div>
             </div>
             <button type="button" class="ah-tl-close" onclick="ACCESOS_closeTimeline()">✕</button>
           </div>
           <div class="ah-tl-sub" style="padding:0 4px 10px">Todos los accesos registrados (se conservan hasta que se cargue una malla con fechas nuevas)</div>
-          <div class="ah-tl-list" id="ah-tl-list"><div class="team-empty">Sin accesos registrados todavía.</div></div>
+          <div class="ah-tl-list" id="ah-tl-list"><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 27 de septiembre</div>
+            <div class="ah-tl-hora">🕒 06:01 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 27 de septiembre</div>
+            <div class="ah-tl-hora">🕒 06:00 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 27 de septiembre</div>
+            <div class="ah-tl-hora">🕒 05:59 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 27 de septiembre</div>
+            <div class="ah-tl-hora">🕒 05:53 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 27 de septiembre</div>
+            <div class="ah-tl-hora">🕒 11:19 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 26 de septiembre</div>
+            <div class="ah-tl-hora">🕒 03:57 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 26 de septiembre</div>
+            <div class="ah-tl-hora">🕒 03:57 p. m.</div>
+            <div class="ah-tl-hora">📱 Motorola motorola edge 60 fusion</div>
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 26 de septiembre</div>
+            <div class="ah-tl-hora">🕒 03:56 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 26 de septiembre</div>
+            <div class="ah-tl-hora">🕒 03:56 p. m.</div>
+            <div class="ah-tl-hora">📱 Motorola motorola edge 60 fusion</div>
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 26 de septiembre</div>
+            <div class="ah-tl-hora">🕒 02:58 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 26 de septiembre</div>
+            <div class="ah-tl-hora">🕒 02:58 p. m.</div>
+            <div class="ah-tl-hora">📱 Motorola motorola edge 60 fusion</div>
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">viernes, 25 de septiembre</div>
+            <div class="ah-tl-hora">🕒 03:05 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">viernes, 25 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:33 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">viernes, 25 de septiembre</div>
+            <div class="ah-tl-hora">🕒 05:56 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">miércoles, 23 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:05 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 22 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:50 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 22 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:49 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 22 de septiembre</div>
+            <div class="ah-tl-hora">🕒 07:24 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 21 de septiembre</div>
+            <div class="ah-tl-hora">🕒 10:56 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 21 de septiembre</div>
+            <div class="ah-tl-hora">🕒 08:31 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 21 de septiembre</div>
+            <div class="ah-tl-hora">🕒 11:52 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 20 de septiembre</div>
+            <div class="ah-tl-hora">🕒 02:11 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 20 de septiembre</div>
+            <div class="ah-tl-hora">🕒 11:55 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 19 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:42 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">viernes, 18 de septiembre</div>
+            <div class="ah-tl-hora">🕒 07:21 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 14 de septiembre</div>
+            <div class="ah-tl-hora">🕒 07:07 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 12 de septiembre</div>
+            <div class="ah-tl-hora">🕒 01:18 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 12 de septiembre</div>
+            <div class="ah-tl-hora">🕒 01:08 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 12 de septiembre</div>
+            <div class="ah-tl-hora">🕒 07:47 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">jueves, 10 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:31 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">miércoles, 09 de septiembre</div>
+            <div class="ah-tl-hora">🕒 10:46 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">miércoles, 09 de septiembre</div>
+            <div class="ah-tl-hora">🕒 06:02 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 08 de septiembre</div>
+            <div class="ah-tl-hora">🕒 03:26 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 08 de septiembre</div>
+            <div class="ah-tl-hora">🕒 02:36 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 08 de septiembre</div>
+            <div class="ah-tl-hora">🕒 09:39 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 07 de septiembre</div>
+            <div class="ah-tl-hora">🕒 07:42 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 05 de septiembre</div>
+            <div class="ah-tl-hora">🕒 02:41 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 31 de agosto</div>
+            <div class="ah-tl-hora">🕒 07:29 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 30 de agosto</div>
+            <div class="ah-tl-hora">🕒 10:31 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 29 de agosto</div>
+            <div class="ah-tl-hora">🕒 03:24 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 29 de agosto</div>
+            <div class="ah-tl-hora">🕒 01:33 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 29 de agosto</div>
+            <div class="ah-tl-hora">🕒 10:48 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">miércoles, 26 de agosto</div>
+            <div class="ah-tl-hora">🕒 12:07 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 25 de agosto</div>
+            <div class="ah-tl-hora">🕒 09:46 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 25 de agosto</div>
+            <div class="ah-tl-hora">🕒 09:30 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 25 de agosto</div>
+            <div class="ah-tl-hora">🕒 09:17 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 25 de agosto</div>
+            <div class="ah-tl-hora">🕒 10:17 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 24 de agosto</div>
+            <div class="ah-tl-hora">🕒 10:31 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 23 de agosto</div>
+            <div class="ah-tl-hora">🕒 10:16 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 23 de agosto</div>
+            <div class="ah-tl-hora">🕒 09:56 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 23 de agosto</div>
+            <div class="ah-tl-hora">🕒 11:23 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">domingo, 23 de agosto</div>
+            <div class="ah-tl-hora">🕒 07:28 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 22 de agosto</div>
+            <div class="ah-tl-hora">🕒 04:08 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">sábado, 22 de agosto</div>
+            <div class="ah-tl-hora">🕒 02:57 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">viernes, 21 de agosto</div>
+            <div class="ah-tl-hora">🕒 06:47 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">miércoles, 19 de agosto</div>
+            <div class="ah-tl-hora">🕒 04:39 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">miércoles, 19 de agosto</div>
+            <div class="ah-tl-hora">🕒 07:41 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 18 de agosto</div>
+            <div class="ah-tl-hora">🕒 12:26 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 18 de agosto</div>
+            <div class="ah-tl-hora">🕒 12:25 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 18 de agosto</div>
+            <div class="ah-tl-hora">🕒 12:19 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">martes, 18 de agosto</div>
+            <div class="ah-tl-hora">🕒 12:11 a. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 17 de agosto</div>
+            <div class="ah-tl-hora">🕒 11:46 p. m.</div>
+            
+          </div>
+        </div><div class="ah-tl-item">
+          <div class="ah-tl-dot"></div>
+          <div class="ah-tl-body">
+            <div class="ah-tl-fecha">lunes, 17 de agosto</div>
+            <div class="ah-tl-hora">🕒 03:30 p. m.</div>
+            
+          </div>
+        </div></div>
         </div>
       </div>
 
@@ -3128,7 +3800,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <span>🔔 Avisos por voz (break, almuerzo, salida)</span>
           <input type="checkbox" id="voz-toggle" onchange="VOZ_setEnabled(this.checked)" style="width:20px; height:20px;">
         </label>
-        <div style="font-size:11px; color:var(--gris); margin-top:4px;">Te avisa hablando cuando llega la hora de tu break, almuerzo o salida. Funciona sin internet, pero solo mientras esta pestaña esté abierta.</div>
+        <div style="font-size:11px; color:var(--gris); margin-top:4px;">Cuando llega la hora de tu break, almuerzo o salida te aparece una notificación en pantalla y suena la voz. Con internet el navegador a veces bloquea la voz hasta que tocas la página: por eso la notificación trae el botón 🔊 Escuchar. Solo funciona mientras esta pestaña esté abierta.</div>
+        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;"></div>
+        <button class="btn btn-primary w-full" style="margin-top:8px" onclick="VOZ_activar()">✅ Activar avisos (voz + notificaciones)</button>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="VOZ_probar()">🔊 Escuchar un aviso de prueba</button>
       </div>
 
@@ -3344,7 +4018,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  30/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  01/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
- 03/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
+03/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	8:55:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
  28/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  29/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  30/09/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -4046,6 +4720,14 @@ function MALLA_buildUpdatedHTML() {
       'const TB_HORAS_DEFAULT = ' + horasJSON + ';'
     );
   } catch (e) { console.error('No se pudo incrustar TB_HORAS_DEFAULT:', e); }
+  // Igual para las pausas unificadas y sus notas (ver BRK_* / TB_BREAKS_init).
+  try {
+    const breaksJSON = JSON.stringify(BRK_load());
+    html = html.replace(
+      /const TB_BREAKS_DEFAULT = \{[\s\S]*?\};/,
+      () => 'const TB_BREAKS_DEFAULT = ' + breaksJSON + ';'
+    );
+  } catch (e) { console.error('No se pudo incrustar TB_BREAKS_DEFAULT:', e); }
   // Incrusta la línea base de la malla (ver MALLA_capturarBaseline) para
   // que la hoja "Cambios de Turno" del Excel pueda seguir comparando
   // "inicial vs. descargada" en cualquier dispositivo que abra este HTML.
@@ -4366,7 +5048,116 @@ function MALLA_downloadUpdatedHTML(filename) {
 // ACC_seedFromDefault / SHARED_seedFromDefault / DELEG_seedFromDefault:
 // si no cambiaron, quedan indexados igual; si algo cambió, se actualiza al
 // descargar de nuevo esta versión). ──
-function MALLA_buildOfficeHTML() {
+// ── Versión de oficina: candado de navegador ─────────────────────────
+// Una página web NO puede elegir con qué programa la abre el sistema, así que
+// no hay forma de "forzar" Chrome desde el propio HTML. Lo que sí se puede:
+// si el archivo se abrió desde el gestor de archivos (file://) en un navegador
+// que no es Chrome, se tapa la app con un aviso que explica cómo abrirla en
+// Chrome. Esta función se incrusta como <script> al generar el HTML de oficina.
+function TB_chromeGuardMain() {
+  try {
+    if (location.protocol !== 'file:') return;
+    var ua = navigator.userAgent || '';
+    var esChrome = /(Chrome|CriOS)\//.test(ua) &&
+      !/(Edg|EdgA|EdgiOS|OPR|OPiOS|Firefox|FxiOS|SamsungBrowser|Vivaldi|YaBrowser|UCBrowser)\//.test(ua) &&
+      !/Opera/.test(ua);
+    if (esChrome) return;
+    window.TB_NAVEGADOR_BLOQUEADO = true;
+    function pintar() {
+      if (document.getElementById('tb-chrome-lock')) return;
+      var o = document.createElement('div');
+      o.id = 'tb-chrome-lock';
+      o.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483647;background:#0a0a0f;color:#f0f0f5;display:flex;align-items:center;justify-content:center;padding:24px;font-family:system-ui,Segoe UI,Arial,sans-serif;overflow:auto;';
+      o.innerHTML =
+        '<div style="max-width:440px;text-align:center;line-height:1.5">' +
+        '<div style="font-size:44px">🌐</div>' +
+        '<div style="font-size:22px;font-weight:800;margin:8px 0 6px">Abre TurnoBot con Google Chrome</div>' +
+        '<div style="font-size:14px;color:#b8b8cc;margin-bottom:16px">Este archivo necesita Google Chrome para que funcionen bien la voz y las notificaciones. Ahora mismo lo abriste con otro navegador.</div>' +
+        '<div style="text-align:left;font-size:14px;background:#1a1a24;border:1px solid #2a2a38;border-radius:12px;padding:14px 16px;margin-bottom:14px">' +
+        '<div style="margin-bottom:8px"><b>Opción 1.</b> En la misma carpeta, doble clic en <b>Abrir_Turno_en_Chrome.bat</b>.</div>' +
+        '<div><b>Opción 2.</b> Clic derecho sobre el archivo → <b>Abrir con</b> → <b>Google Chrome</b> (y marca “Usar siempre esta aplicación” para que la próxima vez se abra directo).</div>' +
+        '</div>' +
+        '<button id="tb-chrome-copy" type="button" style="border:0;border-radius:10px;padding:11px 18px;font-size:14px;font-weight:700;color:#fff;background:#2563eb;cursor:pointer">📋 Copiar dirección del archivo</button>' +
+        '<div id="tb-chrome-msg" style="font-size:12px;color:#8888a0;margin-top:8px;min-height:16px"></div>' +
+        '</div>';
+      (document.body || document.documentElement).appendChild(o);
+      document.getElementById('tb-chrome-copy').onclick = function () {
+        var msg = document.getElementById('tb-chrome-msg');
+        var ok = function () { msg.textContent = 'Copiada. Pégala en la barra de direcciones de Chrome.'; };
+        var no = function () { msg.textContent = location.href; };
+        try { navigator.clipboard.writeText(location.href).then(ok, no); } catch (e) { no(); }
+      };
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', pintar); else pintar();
+  } catch (e) {}
+}
+
+// Lanzador para Windows: abre el HTML de oficina en Chrome aunque el sistema
+// lo asocie a otro navegador. Se descarga junto con el HTML de oficina.
+function TB_batAbrirEnChrome() {
+  return [
+    '@echo off',
+    'setlocal',
+    'set "ARCH="',
+    'for /f "delims=" %%F in (\'dir /b /a-d /o-d "%~dp0Turno_Oficina*.html" 2^>nul\') do (',
+    '  set "ARCH=%~dp0%%F"',
+    '  goto :buscar',
+    ')',
+    ':buscar',
+    'if not defined ARCH (',
+    '  echo No encontre el archivo Turno_Oficina*.html en esta carpeta.',
+    '  pause',
+    '  exit /b 1',
+    ')',
+    'set "CHROME="',
+    'if exist "%ProgramFiles%\\Google\\Chrome\\Application\\chrome.exe" set "CHROME=%ProgramFiles%\\Google\\Chrome\\Application\\chrome.exe"',
+    'if not defined CHROME if exist "%ProgramFiles(x86)%\\Google\\Chrome\\Application\\chrome.exe" set "CHROME=%ProgramFiles(x86)%\\Google\\Chrome\\Application\\chrome.exe"',
+    'if not defined CHROME if exist "%LocalAppData%\\Google\\Chrome\\Application\\chrome.exe" set "CHROME=%LocalAppData%\\Google\\Chrome\\Application\\chrome.exe"',
+    'if not defined CHROME (',
+    '  echo No encontre Google Chrome instalado en este equipo.',
+    '  pause',
+    '  exit /b 1',
+    ')',
+    'start "" "%CHROME%" "%ARCH%"',
+    'exit /b 0',
+    ''
+  ].join('\r\n');
+}
+function TB_descargarBat() {
+  try {
+    const blob = new Blob([TB_batAbrirEnChrome()], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'Abrir_Turno_en_Chrome.bat';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  } catch (e) { console.error('TB_descargarBat error:', e); }
+}
+
+// La versión de oficina no puede cargar Google Fonts (sin internet), pero para
+// que se vea IGUAL que la normal, las fuentes se descargan una vez desde la
+// PC del admin (que sí tiene internet) y se incrustan dentro del archivo.
+// Solo se conserva el subconjunto "latin" (cubre acentos, ñ, ¿ y ¡).
+async function TB_fontsInlineCSS() {
+  const KEY = 'tb_fonts_inline_v1';
+  try { const c = localStorage.getItem(KEY); if (c) return c; } catch {}
+  const cssUrl = 'https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap';
+  const css = await (await fetch(cssUrl)).text();
+  const bloques = css.split(/(?=\/\*\s*[\w-]+\s*\*\/\s*@font-face)/).filter(b => /^\/\*\s*latin\s*\*\//.test(b.trim()));
+  if (!bloques.length) throw new Error('sin bloques latin');
+  let out = bloques.join('\n');
+  const urls = [...new Set([...out.matchAll(/url\((https:[^)]+)\)/g)].map(m => m[1]))];
+  const mapa = {};
+  await Promise.all(urls.map(async u => {
+    const blob = await (await fetch(u)).blob();
+    mapa[u] = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(blob); });
+  }));
+  urls.forEach(u => { out = out.split(u).join(mapa[u]); });
+  try { localStorage.setItem(KEY, out); } catch {}
+  return out;
+}
+
+function MALLA_buildOfficeHTML(fontsCss) {
   let html = MALLA_buildUpdatedHTML();
   if (!html) return null;
 
@@ -4417,12 +5208,24 @@ function MALLA_buildOfficeHTML() {
     '<style>[onclick*="novedades"],.qc-buzon{display:none!important}#qc-shared-access{display:flex!important}</style></head>'
   );
 
+  // Mismo diseño que la versión normal: las fuentes (Syne / DM Sans) van incrustadas.
+  // (las marcas se arman por partes para que este mismo código no las contenga literalmente)
+  if (fontsCss && !html.includes('id="tb-fonts-' + 'inline"')) {
+    html = html.replace('</head>', () => '<style id="tb-fonts-' + 'inline">' + fontsCss + '</style></head>');
+  }
+  // Candado de navegador: si se abre desde el gestor de archivos y no es Chrome, se tapa la app.
+  if (!html.includes('id="tb-chrome-' + 'guard"')) {
+    html = html.replace('</head>', () => '<scr' + 'ipt id="tb-chrome-' + 'guard">(' + TB_chromeGuardMain.toString() + ')();</scr' + 'ipt></head>');
+  }
+
   return html;
 }
 
-function MALLA_downloadOfficeHTML(filename) {
+async function MALLA_downloadOfficeHTML(filename) {
   try {
-    const html = MALLA_buildOfficeHTML();
+    let fonts = '';
+    try { fonts = await TB_fontsInlineCSS(); } catch (e) { console.warn('No se pudieron incrustar las fuentes:', e); }
+    const html = MALLA_buildOfficeHTML(fonts);
     if (!html) return false;
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -4433,17 +5236,21 @@ function MALLA_downloadOfficeHTML(filename) {
     a.click();
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 4000);
-    return true;
+    setTimeout(TB_descargarBat, 900); // lanzador para abrirlo siempre en Chrome (Windows)
+    return { ok: true, fuentes: !!fonts };
   } catch (e) {
     console.error('MALLA_downloadOfficeHTML error:', e);
     return false;
   }
 }
 
-function MALLA_downloadOfficeBtnClick() {
-  const ok = MALLA_downloadOfficeHTML();
-  ok ? showToast('success', '🏢 HTML de oficina descargado', 'Sin conexiones externas, listo para la intranet.')
-     : showToast('error', '⚠️ Nada que descargar', 'Actualiza la malla primero.');
+async function MALLA_downloadOfficeBtnClick() {
+  showToast('info', '⏳ Preparando versión de oficina', 'Incrustando las fuentes para que se vea igual que la normal…');
+  const res = await MALLA_downloadOfficeHTML();
+  if (!res) { showToast('error', '⚠️ Nada que descargar', 'Actualiza la malla primero.'); return; }
+  showToast('success', '🏢 HTML de oficina descargado', res.fuentes
+    ? 'Con el mismo diseño y sin conexiones. También se descargó Abrir_Turno_en_Chrome.bat: déjalo en la misma carpeta.'
+    : 'Sin conexiones. No pude incrustar las fuentes (sin internet): se verá con la tipografía del sistema. También se descargó Abrir_Turno_en_Chrome.bat.');
 }
 // ── PDF: si una columna auxiliar viene vacía no hay texto que la marque y los
 // demás auxiliares "se corren". Aquí se lee la cabecera del PDF (posición X de
@@ -5038,6 +5845,7 @@ const DELEG_PANEL_PERM_MAP = {
   'team-panel': 'turnos',
   'mover-admin-panel': 'mover',
   'condicion-admin-panel': 'mover',
+  'break-admin-panel': 'mover',
   'ausencia-admin-panel': 'ausencia',
   'solicitudes-admin-panel': 'solicitudes',
   'incap-admin-panel': 'incapacidades',
@@ -6129,7 +6937,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-27.1803';
+const TB_APP_VERSION = '2026-09-27.2053';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -6586,6 +7394,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'team-panel') { TEAM_render(); CALC_populate(); }
   if (panelId === 'mover-admin-panel') MOVER_populateSelect();
   if (panelId === 'condicion-admin-panel') COND_populate();
+  if (panelId === 'break-admin-panel') BRK_populate();
   if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
   if (panelId === 'delegate-panel') DELEG_render();
   if (panelId === 'sheet-panel') TB_renderSheetStatus();
@@ -6617,6 +7426,7 @@ function P_initProfile() {
   document.getElementById('profile-accesos').textContent = user.loginCount || 1;
   const vozChk = document.getElementById('voz-toggle');
   if (vozChk) vozChk.checked = VOZ_isEnabled();
+  VOZ_actualizarEstado();
 
   const bigAv = document.getElementById('profile-avatar-big');
   renderAvatar(bigAv, user.nombre);
@@ -6785,6 +7595,7 @@ function F3_initTurns() {
     'consultas-panel': 'admin-btn-consultas', 'malla-panel': 'admin-btn-malla',
     'team-panel': 'admin-btn-team', 'mover-admin-panel': 'admin-btn-mover',
     'condicion-admin-panel': 'admin-btn-condicion',
+    'break-admin-panel': 'admin-btn-break',
     'ausencia-admin-panel': 'admin-btn-ausencia', 'solicitudes-admin-panel': 'admin-btn-solicitudes',
     'incap-admin-panel': 'admin-btn-incap', 'accesos-admin-panel': 'admin-btn-accesos',
     'shared-access-panel': 'admin-btn-shared'
@@ -6916,7 +7727,9 @@ function F3_renderDateChips(canonico) {
     const d = new Date(r.fechaISO + 'T00:00:00');
     const chip = document.createElement('div');
     chip.className = 'date-chip' + (r.fechaISO === selected ? ' active' : '') + (r.estado !== 'ACTIVO' ? ' descanso' : '');
-    chip.innerHTML = `<div class="dc-dow">${dias[d.getDay()]}</div><div class="dc-num">${d.getDate()}</div><div class="dc-dot"></div>`;
+    const hmChip = HORAS_get(r.fechaISO, r.nombreNorm);
+    chip.innerHTML = `<div class="dc-dow">${dias[d.getDay()]}</div><div class="dc-num">${d.getDate()}</div><div class="dc-dot"></div>${HORAS_chipHTML(hmChip)}`;
+    if (hmChip) chip.title = hmChip.tipo === 'destino' ? `Recibió ${HORAS_cantidadTxt(hmChip)} del ${HORAS_refTxt(hmChip)}` : `Cedió ${HORAS_cantidadTxt(hmChip)} hacia ${HORAS_refTxt(hmChip)}`;
     chip.onclick = () => F3_selectDate(canonico, r.fechaISO);
     cont.appendChild(chip);
   });
@@ -7172,12 +7985,32 @@ function F3_renderTimeline(t, diaEstado) {
     const banner2 = document.createElement('div');
     banner2.className = 'turno-empty-state';
     banner2.style.cssText = 'background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);color:#b45309;margin-bottom:10px;text-align:left;';
-    const texto = horasMovidas.tipo === 'origen'
-      ? `⏱️ Se movieron ${horasMovidas.horas}h de este día hacia el <b>${horasMovidas.otraFecha}</b>`
-      : `⏱️ Este día recibió ${horasMovidas.horas}h movidas del <b>${horasMovidas.otraFecha}</b>`;
+    const hm = horasMovidas;
+    const cantTxt = HORAS_cantidadTxt(hm);
+    const refTxt = HORAS_refTxt(hm);
+    let texto;
+    if (hm.tipo === 'origen') {
+      texto = hm.cond && hm.otras
+        ? `⚖️ Día fijado por condición especial: se le quitaron ${cantTxt} y se repartieron ${HORAS_fmtMin(hm.repartido || hm.min)} en <b>${refTxt}</b>`
+        : `⏱️ Se movieron ${cantTxt} de este día hacia el <b>${refTxt}</b>${hm.cond ? ' por la condición especial de horario' : ''}`;
+    } else {
+      texto = hm.cond && hm.otras
+        ? `⚖️ Día fijado por condición especial: ganó ${cantTxt} que salieron de <b>${refTxt}</b>`
+        : `⏱️ Este día recibió ${cantTxt}${hm.cond ? ' por la condición especial de horario' : ' movidas'} del <b>${refTxt}</b>`;
+    }
     banner2.innerHTML = texto;
     list.appendChild(banner2);
   }
+
+  const brkReg = BRK_get(t.fechaISO, t.nombreNorm);
+  if (brkReg && brkReg.notas && brkReg.notas.length) {
+    const banner3 = document.createElement('div');
+    banner3.className = 'turno-empty-state';
+    banner3.style.cssText = 'background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.3);color:var(--azul2);margin-bottom:10px;text-align:left;';
+    banner3.innerHTML = '☕ ' + brkReg.notas.map(NOTI_esc).join(' · ');
+    list.appendChild(banner3);
+  }
+  const fusT = BRK_fusion(t.fechaISO, t.nombreNorm);
 
   const now = new Date();
   const nowMin = now.getHours()*60 + now.getMinutes();
@@ -7197,6 +8030,12 @@ function F3_renderTimeline(t, diaEstado) {
     const esAlmuerzo = /almuerzo/i.test(d.label);
     const icono = esAlmuerzo ? '🍽️' : '☕';
     const duracion = esAlmuerzo ? '1 hora' : '15 min';
+    if (fusT && d.label === fusT[1]) return; // se pinta dentro del bloque unificado
+    if (fusT && d.label === fusT[0] && min !== null) {
+      const total = BRK_durLabel(fusT[0]) + BRK_durLabel(fusT[1]);
+      eventos.push({ time: d.value, label: `🔗 ${BRK_nombreLabel(fusT[0])} + ${BRK_nombreLabel(fusT[1])} unificados · ${BRK_fmtDur(total)}`, rel: min });
+      return;
+    }
     if (min !== null) eventos.push({ time: d.value, label: `${icono} ${d.label} · ${duracion}`, rel: min });
   });
 
@@ -7818,7 +8657,15 @@ function TB_ajustarLinea(lines, i, tipo, modo, minutos, opts) {
   }
 
   if (horasNetaOriginal != null) {
-    const nuevaHorasNeta = tipo === 'origen' ? horasNetaOriginal - minutos : horasNetaOriginal + minutos;
+    let nuevaHorasNeta;
+    if (recalcularBreaks && sched.length >= 15) {
+      // Regla de la malla: Horas = entrada→salida menos 1 h SOLO si ese día hay almuerzo
+      // (así, si el día se acorta y pierde el almuerzo, Horas no queda 1 h de menos).
+      const hayAlmuerzo = !TB_esAuxPlaceholder(sched.slice(12, 15));
+      nuevaHorasNeta = nuevaDuracion - (hayAlmuerzo ? 60 : 0);
+    } else {
+      nuevaHorasNeta = tipo === 'origen' ? horasNetaOriginal - minutos : horasNetaOriginal + minutos;
+    }
     sched[lastIdxOrig] = TB_minToDurToken(nuevaHorasNeta);
   }
 
@@ -7950,8 +8797,8 @@ function HORAS_registrar(fechaOrigenISO, norm, minutos, fechaDestinoISO) {
   const horasTxt = (minutos / 60).toFixed(minutos % 60 === 0 ? 0 : 1).replace(/\.0$/, '');
   const [ay, am, ad] = fechaDestinoISO.split('-');
   const [oy, om, od] = fechaOrigenISO.split('-');
-  all[`${fechaOrigenISO}|${norm}`] = { tipo: 'origen', horas: horasTxt, otraFecha: `${ad}/${am}` };
-  all[`${fechaDestinoISO}|${norm}`] = { tipo: 'destino', horas: horasTxt, otraFecha: `${od}/${om}` };
+  all[`${fechaOrigenISO}|${norm}`] = { tipo: 'origen', horas: horasTxt, min: Math.round(minutos), otraFecha: `${ad}/${am}`, otraISO: fechaDestinoISO };
+  all[`${fechaDestinoISO}|${norm}`] = { tipo: 'destino', horas: horasTxt, min: Math.round(minutos), otraFecha: `${od}/${om}`, otraISO: fechaOrigenISO };
   HORAS_save(all);
 }
 function HORAS_get(fechaISO, norm) {
@@ -7959,38 +8806,471 @@ function HORAS_get(fechaISO, norm) {
   return all[`${fechaISO}|${norm}`] || null;
 }
 
-// ── Avisos por voz (break, almuerzo, salida) ──────────────────────────
-// Usa la Web Speech API del propio navegador (habla local, sin conexión:
-// funciona igual en la versión de oficina). Revisa cada 20s el turno de
-// HOY del asesor con la sesión activa y, si el reloj llega exactamente a
-// la hora de un evento, lo anuncia una sola vez. Requiere que la pestaña
-// siga abierta (no hay notificación en segundo plano): es una limitación
-// del navegador, no del código.
+// ── Etiquetas de "horas movidas": texto legible con día de la semana ──
+const HORAS_DIAS_LARGO = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const HORAS_DIAS_CORTO = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+function HORAS_fmtMin(min) {
+  min = Math.round(min);
+  const h = Math.floor(min / 60), m = min % 60;
+  return h && m ? `${h}h ${m}min` : (h ? `${h}h` : `${m}min`);
+}
+function HORAS_diaTxt(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return `${HORAS_DIAS_LARGO[d.getDay()]} ${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+function HORAS_diaCorto(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return `${HORAS_DIAS_CORTO[d.getDay()]} ${d.getDate()}`;
+}
+// Cantidad de la etiqueta, compatible con registros viejos (solo traían `horas`).
+function HORAS_cantidadTxt(e) {
+  return e.min ? HORAS_fmtMin(e.min) : `${e.horas}h`;
+}
+// Referencia al otro día (o días) de la etiqueta.
+function HORAS_refTxt(e) {
+  if (e.otras && e.otras.length) return e.otras.map(HORAS_diaTxt).join(', ');
+  if (e.otraISO) return HORAS_diaTxt(e.otraISO);
+  return e.otraFecha;
+}
+// Chip del selector de fechas: "+2h" y de qué día vino ("← Sáb 27").
+function HORAS_chipHTML(e) {
+  if (!e) return '';
+  const recibe = e.tipo === 'destino';
+  const cant = e.min ? HORAS_fmtMin(e.min).replace(' ', '') : `${e.horas}h`;
+  let desde = '';
+  if (e.otras && e.otras.length) desde = e.otras.length === 1 ? HORAS_diaCorto(e.otras[0]) : `${e.otras.length} días`;
+  else if (e.otraISO) desde = HORAS_diaCorto(e.otraISO);
+  else desde = e.otraFecha || '';
+  const flecha = recibe ? '←' : '→';
+  return `<div class="dc-tag ${recibe ? 'mas' : 'menos'}">${recibe ? '+' : '−'}${cant}</div><div class="dc-from">${flecha} ${desde}</div>`;
+}
+
+// Etiquetas de la CONDICIÓN ESPECIAL: el día fijo y cada día que recibió (o cedió)
+// horas quedan marcados, con el día de donde vino o hacia donde fue.
+function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fechasSemana) {
+  const all = HORAS_load();
+  // Etiquetas de una aplicación anterior de esa misma persona y semana se reemplazan.
+  (fechasSemana || []).forEach(iso => {
+    const k = `${iso}|${norm}`;
+    if (all[k] && all[k].cond) delete all[k];
+  });
+  const [fy, fm, fd] = fechaFijaISO.split('-');
+  const movidos = (detalle || []).filter(d => d.minutos > 0);
+  movidos.forEach(d => {
+    all[`${d.fecha}|${norm}`] = {
+      tipo: d.tipo === 'suma' ? 'destino' : 'origen',
+      horas: String(Math.round(d.minutos / 6) / 10).replace(/\.0$/, ''),
+      min: Math.round(d.minutos),
+      otraFecha: `${fd}/${fm}`, otraISO: fechaFijaISO, cond: true
+    };
+  });
+  if (movidos.length && cambioFijoMin) {
+    const repartido = movidos.reduce((s, d) => s + d.minutos, 0);
+    all[`${fechaFijaISO}|${norm}`] = {
+      tipo: cambioFijoMin > 0 ? 'origen' : 'destino',
+      horas: String(Math.round(Math.abs(cambioFijoMin) / 6) / 10).replace(/\.0$/, ''),
+      min: Math.round(Math.abs(cambioFijoMin)),
+      repartido: Math.round(repartido),
+      otraFecha: movidos.map(d => d.fecha.slice(8) + '/' + d.fecha.slice(5, 7)).join(', '),
+      otras: movidos.map(d => d.fecha), cond: true
+    };
+  }
+  HORAS_save(all);
+}
+
+// ══════════════════════════════════════════════════
+//   BREAK Y ALMUERZO: MOVER, QUITAR O UNIFICAR
+//   Trabaja sobre el texto crudo de la malla (mismas columnas que usa
+//   TB_recalcularAux: BREAK I / BREAK II / ALMUERZO), así que el cambio
+//   queda incrustado al descargar el HTML y llega a la versión de oficina.
+//   Lo único que NO cabe en la malla es la marca "unificado": esa se guarda
+//   en un registro aparte (igual que HORAS_registrar) que también se hornea.
+// ══════════════════════════════════════════════════
+const BREAKS_KEY = 'tb_breaks_v1';
+const TB_BREAKS_DEFAULT = {};
+const BRK_LABELS = ['Break 1', 'Break 2', 'Salida almuerzo'];   // = MALLA_AUX_LABEL
+const BRK_NOMBRES = ['Break 1', 'Break 2', 'Almuerzo'];
+const BRK_DUR = [15, 15, 60];                                   // minutos
+function BRK_load() { try { return JSON.parse(localStorage.getItem(BREAKS_KEY)) || {}; } catch { return {}; } }
+function BRK_save(all) { try { localStorage.setItem(BREAKS_KEY, JSON.stringify(all)); } catch {} }
+function BRK_get(fechaISO, norm) { return BRK_load()[`${fechaISO}|${norm}`] || null; }
+function TB_BREAKS_init() {
+  try {
+    const emb = TB_BREAKS_DEFAULT || {};
+    if (!Object.keys(emb).length) return;
+    const local = BRK_load();
+    let cambio = false;
+    Object.keys(emb).forEach(k => { if (!(k in local)) { local[k] = emb[k]; cambio = true; } });
+    if (cambio) BRK_save(local);
+  } catch (e) { console.error('TB_BREAKS_init error:', e); }
+}
+TB_BREAKS_init();
+function BRK_idxLabel(label) { return BRK_LABELS.indexOf(label); }
+function BRK_durLabel(label) { const i = BRK_idxLabel(label); return i >= 0 ? BRK_DUR[i] : 15; }
+function BRK_nombreLabel(label) { const i = BRK_idxLabel(label); return i >= 0 ? BRK_NOMBRES[i] : label; }
+function BRK_fmtDur(min) { return min >= 60 && min % 60 === 0 ? `${min / 60} h` : (min > 60 ? `${Math.floor(min / 60)} h ${min % 60} min` : `${min} min`); }
+// Par de pausas unificadas de un día ([primera, segunda] por hora) o null.
+function BRK_fusion(fechaISO, norm) {
+  const e = BRK_get(fechaISO, norm);
+  return e && e.unif && e.unif.length === 2 ? e.unif : null;
+}
+function BRK_fmtHora(min) {
+  const m = ((Math.round(min) % 1440) + 1440) % 1440;
+  const h24 = Math.floor(m / 60), mm = m % 60;
+  return `${((h24 + 11) % 12) + 1}:${String(mm).padStart(2, '0')} ${h24 < 12 ? 'a. m.' : 'p. m.'}`;
+}
+
+function TB_editarPausas(nombreInput, fechaISO, accion, p) {
+  p = p || {};
+  const canon = MALLA_matchName(nombreInput);
+  if (!canon || !fechaISO) return { ok: false, motivo: 'datos' };
+  const norm = normalizeName(canon);
+  const lines = TB_rawMallaActual().split(/\r?\n/);
+  const li = TB_buscarLineaIndex(lines, fechaISO, norm);
+  if (li === -1) return { ok: false, motivo: 'sin_dia' };
+
+  const tokens = lines[li].trim().split(/\s+/);
+  const rest = tokens.slice(2);
+  let idx = rest.findIndex(t => TB_esTokenHora(t));
+  if (idx === -1) idx = rest.length;
+  const nombreTokens = rest.slice(0, idx);
+  const sched = rest.slice(idx);
+  if (sched.length < 15 || !TB_esTokenHora(sched[0]) || !TB_esTokenAmPm(sched[1]) || !TB_esTokenHora(sched[3]) || !TB_esTokenAmPm(sched[4])) {
+    return { ok: false, motivo: 'formato' };
+  }
+
+  const entrada = TB_timeTokensToMin(sched[0], sched[1]);
+  let salida = TB_timeTokensToMin(sched[3], sched[4]);
+  if (salida <= entrada) salida += 1440;
+
+  const getMin = gi => {
+    const g = sched.slice(6 + gi * 3, 9 + gi * 3);
+    if (!TB_esTokenHora(g[0]) || !TB_esTokenAmPm(g[1]) || TB_esAuxPlaceholder(g)) return null;
+    let m = TB_timeTokensToMin(g[0], g[1]);
+    if (m < entrada) m += 1440;
+    return m;
+  };
+  const setMin = (gi, m) => {
+    const t = TB_minToTimeTokens(m), b = 6 + gi * 3;
+    sched[b] = t[0]; sched[b + 1] = t[1]; sched[b + 2] = t[2];
+  };
+  const mins = [getMin(0), getMin(1), getMin(2)];
+  const alinear = m => (m < entrada ? m + 1440 : m);
+
+  // La columna Horas viene neta: solo el almuerzo (1 h) se descuenta (ver datos de la malla).
+  const lastIdx = sched.length - 1;
+  let neta = (lastIdx >= 15 && TB_esTokenHora(sched[lastIdx]) && !TB_esTokenAmPm(sched[lastIdx - 1])) ? TB_durTokenToMin(sched[lastIdx]) : null;
+  const ajustarHoras = p.ajustarHoras !== false;
+
+  // ¿cabe un bloque [ini, ini+dur) dentro del turno y sin cruzarse con las demás pausas?
+  const validar = (ini, dur, ignorar) => {
+    if (ini < entrada || ini + dur > salida) return 'fuera_turno';
+    for (let g = 0; g < 3; g++) {
+      if (ignorar.includes(g) || mins[g] == null) continue;
+      if (ini < mins[g] + BRK_DUR[g] && mins[g] < ini + dur) return 'se_cruza';
+    }
+    return null;
+  };
+
+  let nota = '';
+  let gi = null;
+  let unifNueva = null;
+
+  if (accion === 'mover') {
+    gi = p.pausa;
+    const ini = alinear(p.minutos);
+    const err = validar(ini, BRK_DUR[gi], [gi]);
+    if (err) return { ok: false, motivo: err };
+    const estaba = mins[gi] != null;
+    if (!estaba && gi === 2 && ajustarHoras && neta != null) neta -= 60;
+    setMin(gi, ini);
+    nota = `${BRK_NOMBRES[gi]} ${estaba ? 'movido' : 'agregado'} a las ${BRK_fmtHora(ini)}`;
+  } else if (accion === 'quitar') {
+    gi = p.pausa;
+    if (mins[gi] == null) return { ok: false, motivo: 'ya_quitado' };
+    TB_ponerPlaceholderAux(sched, gi);
+    if (gi === 2 && ajustarHoras && neta != null) neta += 60;
+    nota = `${BRK_NOMBRES[gi]} quitado ese día`;
+  } else if (accion === 'unificar') {
+    const a = p.pausaA, b = p.pausaB;
+    if (a === b) return { ok: false, motivo: 'misma_pausa' };
+    if (mins[a] == null || mins[b] == null) return { ok: false, motivo: 'pausa_inactiva' };
+    const [primero, segundo] = mins[a] <= mins[b] ? [a, b] : [b, a];
+    const ini = p.minutos != null ? alinear(p.minutos) : mins[primero];
+    const err = validar(ini, BRK_DUR[primero] + BRK_DUR[segundo], [a, b]);
+    if (err) return { ok: false, motivo: err };
+    setMin(primero, ini);
+    setMin(segundo, ini + BRK_DUR[primero]);
+    unifNueva = [BRK_LABELS[primero], BRK_LABELS[segundo]];
+    nota = `${BRK_NOMBRES[primero]} + ${BRK_NOMBRES[segundo]} unificados (${BRK_fmtHora(ini)}, ${BRK_fmtDur(BRK_DUR[primero] + BRK_DUR[segundo])} seguidos)`;
+  } else {
+    return { ok: false, motivo: 'datos' };
+  }
+
+  if (neta != null) sched[lastIdx] = TB_minToDurToken(Math.max(0, neta));
+  lines[li] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
+
+  const newRaw = lines.join('\n');
+  const parsed = MALLA_parseText(newRaw);
+  if (!parsed.length) return { ok: false, motivo: 'parseo' };
+  MALLA_DATA = parsed;
+  MALLA_LAST_RAW_TEXT = newRaw;
+  try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
+  MALLA_persist();
+  MALLA_refreshStatus();
+
+  // Registro (nota del día + marca de unificado). Si se mueve o quita una pausa
+  // que estaba unificada, la unificación se deshace.
+  const all = BRK_load();
+  const key = `${fechaISO}|${norm}`;
+  const e = all[key] || { unif: null, notas: [] };
+  if (accion === 'unificar') e.unif = unifNueva;
+  else if (e.unif && gi != null && e.unif.includes(BRK_LABELS[gi])) e.unif = null;
+  e.notas = (e.notas || []).concat(nota).slice(-4);
+  all[key] = e;
+  BRK_save(all);
+
+  return { ok: true, nota };
+}
+
+function BRK_horaAMin(str) {
+  if (!str) return null;
+  const [h, m] = str.split(':').map(Number);
+  return h * 60 + (m || 0);
+}
+function BRK_populate() {
+  MALLA_poblarSelectPersonas('brk-nombre');
+  const f = document.getElementById('brk-fecha');
+  if (f && !f.value) f.value = MALLA_todayISO();
+  BRK_cambiarAccion();
+  BRK_mostrarActual();
+}
+function BRK_cambiarAccion() {
+  const acc = document.getElementById('brk-accion').value;
+  document.getElementById('brk-campos-una').style.display = acc === 'unificar' ? 'none' : 'block';
+  document.getElementById('brk-campos-unif').style.display = acc === 'unificar' ? 'block' : 'none';
+  document.getElementById('brk-wrap-hora').style.display = acc === 'mover' ? 'block' : 'none';
+}
+function BRK_mostrarActual() {
+  const box = document.getElementById('brk-actual');
+  if (!box) return;
+  const nombre = document.getElementById('brk-nombre').value;
+  const fecha = document.getElementById('brk-fecha').value;
+  const canon = MALLA_matchName(nombre);
+  const t = canon && fecha ? MALLA_recordForDate(canon, fecha) : null;
+  if (!t || t.estado !== 'ACTIVO' || !t.entrada) { box.textContent = 'Ese día esa persona no tiene turno activo en la malla.'; return; }
+  const pausas = (t.detalle || []).map(d => `${BRK_nombreLabel(d.label)} ${d.value}`).join(' · ') || 'sin pausas';
+  const fus = BRK_fusion(fecha, t.nombreNorm);
+  box.innerHTML = `Turno ${t.entradaDisplay || t.entrada} – ${t.salidaDisplay || t.salida}. Pausas: <b>${pausas}</b>${fus ? ` · 🔗 unificadas: ${BRK_nombreLabel(fus[0])} + ${BRK_nombreLabel(fus[1])}` : ''}`;
+}
+function BRK_aplicar() {
+  const nombre = document.getElementById('brk-nombre').value;
+  const fecha = document.getElementById('brk-fecha').value;
+  const accion = document.getElementById('brk-accion').value;
+  if (!nombre || !fecha) { showToast('error', '❌ Error', 'Elige la persona y la fecha.'); return; }
+  const p = { ajustarHoras: document.getElementById('brk-ajustar-horas').checked };
+  if (accion === 'unificar') {
+    p.pausaA = parseInt(document.getElementById('brk-pausa-a').value, 10);
+    p.pausaB = parseInt(document.getElementById('brk-pausa-b').value, 10);
+    p.minutos = BRK_horaAMin(document.getElementById('brk-hora-u').value);
+  } else {
+    p.pausa = parseInt(document.getElementById('brk-pausa').value, 10);
+    if (accion === 'mover') {
+      p.minutos = BRK_horaAMin(document.getElementById('brk-hora').value);
+      if (p.minutos == null) { showToast('error', '❌ Error', 'Indica la nueva hora.'); return; }
+    }
+  }
+  const res = TB_editarPausas(nombre, fecha, accion, p);
+  const motivos = {
+    sin_dia: 'No encontré el turno de esa persona en esa fecha.',
+    formato: 'El horario de ese día no tiene un formato reconocible para editar sus pausas.',
+    fuera_turno: 'Esa hora deja la pausa fuera del turno (antes de entrar o pasada la salida).',
+    se_cruza: 'Esa hora se cruza con otra pausa del mismo día.',
+    ya_quitado: 'Esa pausa ya no existe ese día.',
+    pausa_inactiva: 'Para unificar, las dos pausas tienen que existir ese día.',
+    misma_pausa: 'Elige dos pausas distintas para unificar.',
+    parseo: 'Algo salió mal al reconstruir la malla. No se aplicó ningún cambio.',
+    datos: 'Faltan datos.'
+  };
+  if (!res.ok) { showToast('error', '⚠️ No se pudo aplicar', motivos[res.motivo] || 'No se pudo aplicar el cambio.'); return; }
+
+  const primer = nombre.split(' ')[0];
+  showToast('success', '✅ Pausas actualizadas', `${primer}: ${res.nota}.`);
+  if (typeof fase2AddActivity === 'function') fase2AddActivity('☕', `${res.nota} — <strong>${primer}</strong>`, 'cambio');
+  BRK_mostrarActual();
+  TEAM_render();
+  CALC_populate();
+  const user = window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+  if (user && !user.isAdmin && user.mallaNombre && normalizeName(user.mallaNombre) === normalizeName(nombre)) {
+    F3_renderDateChips(user.mallaNombre);
+  }
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('El cambio de pausas ya quedó en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+    if (!quiere) return;
+    const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_pausas.html`);
+    if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con las pausas ya cambiadas. Publícalo cuando quieras.');
+    MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_pausas.xlsx`);
+  }, 400);
+}
+
+
+// ── Avisos por voz + notificación interna (break, almuerzo, salida) ────
+// Cada aviso ahora sale por TRES vías a la vez, para que el asesor se entere
+// aunque el navegador bloquee una de ellas:
+//   1) Notificación INTERNA en pantalla, con el botón "🔊 Escuchar" (un toque
+//      del asesor es un gesto de usuario, así que ahí la voz siempre suena).
+//   2) Voz automática (Web Speech API). Estando en internet Chrome suele
+//      bloquearla hasta que el asesor toque la página al menos una vez: si no
+//      arrancó, la notificación interna se resalta con "toca para escuchar".
+//   3) Notificación del sistema (Notification API) cuando el asesor dio
+//      permiso; al tocarla vuelve a la pestaña y lee el aviso en voz alta.
+// Requiere que la pestaña siga abierta (limitación del navegador).
 const TB_VOZ_KEY = 'tb_voz_enabled_v1';
 function VOZ_isEnabled() {
   try { const v = localStorage.getItem(TB_VOZ_KEY); return v === null ? true : v === '1'; }
   catch { return true; }
 }
 function VOZ_setEnabled(on) { try { localStorage.setItem(TB_VOZ_KEY, on ? '1' : '0'); } catch {} }
-// Botón "Escuchar un aviso de prueba": suena aunque el interruptor esté
-// apagado, solo para que el asesor sepa cómo se oye (no cuenta como un
-// aviso real, no marca nada como "avisado").
+
+const VOZ_State = { desbloqueada: false, voces: [] };
+function VOZ_disponible() { return 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined'; }
+function VOZ_cargarVoces() { try { if (VOZ_disponible()) { const v = speechSynthesis.getVoices(); if (v && v.length) VOZ_State.voces = v; } } catch {} }
+try { VOZ_cargarVoces(); if (VOZ_disponible() && speechSynthesis.addEventListener) speechSynthesis.addEventListener('voiceschanged', VOZ_cargarVoces); } catch {}
+function VOZ_elegirVoz() {
+  const v = VOZ_State.voces || [];
+  return v.find(x => /^es[-_](CO|MX|US|419)/i.test(x.lang)) || v.find(x => /^es/i.test(x.lang)) || null;
+}
+
+// Devuelve una promesa: true si el navegador empezó a hablar, false si lo bloqueó
+// (o no hay voz disponible). No lanza errores.
+function VOZ_hablar(texto) {
+  return new Promise(resolve => {
+    try {
+      if (!VOZ_disponible()) return resolve(false);
+      try { speechSynthesis.cancel(); } catch {}
+      try { speechSynthesis.resume(); } catch {}
+      VOZ_cargarVoces();
+      const u = new SpeechSynthesisUtterance(texto);
+      const voz = VOZ_elegirVoz();
+      if (voz) { u.voice = voz; u.lang = voz.lang; } else { u.lang = 'es-ES'; }
+      u.rate = 1; u.volume = 1;
+      let listo = false;
+      const fin = ok => { if (!listo) { listo = true; resolve(ok); } };
+      u.onstart = () => { VOZ_State.desbloqueada = true; fin(true); };
+      u.onerror = () => fin(false);
+      speechSynthesis.speak(u);
+      setTimeout(() => fin(false), 2000);
+    } catch (e) { console.error('VOZ_hablar error:', e); resolve(false); }
+  });
+}
+
+// Un primer toque del asesor "desbloquea" la voz para toda la sesión.
+function VOZ_desbloquear() {
+  try {
+    if (VOZ_disponible() && !VOZ_State.desbloqueada) {
+      const u = new SpeechSynthesisUtterance(' ');
+      u.volume = 0;
+      u.onstart = () => { VOZ_State.desbloqueada = true; };
+      speechSynthesis.speak(u);
+    }
+  } catch {}
+}
+
+// ── Notificación interna (tarjeta dentro de la página) ──
+const NOTI_State = { pedido: false, tituloTimer: null };
+function NOTI_esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+function NOTI_interna(titulo, texto) {
+  let stack = document.getElementById('tb-noti-stack');
+  if (!stack) { stack = document.createElement('div'); stack.id = 'tb-noti-stack'; document.body.appendChild(stack); }
+  const card = document.createElement('div');
+  card.className = 'tb-noti';
+  card.innerHTML =
+    '<div class="tb-noti-ico">🔔</div>' +
+    '<div class="tb-noti-body">' +
+      `<div class="tb-noti-t">${NOTI_esc(titulo)}</div>` +
+      `<div class="tb-noti-x">${NOTI_esc(texto)}</div>` +
+      '<div class="tb-noti-hint">El navegador bloqueó la voz automática. Toca el botón para escucharla.</div>' +
+      '<div class="tb-noti-btns"><button type="button" class="tb-noti-listen">🔊 Escuchar</button></div>' +
+    '</div>' +
+    '<button type="button" class="tb-noti-close" aria-label="Cerrar">✕</button>';
+  card.querySelector('.tb-noti-listen').onclick = () => { VOZ_desbloquear(); VOZ_hablar(texto); };
+  card.querySelector('.tb-noti-close').onclick = () => card.remove();
+  stack.appendChild(card);
+  while (stack.children.length > 3) stack.firstChild.remove();
+  setTimeout(() => card.remove(), 180000);
+  return card;
+}
+
+// ── Notificación del sistema (si el navegador la permite y hay permiso) ──
+function NOTI_permisoEstado() { try { return 'Notification' in window ? Notification.permission : 'no-disponible'; } catch { return 'no-disponible'; } }
+function NOTI_pedirPermiso(forzar) {
+  try {
+    if (NOTI_permisoEstado() !== 'default') return;
+    if (!forzar && (NOTI_State.pedido || !(currentUser && !currentUser.isAdmin && VOZ_isEnabled()))) return;
+    NOTI_State.pedido = true;
+    const r = Notification.requestPermission();
+    if (r && r.then) r.then(() => { try { VOZ_actualizarEstado(); } catch {} });
+  } catch {}
+}
+function NOTI_sistema(titulo, texto) {
+  try {
+    if (NOTI_permisoEstado() !== 'granted') return false;
+    const n = new Notification(titulo, { body: texto, tag: 'tb-aviso', renotify: true, requireInteraction: true });
+    n.onclick = () => { try { window.focus(); n.close(); } catch {} VOZ_hablar(texto); };
+    return true;
+  } catch { return false; } // Chrome de Android exige service worker: ahí queda la notificación interna
+}
+function NOTI_parpadearTitulo(titulo) {
+  try {
+    if (!document.hidden) return;
+    const orig = document.title; let on = false;
+    clearInterval(NOTI_State.tituloTimer);
+    NOTI_State.tituloTimer = setInterval(() => { document.title = on ? orig : '🔔 ' + titulo; on = !on; }, 1000);
+    const parar = () => { if (!document.hidden) { clearInterval(NOTI_State.tituloTimer); document.title = orig; document.removeEventListener('visibilitychange', parar); } };
+    document.addEventListener('visibilitychange', parar);
+  } catch {}
+}
+
+// Aviso completo: tarjeta interna + notificación del sistema + vibración + voz.
+async function AVISO_lanzar(titulo, texto) {
+  const card = NOTI_interna(titulo, texto);
+  NOTI_sistema(titulo, texto);
+  try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch {}
+  NOTI_parpadearTitulo(titulo);
+  const hablo = await VOZ_hablar(texto);
+  if (!hablo && card && card.isConnected) card.classList.add('sin-voz');
+  return hablo;
+}
+
+// Primer toque de la sesión: desbloquea la voz y (si aplica) pide el permiso de notificaciones.
+['click', 'touchend', 'keydown'].forEach(ev => {
+  document.addEventListener(ev, function () {
+    VOZ_desbloquear();
+    NOTI_pedirPermiso(false);
+  }, { passive: true });
+});
+
+function VOZ_actualizarEstado() {
+  const el = document.getElementById('voz-estado');
+  if (!el) return;
+  const p = NOTI_permisoEstado();
+  const voz = !VOZ_disponible() ? '⚠️ Este navegador no trae voz' : (VOZ_State.desbloqueada ? '✅ Voz lista' : '👆 Voz: toca “Activar avisos” una vez');
+  const noti = p === 'granted' ? '✅ Notificaciones activas' : p === 'denied' ? '🚫 Notificaciones bloqueadas en el navegador' : p === 'default' ? '👆 Notificaciones sin activar' : '⚠️ Notificaciones no disponibles aquí';
+  el.textContent = `${voz} · ${noti}`;
+}
+// Botón "Activar avisos": es un gesto del asesor, así que desbloquea todo de una vez.
+async function VOZ_activar() {
+  VOZ_desbloquear();
+  if (NOTI_permisoEstado() === 'default') { try { await Notification.requestPermission(); } catch {} }
+  VOZ_probar();
+  setTimeout(VOZ_actualizarEstado, 600);
+}
 function VOZ_probar() {
   const primerNombre = (currentUser && (currentUser.apodo || currentUser.nombre) || 'Compañero').split(' ')[0];
   const texto = `${primerNombre}, este es un aviso de prueba. Así sonará cuando llegue tu break, tu almuerzo o tu salida.`;
-  VOZ_hablar(texto);
-  if (typeof showToast === 'function') showToast('info', '🔊 Aviso de prueba', texto);
+  AVISO_lanzar('🔊 Aviso de prueba', texto).then(() => VOZ_actualizarEstado());
   if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
-}
-function VOZ_hablar(texto) {
-  try {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(texto);
-    u.lang = 'es-ES';
-    u.rate = 1;
-    speechSynthesis.speak(u);
-  } catch (e) { console.error('VOZ_hablar error:', e); }
 }
 
 const TB_VOZ_State = { fecha: null, avisados: {} };
@@ -8009,17 +9289,18 @@ function TB_VOZ_tick() {
     const primerNombre = (currentUser.apodo || currentUser.nombre || '').split(' ')[0];
 
     const eventos = [];
+    const fus = BRK_fusion(hoyISO, t.nombreNorm); // pausas unificadas: se anuncian una sola vez
     (t.detalle || []).forEach((d, i) => {
       const min = F3_parse12hToMin(d.value);
       if (min === null) return;
+      if (fus && d.label === fus[1]) return;
       const esAlmuerzo = /almuerzo/i.test(d.label);
-      eventos.push({
-        key: 'detalle-' + i,
-        rel: min,
-        texto: esAlmuerzo
-          ? `${primerNombre}, es hora de tu almuerzo.`
-          : `${primerNombre}, es hora de tu break.`
-      });
+      let texto = esAlmuerzo ? `${primerNombre}, es hora de tu almuerzo.` : `${primerNombre}, es hora de tu break.`;
+      if (fus && d.label === fus[0]) {
+        const total = BRK_durLabel(fus[0]) + BRK_durLabel(fus[1]);
+        texto = `${primerNombre}, es hora de tu ${BRK_nombreLabel(fus[0]).toLowerCase()} y tu ${BRK_nombreLabel(fus[1]).toLowerCase()}, unificados: ${BRK_fmtDur(total)} seguidos.`;
+      }
+      eventos.push({ key: 'detalle-' + i, rel: min, texto });
     });
     const salMin = F3_toMin(t.salida);
     if (salMin !== null && salMin !== 0) {
@@ -8027,16 +9308,18 @@ function TB_VOZ_tick() {
     }
 
     eventos.forEach(ev => {
-      if (nowMin === ev.rel && !TB_VOZ_State.avisados[ev.key]) {
+      // Ventana de 2 min: si la pestaña estuvo dormida en el minuto exacto, el aviso igual sale.
+      if (nowMin >= ev.rel && nowMin - ev.rel <= 2 && !TB_VOZ_State.avisados[ev.key]) {
         TB_VOZ_State.avisados[ev.key] = true;
-        VOZ_hablar(ev.texto);
-        if (typeof showToast === 'function') showToast('info', '🔔 Aviso de turno', ev.texto);
+        AVISO_lanzar('🔔 Aviso de turno', ev.texto);
         if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
       }
     });
   } catch (e) { console.error('TB_VOZ_tick error:', e); }
 }
-setInterval(TB_VOZ_tick, 20000);
+setInterval(TB_VOZ_tick, 15000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) TB_VOZ_tick(); });
+
 
 // ── Mascota EVA: interactiva pero decorativa, no afecta ninguna función
 // real de la app. Al tocarla muestra una frase; cuando suena un aviso de
@@ -9078,7 +10361,9 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
     if (sched.length >= 15) TB_recalcularAux(sched, entradaObjetivoMin, horasMaxMin, patron);
     const lastIdx = sched.length - 1;
     if (lastIdx >= 6 && TB_esTokenHora(sched[lastIdx]) && !TB_esTokenAmPm(sched[lastIdx - 1])) {
-      sched[lastIdx] = TB_minToDurToken(horasMaxMin);
+      // Regla de la malla: Horas = entrada→salida menos 1 h SOLO si ese día hay almuerzo.
+      const hayAlmuerzo = sched.length >= 15 && !TB_esAuxPlaceholder(sched.slice(12, 15));
+      sched[lastIdx] = TB_minToDurToken(horasMaxMin - (hayAlmuerzo ? 60 : 0));
     }
     lines[idxObjetivo] = [tokens[0], tokens[1], ...nombreTokens, ...sched].join('\t');
   })();
@@ -9122,6 +10407,9 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
   try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
   MALLA_persist();
   MALLA_refreshStatus();
+
+  // Etiquetas: el día fijo y cada día que recibió/cedió horas quedan marcados con el día de origen/destino.
+  try { HORAS_registrarCondicion(fechaObjetivo, norm, detalle, duracionOriginalObjetivo - horasMaxMin, fechasSemana); } catch (e) { console.error('HORAS_registrarCondicion error:', e); }
 
   return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle };
 }
