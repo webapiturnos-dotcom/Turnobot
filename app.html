@@ -1407,6 +1407,12 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .team-row-badge.activo { color:var(--verde); background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); }
 .team-row-badge.descanso { color:var(--naranja); background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); }
 .team-row-badge.sindatos { color:var(--gris); background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); }
+.fp-avatar { width:44px; height:44px; border-radius:50%; flex-shrink:0; background:var(--gris2); border:2px solid var(--glass-border); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:16px; overflow:hidden; }
+.fp-avatar img { width:100%; height:100%; object-fit:cover; }
+.fp-avatar.sm { width:34px; height:34px; font-size:13px; }
+.fp-row-main { display:flex; align-items:center; gap:10px; min-width:0; }
+.fp-actions { display:flex; gap:6px; flex-shrink:0; }
+.fp-actions input[type=file] { display:none; }
 .team-empty { text-align:center; padding:18px; color:var(--gris); font-size:13px; }
 
 /* ── Timeline de accesos (módulo Historial de Accesos) ── */
@@ -1523,9 +1529,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
 </div>
-<div class="toast-container" id="toasts"><div class="toast success" data-expires="1790562730979" data-closing="1" style="opacity: 0; transition: opacity 0.3s;">
+<div class="toast-container" id="toasts"><div class="toast success" data-expires="1790563408269">
     <div class="toast-icon">✅</div>
     <div class="toast-body">
       <div class="toast-title">📋 Comando copiado</div>
@@ -1536,7 +1542,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: NEVIS — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: JENNIFER — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1951,7 +1957,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Moisés</strong> consultó su turno</div><div class="activity-time">21:31</div><button type="button" class="activity-del-btn" data-aid="21" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>Moisés</strong> consultó su turno del 29/09/2026</div><div class="activity-time">21:31</div><button type="button" class="activity-del-btn" data-aid="20" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:30</div><button type="button" class="activity-del-btn" data-aid="19" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:30</div><button type="button" class="activity-del-btn" data-aid="18" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:30</div><button type="button" class="activity-del-btn" data-aid="17" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -1974,11 +1980,11 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 
     <!-- Nav inferior -->
     <div class="bottom-nav">
-      <div class="nav-item" id="nav-home" onclick="showMainScreen('home')">
+      <div class="nav-item active" id="nav-home" onclick="showMainScreen('home')">
         <div class="nav-icon">🏠</div>
         <div class="nav-label">Inicio</div>
       </div>
-      <div class="nav-item active" id="nav-turns" onclick="showMainScreen('turns')">
+      <div class="nav-item" id="nav-turns" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
         <div class="nav-label" id="nav-turns-label">Configuración</div>
       </div>
@@ -2014,7 +2020,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Martes 29 Sep</div>
+            <div class="turno-card-label">Tu turno · Lunes 28 Sep</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -2050,7 +2056,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Martes 29 Sep</div>
+          <div class="section-sub" id="timeline-fecha">Lunes 28 Sep</div>
         </div>
         <div class="timeline-list" id="timeline-list"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -2077,7 +2083,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Calculadora de horas reales (propia, visible solo para asesores) ── -->
-      <div class="breaks-panel" id="mi-calc-panel" style="display: none;">
+      <div class="breaks-panel" id="mi-calc-panel" style="display:none">
         <div class="section-header">
           <div class="section-title">🧮 Calculadora de Horas Reales</div>
           <div class="section-sub">Elige un rango de días y desmarca los que no quieras contar. El total ya descuenta breaks y almuerzo.</div>
@@ -2092,32 +2098,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="date" class="form-input" id="micalc-hasta" onchange="MICALC_generarDias()">
           </div>
         </div>
-        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="420" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
-      <span style="flex:1">lun, 28/09</span>
-      <span style="color:var(--gris);font-size:11px">7h 0m</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
-      <span style="flex:1">mar, 29/09</span>
-      <span style="color:var(--gris);font-size:11px">8h 0m</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
-      <span style="flex:1">mié, 30/09</span>
-      <span style="color:var(--gris);font-size:11px">8h 0m</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
-      <span style="flex:1">jue, 01/10</span>
-      <span style="color:var(--gris);font-size:11px">7h 30m</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="450" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
-      <span style="flex:1">vie, 02/10</span>
-      <span style="color:var(--gris);font-size:11px">7h 30m</span>
-    </label><label class="consulta-item" style="cursor:pointer">
-      <input type="checkbox" class="micalc-dia-chk" data-min="240" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
-      <span style="flex:1">sáb, 03/10</span>
-      <span style="color:var(--gris);font-size:11px">4h 0m</span>
-    </label></div>
-        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 11h 30m (2 de 6 días)</div>
+        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"></div>
+        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 0h 0m</div>
       </div>
 
       <!-- ── Panel de administración: selector tipo "Home de Novedades" ──
@@ -2153,6 +2135,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="qc-left"><div class="qc-icon">↔️</div><div>
             <div class="qc-title">Mover Horas Entre Días</div>
             <div class="qc-sub">Quita horas de un día y súmalas a otro</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-fotos" onclick="ADMIN_seleccionar('fotos-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">📸</div><div>
+            <div class="qc-title">Fotos de Asesores</div>
+            <div class="qc-sub">Pon o cambia la foto de cada asesor; quedan fijas en el HTML</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
@@ -2231,7 +2220,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">Moisés Elias Rojas Vasquez</span><span style="color:var(--gris);font-size:11px">09:31 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">Moisés Elias Rojas Vasquez</span><span style="color:var(--gris);font-size:11px">21:31</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">Moisés Elias Rojas Vasquez</span><span style="color:var(--gris);font-size:11px">09:31 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:28 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -2316,32 +2305,175 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm"><img src="https://drive.google.com/uc?export=view&amp;id=1M11BBVi4LSrbnqBlNCdwLrwo_x6X0W3x" alt=""></div>
+        <div>
+          <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">8:00 a. m. → 5:00 p. m.</div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">A</div>
+        <div>
+          <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">10:00 a. m. → 7:00 p. m.</div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm"><img src="https://drive.google.com/uc?export=view&amp;id=1W0Z93C6RiLk8skk64rLjfOvGhSP7fNNj" alt=""></div>
+        <div>
+          <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">8:00 a. m. → 5:00 p. m.</div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">B</div>
+        <div>
+          <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">C</div>
+        <div>
+          <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
       </div>
-      <div class="team-row-badge activo">Activo</div></div></div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">C</div>
+        <div>
+          <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">E</div>
+        <div>
+          <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">E</div>
+        <div>
+          <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">G</div>
+        <div>
+          <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">J</div>
+        <div>
+          <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">J</div>
+        <div>
+          <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">J</div>
+        <div>
+          <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">J</div>
+        <div>
+          <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">K</div>
+        <div>
+          <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">K</div>
+        <div>
+          <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHY MORALES SUÁREZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">K</div>
+        <div>
+          <div class="team-row-name">KATHY MORALES SUÁREZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">M</div>
+        <div>
+          <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm"><img src="data:image/jpeg;base64,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" alt=""></div>
+        <div>
+          <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">N</div>
+        <div>
+          <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">V</div>
+        <div>
+          <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
+      <div class="fp-row-main">
+        <div class="fp-avatar sm">Y</div>
+        <div>
+          <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
+          <div class="team-row-sub">No hay turno para esa fecha</div>
+        </div>
+      </div>
+      <div class="team-row-badge sindatos">Sin datos</div></div></div>
 
         <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) ── -->
         <div style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
@@ -2452,6 +2584,146 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
           Por defecto, en el día de origen la salida se adelanta esas horas y en el de destino la entrada se adelanta esas horas; puedes cambiar cada lado para que en vez entre más tarde o salga más tarde. Si el resultado supera el tope de horas por día, no se aplica. Con "Recalcular break y almuerzo" activo, esos horarios se reubican según el patrón típico de la malla (mismo % del turno) en vez de quedar pegados a su hora vieja. La columna Horas de ambos días se ajusta sola. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
         </div>
+      </div>
+
+      <!-- ── Fotos de asesores (soldadas al HTML web y de oficina) ── -->
+      <div class="malla-panel admin-subpanel" id="fotos-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">📸 Fotos de Asesores</div>
+          <div class="section-sub">Elige la foto de cada asesor. Quedan soldadas al HTML (web y oficina) y no se pierden al actualizar la malla</div>
+        </div>
+        <div class="malla-status" id="fotos-admin-status">1 de 21 asesores con foto fija</div>
+        <div id="fotos-admin-list" class="team-list" style="max-height:none;margin-top:10px"><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar"><img src="https://drive.google.com/uc?export=view&amp;id=1M11BBVi4LSrbnqBlNCdwLrwo_x6X0W3x" alt=""></div><div style="min-width:0"><div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 0)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">A</div><div style="min-width:0"><div class="team-row-name">ALEXANDRA HURTADO BARROSO</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 1)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar"><img src="https://drive.google.com/uc?export=view&amp;id=1W0Z93C6RiLk8skk64rLjfOvGhSP7fNNj" alt=""></div><div style="min-width:0"><div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 2)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">B</div><div style="min-width:0"><div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 3)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">C</div><div style="min-width:0"><div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 4)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">C</div><div style="min-width:0"><div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 5)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">E</div><div style="min-width:0"><div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 6)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">E</div><div style="min-width:0"><div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 7)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">G</div><div style="min-width:0"><div class="team-row-name">GREY MAR NORIEGA ALGARIN</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 8)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">J</div><div style="min-width:0"><div class="team-row-name">JENNIFER MORALES MENDOZA</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 9)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">J</div><div style="min-width:0"><div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 10)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">J</div><div style="min-width:0"><div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 11)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">J</div><div style="min-width:0"><div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 12)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">K</div><div style="min-width:0"><div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 13)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">K</div><div style="min-width:0"><div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 14)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">K</div><div style="min-width:0"><div class="team-row-name">KATHY MORALES SUÁREZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 15)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">M</div><div style="min-width:0"><div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 16)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar"><img src="data:image/jpeg;base64,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" alt=""></div><div style="min-width:0"><div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div><div class="team-row-sub">📌 Foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Cambiar<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 17)"></label>
+        <button class="btn btn-secondary" style="padding:6px 10px;font-size:12px" onclick="ADMFOTOS_quitar(17)">🗑️</button>
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">N</div><div style="min-width:0"><div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 18)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">V</div><div style="min-width:0"><div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 19)"></label>
+        
+      </div>
+    </div><div class="team-row" style="cursor:default">
+      <div class="fp-row-main"><div class="fp-avatar">Y</div><div style="min-width:0"><div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div><div class="team-row-sub">Sin foto fija</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 Subir<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, 20)"></label>
+        
+      </div>
+    </div></div>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          La foto se recorta a cuadrado y se reduce sola. Estas fotos mandan sobre las que suban los propios asesores hasta que las cambies o las quites. Recuerda descargar el HTML actualizado en "Malla" (y el de oficina) para que el cambio llegue a todos.
+        </div>
+        <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="MALLA_downloadBtnClick()">⬇️ Descargar HTML actualizado</button>
       </div>
 
       <!-- ── Condición especial de horario (ej. salida obligatoria un día fijo) ── -->
@@ -2811,8 +3083,8 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 60 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">27/9, 06:01 p. m. · 27/9, 06:00 p. m. · 27/9, 05:59 p. m.</div>
+        <div class="team-row-sub">🔑 64 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">27/9, 06:01 p. m. · 27/9, 06:01 p. m. (📱 Motorola motorola edge 60 fusion) · 27/9, 06:00 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3757,7 +4029,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <input type="checkbox" id="voz-toggle" onchange="VOZ_setEnabled(this.checked)" style="width:20px; height:20px;">
         </label>
         <div style="font-size:11px; color:var(--gris); margin-top:4px;">Cuando llega la hora de tu break, almuerzo o salida te aparece una notificación en pantalla y suena la voz. Con internet el navegador a veces bloquea la voz hasta que tocas la página: por eso la notificación trae el botón 🔊 Escuchar. Solo funciona mientras esta pestaña esté abierta.</div>
-        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;">✅ Voz lista · ✅ Notificaciones activas</div>
+        <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;"></div>
         <button class="btn btn-primary w-full" style="margin-top:8px" onclick="VOZ_activar()">✅ Activar avisos (voz + notificaciones)</button>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="VOZ_probar()">🔊 Escuchar un aviso de prueba</button>
       </div>
@@ -3883,7 +4155,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -3969,9 +4241,9 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  02/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
-28/09/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	12:00:00	p.	m.	7:00:00	p.	m.	1:40:00	p.	m.	5:10:00	p.	m.	12:00:00	a.	m.	7:00:00
-29/09/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
-30/09/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+ 28/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:00:00
+ 29/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
+ 30/09/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  01/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
  02/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
 03/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	8:55:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
@@ -4684,6 +4956,15 @@ function MALLA_buildUpdatedHTML() {
       () => 'const TB_BREAKS_DEFAULT = ' + breaksJSON + ';'
     );
   } catch (e) { console.error('No se pudo incrustar TB_BREAKS_DEFAULT:', e); }
+  // Fotos de asesores puestas por el admin: se hornean para que queden soldadas
+  // al HTML (web y oficina) y NO dependan de la malla ni de la caché del navegador.
+  try {
+    const fotosJSON = JSON.stringify(ADMPHOTO_todas());
+    html = html.replace(
+      /const TB_ADMIN_PHOTOS_DEFAULT = \{[\s\S]*?\};/,
+      () => 'const TB_ADMIN_PHOTOS_DEFAULT = ' + fotosJSON + ';'
+    );
+  } catch (e) { console.error('No se pudo incrustar TB_ADMIN_PHOTOS_DEFAULT:', e); }
   // Incrusta la línea base de la malla (ver MALLA_capturarBaseline) para
   // que la hoja "Cambios de Turno" del Excel pueda seguir comparando
   // "inicial vs. descargada" en cualquier dispositivo que abra este HTML.
@@ -5600,12 +5881,50 @@ async function AH_registerLogin(norm, nombreCanonico) {
   return entry;
 }
 
+// ── Fotos de asesores puestas por el ADMIN ("soldadas") ──────────────
+// TB_ADMIN_PHOTOS_DEFAULT viaja dentro del HTML (se hornea al descargar, tanto en
+// la versión web como en la de oficina; ver MALLA_buildUpdatedHTML). Además hay una
+// copia de trabajo en localStorage (llave propia, NUNCA se borra al cambiar de
+// versión ni al actualizar la malla). Un valor null en esa copia = "quitada".
+// Estas fotos mandan sobre las que suban los propios asesores hasta que el admin
+// las cambie o las quite.
+const TB_ADMIN_PHOTOS_DEFAULT = {"MELANYS DANIELA SOBRINO DE LA HOZ":"data:image/jpeg;base64,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"};
+const ADMPHOTO_KEY = 'tb_admin_photos_v1';
+function ADMPHOTO_loadLocal() { try { return JSON.parse(localStorage.getItem(ADMPHOTO_KEY)) || {}; } catch { return {}; } }
+function ADMPHOTO_saveLocal(all) { try { localStorage.setItem(ADMPHOTO_KEY, JSON.stringify(all)); return true; } catch { return false; } }
+function ADMPHOTO_get(nombre) {
+  const norm = normalizeName(nombre);
+  const loc = ADMPHOTO_loadLocal();
+  if (norm in loc) return loc[norm] || null;
+  return (TB_ADMIN_PHOTOS_DEFAULT && TB_ADMIN_PHOTOS_DEFAULT[norm]) || null;
+}
+// Todas las fotos vigentes (embebidas + cambios locales, sin las quitadas).
+function ADMPHOTO_todas() {
+  const out = Object.assign({}, TB_ADMIN_PHOTOS_DEFAULT || {});
+  const loc = ADMPHOTO_loadLocal();
+  Object.keys(loc).forEach(k => { if (loc[k]) out[k] = loc[k]; else delete out[k]; });
+  return out;
+}
+function ADMPHOTO_set(nombre, dataURL) {
+  const all = ADMPHOTO_loadLocal();
+  all[normalizeName(nombre)] = dataURL;
+  return ADMPHOTO_saveLocal(all);
+}
+function ADMPHOTO_remove(nombre) {
+  const all = ADMPHOTO_loadLocal();
+  all[normalizeName(nombre)] = null;
+  return ADMPHOTO_saveLocal(all);
+}
+
 // ── Fotos de perfil (100% local, guardadas por nombre normalizado) ──
 const PHOTOS_KEY = 'tb_photos_v1';
 function PHOTO_load() { try { return JSON.parse(localStorage.getItem(PHOTOS_KEY)) || {}; } catch { return {}; } }
 function PHOTO_save(all) { try { localStorage.setItem(PHOTOS_KEY, JSON.stringify(all)); } catch {} }
 function PHOTO_get(nombre) {
   const norm = normalizeName(nombre);
+  // La foto puesta por el admin manda sobre la que suba el propio asesor.
+  const adm = ADMPHOTO_get(nombre);
+  if (adm) return adm;
   const all = PHOTO_load();
   return all[norm] || null;
 }
@@ -6073,9 +6392,12 @@ function TEAM_render() {
       }
     }
     row.innerHTML = `
-      <div>
-        <div class="team-row-name">${nombre}</div>
-        <div class="team-row-sub">${sub}</div>
+      <div class="fp-row-main">
+        ${ADMFOTO_avatarHTML(nombre, true)}
+        <div>
+          <div class="team-row-name">${nombre}</div>
+          <div class="team-row-sub">${sub}</div>
+        </div>
       </div>
       <div class="team-row-badge ${badgeClass}">${badgeText}</div>`;
     row.style.cursor = 'pointer';
@@ -6893,7 +7215,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-27.2132';
+const TB_APP_VERSION = '2026-09-27.2143';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -7358,6 +7680,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'incap-admin-panel') TB_renderIncapacidadesAdmin();
   if (panelId === 'accesos-admin-panel') ACCESOS_render();
   if (panelId === 'shared-access-panel') SHARED_renderAdminStatus();
+  if (panelId === 'fotos-admin-panel') ADMFOTOS_render();
 }
 function ADMIN_volver() {
   const selectorHeader = document.getElementById('admin-selector-header');
@@ -7388,7 +7711,7 @@ function P_initProfile() {
   renderAvatar(bigAv, user.nombre);
 
   const removeBtn = document.getElementById('profile-remove-photo');
-  if (removeBtn) removeBtn.style.display = PHOTO_get(user.nombre) ? 'block' : 'none';
+  if (removeBtn) removeBtn.style.display = (!ADMPHOTO_get(user.nombre) && PHOTO_get(user.nombre)) ? 'block' : 'none';
 
   const adminLink = document.getElementById('profile-admin-link');
   if (adminLink) adminLink.style.display = user.isAdmin ? 'block' : 'none';
@@ -7431,6 +7754,14 @@ function P_guardarApodo() {
 }
 
 function PROFILE_onPhotoSelected(event) {
+  {
+    const u0 = window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+    if (u0 && ADMPHOTO_get(u0.nombre)) {
+      showToast('info', '📌 Foto fijada por el administrador', 'Tu foto de perfil la definió el administrador y se mantiene esa.');
+      try { event.target.value = ''; } catch (e) {}
+      return;
+    }
+  }
   const file = event.target.files[0];
   event.target.value = '';
   if (!file) return;
@@ -7554,7 +7885,8 @@ function F3_initTurns() {
     'break-admin-panel': 'admin-btn-break',
     'ausencia-admin-panel': 'admin-btn-ausencia', 'solicitudes-admin-panel': 'admin-btn-solicitudes',
     'incap-admin-panel': 'admin-btn-incap', 'accesos-admin-panel': 'admin-btn-accesos',
-    'shared-access-panel': 'admin-btn-shared'
+    'shared-access-panel': 'admin-btn-shared',
+    'fotos-admin-panel': 'admin-btn-fotos'
   };
   Object.keys(DELEG_BTN_ID_MAP).forEach(panelId => {
     const btn = document.getElementById(DELEG_BTN_ID_MAP[panelId]);
@@ -10483,6 +10815,70 @@ function TERMUX_copiarComando() {
   } else fallback();
 }
 
+// ── Panel "Fotos de Asesores" (admin) ──
+let ADMFOTOS_nombres = [];
+function ADMFOTO_avatarHTML(nombre, sm) {
+  const foto = ADMPHOTO_get(nombre) || PHOTO_get(nombre);
+  const ini = ((nombre || '?')[0] || '?').toUpperCase();
+  return `<div class="fp-avatar${sm ? ' sm' : ''}">${foto ? `<img src="${foto}" alt="">` : ini}</div>`;
+}
+function ADMFOTOS_render() {
+  const cont = document.getElementById('fotos-admin-list');
+  if (!cont) return;
+  ADMFOTOS_nombres = MALLA_getNames().slice().sort((a, b) => a.localeCompare(b));
+  const conFoto = ADMFOTOS_nombres.filter(n => ADMPHOTO_get(n)).length;
+  const st = document.getElementById('fotos-admin-status');
+  if (st) st.textContent = `${conFoto} de ${ADMFOTOS_nombres.length} asesores con foto fija`;
+  if (!ADMFOTOS_nombres.length) { cont.innerHTML = '<div class="team-empty">Aún no hay asesores en la malla.</div>'; return; }
+  cont.innerHTML = ADMFOTOS_nombres.map((n, i) => {
+    const tiene = !!ADMPHOTO_get(n);
+    return `<div class="team-row" style="cursor:default">
+      <div class="fp-row-main">${ADMFOTO_avatarHTML(n)}<div style="min-width:0"><div class="team-row-name">${n}</div><div class="team-row-sub">${tiene ? '📌 Foto fija' : 'Sin foto fija'}</div></div></div>
+      <div class="fp-actions">
+        <label class="btn btn-secondary" style="padding:6px 10px;font-size:12px;cursor:pointer;margin:0">📷 ${tiene ? 'Cambiar' : 'Subir'}<input type="file" accept="image/*" onchange="ADMFOTOS_onFile(this, ${i})"></label>
+        ${tiene ? `<button class="btn btn-secondary" style="padding:6px 10px;font-size:12px" onclick="ADMFOTOS_quitar(${i})">🗑️</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function ADMFOTOS_onFile(input, i) {
+  const nombre = ADMFOTOS_nombres[i];
+  const file = input.files && input.files[0];
+  if (!nombre || !file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      // Recorte cuadrado centrado y reducción para que 20+ fotos pesen poco dentro del HTML.
+      const size = 256;
+      const canvas = document.createElement('canvas');
+      canvas.width = size; canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      const lado = Math.min(img.width, img.height);
+      ctx.drawImage(img, (img.width - lado) / 2, (img.height - lado) / 2, lado, lado, 0, 0, size, size);
+      const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+      if (!ADMPHOTO_set(nombre, dataURL)) {
+        showToast('error', '❌ No se pudo guardar', 'No cabe más en el navegador. Descarga el HTML actualizado y prueba de nuevo.');
+        return;
+      }
+      showToast('success', '📸 Foto guardada', `${nombre.split(' ')[0]} ya tiene su foto. Descarga el HTML actualizado para publicarla.`);
+      ADMFOTOS_render();
+    };
+    img.onerror = () => showToast('error', '❌ Error', 'No se pudo procesar esa imagen.');
+    img.src = reader.result;
+  };
+  reader.onerror = () => showToast('error', '❌ Error', 'No se pudo leer el archivo.');
+  reader.readAsDataURL(file);
+  input.value = '';
+}
+function ADMFOTOS_quitar(i) {
+  const nombre = ADMFOTOS_nombres[i];
+  if (!nombre) return;
+  ADMPHOTO_remove(nombre);
+  showToast('info', 'Foto quitada', `${nombre.split(' ')[0]} vuelve a su inicial (o a la foto que suba él mismo).`);
+  ADMFOTOS_render();
+}
+
 const COND_NOTA_SIN_ALMUERZO_PREFIJO = 'Almuerzo eliminado por condición especial';
 function COND_registrarSinAlmuerzo(norm, fechasSemana, sinAlmuerzo) {
   const all = BRK_load();
@@ -10887,9 +11283,12 @@ function COMP_open(tipo) {
   } else {
     listEl.innerHTML = coincidencias.map(c => `
       <div class="team-row">
-        <div>
-          <div class="team-row-name">${c.nombre}</div>
-          <div class="team-row-sub">${cfg.titulo} a las ${c.horas.join(' y ')}</div>
+        <div class="fp-row-main">
+          ${ADMFOTO_avatarHTML(c.nombre, true)}
+          <div>
+            <div class="team-row-name">${c.nombre}</div>
+            <div class="team-row-sub">${cfg.titulo} a las ${c.horas.join(' y ')}</div>
+          </div>
         </div>
         <div class="team-row-badge activo">${cfg.icon} ${c.horas.join(' · ')}</div>
       </div>`).join('');
