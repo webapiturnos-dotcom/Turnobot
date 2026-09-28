@@ -1530,7 +1530,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
 <div id="modo-asesor-banner" style="position: fixed; left: 0px; right: 0px; top: 0px; z-index: 9998; background: var(--rojo); color: rgb(255, 255, 255); font-size: 12px; font-weight: 600; padding: 8px 14px; display: none; align-items: center; justify-content: space-between; gap: 10px;">
-  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: JENNIFER — lo que hagas aquí es real (queda a su nombre)</span>
+  <span id="modo-asesor-banner-text">🕵️ Modo Asesor: NEVIS — lo que hagas aquí es real (queda a su nombre)</span>
   <button type="button" onclick="TEAM_salirModoAsesor()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Salir</button>
 </div>
 
@@ -1840,7 +1840,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 27/09/2026 · 1803</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 27/09/2026 · 2110</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -1945,7 +1945,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">⚖️</div><div class="activity-text">Se fijó el sábado de <strong>CARLOS</strong> y se redistribuyó su semana</div><div class="activity-time">19:31</div><button type="button" class="activity-del-btn" data-aid="30" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">⚖️</div><div class="activity-text">Se fijó el sábado de <strong>CARLOS</strong> y se redistribuyó su semana</div><div class="activity-time">19:30</div><button type="button" class="activity-del-btn" data-aid="29" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">19:28</div><button type="button" class="activity-del-btn" data-aid="28" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">19:28</div><button type="button" class="activity-del-btn" data-aid="27" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">19:28</div><button type="button" class="activity-del-btn" data-aid="26" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="15" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="14" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="13" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno del 28/09/2026</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="10" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno del 28/09/2026</div><div class="activity-time">21:16</div><button type="button" class="activity-del-btn" data-aid="9" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -2071,7 +2071,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
       </div>
 
       <!-- ── Calculadora de horas reales (propia, visible solo para asesores) ── -->
-      <div class="breaks-panel" id="mi-calc-panel" style="display:none">
+      <div class="breaks-panel" id="mi-calc-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🧮 Calculadora de Horas Reales</div>
           <div class="section-sub">Elige un rango de días y desmarca los que no quieras contar. El total ya descuenta breaks y almuerzo.</div>
@@ -2086,8 +2086,32 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="date" class="form-input" id="micalc-hasta" onchange="MICALC_generarDias()">
           </div>
         </div>
-        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"></div>
-        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 0h 0m</div>
+        <div id="micalc-dias-list" class="consultas-list" style="margin-top:8px"><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="420" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">lun, 28/09</span>
+      <span style="color:var(--gris);font-size:11px">7h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">mar, 29/09</span>
+      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">mié, 30/09</span>
+      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">jue, 01/10</span>
+      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="480" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">vie, 02/10</span>
+      <span style="color:var(--gris);font-size:11px">8h 0m</span>
+    </label><label class="consulta-item" style="cursor:pointer">
+      <input type="checkbox" class="micalc-dia-chk" data-min="240" onchange="MICALC_actualizarTotal()" style="width:auto;margin-right:8px" checked="">
+      <span style="flex:1">sáb, 03/10</span>
+      <span style="color:var(--gris);font-size:11px">4h 0m</span>
+    </label></div>
+        <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 43h 0m (6 de 6 días)</div>
       </div>
 
       <!-- ── Panel de administración: selector tipo "Home de Novedades" ──
@@ -2201,7 +2225,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">07:28 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">KATHERINE PAOLA ARIAS JARAMILLO</span><span style="color:var(--gris);font-size:11px">06:57 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:16 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">09:14 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">21:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">21:16</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">21:14</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -2286,112 +2310,12 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <input type="text" class="form-input" id="team-filter" placeholder="Buscar nombre..." oninput="TEAM_render()">
           </div>
         </div>
-        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ADRIANA ANILLO BOLÍVAR" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ALEXANDRA HURTADO BARROSO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ANDREA CAROLINA AGUERO ARENAS" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como BRIANIS MILETH TORRES MÁRQUEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CARLOS ENRIQUE GUZMAN JIMENEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como CINDY PATRICIA ALVAREZ GUTIERREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">CINDY PATRICIA ALVAREZ GUTIERREZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como ELIACID DAVID SANDOVAL PORRAS" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como EVERLIN SANDRY MORENO LOPEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como GREY MAR NORIEGA ALGARIN" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">GREY MAR NORIEGA ALGARIN</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JENNIFER MORALES MENDOZA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JENNIFER MORALES MENDOZA</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JOCELINE CAROLINE DE LA ROSA GOMEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JUAN DAVID ECHEVERRIA PRINCE" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como JULIETH PAOLA PERALTA MARTINEZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KAREN LISETH DE LA ASUNCION CERVANTES" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHERINE PAOLA ARIAS JARAMILLO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como KATHY MORALES SUÁREZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">KATHY MORALES SUÁREZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MARIA DE LOS ANGELES PANTOJA DE LA HOZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como MELANYS DANIELA SOBRINO DE LA HOZ" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
+        <div class="team-list" id="team-list"><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como NEVIS CAROLINA JIMENEZ MARMOL" style="cursor: pointer;">
       <div>
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
+        <div class="team-row-sub">12:00 p. m. → 7:00 p. m.</div>
       </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como VIVIANA ESTER CUMPLIDO VALENCIA" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div><div class="team-row" title="Toca para entrar en Modo Asesor y navegar como YULISSA LILIANA PEREZ SALCEDO" style="cursor: pointer;">
-      <div>
-        <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">No hay turno para esa fecha</div>
-      </div>
-      <div class="team-row-badge sindatos">Sin datos</div></div></div>
+      <div class="team-row-badge activo">Activo</div></div></div>
 
         <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) ── -->
         <div style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
@@ -2596,13 +2520,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
             <div class="form-group" style="flex:1;margin:0">
               <label class="form-label">Pausa A</label>
               <select class="form-input" id="brk-pausa-a">
-                <option value="0" selected>Break 1</option><option value="1">Break 2</option><option value="2">Almuerzo</option>
+                <option value="0" selected="">Break 1</option><option value="1">Break 2</option><option value="2">Almuerzo</option>
               </select>
             </div>
             <div class="form-group" style="flex:1;margin:0">
               <label class="form-label">Pausa B</label>
               <select class="form-input" id="brk-pausa-b">
-                <option value="0">Break 1</option><option value="1" selected>Break 2</option><option value="2">Almuerzo</option>
+                <option value="0">Break 1</option><option value="1" selected="">Break 2</option><option value="2">Almuerzo</option>
               </select>
             </div>
           </div>
@@ -2613,7 +2537,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
 
         <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;cursor:pointer">
-          <input type="checkbox" id="brk-ajustar-horas" checked style="width:18px;height:18px">
+          <input type="checkbox" id="brk-ajustar-horas" checked="" style="width:18px;height:18px">
           <span>Ajustar la columna Horas cuando se quite o se agregue el almuerzo (1 h)</span>
         </label>
 
@@ -3933,7 +3857,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -4097,11 +4021,11 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  01/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  02/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   4:30:00 p. m.   10:00:00 a. m.   2:30:00 p. m.   12:00:00 p. m.   7:30:00
  03/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   12:00:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
- 28/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:00:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:00:00
- 29/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
-30/09/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
- 01/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
- 02/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   7:30:00
+28/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	12:00:00	p.	m.	7:00:00	p.	m.	1:40:00	p.	m.	5:10:00	p.	m.	12:00:00	a.	m.	7:00:00
+29/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+30/09/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+01/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
+02/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:05:00	p.	m.	4:35:00	p.	m.	2:15:00	p.	m.	8:00:00
  03/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   11:00:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:00:00
  28/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   5:00:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   8:00:00
  29/09/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   4:30:00 p. m.   10:15:00 a. m.   2:45:00 p. m.   1:00:00 p. m.   7:30:00
@@ -6943,7 +6867,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-27.2112';
+const TB_APP_VERSION = '2026-09-27.2117';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8901,7 +8825,7 @@ function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fe
 //   en un registro aparte (igual que HORAS_registrar) que también se hornea.
 // ══════════════════════════════════════════════════
 const BREAKS_KEY = 'tb_breaks_v1';
-const TB_BREAKS_DEFAULT = {};
+const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]}};
 const BRK_LABELS = ['Break 1', 'Break 2', 'Salida almuerzo'];   // = MALLA_AUX_LABEL
 const BRK_NOMBRES = ['Break 1', 'Break 2', 'Almuerzo'];
 const BRK_DUR = [15, 15, 60];                                   // minutos
