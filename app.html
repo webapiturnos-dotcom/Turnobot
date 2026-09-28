@@ -2236,6 +2236,12 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         <button class="btn btn-secondary w-full" style="margin-top:10px" onclick="MALLA_downloadOfficeBtnClick()">
           🏢 Descargar HTML de Oficina (sin conexiones, para intranet)
         </button>
+        <button type="button" class="btn btn-secondary w-full" style="margin-top:10px" onclick="TERMUX_copiarComando()">
+          📋 Copiar comando de publicación (Termux)
+        </button>
+        <div class="malla-status" style="margin-top:6px;font-size:11px;line-height:1.5;">
+          Un toque copia el comando completo. Pégalo en Termux: crea/actualiza <b>publicar.sh</b> y lo ejecuta. Toma el archivo <b>~/storage/downloads/Turno.html</b>; si tu descarga tiene otro nombre, ejecuta después <b>~/milleapp/publicar.sh ruta/del/archivo.html</b>.
+        </div>
         <button type="button" id="buzon-toggle-btn" class="btn btn-primary w-full" style="margin-top:10px" onclick="BUZON_toggleEnabled()">✅ Habilitar Buzón</button>
       </div>
 
@@ -2538,7 +2544,7 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
         </div>
         <button class="btn btn-primary w-full" onclick="COND_aplicar()">✅ Fijar ese día y redistribuir la semana</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
-          El día elegido queda con salida fija y exactamente las horas máximas indicadas; lo que se le quita se reparte entre los demás días de esa semana (entran más temprano o salen más tarde) sin pasar el tope, y ningún día baja de 4 horas. Los breaks y el almuerzo de todos los días tocados se reubican según el patrón global. Puedes guardar la condición para reaplicarla otras semanas.
+          El día elegido queda con salida fija y exactamente las horas máximas indicadas; lo que se le quita se reparte entre los demás días de esa semana (entran más temprano o salen más tarde) sin pasar el tope, y ningún día baja de 4 horas. Los breaks y el almuerzo de todos los días tocados se reubican según el patrón global; si un día queda en 7 horas o menos se elimina el almuerzo, quedan solo los breaks y esa hora se suma al horario (columna Horas). Puedes guardar la condición para reaplicarla otras semanas.
         </div>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="COND_guardar()">💾 Guardar esta condición para reutilizarla</button>
         <div id="cond-guardadas-list" class="consultas-list" style="margin-top:10px"></div>
@@ -6937,7 +6943,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-27.2053';
+const TB_APP_VERSION = '2026-09-27.2110';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8575,8 +8581,15 @@ function TB_ponerPlaceholderAux(sched, gi) {
 // solo cabe Break 1; hasta 6h, Break 1 + Almuerzo; de ahí para arriba, las
 // 3 pausas. Así un día que se acorta mucho (p. ej. la condición especial)
 // no termina con 3 pausas apretadas en una jornada corta.
-function TB_recalcularAux(sched, entradaMin, duracion, patron) {
-  const habilitado = [true, duracion > 360, duracion > 240]; // BreakI, BreakII, Almuerzo
+function TB_recalcularAux(sched, entradaMin, duracion, patron, opts) {
+  let habilitado = [true, duracion > 360, duracion > 240]; // BreakI, BreakII, Almuerzo
+  // Regla de la condición especial: con una jornada de 7 h o menos (umbral en
+  // opts.sinAlmuerzoHasta, en minutos) se elimina el almuerzo y solo quedan los
+  // breaks (Break II cabe desde más de 4 h). La hora del almuerzo NO se descuenta
+  // de la columna Horas (ver hayAlmuerzo más abajo), o sea, queda sumada al horario.
+  if (opts && opts.sinAlmuerzoHasta != null && duracion <= opts.sinAlmuerzoHasta) {
+    habilitado = [true, duracion > 240, false];
+  }
   const orden = [0, 2, 1]; // el almuerzo (gi=2) manda antes que Break2 (gi=1) en la convención de conteo
   for (const gi of orden) {
     const base = 6 + gi * 3;
@@ -8653,7 +8666,7 @@ function TB_ajustarLinea(lines, i, tipo, modo, minutos, opts) {
   sched[3] = tokS[0]; sched[4] = tokS[1]; sched[5] = tokS[2];
 
   if (recalcularBreaks && sched.length >= 15) {
-    TB_recalcularAux(sched, entradaMin, nuevaDuracion, opts.patron || TB_calcularPatronGlobal());
+    TB_recalcularAux(sched, entradaMin, nuevaDuracion, opts.patron || TB_calcularPatronGlobal(), opts);
   }
 
   if (horasNetaOriginal != null) {
@@ -10313,6 +10326,18 @@ function MOVER_aplicar() {
 //   reutiliza TB_ajustarLinea para que el break/almuerzo de cada día
 //   tocado también se reubique según el patrón global.
 // ══════════════════════════════════════════════════
+// Jornada (entrada→salida) igual o menor a este tope: sin almuerzo, solo breaks.
+const COND_SIN_ALMUERZO_MIN = 7 * 60;
+// ¿Esa línea tiene almuerzo asignado? (true/false, o null si no se reconoce el formato)
+function TB_lineaTieneAlmuerzo(lines, i) {
+  const tokens = lines[i].trim().split(/\s+/);
+  const rest = tokens.slice(2);
+  let idx = rest.findIndex(t => TB_esTokenHora(t));
+  if (idx === -1) return null;
+  const sched = rest.slice(idx);
+  if (sched.length < 15) return null;
+  return !TB_esAuxPlaceholder(sched.slice(12, 15));
+}
 function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSalidaStr, horasMax, capOtrosDias) {
   const canon = MALLA_matchName(nombreInput);
   if (!canon || diaSemana == null || !semanaRefISO || !horaSalidaStr || !horasMax) return { ok: false, motivo: 'datos' };
@@ -10344,6 +10369,13 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
 
   const patron = TB_calcularPatronGlobal();
 
+  // Estado del almuerzo ANTES de tocar nada, para saber qué días lo pierden.
+  const almuerzoAntes = {};
+  fechasSemana.forEach(iso => {
+    const li = TB_buscarLineaIndex(lines, iso, norm);
+    if (li !== -1) almuerzoAntes[iso] = TB_lineaTieneAlmuerzo(lines, li);
+  });
+
   // Reescribe directamente la línea del día fijo con la nueva entrada/
   // salida exactas (no usa TB_ajustarLinea porque aquí no "quitamos" ni
   // "sumamos" minutos: fijamos un horario absoluto).
@@ -10358,7 +10390,7 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
     const tokS = TB_minToTimeTokens(salidaObjetivoMin);
     sched[0] = tokE[0]; sched[1] = tokE[1]; sched[2] = tokE[2];
     sched[3] = tokS[0]; sched[4] = tokS[1]; sched[5] = tokS[2];
-    if (sched.length >= 15) TB_recalcularAux(sched, entradaObjetivoMin, horasMaxMin, patron);
+    if (sched.length >= 15) TB_recalcularAux(sched, entradaObjetivoMin, horasMaxMin, patron, { sinAlmuerzoHasta: COND_SIN_ALMUERZO_MIN });
     const lastIdx = sched.length - 1;
     if (lastIdx >= 6 && TB_esTokenHora(sched[lastIdx]) && !TB_esTokenAmPm(sched[lastIdx - 1])) {
       // Regla de la malla: Horas = entrada→salida menos 1 h SOLO si ese día hay almuerzo.
@@ -10373,7 +10405,7 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
   // fijo ganó horas frente a lo que tenía).
   let restante = duracionOriginalObjetivo - horasMaxMin;
   const otrosDias = fechasSemana.filter(iso => iso !== fechaObjetivo);
-  const ajusteOpts = { capHorasDia: capOtrosDias, pisoHorasDia: 4, recalcularBreaks: true, patron };
+  const ajusteOpts = { capHorasDia: capOtrosDias, pisoHorasDia: 4, recalcularBreaks: true, patron, sinAlmuerzoHasta: COND_SIN_ALMUERZO_MIN };
   const detalle = [];
 
   for (const iso of otrosDias) {
@@ -10398,6 +10430,17 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
     }
   }
 
+  // Días que perdieron el almuerzo por quedar en 7 h o menos.
+  const sinAlmuerzo = [];
+  fechasSemana.forEach(iso => {
+    const li = TB_buscarLineaIndex(lines, iso, norm);
+    if (li === -1) return;
+    if (almuerzoAntes[iso] === true && TB_lineaTieneAlmuerzo(lines, li) === false) {
+      const dur = TB_duracionLinea(lines, li);
+      sinAlmuerzo.push({ fecha: iso, horas: dur != null ? dur : null });
+    }
+  });
+
   const newRaw = lines.join('\n');
   const parsed = MALLA_parseText(newRaw);
   if (!parsed.length) return { ok: false, motivo: 'parseo' };
@@ -10408,10 +10451,57 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
   MALLA_persist();
   MALLA_refreshStatus();
 
+  // Nota del día (se hornea con TB_BREAKS_DEFAULT: viaja a la versión web y a la de oficina).
+  try { COND_registrarSinAlmuerzo(norm, fechasSemana, sinAlmuerzo); } catch (e) { console.error('COND_registrarSinAlmuerzo error:', e); }
+
   // Etiquetas: el día fijo y cada día que recibió/cedió horas quedan marcados con el día de origen/destino.
   try { HORAS_registrarCondicion(fechaObjetivo, norm, detalle, duracionOriginalObjetivo - horasMaxMin, fechasSemana); } catch (e) { console.error('HORAS_registrarCondicion error:', e); }
 
-  return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle };
+  return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle, sinAlmuerzo };
+}
+
+// ── Comando de publicación para Termux (copiar con un toque desde el panel) ──
+// El "V" de la versión va como escape \u0056 a propósito: así el sed del propio
+// script no toca este texto al reemplazar la constante de versión en app.html.
+const TERMUX_PUBLICAR_CMD = "cat > ~/milleapp/publicar.sh << 'EOF'\n#!/data/data/com.termux/files/usr/bin/bash\nset -e\n\nREPO_DIR=~/milleapp\nREPO_URL=\"https://github.com/webapiturnos-dotcom/Turnobot.git\"\nSOURCE_HTML=${1:-~/storage/downloads/Turno.html}\n\necho \"== Verificando entorno ==\"\n\nif ! command -v git >/dev/null 2>&1; then\n  pkg install -y git\nfi\n\nif [ ! -d ~/storage ]; then\n  termux-setup-storage\n  sleep 2\nfi\n\nif [ -z \"$(git config --global user.email)\" ]; then\n  git config --global user.name \"Moi\"\n  git config --global user.email \"moi@turnobot.local\"\nfi\n\nif [ -z \"$(git config --global credential.helper)\" ]; then\n  git config --global credential.helper store\nfi\n\nif [ ! -d \"$REPO_DIR/.git\" ]; then\n  mkdir -p \"$REPO_DIR\"\n  cd \"$REPO_DIR\"\n  git init\n  git branch -M main\n  git remote add origin \"$REPO_URL\"\nelse\n  cd \"$REPO_DIR\"\n  git remote set-url origin \"$REPO_URL\"\nfi\n\necho \"== Publicando ==\"\n\nif [ ! -f \"$SOURCE_HTML\" ]; then\n  echo \"No encontré el archivo: $SOURCE_HTML\"\n  exit 1\nfi\n\nVERSION=$(date +%Y-%m-%d.%H%M)\n\ncp \"$SOURCE_HTML\" app.html\nsed -i \"s/const TB_APP_\u0056ERSION = '[^']*';/const TB_APP_\u0056ERSION = '$VERSION';/\" app.html\n\ncat > index.html << 'SHELL'\n<!DOCTYPE html>\n<html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>TurnoBot · MPC<\/title><\/head>\n<body style=\"background:#000;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0\">\n<div>Cargando…<\/div>\n<script>\nasync function boot() {\n  // Purga cualquier Service Worker y caché viejos de versiones anteriores de esta PWA\n  if ('serviceWorker' in navigator) {\n    const regs = await navigator.serviceWorker.getRegistrations();\n    for (const r of regs) await r.unregister();\n  }\n  if ('caches' in window) {\n    const keys = await caches.keys();\n    for (const k of keys) await caches.delete(k);\n  }\n  fetch('app.html?t=' + Date.now(), { cache: 'no-store' })\n    .then(r => r.text())\n    .then(html => { document.open(); document.write(html); document.close(); })\n    .catch(() => { document.body.innerHTML = '<div style=\"text-align:center\">No se pudo cargar. Revisa tu conexión y desliza para recargar.<\/div>'; });\n}\nboot();\n<\/script>\n<\/body><\/html>\nSHELL\n\ngit add app.html index.html\ngit commit -m \"Actualiza malla $VERSION\" || echo \"Sin cambios nuevos, se sube igual por si acaso\"\ngit push -u origin main\n\necho \"Publicado: https://webapiturnos-dotcom.github.io/Turnobot/  (versión $VERSION)\"\nEOF\nchmod +x ~/milleapp/publicar.sh\n~/milleapp/publicar.sh\n";
+function TERMUX_copiarComando() {
+  const ok = () => showToast('success', '📋 Comando copiado', 'Ábrelo en Termux, pega y presiona Enter.');
+  const fallback = () => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = TERMUX_PUBLICAR_CMD;
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      const done = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (done) ok(); else showToast('error', '❌ No se pudo copiar', 'Tu navegador bloqueó el portapapeles.');
+    } catch (e) { showToast('error', '❌ No se pudo copiar', 'Tu navegador bloqueó el portapapeles.'); }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(TERMUX_PUBLICAR_CMD).then(ok).catch(fallback);
+  } else fallback();
+}
+
+const COND_NOTA_SIN_ALMUERZO_PREFIJO = 'Almuerzo eliminado por condición especial';
+function COND_registrarSinAlmuerzo(norm, fechasSemana, sinAlmuerzo) {
+  const all = BRK_load();
+  // Notas de una aplicación anterior de esta misma persona y semana se reemplazan.
+  (fechasSemana || []).forEach(iso => {
+    const e = all[`${iso}|${norm}`];
+    if (e && e.notas) {
+      e.notas = e.notas.filter(t => !String(t).startsWith(COND_NOTA_SIN_ALMUERZO_PREFIJO));
+      if (!e.notas.length && !e.unif) delete all[`${iso}|${norm}`];
+    }
+  });
+  (sinAlmuerzo || []).forEach(d => {
+    const key = `${d.fecha}|${norm}`;
+    const e = all[key] || { unif: null, notas: [] };
+    const horasTxt = d.horas != null ? HORAS_fmtMin(d.horas) : '7h o menos';
+    e.notas = (e.notas || []).concat(`${COND_NOTA_SIN_ALMUERZO_PREFIJO}: jornada de ${horasTxt} sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)`).slice(-4);
+    all[key] = e;
+  });
+  BRK_save(all);
 }
 
 function COND_populate() {
@@ -10457,7 +10547,7 @@ function COND_aplicar() {
   if (Math.abs(res.restanteSinAsignar) >= 1) {
     showToast('info', '⚠️ Aplicado parcialmente', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}), pero quedaron ${Math.round(Math.abs(res.restanteSinAsignar))} min sin poder redistribuir sin pasar el tope. Revisa esa semana manualmente.`);
   } else {
-    showToast('success', '✅ Condición aplicada', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}). El resto de la semana se ajustó sin pasar ${f.capOtros}h/día.`);
+    showToast('success', '✅ Condición aplicada', `${primerNombre} quedó fijo el ${DIAS_SEMANA_LABEL[f.diaSemana]} (${f.horasMax}h hasta las ${f.horaSalida}). El resto de la semana se ajustó sin pasar ${f.capOtros}h/día.${res.sinAlmuerzo && res.sinAlmuerzo.length ? ` Se quitó el almuerzo en ${res.sinAlmuerzo.length} día(s) de 7h o menos.` : ''}`);
   }
   if (typeof fase2AddActivity === 'function') {
     fase2AddActivity('⚖️', `Se fijó el ${DIAS_SEMANA_LABEL[f.diaSemana]} de <strong>${primerNombre}</strong> y se redistribuyó su semana`, 'cambio');
