@@ -427,6 +427,44 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   #tb-eva-platform { right: 8px; bottom: 74px; width: 44px; font-size: 9px; }
 }
 
+/* ── EVA en modo aviso (SOLO versión de oficina): se va al centro, más grande,
+   habla en sincronía con la voz y vibra hasta que el asesor pulse Aceptar ── */
+#tb-eva-alert-back { display:none; position:fixed; inset:0; z-index:99980; background:rgba(5,10,20,.74); backdrop-filter:blur(3px); }
+body.tb-eva-alerta #tb-eva-alert-back { display:block; }
+#tb-eva-wrap.tb-eva-alerta {
+  top:0; left:0; right:0; bottom:0; margin:auto;
+  width:170px; height:212px; z-index:99981;
+  filter: drop-shadow(0 10px 22px rgba(34,195,242,.55));
+  animation: tbEvaFloat 1.8s ease-in-out infinite;
+}
+#tb-eva-wrap.tb-eva-alerta .tb-eva-bubble { display:none; }
+#tb-eva-wrap.tb-eva-hablando #tb-eva-mouth { opacity:1; transform-origin:60px 50px; animation: tbEvaTalk .26s ease-in-out infinite; }
+#tb-eva-wrap.tb-eva-hablando #tb-eva-eyes { animation: tbEvaGlow .45s ease-in-out infinite alternate; }
+#tb-eva-wrap.tb-eva-hablando #tb-eva-arm-left,
+#tb-eva-wrap.tb-eva-hablando #tb-eva-arm-right { animation-duration: .8s; }
+@keyframes tbEvaTalk { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1.6); } }
+@keyframes tbEvaGlow { from { filter: brightness(1); } to { filter: brightness(1.7); } }
+@keyframes tbEvaShake {
+  0%,100% { transform: translateX(0) rotate(0); }
+  15% { transform: translateX(-9px) rotate(-3deg); }
+  30% { transform: translateX(9px) rotate(3deg); }
+  45% { transform: translateX(-7px) rotate(-2deg); }
+  60% { transform: translateX(7px) rotate(2deg); }
+  80% { transform: translateX(-3px); }
+}
+#tb-eva-wrap.tb-eva-vibra #tb-eva-svg,
+#tb-eva-alert-panel.tb-eva-vibra .tb-eva-alert-text { animation: tbEvaShake .7s ease-in-out 1; }
+#tb-eva-alert-panel { display:none; position:fixed; left:50%; top:calc(50% + 120px); transform:translateX(-50%); z-index:99982; width:min(440px,92vw); text-align:center; color:#fff; font-family:var(--font-body,sans-serif); }
+body.tb-eva-alerta #tb-eva-alert-panel { display:block; }
+.tb-eva-alert-title { font-family:var(--font-display,inherit); font-weight:800; font-size:18px; }
+.tb-eva-alert-text { background:#fff; color:#0b1c33; border-radius:14px; padding:12px 16px; font-size:16px; font-weight:700; line-height:1.35; box-shadow:0 8px 24px rgba(0,0,0,.4); margin:8px 0 10px; }
+.tb-eva-alert-hint { display:none; font-size:12px; color:#ffb454; margin-bottom:8px; }
+#tb-eva-alert-panel.sin-voz .tb-eva-alert-hint { display:block; }
+.tb-eva-alert-btns { display:flex; gap:10px; justify-content:center; }
+.tb-eva-alert-btns button { border:0; border-radius:12px; padding:11px 20px; font-size:15px; font-weight:800; cursor:pointer; color:#fff; }
+.tb-eva-alert-listen { background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3) !important; }
+.tb-eva-alert-ok { background:linear-gradient(135deg,#22c3f2,#0a6ea8); box-shadow:0 4px 14px rgba(34,195,242,.5); animation: tbPlatPulse 1.4s ease-in-out infinite; }
+
 /* ── EVA Arcade: minijuegos para el rato ── */
 .arcade-overlay {
   position: fixed; inset: 0; z-index: 10000;
@@ -1581,6 +1619,18 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 </div>
 
 <div id="tb-eva-platform" onclick="ARCADE_open()" role="button" aria-label="Jugar minijuegos con EVA" style="display: block;">🕹️<br>Jugar</div>
+
+<!-- ── Aviso de EVA (solo se activa en la versión de oficina; ver EVA_alertaIniciar) ── -->
+<div id="tb-eva-alert-back"></div>
+<div id="tb-eva-alert-panel">
+  <div class="tb-eva-alert-title" id="tb-eva-alert-title">🔔 Aviso de turno</div>
+  <div class="tb-eva-alert-text" id="tb-eva-alert-text"></div>
+  <div class="tb-eva-alert-hint">El navegador bloqueó la voz automática. Toca “Escuchar”.</div>
+  <div class="tb-eva-alert-btns">
+    <button type="button" class="tb-eva-alert-listen" onclick="EVA_alertaEscuchar()">🔊 Escuchar</button>
+    <button type="button" class="tb-eva-alert-ok" onclick="EVA_alertaAceptar()">✅ Aceptar</button>
+  </div>
+</div>
 
 <!-- ── EVA Arcade: minijuegos cortos para el rato en el trabajo. Vive
      aparte de la app (overlay de pantalla completa) y no toca ninguna
@@ -7154,7 +7204,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-28.1643';
+const TB_APP_VERSION = '2026-09-28.1918';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -9601,7 +9651,7 @@ function VOZ_elegirVoz() {
 
 // Devuelve una promesa: true si el navegador empezó a hablar, false si lo bloqueó
 // (o no hay voz disponible). No lanza errores.
-function VOZ_hablar(texto) {
+function VOZ_hablar(texto, opciones) {
   return new Promise(resolve => {
     try {
       if (!VOZ_disponible()) return resolve(false);
@@ -9615,8 +9665,10 @@ function VOZ_hablar(texto) {
       u.pitch = VOZ_esFemenina(voz) ? 1 : 1.3; // si no hay voz femenina reconocible, se sube el tono
       let listo = false;
       const fin = ok => { if (!listo) { listo = true; resolve(ok); } };
-      u.onstart = () => { VOZ_State.desbloqueada = true; fin(true); };
-      u.onerror = () => fin(false);
+      const cb = n => { try { if (opciones && typeof opciones[n] === 'function') opciones[n](); } catch {} };
+      u.onstart = () => { VOZ_State.desbloqueada = true; fin(true); cb('onstart'); };
+      u.onend = () => cb('onend');
+      u.onerror = () => { fin(false); cb('onend'); };
       speechSynthesis.speak(u);
       setTimeout(() => fin(false), 2000);
     } catch (e) { console.error('VOZ_hablar error:', e); resolve(false); }
@@ -9692,6 +9744,12 @@ function NOTI_parpadearTitulo(titulo) {
 
 // Aviso completo: tarjeta interna + notificación del sistema + vibración + voz.
 async function AVISO_lanzar(titulo, texto) {
+  // Versión de OFICINA: EVA se va al centro, habla y repite cada 10 s hasta que se pulse Aceptar.
+  if (TB_MODO_OFICINA_DEFAULT && typeof EVA_alertaIniciar === 'function') {
+    NOTI_sistema(titulo, texto);
+    NOTI_parpadearTitulo(titulo);
+    return EVA_alertaIniciar(titulo, texto);
+  }
   const card = NOTI_interna(titulo, texto);
   NOTI_sistema(titulo, texto);
   try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch {}
@@ -9822,9 +9880,19 @@ function TB_LOCK_evaluar() {
   try {
     if (!TB_MODO_OFICINA_DEFAULT) return;
     const u = currentUser;
-    if (u && !u.isAdmin && !u.isDelegated) {
-      const fin = TB_LOCK_finTurno(u);
-      if (fin && fin > TB_LOCK_leer(TB_LOCK_KEY)) TB_LOCK_escribir(TB_LOCK_KEY, fin);
+    const prov = TB_LOCK_leer(TB_LOCK_PROV_KEY) === 1;   // candado armado "desde que se abrió"
+    if (u) {
+      if (u.isAdmin || u.isDelegated) {
+        if (prov) { TB_LOCK_escribir(TB_LOCK_KEY, 0); TB_LOCK_escribir(TB_LOCK_PROV_KEY, 0); }   // el admin entra libre
+      } else {
+        const fin = TB_LOCK_finTurno(u);
+        if (prov) {
+          // Ya se sabe quién entró: el candado pasa a durar hasta el fin de SU turno
+          // (si no tiene turno pendiente, se libera).
+          TB_LOCK_escribir(TB_LOCK_KEY, fin || 0);
+          TB_LOCK_escribir(TB_LOCK_PROV_KEY, 0);
+        } else if (fin && fin > TB_LOCK_leer(TB_LOCK_KEY)) TB_LOCK_escribir(TB_LOCK_KEY, fin);
+      }
     }
     TB_LOCK_pintar();
   } catch (e) { console.error('TB_LOCK_evaluar error:', e); }
@@ -9842,7 +9910,9 @@ function TB_LOCK_pintar() {
     document.body.appendChild(pill);
   }
   const hasta = new Date(TB_LOCK_leer(TB_LOCK_KEY));
-  pill.textContent = `🔒 Pestaña bloqueada hasta las ${BRK_fmtHora(hasta.getHours() * 60 + hasta.getMinutes())} · Autorizar salida`;
+  pill.textContent = TB_LOCK_leer(TB_LOCK_PROV_KEY) === 1
+    ? '🔒 Pestaña bloqueada · Autorizar salida'
+    : `🔒 Pestaña bloqueada hasta las ${BRK_fmtHora(hasta.getHours() * 60 + hasta.getMinutes())} · Autorizar salida`;
 }
 function TB_LOCK_verificarAdmin(usuario, pin) {
   const n = String(usuario || '').trim().toLowerCase();
@@ -9875,6 +9945,7 @@ function TB_LOCK_pedirAutorizacion() {
     const u = m.querySelector('#tb-lock-user').value, pin = m.querySelector('#tb-lock-pin').value;
     if (TB_LOCK_verificarAdmin(u, pin)) {
       TB_LOCK_escribir(TB_LOCK_OK_KEY, TB_LOCK_leer(TB_LOCK_KEY));
+      TB_LOCK_escribir(TB_LOCK_PROV_KEY, 0);
       TB_LOCK_State.fallos = 0;
       cerrar(); TB_LOCK_pintar();
       if (typeof showToast === 'function') showToast('success', '🔓 Salida autorizada', 'Ya se puede cerrar la pestaña.');
@@ -9889,7 +9960,21 @@ function TB_LOCK_pedirAutorizacion() {
   m.querySelector('#tb-lock-pin').addEventListener('keydown', ev => { if (ev.key === 'Enter') enviar(); });
   setTimeout(() => { const i = m.querySelector('#tb-lock-user'); if (i) i.focus(); }, 50);
 }
+// Candado "desde que se abre": en la versión de oficina queda armado desde el primer
+// segundo (aunque aún nadie haya iniciado sesión). Al entrar un asesor pasa a durar hasta
+// el fin de su turno; si entra el admin (o el asesor no tiene turno pendiente) se libera.
+const TB_LOCK_PROV_KEY = 'tb_lock_prov_v1';
+const TB_LOCK_PROV_MS = 12 * 3600 * 1000;
+function TB_LOCK_armarAlAbrir() {
+  try {
+    if (!TB_MODO_OFICINA_DEFAULT) return;
+    if (TB_LOCK_leer(TB_LOCK_KEY) > Date.now()) return;   // ya hay un candado vigente en esta pestaña
+    TB_LOCK_escribir(TB_LOCK_KEY, Date.now() + TB_LOCK_PROV_MS);
+    TB_LOCK_escribir(TB_LOCK_PROV_KEY, 1);
+  } catch {}
+}
 if (TB_MODO_OFICINA_DEFAULT) {
+  TB_LOCK_armarAlAbrir();
   window.addEventListener('beforeunload', e => {
     if (!TB_LOCK_activo()) return;
     e.preventDefault();
@@ -9921,6 +10006,7 @@ function TB_EVA_mostrarBurbuja(texto) {
   TB_EVA_bubbleTimer = setTimeout(() => bubble.classList.remove('show'), 3200);
 }
 function TB_EVA_click() {
+  if (typeof EVA_ALERTA !== 'undefined' && EVA_ALERTA.activa) { EVA_alertaEscuchar(); return; }
   TB_EVA_mostrarBurbuja(TB_EVA_FRASES[Math.floor(Math.random() * TB_EVA_FRASES.length)]);
   TB_EVA_sonreir();
 }
@@ -9934,6 +10020,7 @@ function TB_EVA_setVisible(visible) {
   if (wrap) wrap.style.display = visible ? 'block' : 'none';
   if (plataforma) plataforma.style.display = visible ? 'block' : 'none';
   if (!visible) {
+    if (typeof EVA_ALERTA !== 'undefined' && EVA_ALERTA.activa) EVA_alertaDetener();
     const overlay = document.getElementById('arcade-overlay');
     if (overlay && overlay.classList.contains('tb-arcade-open') && typeof ARCADE_close === 'function') {
       ARCADE_close();
@@ -9950,6 +10037,7 @@ function TB_EVA_sonreir(ms) {
 function TB_EVA_trick() {
   const wrap = document.getElementById('tb-eva-wrap');
   if (!wrap || wrap.classList.contains('tb-eva-trick')) return;
+  if (typeof EVA_ALERTA !== 'undefined' && EVA_ALERTA.activa) return;
   wrap.classList.add('tb-eva-trick');
   TB_EVA_sonreir(1200);
   setTimeout(() => wrap.classList.remove('tb-eva-trick'), 1150);
@@ -10682,9 +10770,107 @@ function TB_EVA_vidaPropia() {
 }
 setTimeout(TB_EVA_vidaPropia, 6000);
 function TB_EVA_hablar() {
+  if (EVA_ALERTA.activa) return; // en modo aviso EVA ya está al centro hablando
   const wrap = document.getElementById('tb-eva-wrap');
   if (wrap) { wrap.style.animation = 'none'; void wrap.offsetWidth; wrap.style.animation = ''; }
   TB_EVA_mostrarBurbuja('🔔 ¡Es hora!');
+}
+
+// ══════════════════════════════════════════════════
+//   EVA EN MODO AVISO (solo versión de OFICINA)
+//   Cuando llega un aviso (break, almuerzo, salida o la prueba), EVA se va al
+//   centro de la pantalla, más grande, mueve la boca mientras suena la voz y
+//   repite el aviso cada 10 s (con vibración) hasta que el asesor pulse Aceptar.
+//   VIBRACIÓN: un PC no tiene motor de vibración. Se hace vibrar lo que sí existe:
+//   navigator.vibrate (celulares/tablets), el rumble de un mando conectado, y un
+//   temblor visual de EVA y del cuadro de texto.
+//   La versión web normal NO se toca: AVISO_lanzar solo llega aquí si
+//   TB_MODO_OFICINA_DEFAULT es true.
+// ══════════════════════════════════════════════════
+const EVA_ALERTA = { activa: false, titulo: '', texto: '', timer: null, hablando: false, token: 0 };
+const EVA_ALERTA_CADA_MS = 10000;
+
+function EVA_alertaVibrar() {
+  try { if (navigator.vibrate) navigator.vibrate([300, 120, 300, 120, 300]); } catch {}
+  try {
+    Array.from((navigator.getGamepads && navigator.getGamepads()) || []).forEach(p => {
+      const a = p && (p.vibrationActuator || (p.hapticActuators && p.hapticActuators[0]));
+      if (a && a.playEffect) a.playEffect('dual-rumble', { duration: 700, strongMagnitude: 1, weakMagnitude: 1 });
+    });
+  } catch {}
+  ['tb-eva-wrap', 'tb-eva-alert-panel'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('tb-eva-vibra'); void el.offsetWidth; el.classList.add('tb-eva-vibra');
+  });
+}
+
+// Habla el aviso y deja a EVA con la boca en movimiento SOLO mientras suena la voz.
+function EVA_alertaHablar() {
+  const yo = ++EVA_ALERTA.token;   // ignora los eventos de una frase anterior que se canceló
+  const wrap = document.getElementById('tb-eva-wrap');
+  const panel = document.getElementById('tb-eva-alert-panel');
+  return VOZ_hablar(EVA_ALERTA.texto, {
+    onstart: () => {
+      if (yo !== EVA_ALERTA.token) return;
+      EVA_ALERTA.hablando = true;
+      if (wrap) wrap.classList.add('tb-eva-hablando');
+      if (panel) panel.classList.remove('sin-voz');
+    },
+    onend: () => {
+      if (yo !== EVA_ALERTA.token) return;
+      EVA_ALERTA.hablando = false;
+      if (wrap) wrap.classList.remove('tb-eva-hablando');
+    }
+  }).then(ok => {
+    if (yo === EVA_ALERTA.token && panel && EVA_ALERTA.activa && !ok && !EVA_ALERTA.hablando) panel.classList.add('sin-voz');
+    return ok;
+  });
+}
+
+function EVA_alertaTick() {
+  if (!EVA_ALERTA.activa) return;
+  EVA_alertaVibrar();
+  if (!EVA_ALERTA.hablando) EVA_alertaHablar();   // si aún está hablando, espera al siguiente ciclo
+}
+
+function EVA_alertaIniciar(titulo, texto) {
+  const wrap = document.getElementById('tb-eva-wrap');
+  if (!wrap) return Promise.resolve(false);
+  EVA_ALERTA.activa = true;
+  EVA_ALERTA.titulo = titulo; EVA_ALERTA.texto = texto;
+  wrap.style.display = 'block';
+  wrap.classList.remove('tb-eva-trick');
+  wrap.classList.add('tb-eva-alerta');
+  const t = document.getElementById('tb-eva-alert-title'), x = document.getElementById('tb-eva-alert-text');
+  if (t) t.textContent = titulo;
+  if (x) x.textContent = texto;
+  document.body.classList.add('tb-eva-alerta');
+  clearInterval(EVA_ALERTA.timer);
+  EVA_ALERTA.timer = setInterval(EVA_alertaTick, EVA_ALERTA_CADA_MS);
+  EVA_alertaVibrar();
+  return EVA_alertaHablar();
+}
+
+function EVA_alertaEscuchar() { VOZ_desbloquear(); EVA_alertaHablar(); }
+
+function EVA_alertaDetener() {
+  EVA_ALERTA.activa = false; EVA_ALERTA.hablando = false; EVA_ALERTA.token++;
+  clearInterval(EVA_ALERTA.timer); EVA_ALERTA.timer = null;
+  try { speechSynthesis.cancel(); } catch {}
+  try { if (navigator.vibrate) navigator.vibrate(0); } catch {}
+  document.body.classList.remove('tb-eva-alerta');
+  const wrap = document.getElementById('tb-eva-wrap');
+  if (wrap) wrap.classList.remove('tb-eva-alerta', 'tb-eva-hablando', 'tb-eva-vibra');
+  const panel = document.getElementById('tb-eva-alert-panel');
+  if (panel) panel.classList.remove('sin-voz', 'tb-eva-vibra');
+}
+
+// Botón Aceptar: silencia la voz, deja de repetir y EVA vuelve a su rincón.
+function EVA_alertaAceptar() {
+  EVA_alertaDetener();
+  TB_EVA_sonreir(1800);
+  TB_EVA_mostrarBurbuja('¡Listo! 👍');
 }
 
 // ── UI: panel "Mover Horas Entre Días" ──
