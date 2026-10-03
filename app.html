@@ -2444,7 +2444,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="malla-status" style="margin-top:10px;font-size:14px;font-weight:700" id="micalc-total">Total real: 0h 0m (0 de 7 días)</div>
       </div>
 
-      <!-- ── Versión de OFICINA: en vez de la calculadora, botón "EVA calcula mis horas" ── -->
+      <!-- ── Web y oficina: en vez de la calculadora, botón "EVA calcula mis horas" ── -->
       <div class="breaks-panel" id="mi-eva-calc-panel" style="display: none;">
         <button type="button" class="btn btn-primary w-full" onclick="EC_abrir()">🤖 EVA calcula mis horas</button>
         <div class="section-sub" style="margin-top:8px;text-align:center">Toca los días que quieres sumar y EVA te dice el total.</div>
@@ -7682,7 +7682,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-03.1734';
+const TB_APP_VERSION = '2026-10-03.1737';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -12589,12 +12589,12 @@ if (TB_MODO_OFICINA_DEFAULT) {
 function EVA_salidaProbar() { EVA_salidaMostrar(true); }
 
 // ══════════════════════════════════════════════════
-//   EVA CALCULA MIS HORAS (solo versión de OFICINA)
+//   EVA CALCULA MIS HORAS (versión web y de oficina)
 //   Reemplaza la calculadora del asesor: EVA se pone grande, pide tocar los días,
 //   de sus manos salen rayos que se quedan unidos a cada día elegido y en su
 //   pancita un monitor va sumando. Con "Listo" alza los brazos y da el total:
 //   = 42h → "no hay errores"; más de 42h → se pone roja, con fuego, y manda a
-//   hablar con Moi; menos de 42h → dice cuánto falta. La web normal no cambia.
+//   hablar con Moi; menos de 42h → dice cuánto falta.
 // ══════════════════════════════════════════════════
 const EC_META_MIN = 42 * 60;
 const EC = { lunes: null, dias: [], sel: new Set(), beams: new Map(), abierto: false, raf: 0, jt: 0, token: 0, hablando: false };
@@ -12603,8 +12603,8 @@ if (TB_MODO_OFICINA_DEFAULT) {
   st.textContent = '#mi-calc-panel{display:none!important}';
   document.head.appendChild(st);
 }
-// Versión WEB: se quita la Calculadora de Horas Reales (la del asesor y la del admin).
-// La versión de oficina no se toca: conserva el admin y "EVA calcula mis horas".
+// Versión WEB: la calculadora clásica del asesor se reemplaza por "EVA calcula mis horas" (igual que en oficina);
+// el bloque de calculadora del admin sigue oculto en la web.
 if (!TB_MODO_OFICINA_DEFAULT) {
   const stw = document.createElement('style');
   stw.textContent = '#mi-calc-panel,#admin-calc-block{display:none!important}';
@@ -12612,7 +12612,7 @@ if (!TB_MODO_OFICINA_DEFAULT) {
 }
 function EC_panelVisible(show) {
   const p = document.getElementById('mi-eva-calc-panel');
-  if (p) p.style.display = (TB_MODO_OFICINA_DEFAULT && show) ? 'block' : 'none';
+  if (p) p.style.display = show ? 'block' : 'none';   // web y oficina: EVA calcula mis horas
 }
 function EC_$(id) { return document.getElementById(id); }
 function EC_iso(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
