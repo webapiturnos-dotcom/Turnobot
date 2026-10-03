@@ -7682,7 +7682,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-03.1737';
+const TB_APP_VERSION = '2026-10-03.1740';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -12677,6 +12677,20 @@ function EC_abrir() {
   const ov = EC_$('ec-overlay'); if (!ov) return;
   VOZ_desbloquear();
   EC.lunes = F3_getWeekRange(MALLA_todayISO()).start;
+  // Si la semana actual no tiene turnos en la malla cargada (p. ej. hoy es sábado y la malla es de la semana
+  // que viene), se abre en la semana más cercana que sí tiene datos: la próxima o, si ya pasó, la última.
+  try {
+    const nom = (typeof MICALC_nombreActual !== 'undefined') ? MICALC_nombreActual : null;
+    const recs = nom ? MALLA_recordsFor(nom).filter(r => TB_horasRealesDia(r) > 0) : [];
+    if (recs.length) {
+      const fin = EC_isoMas(EC.lunes, 6);
+      if (!recs.some(r => r.fechaISO >= EC.lunes && r.fechaISO <= fin)) {
+        const hoy = MALLA_todayISO();
+        const objetivo = recs.find(r => r.fechaISO >= hoy) || recs[recs.length - 1];
+        EC.lunes = F3_getWeekRange(objetivo.fechaISO).start;
+      }
+    }
+  } catch (e) { console.error('EVA calc: semana inicial', e); }
   ov.style.display = 'block'; EC.abierto = true;
   EC_render();
   const n = VOZ_nombreHablado(currentUser && (currentUser.apodo || currentUser.nombre) || '');
