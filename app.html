@@ -677,6 +677,32 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .arcade-libro h2 { margin: 0; font: 600 24px Georgia, serif; color: #fde68a; letter-spacing: 1px; }
 .arcade-libro p { margin: 0; font-size: 13px; color: #a5b4fc; }
 #arcade-libro-lista { width: 100%; }
+
+/* Libro: Trivia */
+.tv-wrap { width: min(94vw, 440px); max-height: 100%; overflow-y: auto; padding: 6px 4px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; color: #e0e7ff; -webkit-overflow-scrolling: touch; align-self: flex-start; }
+.tv-head { text-align: center; padding: 6px 0 2px; }
+.tv-head h2 { margin: 4px 0 2px; font: 600 24px Georgia, serif; color: #fde68a; letter-spacing: .5px; }
+.tv-head p { margin: 2px 0; font-size: 13px; color: #a5b4fc; }
+.tv-head .tv-rec { color: #fde68a; font-weight: 700; }
+.tv-big { font-size: 44px; line-height: 1.1; }
+.tv-temas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tv-tema { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: #e0e7ff; border-radius: 12px; padding: 12px 8px; font: 600 13px var(--font-body, sans-serif); cursor: pointer; display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.tv-tema small { font-weight: 400; font-size: 11px; color: #a5b4fc; }
+.tv-tema:active { transform: scale(.96); }
+.tv-tema-todas { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(34,195,242,.25), rgba(129,140,248,.3)); border-color: rgba(253,224,71,.4); font-size: 15px; }
+.tv-barra { height: 6px; border-radius: 4px; background: rgba(255,255,255,.12); overflow: hidden; }
+.tv-barra-fill { height: 100%; background: linear-gradient(90deg, #22c3f2, #fde047); transition: width .3s ease; }
+.tv-cat { font-size: 12px; font-weight: 700; color: #fde68a; text-align: center; letter-spacing: .5px; }
+.tv-pregunta { font: 600 18px/1.35 Georgia, serif; text-align: center; padding: 14px 12px; border-radius: 14px; background: linear-gradient(160deg, rgba(30,27,75,.85), rgba(11,28,51,.9)); border: 1px solid rgba(253,224,71,.3); }
+.tv-opts { display: flex; flex-direction: column; gap: 8px; }
+.tv-opt { text-align: left; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); color: #e0e7ff; border-radius: 12px; padding: 12px 14px; font: 500 14px var(--font-body, sans-serif); cursor: pointer; }
+.tv-opt:active:not(:disabled) { background: rgba(255,255,255,.16); }
+.tv-opt:disabled { cursor: default; opacity: .85; }
+.tv-opt.tv-ok { background: rgba(34,197,94,.3); border-color: #22c55e; opacity: 1; color: #fff; }
+.tv-opt.tv-mal { background: rgba(239,68,68,.3); border-color: #ef4444; opacity: 1; color: #fff; }
+.tv-msg { text-align: center; font-weight: 700; font-size: 14px; }
+.tv-msg.ok { color: #86efac; } .tv-msg.mal { color: #fca5a5; }
+.tv-sig { background: linear-gradient(135deg, #22c3f2, #818cf8); color: #0b1c33; border: 0; border-radius: 12px; padding: 12px; font: 700 14px var(--font-body, sans-serif); cursor: pointer; }
 .arcade-mus { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
 .mus-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .mus-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #c7d2fe; }
@@ -1452,7 +1478,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 /* ── Timeline ── */
 .timeline-panel { animation:slideUp 0.4s ease 0.1s both; }
 .timeline-list { display:flex; flex-direction:column; gap:0; position:relative; }
-.timeline-list::before { content:''; position:absolute; left:18px; top:0; bottom:0; width:2px; background:var(--glass-border); }
+.timeline-list::before { content:''; position:absolute; left:18px; top:var(--rail-top,0px); bottom:var(--rail-bottom,0px); width:2px; background:var(--glass-border); }
 .timeline-item {
   display:flex; align-items:flex-start; gap:14px; padding:10px 0;
   position:relative;
@@ -1472,6 +1498,29 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .tl-status.done    { color:var(--verde); }
 .tl-status.current { color:var(--rojo2); }
 .tl-status.pending { color:var(--gris); }
+
+
+/* ── Micrómetro del timeline (cuenta regresiva + barra que avanza) ── */
+.tl-micro { margin:0 0 14px; padding:14px 16px 12px; border-radius:16px; position:relative; overflow:hidden;
+  background:linear-gradient(135deg, rgba(var(--rojo-rgb,229,9,20),0.16), rgba(255,255,255,0.03));
+  border:1px solid rgba(var(--rojo-rgb,229,9,20),0.35); }
+.tl-micro-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.tl-micro-kicker { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gris); }
+.tl-micro-name { font-size:14px; font-weight:600; margin-top:2px; }
+.tl-micro-clock { font-family:var(--font-mono,ui-monospace,monospace); font-variant-numeric:tabular-nums; font-size:26px; font-weight:800; letter-spacing:.02em; color:var(--rojo2); text-align:right; line-height:1; }
+.tl-micro-clock small { display:block; font-size:10px; font-weight:600; color:var(--gris); letter-spacing:.06em; text-transform:uppercase; margin-top:4px; }
+.tl-micro-bar, .tl-minibar { height:6px; border-radius:99px; background:rgba(255,255,255,0.08); overflow:hidden; margin-top:10px; }
+.tl-minibar { height:4px; margin-top:6px; max-width:220px; display:none; }
+.timeline-item.tl-en-curso .tl-minibar { display:block; }
+.tl-micro-bar i, .tl-minibar i { display:block; height:100%; width:0%; border-radius:inherit; background:linear-gradient(90deg, var(--rojo), var(--rojo2)); box-shadow:0 0 10px rgba(var(--rojo-rgb,229,9,20),0.55); transition:width .9s linear; }
+.tl-micro.tl-ok { border-color:rgba(16,185,129,0.4); background:linear-gradient(135deg, rgba(16,185,129,0.14), rgba(255,255,255,0.03)); }
+.tl-micro.tl-ok .tl-micro-clock { color:var(--verde); font-size:20px; }
+.tl-count { font-size:11px; margin-top:3px; color:var(--rojo2); font-variant-numeric:tabular-nums; }
+.tl-count:empty { display:none; }
+.tl-rail-fill { position:absolute; left:18px; top:0; width:2px; height:0; background:linear-gradient(180deg, var(--verde), var(--rojo2)); box-shadow:0 0 8px rgba(var(--rojo-rgb,229,9,20),0.45); border-radius:2px; transition:height .9s linear; z-index:0; pointer-events:none; }
+.tl-rail-head { position:absolute; left:19px; top:0; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%; background:var(--rojo2); box-shadow:0 0 0 0 rgba(var(--rojo-rgb,229,9,20),0.6); animation:tlHeadPulse 1.8s ease-out infinite; transition:top .9s linear; z-index:2; pointer-events:none; display:none; }
+@keyframes tlHeadPulse { 0%{ box-shadow:0 0 0 0 rgba(var(--rojo-rgb,229,9,20),0.55);} 100%{ box-shadow:0 0 0 12px rgba(var(--rojo-rgb,229,9,20),0);} }
+@media (prefers-reduced-motion: reduce) { .tl-rail-head { animation:none; } .tl-micro-bar i, .tl-minibar i, .tl-rail-fill, .tl-rail-head { transition:none; } }
 
 /* ── Breaks ── */
 .breaks-panel { animation:slideUp 0.4s ease 0.15s both; }
@@ -2531,6 +2580,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="malla-status" id="malla-status">
           Malla cargada: <b id="malla-status-count">120 turnos · 21 personas</b>
         </div>
+        <div id="malla-autofix-box"></div>
         <div class="malla-upload-row">
           <label class="malla-file-label" for="malla-file-input">
             📎 Toca para elegir el archivo (.pdf, .txt, .csv)
@@ -2614,8 +2664,8 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       </div>
       <div class="team-row-badge sindatos">Sin datos</div></div></div>
 
-        <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) ── -->
-        <div style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
+        <!-- ── Calculadora de horas reales (descuenta breaks y almuerzo) · solo versión de oficina ── -->
+        <div id="admin-calc-block" style="margin-top:18px;border-top:1px dashed var(--borde);padding-top:14px;">
           <div class="section-header">
             <div class="section-title">🧮 Calculadora de Horas Reales</div>
             <div class="section-sub">Elige a la persona y un rango de días; desmarca los días que no quieras contar. El total ya descuenta breaks y almuerzo.</div>
@@ -4737,7 +4787,7 @@ function MALLA_labelsParaDetalle(cantidad) {
 //   y la fila queda marcada con auxConflicto para poder revisarla.
 // ══════════════════════════════════════════════════
 const MALLA_AUX_PRIORIDAD = 'cabecera';
-const MALLA_AUX_VERSION = 3; // sube este número si cambia la lógica y hay que releer la malla guardada
+const MALLA_AUX_VERSION = 5; // sube este número si cambia la lógica y hay que releer la malla guardada
 const MALLA_AUX_LABEL = { break1: 'Break 1', break2: 'Break 2', almuerzo: 'Salida almuerzo' };
 // ORDEN FIJO de los auxiliares en TODA la app (timeline, tarjeta, avisos, Excel):
 // Inicio de turno → Break 1 → Break 2 → Almuerzo → Fin de turno.
@@ -4822,6 +4872,117 @@ function MALLA_auditarAuxiliares() {
   return filas;
 }
 
+// ══════════════════════════════════════════════════
+//   SEGURO ANTI-FALLAS DE PAUSAS (autocorrección + reporte)
+//   Se ejecuta al leer CADA fila de la malla (versión web y de oficina usan este
+//   mismo código). Regla: toda pausa (break/almuerzo) debe caer dentro del turno.
+//   Si cae fuera porque el a. m./p. m. viene invertido (p. ej. Break 1 a las
+//   "11:45 p. m." en un turno de 10:30 a. m. a 7:00 p. m.) y al invertirlo cae
+//   dentro del turno, se corrige solo y queda registrado en r.autoCorr para el
+//   reporte al supervisor (MALLA_reporteAutocorrecciones). Si no hay forma segura
+//   de corregirla, NO se inventa una hora: se deja igual y se marca para revisión.
+// ══════════════════════════════════════════════════
+function MALLA_validarPausas(entrada24, salida24, detalle) {
+  const fixes = [];
+  try {
+    const hm = x => { const [h, m] = String(x).split(':').map(Number); return h * 60 + (m || 0); };
+    const e = hm(entrada24); let sl = hm(salida24); if (sl <= e) sl += 1440;
+    const absMin = x => (x < e ? x + 1440 : x);
+    const dentro = x => { const a = absMin(x); return a >= e && a <= sl; };
+    const out = (detalle || []).map(d => {
+      const m = F3_parse12hToMin(d.value);
+      if (m === null || dentro(m)) return d;
+      const alt = (m + 720) % 1440;
+      if (dentro(alt)) {
+        const nuevo = TL_fmt12(alt);
+        fixes.push({ label: d.label, de: d.value, a: nuevo, motivo: 'a. m./p. m. invertido (la pausa caía fuera del turno)' });
+        return Object.assign({}, d, { value: nuevo });
+      }
+      fixes.push({ label: d.label, de: d.value, a: null, motivo: 'fuera del turno y sin corrección segura: revisar a mano' });
+      return d;
+    });
+    // Break 2 antes que Break 1 en el reloj: se intercambian las dos horas (Break 1 siempre es el primero).
+    const i1 = out.findIndex(d => d.label === 'Break 1'), i2 = out.findIndex(d => d.label === 'Break 2');
+    if (i1 >= 0 && i2 >= 0) {
+      const a1 = absMin(F3_parse12hToMin(out[i1].value)), a2 = absMin(F3_parse12hToMin(out[i2].value));
+      if (a2 < a1) {
+        const v1 = out[i1].value, v2 = out[i2].value;
+        out[i1] = Object.assign({}, out[i1], { value: v2 }); out[i2] = Object.assign({}, out[i2], { value: v1 });
+        fixes.push({ label: 'Break 1 / Break 2', de: `${v1} / ${v2}`, a: `${v2} / ${v1}`, motivo: 'Break 2 estaba antes que Break 1: se intercambiaron' });
+      }
+    }
+    // Dos pausas que se pisan (menos de 15 min entre inicios, o el almuerzo dura 60): no se puede decidir cuál mover.
+    const pts = out.map(d => ({ d, a: absMin(F3_parse12hToMin(d.value)) })).filter(x => !isNaN(x.a)).sort((x, y) => x.a - y.a);
+    for (let k = 1; k < pts.length; k++) {
+      const prev = pts[k - 1], cur = pts[k];
+      const durPrev = /almuerzo/i.test(prev.d.label) ? 60 : 15;
+      if (cur.a - prev.a < durPrev) fixes.push({ label: `${prev.d.label} / ${cur.d.label}`, de: `${prev.d.value} y ${cur.d.value}`, a: null, motivo: 'dos pausas se pisan entre sí: revisar a mano' });
+    }
+    return { detalle: out, fixes };
+  } catch (err) {
+    console.error('MALLA_validarPausas:', err);
+    return { detalle, fixes };
+  }
+}
+// Mensaje listo para enviar al supervisor, agrupado por persona y tipo de falla.
+// Corregidas (a != null) y "DE CORRECCIÓN URGENTE" (a == null: no se pudo arreglar con seguridad).
+function MALLA_reporteAutocorrecciones() {
+  const grupos = new Map();
+  (MALLA_DATA || []).forEach(r => (r.autoCorr || []).forEach(f => {
+    const k = [r.nombre, f.label, f.de, f.a, f.motivo].join('|');
+    if (!grupos.has(k)) grupos.set(k, { nombre: r.nombre, f, fechas: [] });
+    grupos.get(k).fechas.push(r.fechaOriginal);
+  }));
+  const lista = Array.from(grupos.values());
+  const corregidas = lista.filter(g => g.f.a);
+  const pendientes = lista.filter(g => !g.f.a);
+  const nomLbl = l => (typeof BRK_nombreLabel === 'function' ? BRK_nombreLabel(l) : l);
+  const fechasTxt = fs => fs.length > 2 ? `${fs[0]} al ${fs[fs.length - 1]} (${fs.length} días)` : fs.join(' y ');
+  const total = (MALLA_DATA || []).reduce((n, r) => n + (r.autoCorr ? r.autoCorr.length : 0), 0);
+  let msg = '';
+  if (lista.length) {
+    msg = `Reporte automático de la malla (TurnoBot)\n` +
+      `${corregidas.length} falla(s) corregida(s) automáticamente · ${pendientes.length} de corrección urgente.\n`;
+    if (pendientes.length) {
+      msg += `\n🚨 DE CORRECCIÓN URGENTE (no se pudo arreglar con seguridad):\n` + pendientes.map(g =>
+        `• ${g.nombre} — ${nomLbl(g.f.label)}: ${g.f.de} · ${g.f.motivo} · ${fechasTxt(g.fechas)}`).join('\n') + '\n';
+    }
+    if (corregidas.length) {
+      msg += `\n✅ Corregidas automáticamente:\n` + corregidas.map(g =>
+        `• ${g.nombre} — ${nomLbl(g.f.label)}: ${g.f.de} → ${g.f.a} · ${fechasTxt(g.fechas)}`).join('\n') + '\n';
+    }
+    msg += `\nCausa probable: error de digitación en el archivo de turnos de origen (a. m./p. m., horarios sin asignar, horas que no cuadran). Se sugiere corregirlo en la fuente para las próximas mallas.`;
+  }
+  return { corregidas, pendientes, total, mensaje: msg };
+}
+function MALLA_renderAutofix() {
+  const box = document.getElementById('malla-autofix-box');
+  if (!box) return;
+  const rep = MALLA_reporteAutocorrecciones();
+  if (!rep.total) {
+    box.innerHTML = '<div class="malla-status" style="margin-top:10px;font-size:12px;">🛡️ Verificación de pausas: sin fallas detectadas en la malla cargada.</div>';
+    return;
+  }
+  box.innerHTML = `
+    <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;border:1px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.10);">
+      🛠️ <b>${rep.corregidas.length} falla(s) corregida(s) automáticamente</b>${rep.pendientes.length ? ` · 🚨 <b style="color:#dc2626">${rep.pendientes.length} de corrección urgente</b>` : ''}
+      <pre id="malla-autofix-msg" style="white-space:pre-wrap;font-family:inherit;font-size:12px;margin:8px 0 0;"></pre>
+      <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="MALLA_copiarReporteAutofix()">📋 Copiar mensaje para el supervisor</button>
+    </div>`;
+  document.getElementById('malla-autofix-msg').textContent = rep.mensaje;
+}
+function MALLA_copiarReporteAutofix() {
+  const txt = MALLA_reporteAutocorrecciones().mensaje;
+  const ok = () => showToast('success', '📋 Copiado', 'Mensaje del reporte copiado.');
+  const fallback = () => {
+    const ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); ok(); } catch { showToast('error', 'No se pudo copiar', 'Selecciona el texto y cópialo a mano.'); }
+    ta.remove();
+  };
+  try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch { fallback(); }
+}
+
 function MALLA_parseText(text) {
   const lines = (text || '').split(/\r?\n/);
   const records = [];
@@ -4858,7 +5019,11 @@ function MALLA_parseText(text) {
 
     let idx = rest.findIndex(t => /^\d{1,2}:\d{2}:\d{2}$/.test(t));
     if (idx === -1) idx = rest.length;
-    const nombre = rest.slice(0, idx).join(' ').trim();
+    // Seguro anti-fallas: filas sin horas traen palabras sueltas ("Inicio", "Fin") después del
+    // nombre; si no se quitan, el asesor queda duplicado con un nombre distinto y sin turno.
+    let nameTokens = rest.slice(0, idx);
+    if (idx === rest.length) while (nameTokens.length > 1 && /^(inicio|fin)$/i.test(nameTokens[nameTokens.length - 1])) nameTokens = nameTokens.slice(0, -1);
+    const nombre = nameTokens.join(' ').trim();
     if (!nombre) continue;
     const scheduleTokens = rest.slice(idx);
 
@@ -4925,6 +5090,30 @@ function MALLA_parseText(text) {
       if (MALLA_AUX_PRIORIDAD === 'cabecera') { detalle = detallePorCab; auxOrigen = 'cabecera'; }
     }
     detalle = MALLA_ordenarDetalle(detalle);
+    // Seguro anti-fallas: pausas fuera del turno (p. ej. a. m./p. m. invertido) se corrigen y se registran.
+    let autoCorr = [];
+    if (entrada24 && salida24 && !(entrada24 === '00:00' && salida24 === '00:00')) {
+      const v = MALLA_validarPausas(entrada24, salida24, detalle);
+      detalle = v.detalle; autoCorr = v.fixes;
+      // Jornada: la columna Horas debe ser (salida − entrada) menos 1 h si hay almuerzo.
+      try {
+        const e = F3_toMin(entrada24); let sl = F3_toMin(salida24); if (sl <= e) sl += 1440;
+        const span = sl - e;
+        if (span > 720) autoCorr.push({ label: 'Jornada', de: `${entradaDisplay} a ${salidaDisplay} (${Math.floor(span / 60)} h ${span % 60} min)`, a: null, motivo: 'jornada de más de 12 horas: revisar entrada/salida' });
+        if (horasRaw) {
+          const [hh, mm] = horasRaw.split(':').map(Number);
+          const esp = span - (detalle.some(x => /almuerzo/i.test(x.label)) ? 60 : 0);
+          if (Math.abs(hh * 60 + mm - esp) > 1) autoCorr.push({ label: 'Horas', de: horasRaw, a: null, motivo: `la columna Horas no cuadra con el turno (debería ser ${Math.floor(esp / 60)}:${String(esp % 60).padStart(2, '0')})` });
+        }
+        if (span > 270 && !detalle.length) autoCorr.push({ label: 'Pausas', de: 'ninguna', a: null, motivo: 'turno de más de 4 h sin ningún break ni almuerzo' });
+      } catch (err) { console.error('validación de jornada:', err); }
+    }
+
+    // ACTIVO sin horario real (sin horas, o 12:00 a. m. a 12:00 a. m.): no se puede corregir, va al reporte como URGENTE.
+    if (estado === 'ACTIVO' && (!entrada24 || !salida24 || (entrada24 === '00:00' && salida24 === '00:00'))) {
+      entrada24 = '00:00'; salida24 = '00:00';
+      autoCorr.push({ label: 'Horario', de: 'sin entrada/salida (la malla dice "Inicio" o 12:00 a. m.)', a: null, motivo: 'asesor ACTIVO sin horario asignado' });
+    }
 
     const [d, m, y] = fechaOriginal.split('/').map(Number);
     const fechaISO = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
@@ -4939,7 +5128,8 @@ function MALLA_parseText(text) {
       horasRaw,
       detalle,
       auxOrigen, auxV: MALLA_AUX_VERSION,
-      ...(auxConflicto ? { auxConflicto: true } : {})
+      ...(auxConflicto ? { auxConflicto: true } : {}),
+      ...(autoCorr.length ? { autoCorr } : {})
     });
   }
   return records;
@@ -5058,6 +5248,7 @@ function MALLA_todayISO() {
 function MALLA_refreshStatus() {
   const el = document.getElementById('malla-status-count');
   if (el) el.textContent = `${MALLA_DATA.length} turnos · ${MALLA_getNames().length} personas`;
+  try { MALLA_renderAutofix(); } catch (e) { console.error(e); }
 }
 let MALLA_LAST_RAW_TEXT = null;
 const MALLA_RAWTEXT_KEY = 'tb_malla_rawtext_v1';
@@ -5080,6 +5271,7 @@ function MALLA_ingestText(text, sourceLabel) {
   MALLA_refreshStatus();
   const personas = MALLA_getNames().length;
   showToast('success', '✅ Malla actualizada', `${parsed.length} registros · ${personas} personas cargadas.`);
+  try { const rf = MALLA_reporteAutocorrecciones(); if (rf.total) showToast('warning', '🛠️ Reporte de la malla', `${rf.corregidas.length} corregida(s)${rf.pendientes.length ? ` y ${rf.pendientes.length} DE CORRECCIÓN URGENTE` : ''}. Revisa el reporte en Actualizar Malla.`, 7000); } catch {}
   if (typeof fase2AddActivity === 'function') fase2AddActivity('🗂️', `<strong>Malla actualizada</strong> desde ${sourceLabel} · ${parsed.length} turnos`);
   if (currentUser && !currentUser.isAdmin) {
     const canon = currentUser.mallaNombre || MALLA_matchName(currentUser.nombre);
@@ -7490,7 +7682,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-03.1642';
+const TB_APP_VERSION = '2026-10-03.1734';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8275,7 +8467,7 @@ function F3_renderSinDatos(user) {
   F3_renderHorasSemanaVacio();
 }
 
-function F3_renderDateChips(canonico) {
+function F3_renderDateChips(canonico, silencioso) {
   const registros = MALLA_recordsFor(canonico);
   const cont = document.getElementById('date-chips');
   if (!cont) return;
@@ -8285,7 +8477,9 @@ function F3_renderDateChips(canonico) {
   const today = MALLA_todayISO();
   let selected = FASE3_State.selectedDate;
   if (!selected || !registros.find(r => r.fechaISO === selected)) {
-    selected = registros.find(r => r.fechaISO === today) ? today : registros[0].fechaISO;
+    // Hoy si existe; si no, el próximo día con turno; si la malla ya pasó, el último.
+    const prox = registros.find(r => r.fechaISO >= today);
+    selected = registros.find(r => r.fechaISO === today) ? today : (prox ? prox.fechaISO : registros[registros.length - 1].fechaISO);
   }
   FASE3_State.selectedDate = selected;
 
@@ -8297,11 +8491,11 @@ function F3_renderDateChips(canonico) {
     const hmChip = HORAS_get(r.fechaISO, r.nombreNorm);
     chip.innerHTML = `<div class="dc-dow">${dias[d.getDay()]}</div><div class="dc-num">${d.getDate()}</div><div class="dc-dot"></div>${HORAS_chipHTML(hmChip)}`;
     if (hmChip) chip.title = hmChip.tipo === 'destino' ? `Recibió ${HORAS_cantidadTxt(hmChip)} del ${HORAS_refTxt(hmChip)}` : `Cedió ${HORAS_cantidadTxt(hmChip)} hacia ${HORAS_refTxt(hmChip)}`;
-    chip.onclick = () => F3_selectDate(canonico, r.fechaISO);
+    chip.onclick = () => { FASE3_State.fechaManual = true; F3_selectDate(canonico, r.fechaISO); };
     cont.appendChild(chip);
   });
 
-  F3_loadTurnoData(currentUser, canonico, selected);
+  F3_loadTurnoData(currentUser, canonico, selected, silencioso);
 }
 
 function F3_selectDate(canonico, fechaISO) {
@@ -8379,12 +8573,13 @@ async function TB_detectarDispositivo() {
   return 'Desconocido';
 }
 
-function F3_loadTurnoData(user, canonico, fechaISO) {
+function F3_loadTurnoData(user, canonico, fechaISO, silencioso) {
   const record = MALLA_recordForDate(canonico, fechaISO);
   if (!record) { F3_renderSinDatos(user); return; }
 
   FASE3_State.turnoActual = record;
   F3_renderTurno(user, record);
+  if (silencioso) return; // repintado automático del reloj: no cuenta como consulta del asesor
 
   // Log de consulta (bot acumula)
   const logEntry = {
@@ -8415,8 +8610,10 @@ function F3_loadTurnoData(user, canonico, fechaISO) {
 }
 
 // Devuelve 'pasado' | 'hoy' | 'futuro' comparando una fechaISO contra la fecha real actual.
-function F3_diaEstado(fechaISO) {
+function F3_diaEstado(fechaISO, t) {
   const today = MALLA_todayISO();
+  // Turno que cruza la medianoche y aún no termina: sigue "en curso" aunque ya sea otro día.
+  if (t && fechaISO === TL_ayerISO() && t.entrada && t.salida && TL_cruza(t) && TL_nowAbs(t) <= TL_salAbs(t) + 15) return 'hoy';
   if (fechaISO < today) return 'pasado';
   if (fechaISO > today) return 'futuro';
   return 'hoy';
@@ -8435,7 +8632,7 @@ function F3_renderTurno(user, t) {
   const nombre1 = ((user.nombre||'').split(' ')[0]) || user.codigoMaya || 'Usuario';
   document.getElementById('tc-nombre').textContent = nombre1;
 
-  const diaEstado = F3_diaEstado(t.fechaISO); // 'pasado' | 'hoy' | 'futuro'
+  const diaEstado = F3_diaEstado(t.fechaISO, t); // 'pasado' | 'hoy' | 'futuro'
   const esHoy = diaEstado === 'hoy';
   const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
   const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
@@ -8477,6 +8674,7 @@ function F3_renderTurno(user, t) {
       ? '<div class="turno-empty-state">🕓 Tu horario para este día todavía no ha sido publicado. Consulta con Moisés.</div>'
       : `<div class="turno-empty-state">${ausInfo ? ausInfo.msg : '🌴 Este día no trabajas. ¡Disfruta tu descanso!'}</div>`;
     if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
+    FASE3_State.jornadaUpdate = null;
   } else {
     document.getElementById('tc-entrada').textContent = t.entradaDisplay || t.entrada || '--:--';
     document.getElementById('tc-salida').textContent  = t.salidaDisplay  || t.salida  || '--:--';
@@ -8485,6 +8683,7 @@ function F3_renderTurno(user, t) {
     F3_renderTimeline(t, diaEstado);
 
     if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
+    FASE3_State.jornadaUpdate = null;
     const fill = document.getElementById('jornada-fill');
     const pctEl = document.getElementById('jornada-pct');
 
@@ -8531,8 +8730,149 @@ function F3_parse12hToMin(str) {
 
 // diaEstado: 'pasado' | 'hoy' | 'futuro' — controla si los eventos se marcan
 // según la hora real (hoy) o de forma fija (pasado = todo completado, futuro = todo pendiente).
+// ══════════════════════════════════════════════════
+//   MICRÓMETRO DEL TIMELINE
+//   Cuenta regresiva en vivo a cada inicio/pausa/fin, "Ahora" con lo que queda y una barra
+//   que conecta los estados y avanza con el reloj. NO depende de que el asesor haya iniciado
+//   sesión ni de cuándo se abrió el HTML: cada segundo se recalcula todo desde la hora real del
+//   navegador (Date.now) contra la hora absoluta de cada evento (fecha del turno + minutos), así
+//   que al abrir la app tras horas o días muestra de inmediato el valor correcto, sin acumular atraso.
+// ══════════════════════════════════════════════════
+function TL_marcarItem(item, t, relMin, durMin, label) {
+  const [y, m, d] = String(t.fechaISO).split('-').map(Number);
+  item.dataset.t = String(new Date(y, m - 1, d, 0, 0, 0, 0).getTime() + relMin * 60000);
+  item.dataset.dur = String(durMin > 0 ? durMin : 15);
+  item.dataset.hito = /inicio|fin de turno/i.test(label) ? '1' : '';
+  item.dataset.nombre = String(label).replace(/^[^A-Za-zÁÉÍÓÚÑáéíóúñ0-9]+/, '').replace(/\s*·.*$/, '');
+}
+function TL_heroEl() {
+  const h = document.createElement('div');
+  h.className = 'tl-micro'; h.id = 'tl-micro';
+  h.innerHTML = '<div class="tl-micro-top"><div><div class="tl-micro-kicker" id="tl-micro-kicker">Calculando…</div><div class="tl-micro-name" id="tl-micro-name"></div></div>' +
+    '<div class="tl-micro-clock" id="tl-micro-clock">--:--<small id="tl-micro-unit"></small></div></div><div class="tl-micro-bar"><i id="tl-micro-fill"></i></div>';
+  return h;
+}
+function TL_montarMicrometro(list) {
+  if (!list.querySelector('.tl-rail-fill')) {
+    const f = document.createElement('div'); f.className = 'tl-rail-fill';
+    const hd = document.createElement('div'); hd.className = 'tl-rail-head';
+    list.appendChild(f); list.appendChild(hd);
+  }
+  TL_micro(true);
+}
+function TL_fmtRestante(ms, completo) {
+  const s = Math.max(0, Math.ceil(ms / 1000));
+  const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), mi = Math.floor((s % 3600) / 60), se = s % 60;
+  const p = n => String(n).padStart(2, '0');
+  if (completo) return d ? `${d} d ${p(h)}:${p(mi)}:${p(se)}` : `${p(h)}:${p(mi)}:${p(se)}`;
+  if (d) return `${d} d ${h} h`;
+  if (h) return `${h} h ${mi} min`;
+  if (mi >= 10) return `${mi} min`;
+  return `${mi} min ${p(se)} s`;
+}
+function TL_micro(inmediato) {
+  try {
+    const list = document.getElementById('timeline-list'); if (!list) return;
+    const items = Array.from(list.querySelectorAll('.timeline-item[data-t]')); if (!items.length) return;
+    const now = Date.now();
+    const info = items.map(it => { const t0 = +it.dataset.t, dur = (+it.dataset.dur || 15) * 60000; return { it, t0, t1: t0 + dur, dur, hito: !!it.dataset.hito }; });
+    // 1) estado de cada punto + texto de cuenta regresiva (mismo criterio que los avisos de Eva)
+    info.forEach(o => {
+      const st = now >= o.t1 ? 'done' : (now >= o.t0 ? 'current' : 'pending');
+      const dot = o.it.querySelector('.tl-dot'), stEl = o.it.querySelector('.tl-status'), cnt = o.it.querySelector('.tl-count'), bar = o.it.querySelector('.tl-minibar i');
+      if (o.it.dataset.st !== st) {
+        o.it.dataset.st = st;
+        if (dot) dot.className = 'tl-dot ' + st;
+        if (stEl) { stEl.className = 'tl-status ' + st; stEl.textContent = st === 'done' ? '✓ Completado' : st === 'current' ? '⚡ Ahora' : '⏳ Pendiente'; }
+        o.it.classList.toggle('tl-en-curso', st === 'current' && !o.hito);
+      }
+      if (cnt) cnt.textContent = st === 'pending' ? '⏱ en ' + TL_fmtRestante(o.t0 - now)
+        : (st === 'current' ? (o.hito ? '' : '⏳ quedan ' + TL_fmtRestante(o.t1 - now)) : '');
+      if (bar) bar.style.width = st === 'current' ? Math.min(100, Math.max(0, (now - o.t0) / o.dur * 100)).toFixed(1) + '%' : '0%';
+    });
+    // 2) barra que conecta los estados: avanza de punto a punto con el tiempo real
+    const fill = list.querySelector('.tl-rail-fill'), head = list.querySelector('.tl-rail-head');
+    if (fill && head) {
+      const lr = list.getBoundingClientRect();
+      const cy = info.map(o => { const dt = o.it.querySelector('.tl-dot'); const r = (dt || o.it).getBoundingClientRect(); return r.top + r.height / 2 - lr.top; });
+      list.style.setProperty('--rail-top', cy[0] + 'px'); list.style.setProperty('--rail-bottom', Math.max(0, lr.height - cy[cy.length - 1]) + 'px');
+      let k = -1; info.forEach((o, i) => { if (now >= o.t0) k = i; });
+      let y;
+      if (k < 0) y = null;
+      else if (k >= info.length - 1) y = cy[k];
+      else { const span = info[k + 1].t0 - info[k].t0; const fr = span > 0 ? Math.min(1, Math.max(0, (now - info[k].t0) / span)) : 1; y = cy[k] + fr * (cy[k + 1] - cy[k]); }
+      if (y === null) { fill.style.height = '0px'; head.style.display = 'none'; }
+      else { fill.style.top = cy[0] + 'px'; fill.style.height = Math.max(0, y - cy[0]) + 'px'; head.style.top = y + 'px'; head.style.display = (k >= info.length - 1 && now >= info[info.length - 1].t1) ? 'none' : 'block'; }
+      if (inmediato) { fill.style.transition = 'none'; head.style.transition = 'none'; void fill.offsetHeight; fill.style.transition = ''; head.style.transition = ''; }
+    }
+    // 3) tarjeta grande: qué sigue y cuánto falta
+    const kick = document.getElementById('tl-micro-kicker'), nom = document.getElementById('tl-micro-name'), clk = document.getElementById('tl-micro-clock'), unit = document.getElementById('tl-micro-unit'), hf = document.getElementById('tl-micro-fill'), hero = document.getElementById('tl-micro');
+    if (kick && nom && clk && hf) {
+      const nombreDe = o => o.it.dataset.nombre || '';
+      const cur = info.find(o => o.t0 <= now && now < o.t1 && !o.hito);
+      const prox = info.find(o => o.t0 > now);
+      const setClk = (txt, u) => { clk.firstChild.nodeValue = txt; if (unit) unit.textContent = u; };
+      hero.classList.remove('tl-ok');
+      if (cur) {
+        kick.textContent = 'En curso ahora'; nom.textContent = (cur.it.querySelector('.tl-label') || {}).textContent || nombreDe(cur);
+        setClk(TL_fmtRestante(cur.t1 - now, true), 'para terminar');
+        hf.style.width = Math.min(100, (now - cur.t0) / cur.dur * 100).toFixed(1) + '%';
+      } else if (prox) {
+        const idx = info.indexOf(prox), prev = idx > 0 ? info[idx - 1] : null;
+        const esInicio = idx === 0;
+        kick.textContent = esInicio ? 'Tu turno inicia en' : 'Lo que sigue';
+        nom.textContent = esInicio ? ((info[0].it.querySelector('.tl-time') || {}).textContent || '') : (prox.it.querySelector('.tl-label') || {}).textContent;
+        setClk(TL_fmtRestante(prox.t0 - now, true), esInicio ? 'para empezar' : 'para empezar');
+        const base = prev ? prev.t1 : prox.t0 - 3600000;
+        hf.style.width = Math.min(100, Math.max(0, (now - base) / Math.max(1, prox.t0 - base) * 100)).toFixed(1) + '%';
+      } else {
+        hero.classList.add('tl-ok'); kick.textContent = 'Jornada'; nom.textContent = '¡Turno completado!'; setClk('✓', ''); hf.style.width = '100%';
+      }
+    }
+  } catch (e) { console.error('Micrómetro:', e); }
+}
+setInterval(() => TL_micro(false), 1000);
+['visibilitychange', 'focus', 'pageshow', 'online'].forEach(ev => window.addEventListener(ev, () => TL_micro(true)));
+window.addEventListener('resize', () => TL_micro(true));
+
+function TL_estadoEvento(nowAbs, rel, dur) {
+  dur = dur > 0 ? dur : 15;
+  if (nowAbs >= rel + dur) return 'done';
+  if (nowAbs >= rel) return 'current';
+  return 'pending';
+}
 function F3_renderTimeline(t, diaEstado) {
-  diaEstado = diaEstado || F3_diaEstado(t.fechaISO);
+  try { F3_renderTimelineCore(t, diaEstado); }
+  catch (err) {
+    console.error('Timeline (modo seguro):', err);
+    try { F3_renderTimelineSeguro(t, diaEstado); } catch (e2) { console.error('Timeline seguro falló:', e2); }
+  }
+}
+// Timeline mínimo SIN dependencias (ni localStorage ni helpers): si el normal falla por
+// cualquier motivo (almacenamiento bloqueado en la versión de oficina, dato raro, etc.)
+// el asesor igual ve Inicio → pausas → Fin, ordenados por hora y marcados con el reloj.
+function F3_renderTimelineSeguro(t, diaEstado) {
+  const list = document.getElementById('timeline-list'); if (!list) return;
+  const mn = s => { const m = /(\d{1,2}):(\d{2}).*?([ap])/i.exec(String(s || '')); if (!m) return null; let h = +m[1]; const a = m[3].toLowerCase(); if (a === 'p' && h < 12) h += 12; if (a === 'a' && h === 12) h = 0; return h * 60 + +m[2]; };
+  const e0 = mn(t.entradaDisplay) ?? 0; let s0 = mn(t.salidaDisplay) ?? 1440; if (s0 <= e0) s0 += 1440;
+  const ev = [{ time: t.entradaDisplay || '--', label: '🟢 Inicio de turno', rel: e0 }];
+  (t.detalle || []).forEach(d => { let m = mn(d.value); if (m === null) return; if (m < e0) m += 1440; if (m > s0) { const alt = (m + 720) % 1440; const a2 = alt < e0 ? alt + 1440 : alt; if (a2 >= e0 && a2 <= s0) { m = a2; d = Object.assign({}, d, { value: (Math.floor(alt / 60) % 12 || 12) + ':' + String(alt % 60).padStart(2, '0') + (alt < 720 ? ' a. m.' : ' p. m.') }); } } ev.push({ time: d.value, label: (/almuerzo/i.test(d.label) ? '🍽️ ' : '☕ ') + d.label, rel: m }); });
+  ev.push({ time: t.salidaDisplay || '--', label: '🔴 Fin de turno', rel: s0 });
+  ev.sort((a, b) => a.rel - b.rel);
+  let now = null; try { const n = new Date(); now = n.getHours() * 60 + n.getMinutes(); } catch {}
+  list.innerHTML = '';
+  ev.forEach(x => {
+    let est = 'pending';
+    if (diaEstado === 'pasado') est = 'done'; else if (diaEstado === 'hoy' && now !== null) { est = TL_estadoEvento(now, x.rel, /almuerzo/i.test(x.label) ? 60 : 15); }
+    const it = document.createElement('div'); it.className = 'timeline-item';
+    it.innerHTML = '<div class="tl-dot ' + est + '"></div><div class="tl-body"><div class="tl-time">' + x.time + '</div><div class="tl-label">' + x.label + '</div><div class="tl-status ' + est + '">' + (est === 'done' ? '✓ Completado' : est === 'current' ? '⚡ Ahora' : '⏳ Pendiente') + '</div><div class="tl-count"></div><div class="tl-minibar"><i></i></div></div>';
+    try { TL_marcarItem(it, t, x.rel, /almuerzo/i.test(x.label) ? 60 : 15, x.label); } catch {}
+    list.appendChild(it);
+  });
+  try { list.insertBefore(TL_heroEl(), list.firstChild); TL_montarMicrometro(list); } catch {}
+}
+function F3_renderTimelineCore(t, diaEstado) {
+  diaEstado = diaEstado || F3_diaEstado(t.fechaISO, t);
   const list = document.getElementById('timeline-list');
   list.innerHTML = '';
 
@@ -8581,21 +8921,31 @@ function F3_renderTimeline(t, diaEstado) {
     banner3.innerHTML = '☕ ' + brkReg.notas.map(NOTI_esc).join(' · ');
     list.appendChild(banner3);
   }
+  if (t.autoCorr && t.autoCorr.some(f => f.a)) {
+    const banner4 = document.createElement('div');
+    banner4.className = 'turno-empty-state';
+    banner4.style.cssText = 'background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);color:#b45309;margin-bottom:10px;text-align:left;';
+    banner4.textContent = '🛠️ Hora de pausa corregida automáticamente: ' + t.autoCorr.filter(f => f.a).map(f => `${f.label} ${f.de} → ${f.a}`).join(' · ');
+    list.appendChild(banner4);
+  }
   const fusT = BRK_fusion(t.fechaISO, t.nombreNorm);
 
   const now = new Date();
   const nowMin = now.getHours()*60 + now.getMinutes();
 
   const entMin = F3_toMin(t.entrada);
-  const salMin = F3_toMin(t.salida);
+  const salMin = TL_salAbs(t);
+  const nowAbs = TL_nowAbs(t);
 
   const eventos = [
-    { time: t.entradaDisplay || t.entrada, label: '🟢 Inicio de turno', rel: entMin, ord: 0 },
+    { time: t.entradaDisplay || t.entrada, label: '🟢 Inicio de turno', rel: entMin, ord: 0, dur: 15 },
   ];
 
   // Orden fijo (Break 1 → Break 2 → Almuerzo), sin importar el orden de la malla.
   MALLA_ordenarDetalle(t.detalle).forEach(d => {
-    const min = F3_parse12hToMin(d.value);
+    const det = TL_detalleHora(d, t);
+    const min = det ? det.abs : null;
+    const horaTxt = det ? det.texto : d.value;
     // Ícono y duración según el tipo real (almuerzo vs. break), para que en
     // la línea de tiempo del turno quede claro cuánto dura cada uno: los
     // breaks son de 15 min y el almuerzo de 1 hora.
@@ -8608,16 +8958,17 @@ function F3_renderTimeline(t, diaEstado) {
     if (fusT && d.label === fusT[1]) return; // se pinta dentro del bloque unificado
     if (fusT && d.label === fusT[0] && min !== null) {
       const total = BRK_durEfectiva(t.fechaISO, t.nombreNorm, fusT[0]) + BRK_durEfectiva(t.fechaISO, t.nombreNorm, fusT[1]);
-      eventos.push({ time: d.value, label: `🔗 ${BRK_nombreLabel(fusT[0])} + ${BRK_nombreLabel(fusT[1])} unificados · ${BRK_fmtDur(total)}`, rel: min, ord: MALLA_rangoAux(fusT[0]) + 1 });
+      eventos.push({ time: horaTxt, label: `🔗 ${BRK_nombreLabel(fusT[0])} + ${BRK_nombreLabel(fusT[1])} unificados · ${BRK_fmtDur(total)}`, rel: min, ord: MALLA_rangoAux(fusT[0]) + 1, dur: total });
       return;
     }
-    if (min !== null) eventos.push({ time: d.value, label: `${icono} ${BRK_nombreLabel(d.label)} · ${duracion}`, rel: min, ord: MALLA_rangoAux(d.label) + 1 });
+    if (min !== null) eventos.push({ time: horaTxt, label: `${icono} ${BRK_nombreLabel(d.label)} · ${duracion}`, rel: min, ord: MALLA_rangoAux(d.label) + 1, dur: durMin });
   });
 
-  eventos.push({ time: t.salidaDisplay || t.salida, label: '🔴 Fin de turno', rel: salMin, ord: 99 });
+  eventos.push({ time: t.salidaDisplay || t.salida, label: '🔴 Fin de turno', rel: salMin, ord: 99, dur: 15 });
   // Orden por posición fija (Inicio, Break 1, Break 2, Almuerzo, Fin); la hora solo desempata.
-  eventos.sort((a,b) => (a.ord - b.ord) || (a.rel - b.rel));
+  eventos.sort((a,b) => (a.rel - b.rel) || (a.ord - b.ord));
 
+  list.insertBefore(TL_heroEl(), list.firstChild);
   eventos.forEach(ev => {
     const evMin = ev.rel;
     let estado = 'pending';
@@ -8626,8 +8977,9 @@ function F3_renderTimeline(t, diaEstado) {
     } else if (diaEstado === 'futuro') {
       estado = 'pending';
     } else {
-      if (nowMin > evMin + 15) estado = 'done';
-      else if (Math.abs(nowMin - evMin) <= 15) estado = 'current';
+      // Mismo criterio que los avisos de Eva (TB_VOZ_tick): "Ahora" empieza EXACTO a la hora del
+      // evento (cuando Eva avisa) y dura lo que dura la pausa (break 15 min, almuerzo 1 h).
+      estado = TL_estadoEvento(nowAbs, evMin, ev.dur);
     }
 
     const item = document.createElement('div');
@@ -8639,22 +8991,23 @@ function F3_renderTimeline(t, diaEstado) {
         <div class="tl-time">${ev.time}</div>
         <div class="tl-label">${ev.label}</div>
         <div class="tl-status ${estado}">${statusText}</div>
+        <div class="tl-count"></div>
+        <div class="tl-minibar"><i></i></div>
       </div>`;
+    TL_marcarItem(item, t, ev.rel, ev.dur, ev.label);
     list.appendChild(item);
   });
+  TL_montarMicrometro(list);
 }
 
 function F3_startJornadaBar(t) {
   if (FASE3_State.jornadaInterval) clearInterval(FASE3_State.jornadaInterval);
 
   function update() {
-    const now = new Date();
-    const nowMin = now.getHours()*60 + now.getMinutes();
     const entMin = F3_toMin(t.entrada);
-    let salMin = F3_toMin(t.salida);
-    if (salMin <= entMin) salMin += 24*60; // turno nocturno
-    const duracion = salMin - entMin;
-    let progreso = (nowMin - entMin) / duracion;
+    const salAbs = TL_salAbs(t);   // turno nocturno: la salida cae después de las 24:00
+    const duracion = salAbs - entMin;
+    let progreso = (TL_nowAbs(t) - entMin) / duracion;
     progreso = Math.max(0, Math.min(1, progreso));
     const pct = Math.round(progreso * 100);
     const fill = document.getElementById('jornada-fill');
@@ -8669,18 +9022,53 @@ function F3_startJornadaBar(t) {
       else F3_setBadge(badge, '🟢 Activo', '#10b981');
     }
 
-    // El timeline y las horas de la semana se re-marcan en vivo a medida que el reloj avanza
-    F3_renderTimeline(t, 'hoy');
-    F3_renderHorasSemana(window.TurnoBotApp && window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser);
+    // El timeline y las horas de la semana se re-marcan en vivo a medida que el reloj avanza.
+    // Cada paso va aislado: si uno falla, los demás (y el reloj) siguen corriendo.
+    try { F3_renderTimeline(t, 'hoy'); } catch (e) { console.error('Timeline error:', e); }
+    try { F3_renderHorasSemana(window.TurnoBotApp && window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser); } catch (e) { console.error('Horas semana error:', e); }
 
     // Hook Fase 3 progreso
-    if (window.TurnoBotApp && typeof window.TurnoBotApp.onJornadaUpdate === 'function') {
-      window.TurnoBotApp.onJornadaUpdate(progreso);
-    }
+    try {
+      if (window.TurnoBotApp && typeof window.TurnoBotApp.onJornadaUpdate === 'function') {
+        window.TurnoBotApp.onJornadaUpdate(progreso);
+      }
+    } catch (e) { console.error('onJornadaUpdate error:', e); }
   }
+  // Primero se deja el reloj armado y luego se pinta: así un error al pintar nunca lo detiene.
+  FASE3_State.jornadaUpdate = update;
+  FASE3_State.jornadaInterval = setInterval(update, 20000);
   update();
-  FASE3_State.jornadaInterval = setInterval(update, 30000);
 }
+
+// Vigilante del reloj: los navegadores frenan los temporizadores con la pestaña en segundo
+// plano o el celular bloqueado, y un turno abierto de un día a otro se quedaba en el día
+// anterior. Al volver a la app (y cada 30 s) se repinta el timeline con la hora real.
+function TL_vigilante() {
+  try {
+    if (typeof currentUser === 'undefined' || !currentUser || currentUser.isAdmin || !currentUser.mallaNombre) return;
+    const hoy = MALLA_todayISO();
+    const antes = FASE3_State.hoyVisto;
+    FASE3_State.hoyVisto = hoy;
+    const canonico = currentUser.mallaNombre;
+    if (antes && antes !== hoy) { // cambió el día con la app abierta: vuelve a "hoy"
+      FASE3_State.fechaManual = false;
+      if (MALLA_recordForDate(canonico, hoy)) FASE3_State.selectedDate = hoy;
+      F3_renderDateChips(canonico, true);
+      return;
+    }
+    if (FASE3_State.jornadaUpdate) { FASE3_State.jornadaUpdate(); return; }
+    const t = FASE3_State.turnoActual;
+    if (t && t.estado === 'ACTIVO' && t.entrada && t.salida && !(t.entrada === '00:00' && t.salida === '00:00') &&
+        F3_diaEstado(t.fechaISO, t) === 'hoy') {
+      F3_loadTurnoData(currentUser, canonico, t.fechaISO, true);
+    }
+  } catch (e) { console.error('TL_vigilante error:', e); }
+}
+setInterval(TL_vigilante, 30000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) TL_vigilante(); });
+window.addEventListener('focus', TL_vigilante);
+window.addEventListener('pageshow', TL_vigilante);
+window.addEventListener('online', TL_vigilante);
 
 // ── Horas de la semana (reemplaza el antiguo panel "Mis Descansos") ──
 // Suma las horas ya trabajadas en la semana calendario actual (lunes a domingo):
@@ -10126,53 +10514,73 @@ function VOZ_probar() {
 }
 
 const TB_VOZ_State = { fecha: null, avisados: {} };
+const TB_VOZ_VENTANA_MIN = 4; // si la pestaña estuvo dormida, el aviso igual sale dentro de estos minutos
 function TB_VOZ_tick() {
   try {
     if (!VOZ_isEnabled()) return;
     if (!currentUser || currentUser.isAdmin) return; // el aviso es para el turno propio del asesor
     const hoyISO = MALLA_todayISO();
-    if (TB_VOZ_State.fecha !== hoyISO) { TB_VOZ_State.fecha = hoyISO; TB_VOZ_State.avisados = {}; }
-
-    const t = MALLA_recordForDate(currentUser.mallaNombre, hoyISO);
-    if (!t || !t.entrada || !t.salida) return;
-
-    const now = new Date();
-    const nowMin = now.getHours() * 60 + now.getMinutes();
+    const ayerISO = TL_ayerISO();
     const primerNombre = VOZ_nombreHablado(currentUser.apodo || currentUser.nombre);
 
-    const eventos = [];
-    const fus = BRK_fusion(hoyISO, t.nombreNorm); // pausas unificadas: se anuncian una sola vez
-    (t.detalle || []).forEach((d, i) => {
-      const min = F3_parse12hToMin(d.value);
-      if (min === null) return;
-      if (fus && d.label === fus[1]) return;
-      const esAlmuerzo = /almuerzo/i.test(d.label);
-      let texto = esAlmuerzo ? `${primerNombre}, es hora de tu almuerzo.` : `${primerNombre}, es hora de tu break.`;
-      const gIdxV = BRK_idxLabel(d.label);
-      if (!esAlmuerzo && gIdxV >= 0 && BRK_delta(hoyISO, t.nombreNorm, gIdxV)) texto = `${primerNombre}, es hora de tu break. Hoy dura ${BRK_durIdx(hoyISO, t.nombreNorm, gIdxV)} minutos.`;
-      if (fus && d.label === fus[0]) {
-        const total = BRK_durEfectiva(hoyISO, t.nombreNorm, fus[0]) + BRK_durEfectiva(hoyISO, t.nombreNorm, fus[1]);
-        texto = `${primerNombre}, es hora de tu ${BRK_nombreLabel(fus[0]).toLowerCase()} y tu ${BRK_nombreLabel(fus[1]).toLowerCase()}, unificados: ${BRK_fmtDur(total)} seguidos.`;
-      }
-      eventos.push({ key: 'detalle-' + i, rel: min, texto });
-    });
-    const salMin = F3_toMin(t.salida);
-    if (salMin !== null && salMin !== 0) {
-      eventos.push({ key: 'salida', rel: salMin, texto: `${primerNombre}, tu turno terminó. ¡Buen descanso!` });
-    }
+    // Se revisa el turno de hoy y, si cruza la medianoche, también el de ayer
+    // (sus breaks/salida de madrugada pertenecen a ese registro).
+    [ayerISO, hoyISO].forEach(fISO => {
+      const t = MALLA_recordForDate(currentUser.mallaNombre, fISO);
+      if (!t || t.estado !== 'ACTIVO' || !t.entrada || !t.salida) return;
+      if (t.entrada === '00:00' && t.salida === '00:00') return; // sin horario publicado
+      if (fISO === ayerISO && !TL_cruza(t)) return;
+      const nowAbs = TL_nowAbs(t);
 
-    eventos.forEach(ev => {
-      // Ventana de 2 min: si la pestaña estuvo dormida en el minuto exacto, el aviso igual sale.
-      if (nowMin >= ev.rel && nowMin - ev.rel <= 2 && !TB_VOZ_State.avisados[ev.key]) {
-        TB_VOZ_State.avisados[ev.key] = true;
-        AVISO_lanzar('🔔 Aviso de turno', ev.texto);
-        if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
-      }
+      const eventos = [];
+      const fus = BRK_fusion(fISO, t.nombreNorm); // pausas unificadas: se anuncian una sola vez
+      (t.detalle || []).forEach((d, i) => {
+        const det = TL_detalleHora(d, t); // corrige AM/PM invertido de la malla
+        if (!det) return;
+        if (fus && d.label === fus[1]) return;
+        const esAlmuerzo = /almuerzo/i.test(d.label);
+        let texto = esAlmuerzo ? `${primerNombre}, es hora de tu almuerzo.` : `${primerNombre}, es hora de tu break.`;
+        const gIdxV = BRK_idxLabel(d.label);
+        if (!esAlmuerzo && gIdxV >= 0 && BRK_delta(fISO, t.nombreNorm, gIdxV)) texto = `${primerNombre}, es hora de tu break. Hoy dura ${BRK_durIdx(fISO, t.nombreNorm, gIdxV)} minutos.`;
+        if (fus && d.label === fus[0]) {
+          const total = BRK_durEfectiva(fISO, t.nombreNorm, fus[0]) + BRK_durEfectiva(fISO, t.nombreNorm, fus[1]);
+          texto = `${primerNombre}, es hora de tu ${BRK_nombreLabel(fus[0]).toLowerCase()} y tu ${BRK_nombreLabel(fus[1]).toLowerCase()}, unificados: ${BRK_fmtDur(total)} seguidos.`;
+        }
+        eventos.push({ key: fISO + '|detalle-' + i, rel: det.abs, texto });
+      });
+      eventos.push({ key: fISO + '|salida', rel: TL_salAbs(t), texto: `${primerNombre}, tu turno terminó. ¡Buen descanso!` });
+
+      eventos.forEach(ev => {
+        if (nowAbs >= ev.rel && nowAbs - ev.rel <= TB_VOZ_VENTANA_MIN && !TB_VOZ_State.avisados[ev.key]) {
+          TB_VOZ_State.avisados[ev.key] = true;
+          AVISO_lanzar('🔔 Aviso de turno', ev.texto);
+          try { if (FASE3_State.jornadaUpdate) FASE3_State.jornadaUpdate(); } catch {}
+          if (typeof TB_EVA_hablar === 'function') TB_EVA_hablar();
+        }
+      });
     });
   } catch (e) { console.error('TB_VOZ_tick error:', e); }
 }
 setInterval(TB_VOZ_tick, 15000);
+// ── Reloj maestro (web y oficina): timeline y avisos de Eva se revisan JUNTOS ──
+// Ambos leen la hora del navegador (new Date) y comparten criterio. Aquí se garantiza que se
+// evalúen al mismo tiempo: en cada cambio de minuto exacto, al volver de una suspensión/pestaña
+// dormida (el temporizador se atrasó) y cuando cambia la hora del sistema.
+function TL_sincronizar() {
+  try { TB_VOZ_tick(); } catch (e) { console.error(e); }
+  try { TL_vigilante(); } catch (e) { console.error(e); }
+}
+let TL_ultimoLatido = Date.now();
+(function TL_minutoExacto() {
+  setTimeout(() => { TL_ultimoLatido = Date.now(); TL_sincronizar(); TL_minutoExacto(); }, 60000 - (Date.now() % 60000) + 300);
+})();
+setInterval(() => {
+  const ahora = Date.now(), salto = ahora - TL_ultimoLatido;
+  TL_ultimoLatido = ahora;
+  if (salto > 20000 || salto < 0) TL_sincronizar(); // pausa del navegador, equipo dormido o reloj cambiado
+}, 5000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) TB_VOZ_tick(); });
+window.addEventListener('focus', TB_VOZ_tick);
 
 
 
@@ -10403,6 +10811,7 @@ let ARCADE_RUN = null;
 let ARCADE_SNAKE = null;
 let ARCADE_TETRIS = null;
 let ARCADE_FYA = null;
+let ARCADE_TRIVIA = null;
 
 function ARCADE_open() {
   const overlay = document.getElementById('arcade-overlay');
@@ -10468,6 +10877,7 @@ function ARCADE_stopCurrentGame() {
     const mb = document.getElementById('mus-beams'); if (mb) mb.remove();
     ARCADE_MUS = null;
   }
+  ARCADE_TRIVIA = null;
   ARCADE_State.current = null;
   ARCADE_State.paused = false;
   const btn = document.getElementById('arcade-pause-btn');
@@ -10491,10 +10901,437 @@ function ARCADE_startGame(name) {
   else if (name === 'music') ARCADE_MUS_start();
   else if (name === 'libro') ARCADE_LIBRO_start();
 }
-// Libro: apartado vacío, listo para agregar historias (poner cada historia dentro de #arcade-libro-lista).
+// Formato: [categoría, pregunta, RESPUESTA CORRECTA, incorrecta, incorrecta, incorrecta]
+// (las opciones se mezclan solas al jugar)
+const ARCADE_TRIVIA_BANK = [
+// ───── 🇨🇴 Colombia ─────
+['Colombia','¿Cuál es la capital de Colombia?','Bogotá','Medellín','Cali','Barranquilla'],
+['Colombia','¿Cuántos departamentos tiene Colombia?','32','30','28','35'],
+['Colombia','¿Qué escritor colombiano ganó el Premio Nobel de Literatura en 1982?','Gabriel García Márquez','Álvaro Mutis','Jorge Isaacs','William Ospina'],
+['Colombia','¿Cómo se llama el pueblo ficticio de "Cien años de soledad"?','Macondo','Aracataca','Comala','Santa María'],
+['Colombia','¿En qué año se conmemora el Grito de Independencia de Colombia (20 de julio)?','1810','1819','1821','1830'],
+['Colombia','¿En qué año fue la Batalla de Boyacá?','1819','1810','1824','1830'],
+['Colombia','¿Cuál es la capital del departamento del Atlántico?','Barranquilla','Santa Marta','Cartagena','Sincelejo'],
+['Colombia','¿Cuál es la flor nacional de Colombia?','La orquídea','La rosa','El clavel','El girasol'],
+['Colombia','¿Cuál es el ave nacional de Colombia?','El cóndor de los Andes','El colibrí','El tucán','La guacamaya'],
+['Colombia','¿Qué ciudad es conocida como "La Ciudad de la Eterna Primavera"?','Medellín','Bucaramanga','Pereira','Cali'],
+['Colombia','¿Qué carnaval colombiano fue declarado Patrimonio de la Humanidad por la UNESCO?','El Carnaval de Barranquilla','El Carnaval de Blancos y Negros','La Feria de Cali','El Festival de Flores'],
+['Colombia','¿En qué sistema montañoso está el Pico Cristóbal Colón?','Sierra Nevada de Santa Marta','Cordillera Oriental','Serranía de la Macarena','Nevado del Huila'],
+['Colombia','¿Cuál es la moneda de Colombia?','Peso colombiano','Dólar colombiano','Bolívar','Sol'],
+['Colombia','¿Quién ganó el Tour de Francia en 2019?','Egan Bernal','Nairo Quintana','Rigoberto Urán','Miguel Ángel López'],
+['Colombia','¿Cuál es el plato típico más famoso de Antioquia?','Bandeja paisa','Ajiaco','Sancocho de gallina','Lechona'],
+['Colombia','¿En qué departamento queda Caño Cristales, el "río de los cinco colores"?','Meta','Amazonas','Guaviare','Vichada'],
+['Colombia','¿Quién fue conocido como "El Libertador"?','Simón Bolívar','Francisco de Paula Santander','Antonio Nariño','José de San Martín'],
+['Colombia','¿Qué instrumento es esencial en el vallenato?','El acordeón','El arpa','La marimba','El bandoneón'],
+['Colombia','¿En qué ciudad se celebra el Festival de la Leyenda Vallenata?','Valledupar','Santa Marta','Montería','Riohacha'],
+['Colombia','¿Qué jugador colombiano fue goleador del Mundial de Brasil 2014?','James Rodríguez','Radamel Falcao','Juan Cuadrado','Carlos Bacca'],
+['Colombia','¿Cuál es la capital del departamento de Bolívar?','Cartagena','Montería','Sincelejo','Magangué'],
+['Colombia','¿Cuál es la capital del departamento de Santander?','Bucaramanga','Cúcuta','Tunja','Neiva'],
+['Colombia','¿Cuál es la capital del Valle del Cauca?','Cali','Palmira','Buenaventura','Tuluá'],
+['Colombia','¿Qué artista colombiano es famoso por sus esculturas y pinturas de figuras voluminosas?','Fernando Botero','Alejandro Obregón','Édgar Negret','Oswaldo Guayasamín'],
+['Colombia','¿Qué ritmo musical nació en la Costa Caribe colombiana?','La cumbia','El tango','La bachata','El merengue'],
+['Colombia','¿Qué color ocupa la franja más grande de la bandera de Colombia?','Amarillo','Azul','Rojo','Verde'],
+['Colombia','¿En qué año ganó Colombia su única Copa América?','2001','1993','2014','1975'],
+['Colombia','¿Qué catedral subterránea famosa está en Zipaquirá?','La Catedral de Sal','La Catedral del Carbón','La Catedral de Piedra','La Catedral de Cristal'],
+['Colombia','¿Cuál es la capital del departamento del Magdalena?','Santa Marta','Ciénaga','Fundación','Plato'],
+['Colombia','¿Qué ciudad es conocida como "La Ciudad Blanca"?','Popayán','Tunja','Pasto','Manizales'],
+['Colombia','¿Qué cantante colombiana es famosa por "Waka Waka"?','Shakira','Karol G','Fanny Lu','Greeicy'],
+['Colombia','¿Qué película animada de Disney está ambientada en Colombia?','Encanto','Coco','Moana','Frozen'],
+['Colombia','¿Qué eje agrupa a Caldas, Risaralda y Quindío?','El Eje Cafetero','La Región Andina','La Orinoquía','El Pacífico'],
+['Colombia','¿Qué cantante colombiano interpreta "La Tierra del Olvido"?','Carlos Vives','Juanes','Silvestre Dangond','Maluma'],
+['Colombia','¿Qué colombiana ganó el oro olímpico en BMX en Londres 2012?','Mariana Pajón','Caterine Ibargüen','Yuri Alvear','Oscar Figueroa'],
+['Colombia','¿En qué departamento está la ciudad de Pereira?','Risaralda','Quindío','Caldas','Tolima'],
+['Colombia','¿Cuál es el río más importante de Colombia, que desemboca en Barranquilla?','Magdalena','Cauca','Atrato','Meta'],
+['Colombia','¿Cuántos océanos bañan las costas de Colombia?','Dos (Atlántico y Pacífico)','Uno','Tres','Ninguno'],
+['Colombia','¿Qué celebración colombiana se hace el 7 de diciembre con velas y faroles?','El Día de las Velitas','La Noche de Brujas','El Día de la Raza','La Novena de Aguinaldos'],
+// ───── 🌍 Geografía ─────
+['Geografía','¿Cuál es la capital de Francia?','París','Lyon','Marsella','Niza'],
+['Geografía','¿Cuál es la capital de Japón?','Tokio','Kioto','Osaka','Nagoya'],
+['Geografía','¿Cuál es la capital de Australia?','Canberra','Sídney','Melbourne','Perth'],
+['Geografía','¿Cuál es la capital de Canadá?','Ottawa','Toronto','Vancouver','Montreal'],
+['Geografía','¿Cuál es la capital de Brasil?','Brasilia','Río de Janeiro','São Paulo','Salvador'],
+['Geografía','¿Cuál es la capital de Argentina?','Buenos Aires','Córdoba','Rosario','Mendoza'],
+['Geografía','¿Cuál es la capital de Egipto?','El Cairo','Alejandría','Luxor','Guiza'],
+['Geografía','¿Cuál es la capital de Turquía?','Ankara','Estambul','Esmirna','Antalya'],
+['Geografía','¿Cuál es la capital de Suiza?','Berna','Zúrich','Ginebra','Basilea'],
+['Geografía','¿Cuál es la capital de Perú?','Lima','Cusco','Arequipa','Trujillo'],
+['Geografía','¿Cuál es la capital de Chile?','Santiago','Valparaíso','Concepción','Antofagasta'],
+['Geografía','¿Cuál es la capital de Venezuela?','Caracas','Maracaibo','Valencia','Barquisimeto'],
+['Geografía','¿Cuál es la capital de Ecuador?','Quito','Guayaquil','Cuenca','Manta'],
+['Geografía','¿Cuál es la capital de Uruguay?','Montevideo','Punta del Este','Salto','Colonia'],
+['Geografía','¿Cuál es la capital de Alemania?','Berlín','Múnich','Hamburgo','Fráncfort'],
+['Geografía','¿Cuál es la capital de Italia?','Roma','Milán','Venecia','Nápoles'],
+['Geografía','¿Cuál es la capital de Rusia?','Moscú','San Petersburgo','Kiev','Minsk'],
+['Geografía','¿Cuál es la capital de India?','Nueva Delhi','Bombay','Calcuta','Bangalore'],
+['Geografía','¿Cuál es la capital de Corea del Sur?','Seúl','Busan','Pionyang','Incheon'],
+['Geografía','¿Cuál es la capital de Portugal?','Lisboa','Oporto','Coímbra','Faro'],
+['Geografía','¿Cuál es la capital de Nueva Zelanda?','Wellington','Auckland','Christchurch','Queenstown'],
+['Geografía','¿Cuál es la capital de Marruecos?','Rabat','Casablanca','Marrakech','Fez'],
+['Geografía','¿Cuál es la capital de Kenia?','Nairobi','Mombasa','Kampala','Adís Abeba'],
+['Geografía','¿Cuál es el océano más grande del mundo?','Pacífico','Atlántico','Índico','Ártico'],
+['Geografía','¿Cuál es el río más caudaloso del mundo?','Amazonas','Nilo','Misisipi','Yangtsé'],
+['Geografía','¿Cuál es el desierto cálido más grande del mundo?','Sahara','Gobi','Kalahari','Atacama'],
+['Geografía','¿Cuál es el país más grande del mundo por superficie?','Rusia','Canadá','China','Estados Unidos'],
+['Geografía','¿Cuál es la montaña más alta del mundo sobre el nivel del mar?','Everest','K2','Kilimanjaro','Aconcagua'],
+['Geografía','¿Cuál es la isla más grande del mundo?','Groenlandia','Madagascar','Borneo','Nueva Guinea'],
+['Geografía','¿Qué cordillera recorre Sudamérica de norte a sur?','Los Andes','Los Alpes','Las Rocosas','Los Apalaches'],
+['Geografía','¿Qué país tiene forma de bota?','Italia','Grecia','Portugal','Chile'],
+['Geografía','¿Qué canal une el océano Atlántico con el Pacífico?','Canal de Panamá','Canal de Suez','Canal de la Mancha','Canal de Corinto'],
+['Geografía','¿En qué país está Machu Picchu?','Perú','Bolivia','Ecuador','México'],
+['Geografía','¿En qué ciudad está la Torre Eiffel?','París','Londres','Roma','Madrid'],
+['Geografía','¿En qué país está el Taj Mahal?','India','Pakistán','Irán','Tailandia'],
+['Geografía','¿En qué ciudad está el Cristo Redentor?','Río de Janeiro','Lima','Buenos Aires','Santiago'],
+['Geografía','¿En qué país está Chichén Itzá?','México','Guatemala','Perú','Honduras'],
+['Geografía','¿Qué país tiene una bandera blanca con un círculo rojo en el centro?','Japón','Corea del Sur','Bangladés','Suiza'],
+['Geografía','¿Cuántos continentes se reconocen habitualmente?','7','5','6','8'],
+['Geografía','¿Qué continente tiene más países?','África','Asia','Europa','América'],
+['Geografía','¿Qué país tiene más habitantes actualmente?','India','China','Estados Unidos','Indonesia'],
+['Geografía','¿Entre qué dos países están las Cataratas del Iguazú?','Argentina y Brasil','Chile y Perú','Colombia y Venezuela','Uruguay y Paraguay'],
+['Geografía','¿Cuál es el lago navegable más alto del mundo, entre Perú y Bolivia?','Titicaca','Maracaibo','Nicaragua','Poopó'],
+['Geografía','¿Qué país es famoso por los fiordos y la aurora boreal, y tiene capital Oslo?','Noruega','Suecia','Finlandia','Dinamarca'],
+['Geografía','¿En qué continente está Egipto?','África','Asia','Europa','Oceanía'],
+['Geografía','¿Cuál es el idioma oficial de Brasil?','Portugués','Español','Inglés','Francés'],
+['Geografía','¿Qué moneda se usa en gran parte de la Unión Europea?','Euro','Libra','Franco','Dólar'],
+// ───── 🔬 Ciencia ─────
+['Ciencia','¿Qué planeta es el más cercano al Sol?','Mercurio','Venus','Marte','Júpiter'],
+['Ciencia','¿Qué planeta es conocido como el "planeta rojo"?','Marte','Venus','Saturno','Mercurio'],
+['Ciencia','¿Cuál es el planeta más grande del sistema solar?','Júpiter','Saturno','Neptuno','Tierra'],
+['Ciencia','¿Cuántos planetas tiene el sistema solar?','8','9','7','10'],
+['Ciencia','¿Cómo se llama nuestra galaxia?','Vía Láctea','Andrómeda','Cigarro','Triángulo'],
+['Ciencia','¿Qué planeta es famoso por sus anillos?','Saturno','Marte','Mercurio','Venus'],
+['Ciencia','¿Cuál es el símbolo químico del oro?','Au','Ag','Or','Go'],
+['Ciencia','¿Cuál es el símbolo químico de la plata?','Ag','Au','Pt','Si'],
+['Ciencia','¿Cuál es la fórmula química del agua?','H2O','CO2','O2','NaCl'],
+['Ciencia','¿Cuál es el símbolo químico del sodio?','Na','So','S','Sd'],
+['Ciencia','¿Cuál es el símbolo químico del hierro?','Fe','Hi','Ir','Fr'],
+['Ciencia','¿Qué gas absorben las plantas para hacer la fotosíntesis?','Dióxido de carbono','Oxígeno','Nitrógeno','Hidrógeno'],
+['Ciencia','¿Cuántos huesos tiene el cuerpo humano adulto?','206','180','250','300'],
+['Ciencia','¿Cuál es el órgano más grande del cuerpo humano?','La piel','El hígado','El corazón','El pulmón'],
+['Ciencia','¿Cuántos dientes tiene un adulto (con muelas del juicio)?','32','28','30','36'],
+['Ciencia','¿Qué vitamina produce el cuerpo con la luz del sol?','Vitamina D','Vitamina C','Vitamina A','Vitamina B12'],
+['Ciencia','¿Qué células de la sangre transportan el oxígeno?','Glóbulos rojos','Glóbulos blancos','Plaquetas','Plasma'],
+['Ciencia','¿A qué temperatura hierve el agua a nivel del mar?','100 °C','90 °C','80 °C','120 °C'],
+['Ciencia','¿Qué capa de la atmósfera nos protege de los rayos ultravioleta?','La capa de ozono','La troposfera','La ionosfera','La exosfera'],
+['Ciencia','¿Cuál es el animal más grande del mundo?','La ballena azul','El elefante africano','El tiburón ballena','La jirafa'],
+['Ciencia','¿Cuál es el único mamífero capaz de volar?','El murciélago','La ardilla voladora','El colibrí','El pelícano'],
+['Ciencia','¿Cuál es el animal terrestre más rápido?','El guepardo','El león','El caballo','La gacela'],
+['Ciencia','¿Cuál es el ave más grande del mundo?','El avestruz','El cóndor','El albatros','El emú'],
+['Ciencia','¿Cuántas patas tiene una araña?','8','6','10','4'],
+['Ciencia','¿Cuántas patas tiene un insecto?','6','8','4','10'],
+['Ciencia','¿Qué mamífero pone huevos?','El ornitorrinco','El delfín','El canguro','El murciélago'],
+['Ciencia','¿Cuántos corazones tiene un pulpo?','3','1','2','8'],
+['Ciencia','¿Quién formuló la teoría de la relatividad?','Albert Einstein','Isaac Newton','Galileo Galilei','Stephen Hawking'],
+['Ciencia','¿Quién descubrió la ley de la gravitación universal?','Isaac Newton','Albert Einstein','Nikola Tesla','Marie Curie'],
+['Ciencia','¿Quién descubrió la penicilina?','Alexander Fleming','Louis Pasteur','Marie Curie','Robert Koch'],
+['Ciencia','¿Quién propuso la teoría de la evolución por selección natural?','Charles Darwin','Gregor Mendel','Louis Pasteur','Carl Sagan'],
+['Ciencia','¿Quién creó la tabla periódica de los elementos?','Dmitri Mendeléyev','Antoine Lavoisier','Niels Bohr','John Dalton'],
+['Ciencia','¿Qué elemento es el más abundante del universo?','Hidrógeno','Oxígeno','Helio','Carbono'],
+['Ciencia','¿Qué mide un termómetro?','La temperatura','La presión','La humedad','La velocidad'],
+['Ciencia','¿Qué significan las siglas ADN?','Ácido desoxirribonucleico','Ácido dinámico nuclear','Agente de nutrición','Ácido dioxinitrógeno'],
+['Ciencia','¿Qué es un año luz?','Una unidad de distancia','Una unidad de tiempo','Una unidad de velocidad','Una unidad de energía'],
+['Ciencia','¿Cuál es la estrella más cercana a la Tierra?','El Sol','Alfa Centauro','Sirio','La Polar'],
+['Ciencia','¿De qué está hecho principalmente el diamante?','Carbono','Cuarzo','Silicio','Calcio'],
+['Ciencia','¿Cuál es el satélite natural de la Tierra?','La Luna','Fobos','Europa','Titán'],
+['Ciencia','¿Qué científica ganó dos Premios Nobel por estudiar la radiactividad?','Marie Curie','Rosalind Franklin','Ada Lovelace','Jane Goodall'],
+['Ciencia','¿Qué rama de la ciencia estudia los fósiles?','La paleontología','La geología','La astronomía','La botánica'],
+['Ciencia','¿Qué animal es un mamífero marino?','El delfín','El tiburón','El atún','El pulpo'],
+['Ciencia','¿En qué estado de la materia está el hielo?','Sólido','Líquido','Gaseoso','Plasma'],
+// ───── 🏛️ Historia ─────
+['Historia','¿En qué año llegó Cristóbal Colón a América?','1492','1500','1453','1521'],
+['Historia','¿En qué año empezó la Revolución Francesa?','1789','1776','1804','1815'],
+['Historia','¿En qué año terminó la Segunda Guerra Mundial?','1945','1939','1918','1950'],
+['Historia','¿En qué año cayó el Muro de Berlín?','1989','1961','1975','1991'],
+['Historia','¿Quién fue el primer hombre en pisar la Luna?','Neil Armstrong','Buzz Aldrin','Yuri Gagarin','Michael Collins'],
+['Historia','¿En qué año llegó el ser humano a la Luna por primera vez?','1969','1957','1975','1981'],
+['Historia','¿Qué civilización construyó las pirámides de Guiza?','La egipcia','La maya','La romana','La azteca'],
+['Historia','¿Cuál era la capital del Imperio Inca?','Cusco','Lima','Quito','Machu Picchu'],
+['Historia','¿Cuál era la capital del Imperio Azteca?','Tenochtitlan','Teotihuacan','Chichén Itzá','Cuzco'],
+['Historia','¿En qué año comenzó la Primera Guerra Mundial?','1914','1905','1920','1939'],
+['Historia','¿En qué año se declaró la independencia de Estados Unidos?','1776','1789','1812','1865'],
+['Historia','¿Qué barco se hundió en 1912 tras chocar con un iceberg?','El Titanic','El Britannic','El Lusitania','El Queen Mary'],
+['Historia','¿Quién fue el presidente de Estados Unidos durante la Guerra Civil?','Abraham Lincoln','George Washington','Thomas Jefferson','Theodore Roosevelt'],
+['Historia','¿Quién fue el primer presidente de Sudáfrica elegido tras el apartheid?','Nelson Mandela','Desmond Tutu','Thabo Mbeki','Jacob Zuma'],
+['Historia','¿Qué reina gobernó Egipto y es famosa por su relación con Julio César y Marco Antonio?','Cleopatra','Nefertiti','Hatshepsut','Isis'],
+['Historia','¿En qué batalla fue derrotado Napoleón definitivamente en 1815?','Waterloo','Trafalgar','Austerlitz','Verdún'],
+['Historia','¿En qué país empezaron los Juegos Olímpicos antiguos?','Grecia','Italia','Egipto','Turquía'],
+['Historia','¿Qué navegante completó la primera vuelta al mundo tras la muerte de Magallanes?','Juan Sebastián Elcano','Vasco da Gama','Américo Vespucio','Hernán Cortés'],
+['Historia','¿En qué año fue la Revolución Rusa que llevó a los bolcheviques al poder?','1917','1905','1929','1945'],
+['Historia','¿Cuál fue la capital del Imperio Romano?','Roma','Atenas','Constantinopla','Cartago'],
+['Historia','¿En qué ciudad nació Simón Bolívar?','Caracas','Bogotá','Cartagena','Quito'],
+['Historia','¿Qué muro defensivo se construyó en el norte de China?','La Gran Muralla','La Muralla de Adriano','La Muralla de Ávila','El Muro de Berlín'],
+// ───── 🎬 Arte, cine y música ─────
+['Arte y cine','¿Quién escribió "Don Quijote de la Mancha"?','Miguel de Cervantes','Lope de Vega','Quevedo','Gabriel García Márquez'],
+['Arte y cine','¿Quién escribió "Romeo y Julieta"?','William Shakespeare','Charles Dickens','Oscar Wilde','Víctor Hugo'],
+['Arte y cine','¿Quién pintó "La Noche Estrellada"?','Vincent van Gogh','Pablo Picasso','Claude Monet','Salvador Dalí'],
+['Arte y cine','¿Quién pintó la "Mona Lisa"?','Leonardo da Vinci','Miguel Ángel','Rafael','Botticelli'],
+['Arte y cine','¿Quién pintó el "Guernica"?','Pablo Picasso','Salvador Dalí','Joan Miró','Francisco de Goya'],
+['Arte y cine','¿Quién escribió "El Principito"?','Antoine de Saint-Exupéry','Julio Verne','Víctor Hugo','Albert Camus'],
+['Arte y cine','¿Quién escribió la saga de "Harry Potter"?','J. K. Rowling','Suzanne Collins','Stephenie Meyer','J. R. R. Tolkien'],
+['Arte y cine','¿Quién es conocido como el "Rey del Pop"?','Michael Jackson','Elvis Presley','Prince','Justin Timberlake'],
+['Arte y cine','¿De qué ciudad inglesa eran Los Beatles?','Liverpool','Londres','Manchester','Birmingham'],
+['Arte y cine','¿Cuántas cuerdas tiene una guitarra clásica?','6','4','5','8'],
+['Arte y cine','¿Cuántas notas musicales básicas existen?','7','5','8','12'],
+['Arte y cine','¿De qué país es el cantante Bad Bunny?','Puerto Rico','República Dominicana','Cuba','México'],
+['Arte y cine','¿Quién canta "Despacito" junto a Daddy Yankee?','Luis Fonsi','Maluma','J Balvin','Ozuna'],
+['Arte y cine','¿Quién dirigió la película "Titanic" (1997)?','James Cameron','Steven Spielberg','Christopher Nolan','Ridley Scott'],
+['Arte y cine','¿Cómo se llama el león protagonista de "El Rey León"?','Simba','Mufasa','Scar','Nala'],
+['Arte y cine','¿Cómo se llama la princesa de hielo de la película "Frozen"?','Elsa','Anna','Rapunzel','Ariel'],
+['Arte y cine','¿Qué película de Pixar trata sobre el Día de Muertos en México?','Coco','Soul','Up','Valiente'],
+['Arte y cine','¿De qué color es el ogro Shrek?','Verde','Azul','Gris','Marrón'],
+['Arte y cine','¿Cómo se llama el alter ego de Iron Man?','Tony Stark','Bruce Wayne','Peter Parker','Steve Rogers'],
+['Arte y cine','¿Cómo se llama el fontanero más famoso de los videojuegos, de Nintendo?','Mario','Luigi','Wario','Sonic'],
+['Arte y cine','¿De qué videojuego es protagonista Pikachu?','Pokémon','Digimon','Mario Kart','Zelda'],
+['Arte y cine','¿Qué videojuego, famoso por sus bloques cuadrados, creó Mojang?','Minecraft','Roblox','Fortnite','Terraria'],
+['Arte y cine','¿Qué videojuego de bloques que caen creó el ruso Alexey Pajitnov?','Tetris','Pac-Man','Pong','Snake'],
+['Arte y cine','¿Quién compuso la "Novena Sinfonía" con el "Himno a la Alegría"?','Beethoven','Mozart','Bach','Chopin'],
+['Arte y cine','¿Qué cantante colombiano es autor de "A Dios le pido"?','Juanes','Carlos Vives','Fonseca','Sebastián Yatra'],
+['Arte y cine','¿En qué país nació el tango?','Argentina (Río de la Plata)','España','Cuba','Brasil'],
+['Arte y cine','¿Qué baile es típico de España y se baila con castañuelas y taconeo?','El flamenco','La samba','La salsa','El vals'],
+['Arte y cine','¿Quién escribió "Pedro Páramo"?','Juan Rulfo','Julio Cortázar','Mario Vargas Llosa','Carlos Fuentes'],
+['Arte y cine','¿Qué poeta chileno ganó el Nobel de Literatura en 1971?','Pablo Neruda','Gabriela Mistral','Vicente Huidobro','Nicanor Parra'],
+// ───── ⚽ Deportes ─────
+['Deportes','¿Cuántos jugadores de cada equipo hay en la cancha en un partido de fútbol?','11','9','10','12'],
+['Deportes','¿Qué selección ganó el Mundial de Qatar 2022?','Argentina','Francia','Brasil','Croacia'],
+['Deportes','¿Qué selección ganó el Mundial de Rusia 2018?','Francia','Croacia','Bélgica','Brasil'],
+['Deportes','¿Qué país ha ganado más Mundiales de fútbol masculino?','Brasil','Alemania','Italia','Argentina'],
+['Deportes','¿En qué ciudad nació Lionel Messi?','Rosario','Buenos Aires','Córdoba','Mar del Plata'],
+['Deportes','¿De qué país es Cristiano Ronaldo?','Portugal','España','Brasil','Francia'],
+['Deportes','¿Qué país organizó el Mundial 2026 junto a México y Canadá?','Estados Unidos','Brasil','Argentina','Inglaterra'],
+['Deportes','¿Cuántos jugadores de un equipo hay en cancha en baloncesto?','5','6','7','4'],
+['Deportes','¿Cuántos jugadores de un equipo hay en cancha en voleibol?','6','5','7','8'],
+['Deportes','¿Qué equipo de la NBA tuvo a Michael Jordan como su mayor estrella?','Chicago Bulls','Los Angeles Lakers','Boston Celtics','Miami Heat'],
+['Deportes','¿Qué deportista jamaiquino es el hombre más rápido en los 100 metros?','Usain Bolt','Yohan Blake','Asafa Powell','Carl Lewis'],
+['Deportes','¿Cada cuántos años se celebran los Juegos Olímpicos de verano?','4','2','3','5'],
+['Deportes','¿Qué ciudad fue sede de los Juegos Olímpicos de 2024?','París','Tokio','Londres','Río de Janeiro'],
+['Deportes','¿Cuántos kilómetros mide aproximadamente una maratón?','42','21','10','50'],
+['Deportes','¿Qué color tiene el maillot del líder del Tour de Francia?','Amarillo','Rojo','Verde','Azul'],
+['Deportes','¿Sobre qué superficie se juega el torneo de Wimbledon?','Césped','Arcilla','Cemento','Madera'],
+['Deportes','¿Cuántas bases tiene un campo de béisbol (contando home)?','4','3','5','6'],
+['Deportes','¿Qué nadador ha ganado más medallas de oro olímpicas en la historia?','Michael Phelps','Mark Spitz','Ian Thorpe','Ryan Lochte'],
+['Deportes','¿A qué apodo responde el futbolista colombiano Radamel Falcao?','El Tigre','El Pibe','El Cabezón','La Pantera'],
+['Deportes','¿Qué ciclista colombiano ganó el Giro de Italia 2014?','Nairo Quintana','Egan Bernal','Rigoberto Urán','Esteban Chaves'],
+['Deportes','¿Qué colombiana ganó oro olímpico en salto triple en Río 2016?','Caterine Ibargüen','Mariana Pajón','Yuri Alvear','Ingrit Valencia'],
+['Deportes','¿Quién fue apodado "El Más Grande" (The Greatest) en el boxeo?','Muhammad Ali','Mike Tyson','Joe Frazier','George Foreman'],
+['Deportes','¿Cuántas piezas tiene cada jugador al empezar una partida de ajedrez?','16','12','20','8'],
+['Deportes','¿Qué piloto de F1 tiene siete títulos mundiales junto a Michael Schumacher?','Lewis Hamilton','Max Verstappen','Sebastian Vettel','Ayrton Senna'],
+['Deportes','¿En qué deporte se usa un "birdie" (volante)?','Bádminton','Tenis','Squash','Golf'],
+['Deportes','¿Cuántos puntos vale un triple en baloncesto?','3','2','4','5'],
+// ───── 💻 Tecnología y trabajo ─────
+['Tecnología y trabajo','¿Qué significa "WWW" en una dirección web?','World Wide Web','Wide World Window','Web World Wire','World Web Work'],
+['Tecnología y trabajo','¿Qué significan las siglas CPU?','Unidad Central de Procesamiento','Unidad Central de Programas','Control Principal de Usuario','Centro de Procesos Universal'],
+['Tecnología y trabajo','¿Quién fundó Microsoft junto a Paul Allen?','Bill Gates','Steve Jobs','Elon Musk','Mark Zuckerberg'],
+['Tecnología y trabajo','¿Quién cofundó Apple junto a Steve Wozniak?','Steve Jobs','Bill Gates','Jeff Bezos','Larry Page'],
+['Tecnología y trabajo','¿Cuántos bits tiene un byte?','8','4','16','10'],
+['Tecnología y trabajo','¿Qué empresa desarrolló el sistema operativo Android?','Google','Apple','Microsoft','Samsung'],
+['Tecnología y trabajo','¿Qué atajo de teclado sirve para copiar (en Windows)?','Ctrl + C','Ctrl + V','Ctrl + X','Ctrl + Z'],
+['Tecnología y trabajo','¿Qué atajo de teclado sirve para deshacer (en Windows)?','Ctrl + Z','Ctrl + Y','Ctrl + P','Ctrl + S'],
+['Tecnología y trabajo','¿Qué atajo de teclado sirve para guardar (en Windows)?','Ctrl + S','Ctrl + G','Ctrl + A','Ctrl + D'],
+['Tecnología y trabajo','¿Qué significa "RAM" en un computador?','Memoria de acceso aleatorio','Registro de archivos maestro','Red de acceso móvil','Reserva de aplicaciones'],
+['Tecnología y trabajo','¿Qué lenguaje se usa para estructurar las páginas web?','HTML','Photoshop','SQL','Excel'],
+['Tecnología y trabajo','¿Qué extensión tienen los archivos modernos de Excel?','.xlsx','.docx','.pptx','.pdf'],
+['Tecnología y trabajo','¿Qué significa KPI?','Indicador clave de desempeño','Kit para internet','Proceso de inversión','Control de producción interna'],
+['Tecnología y trabajo','En un contact center, ¿qué significa CSAT?','Satisfacción del cliente','Costo de servicio','Capacitación de ventas','Cola de soporte'],
+['Tecnología y trabajo','En un contact center, ¿qué es el AHT?','Tiempo promedio de manejo de una atención','Horas de trabajo al año','Asistencia de la tarde','Atención en horas tardías'],
+['Tecnología y trabajo','¿Qué significa FCR en atención al cliente?','Resolución en el primer contacto','Facturación al cliente real','Fuerza de contacto remoto','Formato de captura rápida'],
+['Tecnología y trabajo','¿Qué significa SLA?','Acuerdo de nivel de servicio','Sistema de línea abierta','Servicio local alterno','Solución logística automática'],
+['Tecnología y trabajo','¿Qué habilidad consiste en prestar plena atención a lo que dice el cliente?','Escucha activa','Persuasión','Multitarea','Improvisación'],
+['Tecnología y trabajo','¿Qué es la empatía en la atención al cliente?','Ponerse en el lugar del cliente','Darle siempre la razón','Atender lo más rápido posible','Evitar las quejas'],
+['Tecnología y trabajo','Según la reducción gradual de la ley en Colombia, ¿cuántas horas semanales es la jornada máxima desde julio de 2026?','42','48','44','40'],
+['Tecnología y trabajo','¿Para qué sirven las pausas activas en el trabajo?','Para relajar el cuerpo y prevenir lesiones','Para adelantar el almuerzo','Para revisar el celular','Para recuperar horas'],
+['Tecnología y trabajo','¿Qué empresa creó el chatbot ChatGPT?','OpenAI','Google','Meta','Amazon'],
+['Tecnología y trabajo','¿Qué país originó los emojis?','Japón','Estados Unidos','Corea del Sur','China'],
+['Tecnología y trabajo','¿Qué símbolo separa el usuario del dominio en un correo electrónico?','@ (arroba)','# (numeral)','& (ampersand)','% (porcentaje)'],
+// ───── 🔢 Matemáticas y lógica ─────
+['Matemáticas','¿Cuánto es 7 × 8?','56','54','48','63'],
+['Matemáticas','¿Cuánto es 12 × 12?','144','124','132','156'],
+['Matemáticas','¿Cuál es la raíz cuadrada de 144?','12','14','11','16'],
+['Matemáticas','¿Cuánto es 9 al cuadrado?','81','72','99','18'],
+['Matemáticas','¿Cuánto es el 15 % de 200?','30','25','20','35'],
+['Matemáticas','¿Cuánto es el 50 % de 250?','125','100','150','75'],
+['Matemáticas','¿Cuántos lados tiene un hexágono?','6','5','7','8'],
+['Matemáticas','¿Cuántos lados tiene un octágono?','8','6','10','12'],
+['Matemáticas','¿Cuánto suman los ángulos internos de un triángulo?','180°','90°','360°','270°'],
+['Matemáticas','¿Cuál es el único número primo par?','2','4','0','6'],
+['Matemáticas','¿Cuántos minutos hay en una hora y media?','90','80','100','75'],
+['Matemáticas','¿Cuántos metros hay en un kilómetro?','1000','100','10 000','500'],
+['Matemáticas','¿Cuántos años tiene un siglo?','100','10','1000','50'],
+['Matemáticas','¿Cuántas unidades tiene una docena?','12','10','6','24'],
+['Matemáticas','¿Cuánto es 2 elevado a la 10?','1024','512','2048','1000'],
+['Matemáticas','¿Qué número romano representa el 50?','L','C','D','X'],
+['Matemáticas','¿Qué número romano representa el 1000?','M','D','C','L'],
+['Matemáticas','¿Cuántos días tiene febrero en un año bisiesto?','29','28','30','31'],
+['Matemáticas','¿Cuál es el siguiente número en la serie 2, 4, 8, 16, …?','32','24','30','18'],
+['Matemáticas','¿Cuál es el siguiente número en la serie 1, 1, 2, 3, 5, 8, …?','13','11','12','15'],
+['Matemáticas','¿Cuál es el perímetro de un cuadrado de lado 5?','20','25','10','15'],
+['Matemáticas','¿Cómo se escribe 1/4 en decimal?','0,25','0,4','0,14','0,5'],
+['Matemáticas','¿Cómo se llama el triángulo con sus tres lados iguales?','Equilátero','Isósceles','Escaleno','Rectángulo'],
+['Matemáticas','¿Cuál es el valor aproximado de π (pi)?','3,14','2,71','1,62','3,41'],
+['Matemáticas','Si un tren sale a las 2:15 p. m. y el viaje dura 2 h 50 min, ¿a qué hora llega?','5:05 p. m.','4:55 p. m.','5:15 p. m.','4:05 p. m.'],
+['Matemáticas','Si tienes 3 manzanas y comes 1, ¿cuántas manzanas te quedan?','2','1','3','0'],
+['Matemáticas','¿Cuánto es 1000 − 375?','625','575','725','675'],
+['Matemáticas','¿Cuántas horas tiene una semana?','168','144','156','182'],
+// ───── ✨ Curiosidades ─────
+['Curiosidades','¿Cuántos colores tiene el arcoíris?','7','6','8','5'],
+['Curiosidades','¿Qué color resulta de mezclar azul y amarillo?','Verde','Naranja','Morado','Marrón'],
+['Curiosidades','¿Qué color resulta de mezclar rojo y azul?','Morado','Verde','Naranja','Rosado'],
+['Curiosidades','¿Cuántos meses del año tienen 31 días?','7','6','8','5'],
+['Curiosidades','¿De qué fruta se obtiene el vino?','Uva','Manzana','Cereza','Pera'],
+['Curiosidades','¿De qué se obtiene el chocolate?','Del cacao','Del café','De la vainilla','De la caña'],
+['Curiosidades','¿Cuál es el ingrediente principal del guacamole?','Aguacate','Tomate','Pepino','Cebolla'],
+['Curiosidades','¿De qué país es originario el sushi?','Japón','China','Tailandia','Corea'],
+['Curiosidades','¿De qué país es originaria la paella?','España','Italia','México','Portugal'],
+['Curiosidades','¿De qué país es originario el ceviche?','Perú','Chile','Ecuador','México'],
+['Curiosidades','¿De qué país es originaria la pizza?','Italia','Francia','Estados Unidos','Grecia'],
+['Curiosidades','¿De qué país son originarios los tacos?','México','Colombia','España','Argentina'],
+['Curiosidades','¿Qué animal es símbolo de la paz?','La paloma','El águila','El cisne','El búho'],
+['Curiosidades','¿Dónde viven los pingüinos emperador?','En la Antártida','En el Ártico','En Australia','En Groenlandia'],
+['Curiosidades','¿De qué se alimenta principalmente el panda gigante?','Bambú','Eucalipto','Hojas de roble','Frutas'],
+['Curiosidades','¿En qué país vive de forma natural el canguro?','Australia','Nueva Zelanda','Sudáfrica','Brasil'],
+['Curiosidades','¿Qué animal produce la miel?','La abeja','La avispa','La hormiga','La mariposa'],
+['Curiosidades','¿Cuántas horas tiene un día?','24','12','36','48'],
+['Curiosidades','¿Cada cuántos años hay un año bisiesto?','4','2','5','10'],
+['Curiosidades','¿Qué día se celebra la Navidad?','25 de diciembre','24 de diciembre','1 de enero','6 de enero'],
+['Curiosidades','¿Qué fecha se celebra Halloween?','31 de octubre','1 de noviembre','30 de octubre','15 de octubre'],
+['Curiosidades','¿Qué instrumento tiene teclas blancas y negras?','El piano','La flauta','El violín','El tambor'],
+['Curiosidades','¿Qué mide una brújula?','La dirección (el norte magnético)','La altura','La velocidad','La hora'],
+['Curiosidades','¿Qué dice la expresión "Más vale tarde que…"?','Nunca','Poco','Mal','Pronto'],
+['Curiosidades','Complete el refrán: "A caballo regalado…"','no se le mira el colmillo','se le da de beber','se le pone silla','se le corre rápido'],
+['Curiosidades','Complete el refrán: "Al que madruga…"','Dios lo ayuda','le da sueño','se le acaba el día','todo le cuesta'],
+['Curiosidades','Complete el refrán: "No hay mal que…"','por bien no venga','dure cien años','cuerpo resista','no se cure'],
+['Curiosidades','¿Qué se celebra el 8 de marzo?','El Día Internacional de la Mujer','El Día del Trabajo','El Día de la Tierra','El Día del Niño'],
+['Curiosidades','¿Qué se celebra el 1 de mayo?','El Día Internacional del Trabajo','El Día de la Madre','El Día del Medio Ambiente','El Día de la Independencia'],
+];
+
+// ── Libro: Trivia ──
+// Rondas de 10 preguntas por tema (o de todos los temas). Las preguntas que ya salieron no se
+// repiten hasta agotar el tema. Las respuestas se mezclan solas en cada partida.
+const ARCADE_TRIVIA_RONDA = 10;
+const ARCADE_TRIVIA_TEMAS = {
+  'Colombia': '🇨🇴', 'Geografía': '🌍', 'Ciencia': '🔬', 'Historia': '🏛️', 'Arte y cine': '🎬',
+  'Deportes': '⚽', 'Tecnología y trabajo': '💻', 'Matemáticas': '🔢', 'Curiosidades': '✨'
+};
+function ARCADE_TRIVIA_mezclar(a) {
+  const r = a.slice();
+  for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; }
+  return r;
+}
+function ARCADE_TRIVIA_leer(k, def) { try { const v = localStorage.getItem(k); return v === null ? def : JSON.parse(v); } catch { return def; } }
+function ARCADE_TRIVIA_guardar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+function ARCADE_TRIVIA_el(tag, cls, txt) { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+
 function ARCADE_LIBRO_start() {
-  document.getElementById('arcade-game-area').innerHTML = '<div class="arcade-libro"><div style="font-size:44px">📖</div><h2>Libro</h2><div id="arcade-libro-lista"><p>Aún no hay historias.</p></div></div>';
-  ARCADE_setScore('📖 Libro');
+  ARCADE_TRIVIA = { vistas: new Set(ARCADE_TRIVIA_leer('tb_trivia_vistas_v1', [])), preguntas: [], i: 0, puntos: 0, racha: 0, mejorRacha: 0, aciertos: 0, bloqueado: false, tema: null };
+  ARCADE_TRIVIA_menu();
+}
+function ARCADE_TRIVIA_wrap() {
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = '';
+  const w = ARCADE_TRIVIA_el('div', 'tv-wrap');
+  area.appendChild(w);
+  return w;
+}
+function ARCADE_TRIVIA_menu() {
+  const w = ARCADE_TRIVIA_wrap();
+  ARCADE_setScore('📖 Libro · Trivia');
+  const head = ARCADE_TRIVIA_el('div', 'tv-head');
+  head.appendChild(ARCADE_TRIVIA_el('div', 'tv-big', '📖'));
+  head.appendChild(ARCADE_TRIVIA_el('h2', null, 'Libro de Trivia'));
+  head.appendChild(ARCADE_TRIVIA_el('p', null, `${ARCADE_TRIVIA_BANK.length} preguntas · rondas de ${ARCADE_TRIVIA_RONDA} · elige un tema`));
+  const rec = ARCADE_TRIVIA_leer('tb_trivia_record_v1', 0);
+  if (rec) head.appendChild(ARCADE_TRIVIA_el('p', 'tv-rec', `🏆 Tu récord: ${rec} puntos`));
+  w.appendChild(head);
+  const grid = ARCADE_TRIVIA_el('div', 'tv-temas');
+  const todas = ARCADE_TRIVIA_el('button', 'tv-tema tv-tema-todas', '🎲 Todos los temas');
+  todas.onclick = () => ARCADE_TRIVIA_iniciar(null);
+  grid.appendChild(todas);
+  Object.keys(ARCADE_TRIVIA_TEMAS).forEach(t => {
+    const n = ARCADE_TRIVIA_BANK.filter(q => q[0] === t).length;
+    const b = ARCADE_TRIVIA_el('button', 'tv-tema', `${ARCADE_TRIVIA_TEMAS[t]} ${t}`);
+    b.appendChild(ARCADE_TRIVIA_el('small', null, `${n} preguntas`));
+    b.onclick = () => ARCADE_TRIVIA_iniciar(t);
+    grid.appendChild(b);
+  });
+  w.appendChild(grid);
+}
+function ARCADE_TRIVIA_iniciar(tema) {
+  const T = ARCADE_TRIVIA;
+  let pool = ARCADE_TRIVIA_BANK.map((q, idx) => ({ q, idx })).filter(o => !tema || o.q[0] === tema);
+  let nuevas = pool.filter(o => !T.vistas.has(o.q[1]));
+  if (nuevas.length < ARCADE_TRIVIA_RONDA) { pool.forEach(o => T.vistas.delete(o.q[1])); nuevas = pool; } // tema agotado: se reinicia
+  const elegidas = ARCADE_TRIVIA_mezclar(nuevas).slice(0, ARCADE_TRIVIA_RONDA).map(o => o.q);
+  elegidas.forEach(q => T.vistas.add(q[1]));
+  ARCADE_TRIVIA_guardar('tb_trivia_vistas_v1', Array.from(T.vistas));
+  T.tema = tema; T.preguntas = elegidas; T.i = 0; T.puntos = 0; T.racha = 0; T.mejorRacha = 0; T.aciertos = 0; T.bloqueado = false;
+  ARCADE_TRIVIA_pregunta();
+}
+function ARCADE_TRIVIA_pregunta() {
+  const T = ARCADE_TRIVIA;
+  const q = T.preguntas[T.i];
+  const w = ARCADE_TRIVIA_wrap();
+  ARCADE_setScore(`📖 Pregunta ${T.i + 1}/${T.preguntas.length} · ⭐ ${T.puntos}` + (T.racha >= 2 ? ` · 🔥 ${T.racha}` : ''));
+  const barra = ARCADE_TRIVIA_el('div', 'tv-barra');
+  const fill = ARCADE_TRIVIA_el('div', 'tv-barra-fill');
+  fill.style.width = (T.i / T.preguntas.length * 100) + '%';
+  barra.appendChild(fill);
+  w.appendChild(barra);
+  w.appendChild(ARCADE_TRIVIA_el('div', 'tv-cat', `${ARCADE_TRIVIA_TEMAS[q[0]] || '❓'} ${q[0]}`));
+  w.appendChild(ARCADE_TRIVIA_el('div', 'tv-pregunta', q[1]));
+  const correcta = q[2];
+  const opts = ARCADE_TRIVIA_el('div', 'tv-opts');
+  const botones = [];
+  ARCADE_TRIVIA_mezclar(q.slice(2)).forEach(txt => {
+    const b = ARCADE_TRIVIA_el('button', 'tv-opt', txt);
+    b.onclick = () => ARCADE_TRIVIA_responder(b, txt === correcta, botones, correcta, w);
+    botones.push(b);
+    opts.appendChild(b);
+  });
+  w.appendChild(opts);
+}
+function ARCADE_TRIVIA_responder(btn, ok, botones, correcta, w) {
+  const T = ARCADE_TRIVIA;
+  if (!T || T.bloqueado || ARCADE_State.paused) return;
+  T.bloqueado = true;
+  botones.forEach(b => { b.disabled = true; if (b.textContent === correcta) b.classList.add('tv-ok'); });
+  let msg;
+  if (ok) {
+    T.aciertos++; T.racha++; T.mejorRacha = Math.max(T.mejorRacha, T.racha);
+    const bono = T.racha >= 3 ? 5 : 0;
+    T.puntos += 10 + bono;
+    msg = bono ? `✅ ¡Correcto! +10 y +${bono} por racha 🔥` : '✅ ¡Correcto! +10';
+  } else {
+    btn.classList.add('tv-mal'); T.racha = 0;
+    msg = '❌ Era: ' + correcta;
+  }
+  ARCADE_setScore(`📖 Pregunta ${T.i + 1}/${T.preguntas.length} · ⭐ ${T.puntos}` + (T.racha >= 2 ? ` · 🔥 ${T.racha}` : ''));
+  w.appendChild(ARCADE_TRIVIA_el('div', 'tv-msg ' + (ok ? 'ok' : 'mal'), msg));
+  const ultima = T.i + 1 >= T.preguntas.length;
+  const sig = ARCADE_TRIVIA_el('button', 'tv-sig', ultima ? '🏁 Ver resultado' : 'Siguiente ➜');
+  sig.onclick = () => { T.bloqueado = false; T.i++; if (ultima) ARCADE_TRIVIA_fin(); else ARCADE_TRIVIA_pregunta(); };
+  w.appendChild(sig);
+  try { sig.scrollIntoView({ block: 'nearest' }); } catch {}
+}
+function ARCADE_TRIVIA_fin() {
+  const T = ARCADE_TRIVIA;
+  const w = ARCADE_TRIVIA_wrap();
+  const total = T.preguntas.length;
+  const rec = ARCADE_TRIVIA_leer('tb_trivia_record_v1', 0);
+  const nuevoRecord = T.puntos > rec;
+  if (nuevoRecord) ARCADE_TRIVIA_guardar('tb_trivia_record_v1', T.puntos);
+  ARCADE_setScore(`📖 Trivia · ⭐ ${T.puntos} puntos`);
+  const pct = T.aciertos / total;
+  const [emo, frase] = pct === 1 ? ['🏆', '¡Perfecto! Eres una enciclopedia.'] : pct >= 0.8 ? ['🌟', '¡Excelente! Casi perfecto.'] : pct >= 0.6 ? ['👏', '¡Muy bien! Buen nivel.'] : pct >= 0.4 ? ['🙂', 'Nada mal, ¡sigue practicando!'] : ['📚', 'Hay que repasar un poquito. ¡Otra ronda!'];
+  const head = ARCADE_TRIVIA_el('div', 'tv-head');
+  head.appendChild(ARCADE_TRIVIA_el('div', 'tv-big', emo));
+  head.appendChild(ARCADE_TRIVIA_el('h2', null, `${T.aciertos} de ${total} correctas`));
+  head.appendChild(ARCADE_TRIVIA_el('p', null, frase));
+  head.appendChild(ARCADE_TRIVIA_el('p', 'tv-rec', `⭐ ${T.puntos} puntos · 🔥 mejor racha ${T.mejorRacha}`));
+  if (nuevoRecord) head.appendChild(ARCADE_TRIVIA_el('p', 'tv-rec', '🏆 ¡Nuevo récord!'));
+  w.appendChild(head);
+  const otra = ARCADE_TRIVIA_el('button', 'tv-sig', '🔁 Otra ronda' + (T.tema ? ' de ' + T.tema : ''));
+  otra.onclick = () => ARCADE_TRIVIA_iniciar(T.tema);
+  const menu = ARCADE_TRIVIA_el('button', 'tv-tema', '📖 Elegir otro tema');
+  menu.onclick = ARCADE_TRIVIA_menu;
+  w.appendChild(otra); w.appendChild(menu);
 }
 function ARCADE_togglePause() {
   ARCADE_State.paused = !ARCADE_State.paused;
@@ -11766,6 +12603,13 @@ if (TB_MODO_OFICINA_DEFAULT) {
   st.textContent = '#mi-calc-panel{display:none!important}';
   document.head.appendChild(st);
 }
+// Versión WEB: se quita la Calculadora de Horas Reales (la del asesor y la del admin).
+// La versión de oficina no se toca: conserva el admin y "EVA calcula mis horas".
+if (!TB_MODO_OFICINA_DEFAULT) {
+  const stw = document.createElement('style');
+  stw.textContent = '#mi-calc-panel,#admin-calc-block{display:none!important}';
+  document.head.appendChild(stw);
+}
 function EC_panelVisible(show) {
   const p = document.getElementById('mi-eva-calc-panel');
   if (p) p.style.display = (TB_MODO_OFICINA_DEFAULT && show) ? 'block' : 'none';
@@ -12741,6 +13585,41 @@ function F3_toMin(timeStr) {
   if (!timeStr) return 0;
   const [h,m] = timeStr.split(':').map(Number);
   return h*60 + (m||0);
+}
+// ── Reloj del turno (timeline + avisos de Eva) ──────────────────────────
+// Todo se mide en minutos "absolutos" desde las 00:00 de la fecha del turno, así
+// un turno que cruza la medianoche (salida <= entrada) sigue corriendo después
+// de las 12 a. m. y no se marca "completado" de golpe.
+function TL_cruza(t) { return F3_toMin(t.salida) <= F3_toMin(t.entrada); }
+function TL_salAbs(t) { const e = F3_toMin(t.entrada); let s = F3_toMin(t.salida); if (s <= e) s += 1440; return s; }
+function TL_nowAbs(t, ahora) {
+  const n = ahora || new Date();
+  const [y, m, d] = String(t.fechaISO).split('-').map(Number);
+  const dias = Math.round((Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()) - Date.UTC(y, m - 1, d)) / 86400000);
+  return dias * 1440 + n.getHours() * 60 + n.getMinutes() + n.getSeconds() / 60;
+}
+function TL_ayerISO() {
+  const d = new Date(); d.setDate(d.getDate() - 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+function TL_fmt12(min) {
+  min = ((Math.round(min) % 1440) + 1440) % 1440;
+  const h = Math.floor(min / 60), m = min % 60;
+  return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'a. m.' : 'p. m.'}`;
+}
+// Hora de un break/almuerzo en minutos absolutos del turno. Si la malla trae el
+// AM/PM invertido (p. ej. un Break 1 a las "11:45 p. m." en un turno de 10:30 a
+// 7:00 p. m.) y al cambiarlo cae dentro del turno, se corrige solo.
+function TL_detalleHora(d, t) {
+  const m = F3_parse12hToMin(d.value);
+  if (m === null) return null;
+  const e = F3_toMin(t.entrada), s = TL_salAbs(t);
+  const abs = x => (x < e ? x + 1440 : x);
+  const dentro = x => { const a = abs(x); return a >= e && a <= s; };
+  if (dentro(m)) return { abs: abs(m), texto: d.value, corregido: false };
+  const alt = (m + 720) % 1440;
+  if (dentro(alt)) return { abs: abs(alt), texto: TL_fmt12(alt), corregido: true };
+  return { abs: abs(m), texto: d.value, corregido: false };
 }
 function F3_minToStr(min) {
   const h = Math.floor(min/60)%24;
