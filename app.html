@@ -348,6 +348,9 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   transition: transform .15s ease;
 }
 #tb-eva-wrap:active { transform: scale(0.92); }
+#tb-eva-mute { position: fixed; right: 10px; bottom: 170px; z-index: 40; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 700; color: #fff; background: rgba(11,28,51,.85); cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+#tb-eva-mute.tb-activo { background: linear-gradient(135deg,#22c3f2,#0a6ea8); }
+@media (max-width: 480px) { #tb-eva-mute { bottom: 152px; right: 6px; font-size: 10px; } }
 #tb-eva-platform {
   position: fixed;
   right: 12px;
@@ -668,6 +671,37 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
   gap: 10px; width: 100%; height: 100%;
 }
 #arcade-snake-canvas { width: min(78vw, 260px); height: auto; aspect-ratio: 14 / 18; }
+.arcade-fya { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#arcade-mus-canvas { width: min(94vw, 576px, calc(64vh * 360 / 380)); height: auto; aspect-ratio: 360 / 380; touch-action: none; border-radius: 18px; cursor: pointer; border: 1px solid rgba(253,224,71,.35); box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 34px rgba(129,140,248,.28), inset 0 0 0 1px rgba(255,255,255,.06); }
+.arcade-libro { width: min(92vw, 420px); min-height: 260px; padding: 28px 22px; text-align: center; color: #e0e7ff; border-radius: 18px; border: 1px solid rgba(253,224,71,.3); background: linear-gradient(160deg, rgba(30,27,75,.85), rgba(11,28,51,.9)); box-shadow: 0 14px 40px rgba(0,0,0,.45); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.arcade-libro h2 { margin: 0; font: 600 24px Georgia, serif; color: #fde68a; letter-spacing: 1px; }
+.arcade-libro p { margin: 0; font-size: 13px; color: #a5b4fc; }
+#arcade-libro-lista { width: 100%; }
+.arcade-mus { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
+.mus-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.mus-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #c7d2fe; }
+.mus-bar input { width: 110px; accent-color: #22c3f2; }
+#mus-eva-box { position: relative; flex: none; height: clamp(96px, 16vh, 150px); aspect-ratio: 120 / 150; animation: tbEvaFloat 3.2s ease-in-out infinite; }
+#mus-eva-svg { width: 100%; height: 100%; display: block; overflow: visible; filter: drop-shadow(0 8px 18px rgba(34,195,242,.45)); }
+#mus-eyes { animation: tbEvaBlink 4.5s ease-in-out infinite; transform-origin: 60px 38px; }
+#mus-arm-l { transform-origin: 23px 76px; transform: rotate(-56deg); transition: transform .12s ease-out; }
+#mus-arm-r { transition: transform .2s ease-out; }
+#mus-eva-svg.mus-a #mus-arm-l { transform: rotate(-47deg); } #mus-eva-svg.mus-b #mus-arm-l { transform: rotate(-66deg); }
+#mus-eva-svg.mus-a #mus-arm-r { transform: translate(-3px,-2px); } #mus-eva-svg.mus-b #mus-arm-r { transform: translate(3px,1px); }
+#mus-mouth { opacity: 0; transform-origin: 60px 50px; transition: opacity .25s ease; }
+#mus-eva-svg.mus-sonrie #mus-mouth { opacity: 1; }
+#mus-eva-svg.mus-brilla #mus-eyes { animation: tbEvaGlow .45s ease-in-out infinite alternate; }
+#mus-eva-svg.mus-oro { filter: drop-shadow(0 0 22px #fde047); }
+#mus-eva-svg.mus-fallo { filter: drop-shadow(0 0 16px #ff6a1a); }
+@media (min-width: 820px) {
+  .arcade-mus { flex-direction: row; justify-content: center; gap: 30px; }
+  #mus-eva-box { height: clamp(220px, 54vh, 460px); margin-right: 26px; }
+  #arcade-mus-canvas { width: min(576px, calc(76vh * 360 / 380)); }
+  .mus-bar input { width: 160px; }
+}
+#arcade-fya-canvas { width: min(94vw, 420px); height: auto; aspect-ratio: 4 / 3; }
+.arcade-fya-ctl { display: flex; gap: 8px; }
+.arcade-fya-ctl .arcade-dpad-btn { width: 48px; height: 44px; font-size: 18px; touch-action: none; }
 #arcade-tetris-canvas { width: min(52vw, 190px); height: auto; aspect-ratio: 8 / 16; }
 .arcade-dpad { display: grid; grid-template-columns: repeat(3, 44px); grid-template-rows: repeat(3, 40px); gap: 4px; justify-content: center; }
 .arcade-dpad-btn {
@@ -1720,6 +1754,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
   <div id="tb-eva-bubble" class="tb-eva-bubble">¿Ya revisaste tu turno de hoy?</div>
 </div>
 
+<button id="tb-eva-mute" type="button" onclick="EVA_silencioAlternar()" style="display:none">🔇 Silenciar a Eva</button>
 <div id="tb-eva-platform" onclick="ARCADE_open()" role="button" aria-label="Jugar minijuegos con EVA" style="display: block;">🕹️<br>Jugar</div>
 
 <!-- ── Aviso de EVA (solo se activa en la versión de oficina; ver EVA_alertaIniciar) ── -->
@@ -1831,6 +1866,9 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <div class="arcade-card" onclick="ARCADE_startGame('gato')"><span class="emoji">❌⭕</span>3 en raya</div>
       <div class="arcade-card" onclick="ARCADE_startGame('culebrita')"><span class="emoji">🐍</span>Culebrita</div>
       <div class="arcade-card" onclick="ARCADE_startGame('tetris')"><span class="emoji">🧱</span>Tetris</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('fuegoagua')"><span class="emoji">🔥💧</span>Fuego y Agua</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('music')"><span class="emoji">🎸</span>EVA Music</div>
+      <div class="arcade-card" onclick="ARCADE_startGame('libro')"><span class="emoji">📖</span>Libro</div>
     </div>
     <button class="btn btn-secondary" onclick="ARCADE_close()">⬅ Volver a TurnoBot</button>
   </div>
@@ -4340,6 +4378,11 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <input type="checkbox" id="voz-toggle" onchange="VOZ_setEnabled(this.checked)" style="width:20px; height:20px;">
         </label>
         <div style="font-size:11px; color:var(--gris); margin-top:4px;">Cuando llega la hora de tu break, almuerzo o salida te aparece una notificación en pantalla y suena la voz. Con internet el navegador a veces bloquea la voz hasta que tocas la página: por eso la notificación trae el botón 🔊 Escuchar. Solo funciona mientras esta pestaña esté abierta.</div>
+        <label style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; margin-top:10px;">
+          <span>🔇 Silenciar a Eva todo mi turno (solo notificación, sin voz)</span>
+          <input type="checkbox" id="eva-silencio-toggle" onchange="VOZ_setSilenciada(this.checked)" style="width:20px; height:20px;">
+        </label>
+        <div style="font-size:11px; color:var(--gris); margin-top:4px;">Los avisos siguen saliendo igual (Eva grande en pantalla y notificación), pero sin voz. Se desactiva solo al terminar tu turno. También puedes activarlo con el botón 🔇 junto a Eva.</div>
         <div id="voz-estado" style="font-size:11px; color:var(--gris); margin-top:6px;">✅ Voz lista · ✅ Notificaciones activas</div>
         <button class="btn btn-primary w-full" style="margin-top:8px" onclick="VOZ_activar()">✅ Activar avisos (voz + notificaciones)</button>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="VOZ_probar()">🔊 Escuchar un aviso de prueba</button>
@@ -5624,32 +5667,80 @@ function TB_chromeGuardMain() {
       !/Opera/.test(ua);
     if (esChrome) return;
     window.TB_NAVEGADOR_BLOQUEADO = true;
-    function pintar() {
-      if (document.getElementById('tb-chrome-lock')) return;
-      var o = document.createElement('div');
-      o.id = 'tb-chrome-lock';
-      o.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483647;background:#0a0a0f;color:#f0f0f5;display:flex;align-items:center;justify-content:center;padding:24px;font-family:system-ui,Segoe UI,Arial,sans-serif;overflow:auto;';
-      o.innerHTML =
-        '<div style="max-width:440px;text-align:center;line-height:1.5">' +
-        '<div style="font-size:44px">🌐</div>' +
-        '<div style="font-size:22px;font-weight:800;margin:8px 0 6px">Abre TurnoBot con Google Chrome</div>' +
-        '<div style="font-size:14px;color:#b8b8cc;margin-bottom:16px">Este archivo necesita Google Chrome para que funcionen bien la voz y las notificaciones. Ahora mismo lo abriste con otro navegador.</div>' +
-        '<div style="text-align:left;font-size:14px;background:#1a1a24;border:1px solid #2a2a38;border-radius:12px;padding:14px 16px;margin-bottom:14px">' +
-        '<div style="margin-bottom:8px"><b>Opción 1.</b> En la misma carpeta, doble clic en <b>Abrir_Turno_en_Chrome.bat</b>.</div>' +
-        '<div><b>Opción 2.</b> Clic derecho sobre el archivo → <b>Abrir con</b> → <b>Google Chrome</b> (y marca “Usar siempre esta aplicación” para que la próxima vez se abra directo).</div>' +
-        '</div>' +
-        '<button id="tb-chrome-copy" type="button" style="border:0;border-radius:10px;padding:11px 18px;font-size:14px;font-weight:700;color:#fff;background:#2563eb;cursor:pointer">📋 Copiar dirección del archivo</button>' +
-        '<div id="tb-chrome-msg" style="font-size:12px;color:#8888a0;margin-top:8px;min-height:16px"></div>' +
-        '</div>';
-      (document.body || document.documentElement).appendChild(o);
-      document.getElementById('tb-chrome-copy').onclick = function () {
-        var msg = document.getElementById('tb-chrome-msg');
-        var ok = function () { msg.textContent = 'Copiada. Pégala en la barra de direcciones de Chrome.'; };
-        var no = function () { msg.textContent = location.href; };
-        try { navigator.clipboard.writeText(location.href).then(ok, no); } catch (e) { no(); }
+    var LINK = location.href, corto = '';
+    try { corto = decodeURIComponent(LINK.split('/').pop() || ''); } catch (e) { corto = LINK.split('/').pop() || ''; }
+    if (corto.length > 19) corto = corto.slice(0, 16) + '…';
+    var st = document.createElement('style');
+    st.textContent = 'body.tb-eva-chrome #tb-eva-alert-back{display:block}';
+    document.head.appendChild(st);
+    function copiar() {
+      var msg = document.getElementById('tb-chrome-msg'), inp = document.getElementById('tb-chrome-url');
+      var ok = function () { if (msg) { msg.style.color = '#7dffb0'; msg.textContent = '✅ ¡Copiado! Pégalo en la barra de direcciones de Chrome (Ctrl+V) y presiona Enter.'; } };
+      var viejo = function () {
+        var hecho = false;
+        try { if (inp) { inp.focus(); inp.select(); inp.setSelectionRange(0, 99999); hecho = document.execCommand('copy'); } } catch (e) {}
+        if (hecho) ok();
+        else {
+          if (msg) { msg.style.color = '#ffb454'; msg.textContent = 'El link quedó seleccionado: presiona Ctrl+C y pégalo en Chrome.'; }
+          try { if (inp) { inp.focus(); inp.select(); } } catch (e) {}
+        }
       };
+      try { if (navigator.clipboard && window.isSecureContext !== false) navigator.clipboard.writeText(LINK).then(ok, viejo); else viejo(); } catch (e) { viejo(); }
     }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', pintar); else pintar();
+    function texto(NS, y, size, fill, txt, mono) {
+      var t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', '60'); t.setAttribute('y', y); t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('font-size', size); t.setAttribute('font-weight', '800'); t.setAttribute('fill', fill);
+      if (mono) t.setAttribute('font-family', 'ui-monospace,Consolas,monospace');
+      t.textContent = txt; return t;
+    }
+    function pintar() {
+      var wrap = document.getElementById('tb-eva-wrap'), svg = document.getElementById('tb-eva-svg');
+      if (!wrap || !svg || !document.body) return;
+      if (!document.getElementById('tb-chrome-eva-panel')) {
+        var p = document.createElement('div');
+        p.id = 'tb-chrome-eva-panel';
+        p.style.cssText = 'position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);transform:translateX(-50%);z-index:99990;width:min(460px,94vw);text-align:center;color:#fff;font-family:system-ui,Segoe UI,Arial,sans-serif;pointer-events:auto;user-select:text;-webkit-user-select:text;';
+        p.innerHTML =
+          '<div class="tb-eva-alert-title">🌐 Abre TurnoBot con Google Chrome</div>' +
+          '<div class="tb-eva-alert-text" style="font-size:14px">Con este navegador no funcionan bien la voz ni las notificaciones. Toca el cuadro con el link (se copia solo), abre Chrome, pégalo en la barra de direcciones y presiona Enter.</div>' +
+          '<input id="tb-chrome-url" type="text" readonly title="Clic para copiar" style="width:100%;box-sizing:border-box;cursor:pointer;user-select:text;-webkit-user-select:text;background:#06121f;border:2px solid #22c3f2;color:#aef1ff;border-radius:10px;padding:10px;font:12px ui-monospace,Consolas,monospace;margin-bottom:10px;outline:none">' +
+          '<div class="tb-eva-alert-btns"><button type="button" id="tb-chrome-copy" class="tb-eva-alert-ok">📋 Copiar link</button></div>' +
+          '<div id="tb-chrome-msg" style="font-size:12px;color:#b8b8cc;margin-top:8px;min-height:16px">También sirve el doble clic en Abrir_Turno_en_Chrome.bat (misma carpeta).</div>';
+        document.body.appendChild(p);
+        var caja = document.getElementById('tb-chrome-url');
+        caja.value = LINK;
+        caja.addEventListener('click', copiar); caja.addEventListener('focus', function () { caja.select(); });
+        document.getElementById('tb-chrome-copy').onclick = copiar;
+      }
+      if (!document.getElementById('tb-eva-belly-link')) {
+        var NS = 'http://www.w3.org/2000/svg';
+        var g = document.createElementNS(NS, 'g');
+        g.id = 'tb-eva-belly-link'; g.style.cursor = 'pointer';
+        var r = document.createElementNS(NS, 'rect');
+        r.setAttribute('x', '30'); r.setAttribute('y', '86'); r.setAttribute('width', '60'); r.setAttribute('height', '34');
+        r.setAttribute('rx', '5'); r.setAttribute('fill', '#06121f'); r.setAttribute('stroke', '#22c3f2'); r.setAttribute('stroke-width', '2');
+        g.appendChild(r);
+        g.appendChild(texto(NS, '97', '5.5', '#ffb454', 'PEGA EN CHROME'));
+        g.appendChild(texto(NS, '106', '5', '#aef1ff', '…/' + corto, true));
+        g.appendChild(texto(NS, '115', '4.5', '#ffffff', '📋 toca para copiar'));
+        g.style.pointerEvents = 'all';
+        ['pointerdown', 'click'].forEach(function (ev) { g.addEventListener(ev, function (e) { e.stopPropagation(); if (ev === 'click') copiar(); }); });
+        svg.appendChild(g);
+      }
+      wrap.style.display = 'block';
+      wrap.classList.remove('tb-eva-trick');
+      wrap.classList.add('tb-eva-alerta');
+      document.body.classList.add('tb-eva-chrome');
+    }
+    function iniciar() { pintar(); setInterval(pintar, 1500); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+    window.addEventListener('load', function () {
+      try {
+        if (typeof VOZ_silenciada === 'function' && VOZ_silenciada()) return;
+        if (typeof VOZ_hablar === 'function') VOZ_hablar('Abre Turno Bot con Google Chrome. Pega el link que tengo en mi panza en la barra de direcciones.');
+      } catch (e) {}
+    });
   } catch (e) {}
 }
 
@@ -7183,8 +7274,8 @@ async function doLogin() {
       apodo: 'Moi',
       loginCount: 1
     };
-    localStorage.setItem('tb_token', sessionToken);
-    localStorage.setItem('tb_user', JSON.stringify(currentUser));
+    TB_SES_store().setItem('tb_token', sessionToken);
+    TB_SES_store().setItem('tb_user', JSON.stringify(currentUser));
     clearPin('pin-inputs');
     initHomeScreen();
     showToast('success', '👑 ¡Bienvenido, Moi!', 'Control total activo. Administrador.');
@@ -7212,8 +7303,8 @@ async function doLogin() {
       apodo: delegAcc.nombre.split(' ')[0],
       loginCount: 1
     };
-    localStorage.setItem('tb_token', sessionToken);
-    localStorage.setItem('tb_user', JSON.stringify(currentUser));
+    TB_SES_store().setItem('tb_token', sessionToken);
+    TB_SES_store().setItem('tb_user', JSON.stringify(currentUser));
     clearPin('pin-inputs');
     initHomeScreen();
     showToast('success', '👑 ¡Bienvenido!', `Hola ${currentUser.apodo}, ya tienes tu acceso activo.`);
@@ -7265,8 +7356,8 @@ async function doLogin() {
     acc.loginDates = hist.dates;
     accounts[norm] = acc;
     ACC_save(accounts);
-    localStorage.setItem('tb_token', sessionToken);
-    localStorage.setItem('tb_user', JSON.stringify(currentUser));
+    TB_SES_store().setItem('tb_token', sessionToken);
+    TB_SES_store().setItem('tb_user', JSON.stringify(currentUser));
     clearPin('pin-inputs');
     initHomeScreen();
     showToast('success', '✅ ¡Bienvenido!', `Hola ${currentUser.nombre.split(' ')[0]}, ya estás dentro.`);
@@ -7472,10 +7563,24 @@ function rolLabel(rol) {
   return map[rol] || rol;
 }
 
+// ── ALMACÉN DE SESIÓN ─────────────────────────────
+// Cuando el HTML se abre como archivo (file://, carpeta compartida) el navegador
+// comparte el localStorage entre TODOS los archivos locales y entre quienes usan
+// el mismo equipo/perfil: la sesión del admin quedaba abierta para cualquiera que
+// abriera el HTML. Por eso en modo archivo la sesión vive solo en sessionStorage
+// (solo esa pestaña; al cerrarla o abrir el archivo de nuevo se pide login).
+function TB_SES_esArchivo() { try { return location.protocol === 'file:'; } catch (e) { return false; } }
+function TB_SES_store() { return TB_SES_esArchivo() ? window.sessionStorage : window.localStorage; }
+function TB_SES_purgarLocal() {
+  if (!TB_SES_esArchivo()) return;
+  try { localStorage.removeItem('tb_token'); localStorage.removeItem('tb_user'); } catch (e) {}
+}
+TB_SES_purgarLocal();
+
 // ── LOGOUT ────────────────────────────────────────
 function doLogout() {
-  localStorage.removeItem('tb_token');
-  localStorage.removeItem('tb_user');
+  TB_SES_store().removeItem('tb_token');
+  TB_SES_store().removeItem('tb_user');
   currentUser = null;
   sessionToken = null;
   showScreen('splash');
@@ -7484,8 +7589,9 @@ function doLogout() {
 
 // ── AUTO-LOGIN (sesión persistente, 100% local) ───
 async function tryAutoLogin() {
-  const token = localStorage.getItem('tb_token');
-  const user  = localStorage.getItem('tb_user');
+  TB_SES_purgarLocal();
+  const token = TB_SES_store().getItem('tb_token');
+  const user  = TB_SES_store().getItem('tb_user');
   if (!token || !user) return false;
   try {
     sessionToken = token;
@@ -7500,7 +7606,7 @@ async function tryAutoLogin() {
       if (canonico && (canonico !== currentUser.nombre || canonico !== currentUser.mallaNombre)) {
         currentUser.nombre = canonico;
         currentUser.mallaNombre = canonico;
-        localStorage.setItem('tb_user', JSON.stringify(currentUser));
+        TB_SES_store().setItem('tb_user', JSON.stringify(currentUser));
         const norm = normalizeName(canonico);
         const accounts = ACC_load();
         if (accounts[norm] && accounts[norm].nombre !== canonico) {
@@ -7519,8 +7625,8 @@ async function tryAutoLogin() {
     showScreen('home');
     return true;
   } catch {}
-  localStorage.removeItem('tb_token');
-  localStorage.removeItem('tb_user');
+  TB_SES_store().removeItem('tb_token');
+  TB_SES_store().removeItem('tb_user');
   return false;
 }
 
@@ -7556,7 +7662,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-09-28.2316';
+const TB_APP_VERSION = '2026-10-03.1635';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8046,6 +8152,8 @@ function P_initProfile() {
   document.getElementById('profile-accesos').textContent = user.loginCount || 1;
   const vozChk = document.getElementById('voz-toggle');
   if (vozChk) vozChk.checked = VOZ_isEnabled();
+  const silChk = document.getElementById('eva-silencio-toggle');
+  if (silChk) silChk.checked = VOZ_silenciada();
   VOZ_actualizarEstado();
 
   const bigAv = document.getElementById('profile-avatar-big');
@@ -8079,7 +8187,7 @@ function P_guardarApodo() {
 
   user.apodo = apodo || undefined;
   currentUser = user;
-  localStorage.setItem('tb_user', JSON.stringify(currentUser));
+  TB_SES_store().setItem('tb_user', JSON.stringify(currentUser));
 
   const norm = normalizeName(user.nombre);
   const accounts = ACC_load();
@@ -9955,6 +10063,51 @@ function VOZ_isEnabled() {
   try { const v = localStorage.getItem(TB_VOZ_KEY); return v === null ? true : v === '1'; }
   catch { return true; }
 }
+const TB_EVA_SILENCIO_KEY = 'tb_eva_silencio_v1';
+// Silencio válido hasta el fin del turno del asesor (+10 min para que también calle el "tu turno terminó").
+function VOZ_finTurnoMs() {
+  try {
+    if (currentUser && currentUser.mallaNombre) {
+      const t = MALLA_recordForDate(currentUser.mallaNombre, MALLA_todayISO());
+      if (t && t.salida) {
+        const sal = F3_toMin(t.salida), ent = F3_toMin(t.entrada), now = new Date();
+        if (sal !== null && sal !== undefined) {
+          const d = new Date(now); d.setHours(0, 0, 0, 0);
+          let h = d.getTime() + sal * 60000;
+          if (ent !== null && ent !== undefined && sal <= ent && now.getHours() * 60 + now.getMinutes() >= ent) h += 86400000; // turno que cruza medianoche
+          if (h > now.getTime()) return h + 10 * 60000;
+        }
+      }
+    }
+  } catch {}
+  return Date.now() + 12 * 3600000;   // sin turno claro: 12 h
+}
+function VOZ_silenciada() {
+  try {
+    const j = JSON.parse(localStorage.getItem(TB_EVA_SILENCIO_KEY) || 'null');
+    if (j && j.hasta > Date.now()) return true;
+    if (j) localStorage.removeItem(TB_EVA_SILENCIO_KEY);
+  } catch {}
+  return false;
+}
+function VOZ_setSilenciada(on) {
+  try {
+    if (on) { localStorage.setItem(TB_EVA_SILENCIO_KEY, JSON.stringify({ hasta: VOZ_finTurnoMs() })); try { speechSynthesis.cancel(); } catch {} }
+    else localStorage.removeItem(TB_EVA_SILENCIO_KEY);
+  } catch {}
+  try { EVA_silencioPintar(); } catch {}
+}
+function EVA_silencioAlternar() {
+  VOZ_setSilenciada(!VOZ_silenciada());
+  try { TB_EVA_mostrarBurbuja(VOZ_silenciada() ? '🔇 Silenciada todo tu turno' : '🔊 Voz activada'); } catch {}
+}
+function EVA_silencioPintar() {
+  const b = document.getElementById('tb-eva-mute'), sil = VOZ_silenciada();
+  if (b) { b.classList.toggle('tb-activo', sil); b.textContent = sil ? '🔊 Reactivar voz' : '🔇 Silenciar a Eva'; }
+  const c = document.getElementById('eva-silencio-toggle');
+  if (c) c.checked = sil;
+}
+setInterval(() => { try { EVA_silencioPintar(); } catch {} }, 30000);
 function VOZ_setEnabled(on) { try { localStorage.setItem(TB_VOZ_KEY, on ? '1' : '0'); } catch {} }
 
 const VOZ_State = { desbloqueada: false, voces: [] };
@@ -10081,7 +10234,7 @@ function NOTI_sistema(titulo, texto) {
   try {
     if (NOTI_permisoEstado() !== 'granted') return false;
     const n = new Notification(titulo, { body: texto, tag: 'tb-aviso', renotify: true, requireInteraction: true });
-    n.onclick = () => { try { window.focus(); n.close(); } catch {} VOZ_hablar(texto); };
+    n.onclick = () => { try { window.focus(); n.close(); } catch {} if (!VOZ_silenciada()) VOZ_hablar(texto); };
     return true;
   } catch { return false; } // Chrome de Android exige service worker: ahí queda la notificación interna
 }
@@ -10108,6 +10261,7 @@ async function AVISO_lanzar(titulo, texto) {
   NOTI_sistema(titulo, texto);
   try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch {}
   NOTI_parpadearTitulo(titulo);
+  if (VOZ_silenciada()) return false;   // silenciada: solo tarjeta + notificación
   const hablo = await VOZ_hablar(texto);
   if (!hablo && card && card.isConnected) card.classList.add('sin-voz');
   return hablo;
@@ -10375,6 +10529,9 @@ function TB_EVA_setVisible(visible) {
   const plataforma = document.getElementById('tb-eva-platform');
   if (wrap) wrap.style.display = visible ? 'block' : 'none';
   if (plataforma) plataforma.style.display = visible ? 'block' : 'none';
+  const mute = document.getElementById('tb-eva-mute');
+  if (mute) mute.style.display = (visible && typeof currentUser !== 'undefined' && currentUser && !currentUser.isAdmin) ? 'block' : 'none';
+  try { EVA_silencioPintar(); } catch {}
   if (!visible) {
     if (typeof EVA_ALERTA !== 'undefined' && EVA_ALERTA.activa) EVA_alertaDetener();
     if (typeof EVA_FOTO !== 'undefined' && EVA_FOTO.activa) { EVA_fotoCerrar(); if (wrap) wrap.style.display = 'none'; }
@@ -10417,6 +10574,7 @@ let ARCADE_FLY = null;
 let ARCADE_RUN = null;
 let ARCADE_SNAKE = null;
 let ARCADE_TETRIS = null;
+let ARCADE_FYA = null;
 
 function ARCADE_open() {
   const overlay = document.getElementById('arcade-overlay');
@@ -10467,6 +10625,21 @@ function ARCADE_stopCurrentGame() {
     document.removeEventListener('keydown', ARCADE_TETRIS_key);
     ARCADE_TETRIS = null;
   }
+  if (ARCADE_FYA) {
+    ARCADE_FYA.running = false;
+    if (ARCADE_FYA.raf) cancelAnimationFrame(ARCADE_FYA.raf);
+    document.removeEventListener('keydown', ARCADE_FYA_key);
+    document.removeEventListener('keyup', ARCADE_FYA_key);
+    ARCADE_FYA = null;
+  }
+  if (ARCADE_MUS) {
+    ARCADE_MUS.running = false;
+    if (ARCADE_MUS.raf) cancelAnimationFrame(ARCADE_MUS.raf);
+    document.removeEventListener('keydown', ARCADE_MUS_key);
+    try { if (ARCADE_MUS.ac) ARCADE_MUS.ac.close(); } catch {}
+    const mb = document.getElementById('mus-beams'); if (mb) mb.remove();
+    ARCADE_MUS = null;
+  }
   ARCADE_State.current = null;
   ARCADE_State.paused = false;
   const btn = document.getElementById('arcade-pause-btn');
@@ -10486,6 +10659,14 @@ function ARCADE_startGame(name) {
   else if (name === 'saltar') ARCADE_RUN_start();
   else if (name === 'culebrita') ARCADE_SNAKE_start();
   else if (name === 'tetris') ARCADE_TETRIS_start();
+  else if (name === 'fuegoagua') ARCADE_FYA_start(ARCADE_FYA_max());
+  else if (name === 'music') ARCADE_MUS_start();
+  else if (name === 'libro') ARCADE_LIBRO_start();
+}
+// Libro: apartado vacío, listo para agregar historias (poner cada historia dentro de #arcade-libro-lista).
+function ARCADE_LIBRO_start() {
+  document.getElementById('arcade-game-area').innerHTML = '<div class="arcade-libro"><div style="font-size:44px">📖</div><h2>Libro</h2><div id="arcade-libro-lista"><p>Aún no hay historias.</p></div></div>';
+  ARCADE_setScore('📖 Libro');
 }
 function ARCADE_togglePause() {
   ARCADE_State.paused = !ARCADE_State.paused;
@@ -10972,6 +11153,361 @@ function ARCADE_SNAKE_gameOver() {
 }
 
 // ── Juego 7: Tetris ──
+/* ── Fuego y Agua (juego propio, inspirado en el clásico cooperativo). Un solo jugador
+   controla a los dos y cambia de personaje con 🔁 / Espacio. Sin recursos externos. ── */
+const ARCADE_FYA_LV = [
+  ['#..................#','#..................#','#..............FA..#','#............#######','#..........b.......#','#........####......#','#.....r............#','#...#####..........#','#fa................#','####################'],
+  ['#..................#','#..................#','#..................#','#................FA#','#...........b..#####','#..........####....#','#......r...........#','#.....####.........#','#fa..LL..WW..GG....#','####################'],
+  ['#..................#','#..................#','#..................#','#..................#','#..................#','#..................#','#.....r...b........#','#...........#......#','#fa..LL..WW..GG.FA.#','####################'],
+  ['#........#.........#','#........#.........#','#........#.........#','#........#.........#','#........D.........#','#........D.........#','#........D.........#','#......r.D..b......#','#fa..B...D.....B.FA#','####################']
+];
+ARCADE_FYA_LV.push(
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#.....r....b.......#", "#...####.####......#", "#fa.LLLL.WWWW....FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#.....b....r.......#", "#...####.####......#", "#fa.WWWW.LLLL....FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#................FA#", "#..............#####", "#.........LLb......#", "#........#####.....#", "#..rGG.............#", "#..#####...........#", "#fa.....WWWWWWWWW..#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#...b..b#..b...b...#", "#faWW...#..GG....FA#", "####################"],
+  ["####################", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........D.........#", "#........D.........#", "#........D.........#", "#......r.D......b..#", "#faB.WW..D.GG..B.FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#.....r....b.......#", "#...####.####......#", "#fa.LLLL.WWWW.GG.FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#................FA#", "#..............#####", "#.........WWb......#", "#........#####.....#", "#..rLL.............#", "#..#####...........#", "#fa.....LLLLLLLLL..#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..br..r...b.......#", "#faWW...GG.......FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#....r.......b.....#", "#...##.##.#.##.##..#", "#faLLLLLLL..WWWWWFA#", "####################"],
+  ["####################", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........D.........#", "#........D.........#", "#........D.........#", "#......r.D......b..#", "#faB.LL..D.GG.B..FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#.....b....r.......#", "#...####.#####.....#", "#fa.WWWW.LLLLL.GGFA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#................FA#", "#..............#####", "#.........GGb......#", "#........#####.....#", "#..rWW.............#", "#..#####...........#", "#fa.....WWWWWWWWW..#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..bb..b.b.........#", "#faLL...GG..LL...FA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#....r.......b.....#", "#...##.##.#.##.##..#", "#faWWWWWWW..LLLLLFA#", "####################"],
+  ["####################", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........#.........#", "#........D.........#", "#........D.........#", "#........D.........#", "#......r.D......b..#", "#fa.BGG..D.WW...BFA#", "####################"],
+  ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#..................#", "#...r..r...b.......#", "#faWW..#..GG.....FA#", "####################"]
+);
+function ARCADE_FYA_max() { try { return Math.min(ARCADE_FYA_LV.length - 1, +localStorage.getItem('tb_fya_max') || 0); } catch { return 0; } }
+function ARCADE_FYA_nav(d) { const G = ARCADE_FYA; if (!G) return; const m = G.n + d; if (m >= 0 && m <= ARCADE_FYA_max()) ARCADE_FYA_start(m); }
+function ARCADE_FYA_start(n) {
+  n = n || 0;
+  try { if (n > (+localStorage.getItem('tb_fya_max') || 0)) localStorage.setItem('tb_fya_max', n); } catch {}
+  let rows = ARCADE_FYA_LV[n].slice();
+  if (rows.length < 15) {
+    rows = ['#'.repeat(20)];
+    for (let i = 0; i < 4; i++) rows.push('#' + '.'.repeat(18) + '#');
+    ARCADE_FYA_LV[n].forEach(r => rows.push(r));
+  }
+  const area = document.getElementById('arcade-game-area');
+  area.innerHTML = '<div class="arcade-fya"><canvas id="arcade-fya-canvas" class="arcade-canvas" width="320" height="240"></canvas><div class="arcade-fya-ctl"><button class="arcade-dpad-btn" data-k="p" title="Nivel anterior">⏮</button><button class="arcade-dpad-btn" data-k="l">◀</button><button class="arcade-dpad-btn" data-k="j">⤒</button><button class="arcade-dpad-btn" data-k="r">▶</button><button class="arcade-dpad-btn" data-k="s">🔁</button><button class="arcade-dpad-btn" data-k="n" title="Nivel siguiente (si ya lo desbloqueaste)">⏭</button></div></div>';
+  const G = { n, map: rows.map(r => r.split('')), ch: [], act: 0, k: {}, gems: 0, parts: [], t: 0, dead: 0, won: 0, open: false, running: true, last: 0, done: false };
+  G.map.forEach((row, y) => row.forEach((c, x) => {
+    if (c === 'f' || c === 'a') { G.ch[c === 'f' ? 0 : 1] = { x: x * 16 + 2, y: y * 16 + 2, vx: 0, vy: 0, w: 11, h: 14, g: false, ty: c === 'f' ? 0 : 1, door: false }; row[x] = '.'; }
+  }));
+  G.cv = document.getElementById('arcade-fya-canvas'); G.cx = G.cv.getContext('2d');
+  area.querySelectorAll('button').forEach(b => {
+    const k = b.dataset.k;
+    const on = e => { e.preventDefault(); if (k === 's') G.act ^= 1; else if (k === 'p' || k === 'n') ARCADE_FYA_nav(k === 'n' ? 1 : -1); else G.k[k] = true; };
+    const off = e => { e.preventDefault(); if (k !== 's' && k !== 'p' && k !== 'n') G.k[k] = false; };
+    b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off);
+  });
+  ARCADE_FYA = G;
+  document.addEventListener('keydown', ARCADE_FYA_key); document.addEventListener('keyup', ARCADE_FYA_key);
+  ARCADE_FYA_hud();
+  G.raf = requestAnimationFrame(ARCADE_FYA_loop);
+}
+function ARCADE_FYA_hud() {
+  const G = ARCADE_FYA; if (!G) return;
+  ARCADE_setScore('Nivel ' + (G.n + 1) + '/' + ARCADE_FYA_LV.length + ' · 💎 ' + G.gems + ' · Controlas: ' + (G.act ? '💧 Agua' : '🔥 Fuego'));
+}
+function ARCADE_FYA_key(e) {
+  const G = ARCADE_FYA; if (!G) return;
+  const d = e.type === 'keydown', k = e.key.toLowerCase();
+  const m = { arrowleft: 'l', a: 'l', arrowright: 'r', d: 'r', arrowup: 'j', w: 'j' }[k];
+  if (m) { G.k[m] = d; e.preventDefault(); }
+  else if (d && !e.repeat && (k === ' ' || k === 'q' || k === 'shift')) { G.act ^= 1; e.preventDefault(); }
+}
+function ARCADE_FYA_hit(G, c) {
+  const x0 = Math.floor(c.x / 16), x1 = Math.floor((c.x + c.w - 0.01) / 16), y0 = Math.floor(c.y / 16), y1 = Math.floor((c.y + c.h - 0.01) / 16);
+  for (let ty = y0; ty <= y1; ty++) for (let tx = x0; tx <= x1; tx++) {
+    const t = (G.map[ty] || [])[tx];
+    if (t === undefined || t === '#' || (t === 'D' && !G.open)) return true;
+  }
+  return false;
+}
+function ARCADE_FYA_tile(G, px, py) { return (G.map[Math.floor(py / 16)] || [])[Math.floor(px / 16)]; }
+function ARCADE_FYA_burst(G, x, y, col, n) {
+  for (let i = 0; i < n; i++) G.parts.push({ x, y, vx: (Math.random() - 0.5) * 3, vy: -Math.random() * 3, l: 30 + Math.random() * 20, c: col });
+}
+function ARCADE_FYA_update(G, k) {
+  G.t += k;
+  if (G.dead) { if ((G.dead -= k) <= 0) return ARCADE_FYA_start(G.n); return; }
+  if (G.won) { if ((G.won -= k) <= 0) { if (G.n + 1 < ARCADE_FYA_LV.length) ARCADE_FYA_start(G.n + 1); else G.done = true; } return; }
+  let pressed = false;
+  G.ch.forEach((c, i) => {
+    const me = i === G.act;
+    c.vx = me ? ((G.k.r ? 1.6 : 0) - (G.k.l ? 1.6 : 0)) : 0;
+    if (me && G.k.j && c.g) { c.vy = -5.6; c.g = false; }
+    c.vy = Math.min(7, c.vy + 0.35 * k);
+    let dx = c.vx * k, s = Math.max(1, Math.ceil(Math.abs(dx)));
+    for (let j = 0; j < s; j++) { c.x += dx / s; if (ARCADE_FYA_hit(G, c)) { c.x -= dx / s; break; } }
+    let dy = c.vy * k; s = Math.max(1, Math.ceil(Math.abs(dy))); c.g = false;
+    for (let j = 0; j < s; j++) { c.y += dy / s; if (ARCADE_FYA_hit(G, c)) { c.y -= dy / s; if (dy > 0) c.g = true; c.vy = 0; break; } }
+    const cx = c.x + c.w / 2, cy = c.y + c.h / 2, low = ARCADE_FYA_tile(G, cx, c.y + c.h - 3), mid = ARCADE_FYA_tile(G, cx, cy);
+    if (ARCADE_FYA_tile(G, cx, c.y + c.h - 2) === 'B') pressed = true;
+    if (low === 'G' || (low === 'L' && c.ty === 1) || (low === 'W' && c.ty === 0)) { G.dead = 60; ARCADE_FYA_burst(G, cx, cy, c.ty ? '#60a5fa' : '#f97316', 30); }
+    if ((mid === 'r' && c.ty === 0) || (mid === 'b' && c.ty === 1)) { G.map[Math.floor(cy / 16)][Math.floor(cx / 16)] = '.'; G.gems++; ARCADE_FYA_burst(G, cx, cy, '#fde047', 14); ARCADE_FYA_hud(); }
+    c.door = mid === (c.ty ? 'A' : 'F');
+    if (Math.random() < 0.3) G.parts.push({ x: cx + (Math.random() - 0.5) * 6, y: c.y + 2, vx: 0, vy: c.ty ? -0.3 : -0.8, l: 18, c: c.ty ? '#93c5fd' : '#fbbf24' });
+  });
+  G.open = pressed;
+  if (G.ch[0].door && G.ch[1].door) { G.won = 90; ARCADE_FYA_burst(G, 160, 120, '#fff', 40); }
+  G.parts.forEach(p => { p.x += p.vx * k; p.y += p.vy * k; p.l -= k; });
+  G.parts = G.parts.filter(p => p.l > 0);
+}
+function ARCADE_FYA_draw(G) {
+  const x = G.cx; x.fillStyle = '#1b1f33'; x.fillRect(0, 0, 320, 240);
+  const cols = { L: '#ef4444', W: '#3b82f6', G: '#22c55e' };
+  G.map.forEach((row, ty) => row.forEach((t, tx) => {
+    const px = tx * 16, py = ty * 16;
+    if (t === '#') { x.fillStyle = '#454b73'; x.fillRect(px, py, 16, 16); x.fillStyle = '#5a6190'; x.fillRect(px, py, 16, 2); }
+    else if (cols[t]) { x.fillStyle = cols[t]; x.fillRect(px, py + 5 + Math.sin(G.t / 8 + tx) * 1.5, 16, 12); }
+    else if (t === 'r' || t === 'b') { x.fillStyle = t === 'r' ? '#f43f5e' : '#38bdf8'; x.beginPath(); x.moveTo(px + 8, py + 3); x.lineTo(px + 13, py + 8); x.lineTo(px + 8, py + 14); x.lineTo(px + 3, py + 8); x.fill(); }
+    else if (t === 'F' || t === 'A') { x.fillStyle = t === 'F' ? '#b91c1c' : '#1d4ed8'; x.fillRect(px + 1, py, 14, 16); x.fillStyle = '#fff'; x.fillText(t === 'F' ? '🔥' : '💧', px + 2, py + 12); }
+    else if (t === 'B') { x.fillStyle = G.open ? '#a3e635' : '#eab308'; x.fillRect(px + 2, py + 13, 12, 3); }
+    else if (t === 'D' && !G.open) { x.fillStyle = '#a855f7'; x.fillRect(px + 3, py, 10, 16); }
+  }));
+  G.ch.forEach((c, i) => {
+    x.fillStyle = c.ty ? '#38bdf8' : '#f97316'; x.fillRect(c.x, c.y + 3, c.w, c.h - 3);
+    x.beginPath(); x.arc(c.x + c.w / 2, c.y + 4, 5.5, 0, 7); x.fill();
+    x.fillStyle = '#fff'; x.fillRect(c.x + 2, c.y + 3, 3, 3); x.fillRect(c.x + 7, c.y + 3, 3, 3);
+    if (i === G.act) { x.fillStyle = '#fff'; const b = Math.sin(G.t / 6) * 2; x.beginPath(); x.moveTo(c.x + 5.5, c.y - 3 + b); x.lineTo(c.x + 1, c.y - 9 + b); x.lineTo(c.x + 10, c.y - 9 + b); x.fill(); }
+  });
+  G.parts.forEach(p => { x.globalAlpha = Math.min(1, p.l / 20); x.fillStyle = p.c; x.fillRect(p.x, p.y, 2, 2); });
+  x.globalAlpha = 1;
+  x.fillStyle = 'rgba(0,0,0,.6)';
+  if (G.dead) { x.fillRect(0, 100, 320, 40); x.fillStyle = '#fff'; x.font = 'bold 16px sans-serif'; x.textAlign = 'center'; x.fillText('¡Ay! Reintentando…', 160, 126); }
+  if (G.won || G.done) { x.fillRect(0, 100, 320, 40); x.fillStyle = '#fff'; x.font = 'bold 16px sans-serif'; x.textAlign = 'center'; x.fillText(G.done ? '🏆 ¡Completaste todos los niveles!' : '⭐ ¡Nivel superado!', 160, 126); }
+  x.textAlign = 'left'; x.font = '12px sans-serif';
+}
+function ARCADE_FYA_loop(ts) {
+  const G = ARCADE_FYA; if (!G || !G.running) return;
+  const k = G.last ? Math.min(2, (ts - G.last) / 16.67) : 1; G.last = ts;
+  if (!ARCADE_State.paused && !G.done) { ARCADE_FYA_update(G, k); if (ARCADE_FYA !== G) return; }
+  ARCADE_FYA_draw(G);
+  G.raf = requestAnimationFrame(ARCADE_FYA_loop);
+}
+
+/* ── EVA Music: juego de ritmo con guitarra. La música es original y se sintetiza con WebAudio
+   (sin archivos ni internet, funciona igual en oficina). Toca las notas al caer sobre la línea. ── */
+let ARCADE_MUS = null;
+const ARCADE_MUS_SONGS = [
+  { n: 'Brisa de la tarde', bpm: 76, root: 60, sc: [0,2,4,7,9], ch: [[0,4,7],[-3,0,4],[-7,-3,0],[-5,-1,2]], arp: [0,1,2,1,2,1,2,1], seed: 7 },
+  { n: 'Luna tranquila', bpm: 66, root: 57, sc: [0,3,5,7,10], ch: [[0,3,7],[-4,0,3],[3,7,10],[-2,2,5]], arp: [0,2,1,2,0,2,1,2], seed: 21 },
+  { n: 'Café con Eva', bpm: 92, root: 62, sc: [0,2,4,7,9], ch: [[0,4,7],[-3,0,4],[-7,-3,0],[-5,-1,2]], arp: [0,2,1,2,2,1,2,1], seed: 42 },
+  { n: 'Aventura sin fin', bpm: 112, root: 62, sc: [0,3,5,7,10], ch: [[0,3,7],[-4,0,3],[-2,2,5],[-5,-2,2]], arp: [0,1,2,1,0,1,2,1], seed: 77, epic: 1 },
+  { n: 'Cazador de horizontes', bpm: 124, root: 59, sc: [0,2,3,7,8], ch: [[0,3,7],[-2,2,5],[-4,0,3],[-7,-3,0]], arp: [0,2,1,2,0,2,1,2], seed: 105, epic: 1 },
+  { n: 'Espíritu de batalla', bpm: 138, root: 57, sc: [0,3,5,7,10], ch: [[0,3,7],[-5,-2,2],[-4,0,3],[-2,2,5]], arp: [0,1,2,2,0,1,2,1], seed: 133, epic: 1 },
+  { n: 'Rumbo al gran torneo', bpm: 118, root: 60, sc: [0,2,4,7,9], ch: [[0,4,7],[-5,-1,2],[-3,0,4],[-7,-3,0]], arp: [0,1,2,1,2,1,0,1], seed: 161, epic: 1 },
+  { n: 'Sombras del destino', bpm: 104, root: 55, sc: [0,3,5,6,10], ch: [[0,3,7],[-2,2,5],[-4,0,3],[-5,-2,2]], arp: [0,2,1,2,0,1,2,1], seed: 189, epic: 1 },
+  { n: 'Cielo de cerezos', bpm: 72, root: 64, sc: [0,2,4,7,9], ch: [[0,4,7],[-3,0,4],[-5,-1,2],[-7,-3,0]], arp: [0,1,2,1,2,1,2,1], seed: 217 },
+  { n: 'Llama del guerrero', bpm: 132, root: 58, sc: [0,3,5,7,10], ch: [[0,3,7],[-4,0,3],[3,7,10],[-2,2,5]], arp: [0,1,2,2,0,1,2,2], seed: 245, epic: 1 },
+  { n: 'Camino del ninja', bpm: 126, root: 57, sc: [0,1,5,7,8], ch: [[0,3,7],[-4,0,3],[-2,2,5],[-7,-3,0]], arp: [0,2,1,2,0,2,2,1], seed: 273, epic: 1 },
+  { n: 'Estrellas del reino', bpm: 84, root: 62, sc: [0,2,4,7,9], ch: [[0,4,7],[-5,-1,2],[-7,-3,0],[-3,0,4]], arp: [0,2,1,2,1,2,0,2], seed: 301 },
+  { n: 'Despertar del titán', bpm: 144, root: 56, sc: [0,3,5,7,10], ch: [[0,3,7],[-2,2,5],[-5,-2,2],[-4,0,3]], arp: [0,1,2,1,0,2,2,1], seed: 329, epic: 1 },
+  { n: 'Amanecer del héroe', bpm: 110, root: 61, sc: [0,2,4,7,9], ch: [[0,4,7],[-3,0,4],[-7,-3,0],[-5,-1,2]], arp: [0,1,2,1,0,1,2,2], seed: 357, epic: 1 },
+  { n: 'Mar de leyendas', bpm: 96, root: 59, sc: [0,2,3,7,8], ch: [[0,3,7],[-4,0,3],[-2,2,5],[-5,-2,2]], arp: [0,2,1,2,2,1,0,1], seed: 385 },
+  { n: 'Último duelo', bpm: 150, root: 55, sc: [0,3,5,6,10], ch: [[0,3,7],[-5,-2,2],[-2,2,5],[-4,0,3]], arp: [0,1,2,2,1,0,2,1], seed: 413, epic: 1 }
+];
+const ARCADE_MUS_PP = 6;
+const ARCADE_MUS_S = 1.6, ARCADE_MUS_BARS = 20, ARCADE_MUS_HIT = 330, ARCADE_MUS_SPEED = 150, ARCADE_MUS_COL = ['#22c3f2', '#a78bfa', '#f472b6', '#fbbf24'];
+function ARCADE_MUS_freq(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+function ARCADE_MUS_start() {
+  document.getElementById('arcade-game-area').innerHTML =
+    '<div class="arcade-mus"><div id="mus-eva-box">' + ARCADE_MUS_evaSVG() + '</div>' +
+    '<div class="mus-col"><canvas id="arcade-mus-canvas" class="arcade-canvas" width="576" height="608"></canvas>' +
+    '<div class="mus-bar"><span>🔊</span><input id="mus-vol" type="range" min="0" max="100" value="60" aria-label="Volumen"><span class="mus-keys">Teclas: D F J K · ← ↓ ↑ → · 1 2 3 4</span></div></div></div>';
+  if (!document.getElementById('mus-beams')) {
+    const ov = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ov.id = 'mus-beams'; ov.setAttribute('style', 'position:fixed;inset:0;width:100%;height:100%;z-index:2147483000;pointer-events:none');
+    document.body.appendChild(ov);
+  }
+  const cv = document.getElementById('arcade-mus-canvas');
+  const G = { cv, x: cv.getContext('2d'), mode: 'menu', running: true, lit: [0, 0, 0, 0], page: 0, fx: [], msg: null, raf: 0, ac: null, vol: 0.6, alt: 0 };
+  ARCADE_MUS = G;
+  document.getElementById('mus-vol').addEventListener('input', e => { G.vol = e.target.value / 100; if (G.master) G.master.gain.value = G.vol; });
+  cv.addEventListener('pointerdown', ARCADE_MUS_tap);
+  document.addEventListener('keydown', ARCADE_MUS_key);
+  ARCADE_setScore('🎸 EVA Music — elige una canción');
+  G.raf = requestAnimationFrame(ARCADE_MUS_loop);
+}
+function ARCADE_MUS_evaSVG() {
+  return '<svg id="mus-eva-svg" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg"><defs>' +
+    '<radialGradient id="mcShine" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#eef3fb"/><stop offset="100%" stop-color="#c9d6ea"/></radialGradient>' +
+    '<radialGradient id="mcEye" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#aef1ff"/><stop offset="60%" stop-color="#22c3f2"/><stop offset="100%" stop-color="#0a6ea8"/></radialGradient>' +
+    '<linearGradient id="mcWood" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d97706"/><stop offset="100%" stop-color="#7c2d12"/></linearGradient></defs>' +
+    '<g id="mus-all" style="transform-origin:60px 146px">' +
+    '<ellipse cx="35" cy="120" rx="7" ry="24" fill="url(#mcShine)"/><ellipse cx="85" cy="120" rx="7" ry="24" fill="url(#mcShine)"/>' +
+    '<path d="M60 62 C88 62 100 82 100 108 C100 132 82 146 60 146 C38 146 20 132 20 108 C20 82 32 62 60 62 Z" fill="url(#mcShine)"/>' +
+    '<g transform="translate(50 100) rotate(-22)">' +
+    '<ellipse cx="0" cy="0" rx="21" ry="15" fill="url(#mcWood)"/><ellipse cx="20" cy="-1" rx="13" ry="10" fill="url(#mcWood)"/>' +
+    '<rect x="30" y="-3.2" width="48" height="6.4" rx="1.5" fill="#3b1d0a"/><rect x="77" y="-5" width="11" height="10" rx="2" fill="#2a1408"/>' +
+    '<circle cx="2" cy="0" r="5.2" fill="#160a04"/><rect x="-14" y="-1.6" width="8" height="3.2" rx="1" fill="#2a1408"/>' +
+    '<path d="M-6 -1 L80 -1 M-6 .6 L80 .6 M-6 2 L80 2" stroke="#fde68a" stroke-width=".6" opacity=".9"/>' +
+    '<path d="M36 -3 v6 M44 -3 v6 M52 -3 v6 M60 -3 v6 M68 -3 v6" stroke="#a8a29e" stroke-width=".7"/></g>' +
+    '<g id="mus-arm-l"><ellipse cx="23" cy="90" rx="6" ry="17" fill="url(#mcShine)"/><circle id="mus-hand" cx="23" cy="105" r="2" fill="none"/></g>' +
+    '<g id="mus-arm-r"><ellipse cx="97" cy="90" rx="6" ry="17" fill="url(#mcShine)"/></g>' +
+    '<g id="mus-head"><ellipse cx="60" cy="38" rx="42" ry="34" fill="url(#mcShine)"/><ellipse cx="60" cy="38" rx="30" ry="21" fill="#0b1c33"/>' +
+    '<g id="mus-eyes"><ellipse cx="49" cy="38" rx="7" ry="9" fill="url(#mcEye)"/><ellipse cx="71" cy="38" rx="7" ry="9" fill="url(#mcEye)"/></g>' +
+    '<path id="mus-mouth" d="M50 50 Q60 58 70 50" fill="none" stroke="#aef1ff" stroke-width="3" stroke-linecap="round"/></g></g></svg>';
+}
+function ARCADE_MUS_swing(tg, bs) {
+  const all = document.getElementById('mus-all'), head = document.getElementById('mus-head');
+  if (all) all.style.transform = 'rotate(' + (Math.sin(tg / bs * Math.PI) * 1.8).toFixed(2) + 'deg)';
+  if (head) head.style.transform = 'translateY(' + (Math.sin(tg / bs * Math.PI * 2) * 1.2).toFixed(2) + 'px)';
+}
+function ARCADE_MUS_evaFx(G, lane, ok) {
+  const sv = document.getElementById('mus-eva-svg'); if (!sv) return;
+  if (ok) {
+    G.alt ^= 1; sv.classList.remove('mus-a', 'mus-b'); sv.classList.add(G.alt ? 'mus-a' : 'mus-b', 'mus-sonrie');
+    clearTimeout(G.tm); G.tm = setTimeout(() => sv.classList.remove('mus-sonrie'), 450);
+    sv.classList.toggle('mus-brilla', G.combo >= 10); sv.classList.toggle('mus-oro', G.combo >= 20);
+    ARCADE_MUS_rayo(G, lane);
+  } else { sv.classList.remove('mus-brilla', 'mus-oro'); sv.classList.add('mus-fallo'); setTimeout(() => sv.classList.remove('mus-fallo'), 260); }
+}
+// Rayo desde la mano de EVA hasta la casilla acertada (mismo estilo que en "EVA calcula mis horas").
+function ARCADE_MUS_rayo(G, lane) {
+  const hand = document.getElementById('mus-hand'), ov = document.getElementById('mus-beams'); if (!hand || !ov) return;
+  const a = hand.getBoundingClientRect(), r = G.cv.getBoundingClientRect();
+  const x0 = a.left + a.width / 2, y0 = a.top + a.height / 2, x1 = r.left + (lane * 90 + 45) / 360 * r.width, y1 = r.top + (ARCADE_MUS_HIT + 12) / 380 * r.height;
+  const dx = x1 - x0, dy = y1 - y0, len = Math.hypot(dx, dy) || 1, nx = -dy / len, ny = dx / len, amp = Math.min(20, len * 0.09), N = 8;
+  let d = '';
+  for (let i = 0; i <= N; i++) { const t = i / N, off = (i === 0 || i === N) ? 0 : (Math.random() * 2 - 1) * amp * Math.sin(Math.PI * t) * 1.6; d += (i ? ' L' : 'M') + (x0 + dx * t + nx * off).toFixed(1) + ' ' + (y0 + dy * t + ny * off).toFixed(1); }
+  const NS = 'http://www.w3.org/2000/svg', g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'ec-rayo nuevo');
+  ['g', 'c'].forEach(c => { const p = document.createElementNS(NS, 'path'); p.setAttribute('class', c); p.setAttribute('d', d); g.appendChild(p); });
+  ov.appendChild(g); setTimeout(() => g.remove(), 260);
+}
+function ARCADE_MUS_pluck(G, midi, t, v) {
+  const ac = G.ac, o = ac.createOscillator(), o2 = ac.createOscillator(), g = ac.createGain(), g2 = ac.createGain(), fl = ac.createBiquadFilter(), f = ARCADE_MUS_freq(midi);
+  const ep = G.song && G.song.epic; o.type = ep ? 'sawtooth' : 'triangle'; o2.type = ep ? 'triangle' : 'sine'; o.frequency.value = f; o2.frequency.value = f * 2; g2.gain.value = 0.3;
+  fl.type = 'lowpass'; fl.frequency.setValueAtTime(3200, t); fl.frequency.exponentialRampToValueAtTime(700, t + 0.6);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v * (ep ? 0.55 : 1), t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+  o.connect(fl); o2.connect(g2); g2.connect(fl); fl.connect(g); g.connect(G.master);
+  o.start(t); o2.start(t); o.stop(t + 1.2); o2.stop(t + 1.2);
+}
+function ARCADE_MUS_pad(G, midi, t, dur, v) {
+  const ac = G.ac, o = ac.createOscillator(), g = ac.createGain(), fl = ac.createBiquadFilter();
+  o.type = 'sine'; o.frequency.value = ARCADE_MUS_freq(midi); fl.type = 'lowpass'; fl.frequency.value = 900;
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + dur * 0.25); g.gain.linearRampToValueAtTime(0.0001, t + dur * 1.05);
+  o.connect(fl); fl.connect(g); g.connect(G.master); o.start(t); o.stop(t + dur * 1.1);
+}
+function ARCADE_MUS_bar(G, b) {
+  const S = G.song, bs = 60 / S.bpm, t = G.t0 + b * 4 * bs, c = S.ch[b % 4];
+  c.forEach(k => ARCADE_MUS_pad(G, S.root + k, t, 4 * bs, 0.035));
+  ARCADE_MUS_pluck(G, S.root - 12 + c[0], t, 0.16); ARCADE_MUS_pluck(G, S.root - 12 + c[0], t + 2 * bs, 0.12);
+  S.arp.forEach((a, k) => ARCADE_MUS_pluck(G, S.root + c[a] + 12, t + k * bs / 2, 0.05));
+}
+function ARCADE_MUS_play(i) {
+  const G = ARCADE_MUS, AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) { ARCADE_setScore('Este navegador no tiene audio'); return; }
+  if (!G.ac) {
+    G.ac = new AC(); G.master = G.ac.createGain(); G.master.gain.value = G.vol;
+    const d = G.ac.createDelay(), fb = G.ac.createGain(); d.delayTime.value = 0.28; fb.gain.value = 0.3;
+    G.master.connect(G.ac.destination); G.master.connect(d); d.connect(fb); fb.connect(d); d.connect(G.ac.destination);
+  }
+  try { G.ac.resume(); } catch {}
+  const S = ARCADE_MUS_SONGS[i]; G.song = S;
+  let s = S.seed; const rnd = () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const pats = [[1,1,1,1],[2,1,1],[1,1,2],[1,.5,.5,1,1],[2,2],[1,1,.5,.5,1],[1.5,.5,1,1]];
+  let idx = 4, ph = S.seed; G.notes = [];
+  for (let bar = 1; bar < ARCADE_MUS_BARS - 1; bar++) {
+    let b = bar * 4;
+    pats[Math.floor(rnd() * pats.length)].forEach(d => {
+      if (rnd() > 0.15) {
+        ph += 0.5 + rnd() * 0.7; idx = Math.max(0, Math.min(9, Math.round(4.5 + 4.6 * Math.sin(ph) + (rnd() - 0.5) * 2)));
+        G.notes.push({ b, lane: Math.min(3, Math.floor(idx * 4 / 10)), midi: S.root + 12 * Math.floor(idx / 5) + S.sc[idx % 5] + 12, hit: 0, miss: 0 });
+      }
+      b += d;
+    });
+  }
+  G.t0 = G.ac.currentTime + ARCADE_MUS_HIT / ARCADE_MUS_SPEED + 0.3; G.nextBar = 0;
+  G.score = 0; G.combo = 0; G.maxc = 0; G.hits = 0; G.misses = 0; G.msg = null; G.fx = []; G.mode = 'play';
+  ARCADE_MUS_hud();
+}
+function ARCADE_MUS_page(d) { const G = ARCADE_MUS, N = Math.ceil(ARCADE_MUS_SONGS.length / ARCADE_MUS_PP); if (G) G.page = (G.page + d + N) % N; }
+function ARCADE_MUS_hud() { const G = ARCADE_MUS; if (G) ARCADE_setScore('Puntos: ' + G.score + ' · Combo: ' + G.combo); }
+function ARCADE_MUS_press(lane) {
+  const G = ARCADE_MUS; if (!G || G.mode !== 'play' || ARCADE_State.paused) return;
+  const bs = 60 / G.song.bpm, now = G.ac.currentTime, tg = now - G.t0; let best = null, bd = 9;
+  G.lit[lane] = performance.now();
+  G.notes.forEach(n => { if (n.lane === lane && !n.hit && !n.miss) { const d = Math.abs(tg - n.b * bs); if (d < bd) { bd = d; best = n; } } });
+  if (best && bd < 0.2) {
+    const perfect = bd < 0.08; best.hit = 1; G.hits++; G.combo++; G.maxc = Math.max(G.maxc, G.combo);
+    G.score += Math.floor((perfect ? 100 : 60) * (1 + Math.min(G.combo, 40) / 20));
+    ARCADE_MUS_pluck(G, best.midi, now, 0.3);
+    G.msg = [perfect ? '¡Perfecto!' : 'Bien', performance.now(), perfect ? '#fde047' : '#93c5fd']; ARCADE_MUS_evaFx(G, lane, true);
+    for (let i = 0; i < 5; i++) G.fx.push({ x: 45 + lane * 90 + (Math.random() - .5) * 40, y: ARCADE_MUS_HIT, vx: (Math.random() - .5) * 1.5, vy: -1 - Math.random() * 2, l: 40, c: ARCADE_MUS_COL[lane], t: Math.random() < .5 ? '♪' : '✦' });
+  } else { G.combo = 0; ARCADE_MUS_pluck(G, G.song.root - 12 + lane * 2, now, 0.04); ARCADE_MUS_evaFx(G, lane, false); }
+  ARCADE_MUS_hud();
+}
+function ARCADE_MUS_key(e) {
+  const G = ARCADE_MUS; if (!G || e.repeat) return;
+  const k = e.key.toLowerCase();
+  if (G.mode === 'menu') { if (/^[1-6]$/.test(k) && G.page * ARCADE_MUS_PP + +k - 1 < ARCADE_MUS_SONGS.length) { e.preventDefault(); ARCADE_MUS_play(G.page * ARCADE_MUS_PP + +k - 1); } else if (k === 'arrowleft' || k === 'arrowright') { e.preventDefault(); ARCADE_MUS_page(k === 'arrowright' ? 1 : -1); } return; }
+  if (G.mode === 'end') { if (k === 'enter' || k === ' ') { e.preventDefault(); G.mode = 'menu'; ARCADE_setScore('🎸 EVA Music — elige una canción'); } return; }
+  const l = { d: 0, f: 1, j: 2, k: 3, arrowleft: 0, arrowdown: 1, arrowup: 2, arrowright: 3, '1': 0, '2': 1, '3': 2, '4': 3 }[k];
+  if (l !== undefined) { e.preventDefault(); ARCADE_MUS_press(l); }
+}
+function ARCADE_MUS_tap(e) {
+  const G = ARCADE_MUS; if (!G) return;
+  const r = G.cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 360, y = (e.clientY - r.top) / r.height * 380;
+  e.preventDefault();
+  if (G.mode === 'menu') { const i = Math.floor((y - 84) / 42), n = G.page * ARCADE_MUS_PP + i; if (y >= 340) ARCADE_MUS_page(x < 180 ? -1 : 1); else if (y >= 84 && i < ARCADE_MUS_PP && (y - 84) % 42 < 36 && n < ARCADE_MUS_SONGS.length) ARCADE_MUS_play(n); }
+  else if (G.mode === 'end') { G.mode = 'menu'; ARCADE_setScore('🎸 EVA Music — elige una canción'); }
+  else ARCADE_MUS_press(Math.min(3, Math.floor(x / 90)));
+}
+function ARCADE_MUS_loop() {
+  const G = ARCADE_MUS; if (!G || !G.running) return;
+  if (G.ac) { if (ARCADE_State.paused) { if (G.ac.state === 'running') G.ac.suspend(); } else if (G.ac.state === 'suspended') G.ac.resume(); }
+  if (G.mode === 'play' && !ARCADE_State.paused) {
+    const ac = G.ac, now = ac.currentTime, bs = 60 / G.song.bpm, tg = now - G.t0;
+    while (G.nextBar < ARCADE_MUS_BARS && G.t0 + G.nextBar * 4 * bs < now + 1.5) ARCADE_MUS_bar(G, G.nextBar++);
+    G.notes.forEach(n => { if (!n.hit && !n.miss && tg - n.b * bs > 0.2) { n.miss = 1; G.misses++; G.combo = 0; G.msg = ['Fallo', performance.now(), '#f87171']; ARCADE_MUS_evaFx(G, 0, false); ARCADE_MUS_hud(); } });
+    if (tg > ARCADE_MUS_BARS * 4 * bs + 0.5) { G.mode = 'end'; ARCADE_setScore('Puntos: ' + G.score + ' · Mejor combo: ' + G.maxc); }
+  }
+  ARCADE_MUS_draw(G);
+  G.raf = requestAnimationFrame(ARCADE_MUS_loop);
+}
+function ARCADE_MUS_draw(G) {
+  const x = G.x, T = performance.now(), bs = G.song ? 60 / G.song.bpm : 0.8;
+  x.setTransform(ARCADE_MUS_S, 0, 0, ARCADE_MUS_S, 0, 0);
+  const tg = G.mode !== 'menu' && G.ac ? G.ac.currentTime - G.t0 : T / 1000;
+  const bg = x.createLinearGradient(0, 0, 0, 380); bg.addColorStop(0, '#150f35'); bg.addColorStop(.6, '#0d1730'); bg.addColorStop(1, '#070d1c'); x.fillStyle = bg; x.fillRect(0, 0, 360, 380);
+  x.fillStyle = 'rgba(255,255,255,.5)'; for (let i = 0; i < 24; i++) { x.globalAlpha = 0.3 + 0.4 * Math.abs(Math.sin(T / 900 + i)); x.fillRect((i * 97) % 360, (i * 53) % 300, 2, 2); } x.globalAlpha = 1;
+  x.textAlign = 'center';
+  if (G.mode === 'menu') {
+    const gd = x.createLinearGradient(60, 0, 300, 0); gd.addColorStop(0, '#fde68a'); gd.addColorStop(.5, '#fff'); gd.addColorStop(1, '#93c5fd');
+    x.fillStyle = gd; x.font = '600 24px Georgia, serif'; x.fillText('🎸 EVA  MUSIC', 180, 38);
+    x.font = '11px sans-serif'; x.fillStyle = '#a5b4fc'; x.fillText('Melodías sin voz · suenan cuando aciertas · D F J K', 180, 60);
+    ARCADE_MUS_SONGS.slice(G.page * ARCADE_MUS_PP, G.page * ARCADE_MUS_PP + ARCADE_MUS_PP).forEach((s, j) => { const i = G.page * ARCADE_MUS_PP + j, y = 84 + j * 42, c = ARCADE_MUS_COL[i % 4], g2 = x.createLinearGradient(30, y, 330, y);
+      g2.addColorStop(0, 'rgba(255,255,255,.14)'); g2.addColorStop(1, 'rgba(255,255,255,.04)');
+      x.fillStyle = g2; x.beginPath(); x.roundRect(30, y, 300, 36, 12); x.fill(); x.strokeStyle = s.epic ? 'rgba(253,224,71,.55)' : 'rgba(255,255,255,.18)'; x.lineWidth = 1; x.stroke();
+      x.fillStyle = c; x.beginPath(); x.roundRect(30, y, 5, 36, 3); x.fill();
+      x.textAlign = 'left'; x.fillStyle = '#fff'; x.font = '600 14px Georgia, serif'; x.fillText((j + 1) + ' · ' + s.n, 46, y + 16);
+      x.fillStyle = s.epic ? '#fde68a' : '#a5b4fc'; x.font = '10px sans-serif'; x.fillText(s.epic ? '⚔ anime épico · original · ' + s.bpm + ' bpm' : '♪ relajante · ' + s.bpm + ' bpm', 46, y + 30); x.textAlign = 'center'; });
+    x.fillStyle = '#fde68a'; x.font = 'bold 18px sans-serif'; x.fillText('◀', 60, 366); x.fillText('▶', 300, 366);
+    x.fillStyle = '#a5b4fc'; x.font = '11px sans-serif'; x.fillText('Página ' + (G.page + 1) + ' de ' + Math.ceil(ARCADE_MUS_SONGS.length / ARCADE_MUS_PP) + ' · ← →', 180, 365);
+  } else {
+    for (let l = 0; l < 4; l++) { x.fillStyle = 'rgba(255,255,255,' + (l % 2 ? '.05' : '.02') + ')'; x.fillRect(l * 90, 0, 90, 380); }
+    G.notes.forEach(n => { if (n.hit) return; const y = ARCADE_MUS_HIT - (n.b * bs - tg) * ARCADE_MUS_SPEED; if (y < -20 || y > ARCADE_MUS_HIT + 40) return;
+      x.globalAlpha = n.miss ? 0.25 : 1; x.fillStyle = n.miss ? '#94a3b8' : ARCADE_MUS_COL[n.lane]; x.shadowColor = ARCADE_MUS_COL[n.lane]; x.shadowBlur = n.miss ? 0 : 14; x.beginPath(); x.roundRect(n.lane * 90 + 8, y - 9, 74, 18, 9); x.fill(); x.shadowBlur = 0; x.globalAlpha = 1; });
+    for (let l = 0; l < 4; l++) { const on = T - G.lit[l] < 140; x.fillStyle = on ? ARCADE_MUS_COL[l] : 'rgba(255,255,255,.18)'; x.beginPath(); x.roundRect(l * 90 + 8, ARCADE_MUS_HIT + 6, 74, 12, 6); x.fill(); x.fillStyle = on ? '#fff' : '#c7d2fe'; x.font = 'bold 15px sans-serif'; x.fillText('DFJK'[l], l * 90 + 45, ARCADE_MUS_HIT + 42); }
+    G.fx.forEach(p => { p.x += p.vx; p.y += p.vy; p.l--; x.globalAlpha = Math.max(0, p.l / 40); x.fillStyle = p.c; x.font = '16px sans-serif'; x.fillText(p.t, p.x, p.y); }); x.globalAlpha = 1; G.fx = G.fx.filter(p => p.l > 0);
+    if (G.msg && T - G.msg[1] < 600) { x.fillStyle = G.msg[2]; x.font = 'bold 18px sans-serif'; x.fillText(G.msg[0], 180, 150); }
+    if (G.combo > 2) { x.fillStyle = '#fff'; x.font = 'bold 14px sans-serif'; x.fillText('Combo x' + G.combo, 180, 175); }
+  }
+  ARCADE_MUS_swing(tg, bs);
+  if (G.mode === 'end') {
+    const acc = G.hits / Math.max(1, G.hits + G.misses), st = acc >= 0.9 ? 3 : acc >= 0.7 ? 2 : acc >= 0.4 ? 1 : 0;
+    x.fillStyle = 'rgba(0,0,0,.65)'; x.fillRect(20, 110, 320, 170); x.fillStyle = '#fff'; x.font = 'bold 20px sans-serif'; x.fillText('¡Canción terminada!', 180, 145);
+    x.font = '32px sans-serif'; x.fillText('⭐'.repeat(st) + '☆'.repeat(3 - st), 180, 190);
+    x.font = '14px sans-serif'; x.fillText('Puntos ' + G.score + ' · Precisión ' + Math.round(acc * 100) + '%', 180, 220); x.fillText('Toca o presiona Enter para elegir otra canción', 180, 256);
+  }
+  x.textAlign = 'left';
+}
+
 const ARCADE_TETRIS_COLS = 8, ARCADE_TETRIS_ROWS = 16;
 const ARCADE_TETRO_SHAPES = {
   I: [[[0,1],[1,1],[2,1],[3,1]], [[2,0],[2,1],[2,2],[2,3]], [[0,2],[1,2],[2,2],[3,2]], [[1,0],[1,1],[1,2],[1,3]]],
@@ -11164,6 +11700,7 @@ function EVA_alertaVibrar() {
 
 // Habla el aviso y deja a EVA con la boca en movimiento SOLO mientras suena la voz.
 function EVA_alertaHablar() {
+  if (VOZ_silenciada()) return Promise.resolve(false);   // Eva grande y notificación siguen, sin voz
   const yo = ++EVA_ALERTA.token;   // ignora los eventos de una frase anterior que se canceló
   const wrap = document.getElementById('tb-eva-wrap');
   const panel = document.getElementById('tb-eva-alert-panel');
@@ -11381,19 +11918,8 @@ if (TB_MODO_OFICINA_DEFAULT) {
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape') EVA_fotoCerrar(); });
 }
 
-// Salida inminente (solo PC): si el mouse sale por el borde de arriba de la ventana (rumbo a la X
-// de la pestaña o a la barra del navegador) y el candado sigue activo, Eva aparece antes de que
-// el asesor llegue a cerrar. Tras Aceptar espera 60 s para no ser insistente.
-if (TB_MODO_OFICINA_DEFAULT) {
-  document.addEventListener('mouseout', ev => {
-    if (ev.relatedTarget || ev.clientY > 0) return;
-    try {
-      if (!window.matchMedia('(pointer: fine)').matches) return;
-      if (!TB_LOCK_activo() || Date.now() - EVA_SALIDA.ultimo < 60000) return;
-      EVA_salidaMostrar();
-    } catch {}
-  });
-}
+// (Se quitó el aviso por acercar el mouse a la X o salirse de la ventana: Eva solo aparece cuando el asesor
+// intenta cerrar/recargar la pestaña, vía beforeunload.)
 // Botón de prueba (solo admin, en Perfil): muestra el aviso completo sin cerrar nunca la pestaña.
 function EVA_salidaProbar() { EVA_salidaMostrar(true); }
 
