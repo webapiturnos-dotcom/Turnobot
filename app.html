@@ -3310,6 +3310,11 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
           </div>
         </div>
         <div class="form-group">
+          <label class="form-label">Hora mínima de entrada (opcional)</label>
+          <input type="time" class="form-input" id="cond-hora-entrada-min" value="">
+          <div style="font-size:11px;color:var(--gris);margin-top:4px">Nadie entra antes de esta hora: ni ese día ni los demás días de la semana al repartir horas (si no cabe entrando antes, se completa saliendo más tarde). Déjala vacía para no limitar la entrada.</div>
+        </div>
+        <div class="form-group">
           <label class="form-label">Tope de horas en el resto de los días</label>
           <input type="number" class="form-input" id="cond-tope-otros" value="9" min="1" step="0.5">
         </div>
@@ -8223,7 +8228,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-04.1425';
+const TB_APP_VERSION = '2026-10-04.1429';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -14339,7 +14344,7 @@ function TB_lineaTieneAlmuerzo(lines, i) {
   if (sched.length < 15) return null;
   return !TB_esAuxPlaceholder(sched.slice(12, 15));
 }
-function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSalidaStr, horasMax, capOtrosDias) {
+function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSalidaStr, horasMax, capOtrosDias, horaEntradaMinStr) {
   const canon = MALLA_matchName(nombreInput);
   if (!canon || diaSemana == null || !semanaRefISO || !horaSalidaStr || !horasMax) return { ok: false, motivo: 'datos' };
   const norm = normalizeName(canon);
@@ -14364,8 +14369,16 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
 
   const [hs, ms] = horaSalidaStr.split(':').map(Number);
   const salidaObjetivoMin = hs * 60 + (ms || 0);
-  const horasMaxMin = Math.round(horasMax * 60);
+  let horasMaxMin = Math.round(horasMax * 60);
+  // Hora mínima de entrada (opcional): si entrar a (salida − horas máximas) cae antes, se entra a la mínima
+  // y ese día queda con menos horas (la diferencia se reparte en el resto de la semana).
+  let entradaMinLimite = null;
+  if (horaEntradaMinStr) { const [he, me] = horaEntradaMinStr.split(':').map(Number); if (!isNaN(he)) entradaMinLimite = he * 60 + (me || 0); }
   let entradaObjetivoMin = salidaObjetivoMin - horasMaxMin;
+  if (entradaMinLimite != null && entradaObjetivoMin >= 0 && entradaObjetivoMin < entradaMinLimite && entradaMinLimite < salidaObjetivoMin) {
+    entradaObjetivoMin = entradaMinLimite;
+    horasMaxMin = salidaObjetivoMin - entradaObjetivoMin;
+  }
   if (entradaObjetivoMin < 0) entradaObjetivoMin += 1440;
 
   const patron = TB_calcularPatronGlobal();
@@ -14417,21 +14430,36 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
     if (duracionDia == null) continue; // día libre/sin turno reconocible, se deja igual
 
     if (restante > 0) {
-      const cupo = Math.max(0, capOtrosDias * 60 - duracionDia);
-      let asignar = Math.min(cupo, restante);
-      if (asignar < 1) continue;
-      // Tope semanal: el total de la semana no puede pasar de 42 h. Se prueba el cambio y,
-      // si se pasa, se restaura la línea y se reintenta con menos minutos.
-      const lineaOriginal = lines[idxDia];
-      let aplicado = 0;
-      for (let intento = 0; intento < 4 && asignar >= 1; intento++) {
-        const r = TB_ajustarLinea(lines, idxDia, 'destino', 'entra_temprano', asignar, ajusteOpts);
-        if (!r.ok) { lines[idxDia] = lineaOriginal; break; }
-        const exceso = TB_netaSemana(lines, fechasSemana, norm) - COND_TOPE_SEMANAL_MIN;
-        if (exceso <= 0) { aplicado = asignar; break; }
-        lines[idxDia] = lineaOriginal;
-        asignar -= Math.ceil(exceso / 5) * 5;
+      // Entrada actual de ese día (para respetar la hora mínima de entrada).
+      const entradaDeLinea = () => {
+        const tk = lines[idxDia].trim().split(/\s+/).slice(2);
+        const ix = tk.findIndex(t => TB_esTokenHora(t));
+        return ix === -1 ? null : TB_timeTokensToMin(tk[ix], tk[ix + 1]);
+      };
+      const modos = entradaMinLimite != null ? ['entra_temprano', 'sale_tarde'] : ['entra_temprano'];
+      let aplicadoTotal = 0;
+      for (const modo of modos) {
+        const durAhora = TB_duracionLinea(lines, idxDia) || duracionDia;
+        let cupo = Math.max(0, capOtrosDias * 60 - durAhora);
+        if (modo === 'entra_temprano' && entradaMinLimite != null) {
+          const ent = entradaDeLinea();
+          cupo = ent == null ? 0 : Math.min(cupo, Math.max(0, ent - entradaMinLimite));
+        }
+        let asignar = Math.min(cupo, restante - aplicadoTotal);
+        if (asignar < 1) continue;
+        // Tope semanal: el total de la semana no puede pasar de 42 h. Se prueba el cambio y,
+        // si se pasa, se restaura la línea y se reintenta con menos minutos.
+        const lineaOriginal = lines[idxDia];
+        for (let intento = 0; intento < 4 && asignar >= 1; intento++) {
+          const r = TB_ajustarLinea(lines, idxDia, 'destino', modo, asignar, ajusteOpts);
+          if (!r.ok) { lines[idxDia] = lineaOriginal; break; }
+          const exceso = TB_netaSemana(lines, fechasSemana, norm) - COND_TOPE_SEMANAL_MIN;
+          if (exceso <= 0) { aplicadoTotal += asignar; break; }
+          lines[idxDia] = lineaOriginal;
+          asignar -= Math.ceil(exceso / 5) * 5;
+        }
       }
+      const aplicado = aplicadoTotal;
       if (aplicado >= 1) { restante -= aplicado; detalle.push({ fecha: iso, minutos: aplicado, tipo: 'suma' }); }
     } else {
       const cupo = Math.max(0, duracionDia - 4 * 60);
@@ -14631,6 +14659,7 @@ function COND_leerFormulario() {
     diaSemana: fecha ? new Date(fecha + 'T00:00:00').getDay() : NaN,
     semana: fecha,
     horaSalida: document.getElementById('cond-hora-salida').value,
+    horaEntradaMin: (document.getElementById('cond-hora-entrada-min') || {}).value || '',
     horasMax: parseFloat(document.getElementById('cond-horas-dia').value),
     capOtros: parseFloat(document.getElementById('cond-tope-otros').value) || 9,
   };
@@ -14644,7 +14673,7 @@ function COND_aplicar() {
   if (!f.semana) { showToast('error', '❌ Error', 'Esa persona no tiene turnos en la malla cargada.'); return; }
   if (!f.horaSalida || !f.horasMax || f.horasMax <= 0) { showToast('error', '❌ Error', 'Indica la hora de salida y las horas máximas de ese día.'); return; }
 
-  const res = TB_aplicarCondicionSemana(f.nombre, f.diaSemana, f.semana, f.horaSalida, f.horasMax, f.capOtros);
+  const res = TB_aplicarCondicionSemana(f.nombre, f.diaSemana, f.semana, f.horaSalida, f.horasMax, f.capOtros, f.horaEntradaMin);
 
   const motivos = {
     sin_dia_fijo: `No encontré el turno de esa persona el ${DIAS_SEMANA_LABEL[f.diaSemana]} de esa semana en la malla.`,
@@ -14694,7 +14723,7 @@ function COND_guardar() {
   const f = COND_leerFormulario();
   if (!f.nombre || !f.horaSalida || !f.horasMax) { showToast('error', '❌ Error', 'Completa persona, hora de salida y horas máximas antes de guardar.'); return; }
   const lista = COND_cargarGuardadas();
-  lista.push({ id: Date.now(), nombre: f.nombre, diaSemana: f.diaSemana, horaSalida: f.horaSalida, horasMax: f.horasMax, capOtros: f.capOtros });
+  lista.push({ id: Date.now(), nombre: f.nombre, diaSemana: f.diaSemana, horaSalida: f.horaSalida, horasMax: f.horasMax, capOtros: f.capOtros, horaEntradaMin: f.horaEntradaMin || '' });
   COND_guardarLista(lista);
   showToast('success', '💾 Guardada', `Condición de ${f.nombre.split(' ')[0]} guardada. Podrás reaplicarla eligiendo otra semana.`);
   COND_render();
@@ -14707,7 +14736,7 @@ function COND_render() {
   cont.innerHTML = lista.map(c => `
     <div class="consulta-item">
       <span>⚖️</span>
-      <span style="flex:1">${c.nombre.split(' ')[0]} · ${DIAS_SEMANA_LABEL[c.diaSemana]} · sale ${c.horaSalida} (${c.horasMax}h)</span>
+      <span style="flex:1">${c.nombre.split(' ')[0]} · ${DIAS_SEMANA_LABEL[c.diaSemana]} · ${c.horaEntradaMin ? 'entra desde ' + c.horaEntradaMin + ' · ' : ''}sale ${c.horaSalida} (${c.horasMax}h)</span>
       <button class="btn btn-secondary" style="padding:4px 8px;font-size:11px" onclick="COND_aplicarGuardada(${c.id})">Aplicar a esta semana</button>
       <button class="btn btn-secondary" style="padding:4px 8px;font-size:11px" onclick="COND_eliminarGuardada(${c.id})">🗑️</button>
     </div>`).join('');
@@ -14722,6 +14751,7 @@ function COND_aplicarGuardada(id) {
   }
   document.getElementById('cond-hora-salida').value = c.horaSalida;
   document.getElementById('cond-horas-dia').value = c.horasMax;
+  const _em = document.getElementById('cond-hora-entrada-min'); if (_em) _em.value = c.horaEntradaMin || '';
   document.getElementById('cond-tope-otros').value = c.capOtros;
   COND_aplicar();
 }
