@@ -2036,7 +2036,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 #cam-stage .arcade-go span{font-size:clamp(14px,3.8vw,17px)!important;line-height:1.4;color:#fff!important}
 .cam-toast.on{background:#0b1c33!important;color:#fff!important;font-weight:800!important;font-size:clamp(13px,3.6vw,16px)!important;border:2px solid #22c3f2!important}
 </style>
-<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
+<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
@@ -2044,9 +2044,15 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Leyendo archivo...</div>
 </div>
-<div class="toast-container" id="toasts"></div>
+<div class="toast-container" id="toasts"><div class="toast warning" data-expires="1791150091731">
+    <div class="toast-icon">⚠️</div>
+    <div class="toast-body">
+      <div class="toast-title">🛠️ Reporte de la malla</div>
+      <div class="toast-msg">6 corregida(s) y 2 DE CORRECCIÓN URGENTE. Revisa el reporte en Actualizar Malla.</div>
+    </div>
+    <button class="toast-close" type="button" aria-label="Cerrar" onclick="TOAST_dismiss(this.closest('.toast'))">✕</button></div></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
@@ -2502,7 +2508,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 04/10/2026 · 1444</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 04/10/2026 · 1618</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -2607,7 +2613,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">15:04</div><button type="button" class="activity-del-btn" data-aid="122" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">15:04</div><button type="button" class="activity-del-btn" data-aid="121" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">15:04</div><button type="button" class="activity-del-btn" data-aid="120" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">15:04</div><button type="button" class="activity-del-btn" data-aid="119" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">15:04</div><button type="button" class="activity-del-btn" data-aid="118" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">16:40</div><button type="button" class="activity-del-btn" data-aid="74" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">16:40</div><button type="button" class="activity-del-btn" data-aid="73" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">16:40</div><button type="button" class="activity-del-btn" data-aid="72" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">16:40</div><button type="button" class="activity-del-btn" data-aid="71" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>NEVIS</strong> consultó su turno</div><div class="activity-time">16:40</div><button type="button" class="activity-del-btn" data-aid="70" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -2670,7 +2676,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Miércoles 7 Oct</div>
+            <div class="turno-card-label">Tu turno · Sábado 10 Oct</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -2706,9 +2712,9 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Miércoles 7 Oct</div>
+          <div class="section-sub" id="timeline-fecha">Sábado 10 Oct</div>
         </div>
-        <div class="timeline-list" id="timeline-list" style="--rail-top: 218.26667404174805px; --rail-bottom: 69.93330383300781px;"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
+        <div class="timeline-list" id="timeline-list" style="--rail-top: 0px; --rail-bottom: 0px;"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
 
       <!-- ── Horas de la semana ── -->
@@ -2836,6 +2842,13 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
+        <div class="quick-card" id="admin-btn-horario-manual" onclick="ADMIN_seleccionar('horario-manual-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">🕒</div><div>
+            <div class="qc-title">Horario Manual</div>
+            <div class="qc-sub">Fija entrada y salida de un día; la semana se compensa sola</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
         <div class="quick-card" id="admin-btn-break" onclick="ADMIN_seleccionar('break-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">☕</div><div>
             <div class="qc-title">Break y Almuerzo</div>
@@ -2918,7 +2931,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:04 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:04 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:04 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:04 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:03 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:03 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:03 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:03 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:03 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">03:03 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">04:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">04:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">04:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">04:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">04:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">04:38 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:38</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:38</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:38</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">16:38</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -3326,6 +3339,78 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         <div id="cond-guardadas-list" class="consultas-list" style="margin-top:10px"></div>
       </div>
 
+      <!-- ── Horario manual: fijar entrada/salida de un día y compensar la semana ── -->
+      <div class="malla-panel admin-subpanel" id="horario-manual-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">🕒 Horario Manual</div>
+          <div class="section-sub">Ponle tú la entrada y la salida a un día de un asesor. El break y el almuerzo se reubican con la lógica de toda la malla y la diferencia de horas se compensa en otros días de la misma semana</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Persona</label>
+          <select class="form-input" id="hm-nombre" onchange="HM_poblarDias()"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Día a modificar</label>
+          <select class="form-input" id="hm-dia" onchange="HM_cargarDia()"></select>
+        </div>
+        <div class="malla-status" id="hm-actual" style="font-size:12px;line-height:1.5;margin-bottom:10px">Elige una persona y un día.</div>
+        <div class="flex-row" style="gap:10px">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Nueva entrada</label>
+            <input type="time" class="form-input" id="hm-entrada" oninput="HM_invalidar()">
+          </div>
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Nueva salida</label>
+            <input type="time" class="form-input" id="hm-salida" oninput="HM_invalidar()">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:12px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer">
+            <input type="checkbox" id="hm-compensar" checked style="width:18px;height:18px" onchange="HM_toggleComp()">
+            Compensar las horas en otros días de la semana
+          </label>
+        </div>
+        <div id="hm-comp-wrap">
+          <label class="form-label">Compensar en estos días</label>
+          <div id="hm-comp-dias" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
+          <div class="flex-row" style="gap:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Compensar moviendo…</label>
+              <select class="form-input" id="hm-modo-comp" onchange="HM_invalidar()">
+                <option value="entrada">La entrada (entra antes / más tarde)</option>
+                <option value="salida">La salida (sale más tarde / antes)</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">Tope de horas por día</label>
+              <input type="number" class="form-input" id="hm-tope" value="9" min="1" step="0.5" oninput="HM_invalidar()">
+            </div>
+          </div>
+          <div class="flex-row" style="gap:10px;margin-top:10px">
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">No entrar antes de (opcional)</label>
+              <input type="time" class="form-input" id="hm-lim-entrada" oninput="HM_invalidar()">
+            </div>
+            <div class="form-group" style="flex:1;margin:0">
+              <label class="form-label">No salir después de (opcional)</label>
+              <input type="time" class="form-input" id="hm-lim-salida" oninput="HM_invalidar()">
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:12px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer">
+            <input type="checkbox" id="hm-recalc" checked style="width:18px;height:18px" onchange="HM_invalidar()">
+            Reubicar break y almuerzo según la malla
+          </label>
+        </div>
+        <button class="btn btn-secondary w-full" onclick="HM_vistaPrevia()">👁️ Ver vista previa de la semana</button>
+        <div id="hm-preview" style="margin-top:10px"></div>
+        <button class="btn btn-primary w-full" style="margin-top:10px" onclick="HM_aplicar()">✅ Aplicar horario</button>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          El día elegido queda exactamente con la entrada y la salida que escribas. Las horas netas de la semana se mantienen: lo que ese día gane o pierda se reparte, en bloques de 5 min, entre los días marcados (sin pasar el tope diario ni bajar de 4 h). El break y el almuerzo siguen la lógica de la malla: si la entrada y la salida se mueven menos de 1 h se quedan donde están; si alguna se mueve 1 h o más, el día se reacomoda como los turnos más parecidos de la malla (qué pausas lleva y en qué momento caen).
+        </div>
+      </div>
+
       <!-- ── Break y almuerzo: mover, quitar o unificar ── -->
       <div class="malla-panel admin-subpanel" id="break-admin-panel" style="display: none;">
         <div class="section-header">
@@ -3498,11 +3583,11 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         </div>
         <div class="form-group">
           <label class="form-label">Persona</label>
-          <select class="form-input" id="at-nombre" onchange="AT_cargarDias()"></select>
+          <select class="form-input" id="at-nombre" onchange="AT_cargarDias()"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
         <div class="form-group">
           <label class="form-label">Día al que se le agrega el turno</label>
-          <select class="form-input" id="at-fecha" onchange="AT_cambioDia()"></select>
+          <select class="form-input" id="at-fecha" onchange="AT_cambioDia()"><option value="2026-10-05" disabled="">Lun 05/10 · 7:00 a. m.–3:30 p. m. (7h 30m) (ya tiene turno / ausencia)</option><option value="2026-10-06" disabled="">Mar 06/10 · 7:00 a. m.–3:30 p. m. (7h 30m) (ya tiene turno / ausencia)</option><option value="2026-10-07" disabled="">Mié 07/10 · 7:00 a. m.–3:30 p. m. (7h 30m) (ya tiene turno / ausencia)</option><option value="2026-10-08" disabled="">Jue 08/10 · 7:00 a. m.–3:30 p. m. (7h 30m) (ya tiene turno / ausencia)</option><option value="2026-10-09" disabled="">Vie 09/10 · 7:00 a. m.–3:30 p. m. (7h 30m) (ya tiene turno / ausencia)</option><option value="2026-10-10" disabled="">Sáb 10/10 · 8:00 a. m.–12:30 p. m. (4h 30m) (ya tiene turno / ausencia)</option></select>
         </div>
         <div class="malla-status" id="at-semana" style="display:block;font-size:12px;line-height:1.5;margin-bottom:10px;"></div>
         <div class="form-group">
@@ -3514,7 +3599,7 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         </div>
         <div class="form-group" id="at-box-dup">
           <label class="form-label">Duplicar el horario de</label>
-          <select class="form-input" id="at-origen" onchange="AT_cambioOrigen()"></select>
+          <select class="form-input" id="at-origen" onchange="AT_cambioOrigen()"><option value="2026-10-05">Lun 05/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-06">Mar 06/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-07">Mié 07/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-08">Jue 08/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-09">Vie 09/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-10">Sáb 10/10 · 8:00 a. m.–12:30 p. m. (4h 30m)</option></select>
         </div>
         <div id="at-box-manual" style="display:none">
           <div class="flex-row" style="gap:10px">
@@ -3543,8 +3628,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
             <label style="display:flex;gap:6px;align-items:center"><input type="radio" name="at-alm" value="0" onchange="AT_preview()" style="width:auto"> Sin almuerzo</label>
           </div>
         </div>
-        <div class="malla-status" id="at-preview" style="display:block;font-size:12px;line-height:1.6;margin-bottom:10px;"></div>
-        <button class="btn btn-primary w-full" id="at-btn" onclick="AT_aplicar()">✅ Agregar turno</button>
+        <div class="malla-status" id="at-preview" style="display:block;font-size:12px;line-height:1.6;margin-bottom:10px;"><span style="color:#dc2626">⛔ Elige la persona y el día.</span><br></div>
+        <button class="btn btn-primary w-full" id="at-btn" onclick="AT_aplicar()" disabled="" style="opacity: 0.5;">✅ Agregar turno</button>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="AT_marcarDescanso()">😌 Mejor marcar este día como descanso</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
           Reglas que se verifican solas: el día no puede pasar de 9 horas trabajadas y la semana de la persona (lunes a domingo) no puede pasar de 42 horas. Los breaks y el almuerzo los coloca el bot según el patrón de la malla, para la cantidad de pausas que elijas. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
@@ -3559,17 +3644,17 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         </div>
         <div class="form-group">
           <label class="form-label">Asesor</label>
-          <select class="form-input" id="swp-nombre" onchange="SWP_cargarDias()"></select>
+          <select class="form-input" id="swp-nombre" onchange="SWP_cargarDias()"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
         <div class="form-group">
           <label class="form-label">Primer día</label>
-          <select class="form-input" id="swp-a" onchange="SWP_preview()"></select>
+          <select class="form-input" id="swp-a" onchange="SWP_preview()"><option value="2026-10-05">Lun 05/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-06">Mar 06/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-07">Mié 07/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-08">Jue 08/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-09">Vie 09/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-10">Sáb 10/10 · 8:00 a. m.–12:30 p. m. (4h 30m)</option></select>
         </div>
         <div class="form-group">
           <label class="form-label">Se intercambia con el día</label>
-          <select class="form-input" id="swp-b" onchange="SWP_preview()"></select>
+          <select class="form-input" id="swp-b" onchange="SWP_preview()"><option value="2026-10-05">Lun 05/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-06">Mar 06/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-07">Mié 07/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-08">Jue 08/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-09">Vie 09/10 · 7:00 a. m.–3:30 p. m. (7h 30m)</option><option value="2026-10-10">Sáb 10/10 · 8:00 a. m.–12:30 p. m. (4h 30m)</option></select>
         </div>
-        <div class="malla-status" id="swp-preview" style="display:block;font-size:12px;line-height:1.6;margin-bottom:10px;"></div>
+        <div class="malla-status" id="swp-preview" style="display:block;font-size:12px;line-height:1.6;margin-bottom:10px;"><b>Mié 07/10</b>: 7:00 a. m.–3:30 p. m. (7h 30m) &nbsp;→&nbsp; quedará <b>8:00 a. m.–12:30 p. m. (4h 30m)</b><br><b>Sáb 10/10</b>: 8:00 a. m.–12:30 p. m. (4h 30m) &nbsp;→&nbsp; quedará <b>7:00 a. m.–3:30 p. m. (7h 30m)</b></div>
         <button class="btn btn-primary w-full" id="swp-btn" onclick="SWP_aplicar()">🔁 Intercambiar estos dos días</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
           Los dos días quedan con una etiqueta "🔁 Día intercambiado" visible en el calendario del asesor (web y oficina). Si te equivocas, vuelve a intercambiar los mismos dos días y todo queda como estaba. Recuerda descargar el HTML actualizado para publicar el cambio.
@@ -4954,12 +5039,12 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  08/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
-05/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	6:30:00	a.	m.	3:30:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	11:10:00	a.	m.	8:00:00
+ 05/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  07/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  09/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
-10/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
+ 10/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  06/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  07/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -5032,9 +5117,9 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  08/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
-05/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:00:00	a.	m.	3:30:00	p.	m.	9:30:00	a.	m.	12:00:00	a.	m.	11:25:00	a.	m.	7:30:00
-06/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:00:00	a.	m.	3:00:00	p.	m.	9:20:00	a.	m.	12:55:00	p.	m.	11:10:00	a.	m.	7:00:00
-07/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	10:00:00	a.	m.	7:00:00	p.	m.	12:40:00	p.	m.	12:00:00	a.	m.	2:40:00	p.	m.	8:00:00
+ 05/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 06/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+07/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  09/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  10/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
@@ -7054,6 +7139,7 @@ const DELEG_PANEL_PERM_MAP = {
   'team-panel': 'turnos',
   'mover-admin-panel': 'mover',
   'condicion-admin-panel': 'mover',
+  'horario-manual-admin-panel': 'mover',
   'break-admin-panel': 'mover',
   'agregar-turno-admin-panel': 'mover',
   'ausencia-admin-panel': 'ausencia',
@@ -8228,7 +8314,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-04.1618';
+const TB_APP_VERSION = '2026-10-04.1755';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8685,6 +8771,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'team-panel') { TEAM_render(); CALC_populate(); }
   if (panelId === 'mover-admin-panel') MOVER_populateSelect();
   if (panelId === 'condicion-admin-panel') COND_populate();
+  if (panelId === 'horario-manual-admin-panel') HM_populate();
   if (panelId === 'break-admin-panel') BRK_populate();
   if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
   if (panelId === 'agregar-turno-admin-panel') AT_abrir();
@@ -8900,6 +8987,7 @@ function F3_initTurns() {
     'consultas-panel': 'admin-btn-consultas', 'malla-panel': 'admin-btn-malla',
     'team-panel': 'admin-btn-team', 'mover-admin-panel': 'admin-btn-mover',
     'condicion-admin-panel': 'admin-btn-condicion',
+    'horario-manual-admin-panel': 'admin-btn-horario-manual',
     'break-admin-panel': 'admin-btn-break',
     'agregar-turno-admin-panel': 'admin-btn-agregar',
     'swap-dias-admin-panel': 'admin-btn-swap',
@@ -9997,7 +10085,7 @@ function TB_CAMBIOS_init() {
 // el const ya exista.
 TB_CAMBIOS_init();
 
-const TB_HORAS_DEFAULT = {"2026-10-05|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"10/10","otraISO":"2026-10-10","cond":true},"2026-10-10|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"origen","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true},"2026-10-05|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"0.5","min":30,"otraFecha":"07/10","otraISO":"2026-10-07","cond":true},"2026-10-07|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true}};
+const TB_HORAS_DEFAULT = {"2026-10-05|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"10/10","otraISO":"2026-10-10","cond":true},"2026-10-10|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"origen","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true},"2026-10-07|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"1","min":60,"otraFecha":"08/10","otraISO":"2026-10-08"},"2026-10-10|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"06/10","otraISO":"2026-10-06"},"2026-10-08|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"07/10","otraISO":"2026-10-07"}};
 function TB_HORAS_init() {
   try {
     const embebidos = TB_HORAS_DEFAULT || {};
@@ -14498,6 +14586,487 @@ function TB_aplicarCondicionSemana(nombreInput, diaSemana, semanaRefISO, horaSal
   try { HORAS_registrarCondicion(fechaObjetivo, norm, detalle, duracionOriginalObjetivo - horasMaxMin, fechasSemana); } catch (e) { console.error('HORAS_registrarCondicion error:', e); }
 
   return { ok: true, fechaObjetivo, restanteSinAsignar: restante, detalle, sinAlmuerzo, totalSemanaMin: TB_netaSemana(lines, fechasSemana, norm) };
+}
+
+// ══════════════════════════════════════════════════
+//   HORARIO MANUAL
+//   El admin escribe la entrada y la salida EXACTAS de un día de un asesor.
+//   - El break y el almuerzo siguen la lógica de la malla: si la entrada y la
+//     salida se mueven menos de 1 h, las pausas se quedan donde estaban; si
+//     alguna se mueve 1 h o más, el día se reacomoda como los turnos MÁS
+//     PARECIDOS (entrada/salida) de toda la malla: qué pausas lleva (Break 2,
+//     almuerzo) y en qué punto del turno cae cada una.
+//   - Las horas netas de la semana se conservan: lo que ese día gane o pierda
+//     se compensa en otros días de la misma semana (lunes a domingo), en
+//     bloques de 5 min, sin pasar el tope diario ni bajar de 4 h.
+//   Trabaja sobre el texto crudo de la malla, igual que mover horas y la
+//   condición especial, así que queda incrustado al descargar el HTML.
+//   TB_planHorarioManual solo calcula (vista previa); TB_aplicarHorarioManual
+//   calcula y guarda.
+// ══════════════════════════════════════════════════
+const HM_STEP_MIN = 5;
+const HM_PISO_MIN = 4 * 60;
+const HM_PAUSA_DUR = [15, 15, 60];                 // Break 1, Break 2, Almuerzo (min)
+const HM_PAUSA_CORTO = ['B1', 'B2', 'Alm'];
+
+// Separa una línea cruda en { tokens, nombreTokens, sched }.
+function HM_partesLinea(line) {
+  const tokens = line.trim().split(/\s+/);
+  const rest = tokens.slice(2);
+  let idx = rest.findIndex(t => TB_esTokenHora(t));
+  if (idx === -1) idx = rest.length;
+  return { tokens, nombreTokens: rest.slice(0, idx), sched: rest.slice(idx) };
+}
+
+// Lee entrada/salida/pausas/horas netas de una línea; null si no tiene horario reconocible.
+function HM_infoLinea(line) {
+  const s = HM_partesLinea(line).sched;
+  if (s.length < 6 || !TB_esTokenHora(s[0]) || !TB_esTokenAmPm(s[1]) || !TB_esTokenHora(s[3]) || !TB_esTokenAmPm(s[4])) return null;
+  const ent = TB_timeTokensToMin(s[0], s[1]);
+  let sal = TB_timeTokensToMin(s[3], s[4]);
+  if (sal <= ent) sal += 1440;
+  const info = { ent, sal, dur: sal - ent, pausas: [null, null, null], neta: null, tieneAux: s.length >= 15 };
+  if (info.tieneAux) {
+    for (let gi = 0; gi < 3; gi++) {
+      const g = s.slice(6 + gi * 3, 9 + gi * 3);
+      if (!TB_esTokenHora(g[0]) || !TB_esTokenAmPm(g[1]) || TB_esAuxPlaceholder(g)) continue;
+      let m = TB_timeTokensToMin(g[0], g[1]);
+      if (m < ent) m += 1440;
+      info.pausas[gi] = m;
+    }
+  }
+  const last = s.length - 1;
+  info.neta = (last >= 6 && TB_esTokenHora(s[last]) && !TB_esTokenAmPm(s[last - 1]))
+    ? TB_durTokenToMin(s[last])
+    : info.dur - (info.pausas[2] != null ? 60 : 0);
+  return info;
+}
+// Un día con turno real (no libre / no 12:00 a. m. a 12:00 a. m.).
+function HM_esTurno(info) { return !!info && info.dur >= 60 && info.dur <= 13 * 60; }
+
+// Todos los turnos de la malla con su entrada, salida, qué pausas llevan y en qué fracción del turno cae cada una.
+function HM_reglasPausas(lines) {
+  const out = [];
+  lines.forEach(raw => {
+    const line = raw.trim();
+    if (!line) return;
+    const t = line.split(/\s+/);
+    if (t.length < 3 || !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(t[0])) return;
+    const info = HM_infoLinea(line);
+    if (!HM_esTurno(info) || !info.tieneAux) return;
+    out.push({
+      ent: info.ent, sal: info.sal, dur: info.dur,
+      tiene: info.pausas.map(x => x != null),
+      // Fracción fuera del turno (dato raro de la malla, p. ej. a. m./p. m. invertido): no sirve como referencia.
+      fr: info.pausas.map(x => { if (x == null) return null; const f = (x - info.ent) / info.dur; return f > 0 && f < 1 ? f : null; })
+    });
+  });
+  return out;
+}
+function HM_mediana(arr) {
+  if (!arr.length) return null;
+  const q = arr.slice().sort((a, b) => a - b), m = Math.floor(q.length / 2);
+  return q.length % 2 ? q[m] : (q[m - 1] + q[m]) / 2;
+}
+// Cómo la malla arma un turno con esa entrada/salida: toma los turnos MÁS PARECIDOS (distancia en entrada + salida;
+// empates y casi-empates incluidos). Pausas que lleva = mayoría de ellos; punto del turno de cada una = mediana.
+// Si no hay datos, cae al patrón global y a los umbrales de siempre.
+function HM_layoutVecinos(ent, sal, reglas, patron) {
+  let flags, fr = [patron[0], patron[1], patron[2]];
+  const dur = sal - ent;
+  if (reglas.length) {
+    const ord = reglas.map(r => ({ r, d: Math.abs(r.ent - ent) + Math.abs(r.sal - sal) })).sort((a, b) => a.d - b.d);
+    let vec = ord.filter(x => x.d <= ord[0].d + 30).map(x => x.r);
+    if (vec.length < 3) vec = ord.slice(0, 5).map(x => x.r);
+    flags = [0, 1, 2].map(gi => vec.filter(r => r.tiene[gi]).length * 2 >= vec.length);
+    for (let gi = 0; gi < 3; gi++) {
+      const m = HM_mediana(vec.filter(r => r.fr[gi] != null).map(r => r.fr[gi]));
+      if (m != null) fr[gi] = m;
+    }
+  } else {
+    flags = [true, dur > 360, dur > 240];
+  }
+  flags = [flags[0] && dur > 120, flags[1] && dur > 240, flags[2] && dur > 240];
+  return { flags, fr };
+}
+
+// Reescribe una línea con entrada/salida exactas (minutos desde las 0:00; la salida puede pasar de 1440
+// si cruza la medianoche), reubica pausas y deja la columna Horas coherente (neta = bruta − 1 h si hay almuerzo).
+function HM_escribirDia(lines, i, entMin, salMin, ctx, fechaTxt) {
+  const antes = HM_infoLinea(lines[i]);
+  if (!antes) return { ok: false, error: 'formato' };
+  const dur = salMin - entMin;
+  if (dur <= 0) return { ok: false, error: 'duracion' };
+  const p = HM_partesLinea(lines[i]);
+  const s = p.sched;
+  const tE = TB_minToTimeTokens(entMin), tS = TB_minToTimeTokens(salMin);
+  s[0] = tE[0]; s[1] = tE[1]; s[2] = tE[2];
+  s[3] = tS[0]; s[4] = tS[1]; s[5] = tS[2];
+
+  let hayAlmuerzo = antes.pausas[2] != null;
+  const av = [];
+  if (s.length >= 15 && ctx.recalcular) {
+    const orig = ctx.orig[i] || { ent: antes.ent, sal: antes.sal, pausas: antes.pausas };
+    // Entrada y salida se mueven menos de 1 h (contra el horario original): las pausas se quedan donde estaban.
+    // Si alguna se mueve 1 h o más: el día se arma como los turnos más parecidos de la malla.
+    const grande = Math.abs(entMin - orig.ent) >= 60 || Math.abs(salMin - orig.sal) >= 60;
+    const lay = grande ? HM_layoutVecinos(entMin, salMin, ctx.reglas, ctx.patron) : null;
+    const pos = [null, null, null];
+    for (let gi = 0; gi < 3; gi++) {
+      const quiere = grande ? lay.flags[gi] : orig.pausas[gi] != null;
+      if (!quiere) { TB_ponerPlaceholderAux(s, gi); continue; }
+      let m = grande ? Math.round((entMin + lay.fr[gi] * dur) / 5) * 5 : orig.pausas[gi];
+      const lo = entMin + 5, hi = salMin - HM_PAUSA_DUR[gi];
+      const m0 = m;
+      if (m > hi) m = hi;
+      if (m < lo) m = lo;
+      if (!grande && Math.abs(m - m0) >= 5) av.push(`${fechaTxt}: ${HM_PAUSA_CORTO[gi]} caía fuera del turno y se movió dentro`);
+      pos[gi] = m;
+    }
+    // Break 1 siempre va antes que Break 2.
+    if (pos[0] != null && pos[1] != null && pos[0] > pos[1]) { const t0 = pos[0]; pos[0] = pos[1]; pos[1] = t0; }
+    // Pausas que se pisan: la que va después se corre hasta que termine la anterior (si cabe en el turno).
+    const orden = [0, 1, 2].filter(gi => pos[gi] != null).sort((a, b) => pos[a] - pos[b]);
+    for (let k = 1; k < orden.length; k++) {
+      const prev = orden[k - 1], cur = orden[k];
+      const necesita = pos[prev] + HM_PAUSA_DUR[prev];
+      if (pos[cur] < necesita) {
+        const nuevo = Math.ceil(necesita / 5) * 5;
+        if (nuevo <= salMin - HM_PAUSA_DUR[cur]) pos[cur] = nuevo;
+        else av.push(`${fechaTxt}: ${HM_PAUSA_CORTO[prev]} y ${HM_PAUSA_CORTO[cur]} quedan encimados (el turno es muy corto)`);
+      }
+    }
+    for (let gi = 0; gi < 3; gi++) {
+      if (pos[gi] == null) continue;
+      const tk = TB_minToTimeTokens(pos[gi]);
+      const base = 6 + gi * 3;
+      s[base] = tk[0]; s[base + 1] = tk[1]; s[base + 2] = tk[2];
+    }
+    hayAlmuerzo = !TB_esAuxPlaceholder(s.slice(12, 15));
+  }
+  ctx.avDia[i] = av;
+
+  let neta;
+  if (s.length >= 15) neta = dur - (hayAlmuerzo ? 60 : 0);
+  else neta = (antes.neta != null ? antes.neta : antes.dur) + (dur - antes.dur);
+  const last = s.length - 1;
+  if (last >= 6 && TB_esTokenHora(s[last]) && !TB_esTokenAmPm(s[last - 1])) s[last] = TB_minToDurToken(neta);
+
+  lines[i] = [p.tokens[0], p.tokens[1], ...p.nombreTokens, ...s].join('\t');
+  return { ok: true, neta, dur };
+}
+
+// Calcula el plan completo (sin guardar nada): día fijado + compensación en la semana.
+function TB_planHorarioManual(nombreInput, fechaISO, entStr, salStr, opts) {
+  opts = opts || {};
+  const canon = MALLA_matchName(nombreInput);
+  if (!canon || !fechaISO || !entStr || !salStr) return { ok: false, motivo: 'datos' };
+  const norm = normalizeName(canon);
+  const pe = entStr.split(':').map(Number), ps = salStr.split(':').map(Number);
+  if (pe.length < 2 || ps.length < 2 || [pe[0], pe[1], ps[0], ps[1]].some(isNaN)) return { ok: false, motivo: 'datos' };
+  const entMin = pe[0] * 60 + pe[1];
+  let salMin = ps[0] * 60 + ps[1];
+  if (salMin <= entMin) salMin += 1440;
+  const durNueva = salMin - entMin;
+  if (durNueva < 60 || durNueva > 12 * 60) return { ok: false, motivo: 'duracion' };
+
+  const { start } = F3_getWeekRange(fechaISO);
+  const lunes = new Date(start + 'T00:00:00');
+  const fechasSemana = [];
+  for (let k = 0; k < 7; k++) {
+    const d = new Date(lunes); d.setDate(lunes.getDate() + k);
+    fechasSemana.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+  }
+
+  const lines = TB_rawMallaActual().split(/\r?\n/);
+  const ctx = { reglas: HM_reglasPausas(lines), patron: TB_calcularPatronGlobal(), recalcular: opts.recalcularBreaks !== false, orig: {}, avDia: {} };
+
+  const dias = [];
+  fechasSemana.forEach(iso => {
+    const li = TB_buscarLineaIndex(lines, iso, norm);
+    if (li === -1) return;
+    const info = HM_infoLinea(lines[li]);
+    if (!HM_esTurno(info)) return;
+    dias.push({ fecha: iso, idx: li, antes: info });
+    ctx.orig[li] = { ent: info.ent, sal: info.sal, pausas: info.pausas.slice() };
+  });
+  const fijo = dias.find(d => d.fecha === fechaISO);
+  if (!fijo) return { ok: false, motivo: TB_buscarLineaIndex(lines, fechaISO, norm) === -1 ? 'sin_dia' : 'formato' };
+
+  const totalAntes = TB_netaSemana(lines, fechasSemana, norm);
+  const r0 = HM_escribirDia(lines, fijo.idx, entMin, salMin, ctx, HORAS_diaCorto(fechaISO));
+  if (!r0.ok) return { ok: false, motivo: r0.error };
+  let restante = totalAntes - TB_netaSemana(lines, fechasSemana, norm); // + = hay que sumar a otros días; − = hay que quitar
+
+  const tope = Math.max(1, Number(opts.topeHoras) || 9) * 60;
+  const aMin = v => { if (!v) return null; const q = v.split(':').map(Number); return isNaN(q[0]) ? null : q[0] * 60 + (q[1] || 0); };
+  const limEnt = aMin(opts.limEntrada), limSal = aMin(opts.limSalida);
+  let cand = [];
+  const comp = opts.compensar !== false;
+  if (comp) {
+    const sel = Array.isArray(opts.diasComp) ? opts.diasComp : dias.map(d => d.fecha);
+    const t0 = new Date(fechaISO + 'T00:00:00').getTime();
+    const dist = iso => Math.abs(new Date(iso + 'T00:00:00').getTime() - t0);
+    cand = dias.filter(d => d.fecha !== fechaISO && sel.includes(d.fecha))
+      .sort((a, b) => (dist(a.fecha) - dist(b.fecha)) || (a.fecha < b.fecha ? -1 : 1));
+
+    const compensar = modo => { // modo: 'entrada' | 'salida'
+      let guard = 0;
+      while (Math.abs(restante) >= 1 && guard++ < 600) {
+        let movio = false;
+        for (const c of cand) {
+          if (Math.abs(restante) < 1) break;
+          const cur = HM_infoLinea(lines[c.idx]);
+          if (!cur) continue;
+          const paso = Math.min(HM_STEP_MIN, Math.abs(restante));
+          let e = cur.ent, sl = cur.sal;
+          if (restante > 0) {
+            if (cur.dur + paso > tope) continue;
+            if (modo === 'salida') sl += paso; else e -= paso;
+          } else {
+            if (cur.dur - paso < HM_PISO_MIN) continue;
+            if (modo === 'salida') sl -= paso; else e += paso;
+          }
+          if (limEnt != null && e < limEnt && restante > 0) continue;
+          if (limSal != null && sl > limSal && sl <= 1440 && restante > 0) continue;
+          const copia = lines[c.idx];
+          const netaAntes = TB_netaLinea(lines, c.idx);
+          const r = HM_escribirDia(lines, c.idx, e, sl, ctx, HORAS_diaCorto(c.fecha));
+          if (!r.ok) { lines[c.idx] = copia; continue; }
+          restante -= (TB_netaLinea(lines, c.idx) - netaAntes);
+          movio = true;
+        }
+        if (!movio) break;
+      }
+    };
+    const preferido = opts.modoComp === 'salida' ? 'salida' : 'entrada';
+    compensar(preferido);
+    if (Math.abs(restante) >= 1) compensar(preferido === 'salida' ? 'entrada' : 'salida'); // lo que no cupo, por el otro extremo
+  }
+
+  const filas = dias.map(d => {
+    const desp = HM_infoLinea(lines[d.idx]);
+    const cambio = desp.ent !== d.antes.ent || desp.sal !== d.antes.sal;
+    return {
+      fecha: d.fecha, rol: d.fecha === fechaISO ? 'fijo' : (cambio ? 'comp' : 'igual'),
+      antes: d.antes, despues: desp, cambioMin: desp.dur - d.antes.dur, cambioNeta: desp.neta - d.antes.neta
+    };
+  });
+  const totalDespues = TB_netaSemana(lines, fechasSemana, norm);
+
+  const avisos = [].concat(...Object.values(ctx.avDia));
+  const diaTxt = HORAS_diaTxt(fechaISO);
+  if (durNueva > tope) avisos.push(`${diaTxt} queda en ${HORAS_fmtMin(durNueva)}, por encima del tope de ${HORAS_fmtMin(tope)} por día`);
+  if (durNueva < HM_PISO_MIN) avisos.push(`${diaTxt} queda en ${HORAS_fmtMin(durNueva)}, por debajo del mínimo habitual de 4 h`);
+  if (comp && !cand.length) avisos.push('No hay otros días marcados con turno para compensar: la semana cambia de total');
+  else if (comp && Math.abs(restante) >= 1) avisos.push(`Quedaron ${HORAS_fmtMin(Math.abs(restante))} ${restante > 0 ? 'sin sumar' : 'sin quitar'} en otros días: no hay más cupo (tope ${HORAS_fmtMin(tope)}/día, mínimo 4 h)`);
+  if (!comp && totalAntes !== totalDespues) avisos.push('Sin compensar: el total de la semana cambia');
+  if (totalDespues > COND_TOPE_SEMANAL_MIN && totalDespues > totalAntes) avisos.push(`La semana queda en ${HORAS_fmtMin(totalDespues)} (por encima de 42 h)`);
+
+  return { ok: true, newRaw: lines.join('\n'), norm, canon, fechaObjetivo: fechaISO, filas, totalAntes, totalDespues, restante, avisos, compensado: comp };
+}
+
+// Guarda un plan: reescribe la malla y deja las etiquetas "horas movidas" en los días tocados.
+function TB_aplicarHorarioManual(nombreInput, fechaISO, entStr, salStr, opts) {
+  const plan = TB_planHorarioManual(nombreInput, fechaISO, entStr, salStr, opts);
+  if (!plan.ok) return plan;
+  const parsed = MALLA_parseText(plan.newRaw);
+  if (!parsed.length) return { ok: false, motivo: 'parseo' };
+  MALLA_DATA = parsed;
+  MALLA_LAST_RAW_TEXT = plan.newRaw;
+  try { localStorage.setItem(MALLA_RAWTEXT_KEY, plan.newRaw); } catch {}
+  MALLA_persist();
+  MALLA_refreshStatus();
+  try { HM_registrarEtiquetas(plan); } catch (e) { console.error('HM_registrarEtiquetas error:', e); }
+  return plan;
+}
+
+// Etiquetas del timeline/selector de fechas (igual que mover horas): el día fijado y cada día que
+// recibió o cedió tiempo. Se hornean con TB_HORAS_DEFAULT, así que viajan a la versión web y de oficina.
+function HM_registrarEtiquetas(plan) {
+  const fijo = plan.filas.find(f => f.rol === 'fijo');
+  const comps = plan.filas.filter(f => f.rol === 'comp' && f.cambioMin !== 0);
+  if (!fijo || !comps.length) return;
+  const all = HORAS_load();
+  const horasTxt = min => String(Math.round(Math.abs(min) / 6) / 10).replace(/\.0$/, '');
+  const [fy, fm, fd] = fijo.fecha.split('-');
+  comps.forEach(c => {
+    all[`${c.fecha}|${plan.norm}`] = {
+      tipo: c.cambioMin > 0 ? 'destino' : 'origen',
+      horas: horasTxt(c.cambioMin), min: Math.abs(Math.round(c.cambioMin)),
+      otraFecha: `${fd}/${fm}`, otraISO: fijo.fecha
+    };
+  });
+  if (fijo.cambioMin !== 0) {
+    all[`${fijo.fecha}|${plan.norm}`] = {
+      tipo: fijo.cambioMin < 0 ? 'origen' : 'destino',
+      horas: horasTxt(fijo.cambioMin), min: Math.abs(Math.round(fijo.cambioMin)),
+      otraFecha: comps.map(c => c.fecha.slice(8) + '/' + c.fecha.slice(5, 7)).join(', '),
+      otras: comps.map(c => c.fecha)
+    };
+  }
+  HORAS_save(all);
+}
+
+// ── UI del panel "Horario Manual" ──
+const HM_MOTIVOS = {
+  datos: 'Faltan datos: elige persona, día, entrada y salida.',
+  sin_dia: 'No encontré el turno de esa persona ese día en la malla cargada.',
+  formato: 'El horario de ese día no tiene un formato reconocible (falta entrada/salida).',
+  duracion: 'El turno debe durar entre 1 y 12 horas.',
+  parseo: 'Algo salió mal al reconstruir la malla. No se aplicó ningún cambio.'
+};
+function HM_fmtHora(min) { return BRK_fmtHora(min); }
+function HM_pausasTxt(info) {
+  if (!info.tieneAux) return '';
+  return [0, 1, 2].map(gi => `${HM_PAUSA_CORTO[gi]} ${info.pausas[gi] != null ? HM_fmtHora(info.pausas[gi]) : '—'}`).join(' · ');
+}
+function HM_invalidar() { const el = document.getElementById('hm-preview'); if (el) el.innerHTML = ''; }
+function HM_toggleComp() {
+  const on = document.getElementById('hm-compensar').checked;
+  const w = document.getElementById('hm-comp-wrap');
+  if (w) w.style.display = on ? 'block' : 'none';
+  HM_invalidar();
+}
+function HM_registrosActivos(canon) {
+  return canon ? MALLA_recordsFor(canon).filter(r => r.estado === 'ACTIVO' && r.entrada && r.salida && !(r.entrada === '00:00' && r.salida === '00:00')) : [];
+}
+function HM_populate() {
+  MALLA_poblarSelectPersonas('hm-nombre');
+  HM_poblarDias();
+}
+function HM_poblarDias() {
+  const selN = document.getElementById('hm-nombre');
+  const sel = document.getElementById('hm-dia');
+  if (!selN || !sel) return;
+  const previo = sel.value;
+  const canon = MALLA_matchName(selN.value);
+  const recs = HM_registrosActivos(canon);
+  if (!recs.length) {
+    sel.innerHTML = '<option value="">Sin turnos en la malla cargada</option>';
+    HM_cargarDia();
+    return;
+  }
+  sel.innerHTML = recs.map(r => `<option value="${r.fechaISO}">${HORAS_diaTxt(r.fechaISO)}</option>`).join('');
+  const hoy = new Date(MALLA_todayISO() + 'T00:00:00').getTime();
+  const cercano = recs.slice().sort((x, y) =>
+    Math.abs(new Date(x.fechaISO + 'T00:00:00').getTime() - hoy) - Math.abs(new Date(y.fechaISO + 'T00:00:00').getTime() - hoy))[0];
+  sel.value = (previo && recs.some(r => r.fechaISO === previo)) ? previo : cercano.fechaISO;
+  HM_cargarDia();
+}
+function HM_cargarDia() {
+  const nombre = (document.getElementById('hm-nombre') || {}).value;
+  const fecha = (document.getElementById('hm-dia') || {}).value;
+  const act = document.getElementById('hm-actual');
+  const chips = document.getElementById('hm-comp-dias');
+  const eIn = document.getElementById('hm-entrada'), sIn = document.getElementById('hm-salida');
+  HM_invalidar();
+  const canon = MALLA_matchName(nombre);
+  const rec = canon && fecha ? MALLA_recordForDate(canon, fecha) : null;
+  if (!rec) {
+    if (act) act.textContent = 'Elige una persona y un día con turno.';
+    if (chips) chips.innerHTML = '';
+    if (eIn) eIn.value = ''; if (sIn) sIn.value = '';
+    return;
+  }
+  const pausas = (rec.detalle || []).map(d => `${BRK_nombreLabel(d.label)} ${d.value}`).join(' · ');
+  if (act) act.innerHTML = `Turno actual: <b>${rec.entradaDisplay} – ${rec.salidaDisplay}</b>${rec.horas ? ` · ${rec.horas} h` : ''}${pausas ? `<br>Pausas: <b>${pausas}</b>` : ''}`;
+  if (eIn) eIn.value = rec.entrada;
+  if (sIn) sIn.value = rec.salida;
+  if (chips) {
+    const { start } = F3_getWeekRange(fecha);
+    const lunes = new Date(start + 'T00:00:00');
+    const semana = [];
+    for (let k = 0; k < 7; k++) {
+      const d = new Date(lunes); d.setDate(lunes.getDate() + k);
+      semana.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+    }
+    const otros = HM_registrosActivos(canon).filter(r => semana.includes(r.fechaISO) && r.fechaISO !== fecha);
+    chips.innerHTML = otros.length
+      ? otros.map(r => `<label class="brkm-chip"><input type="checkbox" value="${r.fechaISO}" checked onchange="HM_invalidar()"> ${HORAS_diaCorto(r.fechaISO)} · ${r.entrada}–${r.salida}</label>`).join('')
+      : '<span style="font-size:12px;color:var(--gris)">Esa persona no tiene otros días con turno esa semana.</span>';
+  }
+}
+function HM_leerForm() {
+  const g = id => (document.getElementById(id) || {});
+  const comp = g('hm-compensar').checked;
+  return {
+    nombre: g('hm-nombre').value,
+    fecha: g('hm-dia').value,
+    ent: g('hm-entrada').value,
+    sal: g('hm-salida').value,
+    opts: {
+      compensar: comp,
+      diasComp: Array.from(document.querySelectorAll('#hm-comp-dias input[type=checkbox]:checked')).map(c => c.value),
+      modoComp: g('hm-modo-comp').value,
+      topeHoras: parseFloat(g('hm-tope').value) || 9,
+      limEntrada: g('hm-lim-entrada').value || '',
+      limSalida: g('hm-lim-salida').value || '',
+      recalcularBreaks: g('hm-recalc').checked
+    }
+  };
+}
+function HM_deltaTxt(min) {
+  if (!min) return '<span style="color:var(--gris)">=</span>';
+  const t = HORAS_fmtMin(Math.abs(min)).replace(' ', '');
+  return min > 0 ? `<span style="color:var(--verde)">+${t}</span>` : `<span style="color:var(--naranja)">−${t}</span>`;
+}
+function HM_vistaPrevia() {
+  const f = HM_leerForm();
+  const out = document.getElementById('hm-preview');
+  if (!out) return;
+  if (!f.nombre || !f.fecha || !f.ent || !f.sal) { showToast('error', '❌ Error', HM_MOTIVOS.datos); return; }
+  const plan = TB_planHorarioManual(f.nombre, f.fecha, f.ent, f.sal, f.opts);
+  if (!plan.ok) { out.innerHTML = ''; showToast('error', '⚠️ No se pudo calcular', HM_MOTIVOS[plan.motivo] || 'No se pudo calcular el horario.'); return; }
+  const celda = i => `${HM_fmtHora(i.ent)} – ${HM_fmtHora(i.sal)}<br><span style="font-size:10px;color:var(--gris)">${HORAS_fmtMin(i.neta)} netas</span>`;
+  const filas = plan.filas.map(r => {
+    const marca = r.rol === 'fijo' ? 'border-left:3px solid var(--rojo)' : (r.rol === 'comp' ? 'border-left:3px solid var(--naranja)' : 'border-left:3px solid transparent');
+    const rolTxt = r.rol === 'fijo' ? ' ✏️' : (r.rol === 'comp' ? ' ⚖️' : '');
+    const pausas = r.rol !== 'igual' ? `<div style="font-size:10px;color:var(--gris);margin-top:2px">${HM_pausasTxt(r.despues)}</div>` : '';
+    return `<tr style="${marca}"><td style="padding:6px 8px;white-space:nowrap"><b>${HORAS_diaCorto(r.fecha)}</b>${rolTxt}</td>`
+      + `<td style="padding:6px 8px;font-size:11px">${celda(r.antes)}</td>`
+      + `<td style="padding:6px 8px;font-size:11px">${celda(r.despues)}${pausas}</td>`
+      + `<td style="padding:6px 8px;text-align:right;font-size:12px">${HM_deltaTxt(r.cambioNeta)}</td></tr>`;
+  }).join('');
+  const avisos = plan.avisos.length
+    ? `<div style="margin-top:8px;font-size:12px;line-height:1.5;color:var(--naranja)">${plan.avisos.map(a => '⚠️ ' + a).join('<br>')}</div>` : '';
+  out.innerHTML = `<div class="malla-status" style="padding:10px;font-size:12px;line-height:1.5">`
+    + `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">`
+    + `<tr style="color:var(--gris);font-size:11px"><th style="text-align:left;padding:4px 8px">Día</th><th style="text-align:left;padding:4px 8px">Antes</th><th style="text-align:left;padding:4px 8px">Después</th><th style="text-align:right;padding:4px 8px">Δ</th></tr>`
+    + filas + `</table></div>`
+    + `<div style="margin-top:8px"><b>Semana:</b> ${HORAS_fmtMin(plan.totalAntes)} → <b>${HORAS_fmtMin(plan.totalDespues)}</b> netas</div>`
+    + avisos + `</div>`;
+}
+function HM_aplicar() {
+  const f = HM_leerForm();
+  if (!f.nombre || !f.fecha || !f.ent || !f.sal) { showToast('error', '❌ Error', HM_MOTIVOS.datos); return; }
+  const res = TB_aplicarHorarioManual(f.nombre, f.fecha, f.ent, f.sal, f.opts);
+  if (!res.ok) { showToast('error', '⚠️ No se pudo aplicar', HM_MOTIVOS[res.motivo] || 'No se pudo aplicar el horario.'); return; }
+
+  const primerNombre = f.nombre.split(' ')[0];
+  const fijo = res.filas.find(r => r.rol === 'fijo');
+  const comps = res.filas.filter(r => r.rol === 'comp');
+  const reparto = comps.map(r => `${HORAS_diaCorto(r.fecha)} ${r.cambioMin > 0 ? '+' : '−'}${HORAS_fmtMin(Math.abs(r.cambioMin)).replace(' ', '')}`).join(', ');
+  const rango = `${HM_fmtHora(fijo.despues.ent)} – ${HM_fmtHora(fijo.despues.sal)}`;
+  if (res.avisos.length) showToast('info', '⚠️ Aplicado con avisos', `${primerNombre}: ${HORAS_diaTxt(f.fecha)} quedó ${rango}. ${res.avisos[0]}.`, 6000);
+  else showToast('success', '✅ Horario aplicado', `${primerNombre}: ${HORAS_diaTxt(f.fecha)} quedó ${rango}.${reparto ? ' Compensado: ' + reparto + '.' : ''}`);
+  if (typeof fase2AddActivity === 'function') {
+    fase2AddActivity('🕒', `Horario manual de <strong>${primerNombre}</strong>: ${HORAS_diaTxt(f.fecha)} ${rango}${reparto ? ' (compensado: ' + reparto + ')' : ''}`, 'cambio');
+  }
+
+  TEAM_render();
+  CALC_populate();
+  HM_poblarDias();
+  const user = window.TurnoBotApp && window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+  if (user && !user.isAdmin && user.mallaNombre && normalizeName(user.mallaNombre) === normalizeName(f.nombre)) F3_renderDateChips(user.mallaNombre);
+
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('El horario ya quedó aplicado en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+    if (!quiere) return;
+    const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_horario.html`);
+    if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con el horario ya aplicado. Publícalo cuando quieras.');
+    MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_horario.xlsx`);
+  }, 400);
 }
 
 // ── Comando de publicación para Termux (copiar con un toque desde el panel) ──
