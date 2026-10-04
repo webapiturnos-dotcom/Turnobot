@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="atardecer"><head>
+<html lang="es" data-theme="atardecer" data-hw="1"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -13,6 +13,9 @@
 <script>
 // Aplica el tema guardado ANTES de pintar, para evitar parpadeo del tema por defecto.
 (function(){ try { var t = localStorage.getItem('tb_theme'); if (t && t !== 'original') document.documentElement.setAttribute('data-theme', t); } catch(e) {} })();
+// Halloween (capa solo visual, ver bloque HALLOWEEN): el archivo trae data-hw="1" si se publicó con Halloween;
+// la preferencia de este dispositivo (tb_halloween) manda sobre eso.
+(function(){ try { document.documentElement.setAttribute('data-hw-file', document.documentElement.getAttribute('data-hw') === '1' ? '1' : '0'); } catch(e) {} try { var h = localStorage.getItem('tb_halloween'); if (h === '0') document.documentElement.removeAttribute('data-hw'); else if (h === '1') document.documentElement.setAttribute('data-hw', '1'); } catch(e) {} })();
 </script>
 <style>
 /* ═══════════════════════════════════════════════════
@@ -60,6 +63,159 @@ html[data-theme="morado"]   { --rojo: #7c3aed; --rojo2: #9d5cff; --rojo-rgb: 124
 html[data-theme="esmeralda"]{ --rojo: #059669; --rojo2: #10b981; --rojo-rgb: 5,150,105; }
 html[data-theme="atardecer"]{ --rojo: #ea580c; --rojo2: #fb923c; --rojo-rgb: 234,88,12; }
 html[data-theme="azul"]     { --rojo: #2563eb; --rojo2: #38bdf8; --rojo-rgb: 37,99,235; }
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   HALLOWEEN · INICIO  (capa SOLO VISUAL — no toca ninguna función)
+   Todo está bajo html[data-hw="1"]. Se quita con el interruptor
+   "🎃 Modo Halloween" (Perfil) y la app vuelve exactamente a como estaba;
+   las mejoras (intercambio de días, etiquetas, etc.) se conservan.
+   Para borrarlo del código: elimina de HALLOWEEN · INICIO a FIN (CSS y JS).
+═══════════════════════════════════════════════════════════════════ */
+html[data-hw="1"] {
+  --rojo: #ff7a18; --rojo2: #ffb347; --rojo-rgb: 255,122,24;
+  --negro: #07040e; --negro2: #0e0819; --negro3: #170f27;
+  --azul: #4c1d95; --azul2: #b794ff;
+  --gris: #a79bbd; --gris2: #2a2140;
+  --verde: #8be04e; --naranja: #ffa63d;
+  --glass: rgba(168,120,255,0.055);
+  --glass-border: rgba(190,150,255,0.17);
+  --glass-hover: rgba(255,140,40,0.10);
+  --shadow: 0 20px 60px rgba(0,0,0,0.65);
+}
+html[data-hw="1"] #app {
+  background:
+    radial-gradient(circle at 90% 5%, rgba(255,196,102,0.22) 0, rgba(255,140,40,0.09) 70px, transparent 190px),
+    radial-gradient(ellipse at 15% 0%, rgba(124,58,237,0.20) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(255,106,0,0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #0c0617 0%, #07040e 100%);
+}
+html[data-hw="1"] ::selection { background: rgba(255,122,24,.45); color:#fff; }
+html[data-hw="1"] ::-webkit-scrollbar { width:6px; height:6px; }
+html[data-hw="1"] ::-webkit-scrollbar-thumb { background: linear-gradient(#ff7a18,#7c3aed); border-radius:6px; }
+
+/* Encabezado, navegación y tarjetas */
+html[data-hw="1"] .app-header {
+  background: linear-gradient(180deg, rgba(20,10,36,.96), rgba(12,6,22,.92));
+  border-bottom: 1px solid rgba(255,122,24,.35);
+  box-shadow: 0 6px 28px rgba(124,58,237,.22), 0 1px 0 rgba(255,122,24,.25);
+}
+html[data-hw="1"] .header-logo { text-shadow: 0 0 16px rgba(255,122,24,.55); }
+html[data-hw="1"] .header-logo::after { content:' 🎃'; font-size:.9em; filter: drop-shadow(0 0 8px rgba(255,122,24,.9)); }
+html[data-hw="1"] .bottom-nav {
+  background: linear-gradient(0deg, rgba(14,7,26,.97), rgba(22,11,40,.95));
+  border-top: 1px solid rgba(255,122,24,.38);
+  box-shadow: 0 -8px 30px rgba(124,58,237,.25);
+}
+html[data-hw="1"] .nav-item.active { color: var(--rojo2); text-shadow: 0 0 12px rgba(255,122,24,.8); }
+html[data-hw="1"] .nav-item.active .nav-icon { filter: drop-shadow(0 0 8px rgba(255,122,24,.9)); }
+html[data-hw="1"] .card,
+html[data-hw="1"] .turno-card,
+html[data-hw="1"] .malla-panel,
+html[data-hw="1"] .quick-card,
+html[data-hw="1"] .team-row {
+  background: linear-gradient(160deg, rgba(60,30,100,.34), rgba(18,9,32,.62));
+  border: 1px solid rgba(190,150,255,.20);
+  box-shadow: 0 10px 34px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+}
+html[data-hw="1"] .quick-card:hover,
+html[data-hw="1"] .team-row:hover {
+  border-color: rgba(255,122,24,.65);
+  box-shadow: 0 10px 34px rgba(0,0,0,.5), 0 0 26px rgba(255,122,24,.28);
+}
+html[data-hw="1"] .turno-card { border-color: rgba(255,122,24,.38); }
+html[data-hw="1"] .turno-card-nombre,
+html[data-hw="1"] .section-title,
+html[data-hw="1"] .splash-title { text-shadow: 0 0 20px rgba(255,122,24,.38); }
+html[data-hw="1"] .btn-primary {
+  background: linear-gradient(135deg, #ff7a18 0%, #e5560a 55%, #a3330a 100%);
+  box-shadow: 0 4px 26px rgba(255,122,24,.45), inset 0 1px 0 rgba(255,255,255,.25);
+  color:#fff; text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+html[data-hw="1"] .btn-primary:hover { box-shadow: 0 8px 36px rgba(255,122,24,.65), 0 0 0 1px rgba(255,190,100,.5); }
+html[data-hw="1"] .btn-secondary { border-color: rgba(190,150,255,.30); }
+html[data-hw="1"] .btn-secondary:hover { border-color: rgba(255,122,24,.6); }
+html[data-hw="1"] .form-input:focus { box-shadow: 0 0 0 3px rgba(255,122,24,.18); }
+html[data-hw="1"] .date-chip { border-color: rgba(190,150,255,.22); }
+html[data-hw="1"] .date-chip.active {
+  background: linear-gradient(135deg, #ff7a18, #c2410c);
+  box-shadow: 0 4px 22px rgba(255,122,24,.55);
+}
+html[data-hw="1"] .date-chip .dc-tag.swp { background: rgba(183,148,255,.22); color:#d6c2ff; }
+html[data-hw="1"] .toast { background: rgba(18,9,32,.96); border: 1px solid rgba(190,150,255,.25); box-shadow: 0 10px 34px rgba(0,0,0,.6), 0 0 20px rgba(124,58,237,.25); }
+
+/* Pantalla de inicio: luna llena, niebla violeta y logo naranja */
+html[data-hw="1"] #screen-splash {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(255,214,140,.30) 0, rgba(255,150,50,.10) 95px, transparent 230px),
+    radial-gradient(ellipse at 20% 15%, rgba(124,58,237,.34) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 90%, rgba(255,90,0,.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, #120a22 0%, #05020b 100%);
+}
+html[data-hw="1"] #screen-splash::before {
+  content:''; position:absolute; top:34px; right:28px; width:74px; height:74px; border-radius:50%;
+  background:
+    radial-gradient(circle at 36% 38%, rgba(190,150,100,.5) 0 7px, transparent 8px),
+    radial-gradient(circle at 62% 60%, rgba(190,150,100,.42) 0 10px, transparent 11px),
+    radial-gradient(circle at 55% 25%, rgba(190,150,100,.35) 0 5px, transparent 6px),
+    radial-gradient(circle at 35% 30%, #fff4d6, #ffd98a 60%, #f5a54a 100%);
+  box-shadow: 0 0 40px 10px rgba(255,190,100,.45), 0 0 120px 40px rgba(255,140,40,.22);
+  animation: hwMoon 6s ease-in-out infinite; pointer-events:none; z-index:0;
+}
+html[data-hw="1"] .particle { background: radial-gradient(circle, #ff7a18 0%, transparent 70%); opacity:.16; }
+html[data-hw="1"] .particle:nth-child(2n) { background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); opacity:.22; }
+html[data-hw="1"] .logo-mpc-wrap { animation: logoFloat 3s ease-in-out infinite, glowPulse 3s ease-in-out infinite; }
+html[data-hw="1"] .logo-mpc-wrap::before { background: conic-gradient(#ff7a18, #8b5cf6, transparent, #ff7a18); opacity:.75; }
+html[data-hw="1"] .logo-mpc-inner { background: linear-gradient(145deg,#1a0d2e,#0e0819); border-color: rgba(255,122,24,.45); }
+html[data-hw="1"] .splash-title span { color: var(--rojo2); }
+html[data-hw="1"] .splash-content::after { content:'🎃'; font-size:30px; filter: drop-shadow(0 0 14px rgba(255,122,24,.95)); animation: hwPumpkin 2.6s ease-in-out infinite; }
+
+/* Eva con sombrero de bruja y botones temáticos */
+html[data-hw="1"] #tb-eva-wrap::before {
+  content:''; position:absolute; left:3px; top:-17px; width:40px; height:30px; z-index:3; pointer-events:none;
+  transform: rotate(-9deg); transform-origin: 50% 100%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 44'><ellipse cx='30' cy='38' rx='28' ry='6' fill='%231a0a2e' stroke='%238b5cf6' stroke-width='1.5'/><path d='M14 37 Q22 22 27 4 Q29 1 31 4 Q36 22 46 37 Z' fill='%232a1050' stroke='%238b5cf6' stroke-width='1.5'/><path d='M17 33 Q30 38 43 33 L45 37 Q30 43 15 37 Z' fill='%23ff7a18'/><rect x='26' y='32' width='8' height='7' rx='1.5' fill='none' stroke='%23ffd27a' stroke-width='1.5'/></svg>") center/contain no-repeat;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+}
+html[data-hw="1"] #tb-eva-platform { background: linear-gradient(135deg,#ff7a18,#7c3aed); box-shadow: 0 4px 16px rgba(255,122,24,.5); }
+html[data-hw="1"] #tb-eva-mute { background: rgba(18,9,32,.94); border-color: rgba(255,122,24,.5); }
+html[data-hw="1"] #tb-eva-mute.tb-activo { background: linear-gradient(135deg,#7c3aed,#4c1d95); }
+@keyframes tbPlatPulseHw { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); box-shadow: 0 4px 18px rgba(255,122,24,.8); } }
+html[data-hw="1"] #tb-eva-platform { animation-name: tbPlatPulseHw; }
+
+/* Efectos ambientales (los crea el JS dentro de #hw-fx; no capturan clics) */
+#hw-fx { position:fixed; inset:0; z-index:101; pointer-events:none; overflow:hidden; display:none; }
+html[data-hw="1"] #hw-fx { display:block; }
+#hw-fx .hw-vig { position:absolute; inset:0; background: radial-gradient(ellipse at center, transparent 58%, rgba(4,1,10,.50) 100%); }
+#hw-fx .hw-fog { position:absolute; left:-40%; width:180%; height:38%; filter: blur(14px); opacity:.9;
+  background: radial-gradient(ellipse at center, rgba(150,100,255,.11), transparent 66%); animation: hwFog 46s linear infinite; }
+#hw-fx .hw-fog.f1 { bottom:-6%; }
+#hw-fx .hw-fog.f2 { bottom:12%; animation-duration: 64s; animation-direction: reverse; background: radial-gradient(ellipse at center, rgba(255,120,30,.07), transparent 66%); }
+#hw-fx .hw-web { position:absolute; top:0; width:120px; height:120px; opacity:.42; }
+#hw-fx .hw-web.l { left:0; }
+#hw-fx .hw-web.r { right:0; transform: scaleX(-1); }
+#hw-fx .hw-bat { position:absolute; left:0; width:46px; opacity:.92; filter: drop-shadow(0 0 6px rgba(255,122,24,.55)); animation: hwFly linear infinite; }
+#hw-fx .hw-bat svg { display:block; width:100%; height:auto; animation: hwFlap .42s ease-in-out infinite; transform-origin: 50% 40%; }
+#hw-fx .hw-bat.rev { animation-name: hwFlyRev; }
+#hw-fx .hw-ember { position:absolute; bottom:-12px; width:5px; height:5px; border-radius:50%;
+  background: radial-gradient(circle, #ffd27a 0%, #ff7a18 55%, transparent 72%); box-shadow: 0 0 10px 2px rgba(255,122,24,.7);
+  animation: hwRise linear infinite; opacity:0; }
+#hw-fx .hw-spider { position:absolute; top:0; right:92px; width:20px; height:130px; animation: hwSpider 15s ease-in-out infinite; }
+#hw-fx .hw-spider i { position:absolute; left:50%; top:0; width:1px; height:104px; background: rgba(230,220,255,.55); }
+#hw-fx .hw-spider b { position:absolute; left:-4px; top:98px; font-size:28px; line-height:1; font-weight:400; filter: drop-shadow(0 0 6px rgba(0,0,0,.8)); }
+@keyframes hwFly { 0% { transform: translate3d(-14vw,0,0); } 22% { transform: translate3d(18vw,-34px,0); } 48% { transform: translate3d(50vw,26px,0); } 74% { transform: translate3d(80vw,-28px,0); } 100% { transform: translate3d(116vw,8px,0); } }
+@keyframes hwFlyRev { 0% { transform: translate3d(116vw,0,0) scaleX(-1); } 25% { transform: translate3d(82vw,30px,0) scaleX(-1); } 52% { transform: translate3d(48vw,-26px,0) scaleX(-1); } 78% { transform: translate3d(16vw,24px,0) scaleX(-1); } 100% { transform: translate3d(-14vw,-6px,0) scaleX(-1); } }
+@keyframes hwFlap { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.5); } }
+@keyframes hwRise { 0% { transform: translate3d(0,0,0) scale(1); opacity:0; } 12% { opacity:.95; } 100% { transform: translate3d(var(--dx,20px),-108vh,0) scale(.4); opacity:0; } }
+@keyframes hwFog { 0% { transform: translateX(-12%); } 50% { transform: translateX(12%); } 100% { transform: translateX(-12%); } }
+@keyframes hwSpider { 0%,12%,100% { transform: translateY(-112%); } 26%,44% { transform: translateY(-4%); } 30% { transform: translateY(-14%); } 34% { transform: translateY(-2%); } }
+@keyframes hwMoon { 0%,100% { box-shadow: 0 0 40px 10px rgba(255,190,100,.45), 0 0 120px 40px rgba(255,140,40,.22); } 50% { box-shadow: 0 0 56px 14px rgba(255,200,120,.6), 0 0 150px 50px rgba(255,140,40,.3); } }
+@keyframes hwPumpkin { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-6px) rotate(4deg); } }
+@media (prefers-reduced-motion: reduce) {
+  #hw-fx .hw-bat, #hw-fx .hw-ember, #hw-fx .hw-fog, #hw-fx .hw-spider { animation: none !important; display:none; }
+  html[data-hw="1"] #screen-splash::before, html[data-hw="1"] .splash-content::after { animation: none; }
+}
+/* HALLOWEEN · FIN */
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--blanco); font-family:var(--font-body); }
@@ -348,24 +504,28 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
   transition: transform .15s ease;
 }
 #tb-eva-wrap:active { transform: scale(0.92); }
-#tb-eva-mute { position: fixed; right: 10px; bottom: 170px; z-index: 40; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 700; color: #fff; background: rgba(11,28,51,.85); cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+/* Botones junto a Eva: ya NO van encima ni debajo de ella (tapaban su cuerpo y su
+   globo de texto). Quedan en una fila, a la izquierda de Eva, a su altura. */
+#tb-eva-mute { position: fixed; right: 68px; bottom: 114px; z-index: 40; height: 34px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 0 12px; font-size: 12px; font-weight: 700; line-height: 32px; white-space: nowrap; color: #fff; background: rgba(11,28,51,.92); cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.4); }
 #tb-eva-mute.tb-activo { background: linear-gradient(135deg,#22c3f2,#0a6ea8); }
-@media (max-width: 480px) { #tb-eva-mute { bottom: 152px; right: 6px; font-size: 10px; } }
+@media (max-width: 480px) { #tb-eva-mute { bottom: 112px; right: 62px; font-size: 11px; padding: 0 10px; } }
 #tb-eva-platform {
   position: fixed;
-  right: 12px;
-  bottom: 78px;
-  z-index: 40;
-  width: 50px;
+  right: 68px;
+  bottom: 114px;
+  z-index: 41;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 14px;
+  white-space: nowrap;
   text-align: center;
   display: none;
   background: linear-gradient(135deg,#22c3f2,#0a6ea8);
   color: #fff;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
-  padding: 4px 0;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35);
   cursor: pointer;
   animation: tbPlatPulse 2.4s ease-in-out infinite;
 }
@@ -427,8 +587,13 @@ html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--
 .tb-eva-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
 @media (max-width: 360px) {
   #tb-eva-wrap { width: 38px; height: 48px; right: 10px; bottom: 96px; }
-  #tb-eva-platform { right: 8px; bottom: 74px; width: 44px; font-size: 9px; }
+  #tb-eva-platform { right: 56px; bottom: 104px; font-size: 11px; padding: 0 11px; }
+  #tb-eva-mute { right: 56px; bottom: 104px; }
 }
+/* Mute y Jugar comparten fila: el mute queda a la izquierda del Jugar */
+#tb-eva-mute { right: 160px; }
+@media (max-width: 480px) { #tb-eva-mute { right: 152px; } }
+@media (max-width: 360px) { #tb-eva-mute { right: 144px; } }
 
 /* ── EVA en modo aviso (SOLO versión de oficina): se va al centro, más grande,
    habla en sincronía con la voz y vibra hasta que el asesor pulse Aceptar ── */
@@ -1812,6 +1977,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 ═══════════════════════════════════════════════════ */
 .date-chip .dc-tag { font-size:9px; font-weight:700; line-height:1; margin-top:3px; padding:2px 5px; border-radius:6px; white-space:nowrap; background:rgba(245,158,11,0.18); color:var(--naranja); }
 .date-chip .dc-tag.mas { background:rgba(16,185,129,0.18); color:var(--verde); }
+.date-chip .dc-tag.swp { background:rgba(99,149,255,0.2); color:#8fb3ff; }
 .date-chip .dc-from { font-size:8px; line-height:1; color:var(--gris); margin-top:2px; white-space:nowrap; }
 .date-chip.active .dc-tag { background:rgba(255,255,255,0.25); color:#fff; }
 .date-chip.active .dc-from { color:rgba(255,255,255,0.85); }
@@ -1870,7 +2036,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 #cam-stage .arcade-go span{font-size:clamp(14px,3.8vw,17px)!important;line-height:1.4;color:#fff!important}
 .cam-toast.on{background:#0b1c33!important;color:#fff!important;font-weight:800!important;font-size:clamp(13px,3.6vw,16px)!important;border:2px solid #22c3f2!important}
 </style>
-</head>
+<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
@@ -1878,7 +2044,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -1926,14 +2092,14 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <path id="tb-eva-brow-l" d="M39 27 L57 34" fill="none" stroke="#ff6a1a" stroke-width="4" stroke-linecap="round"></path>
       <path id="tb-eva-brow-r" d="M81 27 L63 34" fill="none" stroke="#ff6a1a" stroke-width="4" stroke-linecap="round"></path>
       <path id="tb-eva-mouth-mad" d="M49 56 Q60 46 71 56" fill="none" stroke="#ffb454" stroke-width="3" stroke-linecap="round"></path>
-      <path id="tb-eva-mouth" d="M50 50 Q60 58 70 50" fill="none" stroke="#aef1ff" stroke-width="3" stroke-linecap="round" class=""></path>
+      <path id="tb-eva-mouth" d="M50 50 Q60 58 70 50" fill="none" stroke="#aef1ff" stroke-width="3" stroke-linecap="round" class="tb-eva-smile"></path>
     </g>
   </svg>
   <div id="tb-eva-bubble" class="tb-eva-bubble">¿Ya revisaste tu turno de hoy?</div>
 </div>
 
-<button id="tb-eva-mute" type="button" onclick="EVA_silencioAlternar()" style="display: none;">🔇 Silenciar a Eva</button>
-<div id="tb-eva-platform" onclick="ARCADE_open()" role="button" aria-label="Jugar minijuegos con EVA" style="display: block;">🕹️<br>Jugar</div>
+<button id="tb-eva-mute" type="button" onclick="EVA_silencioAlternar()" style="display: none;">🔇 Silenciar</button>
+<div id="tb-eva-platform" onclick="ARCADE_open()" role="button" aria-label="Jugar minijuegos con EVA" style="display: block;">🕹️ Jugar</div>
 
 <!-- ── Aviso de EVA (solo se activa en la versión de oficina; ver EVA_alertaIniciar) ── -->
 <!-- ── EVA calcula mis horas (solo versión de oficina; ver EC_abrir) ── -->
@@ -2336,7 +2502,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 03/10/2026 · 1755</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 03/10/2026 · 2355</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -2350,7 +2516,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas noches,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -2691,6 +2857,13 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
+        <div class="quick-card" id="admin-btn-swap" onclick="ADMIN_seleccionar('swap-dias-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">🔁</div><div>
+            <div class="qc-title">Intercambiar Días de un Asesor</div>
+            <div class="qc-sub">Cambia el turno de un día por el de otro, del mismo asesor</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
         <div class="quick-card" id="admin-btn-solicitudes" onclick="ADMIN_seleccionar('solicitudes-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">🔄</div><div>
             <div class="qc-title">Solicitudes de Cambio</div>
@@ -2745,7 +2918,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:41 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:41 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:41 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:40 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">16:41</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">16:41</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">16:41</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">16:40</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:39 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">04:39 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">01:46 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">VIVIANA ESTER CUMPLIDO VALENCIA</span><span style="color:var(--gris);font-size:11px">01:45 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -2922,7 +3095,7 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         </div>
         <div class="form-group">
           <label class="form-label">Persona</label>
-          <select class="form-input" id="mover-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="AMIRA ROSA CAMACHO CANTILLO">AMIRA ROSA CAMACHO CANTILLO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="LILIBETH ROMERO ALVAREZ">LILIBETH ROMERO ALVAREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+          <select class="form-input" id="mover-nombre"><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
         </div>
         <div class="flex-row" style="gap:10px">
           <div class="form-group" style="flex:1;margin:0">
@@ -3370,6 +3543,31 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="AT_marcarDescanso()">😌 Mejor marcar este día como descanso</button>
         <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
           Reglas que se verifican solas: el día no puede pasar de 9 horas trabajadas y la semana de la persona (lunes a domingo) no puede pasar de 42 horas. Los breaks y el almuerzo los coloca el bot según el patrón de la malla, para la cantidad de pausas que elijas. Recuerda descargar el HTML actualizado en "Malla" para publicar el cambio.
+        </div>
+      </div>
+
+      <!-- ── Intercambiar dos días del MISMO asesor (su mismo horario) ── -->
+      <div class="malla-panel admin-subpanel" id="swap-dias-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">🔁 Intercambiar Días de un Asesor</div>
+          <div class="section-sub">Elige un asesor y dos de sus días: el turno (entrada, salida, breaks y almuerzo) de uno pasa al otro y viceversa. También sirve para cambiar un día de trabajo por uno de descanso.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Asesor</label>
+          <select class="form-input" id="swp-nombre" onchange="SWP_cargarDias()"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Primer día</label>
+          <select class="form-input" id="swp-a" onchange="SWP_preview()"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Se intercambia con el día</label>
+          <select class="form-input" id="swp-b" onchange="SWP_preview()"></select>
+        </div>
+        <div class="malla-status" id="swp-preview" style="display:block;font-size:12px;line-height:1.6;margin-bottom:10px;"></div>
+        <button class="btn btn-primary w-full" id="swp-btn" onclick="SWP_aplicar()">🔁 Intercambiar estos dos días</button>
+        <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;">
+          Los dos días quedan con una etiqueta "🔁 Día intercambiado" visible en el calendario del asesor (web y oficina). Si te equivocas, vuelve a intercambiar los mismos dos días y todo queda como estaba. Recuerda descargar el HTML actualizado para publicar el cambio.
         </div>
       </div>
 
@@ -4509,6 +4707,14 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
         <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
         <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
+        <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--glass-border);">
+          <label style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+            <span>🎃 Modo Halloween</span>
+            <input type="checkbox" class="hw-chk" onchange="HW_set(this.checked)" style="width:20px; height:20px;">
+          </label>
+          <div style="font-size:11px; color:var(--gris); margin-top:4px;">Capa solo visual (colores, niebla, murciélagos, telarañas y Eva con sombrero). Mientras esté activa, manda sobre el tema de color. Al quitarla, todo vuelve a la versión Original y se conservan todas las mejoras de funciones. Se publica con el HTML según como la dejes.</div>
+          <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="HW_set(false)">🧹 Quitar Halloween y volver a la versión Original</button>
+        </div>
       </div>
 
       <div class="profile-section" id="profile-admin-link" style="display: block;">
@@ -5565,7 +5771,10 @@ function MALLA_buildUpdatedHTML() {
     try { return localStorage.getItem(MALLA_RAWTEXT_KEY); } catch { return null; }
   })() || MALLA_RAW_DEFAULT;
   const escaped = MALLA_escapeForTemplate(raw);
+  const _hwFx = document.getElementById('hw-fx'), _hwPadre = _hwFx && _hwFx.parentNode;
+  if (_hwFx) _hwFx.remove();
   let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  if (_hwFx && _hwPadre) _hwPadre.appendChild(_hwFx);
   html = html.replace(
     /const MALLA_RAW_DEFAULT = `[\s\S]*?`;/,
     'const MALLA_RAW_DEFAULT = `' + escaped + '`;'
@@ -5594,6 +5803,11 @@ function MALLA_buildUpdatedHTML() {
       'const TB_HORAS_DEFAULT = ' + horasJSON + ';'
     );
   } catch (e) { console.error('No se pudo incrustar TB_HORAS_DEFAULT:', e); }
+  // Registro de días intercambiados del mismo asesor (etiqueta 🔁): viaja idéntico a oficina.
+  try {
+    const swJSON = JSON.stringify(SWP_load());
+    html = html.replace(/const TB_SWAPS_DEFAULT = \{[\s\S]*?\};/, () => 'const TB_SWAPS_DEFAULT = ' + swJSON + ';');
+  } catch (e) { console.error('No se pudo incrustar TB_SWAPS_DEFAULT:', e); }
   // Registro de turnos agregados por el admin (letrero en el timeline): sobrevive a republicaciones.
   try {
     const agrJSON = JSON.stringify(AGR_load());
@@ -6838,6 +7052,7 @@ const DELEG_PANEL_PERM_MAP = {
   'break-admin-panel': 'mover',
   'agregar-turno-admin-panel': 'mover',
   'ausencia-admin-panel': 'ausencia',
+  'swap-dias-admin-panel': 'mover',
   'solicitudes-admin-panel': 'solicitudes',
   'incap-admin-panel': 'incapacidades',
   'accesos-admin-panel': 'accesos',
@@ -7187,6 +7402,66 @@ if (typeof pdfjsLib !== 'undefined') {
 }
 
 MALLA_init();
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  HALLOWEEN · INICIO (JS) — solo crea/quita los efectos visuales.
+//  No toca turnos, malla, voz ni cuentas. HW_set(false) lo apaga todo.
+// ═══════════════════════════════════════════════════════════════════
+const HW_KEY = 'tb_halloween';
+function HW_activo() { return document.documentElement.getAttribute('data-hw') === '1'; }
+function HW_fxHTML() {
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const bat = '<svg viewBox="0 0 64 26"><g fill="#2a1346" stroke="#a78bfa" stroke-width="1" stroke-linejoin="round"><path transform="translate(32 0)" d="M0 8 L2 1 L4 7 C10 3 20 1 32 5 C27 6 26 9 25 12 C22 9 20 10 19 14 C16 11 13 12 12 16 C9 13 7 14 5 18 C3 17 1 20 0 22 Z"/><path transform="translate(32 0) scale(-1 1)" d="M0 8 L2 1 L4 7 C10 3 20 1 32 5 C27 6 26 9 25 12 C22 9 20 10 19 14 C16 11 13 12 12 16 C9 13 7 14 5 18 C3 17 1 20 0 22 Z"/></g><circle cx="30" cy="9" r="1" fill="#ffb347"/><circle cx="34" cy="9" r="1" fill="#ffb347"/></svg>';
+  const web = '<svg class="hw-web CLS" viewBox="0 0 140 140"><g fill="none" stroke="#efe8ff" stroke-width="1" stroke-linecap="round"><path d="M0 0 L134 40 M0 0 L112 100 M0 0 L62 132"/><path d="M28 8.5 Q22 22 8.5 28 M56 17 Q42 42 17 56 M86 26 Q64 64 26 86 M116 35 Q88 88 35 116"/></g></svg>';
+  let h = '<div class="hw-vig"></div><div class="hw-fog f1"></div><div class="hw-fog f2"></div>';
+  h += web.replace('CLS', 'l') + web.replace('CLS', 'r');
+  h += '<div class="hw-spider"><i></i><b>🕷️</b></div>';
+  for (let i = 0; i < 5; i++) {
+    const w = Math.round(rnd(30, 54)), dur = rnd(22, 40).toFixed(1), del = (-rnd(0, 38)).toFixed(1), top = Math.round(rnd(7, 62));
+    h += `<div class="hw-bat${i % 2 ? ' rev' : ''}" style="width:${w}px;top:${top}%;animation-duration:${dur}s;animation-delay:${del}s">${bat}</div>`;
+  }
+  for (let i = 0; i < 16; i++) {
+    h += `<i class="hw-ember" style="left:${Math.round(rnd(2, 98))}%;--dx:${Math.round(rnd(-40, 40))}px;animation-duration:${rnd(7, 15).toFixed(1)}s;animation-delay:${(-rnd(0, 14)).toFixed(1)}s"></i>`;
+  }
+  return h;
+}
+function HW_fxQuitar() { document.querySelectorAll('#hw-fx').forEach(e => e.remove()); }
+function HW_fxMontar() {
+  HW_fxQuitar();
+  const fx = document.createElement('div');
+  fx.id = 'hw-fx'; fx.setAttribute('aria-hidden', 'true');
+  fx.innerHTML = HW_fxHTML();
+  document.body.appendChild(fx);
+}
+function HW_pintarControles() {
+  HW_sincronizarRol();
+  const on = HW_activo();
+  document.querySelectorAll('.hw-chk').forEach(c => { c.checked = on; });
+}
+function HW_aplicar(on) {
+  if (on) { document.documentElement.setAttribute('data-hw', '1'); HW_fxMontar(); }
+  else { document.documentElement.removeAttribute('data-hw'); HW_fxQuitar(); }
+  void document.documentElement.offsetHeight;
+}
+// Solo el administrador puede quitar/poner Halloween; los asesores ven lo que se publicó.
+function HW_puedeCambiar() { return !!(typeof currentUser !== 'undefined' && currentUser && currentUser.isAdmin); }
+function HW_sincronizarRol() {
+  if (HW_puedeCambiar()) return;
+  try { localStorage.removeItem(HW_KEY); } catch {}
+  const deArchivo = document.documentElement.getAttribute('data-hw-file') === '1';
+  if (deArchivo !== HW_activo()) HW_aplicar(deArchivo);
+}
+function HW_set(on) {
+  if (!HW_puedeCambiar()) return;
+  try { localStorage.setItem(HW_KEY, on ? '1' : '0'); } catch {}
+  HW_aplicar(!!on);
+  HW_pintarControles();
+  try { showToast('info', on ? '🎃 Halloween activado' : '🧹 Halloween quitado', on ? 'Puedes quitarlo cuando quieras desde el Perfil.' : 'Volviste a la versión Original. Las mejoras se conservan.'); } catch {}
+}
+if (HW_activo()) HW_fxMontar();
+HW_pintarControles();
+// HALLOWEEN · FIN (JS)
 
 // ── Temas de color (solo cambian variables CSS vía data-theme) ──
 const THEME_KEY = 'tb_theme';
@@ -7771,6 +8046,7 @@ function doForgotStep2() {
 
 // ── HOME ──────────────────────────────────────────
 function initHomeScreen() {
+  try { HW_sincronizarRol(); } catch {}
   if (!currentUser) return;
   const nombre1 = currentUser.nombre.split(' ')[0];
   const displayNombre = currentUser.apodo || (currentUser.isAdmin ? 'Moi' : nombre1);
@@ -7947,7 +8223,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-03.2355';
+const TB_APP_VERSION = '2026-10-04.1413';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -8407,6 +8683,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'break-admin-panel') BRK_populate();
   if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
   if (panelId === 'agregar-turno-admin-panel') AT_abrir();
+  if (panelId === 'swap-dias-admin-panel') SWP_abrir();
   if (panelId === 'delegate-panel') DELEG_render();
   if (panelId === 'sheet-panel') TB_renderSheetStatus();
   if (panelId === 'solicitudes-admin-panel') TB_renderSolicitudesAdmin();
@@ -8440,6 +8717,7 @@ function P_initProfile() {
   if (vozChk) vozChk.checked = VOZ_isEnabled();
   const silChk = document.getElementById('eva-silencio-toggle');
   if (silChk) silChk.checked = VOZ_silenciada();
+  try { HW_pintarControles(); } catch {}
   VOZ_actualizarEstado();
 
   const bigAv = document.getElementById('profile-avatar-big');
@@ -8619,6 +8897,7 @@ function F3_initTurns() {
     'condicion-admin-panel': 'admin-btn-condicion',
     'break-admin-panel': 'admin-btn-break',
     'agregar-turno-admin-panel': 'admin-btn-agregar',
+    'swap-dias-admin-panel': 'admin-btn-swap',
     'ausencia-admin-panel': 'admin-btn-ausencia', 'solicitudes-admin-panel': 'admin-btn-solicitudes',
     'incap-admin-panel': 'admin-btn-incap', 'accesos-admin-panel': 'admin-btn-accesos',
     'shared-access-panel': 'admin-btn-shared',
@@ -8756,7 +9035,7 @@ function F3_renderDateChips(canonico, silencioso) {
     const chip = document.createElement('div');
     chip.className = 'date-chip' + (r.fechaISO === selected ? ' active' : '') + (r.estado !== 'ACTIVO' ? ' descanso' : '');
     const hmChip = HORAS_get(r.fechaISO, r.nombreNorm);
-    chip.innerHTML = `<div class="dc-dow">${dias[d.getDay()]}</div><div class="dc-num">${d.getDate()}</div><div class="dc-dot"></div>${HORAS_chipHTML(hmChip)}`;
+    chip.innerHTML = `<div class="dc-dow">${dias[d.getDay()]}</div><div class="dc-num">${d.getDate()}</div><div class="dc-dot"></div>${HORAS_chipHTML(hmChip)}${SWP_chipHTML(r.fechaISO, r.nombreNorm)}`;
     if (hmChip) chip.title = hmChip.tipo === 'destino' ? `Recibió ${HORAS_cantidadTxt(hmChip)} del ${HORAS_refTxt(hmChip)}` : `Cedió ${HORAS_cantidadTxt(hmChip)} hacia ${HORAS_refTxt(hmChip)}`;
     chip.onclick = () => { FASE3_State.fechaManual = true; F3_selectDate(canonico, r.fechaISO); };
     cont.appendChild(chip);
@@ -9154,6 +9433,16 @@ function F3_renderTimelineCore(t, diaEstado) {
     list.appendChild(banner);
   }
 
+  try {
+    const swReg = SWP_get(t.fechaISO, t.nombreNorm);
+    if (swReg) {
+      const bS = document.createElement('div');
+      bS.className = 'turno-empty-state';
+      bS.style.cssText = 'background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.3);color:var(--azul2);margin-bottom:10px;text-align:left;';
+      bS.innerHTML = `🔁 Día intercambiado: este día tiene el turno que antes era del <b>${SWP_diaCorto(swReg.con)}</b>`;
+      list.appendChild(bS);
+    }
+  } catch {}
   const horasMovidas = HORAS_get(t.fechaISO, t.nombreNorm);
   if (horasMovidas) {
     const banner2 = document.createElement('div');
@@ -10596,7 +10885,7 @@ function EVA_silencioAlternar() {
 }
 function EVA_silencioPintar() {
   const b = document.getElementById('tb-eva-mute'), sil = VOZ_silenciada();
-  if (b) { b.classList.toggle('tb-activo', sil); b.textContent = sil ? '🔊 Reactivar voz' : '🔇 Silenciar a Eva'; }
+  if (b) { b.classList.toggle('tb-activo', sil); b.textContent = sil ? '🔊 Activar voz' : '🔇 Silenciar'; b.title = sil ? 'Reactivar la voz de Eva' : 'Silenciar a Eva'; b.setAttribute('aria-label', b.title); }
   const c = document.getElementById('eva-silencio-toggle');
   if (c) c.checked = sil;
 }
@@ -14864,6 +15153,149 @@ function AT_aplicar() {
     if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con el turno ya agregado. Publícalo cuando quieras.');
     MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_turno-agregado.xlsx`);
   }, 400);
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  INTERCAMBIAR DÍAS DEL MISMO ASESOR
+//  Toma dos días de UNA misma persona e intercambia su Estado y su
+//  horario completo (entrada, salida, breaks, almuerzo, horas). Trabaja
+//  sobre el texto crudo de la malla, igual que el cambio de turno y
+//  "Agregar turno", para que quede incrustado al descargar el HTML.
+//  El registro SWP_* pinta la etiqueta "🔁 Día intercambiado" en el
+//  calendario y en el timeline (web y oficina: viaja en TB_SWAPS_DEFAULT).
+// ═══════════════════════════════════════════════════════════════════
+const SWAPS_KEY = 'tb_dias_intercambiados_v1';
+function SWP_load() { try { return JSON.parse(localStorage.getItem(SWAPS_KEY)) || {}; } catch { return {}; } }
+function SWP_save(all) { try { localStorage.setItem(SWAPS_KEY, JSON.stringify(all)); } catch {} }
+function SWP_get(fechaISO, norm) { return SWP_load()[`${fechaISO}|${norm}`] || null; }
+const TB_SWAPS_DEFAULT = {};
+function TB_SWAPS_init() {
+  try {
+    const emb = TB_SWAPS_DEFAULT || {}; if (!Object.keys(emb).length) return;
+    const local = SWP_load(); let cambio = false;
+    Object.keys(emb).forEach(k => { if (!(k in local)) { local[k] = emb[k]; cambio = true; } });
+    if (cambio) SWP_save(local);
+  } catch (e) { console.error('TB_SWAPS_init error:', e); }
+}
+TB_SWAPS_init();
+
+function SWP_$(id) { return document.getElementById(id); }
+function SWP_diaCorto(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return `${AT_DIAS[d.getDay()]} ${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+function SWP_abrir() { MALLA_poblarSelectPersonas('swp-nombre'); SWP_cargarDias(); }
+function SWP_cargarDias() {
+  const nombre = SWP_$('swp-nombre').value;
+  const recs = MALLA_recordsFor(nombre);
+  const a = SWP_$('swp-a'), b = SWP_$('swp-b'), pa = a.value, pb = b.value;
+  const html = recs.map(r => `<option value="${r.fechaISO}">${AT_etiquetaDia(r)}</option>`).join('');
+  a.innerHTML = html; b.innerHTML = html;
+  const tiene = v => v && recs.some(r => r.fechaISO === v);
+  if (tiene(pa)) a.value = pa; else if (recs[0]) a.value = recs[0].fechaISO;
+  if (tiene(pb) && pb !== a.value) b.value = pb; else { const otro = recs.find(r => r.fechaISO !== a.value); if (otro) b.value = otro.fechaISO; }
+  SWP_preview();
+}
+function SWP_calc() {
+  const nombre = SWP_$('swp-nombre').value, ia = SWP_$('swp-a').value, ib = SWP_$('swp-b').value;
+  const out = { errores: [], avisos: [], nombre, ia, ib };
+  if (!nombre || !ia || !ib) { out.errores.push('Elige un asesor y dos días.'); return out; }
+  if (ia === ib) { out.errores.push('Elige dos días distintos.'); return out; }
+  const recs = MALLA_recordsFor(nombre);
+  const ra = recs.find(r => r.fechaISO === ia), rb = recs.find(r => r.fechaISO === ib);
+  if (!ra || !rb) { out.errores.push('No encontré esos días en la malla.'); return out; }
+  out.ra = ra; out.rb = rb;
+  const okEstado = r => r.estado === 'ACTIVO' || r.estado === 'DESCANSO';
+  if (!okEstado(ra) || !okEstado(rb)) { out.errores.push('Solo se pueden intercambiar días ACTIVO o DESCANSO (no incapacidades, permisos ni suspensiones).'); return out; }
+  const ha = TB_horasRealesDia(ra), hb = TB_horasRealesDia(rb);
+  if (ra.estado === rb.estado && ra.entradaDisplay === rb.entradaDisplay && ra.salidaDisplay === rb.salidaDisplay && ha === hb) {
+    out.errores.push('Esos dos días ya tienen exactamente el mismo horario: no cambiaría nada.'); return out;
+  }
+  // Horas por semana (lunes a domingo) antes y después, para avisar si se pasa de 42 h.
+  const wa = F3_getWeekRange(ia), wb = F3_getWeekRange(ib);
+  const total = w => recs.filter(r => r.fechaISO >= w.start && r.fechaISO <= w.end).reduce((t, r) => t + TB_horasRealesDia(r), 0);
+  out.semanas = [];
+  if (wa.start === wb.start) {
+    out.semanas.push({ antes: total(wa), despues: total(wa), misma: true });
+  } else {
+    out.semanas.push({ antes: total(wa), despues: total(wa) - ha + hb, etiqueta: SWP_diaCorto(ia) });
+    out.semanas.push({ antes: total(wb), despues: total(wb) - hb + ha, etiqueta: SWP_diaCorto(ib) });
+  }
+  out.semanas.forEach(w => { if (w.despues > w.antes && w.despues > 42 * 60) out.avisos.push(`La semana de ${w.etiqueta} quedaría en ${AT_hm(w.despues)} (pasa de 42 h).`); });
+  return out;
+}
+function SWP_preview() {
+  const box = SWP_$('swp-preview'), btn = SWP_$('swp-btn');
+  if (!box) return;
+  const r = SWP_calc();
+  if (r.errores.length) { box.innerHTML = '⛔ ' + r.errores[0]; if (btn) btn.disabled = true; return; }
+  if (btn) btn.disabled = false;
+  const desc = x => x.estado === 'ACTIVO' && TB_horasRealesDia(x) > 0 ? `${x.entradaDisplay}–${x.salidaDisplay} (${AT_hm(TB_horasRealesDia(x))})` : (x.estado === 'DESCANSO' ? 'Descanso' : 'Sin horario');
+  let h = `<b>${SWP_diaCorto(r.ia)}</b>: ${desc(r.ra)} &nbsp;→&nbsp; quedará <b>${desc(r.rb)}</b><br><b>${SWP_diaCorto(r.ib)}</b>: ${desc(r.rb)} &nbsp;→&nbsp; quedará <b>${desc(r.ra)}</b>`;
+  r.avisos.forEach(a => { h += `<br>⚠️ ${a}`; });
+  box.innerHTML = h;
+}
+function SWP_parseLinea(line) {
+  const tk = line.trim().split(/\s+/);
+  let rest = tk.slice(2), ced = [];
+  if (rest[0] && /^\d{6,12}$/.test(rest[0])) { ced = [rest[0]]; rest = rest.slice(1); }
+  let idx = rest.findIndex(x => TB_esTokenHora(x));
+  let sched = [];
+  if (idx === -1) {
+    // día sin horas: lo único que puede colgar del nombre son marcadores "Inicio"/"Fin"
+    idx = rest.length;
+    while (idx > 1 && /^(inicio|fin)$/i.test(rest[idx - 1])) idx--;
+  }
+  sched = rest.slice(idx);
+  return { fecha: tk[0], estado: tk[1], ced, nombre: rest.slice(0, idx), sched };
+}
+function SWP_aplicar() {
+  const r = SWP_calc();
+  if (r.errores.length) { SWP_preview(); showToast('error', '⛔ No se puede intercambiar', r.errores[0]); return; }
+  const norm = normalizeName(r.nombre);
+  const lines = TB_rawMallaActual().split(/\r?\n/);
+  const i1 = AT_buscarLinea(lines, r.ia, norm), i2 = AT_buscarLinea(lines, r.ib, norm);
+  if (i1 < 0 || i2 < 0) { showToast('error', '❌ Error', 'No encontré una de las dos filas en la malla.'); return; }
+  const A = SWP_parseLinea(lines[i1]), B = SWP_parseLinea(lines[i2]);
+  lines[i1] = [A.fecha, B.estado, ...A.ced, ...A.nombre, ...B.sched].join('\t');
+  lines[i2] = [B.fecha, A.estado, ...B.ced, ...B.nombre, ...A.sched].join('\t');
+  const newRaw = lines.join('\n');
+  const parsed = MALLA_parseText(newRaw);
+  if (!parsed.length) { showToast('error', '❌ Error', 'No se pudo reescribir la malla.'); return; }
+  MALLA_DATA = parsed; MALLA_LAST_RAW_TEXT = newRaw;
+  try { localStorage.setItem(MALLA_RAWTEXT_KEY, newRaw); } catch {}
+  MALLA_persist(); MALLA_refreshStatus();
+  // Etiquetas: si estos dos días ya estaban marcados entre sí, intercambiar de nuevo = deshacer.
+  const all = SWP_load(), ka = `${r.ia}|${norm}`, kb = `${r.ib}|${norm}`;
+  const deshace = all[ka] && all[kb] && all[ka].con === r.ib && all[kb].con === r.ia;
+  if (deshace) { delete all[ka]; delete all[kb]; }
+  else { all[ka] = { con: r.ib, nombre: r.nombre }; all[kb] = { con: r.ia, nombre: r.nombre }; }
+  SWP_save(all);
+  showToast('success', deshace ? '↩️ Intercambio deshecho' : '✅ Días intercambiados', `${r.nombre.split(' ')[0]}: ${SWP_diaCorto(r.ia)} ↔ ${SWP_diaCorto(r.ib)}.`);
+  if (typeof fase2AddActivity === 'function') fase2AddActivity('🔁', `<strong>${r.nombre.split(' ')[0]}</strong>: ${deshace ? 'se deshizo el intercambio de' : 'intercambió'} ${SWP_diaCorto(r.ia)} ↔ ${SWP_diaCorto(r.ib)}`, 'cambio');
+  try { TEAM_render(); } catch {}
+  const user = window.TurnoBotApp && window.TurnoBotApp._currentUser ? window.TurnoBotApp._currentUser() : currentUser;
+  if (user && !user.isAdmin && user.mallaNombre && normalizeName(user.mallaNombre) === norm) F3_renderDateChips(user.mallaNombre);
+  SWP_cargarDias();
+  setTimeout(async () => {
+    const quiere = await TB_promptDescargarOSeguir('Los días ya quedaron intercambiados en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?');
+    if (!quiere) return;
+    const ok = MALLA_downloadUpdatedHTML(`Turno_${MALLA_todayISO()}_dias-intercambiados.html`);
+    if (ok) showToast('success', '⬇️ HTML actualizado', 'Se descargó con el intercambio ya aplicado. Publícalo cuando quieras.');
+    MALLA_exportExcel(`Malla-Modificada_${MALLA_todayISO()}_dias-intercambiados.xlsx`);
+  }, 400);
+}
+// Etiquetas del calendario (chips de fecha). Se usan en web y oficina por igual.
+function SWP_chipHTML(fechaISO, norm) {
+  let h = '';
+  try {
+    const sw = SWP_get(fechaISO, norm);
+    if (sw) h += `<div class="dc-tag swp">🔁 Intercambio</div><div class="dc-from">↔ ${SWP_diaCorto(sw.con)}</div>`;
+    const cb = CAMBIO_get(fechaISO, norm);
+    if (cb) h += `<div class="dc-tag swp">🔄 Cambio</div><div class="dc-from">con ${String(cb).split(' ')[0]}</div>`;
+  } catch {}
+  return h;
 }
 
 // ── Vista admin: incapacidades recibidas en la Sheet ──
