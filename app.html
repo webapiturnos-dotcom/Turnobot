@@ -973,7 +973,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 @keyframes camShrug{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-9px) rotate(-6deg)}60%{transform:translateY(0) rotate(6deg)}}
 @keyframes camLupa{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(18deg)}}
 @media (prefers-reduced-motion:reduce){.cam-ein,.cam-lupa{animation:none!important}}
-.cam-say{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);background:#fff;color:#0b1c33;font:700 13px/1.2 sans-serif;padding:6px 11px;border-radius:12px;white-space:nowrap;opacity:0;transition:opacity .2s;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.cam-say{position:absolute;left:50%;bottom:calc(100% + 16px);transform:translateX(-50%);background:#fff;color:#0b1c33;font:700 13px/1.2 sans-serif;padding:6px 11px;border-radius:12px;white-space:nowrap;opacity:0;transition:opacity .2s;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 .cam-say.on{opacity:1}
 .cam-bar{display:flex;flex-direction:column;gap:8px;align-items:stretch;padding:10px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .cam-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}
@@ -993,6 +993,77 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .cam-ant{position:absolute;left:-14px;top:-16px;font-size:22px;transform-origin:50% 85%;animation:camAnt 1.1s ease-in-out infinite}
 @keyframes camAnt{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(22deg)}}
 .cam-bar input[type=color]{width:34px;height:28px;border:0;background:none;padding:0}
+
+/* ═══ Camuflaje premium v2 — panel, tutorial y gags ═══ */
+.cam-wrap{gap:12px}
+.cam-bar{position:relative;gap:10px;padding:14px 14px 12px;border-radius:22px;background:linear-gradient(160deg,rgba(18,32,58,.94),rgba(8,14,30,.96));border:0;box-shadow:0 18px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.14)}
+.cam-bar::before{content:'';position:absolute;inset:0;border-radius:22px;padding:1.5px;background:linear-gradient(135deg,#22c3f2,#a78bfa 48%,#f59e0b);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;opacity:.8}
+.cam-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cam-lv{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.cam-lv b{font:900 16px sans-serif;letter-spacing:1px;background:linear-gradient(90deg,#8df0ff,#fff 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cam-lv small{font:600 11px sans-serif;color:#a9bdd6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cam-hearts{font-size:17px;letter-spacing:2px;filter:drop-shadow(0 0 6px rgba(239,68,68,.6));white-space:nowrap}
+.cam-tbar{position:relative;height:22px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
+.cam-tbar i{position:absolute;inset:0 auto 0 0;width:100%;border-radius:999px;background:linear-gradient(90deg,#22c55e,#a3e635 60%,#f59e0b);transition:width .2s linear}
+.cam-tbar.low i{background:linear-gradient(90deg,#ef4444,#f97316);animation:camPulse .6s ease-in-out infinite}
+.cam-tbar span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 11px sans-serif;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);letter-spacing:.4px}
+@keyframes camPulse{50%{filter:brightness(1.35)}}
+.cam-st{font:800 10px sans-serif;letter-spacing:1.6px;text-transform:uppercase;color:#7fa3c7;display:flex;align-items:center;gap:8px;margin-top:2px}
+.cam-st::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(127,163,199,.45),transparent)}
+.cam-tools{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.cam-bar .cam-b{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px 7px;min-height:56px;border-radius:14px;font:700 10.5px sans-serif;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);color:#fff}
+.cam-b .ic{font-size:21px;line-height:1}
+.cam-bar .cam-b.on{background:linear-gradient(160deg,#22c3f2,#0a6ea8);border-color:#8df0ff;box-shadow:0 0 18px rgba(34,195,242,.6),inset 0 1px 0 rgba(255,255,255,.4);transform:translateY(-1px)}
+@media (hover:hover){.cam-bar .cam-b:hover,.cam-chip:hover{background:rgba(255,255,255,.2)}}
+.cam-brushrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.cam-bar .cam-brush{border:3px solid #fff;box-shadow:0 0 0 2px rgba(34,195,242,.6),0 6px 16px rgba(0,0,0,.5)}
+.cam-bar input[type=range]{accent-color:#22c3f2;flex:1;min-width:90px;max-width:170px}
+.cam-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.cam-pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(30px,1fr));gap:7px;padding:9px;border-radius:14px;background:rgba(0,0,0,.3);box-shadow:inset 0 2px 8px rgba(0,0,0,.55);align-items:center}
+.cam-pal .cam-sw{width:100%;height:auto;aspect-ratio:1;max-width:36px;justify-self:center}
+.cam-pal input[type=color]{-webkit-appearance:none;appearance:none;width:100%;max-width:36px;aspect-ratio:1;height:auto;border-radius:50%;border:2px solid #fff;padding:0;justify-self:center;cursor:pointer;background:conic-gradient(red,yellow,lime,aqua,blue,magenta,red);overflow:hidden}
+.cam-pal input[type=color]::-webkit-color-swatch-wrapper{padding:0}.cam-pal input[type=color]::-webkit-color-swatch{border:0;border-radius:50%}.cam-pal input[type=color]::-moz-color-swatch{border:0;border-radius:50%}
+.cam-actions{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:stretch}
+.cam-bar .cam-help-b{flex-direction:row;gap:6px;padding:0 14px;min-height:48px;font-size:12px}
+.cam-bar .cam-go{position:relative;overflow:hidden;font-size:16px;padding:13px 18px;border-radius:14px;letter-spacing:.5px;color:#fff}
+.cam-go::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:camShine 2.6s infinite}
+@keyframes camShine{to{left:140%}}
+.cam-help{position:absolute;right:10px;top:10px;z-index:5;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(8,14,30,.78);color:#fff;font:900 17px sans-serif;cursor:pointer;backdrop-filter:blur(6px);line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(34,195,242,.55)}
+.cam-tut{position:relative;max-width:100%;border-radius:18px;overflow:hidden;border:2px solid rgba(34,195,242,.5);background:#050b18;line-height:1.2;box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 40px rgba(34,195,242,.22);animation:camTutIn .35s ease-out}
+@keyframes camTutIn{from{opacity:0;transform:scale(1.03)}}
+.cam-tut canvas{display:block;width:100%;height:auto;cursor:default;touch-action:auto}
+.cam-tut-top{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:linear-gradient(180deg,#0f1b33,#0a1324);color:#fff;font:800 12px sans-serif;letter-spacing:.5px}
+.cam-tut button{font-family:sans-serif;cursor:pointer;color:#fff}
+.cam-tut-x{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);font-size:13px}
+.cam-tut-cap{padding:10px 12px 10px;background:linear-gradient(180deg,#0a1324,#070d1b);color:#fff;display:flex;flex-direction:column;gap:3px}
+.cam-tut-cap b{font:900 clamp(13px,3.4vw,20px)/1.15 sans-serif;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.cam-tut-cap>span{font:600 clamp(10.5px,2.6vw,14px)/1.25 sans-serif;color:#cfe3f7}
+.cam-tut-ctl{display:flex;align-items:center;gap:6px;margin-top:5px}
+.cam-tut-ctl button{min-width:30px;height:28px;border-radius:9px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);font-size:13px;padding:0 8px}
+.cam-tut-ctl .cam-tut-play{background:linear-gradient(135deg,#22c55e,#15803d);border:0;font:800 12px sans-serif;padding:0 14px;white-space:nowrap}
+.cam-tut-dots{display:flex;gap:6px;flex:1;justify-content:center}
+.cam-tut-dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.2s}
+.cam-tut-dots i.on{background:#22c3f2;box-shadow:0 0 8px #22c3f2;transform:scale(1.35)}
+.cam-tut-prog{height:3px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden;margin-top:5px}
+.cam-tut-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22c3f2,#a78bfa)}
+
+/* PC: escenario a la izquierda, panel a la derecha */
+.cam-actions{position:sticky;top:0;z-index:3}
+.arcade-pc .cam-wrap{flex-direction:row;align-items:flex-start;justify-content:center;gap:18px}
+.arcade-pc .cam-stage{width:min(calc(97vw - 430px),calc(78vh * 900 / 500),1000px)!important;flex:none}
+.arcade-pc .cam-bar{width:390px!important;flex:none;max-height:calc(100vh - 150px);overflow-y:auto;scrollbar-width:thin}
+.arcade-pc .cam-bar .cam-go{font-size:18px;padding:15px 18px}
+@media (max-width:960px){.arcade-pc .cam-wrap{flex-direction:column;align-items:center}.arcade-pc .cam-stage{width:min(97vw,calc(56vh * 900 / 500))!important}.arcade-pc .cam-bar{width:min(97vw,calc(56vh * 900 / 500))!important;max-height:none}}
+.cam-ein.sneeze{animation:camSneeze .9s ease-in-out infinite}
+.cam-ein.spin{animation:camSpin .8s ease-in-out infinite}
+.cam-ein.hop{animation:camHop .45s ease-in-out infinite}
+.cam-ein.flip{animation:camFlip 1.4s ease-in-out infinite}
+.cam-ein.laugh{animation:camLaugh .28s ease-in-out infinite}
+@keyframes camSneeze{0%,55%,100%{transform:scale(1)}68%{transform:scale(.86,1.12) rotate(-5deg)}84%{transform:scale(1.2,.88) translateX(10px)}}
+@keyframes camSpin{0%{transform:rotate(0) translateY(0)}50%{transform:rotate(180deg) translateY(-14px)}100%{transform:rotate(360deg) translateY(0)}}
+@keyframes camHop{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes camFlip{0%,15%{transform:rotate(0)}40%,70%{transform:rotate(180deg)}95%,100%{transform:rotate(360deg)}}
+@keyframes camLaugh{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-7px) rotate(6deg)}}
 
 .nav-item.active { color:var(--rojo); }
 .nav-item::before {
@@ -2036,7 +2107,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 #cam-stage .arcade-go span{font-size:clamp(14px,3.8vw,17px)!important;line-height:1.4;color:#fff!important}
 .cam-toast.on{background:#0b1c33!important;color:#fff!important;font-weight:800!important;font-size:clamp(13px,3.6vw,16px)!important;border:2px solid #22c3f2!important}
 </style>
-<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
+<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
@@ -2202,7 +2273,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
   <div id="arcade-menu" class="arcade-screen" style="display: flex;">
     <h2>🎮 EVA Arcade</h2>
     <p id="arc-bub" class="arc-bub">👆 ¡Toca la pancita de Eva!</p>
-    <div id="arc-solar" class="arc-solar"><div class="arc-stage"><div id="arc-rings"></div><button id="arc-eva" type="button" onclick="ARCADE_solarToggle()" aria-label="Pancita de Eva: abrir o cerrar los juegos"><svg id="arc-eva-svg" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+    <div id="arc-solar" class="arc-solar"><div class="arc-stage"><div id="arc-rings" data-b="1"><div class="arc-orb r1"></div><div class="arc-ring" style="animation:arcSpin 70s linear infinite "><div class="arc-pl r1" style="--a:0deg;--i:0"><div class="arc-pl-in" style="animation:arcSpin 70s linear infinite reverse"><button type="button" class="arc-planet" style="--h:0" onclick="ARCADE_solarGo('volar')">🕊️</button><div class="arc-lbl">EVA Voladora</div></div></div><div class="arc-pl r1" style="--a:72deg;--i:1"><div class="arc-pl-in" style="animation:arcSpin 70s linear infinite reverse"><button type="button" class="arc-planet" style="--h:31" onclick="ARCADE_solarGo('saltar')">🏃</button><div class="arc-lbl">EVA Saltarina</div></div></div><div class="arc-pl r1" style="--a:144deg;--i:2"><div class="arc-pl-in" style="animation:arcSpin 70s linear infinite reverse"><button type="button" class="arc-planet" style="--h:62" onclick="ARCADE_solarGo('memoria')">🧠</button><div class="arc-lbl">Memoria</div></div></div><div class="arc-pl r1" style="--a:216deg;--i:3"><div class="arc-pl-in" style="animation:arcSpin 70s linear infinite reverse"><button type="button" class="arc-planet" style="--h:93" onclick="ARCADE_solarGo('atrapa')">🎯</button><div class="arc-lbl">Atrapa</div></div></div><div class="arc-pl r1" style="--a:288deg;--i:4"><div class="arc-pl-in" style="animation:arcSpin 70s linear infinite reverse"><button type="button" class="arc-planet" style="--h:124" onclick="ARCADE_solarGo('gato')">⭕</button><div class="arc-lbl">3 en raya</div></div></div></div><div class="arc-orb r2"></div><div class="arc-ring" style="animation:arcSpin 110s linear infinite reverse"><div class="arc-pl r2" style="--a:20deg;--i:5"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:155" onclick="ARCADE_solarGo('culebrita')">🐍</button><div class="arc-lbl">Culebrita</div></div></div><div class="arc-pl r2" style="--a:71.42857142857143deg;--i:6"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:186" onclick="ARCADE_solarGo('tetris')">🧱</button><div class="arc-lbl">Tetris</div></div></div><div class="arc-pl r2" style="--a:122.85714285714286deg;--i:7"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:217" onclick="ARCADE_solarGo('fuegoagua')">🔥</button><div class="arc-lbl">Fuego y Agua</div></div></div><div class="arc-pl r2" style="--a:174.28571428571428deg;--i:8"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:248" onclick="ARCADE_solarGo('music')">🎸</button><div class="arc-lbl">EVA Music</div></div></div><div class="arc-pl r2" style="--a:225.71428571428572deg;--i:9"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:279" onclick="ARCADE_solarGo('libro')">📖</button><div class="arc-lbl">Libro</div></div></div><div class="arc-pl r2" style="--a:277.14285714285717deg;--i:10"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:310" onclick="ARCADE_solarGo('pacman')">🟡</button><div class="arc-lbl">Pac-Man</div></div></div><div class="arc-pl r2" style="--a:328.57142857142856deg;--i:11"><div class="arc-pl-in" style="animation:arcSpin 110s linear infinite "><button type="button" class="arc-planet" style="--h:341" onclick="ARCADE_solarGo('camuflaje')">🦎</button><div class="arc-lbl">Camuflaje</div></div></div></div></div><button id="arc-eva" type="button" onclick="ARCADE_solarToggle()" aria-label="Pancita de Eva: abrir o cerrar los juegos"><svg id="arc-eva-svg" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="arcShine" cx="35%" cy="25%" r="75%">
             <stop class="arc-s0" offset="0%" stop-color="#ffffff"></stop>
@@ -2262,17 +2333,35 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <button id="arcade-pause-btn" onclick="ARCADE_togglePause()">⏸ Pausa</button>
       <button class="arcade-fs-btn" onclick="ARCADE_fullscreen()" title="Pantalla completa (F)">⛶ Pantalla completa</button>
     </div>
-    <div id="arcade-score" class="arcade-score-row">Líneas: 0</div>
-    <div id="arcade-hint" class="arcade-hint"></div>
-    <div id="arcade-game-area"><div class="arcade-tetris-wrap">
-      <canvas id="arcade-tetris-canvas" class="arcade-canvas" width="160" height="320"></canvas>
-      <div class="arcade-tetris-controls">
-        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_move(-1)">◀</button>
-        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_rotate()">⟳</button>
-        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_move(1)">▶</button>
-        <button class="arcade-dpad-btn" onclick="ARCADE_TETRIS_softDrop()">⤓</button>
+    <div id="arcade-score" class="arcade-score-row">🦎 Nivel 3 · 🔴 Lunares · ❤️ · ⏱ 49s · Necesitas 70%</div>
+    <div id="arcade-hint" class="arcade-hint">👆 Toca el fondo para <b>cargar tu pincel</b> con su color y/o detalle (marca ambos para los dos) · luego <b>píntalo tú</b>: a mano o 🪣 por sección · 📡 Eva tiene radar de detalle · 🦎 Grande = más lienzo · <kbd>Enter</kbd> = ¡Listo!</div>
+    <div id="arcade-game-area"><div class="cam-wrap">
+    <div id="cam-stage" class="cam-stage" style="width: min(96vw, 520px);">
+      <canvas id="cam-cv" width="900" height="500" onpointerdown="ARCADE_CAM_ptr(event,0)" onpointermove="ARCADE_CAM_ptr(event,1)" onpointerup="ARCADE_CAM_ptr(event,2)" onpointercancel="ARCADE_CAM_ptr(event,2)" onpointerleave="if(ARCADE_CAM)ARCADE_CAM.mx=null" style="cursor: none;"></canvas>
+      <div id="cam-spot" class="cam-spot" style="opacity: 0; --x: 313.6017622866452px; --y: 35.31888237609214px; --r: 34.416666666666664px;"></div><canvas id="cam-rd" class="cam-rd" width="900" height="500"></canvas><div id="cam-toast" class="cam-toast">🖌️ Pincel cargado · color · detalle — ¡ahora píntalo en el camaleón!</div>
+      <div id="cam-eva" class="cam-eva" style="display: none; transform: translate(313.602px, 23.0718px) translate(-50%, -50%) scale(0.81);"><div id="cam-say" class="cam-say"></div><div id="cam-ein" class="cam-ein found"><span class="cam-ant">📡</span><svg viewBox="0 0 60 74" width="64" height="80">
+    <ellipse cx="30" cy="55" rx="15" ry="18" fill="url(#tbEvaShine)"></ellipse>
+    <ellipse cx="30" cy="20" rx="21" ry="17" fill="url(#tbEvaShine)"></ellipse>
+    <ellipse cx="30" cy="20" rx="15" ry="10.5" fill="#0b1c33"></ellipse>
+    <ellipse cx="24" cy="20" rx="3.6" ry="4.6" fill="url(#tbEvaEye)"></ellipse>
+    <ellipse cx="36" cy="20" rx="3.6" ry="4.6" fill="url(#tbEvaEye)"></ellipse>
+  </svg><span class="cam-lupa">🔍</span><span id="cam-emo" class="cam-emo">😡</span></div></div>
+    </div>
+    <div id="cam-bar" class="cam-bar" style="width: min(96vw, 520px); display: flex;">
+      <div class="cam-row">
+        <button class="cam-b on" data-t="pick" onclick="ARCADE_CAM_tool('pick')">👆 Tomar del fondo</button><button class="cam-b" data-t="paint" onclick="ARCADE_CAM_tool('paint')">🖌️ Pintar</button>
+        <button class="cam-b" data-t="fill" onclick="ARCADE_CAM_tool('fill')">🪣 Sección</button><button class="cam-b" data-t="erase" onclick="ARCADE_CAM_tool('erase')">🧽 Borrar</button><button class="cam-b" data-t="move" onclick="ARCADE_CAM_tool('move')">✋ Mover</button>
+        <button class="cam-b" onclick="ARCADE_CAM_fillApply(ARCADE_CAM.sec?[ARCADE_CAM.sec]:null)">🌈 Todo</button><button class="cam-b" id="cam-big" onclick="ARCADE_CAM_big()">🦎 Grande</button>
       </div>
-    </div></div>
+      <div class="cam-row">
+        <canvas id="cam-brush" class="cam-brush" width="52" height="52" title="Tu pincel"></canvas><label class="cam-chk"><input type="checkbox" checked="" onchange="ARCADE_CAM.useCol=this.checked;ARCADE_CAM_brush()">🎨 Color</label><label class="cam-chk"><input type="checkbox" checked="" onchange="ARCADE_CAM.useDet=this.checked;ARCADE_CAM_brush()">✨ Detalle</label>
+        <button class="cam-chip on" data-s="" onclick="ARCADE_CAM_sec('')">Todo</button><button class="cam-chip" data-s="cola" onclick="ARCADE_CAM_sec('cola')">🌀 Cola</button><button class="cam-chip" data-s="cuerpo" onclick="ARCADE_CAM_sec('cuerpo')">🫁 Cuerpo</button><button class="cam-chip" data-s="patas" onclick="ARCADE_CAM_sec('patas')">🦵 Patas</button><button class="cam-chip" data-s="cabeza" onclick="ARCADE_CAM_sec('cabeza')">🐲 Cabeza</button><button class="cam-chip" data-s="cresta" onclick="ARCADE_CAM_sec('cresta')">🔺 Cresta</button>
+      </div>
+      <div class="cam-row">
+        <div class="cam-sw" data-c="#2f6b2f" style="background:#2f6b2f" onclick="ARCADE_CAM_col('#2f6b2f');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#4c9a3a" style="background:#4c9a3a" onclick="ARCADE_CAM_col('#4c9a3a');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#6dbb45" style="background:#6dbb45" onclick="ARCADE_CAM_col('#6dbb45');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#a0643b" style="background:#a0643b" onclick="ARCADE_CAM_col('#a0643b');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#6b3f22" style="background:#6b3f22" onclick="ARCADE_CAM_col('#6b3f22');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#8a5a33" style="background:#8a5a33" onclick="ARCADE_CAM_col('#8a5a33');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#a5522d" style="background:#a5522d" onclick="ARCADE_CAM_col('#a5522d');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#d9b97a" style="background:#d9b97a" onclick="ARCADE_CAM_col('#d9b97a');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#e0c28a" style="background:#e0c28a" onclick="ARCADE_CAM_col('#e0c28a');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#c9b79c" style="background:#c9b79c" onclick="ARCADE_CAM_col('#c9b79c');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#a98f6e" style="background:#a98f6e" onclick="ARCADE_CAM_col('#a98f6e');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#7c654a" style="background:#7c654a" onclick="ARCADE_CAM_col('#7c654a');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#8e8e8e" style="background:#8e8e8e" onclick="ARCADE_CAM_col('#8e8e8e');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#8a94a6" style="background:#8a94a6" onclick="ARCADE_CAM_col('#8a94a6');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#5b6472" style="background:#5b6472" onclick="ARCADE_CAM_col('#5b6472');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#4b5563" style="background:#4b5563" onclick="ARCADE_CAM_col('#4b5563');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#33415c" style="background:#33415c" onclick="ARCADE_CAM_col('#33415c');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#272d3b" style="background:#272d3b" onclick="ARCADE_CAM_col('#272d3b');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#1f2937" style="background:#1f2937" onclick="ARCADE_CAM_col('#1f2937');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#0f766e" style="background:#0f766e" onclick="ARCADE_CAM_col('#0f766e');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#f59e0b" style="background:#f59e0b" onclick="ARCADE_CAM_col('#f59e0b');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#c0392b" style="background:#c0392b" onclick="ARCADE_CAM_col('#c0392b');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#f2f2f2" style="background:#f2f2f2" onclick="ARCADE_CAM_col('#f2f2f2');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div><div class="cam-sw" data-c="#2a2a35" style="background:#2a2a35" onclick="ARCADE_CAM_col('#2a2a35');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div>
+        <input id="cam-col" type="color" value="#2f6b2f" oninput="ARCADE_CAM_col(this.value)"><input type="range" min="4" max="60" value="22" title="Grosor" oninput="ARCADE_CAM.size=+this.value">
+        <button class="cam-go" onclick="ARCADE_CAM_ready()">✅ ¡Listo!</button>
+      </div></div></div></div>
   </div>
 </div>
 
@@ -2502,7 +2591,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 04/10/2026 · 1745</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 04/10/2026 · 1803</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -2607,7 +2696,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">⚖️</div><div class="activity-text">Se fijó el sábado de <strong>CARLOS</strong> y se redistribuyó su semana (Lun 5 +30min)</div><div class="activity-time">18:03</div><button type="button" class="activity-del-btn" data-aid="248" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>CARLOS</strong> consultó su turno</div><div class="activity-time">18:02</div><button type="button" class="activity-del-btn" data-aid="247" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>CARLOS</strong> consultó su turno</div><div class="activity-time">18:02</div><button type="button" class="activity-del-btn" data-aid="246" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">18:51</div><button type="button" class="activity-del-btn" data-aid="51" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">18:51</div><button type="button" class="activity-del-btn" data-aid="50" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🔑</div><div class="activity-text"><strong>MELANYS</strong> inició sesión</div><div class="activity-time">18:50</div><button type="button" class="activity-del-btn" data-aid="49" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 05/10/2026</div><div class="activity-time">18:50</div><button type="button" class="activity-del-btn" data-aid="46" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 05/10/2026</div><div class="activity-time">18:49</div><button type="button" class="activity-del-btn" data-aid="45" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -2634,7 +2723,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="nav-icon">🏠</div>
         <div class="nav-label">Inicio</div>
       </div>
-      <div class="nav-item active" id="nav-turns" onclick="showMainScreen('turns')">
+      <div class="nav-item" id="nav-turns" onclick="showMainScreen('turns')">
         <div class="nav-icon">🕐</div>
         <div class="nav-label" id="nav-turns-label">Configuración</div>
       </div>
@@ -2642,7 +2731,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="nav-icon">📋</div>
         <div class="nav-label">Novedades</div>
       </div>
-      <div class="nav-item" id="nav-profile" onclick="showMainScreen('profile')">
+      <div class="nav-item active" id="nav-profile" onclick="showMainScreen('profile')">
         <div class="nav-icon">👤</div>
         <div class="nav-label">Perfil</div>
       </div>
@@ -2670,7 +2759,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <div class="turno-card" id="turno-card">
         <div class="turno-card-header">
           <div>
-            <div class="turno-card-label">Tu turno · Sábado 10 Oct</div>
+            <div class="turno-card-label">Tu turno · Lunes 5 Oct</div>
             <div class="turno-card-nombre" id="tc-nombre">Moi</div>
           </div>
           <div class="turno-card-badge" id="tc-badge" style="border-color: rgba(229, 9, 20, 0.333); color: var(--rojo); background: rgba(229, 9, 20, 0.094);">Administrador</div>
@@ -2706,7 +2795,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       <div class="timeline-panel">
         <div class="section-header">
           <div class="section-title">📋 Timeline del Día</div>
-          <div class="section-sub" id="timeline-fecha">Sábado 10 Oct</div>
+          <div class="section-sub" id="timeline-fecha">Lunes 5 Oct</div>
         </div>
         <div class="timeline-list" id="timeline-list" style="--rail-top: 0px; --rail-bottom: 0px;"><div class="turno-empty-state">👑 Como administrador puedes actualizar la malla de turnos de todo el equipo más abajo.</div></div>
       </div>
@@ -2925,7 +3014,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">06:02 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">06:02 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">18:02</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">CARLOS ENRIQUE GUZMAN JIMENEZ</span><span style="color:var(--gris);font-size:11px">18:02</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">06:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">06:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">06:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">06:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">06:00 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">NEVIS CAROLINA JIMENEZ MARMOL</span><span style="color:var(--gris);font-size:11px">06:00 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:50 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:49 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">18:50</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">18:49</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:26 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -3727,8 +3816,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">🔑 16 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">29/9, 01:27 p. m. · 28/9, 05:43 p. m. · 27/9, 04:07 p. m.</div>
+        <div class="team-row-sub">🔑 18 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">4/10, 06:26 p. m. · 4/10, 06:23 p. m. · 29/9, 01:27 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -3859,8 +3948,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 65 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">3/10, 09:25 p. m. · 29/9, 05:44 a. m. · 28/9, 07:51 a. m.</div>
+        <div class="team-row-sub">🔑 67 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">4/10, 06:49 p. m. · 4/10, 06:49 p. m. (📱 Motorola motorola edge 60 fusion) · 3/10, 09:25 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4757,24 +4846,24 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
             <input type="file" id="profile-photo-input" accept="image/*" onchange="PROFILE_onPhotoSelected(event)">
           </label>
         </div>
-        <div class="profile-name" id="profile-name">Moi</div>
-        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Administrador</span></div>
-        <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: block;">Quitar foto de perfil</div>
+        <div class="profile-name" id="profile-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
+        <div class="profile-role" id="profile-role" style="display:inline-flex;align-items:center;gap:6px;justify-content:center"><span class="online-dot"></span><span id="profile-role-text">Asesor</span></div>
+        <div class="profile-remove-photo" id="profile-remove-photo" onclick="PROFILE_removePhoto()" style="display: none;">Quitar foto de perfil</div>
       </div>
 
       <div class="profile-section">
         <div class="profile-info-row">
           <span class="lbl">Usuario Maya</span>
-          <span class="val" id="profile-maya">1999</span>
+          <span class="val" id="profile-maya">MELANYS</span>
         </div>
         <div class="profile-info-row">
           <span class="lbl">Accesos totales</span>
-          <span class="val" id="profile-accesos">1</span>
+          <span class="val" id="profile-accesos">66</span>
         </div>
       </div>
 
       <!-- ── Apodo (solo asesores): cómo quieren que les aparezca su nombre ── -->
-      <div class="profile-section" id="profile-apodo-section" style="display: none;">
+      <div class="profile-section" id="profile-apodo-section" style="display: block;">
         <div class="form-group">
           <label class="form-label">Tu apodo (cómo quieres que te llamen)</label>
           <div style="display:flex; gap:8px;">
@@ -4787,7 +4876,7 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
 
       <!-- ── Tema de color (solo admin: los asesores reciben el tema
            que Moi elija al publicar el HTML, no lo pueden cambiar) ── -->
-      <div class="profile-section" id="profile-theme-section" style="display: block;">
+      <div class="profile-section" id="profile-theme-section" style="display: none;">
         <div class="form-label" style="margin-bottom:8px;">🎨 Tema de color (vista previa)</div>
         <div id="theme-picker" style="display:flex; flex-wrap:wrap; gap:8px;"><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔴 Original</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟣 Morado</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟢 Esmeralda</button><button type="button" class="btn btn-primary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🟠 Atardecer</button><button type="button" class="btn btn-secondary" style="flex: 1 1 calc(50% - 4px); min-width: 120px; padding: 10px 8px; font-size: 13px;">🔵 Azul</button></div>
         <div style="font-size:11px; color:var(--gris); margin-top:6px;">Solo tú puedes cambiarlo. Se lo preguntará antes de publicar el HTML; los asesores no ven este selector.</div>
@@ -4801,7 +4890,7 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         </div>
       </div>
 
-      <div class="profile-section" id="profile-admin-link" style="display: block;">
+      <div class="profile-section" id="profile-admin-link" style="display: none;">
         <button class="btn btn-secondary w-full" onclick="showMainScreen('turns')">
           👑 Ir al Panel de Administración
         </button>
@@ -4947,7 +5036,7 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         <div class="solicitud-form">
           <div class="form-group">
             <label class="form-label">¿Con quién quieres cambiar?</label>
-            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="MELANYS DANIELA SOBRINO DE LA HOZ">MELANYS DANIELA SOBRINO DE LA HOZ</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
+            <select class="form-input" id="sol-companero" onchange="F3_actualizarPreviewCambio()"><option value="">Selecciona un compañero...</option><option value=" AMIRA ROSA CAMACHO CANTILLO"> AMIRA ROSA CAMACHO CANTILLO</option><option value=" LILIBETH ROMERO ALVAREZ"> LILIBETH ROMERO ALVAREZ</option><option value=" Wandi Vanessa Tafur Sanjuan"> Wandi Vanessa Tafur Sanjuan</option><option value=" ZUANY SOFIA RENDON SINCELEJO"> ZUANY SOFIA RENDON SINCELEJO</option><option value="ADRIANA ANILLO BOLÍVAR">ADRIANA ANILLO BOLÍVAR</option><option value="ALEXANDRA HURTADO BARROSO">ALEXANDRA HURTADO BARROSO</option><option value="ANDREA CAROLINA AGUERO ARENAS">ANDREA CAROLINA AGUERO ARENAS</option><option value="ANDREA MARTINEZ CAMARGO">ANDREA MARTINEZ CAMARGO</option><option value="BRIANIS MILETH TORRES MÁRQUEZ">BRIANIS MILETH TORRES MÁRQUEZ</option><option value="CARLOS ENRIQUE GUZMAN JIMENEZ">CARLOS ENRIQUE GUZMAN JIMENEZ</option><option value="CAROLL DAYANA BERDUGO BERDUGO">CAROLL DAYANA BERDUGO BERDUGO</option><option value="CINDY PATRICIA ALVAREZ GUTIERREZ">CINDY PATRICIA ALVAREZ GUTIERREZ</option><option value="DIEGO ARMANDO MANJARRES PHEREZ">DIEGO ARMANDO MANJARRES PHEREZ</option><option value="DILAN ANDRES DE ALBA RODRIGUEZ">DILAN ANDRES DE ALBA RODRIGUEZ</option><option value="Diosibel Maria Gonzalez Marchena">Diosibel Maria Gonzalez Marchena</option><option value="ELIACID DAVID SANDOVAL PORRAS">ELIACID DAVID SANDOVAL PORRAS</option><option value="ESPERANZA ISABEL PARADA DE LA CRUZ">ESPERANZA ISABEL PARADA DE LA CRUZ</option><option value="EVERLIN SANDRY MORENO LOPEZ">EVERLIN SANDRY MORENO LOPEZ</option><option value="GREY MAR NORIEGA ALGARIN">GREY MAR NORIEGA ALGARIN</option><option value="GUSTAVO ANDRÉS CERA GONZALEZ">GUSTAVO ANDRÉS CERA GONZALEZ</option><option value="HOMERO LEONEL DIAZ ORTEGA">HOMERO LEONEL DIAZ ORTEGA</option><option value="HUMBERTO JAVIER BARRETO CASTILLO">HUMBERTO JAVIER BARRETO CASTILLO</option><option value="JENNIFER MORALES MENDOZA">JENNIFER MORALES MENDOZA</option><option value="JOCELINE CAROLINE DE LA ROSA GOMEZ">JOCELINE CAROLINE DE LA ROSA GOMEZ</option><option value="JOSE GREGORIO RUÍZ BENAVIDES">JOSE GREGORIO RUÍZ BENAVIDES</option><option value="JUAN DAVID ECHEVERRIA PRINCE">JUAN DAVID ECHEVERRIA PRINCE</option><option value="JULIETH PAOLA PERALTA MARTINEZ">JULIETH PAOLA PERALTA MARTINEZ</option><option value="KAREN LISETH DE LA ASUNCION CERVANTES">KAREN LISETH DE LA ASUNCION CERVANTES</option><option value="KATHERINE PAOLA ARIAS JARAMILLO">KATHERINE PAOLA ARIAS JARAMILLO</option><option value="KATHY MORALES SUÁREZ">KATHY MORALES SUÁREZ</option><option value="MARIA DE LOS ANGELES PANTOJA DE LA HOZ">MARIA DE LOS ANGELES PANTOJA DE LA HOZ</option><option value="MARIANA PAOLA DOMINGUEZ MERCADO">MARIANA PAOLA DOMINGUEZ MERCADO</option><option value="NEVIS CAROLINA JIMENEZ MARMOL">NEVIS CAROLINA JIMENEZ MARMOL</option><option value="NOHRA ALEXANDRA BELTRÁN PARRA">NOHRA ALEXANDRA BELTRÁN PARRA</option><option value="SANTIAGO DAVID MOLINA GARCÍA">SANTIAGO DAVID MOLINA GARCÍA</option><option value="VIVIANA ESTER CUMPLIDO VALENCIA">VIVIANA ESTER CUMPLIDO VALENCIA</option><option value="WENDI VANESA MOLINA HERRERA">WENDI VANESA MOLINA HERRERA</option><option value="YANILETH DAYANA TORRES PEREZ">YANILETH DAYANA TORRES PEREZ</option><option value="YESENIA MARIA IBÁÑEZ NAVARRO">YESENIA MARIA IBÁÑEZ NAVARRO</option><option value="YULISSA LILIANA PEREZ SALCEDO">YULISSA LILIANA PEREZ SALCEDO</option></select>
           </div>
           <div class="form-group">
             <label class="form-label">Fecha del turno a cambiar</label>
@@ -5033,12 +5122,12 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  08/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
-05/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	7:00:00	a.	m.	4:00:00	p.	m.	9:40:00	a.	m.	12:00:00	a.	m.	11:40:00	a.	m.	8:00:00
+ 05/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  07/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  09/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
-10/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
+ 10/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  06/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  07/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -5111,11 +5200,11 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  08/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
-05/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:00:00	a.	m.	4:00:00	p.	m.	10:00:00	a.	m.	12:00:00	a.	m.	1:00:00	p.	m.	8:00:00
-06/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:00:00	a.	m.	4:00:00	p.	m.	9:40:00	a.	m.	12:00:00	a.	m.	12:50:00	p.	m.	8:00:00
-07/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	11:00:00	a.	m.	7:00:00	p.	m.	12:25:00	p.	m.	4:55:00	p.	m.	2:20:00	p.	m.	7:00:00
-08/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:15:00	a.	m.	3:30:00	p.	m.	10:00:00	a.	m.	12:00:00	a.	m.	1:00:00	p.	m.	7:15:00
-09/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:15:00	a.	m.	3:30:00	p.	m.	10:00:00	a.	m.	12:00:00	a.	m.	1:00:00	p.	m.	7:15:00
+ 05/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 06/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+07/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 08/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 09/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  10/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
@@ -5161,12 +5250,12 @@ const MALLA_BASELINE_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BRE
  08/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
-05/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	6:30:00	a.	m.	3:30:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	11:10:00	a.	m.	8:00:00
+ 05/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  07/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  09/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
-10/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
+ 10/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  06/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  07/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -8308,7 +8397,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-04.1803';
+const TB_APP_VERSION = '2026-10-04.1932';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -10079,7 +10168,7 @@ function TB_CAMBIOS_init() {
 // el const ya exista.
 TB_CAMBIOS_init();
 
-const TB_HORAS_DEFAULT = {"2026-09-29|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-30|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"2","min":120,"repartido":60,"otraFecha":"29/09, 30/09","otras":["2026-09-29","2026-09-30"],"reparto":[{"fecha":"2026-09-29","min":30},{"fecha":"2026-09-30","min":30}],"cond":true},"2026-10-08|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.3","min":15,"otraFecha":"07/10","otraISO":"2026-10-07"},"2026-10-09|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.3","min":15,"otraFecha":"07/10","otraISO":"2026-10-07"},"2026-10-05|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"08/10, 09/10","otras":["2026-10-08","2026-10-09"]},"2026-10-06|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"08/10, 09/10","otras":["2026-10-08","2026-10-09"]},"2026-10-07|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"0.5","min":30,"otraFecha":"08/10, 09/10","otras":["2026-10-08","2026-10-09"]},"2026-10-05|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"10/10","otraISO":"2026-10-10","cond":true},"2026-10-10|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"origen","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true}};
+const TB_HORAS_DEFAULT = {"2026-10-05|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"10/10","otraISO":"2026-10-10","cond":true},"2026-10-10|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"origen","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true},"2026-10-07|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"1","min":60,"otraFecha":"08/10","otraISO":"2026-10-08"},"2026-10-10|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"06/10","otraISO":"2026-10-06"},"2026-10-08|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"07/10","otraISO":"2026-10-07"}};
 function TB_HORAS_init() {
   try {
     const embebidos = TB_HORAS_DEFAULT || {};
@@ -10520,7 +10609,7 @@ function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fe
 //   en un registro aparte (igual que HORAS_registrar) que también se hornea.
 // ══════════════════════════════════════════════════
 const BREAKS_KEY = 'tb_breaks_v1';
-const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]},"2026-09-29|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}}};
+const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]},"2026-09-29|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}}};
 const BRK_LABELS = ['Break 1', 'Break 2', 'Salida almuerzo'];   // = MALLA_AUX_LABEL
 const BRK_NOMBRES = ['Break 1', 'Break 2', 'Almuerzo'];
 const BRK_DUR = [15, 15, 60];                                   // minutos
@@ -12707,12 +12796,12 @@ function ARCADE_PAC_start() {
 
 // ── Camuflaje premium: 20 escenarios 2D/3D × variantes infinitas, Eva rigurosa, camaleón expresivo, pintura por secciones ──
 const ARCADE_CAM_PAL = ['#2f6b2f', '#4c9a3a', '#6dbb45', '#a0643b', '#6b3f22', '#8a5a33', '#a5522d', '#d9b97a', '#e0c28a', '#c9b79c', '#a98f6e', '#7c654a', '#8e8e8e', '#8a94a6', '#5b6472', '#4b5563', '#33415c', '#272d3b', '#1f2937', '#0f766e', '#f59e0b', '#c0392b', '#f2f2f2', '#2a2a35'];
-let ARCADE_CAM_ORD = [0, 1, 5, 2, 3, 7, 4, 9, 6, 10, 11, 8, 12, 14, 13, 15, 19, 16, 18, 17, 20, 21, 22, 23];
-const ARCADE_CAM_TN = ['🧱 Pared de ladrillos', '🌿 Jardín', '🏜️ Desierto', '🪵 Tronco', '🎨 Mosaico', '🏠 Habitación 3D', '🌲 Bosque 3D', '🧊 Cubos 3D', '🌀 Túnel 3D', '🐯 Rayas de tigre', '🐆 Leopardo', '🍯 Panal', '🌊 Olas', '🔴 Lunares', '🔮 Esferas 3D', '🏛️ Columnas 3D', '🔺 Pirámides 3D', '🌆 Ciudad 3D', '❄️ Cristales de hielo', '🌸 Flores', '🌌 Galaxia 3D', '🕹️ Retro 3D', '🐠 Arrecife', '🔷 Vitral'];
-const ARCADE_CAM_DET = ['rect', 'leaf', 'dot', 'line', 'rect', 'rect', 'leaf', 'rect', 'line', 'line', 'dot', 'hex', 'line', 'dot', 'dot', 'line', 'tri', 'rect', 'tri', 'leaf', 'dot', 'line', 'leaf', 'tri'];
+let ARCADE_CAM_ORD = [0, 1, 5, 2, 3, 7, 24, 4, 9, 6, 10, 25, 11, 8, 12, 14, 26, 13, 15, 19, 27, 16, 18, 17, 28, 20, 21, 29, 22, 23, 30, 31];
+const ARCADE_CAM_TN = ['🧱 Pared de ladrillos', '🌿 Jardín', '🏜️ Desierto', '🪵 Tronco', '🎨 Mosaico', '🏠 Habitación 3D', '🌲 Bosque 3D', '🧊 Cubos 3D', '🌀 Túnel 3D', '🐯 Rayas de tigre', '🐆 Leopardo', '🍯 Panal', '🌊 Olas', '🔴 Lunares', '🔮 Esferas 3D', '🏛️ Columnas 3D', '🔺 Pirámides 3D', '🌆 Ciudad 3D', '❄️ Cristales de hielo', '🌸 Flores', '🌌 Galaxia 3D', '🕹️ Retro 3D', '🐠 Arrecife', '🔷 Vitral', '🦓 Cebra', '🧶 Tejido', '🍂 Hojas de otoño', '🏖️ Playa', '🌋 Lava', '🪨 Piedras 3D', '🌈 Arcoíris', '🍄 Hongos'];
+const ARCADE_CAM_DET = ['rect', 'leaf', 'dot', 'line', 'rect', 'rect', 'leaf', 'rect', 'line', 'line', 'dot', 'hex', 'line', 'dot', 'dot', 'line', 'tri', 'rect', 'tri', 'leaf', 'dot', 'line', 'leaf', 'tri', 'line', 'rect', 'leaf', 'dot', 'tri', 'dot', 'line', 'dot'];
 const ARCADE_CAM_SECN = { cola: '🌀 Cola', cuerpo: '🫁 Cuerpo', patas: '🦵 Patas', cabeza: '🐲 Cabeza', cresta: '🔺 Cresta' };
 const ARCADE_CAM_ALL = ['cola', 'cuerpo', 'patas', 'cabeza', 'cresta'];
-function ARCADE_CAM_name(L) { return ARCADE_CAM_TN[ARCADE_CAM_ORD[(L - 1) % 24]] + (L > 24 ? ' · variante ' + (Math.floor((L - 1) / 24) + 1) : ''); }
+function ARCADE_CAM_name(L) { return ARCADE_CAM_TN[ARCADE_CAM_ORD[(L - 1) % 32]] + (L > 32 ? ' · variante ' + (Math.floor((L - 1) / 32) + 1) : ''); }
 function ARCADE_CAM_path(x, keys) {
   const e = (cx, cy, rx, ry) => { x.moveTo(cx + rx, cy); x.ellipse(cx, cy, rx, ry, 0, 0, 6.2832); };
   const P = { cola: () => { e(22, 60, 17, 17); e(8, 40, 10, 10); e(30, 40, 12, 12); }, cuerpo: () => e(80, 68, 58, 36), patas: () => { x.roundRect(46, 92, 18, 30, 8); x.roundRect(100, 92, 18, 30, 8); }, cabeza: () => { e(138, 54, 26, 24); e(160, 60, 16, 10); }, cresta: () => { e(60, 34, 10, 8); e(84, 30, 10, 8); e(106, 34, 10, 8); } };
@@ -12795,8 +12884,8 @@ function ARCADE_CAM_scene3d(x, t, r, R) {
 }
 
 function ARCADE_CAM_scene(x, L) {
-  const o = ARCADE_CAM_ORD[(L - 1) % 24], v = Math.floor((L - 1) / 24);
-  if (o < 9) ARCADE_CAM_sceneOld(x, o + 1 + 9 * v); else ARCADE_CAM_scene2(x, o, v);
+  const o = ARCADE_CAM_ORD[(L - 1) % 32], v = Math.floor((L - 1) / 32);
+  if (o < 9) ARCADE_CAM_sceneOld(x, o + 1 + 9 * v); else if (o < 24) ARCADE_CAM_scene2(x, o, v); else ARCADE_CAM_scene4(x, o, v);
   if (v || ARCADE_CAM.hs) ARCADE_CAM_hue(x, v * 41 + (ARCADE_CAM.hs || 0));
 }
 function ARCADE_CAM_scene2(x, t, v) {
@@ -12821,6 +12910,165 @@ function ARCADE_CAM_scene2(x, t, v) {
   else { x.fillStyle = '#3f8a30'; x.fillRect(0, 0, W, H); for (let k = 0; k < 200; k++) { x.fillStyle = ['#2a5c26', '#4c9a3a', '#6dbb45'][k % 3]; ell(R(0, W), R(0, H), R(10, 26), R(5, 12), R(0, 3.14)); } for (let k = 0; k < 70; k++) { const cx = R(0, W), cy = R(0, H), rr = R(10, 18); x.fillStyle = ['#f59e0b', '#fde047', '#f472b6', '#f2f2f2'][k % 4]; for (let a = 0; a < 5; a++) ell(cx + Math.cos(a * 1.2566) * rr, cy + Math.sin(a * 1.2566) * rr, rr * .8, rr * .55, a * 1.2566); x.fillStyle = '#a0643b'; ell(cx, cy, rr * .45, rr * .45); } }
   const vg = x.createRadialGradient(450, 250, 200, 450, 250, 560); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.2)'); x.fillStyle = vg; x.fillRect(0, 0, W, H);
 }
+// ── Escenarios extra (24-31) ──
+function ARCADE_CAM_scene4(x, t, v) {
+  const W = 900, H = 500, r = ARCADE_PAC_rng(t * 1213 + v * 17 + 9 + (ARCADE_CAM.sd || 0)), R = (a, b) => a + r() * (b - a);
+  const ell = (cx, cy, rx, ry, rot) => { x.beginPath(); x.ellipse(cx, cy, rx, ry, rot || 0, 0, 6.2832); x.fill(); };
+  let g;
+  if (t === 24) { x.fillStyle = '#f3f1ea'; x.fillRect(0, 0, W, H); x.fillStyle = '#17171c'; for (let k = -8; k < 30; k++) { const bx = k * 36, w = 13 + (k % 3) * 5; x.beginPath(); x.moveTo(bx, 0); for (let y = 0; y <= H; y += 20) x.lineTo(bx + 28 * Math.sin(y / 85 + k * .4) + y * .38, y); for (let y = H; y >= 0; y -= 20) x.lineTo(bx + w + 28 * Math.sin(y / 85 + k * .4) + y * .38, y); x.closePath(); x.fill(); } }
+  else if (t === 25) { const cs = ['#c0392b', '#e8b04a', '#2c5f7c', '#f2e6c9']; x.fillStyle = '#5a3a22'; x.fillRect(0, 0, W, H); for (let j = 0; j < 21; j++) for (let i = 0; i < 38; i++) { x.fillStyle = cs[(i + j * 2 + (j >> 2)) % 4]; if ((i + j) % 2) x.fillRect(i * 24, j * 24 + 2, 24, 20); else x.fillRect(i * 24 + 2, j * 24, 20, 24); x.fillStyle = 'rgba(0,0,0,.18)'; if ((i + j) % 2) x.fillRect(i * 24, j * 24 + 17, 24, 4); else x.fillRect(i * 24 + 17, j * 24, 4, 24); } }
+  else if (t === 26) { x.fillStyle = '#6b3f22'; x.fillRect(0, 0, W, H); const cs = ['#c2410c', '#d97706', '#eab308', '#92400e', '#7c2d12', '#b45309']; for (let k = 0; k < 280; k++) { const cx = R(0, W), cy = R(0, H), rx = R(14, 30), ry = rx * R(.45, .7), rot = R(0, 3.14); x.fillStyle = cs[k % 6]; ell(cx, cy, rx, ry, rot); x.strokeStyle = 'rgba(60,20,5,.55)'; x.lineWidth = 1.6; x.beginPath(); x.moveTo(cx - Math.cos(rot) * rx, cy - Math.sin(rot) * rx); x.lineTo(cx + Math.cos(rot) * rx, cy + Math.sin(rot) * rx); x.stroke(); } }
+  else if (t === 27) { g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#2fa4c9'); g.addColorStop(.22, '#7fd6e6'); g.addColorStop(.26, '#f6f1e3'); g.addColorStop(.3, '#ead7a5'); g.addColorStop(1, '#d2b27c'); x.fillStyle = g; x.fillRect(0, 0, W, H); for (let k = 0; k < 900; k++) { x.fillStyle = 'rgba(' + (r() < .5 ? '120,90,50' : '255,245,220') + ',' + R(.15, .5) + ')'; ell(R(0, W), R(135, H), R(1, 2.6), R(1, 2.2)); } for (let k = 0; k < 26; k++) { const cx = R(0, W), cy = R(160, H - 20), s = R(10, 20); x.fillStyle = ['#f4a6a6', '#fff', '#f2c28b'][k % 3]; ell(cx, cy, s, s * .75, R(0, 3)); x.strokeStyle = 'rgba(120,70,40,.5)'; x.lineWidth = 1.5; for (let a = -2; a <= 2; a++) { x.beginPath(); x.moveTo(cx, cy + s * .6); x.lineTo(cx + a * s * .45, cy - s * .55); x.stroke(); } } }
+  else if (t === 28) { x.fillStyle = '#17110f'; x.fillRect(0, 0, W, H); x.lineCap = 'round'; x.shadowColor = '#ff6a00'; x.shadowBlur = 14; for (let k = 0; k < 34; k++) { let px = R(0, W), py = R(0, H); x.strokeStyle = 'hsl(' + R(10, 40) + ',100%,' + R(50, 62) + '%)'; x.lineWidth = R(2, 5); x.beginPath(); x.moveTo(px, py); for (let s = 0; s < 6; s++) { px += R(-50, 50); py += R(-40, 40); x.lineTo(px, py); } x.stroke(); } x.shadowBlur = 0; for (let k = 0; k < 90; k++) { const cx = R(0, W), cy = R(0, H), s = R(22, 54); x.fillStyle = 'rgba(' + (32 + R(0, 26) | 0) + ',' + (26 + R(0, 18) | 0) + ',' + (24 + R(0, 14) | 0) + ',.93)'; x.beginPath(); for (let a = 0; a < 7; a++) { const an = a / 7 * 6.2832, rr = s * R(.65, 1); x.lineTo(cx + Math.cos(an) * rr, cy + Math.sin(an) * rr * .8); } x.closePath(); x.fill(); } }
+  else if (t === 29) { g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#6a655c'); g.addColorStop(1, '#3c3a35'); x.fillStyle = g; x.fillRect(0, 0, W, H); const hs = [30, 25, 35, 200, 15]; for (let k = 0; k < 170; k++) { const rr = R(20, 52), cx = R(0, W), cy = R(0, H), h = hs[k % 5]; x.fillStyle = 'rgba(0,0,0,.3)'; ell(cx + rr * .15, cy + rr * .75, rr * .95, rr * .28); g = x.createRadialGradient(cx - rr * .35, cy - rr * .4, rr * .1, cx, cy, rr); g.addColorStop(0, 'hsl(' + h + ',12%,' + R(62, 76) + '%)'); g.addColorStop(1, 'hsl(' + h + ',14%,' + R(22, 32) + '%)'); x.fillStyle = g; ell(cx, cy, rr, rr * .82, R(-.4, .4)); } }
+  else if (t === 30) { g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#3b82f6'); g.addColorStop(1, '#1e3a8a'); x.fillStyle = g; x.fillRect(0, 0, W, H); x.lineWidth = 36; for (let j = 0; j < 19; j++) { x.strokeStyle = 'hsl(' + (j * 21 % 360) + ',85%,58%)'; x.beginPath(); for (let i = 0; i <= W; i += 10) x.lineTo(i, j * 30 - 30 + Math.sin(i / 70 + j * .6) * 26); x.stroke(); } }
+  else { g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#3f6b2d'); g.addColorStop(1, '#27451c'); x.fillStyle = g; x.fillRect(0, 0, W, H); for (let k = 0; k < 190; k++) { x.fillStyle = ['#2f5524', '#4a7c36', '#5f9444'][k % 3]; ell(R(0, W), R(0, H), R(10, 26), R(6, 14), R(0, 3)); } for (let k = 0; k < 46; k++) { const cx = R(20, W - 20), cy = R(60, H - 10), s = R(14, 30); x.fillStyle = '#efe4c9'; x.fillRect(cx - s * .17, cy, s * .34, s * .9); x.fillStyle = k % 4 ? '#c0392b' : '#e67e22'; x.beginPath(); x.ellipse(cx, cy, s, s * .75, 0, Math.PI, 0); x.closePath(); x.fill(); x.fillStyle = 'rgba(255,255,255,.92)'; for (let d = 0; d < 4; d++) ell(cx + R(-.6, .6) * s, cy - R(.1, .55) * s, s * .13, s * .12); } }
+  const vg = x.createRadialGradient(450, 250, 200, 450, 250, 560); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.2)'); x.fillStyle = vg; x.fillRect(0, 0, W, H);
+}
+// ── Momentos cómicos de Eva mientras busca ──
+const ARCADE_CAM_GAGS = [
+  ['¿Dónde estás? 🔎', '🤔'], ['Mmm… 🧐', '🧐'], ['¿Detrás de esto? 👀', '👀'], ['¿Eres tú, arbusto? 🌿', '🧐'], ['Ese es solo un ladrillo… 🧱', '🙄'],
+  ['¡Achú! 🤧', '🤧', 'sneeze', 'sneeze'], ['¡Ay, una banana! 🍌', '😵', 'spin', 'slip'], ['Mmm… huele a camaleón 👃', '👃', 'hop'], ['*bostezo* 🥱', '🥱', 'shrug'],
+  ['¡Cucú! 🙈', '🙈', 'hop', 'pop'], ['¿Y si miro al revés? 🙃', '🙃', 'flip'], ['¿Camaleón? ¿Hola? 📢', '📢', 'hop'], ['¡Era solo una hoja! 🍃', '😅'], ['Shhh… silencio… 🤫', '🤫']
+];
+function ARCADE_CAM_gag(T, w) {
+  const G = ARCADE_CAM, g = ARCADE_CAM_GAGS[Math.floor(Math.random() * ARCADE_CAM_GAGS.length)];
+  ARCADE_CAM_say(g[0]); G.emo = g[1]; G.gagCls = g[2] || ''; G.gagUntil = g[2] ? T + Math.min(1500, w * 900) : 0; if (g[3]) ARCADE_CAM_snd(g[3]);
+}
+const ARCADE_CAM_TLN = {
+  martillo: ['¡Te encontré! 🔨', '¡Bonk! jajaja 😆'], jaula: ['¡A la jaula! 🪤', '¡Te quedas ahí! 😎'], agua: ['¡Hora del baño! 🛁', '¡Estás empapado! 💦'], yunque: ['¡Cuidado abajo! ⚠️', '¡Plaf! 😂'],
+  pastel: ['¡Toma pastel! 🥧', '¡Qué rico se ve! 🤣'], cosquillas: ['¡Cosquillitas! 🪶', '¡No aguanto la risa! 🤣'], cohete: ['¡Cohete encendido! 🧨', '¡Buen viaje! 🚀😂'],
+  selfie: ['¡Una selfie, camaleón! 🤳', '¡Quedé divina! 😎'], red: ['¡Te voy a atrapar! 🦋', '¡Pesqué un camaleón! 🎣'], trompo: ['¡Vamos a girar! 🌀', '¡Wiiii, mareado! 😵‍💫']
+};
+// ── Tutorial animado: mini-película didáctica ──
+const ARCADE_CAM_TUT_D = 44;
+const ARCADE_CAM_TUT_S = [
+  [0, 5, '👋 ¡Hola! Eres un camaleón y EVA te está buscando', 'Tu misión: pintarte igual que el fondo para que no te encuentre.'],
+  [5, 11, '1️⃣ Toca el fondo para cargar tu pincel', 'Con 👆 Del fondo toca una zona: el pincel copia su color y su detalle.'],
+  [11, 19, '2️⃣ Píntate con 🖌️ o rellena con 🪣', 'Pinta a mano, o usa 🪣 Sección para cubrir cola, cuerpo, patas, cabeza o cresta de un golpe.'],
+  [19, 24, '3️⃣ Ubícate bien y pulsa ✅ ¡Listo!', 'Con ✋ Mover busca el lugar donde mejor te mezcles. ¡Ojo con el tiempo!'],
+  [24, 32, '4️⃣ EVA te busca con su radar 📡 y su lupa 🔍', 'Revisa cada parte de tu cuerpo. Si una zona no encaja con el fondo… ¡la marca en rojo!'],
+  [32, 39, '5️⃣ El resultado', 'Si Eva no te encuentra: ¡celebras y pasas de nivel! Si te descubre: ¡prepárate para la broma! 😅'],
+  [39, 44, '💡 Consejos de camaleón', 'Cada nivel da más tiempo para pintar · Eva mira con más atención · Tienes 3 ❤️ · Color + detalle = mejor nota']
+];
+function ARCADE_CAM_tutOpen() {
+  const G = ARCADE_CAM, st = document.getElementById('cam-stage'); if (!G || !st || G.tut) return;
+  const mk = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
+  const bg = mk(900, 500); try { ARCADE_CAM_sceneOld(bg.getContext('2d'), 2); } catch (e) {}
+  const pc = mk(180, 130), spots = []; for (let i = 0; i < 80; i++) spots.push([Math.random() * 180, Math.random() * 130, 3 + Math.random() * 5, Math.random()]);
+  const ov = document.createElement('div'); ov.id = 'cam-tut'; ov.className = 'cam-tut';
+  ov.innerHTML = '<canvas width="900" height="500"></canvas><div class="cam-tut-top"><span>🎬 Cómo jugar a Camuflaje</span><button class="cam-tut-x" onclick="ARCADE_CAM_tutClose()" title="Cerrar">✕</button></div>' +
+    '<div class="cam-tut-cap"><b id="cam-tut-h"></b><span id="cam-tut-p"></span><div class="cam-tut-ctl"><button onclick="ARCADE_CAM_tutGo(-1)" title="Anterior">⏮</button><button id="cam-tut-pp" onclick="ARCADE_CAM_tutPause()" title="Pausa">⏸</button><button onclick="ARCADE_CAM_tutGo(1)" title="Siguiente">⏭</button>' +
+    '<div class="cam-tut-dots">' + ARCADE_CAM_TUT_S.map((s, i) => '<i onclick="ARCADE_CAM_tutSeek(' + i + ')"></i>').join('') + '</div><button class="cam-tut-play" onclick="ARCADE_CAM_tutClose()">¡A jugar! ▶</button></div><div class="cam-tut-prog"><i id="cam-tut-pr"></i></div></div>';
+  const bar = document.getElementById('cam-bar'); ov.style.width = st.getBoundingClientRect().width + 'px'; ov.insertBefore(ov.querySelector('.cam-tut-top'), ov.firstChild); st.parentNode.insertBefore(ov, st); st.style.display = 'none'; const bd = bar ? bar.style.display : ''; if (bar) bar.style.display = 'none'; ARCADE_CAM_snd('pick');
+  const tu = G.tut = { t: 0, last: 0, paused: false, raf: 0, bg, pc, spots, cv: ov.querySelector('canvas'), ov, si: -1, bd };
+  const loop = ts => { if (!ARCADE_CAM || ARCADE_CAM.tut !== tu) return; const dt = tu.last ? Math.min(.05, (ts - tu.last) / 1000) : 0; tu.last = ts; if (!tu.paused) { tu.t += dt; if (tu.t >= ARCADE_CAM_TUT_D) tu.t = 0; } ARCADE_CAM_tutFrame(tu); tu.raf = requestAnimationFrame(loop); };
+  tu.raf = requestAnimationFrame(loop);
+}
+function ARCADE_CAM_tutClose() {
+  const G = ARCADE_CAM; if (!G || !G.tut) return; cancelAnimationFrame(G.tut.raf); G.tut.ov.remove(); const st = document.getElementById('cam-stage'), bar = document.getElementById('cam-bar'); if (st) st.style.display = ''; if (bar) bar.style.display = G.tut.bd || (G.ph === 'prep' || G.retouch ? 'flex' : 'none'); G.tut = null; window.__camTutSeen = 1; try { localStorage.setItem('cam_tut_v1', '1'); } catch (e) {} ARCADE_CAM_snd('tap');
+}
+function ARCADE_CAM_tutPause() { const G = ARCADE_CAM; if (!G || !G.tut) return; G.tut.paused = !G.tut.paused; const b = document.getElementById('cam-tut-pp'); if (b) b.textContent = G.tut.paused ? '▶' : '⏸'; }
+function ARCADE_CAM_tutSeek(i) { const G = ARCADE_CAM; if (!G || !G.tut) return; G.tut.t = ARCADE_CAM_TUT_S[Math.max(0, Math.min(ARCADE_CAM_TUT_S.length - 1, i))][0] + .01; ARCADE_CAM_snd('tap'); }
+function ARCADE_CAM_tutGo(d) { const G = ARCADE_CAM; if (!G || !G.tut) return; const n = ARCADE_CAM_TUT_S.length; ARCADE_CAM_tutSeek((G.tut.si + d + n) % n); }
+function ARCADE_CAM_tutFrame(tu) {
+  const S = ARCADE_CAM_TUT_S, t = tu.t; let si = S.findIndex(s => t >= s[0] && t < s[1]); if (si < 0) si = S.length - 1;
+  if (tu.si !== si) { tu.si = si; const h = document.getElementById('cam-tut-h'), p = document.getElementById('cam-tut-p'); if (h) h.textContent = S[si][2]; if (p) p.textContent = S[si][3]; tu.ov.querySelectorAll('.cam-tut-dots i').forEach((d, i) => d.classList.toggle('on', i === si)); }
+  const pr = document.getElementById('cam-tut-pr'); if (pr) pr.style.width = t / ARCADE_CAM_TUT_D * 100 + '%';
+  ARCADE_CAM_tutDraw(tu.cv.getContext('2d'), t, tu);
+}
+function ARCADE_CAM_tutEva(x, px, py, s, T, lupa) {
+  x.save(); x.translate(px, py); x.scale(s, s); x.shadowColor = 'rgba(34,195,242,.9)'; x.shadowBlur = 18;
+  const g = x.createLinearGradient(-20, -40, 20, 50); g.addColorStop(0, '#fff'); g.addColorStop(1, '#a9d8f2'); x.fillStyle = g;
+  x.beginPath(); x.ellipse(0, 30, 17, 21, 0, 0, 6.2832); x.fill(); x.beginPath(); x.ellipse(0, -12, 26, 21, 0, 0, 6.2832); x.fill(); x.shadowBlur = 0;
+  x.fillStyle = '#0b1c33'; x.beginPath(); x.ellipse(0, -12, 19, 13, 0, 0, 6.2832); x.fill(); x.fillStyle = '#22e6ff'; [-8, 8].forEach(ex => { x.beginPath(); x.ellipse(ex, -12, 4.4, 5.6, 0, 0, 6.2832); x.fill(); });
+  x.strokeStyle = '#8df0ff'; x.lineWidth = 3; x.beginPath(); x.moveTo(0, -33); x.lineTo(0, -44); x.stroke(); x.fillStyle = '#22c3f2'; x.beginPath(); x.arc(0, -46, 4, 0, 6.2832); x.fill(); x.restore();
+  if (lupa) { x.save(); x.translate(px + 42 * s, py + 14 * s); x.rotate(Math.sin(T / 160) * .3); x.font = 58 * s + 'px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('🔍', 0, 0); x.restore(); }
+}
+function ARCADE_CAM_tutDraw(x, t, tu) {
+  const T = t * 1000, C = (v, a, b) => Math.max(a, Math.min(b, v)), e = (a, b) => { const v = C((t - a) / (b - a), 0, 1); return v * v * (3 - 2 * v); }, Hh = (i, s) => { const v = Math.sin(i * 127.1 + s * 311.7) * 43758.5453; return v - Math.floor(v); };
+  const tx = (s, px, py, sz, fill) => { x.save(); x.font = '900 ' + sz + 'px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.lineJoin = 'round'; x.lineWidth = sz * .2; x.strokeStyle = '#111'; x.strokeText(s, px, py); x.fillStyle = fill || '#ffd23f'; x.fillText(s, px, py); x.restore(); };
+  const em = (s, px, py, sz, rot) => { x.save(); x.translate(px, py); x.rotate(rot || 0); x.font = sz + 'px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(s, 0, 0); x.restore(); };
+  const S = 1.7, mv = t >= 39 ? 0 : e(19.3, 20.8) * 70, X0 = 450 - 90 * S + mv, Y0 = 215 - 65 * S, cx0 = X0 + 90 * S, cy0 = Y0 + 65 * S;
+  const cols = { cola: t >= 24 && t < 32 ? '#a6dc84' : '#2f6b2f', cuerpo: '#4c9a3a', patas: '#2f6b2f', cabeza: '#4c9a3a', cresta: '#6dbb45' }, order = ['cola', 'cuerpo', 'patas', 'cabeza', 'cresta'];
+  const cen = { cola: [20, 50], cuerpo: [80, 66], patas: [82, 104], cabeza: [145, 55], cresta: [84, 30] };
+  const tm = { cola: [11.4, 12.9], cuerpo: [13, 15], patas: [15.4, 16.2], cabeza: [16.5, 17.3], cresta: [17.6, 18.4] };
+  const pp = k => t >= 19 ? 1 : t < tm[k][0] ? 0 : C((t - tm[k][0]) / (tm[k][1] - tm[k][0]), 0, 1);
+  const q = tu.pc.getContext('2d'); q.clearRect(0, 0, 180, 130);
+  order.forEach(k => { q.save(); ARCADE_CAM_path(q, [k]); q.clip(); q.fillStyle = '#cbd5e1'; q.fillRect(0, 0, 180, 130); const p = pp(k); if (p > 0) { q.fillStyle = cols[k]; q.fillRect(0, 0, 180 * p, 130); q.fillStyle = 'rgba(15,50,18,.55)'; tu.spots.forEach(s => { if (s[0] < 180 * p) { q.beginPath(); q.ellipse(s[0], s[1], s[2], s[2] * .55, s[3] * 3, 0, 6.2832); q.fill(); } }); } q.restore(); });
+  x.clearRect(0, 0, 900, 500); x.drawImage(tu.bg, 0, 0); if (t >= 39) { x.fillStyle = 'rgba(5,11,24,.55)'; x.fillRect(0, 0, 900, 500); }
+  // barra de herramientas simulada
+  if (t >= 5 && t < 24) {
+    const tb = [['👆', 'Del fondo', 5, 11], ['🖌️', 'Pintar', 11, 15.2], ['🪣', 'Sección', 15.2, 19], ['✋', 'Mover', 19, 21.5], ['✅', '¡Listo!', 21.5, 24]];
+    tb.forEach((b, i) => { const on = t >= b[2] && t < b[3], bx = 34 + i * 168, pu = on ? 1 + Math.sin(T / 130) * .03 : 1; x.save(); x.translate(bx + 80, 85); x.scale(pu, pu); x.fillStyle = on ? (i === 4 ? '#22c55e' : '#22c3f2') : 'rgba(10,20,40,.78)'; x.shadowColor = on ? '#22c3f2' : 'transparent'; x.shadowBlur = on ? 18 : 0; x.beginPath(); x.roundRect(-80, -19, 160, 38, 12); x.fill(); x.shadowBlur = 0; x.strokeStyle = 'rgba(255,255,255,.35)'; x.lineWidth = 1.5; x.stroke(); x.fillStyle = '#fff'; x.font = '800 19px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(b[0] + ' ' + b[1], 0, 1); x.restore(); });
+  }
+  // movimientos del camaleón
+  let bounce = 0, rot = 0, sx = 1, sy = 1, mood = 'neutral';
+  if (t < 5) mood = Math.floor(T / 1500) % 2 ? 'happy' : 'neutral'; else if (t < 24) mood = t >= 11 && t < 15.2 ? 'tongue' : 'happy';
+  else if (t < 32) { const ev = ARCADE_CAM_tutEvaPos(t, cx0, cy0), d = Math.hypot(ev[0] - cx0, ev[1] - cy0); mood = d < 190 ? 'scared' : d < 320 ? 'nervous' : 'happy'; }
+  else if (t < 35.6) { mood = 'party'; bounce = -Math.abs(Math.sin(T / 170)) * 24; }
+  else if (t < 36.75) mood = 'terror'; else if (t < 39) { mood = 'ko'; if (t < 37.5) { const q2 = e(36.75, 37.5); sy = .45 + .55 * q2; sx = 1.4 - .4 * q2; } }
+  else { mood = 'cool'; rot = Math.sin(T / 200) * .1; bounce = -Math.abs(Math.sin(T / 260)) * 16; }
+  x.fillStyle = 'rgba(0,0,0,.25)'; x.beginPath(); x.ellipse(X0 + 88 * S, Y0 + 124 * S, 56 * S * (1 + bounce / 300), 7 * S, 0, 0, 6.2832); x.fill();
+  x.save(); x.translate(cx0, Y0 + 130 * S + bounce); x.rotate(rot); x.scale(sx, sy); x.translate(-cx0, -(Y0 + 130 * S));
+  x.drawImage(tu.pc, X0, Y0, 180 * S, 130 * S);
+  if (t < 22.5) { x.save(); x.translate(X0, Y0); x.scale(S, S); ARCADE_CAM_path(x, null); x.restore(); x.setLineDash([8, 6]); x.strokeStyle = 'rgba(255,255,255,.85)'; x.lineWidth = 2.5; x.stroke(); x.setLineDash([]); }
+  x.save(); x.translate(X0, Y0); ARCADE_CAM_face(x, mood, T, S); x.restore(); x.restore();
+  // ── Paso 1: tomar del fondo ──
+  if (t >= 5 && t < 11) {
+    const P = [740, 335], hx = t < 7.4 ? 860 + (P[0] - 860) * e(5.6, 7.3) : P[0], hy = t < 7.4 ? 480 + (P[1] - 480) * e(5.6, 7.3) : P[1];
+    if (t > 7.4 && t < 8.2) { const a = (t - 7.4) / .8; x.save(); x.globalAlpha = 1 - a; x.strokeStyle = '#fff'; x.lineWidth = 5; x.beginPath(); x.arc(P[0], P[1], 10 + 60 * a, 0, 6.2832); x.stroke(); x.restore(); }
+    if (t > 7.5) { const f = e(7.6, 8.7), bx = P[0] + (95 - P[0]) * f, by = P[1] + (178 - P[1]) * f - Math.sin(f * 3.14) * 60; x.fillStyle = '#4c9a3a'; x.beginPath(); x.arc(bx, by, 14 + 28 * f, 0, 6.2832); x.fill(); x.lineWidth = 4; x.strokeStyle = '#fff'; x.stroke(); if (f >= 1) { x.fillStyle = 'rgba(20,60,20,.6)'; for (let i = 0; i < 6; i++) { x.beginPath(); x.ellipse(bx - 18 + Hh(i, 1) * 36, by - 18 + Hh(i, 2) * 36, 4, 2.4, Hh(i, 3) * 3, 0, 6.2832); x.fill(); } tx('Tu pincel 🖌️', bx, by + 68, 24, '#fff'); } }
+    em('👆', hx + 6, hy + 20, 60, -.25 + Math.sin(T / 140) * .08);
+  }
+  // ── Paso 2: pintar ──
+  if (t >= 11 && t < 19) {
+    let k = order.find(kk => t < tm[kk][1]) || 'cresta', bucket = t >= 15.2, hx = X0 + cen[k][0] * S + Math.sin(T / 90) * (bucket ? 6 : 22), hy = Y0 + cen[k][1] * S + Math.cos(T / 70) * (bucket ? 4 : 12);
+    if (t < 11.4) { const a = e(11, 11.4); hx = 760 + (hx - 760) * a; hy = 420 + (hy - 420) * a; }
+    em(bucket ? '🪣' : '🖌️', hx + 8, hy - 6, 62, bucket ? -.5 : -.45);
+    if (bucket && t < 18.6) { x.save(); x.translate(X0, Y0); x.scale(S, S); ARCADE_CAM_path(x, [k]); x.restore(); x.strokeStyle = '#22c3f2'; x.lineWidth = 3; x.shadowColor = '#22c3f2'; x.shadowBlur = 12; x.stroke(); x.shadowBlur = 0; }
+  }
+  // ── Paso 3: mover y listo ──
+  if (t >= 19 && t < 24) {
+    if (t < 21.2) { em('✋', cx0, cy0 - 20 + Math.sin(T / 110) * 5, 64, 0); }
+    else { const hx = 790, hy = 108 + (t < 22.6 ? (1 - e(21.4, 22.6)) * 220 : 0) + (t >= 22.6 && t < 22.9 ? 8 : 0); em('👆', hx, hy + 18, 62, -.25); if (t > 22.7) { const a = (t - 22.7) / 1.2; x.save(); x.globalAlpha = Math.max(0, 1 - a); x.strokeStyle = '#22c55e'; x.lineWidth = 5; x.beginPath(); x.arc(786, 85, 20 + 80 * a, 0, 6.2832); x.stroke(); x.restore(); } if (t > 23.3) tx('¡Eva ya viene! 👀', 450, 150, 34, '#fff'); }
+  }
+  // ── Paso 4: Eva busca ──
+  if (t >= 24 && t < 32.6) {
+    const ev = ARCADE_CAM_tutEvaPos(t, cx0, cy0), a = T / 260;
+    if (t >= 24.2 && t < 31.9) { const g = x.createRadialGradient(ev[0], ev[1] + 30, 80, ev[0], ev[1] + 30, 240); g.addColorStop(0, 'rgba(2,6,23,0)'); g.addColorStop(1, 'rgba(2,6,23,.84)'); x.fillStyle = g; x.fillRect(0, 0, 900, 500); }
+    x.save(); x.translate(ev[0], ev[1]); x.strokeStyle = 'rgba(34,195,242,.6)'; x.lineWidth = 2; [.34, .67, 1].forEach(f => { x.beginPath(); x.arc(0, 0, 150 * f, 0, 6.2832); x.stroke(); });
+    for (let i = 0; i < 10; i++) { x.beginPath(); x.moveTo(0, 0); x.arc(0, 0, 150, a - .09 * (i + 1), a - .09 * i); x.closePath(); x.fillStyle = 'rgba(34,195,242,' + (.3 - i * .028) + ')'; x.fill(); }
+    x.strokeStyle = '#8df0ff'; x.lineWidth = 3; x.beginPath(); x.moveTo(0, 0); x.lineTo(Math.cos(a) * 150, Math.sin(a) * 150); x.stroke(); x.restore();
+    if (t > 30.5) { const lab = (s, col, px, py, tt) => { const al = e(tt, tt + .4); x.save(); x.globalAlpha = al; x.font = '800 24px sans-serif'; const w = x.measureText(s).width + 26; x.fillStyle = 'rgba(8,12,24,.92)'; x.beginPath(); x.roundRect(px - w / 2, py - 20, w, 40, 20); x.fill(); x.strokeStyle = col; x.lineWidth = 2.5; x.stroke(); x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(s, px, py + 1); x.restore(); };
+      x.save(); x.translate(X0, Y0); x.scale(S, S); ARCADE_CAM_path(x, ['cola']); x.restore(); x.fillStyle = 'rgba(239,68,68,' + (.25 + .2 * Math.sin(T / 120)) + ')'; x.fill(); x.strokeStyle = '#ef4444'; x.lineWidth = 3; x.stroke();
+      lab('✓ Cuerpo 94%', '#22c55e', cx0 + 20, Y0 - 24, 30.6); lab('⚠ Cola 51%', '#ef4444', X0 + 20 * S - 10, Y0 + 150 * S - 6 > 440 ? 440 : Y0 + 62 * S, 31); }
+    ARCADE_CAM_tutEva(x, ev[0], ev[1], 1.2, T, true);
+    if (t > 26.3 && t < 27.9) em('🧐', ev[0] + 52, ev[1] - 50, 34); if (t > 29.6 && t < 31) em('😮', ev[0] + 52, ev[1] - 50, 34); if (t > 31.2) em('😡', ev[0] + 52, ev[1] - 50, 34);
+  }
+  // ── Paso 5: resultado ──
+  if (t >= 32 && t < 35.6) {
+    const tt = t - 32; for (let i = 0; i < 90; i++) { const vx = (Hh(i, 1) - .5) * 800, vy = -(Hh(i, 2) * 620 + 200), px = cx0 + vx * tt * .8, py = cy0 + vy * tt + 520 * tt * tt; if (py > 520) continue; x.save(); x.translate(px, py); x.rotate(tt * 8 + i); x.fillStyle = ['#f59e0b', '#22c3f2', '#f472b6', '#a3e635', '#fff'][i % 5]; x.fillRect(-6, -3, 12, 6); x.restore(); }
+    tx('¡Camuflaje perfecto! ⭐⭐⭐', 450, 70 + (1 - e(32, 32.5)) * -60, 40, '#ffd23f'); em('🎉', cx0 - 250, cy0 - 20, 70, Math.sin(T / 150) * .2); em('🎊', cx0 + 250, cy0 - 20, 70, -Math.sin(T / 150) * .2);
+  } else if (t >= 35.6 && t < 39) {
+    const ex = 1000 - e(35.6, 36.3) * 250, ey = 170 + Math.sin(T / 200) * 6; ARCADE_CAM_tutEva(x, ex, ey, 1.2, T, false);
+    const sw = e(36.4, 36.75), up = e(35.9, 36.4); em('🔨', cx0 + 20 + (1 - sw) * 90, cy0 - 110 + sw * 50, 100, -2.1 + 2.5 * sw + (1 - up) * -.5);
+    if (t > 36.75 && t < 37.8) tx('¡BONK!', 450, 70, 64, '#ffd23f'); if (t > 37) { em('💫', cx0 + Math.cos(T / 140) * 70, cy0 - 90 + Math.sin(T / 140) * 14, 36); em('⭐', cx0 + Math.cos(T / 140 + 3) * 70, cy0 - 90 - Math.sin(T / 140) * 14, 32); }
+    if (t > 37.4) { em('😂', ex + 8, ey - 70 + Math.sin(T / 90) * 5, 44); tx('¡Jajaja!', ex - 30, ey + 80, 30, '#fff'); }
+  }
+  // ── Paso 6: consejos ──
+  if (t >= 39) {
+    [['⏱', 'Cada nivel te da\nmás tiempo para pintar', 39.3, 150, 165], ['👀', 'Eva mira con más\natención cada vez', 40.1, 750, 165], ['❤️', 'Tienes 3 vidas:\n¡no las desperdicies!', 40.9, 150, 335], ['✨', 'Color + detalle\n= mejor nota', 41.7, 750, 335]].forEach(b => {
+      const s = e(b[2], b[2] + .35); if (s <= 0) return; x.save(); x.translate(b[3], b[4]); x.scale(s, s); x.fillStyle = 'rgba(8,14,30,.92)'; x.beginPath(); x.roundRect(-125, -48, 250, 96, 18); x.fill(); x.strokeStyle = '#22c3f2'; x.lineWidth = 2.5; x.stroke(); x.font = '40px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(b[0], -92, 0); x.fillStyle = '#fff'; x.font = '800 19px sans-serif'; x.textAlign = 'left'; b[1].split('\n').forEach((l, i) => x.fillText(l, -62, -12 + i * 26)); x.restore();
+    });
+  }
+  // ── Intro: Eva saluda ──
+  if (t < 5.4) { const ex = t < 4.6 ? 1010 - e(.3, 2.2) * 270 : 740 + e(4.6, 5.4) * 280, ey = 150 + Math.sin(T / 260) * 8; ARCADE_CAM_tutEva(x, ex, ey, 1.2, T, true); if (t > 2.4 && t < 4.4) em('👀', ex - 8, ey - 80, 40); if (t > 1) tx('¡EVA te busca!', 250, 80, 44, '#fff'); }
+}
+function ARCADE_CAM_tutEvaPos(t, cx, cy) {
+  const wp = [[24, 980, 110], [25.6, 700, 130], [27, 250, 150], [28.2, 250, 150], [29.6, 720, 330], [30.4, 720, 330], [31.3, cx + 120, cy - 90], [33, cx + 120, cy - 90]];
+  if (t <= wp[0][0]) return [wp[0][1], wp[0][2]]; for (let i = 1; i < wp.length; i++) if (t < wp[i][0]) { const a = wp[i - 1], b = wp[i], f = (t - a[0]) / (b[0] - a[0]), s = f * f * (3 - 2 * f); return [a[1] + (b[1] - a[1]) * s, a[2] + (b[2] - a[2]) * s + Math.sin(t * 5) * 5]; } return [wp[wp.length - 1][1], wp[wp.length - 1][2]];
+}
 let ARCADE_CAM_AC = null;
 function ARCADE_CAM_snd(n, v) {
   try {
@@ -12842,6 +13090,15 @@ function ARCADE_CAM_snd(n, v) {
     else if (n === 'fw') { tone(900, 200, .25, 'sine', .06); noise(.3, 2400, .2, .22); for (let i = 0; i < 4; i++) tone(2000 + i * 400, 1500, .15, 'sine', .04, .28 + i * .05); }
     else if (n === 'ir') { tone(300, 1800, .6, 'sawtooth', .05); noise(.5, 5000, .06, 0, 'highpass'); }
     else if (n === 'sus') { tone(220, 180, .5, 'triangle', .12); tone(233, 170, .5, 'triangle', .1, .25); }
+    else if (n === 'splat') { noise(.28, 1400, .3); tone(200, 60, .22, 'sine', .25); }
+    else if (n === 'whoosh') { noise(.8, 1200, .12, 0, 'bandpass'); tone(180, 1800, .8, 'sawtooth', .06); }
+    else if (n === 'laugh') { for (let i = 0; i < 6; i++) tone(520 - (i % 2) * 120, 380 - (i % 2) * 90, .11, 'square', .05, i * .13); }
+    else if (n === 'snap') { noise(.08, 5000, .3, 0, 'highpass'); tone(1800, 1200, .06, 'square', .08, .04); }
+    else if (n === 'boing') { tone(180, 720, .25, 'sine', .22); tone(720, 240, .3, 'sine', .14, .22); }
+    else if (n === 'tada') { [392, 523, 659, 784, 1047].forEach((f, i) => tone(f, f, .18, 'triangle', .13, i * .07)); tone(1047, 1047, .7, 'triangle', .13, .4); }
+    else if (n === 'pop') { tone(400, 1200, .06, 'sine', .15); noise(.04, 3000, .1); }
+    else if (n === 'sneeze') { tone(900, 1500, .12, 'sine', .08); noise(.18, 2500, .22, .16); tone(500, 200, .25, 'sawtooth', .08, .17); }
+    else if (n === 'slip') { tone(900, 200, .5, 'sine', .12); tone(160, 60, .2, 'sine', .25, .5); }
     else if (n === 'win') { [523, 659, 784, 1047, 1319].forEach((f, i) => tone(f, f, .25, 'triangle', .14, i * .1)); tone(1568, 1568, .6, 'triangle', .12, .55); }
   } catch (e) {}
 }
@@ -12868,6 +13125,7 @@ function ARCADE_CAM_face2(x, m, T, u) {
 function ARCADE_CAM_toon(G, T) {
   const o = G.toon, p = Math.min(1, (T - o.t0) / o.D), cx = G.ax + G.paint.width / 2, cy = G.ay + G.paint.height / 2, e = (a, b) => Math.max(0, Math.min(1, (p - a) / (b - a))), sn = n => { if (!o.s[n]) { o.s[n] = 1; ARCADE_CAM_snd(n); } }, k = o.k;
   const r = { dx: 0, dy: 0, sx: 1, sy: 1, rot: 0, mood: 'terror', pr: [], txt: '' }; if (p >= 1) o.done = 1;
+  const LN = ARCADE_CAM_TLN[k] || []; if (!o.sa) { o.sa = 1; ARCADE_CAM_say(LN[0] || ''); G.emo = '😈'; } if (p > .45 && !o.sb) { o.sb = 1; ARCADE_CAM_say(LN[1] || ''); G.emo = '😂'; ARCADE_CAM_snd('laugh'); } G.eLaugh = p > .45;
   if (k === 'martillo') {
     const d = e(.6, 1), sw = e(.3, .38), up = e(.1, .3); r.dx = d * d * 850; r.rot = d * .35; G.ex = cx + 130 + r.dx; G.ey = cy - 30; if (p > .34) { sn('bonk'); r.mood = 'ko'; }
     if (p > .36 && p < .6) { const q = e(.36, .6); r.sy = .5 + .5 * q; r.sx = 1.35 - .35 * q; r.txt = '¡BONK!'; }
@@ -12880,6 +13138,29 @@ function ARCADE_CAM_toon(G, T) {
     const tl = e(.15, .4), pour = e(.3, .65), sh = e(.62, .9); G.ex = cx + 90; G.ey = cy - 140; if (pour > 0) sn('splash'); r.mood = pour > 0 ? 'wet' : 'terror'; r.rot = sh > 0 && sh < 1 ? Math.sin(T / 35) * .12 : 0;
     r.pr.push(['🪣', cx + 40, cy - 150, 80, -tl * 2.2]); if (pour > 0) r.pr.push(['puddle', cx, cy + 75, 150 * Math.min(1, pour * 1.5), 0]);
     if (pour > 0 && pour < 1) for (let i = 0; i < 14; i++) { const f = (T / 400 + i / 14) % 1; r.pr.push(['drop', cx - 20 + ((i * 37) % 60) - f * 30, cy - 110 + f * 150, 0, 0]); } if (pour > .1 && pour < .6) r.txt = '¡SPLASH!';
+  } else if (k === 'pastel') {
+    const fl = e(.1, .4), fx = G.ax + 150 * G.sc, fy = G.ay + 52 * G.sc; G.ex = cx + 200 - fl * 30; G.ey = cy - 70 + Math.sin(T / 160) * 4;
+    if (p < .4) { r.mood = 'scared'; r.pr.push(['🥧', G.ex + (fx - G.ex) * fl, G.ey + (fy - G.ey) * fl - Math.sin(fl * 3.14) * 60, 54, fl * 9]); }
+    else { sn('splat'); r.mood = 'ko'; const q = e(.4, .5); r.sx = 1 + .12 * Math.sin(q * 3.14); r.sy = 1 - .1 * Math.sin(q * 3.14); r.pr.push(['🥧', fx, fy + e(.5, 1) * 22, 64, 0]); for (let i = 0; i < 5; i++) r.pr.push(['💦', fx + i * 14 - 16, fy + 30 + e(.5, 1) * 40 * (1 + i * .1), 20, 0]); if (p < .62) r.txt = '¡SPLAT!'; }
+  } else if (k === 'cosquillas') {
+    const sw = Math.sin(T / 110); G.ex = cx + 110 + sw * 40; G.ey = cy - 20 + Math.sin(T / 90) * 6; r.mood = 'happy'; r.rot = Math.sin(T / 55) * .09 * Math.min(1, p * 5); r.sy = 1 + Math.sin(T / 70) * .04;
+    r.pr.push(['🪶', G.ex - 55, G.ey + 10, 60, -.7 + sw * .5]); for (let i = 0; i < 3; i++) r.pr.push(['😂', cx - 80 + i * 80, cy - 90 - ((T / 10 + i * 50) % 70), 34, 0]); r.pr.push(['💧', cx + 60 + Math.sin(T / 60) * 8, cy - 50 + (T / 8) % 40, 20, 0]); if (p > .2 && p < .7) r.txt = '¡JAJAJA!';
+  } else if (k === 'cohete') {
+    const up = e(.4, .7), dn = e(.78, 1), a = up * up * (1 - dn * dn), top = cy + 380; G.ex = cx + 150; G.ey = cy + 40; if (up > 0) sn('whoosh'); if (dn >= 1) sn('boing');
+    r.dy = -a * top; r.rot = a * 11; r.mood = dn >= 1 ? 'ko' : p < .4 ? 'terror' : 'scared';
+    if (p < .42) r.pr.push(['🧨', cx - 10, cy + 80, 56, .3], ['✨', cx - 10 + Math.sin(T / 40) * 6, cy + 58, 26, 0]);
+    if (up > 0 && dn < 1) for (let i = 0; i < 6; i++) r.pr.push(['🔥', cx + Math.sin(T / 50 + i) * 20, cy + 90 - a * top + i * 14, 30 - i * 2, 0]);
+    if (p > .42 && p < .66) r.txt = '¡WHOOOSH!'; if (dn > .9) r.txt = '¡PLAF!'; if (a > .8) r.pr.push(['⭐', cx - 80, 120, 30, 0], ['⭐', cx + 80, 90, 26, 0]);
+  } else if (k === 'selfie') {
+    G.ex = cx + 125; G.ey = cy - 95 + Math.sin(T / 200) * 5; r.mood = p < .55 ? 'cool' : 'tongue'; r.rot = p > .55 ? Math.sin(T / 90) * .05 : 0; r.pr.push(['📱', G.ex - 62, G.ey + 8, 54, -.3]);
+    const n = p < .22 ? '3' : p < .34 ? '2' : p < .46 ? '1' : ''; if (n) r.txt = n + '…'; if (p > .5 && p < .6) { sn('snap'); r.pr.push(['flash', 1 - e(.5, .6)]); }
+    if (p > .6) { r.txt = '¡SELFIE! 🤳'; r.pr.push(['🌟', cx - 120, cy - 90, 36, 0], ['🌟', cx + 40, cy - 110, 30, 0]); }
+  } else if (k === 'red') {
+    const ap = e(0, .28), sw = e(.28, .4), ca = e(.42, 1); if (ap > 0 && ap < 1) sn('whoosh'); G.ex = cx + 100 + 520 * (1 - ap) + ca * ca * 900; G.ey = cy - 60 + Math.sin(T / 140) * 5 - sw * 20;
+    r.dx = ca * ca * 900; r.rot = ca * .6 * Math.sin(T / 60); r.sx = r.sy = 1 - .4 * e(.4, .5); r.mood = 'terror'; r.pr.push(['net', G.ex - 70, G.ey + 30 + sw * 20, 80, 0]); if (p > .34 && p < .62) r.txt = '¡ATRAPADO!';
+  } else if (k === 'trompo') {
+    const sp = e(.1, .75), fd = 1 - e(.75, 1); r.rot = sp * 38 * (1 - sp * .6); r.dx = Math.sin(T / 130) * 60 * sp * fd; r.dy = -Math.abs(Math.sin(T / 160)) * 30 * sp * fd; G.ex = cx + 190; G.ey = cy - 30; r.mood = p < .75 ? 'scared' : 'ko'; if (sp > 0) sn('whoosh');
+    if (p > .78) { r.rot = Math.sin(T / 120) * .25; for (let i = 0; i < 3; i++) r.pr.push(['💫', cx + Math.cos(T / 150 + i * 2.1) * 70, cy - 80 + Math.sin(T / 150 + i * 2.1) * 14, 30, 0]); } if (p > .15 && p < .6) r.txt = '¡WEEEE!';
   } else {
     const dn = e(.12, .3), pop = e(.75, .95), ay = -(1 - dn * dn) * (cy + 250) - e(.7, .85) * (cy + 300); G.ex = cx + 170; G.ey = cy - 40; if (dn >= 1) sn('crash'); r.mood = dn >= 1 && pop < .5 ? 'ko' : 'terror';
     if (dn >= 1 && pop < 1) { const q = pop < .5 ? 0 : (pop - .5) * 2; r.sy = .22 + .78 * q + Math.sin(q * 3.14) * .25; r.sx = 1.5 - .5 * q; } r.pr.push(['anvil', cx, cy - 60 + ay]); if (dn >= 1 && p < .6) r.txt = '¡CRASH!';
@@ -12894,6 +13175,24 @@ function ARCADE_CAM_cel(G, T) {
     G.fw = G.fw.filter(q => q.l > 0); G.fw.forEach(q => { q.x += q.vx; q.y += q.vy; q.vy += .06; q.l -= .014; r.pr.push(['spark', q.x, q.y, 5 * q.l, q.c]); }); r.sy = 1 + Math.sin(T / 120) * .05;
   } else if (k === 'disco') {
     r.mood = 'cool'; r.rot = Math.sin(T / 180) * .18; r.sx = Math.cos(T / 350); r.pr.push(['🪩', cx, 50, 80, 0]); for (let i = 0; i < 3; i++) r.pr.push(['🎵', cx + Math.sin(T / 400 + i * 2) * 120, cy - 90 - ((T / 12 + i * 60) % 160), 34, 0]);
+  } else if (k === 'cohete') {
+    const t = (T - G.celT0) / 1000, up = Math.min(1, t / 1.6), ry = 470 - up * up * 520; r.sy = 1 + Math.sin(T / 120) * .04; r.dy = -Math.abs(Math.sin(T / 200)) * 14;
+    r.pr.push(['🚀', cx - 190 + Math.sin(T / 90) * 4, ry, 70, -.78]); for (let i = 0; i < 7; i++) r.pr.push(['🔥', cx - 190 - i * 5 + Math.sin(T / 40 + i) * 5, ry + 42 + i * 16, 30 - i * 3, 0]);
+    if (t > 1.1) { if (!G.celS) { G.celS = 1; ARCADE_CAM_snd('whoosh'); } r.pr.push(['⭐', cx + Math.sin(T / 300) * 140, cy - 100 - ((T / 8) % 120), 30, 0], ['✨', cx - 100, cy - 60 - ((T / 10) % 90), 26, 0]); } if (t > .5) r.txt = '¡DESPEGUE!';
+  } else if (k === 'baile') {
+    r.mood = 'cool'; r.dx = Math.sin(T / 240) * 70; r.rot = Math.sin(T / 120) * .16; r.dy = -Math.abs(Math.sin(T / 240)) * 18;
+    r.pr.push(['💃', cx - 190, cy + 20 + Math.sin(T / 140) * 12, 56, Math.sin(T / 140) * .25], ['🕺', cx + 190, cy + 20 + Math.cos(T / 140) * 12, 56, -Math.sin(T / 140) * .25]); for (let i = 0; i < 4; i++) r.pr.push([['🎵', '🎶'][i % 2], cx - 150 + i * 100 + Math.sin(T / 300 + i) * 20, cy - 90 - ((T / 14 + i * 45) % 150), 30, 0]); if (T - G.celT0 < 1800) r.txt = '¡A BAILAR!';
+  } else if (k === 'trofeo') {
+    const t = (T - G.celT0) / 1000, d = Math.min(1, t); r.dy = -Math.abs(Math.sin(T / 190)) * 16; r.sy = 1 + Math.sin(T / 120) * .05; r.pr.push(['🏆', cx, Math.max(70, cy - 175) - (1 - d * d) * 220 + Math.sin(T / 300) * 4, 92, 0]);
+    for (let i = 0; i < 8; i++) { const a = T / 700 + i * .785; r.pr.push(['⭐', cx + Math.cos(a) * 190, cy - 20 + Math.sin(a) * 80, 24 + (i % 2) * 8, 0]); } if (t > .9) { if (!G.celS) { G.celS = 1; ARCADE_CAM_snd('tada'); } r.txt = '¡CAMPEÓN!'; }
+  } else if (k === 'arcoiris') {
+    r.rb = 1; r.dy = -Math.abs(Math.sin(T / 210)) * 12; r.sy = 1 + Math.sin(T / 130) * .05; r.pr.push(['rainbow', cx, cy + 60, Math.min(1, (T - G.celT0) / 900)], ['☁️', cx - 250, cy + 50, 70, 0], ['☁️', cx + 250, cy + 50, 70, 0]); r.txt = '¡COLORES!';
+  } else if (k === 'globos') {
+    r.mood = 'happy'; const t = (T - G.celT0) / 1000; r.dy = -Math.min(1, t / 2) * 26 + Math.sin(T / 300) * 8; r.sy = 1 + Math.sin(T / 150) * .03;
+    for (let i = 0; i < 10; i++) r.pr.push([i % 3 ? '🎈' : '🎊', 70 + i * 82 + Math.sin(i * 5) * 20 + Math.sin(T / 500 + i) * 14, 540 - ((t * (60 + (i * 37 % 50)) + i * 70) % 640), 52, Math.sin(T / 400 + i) * .2]); if (t > .4) r.txt = '¡HURRA!';
+  } else if (k === 'voltereta') {
+    const c = ((T - G.celT0) / 1100) % 1.6, f = Math.min(1, c); r.dy = c < 1 ? -Math.sin(f * 3.1416) * 90 : 0; r.rot = c < 1 ? -f * 6.2832 : 0; r.sy = c >= 1 ? 1 + Math.sin(T / 100) * .05 : 1;
+    r.pr.push(['✨', cx - 110, cy - 40 - c * 20, 34, 0], ['✨', cx + 110, cy - 20, 34, 0], ['🤸', cx - 200, cy + 30, 50, 0]); if (c < 1) r.txt = '¡WOW!';
   } else { r.sy = 1 + Math.sin(T / 120) * .05; r.pr.push(['🎉', cx - 130, cy - 80, 50, 0], ['🎊', cx + 130, cy - 80, 50, 0]); }
   return r;
 }
@@ -12903,16 +13202,25 @@ function ARCADE_CAM_props(x, G, T, tf) {
     const n = q[0], px = q[1], py = q[2], sz = q[3];
     if (n === 'cage') { x.beginPath(); x.rect(px - 110, py - 95, 220, 190); for (let i = -4; i <= 4; i++) { x.moveTo(px + i * 24, py - 95); x.lineTo(px + i * 24, py + 95); } x.strokeStyle = '#2b3445'; x.lineWidth = 12; x.stroke(); x.strokeStyle = '#cfd8e3'; x.lineWidth = 5; x.stroke(); }
     else if (n === 'anvil') { x.fillStyle = '#2b2f3a'; x.beginPath(); [[-70, -30], [70, -30], [40, 5], [20, 5], [30, 40], [-30, 40], [-20, 5], [-40, 5]].forEach((p, i) => i ? x.lineTo(px + p[0], py + p[1]) : x.moveTo(px + p[0], py + p[1])); x.closePath(); x.fill(); x.fillStyle = 'rgba(255,255,255,.25)'; x.fillRect(px - 62, py - 28, 110, 7); }
+    else if (n === 'flash') { x.fillStyle = 'rgba(255,255,255,' + px + ')'; x.fillRect(0, 0, 900, 500); }
+    else if (n === 'net') { x.strokeStyle = '#a0643b'; x.lineWidth = 8; x.lineCap = 'round'; x.beginPath(); x.moveTo(px + sz * .35, py + sz * .3); x.lineTo(px + sz * 1.1, py + sz * .95); x.stroke(); x.fillStyle = 'rgba(255,255,255,.18)'; x.strokeStyle = '#e5e7eb'; x.lineWidth = 6; x.beginPath(); x.ellipse(px, py, sz * .55, sz * .5, 0, 0, 7); x.fill(); x.stroke(); x.lineWidth = 1.5; for (let i = -2; i <= 2; i++) { x.beginPath(); x.moveTo(px + i * sz * .2, py - sz * .48); x.lineTo(px + i * sz * .2, py + sz * .48); x.moveTo(px - sz * .52, py + i * sz * .2); x.lineTo(px + sz * .52, py + i * sz * .2); x.stroke(); } }
+    else if (n === 'rainbow') { x.save(); x.globalAlpha = .88 * sz; x.lineWidth = 17; for (let i = 0; i < 7; i++) { x.strokeStyle = 'hsl(' + (i * 52) + ',90%,56%)'; x.beginPath(); x.arc(px, py, 270 - i * 17, Math.PI, 0); x.stroke(); } x.restore(); }
     else if (n === 'drop') { x.fillStyle = 'rgba(80,180,255,.9)'; x.beginPath(); x.ellipse(px, py, 5, 9, 0, 0, 7); x.fill(); }
     else if (n === 'puddle') { x.fillStyle = 'rgba(80,180,255,.45)'; x.beginPath(); x.ellipse(px, py, sz, sz * .18, 0, 0, 7); x.fill(); }
     else if (n === 'spark') { x.fillStyle = q[4]; x.beginPath(); x.arc(px, py, Math.max(.5, sz), 0, 7); x.fill(); }
     else { x.save(); x.translate(px, py); x.rotate(q[4] || 0); x.font = sz + 'px sans-serif'; x.fillText(n, 0, 0); x.restore(); }
   });
-  if (tf.txt) { x.save(); x.translate(G.ax + G.paint.width / 2, G.ay - 20); x.rotate(-.12); x.font = '900 64px sans-serif'; x.lineJoin = 'round'; x.lineWidth = 12; x.strokeStyle = '#111'; x.strokeText(tf.txt, 0, 0); x.fillStyle = '#ffd23f'; x.fillText(tf.txt, 0, 0); x.restore(); }
+  if (tf.txt) { x.save(); x.font = '900 64px sans-serif'; const tw = x.measureText(tf.txt).width; x.translate(Math.max(tw / 2 + 16, Math.min(884 - tw / 2, G.ax + G.paint.width / 2)), Math.max(56, G.ay - 20)); x.rotate(-.12); x.lineJoin = 'round'; x.lineWidth = 12; x.strokeStyle = '#111'; x.strokeText(tf.txt, 0, 0); x.fillStyle = '#ffd23f'; x.fillText(tf.txt, 0, 0); x.restore(); }
   x.restore();
 }
 function ARCADE_CAM_need() { return Math.min(88, Math.round(62 + ARCADE_CAM.level * 2.5)); }
-function ARCADE_CAM_hud() { const G = ARCADE_CAM; if (G) ARCADE_setScore('🦎 Nivel ' + G.level + ' · ' + ARCADE_CAM_name(G.level) + ' · ' + '❤️'.repeat(G.lives) + (G.ph === 'prep' ? ' · ⏱ ' + Math.max(0, Math.ceil(G.t)) + 's' : '') + ' · Necesitas ' + ARCADE_CAM_need() + '%'); }
+function ARCADE_CAM_hud2(G) {
+  const a = document.getElementById('cam-lvn'), b = document.getElementById('cam-lvname'), h = document.getElementById('cam-hearts'); if (a) a.textContent = 'NIVEL ' + G.level; if (b) b.textContent = ARCADE_CAM_name(G.level) + ' · necesitas ' + ARCADE_CAM_need() + '%'; if (h) h.textContent = '❤️'.repeat(Math.max(0, G.lives)) + '🖤'.repeat(Math.max(0, 3 - G.lives)); ARCADE_CAM_tfill();
+}
+function ARCADE_CAM_tfill() {
+  const G = ARCADE_CAM, f = document.getElementById('cam-tfill'); if (!G || !f) return; f.style.width = Math.max(0, Math.min(1, G.t / (G.tmax || 55))) * 100 + '%'; const n = document.getElementById('cam-tnum'); if (n) n.textContent = G.ph === 'prep' ? '⏱ ' + Math.max(0, Math.ceil(G.t)) + ' s para pintar' : '👀 Eva está buscando…'; const tb = document.getElementById('cam-tbar'); if (tb) tb.classList.toggle('low', G.ph === 'prep' && G.t < 10);
+}
+function ARCADE_CAM_hud() { const G = ARCADE_CAM; if (G) ARCADE_CAM_hud2(G); if (G) ARCADE_setScore('🦎 Nivel ' + G.level + ' · ' + ARCADE_CAM_name(G.level) + ' · ' + '❤️'.repeat(G.lives) + (G.ph === 'prep' ? ' · ⏱ ' + Math.max(0, Math.ceil(G.t)) + 's' : '') + ' · Necesitas ' + ARCADE_CAM_need() + '%'); }
 function ARCADE_CAM_tool(t) { const G = ARCADE_CAM; if (!G) return; ARCADE_CAM_snd('tap'); G.tool = t; document.querySelectorAll('.cam-b[data-t]').forEach(b => b.classList.toggle('on', b.dataset.t === t)); const cv = document.getElementById('cam-cv'); if (cv) cv.style.cursor = t === 'move' ? 'grab' : 'none'; }
 function ARCADE_CAM_sec(k) { const G = ARCADE_CAM; if (!G) return; G.sec = k || null; document.querySelectorAll('.cam-chip').forEach(b => b.classList.toggle('on', (b.dataset.s || '') === (k || ''))); }
 function ARCADE_CAM_col(c) { const G = ARCADE_CAM; if (!G) return; G.col = c; const i = document.getElementById('cam-col'); if (i && /^#[0-9a-f]{6}$/i.test(c)) i.value = c; document.querySelectorAll('.cam-sw').forEach(e => e.classList.toggle('sel', e.dataset.c === c)); ARCADE_CAM_brush(); }
@@ -12921,12 +13229,13 @@ function ARCADE_CAM_mkPaint(sc) { const G = ARCADE_CAM, c = document.createEleme
 function ARCADE_CAM_fillKeys(keys, col) { const G = ARCADE_CAM, q = G.px; ARCADE_CAM_clip(q, keys); q.fillStyle = col; q.fillRect(0, 0, G.paint.width, G.paint.height); q.restore(); }
 function ARCADE_CAM_level() {
   const G = ARCADE_CAM, mk = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
+  G.sd = Math.floor(Math.random() * 1e6); G.hs = Math.random() < .45 ? 0 : 20 + Math.random() * 300 | 0; G.celS = 0; G.eLaugh = false; G.gagUntil = 0; G.gagCls = '';
   G.bg = mk(900, 500); G.bgx = G.bg.getContext('2d', { willReadFrequently: true }); ARCADE_CAM_scene(G.bgx, G.level);
   const s1 = mk(225, 125); s1.getContext('2d').drawImage(G.bg, 0, 0, 225, 125); const s2 = mk(90, 50), q = s2.getContext('2d'); q.drawImage(s1, 0, 0, 90, 50); G.blur = q.getImageData(0, 0, 90, 50).data;
   ARCADE_CAM_mkPaint(1); ARCADE_CAM_fillKeys(null, '#cbd5e1');
-  G.det = ARCADE_CAM_DET[ARCADE_CAM_ORD[(G.level - 1) % 24]]; G.sec = null; G.bonus = 0; G.fear = 0; G.conf = []; G.emo = ''; G.pop = null; G.detCols = null; G.detKind = G.det; G.secs = null; G.zm = 1; G.flashAt = 0; G.flagUntil = 0; G.shock = null; G.rang = 0; G.rr = 150;
-  G.ax = 60; G.ay = 330; G.toon = null; G.cel = null; G.fw = null; G.retouch = false; G.rjd = false; G.irUntil = 0; G.ph = 'prep'; G.t = Math.max(30, 55 - G.level * 1.5); G.win = false; G.hot = false; G.down = false; G.drag = null;
-  const g = document.querySelector('#cam-stage .arcade-go'); if (g) g.remove(); const bb = document.getElementById('cam-big'); if (bb) { bb.classList.remove('on'); bb.textContent = '🦎 Grande'; }
+  G.det = ARCADE_CAM_DET[ARCADE_CAM_ORD[(G.level - 1) % 32]]; G.sec = null; G.bonus = 0; G.fear = 0; G.conf = []; G.emo = ''; G.pop = null; G.detCols = null; G.detKind = G.det; G.secs = null; G.zm = 1; G.flashAt = 0; G.flagUntil = 0; G.shock = null; G.rang = 0; G.rr = 150;
+  G.ax = 60; G.ay = 330; G.toon = null; G.cel = null; G.fw = null; G.retouch = false; G.rjd = false; G.irUntil = 0; G.ph = 'prep'; G.t = Math.round(50 + Math.min(100, G.level * 5)); G.tmax = G.t; G.win = false; G.hot = false; G.down = false; G.drag = null;
+  const g = document.querySelector('#cam-stage .arcade-go'); if (g) g.remove(); const bb = document.getElementById('cam-big'); if (bb) { bb.classList.remove('on'); bb.innerHTML = '<span class="ic">🦎</span>Grande'; }
   document.getElementById('cam-bar').style.display = 'flex'; document.getElementById('cam-eva').style.display = 'none'; document.getElementById('cam-spot').style.opacity = 0; ARCADE_CAM_say('');
   ARCADE_CAM_tool('pick'); ARCADE_CAM_sec(null); ARCADE_CAM_col(G.col); ARCADE_CAM_hud();
 }
@@ -12934,8 +13243,8 @@ function ARCADE_CAM_big() {
   const G = ARCADE_CAM; if (!G || G.ph !== 'prep') return; const ns = G.sc > 1 ? 1 : 1.7, old = G.paint;
   ARCADE_CAM_mkPaint(ns); G.px.drawImage(old, 0, 0, G.paint.width, G.paint.height);
   G.ax = Math.max(0, Math.min(900 - G.paint.width, G.ax)); G.ay = Math.max(0, Math.min(500 - G.paint.height, G.ay));
-  if (ns > 1 && !G.bonus) { G.bonus = 1; G.t += 15; }
-  const b = document.getElementById('cam-big'); if (b) { b.classList.toggle('on', ns > 1); b.textContent = ns > 1 ? '🦎 Normal' : '🦎 Grande'; } ARCADE_CAM_hud();
+  if (ns > 1 && !G.bonus) { G.bonus = 1; G.t += 15; G.tmax = (G.tmax || 55) + 15; }
+  const b = document.getElementById('cam-big'); if (b) { b.classList.toggle('on', ns > 1); b.innerHTML = ns > 1 ? '<span class="ic">🦎</span>Normal' : '<span class="ic">🦎</span>Grande'; } ARCADE_CAM_hud();
 }
 function ARCADE_CAM_samp(lx, ly, rad) {
   const G = ARCADE_CAM, x0 = Math.max(0, Math.min(899 - 2 * rad, Math.round(lx - rad))), y0 = Math.max(0, Math.min(499 - 2 * rad, Math.round(ly - rad))), d = G.bgx.getImageData(x0, y0, 2 * rad + 1, 2 * rad + 1).data, n = d.length / 4; let r = 0, g = 0, b = 0;
@@ -13019,8 +13328,8 @@ function ARCADE_CAM_ready() {
   const G = ARCADE_CAM; if (G && G.retouch) { G.retouch = false; G.down = false; G.wt = Math.min(G.wt, G.iw * .35); document.getElementById('cam-bar').style.display = 'none'; return; }
   if (!G || G.ph !== 'prep') return; G.down = false; G.drag = null; ARCADE_CAM_snd('ready');
   const j = ARCADE_CAM_judge(); G.score = j.s; G.cs = j.c; G.ds = j.d; G.secs = j.secs; G.need = ARCADE_CAM_need(); G.win = G.score >= G.need; G.weak = j.secs.slice().sort((a, b) => a.s - b.s)[0];
-  const L = G.level, PW = G.paint.width, PH = G.paint.height, cx = G.ax + PW / 2, cy = G.ay + PH / 2, nd = Math.min(7, 3 + (L >> 2)), sus = Math.abs(G.score - G.need) < 9, insp = sus ? 5.2 : G.win ? .7 : Math.min(3.2, 1.6 + L * 0.06), cl = (v, a, b) => Math.max(a, Math.min(b, v));
-  const pts = []; for (let i = 0; i < nd; i++) pts.push(i >= 2 && L >= 4 && Math.random() < 0.5 ? { x: cl(cx + (Math.random() - .5) * 340, 70, 830), y: cl(cy + (Math.random() - .5) * 260, 60, 440), w: 0.9 } : { x: 90 + Math.random() * 720, y: 70 + Math.random() * 340, w: 0.7 + Math.min(0.8, L * 0.03) });
+  const L = G.level, PW = G.paint.width, PH = G.paint.height, cx = G.ax + PW / 2, cy = G.ay + PH / 2, nd = Math.min(8, 3 + (L >> 2)), sus = Math.abs(G.score - G.need) < 9, insp = sus ? 6 : G.win ? Math.min(3, 1.2 + L * 0.08) : Math.min(5.5, 2.2 + L * 0.12), cl = (v, a, b) => Math.max(a, Math.min(b, v));
+  const pts = []; for (let i = 0; i < nd; i++) pts.push(i >= 2 && L >= 4 && Math.random() < 0.5 ? { x: cl(cx + (Math.random() - .5) * 340, 70, 830), y: cl(cy + (Math.random() - .5) * 260, 60, 440), w: 1.0 + Math.min(1.2, L * 0.06) } : { x: 90 + Math.random() * 720, y: 70 + Math.random() * 340, w: 0.8 + Math.min(1.2, L * 0.06) });
   G.sus = sus; pts.splice(1 + Math.floor(Math.random() * (nd - 1)), 0, { x: sus ? cl(cx + (cx < 450 ? 170 : -170), 70, 830) : cx, y: sus ? cl(cy - 95, 60, 440) : cy, w: insp, av: 1, sus: sus }); if (G.win) pts.push({ x: 1000, y: 200, w: 0.01 });
   G.rr = Math.min(300, 150 + L * 9); G.rsp = 2.6 + L * 0.12; G.rang = Math.random() * 6.28; G.redir = false; G.radOK = false; G.flashed = false; G.flashAt = 0; G.shock = null; G.zm = 1;
   G.pts = pts; G.seg = 0; G.arrived = false; G.verdict = false; G.ex = -70; G.ey = 120; G.hot = false; G.emo = '🤔'; G.ph = 'search';
@@ -13032,12 +13341,12 @@ function ARCADE_CAM_search(dt) {
   const T = performance.now(), cx = G.ax + G.paint.width / 2, cy = G.ay + G.paint.height / 2, prev = G.rang, f = v => ((v % 6.2832) + 6.2832) % 6.2832;
   G.rang = (G.rang + G.rsp * dt) % 6.2832; let hit = false;
   G.secs.forEach(sc => { if (Math.hypot(sc.x - G.ex, sc.y - G.ey) < G.rr) { const a0 = Math.atan2(sc.y - G.ey, sc.x - G.ex); if (f(G.rang - a0) < f(prev - a0)) { sc.ping = T; hit = true; if (sc.s < G.need) G.flagUntil = T + 700; } } });
-  if (hit) ARCADE_CAM_snd('ping'); if (hit && !G.win && !G.redir && !p.av && G.secs.some(sc => sc.s < G.need && sc.ping === T)) { G.redir = true; G.pts.splice(G.seg, 0, { x: cx, y: cy, w: Math.min(3.2, 1.6 + G.level * 0.06), av: 1 }); G.arrived = false; ARCADE_CAM_say('📡 ¡El radar detectó un detalle raro!'); G.emo = '😮'; return; }
+  if (hit) ARCADE_CAM_snd('ping'); if (hit && !G.win && !G.redir && !p.av && G.secs.some(sc => sc.s < G.need && sc.ping === T)) { G.redir = true; G.pts.splice(G.seg, 0, { x: cx, y: cy, w: Math.min(5.5, 2.2 + G.level * 0.12), av: 1 }); G.arrived = false; ARCADE_CAM_say('📡 ¡El radar detectó un detalle raro!'); G.emo = '😮'; return; }
   if (hit && G.win && !G.radOK) { G.radOK = true; ARCADE_CAM_say('📡 Radar: sin anomalías… 🤨'); G.emo = '🤨'; }
   const dx = p.x - G.ex, dy = p.y - G.ey, d = Math.hypot(dx, dy);
   if (!G.arrived) {
-    if (d > 5) { const s = Math.min(d, (320 + G.level * 6) * dt); G.ex += dx / d * s; G.ey += dy / d * s; }
-    else { G.arrived = true; G.shock = { x: G.ex, y: G.ey, t0: T }; G.wt = G.iw = p.w; G.verdict = false; if (G.level >= 2 && (p.av || Math.random() < .5)) { G.irT = T; G.irUntil = T + (p.av ? p.w * 650 : 1500); ARCADE_CAM_snd('ir'); } if (p.sus) { G.retouch = true; G.rjd = true; document.getElementById('cam-bar').style.display = 'flex'; ARCADE_CAM_toast('🤨 Eva sospecha… ¡retoca rápido!'); ARCADE_CAM_snd('sus'); } if (p.av) { ARCADE_CAM_say(p.sus ? '🤨 Algo no cuadra por aquí… me quedo revisando' : p.w < 1 ? 'Nada raro… me voy 👋' : 'Déjame ver de cerca… 🔍'); G.emo = p.sus ? '🤨' : '🧐'; } else if (p.x < 900) { ARCADE_CAM_say(['¿Dónde estás? 🔎', 'Mmm… 🧐', '¿Detrás de esto? 👀'][Math.floor(Math.random() * 3)]); G.emo = '🤔'; } }
+    if (d > 5) { const s = Math.min(d, Math.max(220, 300 - G.level * 3) * dt); G.ex += dx / d * s; G.ey += dy / d * s; }
+    else { G.arrived = true; G.shock = { x: G.ex, y: G.ey, t0: T }; G.wt = G.iw = p.w; G.verdict = false; if (G.level >= 2 && (p.av || Math.random() < .5)) { G.irT = T; G.irUntil = T + (p.av ? p.w * 650 : 1500); ARCADE_CAM_snd('ir'); } if (p.sus) { G.retouch = true; G.rjd = true; document.getElementById('cam-bar').style.display = 'flex'; ARCADE_CAM_toast('🤨 Eva sospecha… ¡retoca rápido!'); ARCADE_CAM_snd('sus'); } if (p.av) { ARCADE_CAM_say(p.sus ? '🤨 Algo no cuadra por aquí… me quedo revisando' : p.w < 1 ? 'Nada raro… me voy 👋' : 'Déjame ver de cerca… 🔍'); G.emo = p.sus ? '🤨' : '🧐'; } else if (p.x < 900) ARCADE_CAM_gag(T, p.w); }
   } else {
     G.wt -= dt;
     if (p.av && !G.flashed && G.level >= 4 && 1 - G.wt / G.iw > 0.4) { G.flashed = true; G.flashAt = T; ARCADE_CAM_snd('flash'); ARCADE_CAM_say('📸 ¡Flash!'); }
@@ -13048,18 +13357,19 @@ function ARCADE_CAM_search(dt) {
 function ARCADE_CAM_end() {
   const G = ARCADE_CAM; if (G.ph === 'result') return; G.ph = 'result';
   if (G.win) {
-    G.best = ARCADE_best('cam', G.level); G.cel = ['confeti', 'fuegos', 'disco'][Math.random() * 3 | 0]; ARCADE_CAM_snd('win'); document.getElementById('cam-eva').style.display = 'none'; document.getElementById('cam-spot').style.opacity = 0;
+    G.best = ARCADE_best('cam', G.level); { const CL = ['confeti', 'fuegos', 'disco', 'cohete', 'baile', 'trofeo', 'arcoiris', 'globos', 'voltereta']; let ck; do ck = CL[Math.random() * CL.length | 0]; while (ck === G.lastCel); G.lastCel = ck; G.cel = ck; G.celT0 = performance.now(); G.celS = 0; } ARCADE_CAM_snd('win'); document.getElementById('cam-eva').style.display = 'none'; document.getElementById('cam-spot').style.opacity = 0;
     G.conf = []; for (let i = 0; i < 140; i++) G.conf.push({ x: G.ax + G.paint.width / 2, y: G.ay + G.paint.height / 2, vx: (Math.random() - .5) * 9, vy: -Math.random() * 11 - 2, c: ['#f59e0b', '#22c3f2', '#f472b6', '#a3e635', '#fff'][i % 5], r: Math.random() * 6.28, s: 4 + Math.random() * 5 });
   } else G.lives--;
   const sc = Math.round(G.score) + '% (color ' + Math.round(G.cs) + '% · detalle ' + Math.round(G.ds) + '%) · necesitas ' + G.need + '%' + (!G.win && G.weak ? ' · 🔎 Eva: tu ' + ARCADE_CAM_SECN[G.weak.k].split(' ')[1].toLowerCase() + ' ' + (w => w.lt > 18 ? 'estaba demasiado claro' : w.lt < -18 ? 'estaba demasiado oscuro' : w.dd < w.cc - 12 ? 'no tenía la textura del fondo' : 'no tenía el tono del fondo')(G.weak) : ''), go = document.createElement('div'); go.className = 'arcade-go';
-  const T = G.win ? ['🦎 ¡Camuflaje perfecto!', 'EVA no te encontró · ' + sc, '➡️ Nivel ' + (G.level + 1)] : G.lives > 0 ? ['👀 ¡EVA te encontró!', sc, '🔁 Reintentar'] : ['💥 Fin del juego', 'Superaste ' + (G.level - 1) + ' niveles · Récord ' + G.best, '🔄 Jugar otra vez'];
+  const mg = G.score - G.need, stars = mg >= 14 ? '⭐⭐⭐' : mg >= 6 ? '⭐⭐' : '⭐', T = G.win ? ['🦎 ¡Camuflaje perfecto! ' + stars, 'EVA no te encontró · ' + sc, '➡️ Nivel ' + (G.level + 1)] : G.lives > 0 ? ['👀 ¡EVA te encontró!', sc, '🔁 Reintentar'] : ['💥 Fin del juego', 'Superaste ' + (G.level - 1) + ' niveles · Récord ' + G.best, '🔄 Jugar otra vez'];
   go.innerHTML = '<b>' + T[0] + '</b><span>' + T[1] + '</span><button class="tv-sig" onclick="ARCADE_CAM_next()">' + T[2] + '</button><small>' + (ARCADE_isPC() ? 'o pulsa Espacio' : '') + '</small>';
   const add = () => { if (ARCADE_CAM === G && G.ph === 'result' && !document.querySelector('#cam-stage .arcade-go')) document.getElementById('cam-stage').appendChild(go); };
-  if (G.win) setTimeout(add, 2300); else { G.toon = { k: ['martillo', 'jaula', 'agua', 'yunque'][Math.random() * 4 | 0], t0: performance.now(), D: 3800, s: {} }; setTimeout(add, G.toon.D + 300); } ARCADE_CAM_hud();
+  if (G.win) setTimeout(add, 3800); else { const TL = ['martillo', 'jaula', 'agua', 'yunque', 'pastel', 'cosquillas', 'cohete', 'selfie', 'red', 'trompo']; let tk; do tk = TL[Math.random() * TL.length | 0]; while (tk === G.lastToon); G.lastToon = tk; G.toon = { k: tk, t0: performance.now(), D: 4300, s: {} }; setTimeout(add, G.toon.D + 300); } ARCADE_CAM_hud();
 }
 function ARCADE_CAM_next() { const G = ARCADE_CAM; if (!G || G.ph !== 'result' || (G.toon && !G.toon.done)) return; if (G.win) { G.level++; ARCADE_CAM_level(); } else if (G.lives <= 0) ARCADE_restart(); else ARCADE_CAM_level(); }
 function ARCADE_CAM_key(e) {
   const G = ARCADE_CAM; if (!G) return; const k = e.key.toLowerCase();
+  if (G.tut) { if (k === 'escape' || k === 'enter' || e.code === 'Space') { e.preventDefault(); ARCADE_CAM_tutClose(); } return; }
   if ((G.ph === 'prep' || G.retouch) && k === 'enter') { e.preventDefault(); ARCADE_CAM_ready(); }
   else if (G.ph === 'result' && (e.code === 'Space' || k === 'enter' || k === 'n')) { e.preventDefault(); ARCADE_CAM_next(); }
 }
@@ -13125,7 +13435,7 @@ function ARCADE_CAM_draw() {
   x.save(); x.fillStyle = 'rgba(0,0,0,.22)'; x.shadowColor = 'rgba(0,0,0,.3)'; x.shadowBlur = 14; x.beginPath(); x.ellipse(X + 88 * u, G.ay + 124 * u, 56 * u * (1 + dy / 140), 7 * u, 0, 0, 6.2832); x.fill(); x.restore();
   x.drawImage(G.paint, X, Y);
   x.save(); x.translate(X, Y); x.scale(u, u); ARCADE_CAM_path(x, null); x.clip(); x.setTransform(1, 0, 0, 1, 0, 0);
-  const sh = x.createLinearGradient(0, Y, 0, Y + PH); sh.addColorStop(0, 'rgba(255,255,255,.14)'); sh.addColorStop(0.55, 'rgba(0,0,0,0)'); sh.addColorStop(1, 'rgba(0,0,0,.2)'); x.fillStyle = sh; x.fillRect(X, Y, PW, PH); x.restore();
+  const sh = x.createLinearGradient(0, Y, 0, Y + PH); sh.addColorStop(0, 'rgba(255,255,255,.14)'); sh.addColorStop(0.55, 'rgba(0,0,0,0)'); sh.addColorStop(1, 'rgba(0,0,0,.2)'); x.fillStyle = sh; x.fillRect(X, Y, PW, PH); if (tf && tf.rb) { const rg = x.createLinearGradient(X, 0, X + PW, 0); for (let i = 0; i <= 6; i++) rg.addColorStop(i / 6, 'hsl(' + ((T / 6 + i * 60) % 360) + ',90%,55%)'); x.globalAlpha = .6; x.fillStyle = rg; x.fillRect(X, Y, PW, PH); x.globalAlpha = 1; } x.restore();
   x.save(); x.translate(X, Y); ARCADE_CAM_face(x, (tf && tf.mood) || mood, T, u); x.restore();
   x.save(); x.translate(X, Y); x.scale(u, u); ARCADE_CAM_path(x, null); x.restore();
   if (G.ph === 'prep') { x.setLineDash([6, 5]); x.strokeStyle = 'rgba(255,255,255,.75)'; x.lineWidth = 2; x.stroke(); x.setLineDash([]); if (G.sec) { x.save(); x.translate(X, Y); x.scale(u, u); ARCADE_CAM_path(x, [G.sec]); x.restore(); x.strokeStyle = '#22c3f2'; x.lineWidth = 3; x.shadowColor = '#22c3f2'; x.shadowBlur = 12; x.stroke(); x.shadowBlur = 0; } }
@@ -13149,7 +13459,7 @@ function ARCADE_CAM_draw() {
     const k = cv.clientWidth / 900, ev = document.getElementById('cam-eva'), sp = document.getElementById('cam-spot'), bob = Math.sin(T / 180) * 6, ein = document.getElementById('cam-ein'), em = document.getElementById('cam-emo');
     ev.style.transform = 'translate(' + G.ex * k + 'px,' + (G.ey + bob) * k + 'px) translate(-50%,-50%) scale(' + Math.max(0.6, k) * (G.zm || 1) + ')';
     sp.style.setProperty('--x', G.ex * k + 'px'); sp.style.setProperty('--y', (G.ey + 30) * k + 'px'); sp.style.setProperty('--r', (G.hot ? 75 : 108 + 8 * Math.sin(T / 150)) * k + 'px');
-    if (ein) { const lupa = G.arrived && pp && pp.av; G.zm = (G.zm || 1) + ((lupa ? 1.35 : 1) - (G.zm || 1)) * .15; ein.className = 'cam-ein ' + (G.hot ? 'found' : G.emo === '🤷' ? 'shrug' : lupa ? 'lupa' : 'scan'); }
+    if (ein) { const lupa = G.arrived && pp && pp.av; G.zm = (G.zm || 1) + ((lupa ? 1.35 : 1) - (G.zm || 1)) * .15; ein.className = 'cam-ein ' + (G.toon && G.eLaugh ? 'laugh' : G.hot ? 'found' : G.emo === '🤷' ? 'shrug' : lupa ? 'lupa' : G.gagUntil > T && G.gagCls ? G.gagCls : 'scan'); }
     if (em && em.textContent !== G.emo) em.textContent = G.emo || '';
   }
 }
@@ -13158,32 +13468,39 @@ function ARCADE_CAM_start() {
   document.getElementById('arcade-game-area').innerHTML = `<div class="cam-wrap">
     <div id="cam-stage" class="cam-stage" style="width:${wcss}">
       <canvas id="cam-cv" width="900" height="500" onpointerdown="ARCADE_CAM_ptr(event,0)" onpointermove="ARCADE_CAM_ptr(event,1)" onpointerup="ARCADE_CAM_ptr(event,2)" onpointercancel="ARCADE_CAM_ptr(event,2)" onpointerleave="if(ARCADE_CAM)ARCADE_CAM.mx=null"></canvas>
-      <div id="cam-spot" class="cam-spot"></div><canvas id="cam-rd" class="cam-rd" width="900" height="500"></canvas><div id="cam-toast" class="cam-toast"></div>
+      <div id="cam-spot" class="cam-spot"></div><canvas id="cam-rd" class="cam-rd" width="900" height="500"></canvas><div id="cam-toast" class="cam-toast"></div><button class="cam-help" onclick="ARCADE_CAM_tutOpen()" title="Cómo jugar">?</button>
       <div id="cam-eva" class="cam-eva"><div id="cam-say" class="cam-say"></div><div id="cam-ein" class="cam-ein"><span class="cam-ant">📡</span>${ARCADE_evaSpriteSVG(64, 80)}<span class="cam-lupa">🔍</span><span id="cam-emo" class="cam-emo"></span></div></div>
     </div>
     <div id="cam-bar" class="cam-bar" style="width:${wcss}">
-      <div class="cam-row">
-        <button class="cam-b" data-t="pick" onclick="ARCADE_CAM_tool('pick')">👆 Tomar del fondo</button><button class="cam-b" data-t="paint" onclick="ARCADE_CAM_tool('paint')">🖌️ Pintar</button>
-        <button class="cam-b" data-t="fill" onclick="ARCADE_CAM_tool('fill')">🪣 Sección</button><button class="cam-b" data-t="erase" onclick="ARCADE_CAM_tool('erase')">🧽 Borrar</button><button class="cam-b" data-t="move" onclick="ARCADE_CAM_tool('move')">✋ Mover</button>
-        <button class="cam-b" onclick="ARCADE_CAM_fillApply(ARCADE_CAM.sec?[ARCADE_CAM.sec]:null)">🌈 Todo</button><button class="cam-b" id="cam-big" onclick="ARCADE_CAM_big()">🦎 Grande</button>
+      <div class="cam-top"><div class="cam-lv"><b id="cam-lvn">NIVEL 1</b><small id="cam-lvname"></small></div><div class="cam-hearts" id="cam-hearts">❤️❤️❤️</div></div>
+      <div class="cam-tbar" id="cam-tbar"><i id="cam-tfill"></i><span id="cam-tnum">⏱ 55 s para pintar</span></div>
+      <div class="cam-actions"><button class="cam-b cam-help-b" onclick="ARCADE_CAM_tutOpen()"><span class="ic">❓</span>Cómo jugar</button><button class="cam-go" onclick="ARCADE_CAM_ready()">✅ ¡Listo!</button></div>
+      <div class="cam-st">Herramientas</div>
+      <div class="cam-tools">
+        <button class="cam-b" data-t="pick" onclick="ARCADE_CAM_tool('pick')"><span class="ic">👆</span>Del fondo</button><button class="cam-b" data-t="paint" onclick="ARCADE_CAM_tool('paint')"><span class="ic">🖌️</span>Pintar</button><button class="cam-b" data-t="fill" onclick="ARCADE_CAM_tool('fill')"><span class="ic">🪣</span>Sección</button><button class="cam-b" data-t="erase" onclick="ARCADE_CAM_tool('erase')"><span class="ic">🧽</span>Borrar</button>
+        <button class="cam-b" data-t="move" onclick="ARCADE_CAM_tool('move')"><span class="ic">✋</span>Mover</button><button class="cam-b" onclick="ARCADE_CAM_fillApply(ARCADE_CAM.sec?[ARCADE_CAM.sec]:null)"><span class="ic">🌈</span>Todo</button><button class="cam-b" id="cam-big" onclick="ARCADE_CAM_big()"><span class="ic">🦎</span>Grande</button>
       </div>
-      <div class="cam-row">
-        <canvas id="cam-brush" class="cam-brush" width="52" height="52" title="Tu pincel"></canvas><label class="cam-chk"><input type="checkbox" checked onchange="ARCADE_CAM.useCol=this.checked;ARCADE_CAM_brush()">🎨 Color</label><label class="cam-chk"><input type="checkbox" checked onchange="ARCADE_CAM.useDet=this.checked;ARCADE_CAM_brush()">✨ Detalle</label>
-        <button class="cam-chip on" data-s="" onclick="ARCADE_CAM_sec('')">Todo</button>${ARCADE_CAM_ALL.map(k => `<button class="cam-chip" data-s="${k}" onclick="ARCADE_CAM_sec('${k}')">${ARCADE_CAM_SECN[k]}</button>`).join('')}
+      <div class="cam-st">Tu pincel</div>
+      <div class="cam-brushrow">
+        <canvas id="cam-brush" class="cam-brush" width="52" height="52" title="Tu pincel"></canvas><label class="cam-chk"><input type="checkbox" checked onchange="ARCADE_CAM.useCol=this.checked;ARCADE_CAM_brush()">🎨 Color</label><label class="cam-chk"><input type="checkbox" checked onchange="ARCADE_CAM.useDet=this.checked;ARCADE_CAM_brush()">✨ Detalle</label><input type="range" min="4" max="60" value="22" title="Grosor" oninput="ARCADE_CAM.size=+this.value">
       </div>
-      <div class="cam-row">
+      <div class="cam-st">Zona del cuerpo</div>
+      <div class="cam-chips"><button class="cam-chip on" data-s="" onclick="ARCADE_CAM_sec('')">Todo</button>${ARCADE_CAM_ALL.map(k => `<button class="cam-chip" data-s="${k}" onclick="ARCADE_CAM_sec('${k}')">${ARCADE_CAM_SECN[k]}</button>`).join('')}</div>
+      <div class="cam-st">Paleta</div>
+      <div class="cam-pal">
         ${ARCADE_CAM_PAL.map(c => `<div class="cam-sw" data-c="${c}" style="background:${c}" onclick="ARCADE_CAM_col('${c}');if(ARCADE_CAM.tool==='pick'||ARCADE_CAM.tool==='move')ARCADE_CAM_tool('paint')"></div>`).join('')}
-        <input id="cam-col" type="color" value="${ARCADE_CAM_PAL[0]}" oninput="ARCADE_CAM_col(this.value)"><input type="range" min="4" max="60" value="22" title="Grosor" oninput="ARCADE_CAM.size=+this.value">
-        <button class="cam-go" onclick="ARCADE_CAM_ready()">✅ ¡Listo!</button>
-      </div></div></div>`;
+        <input id="cam-col" type="color" value="${ARCADE_CAM_PAL[0]}" oninput="ARCADE_CAM_col(this.value)">
+      </div>
+    </div></div>`;
   const G = ARCADE_CAM = { level: 1, lives: 3, run: true, raf: null, last: 0, col: ARCADE_CAM_PAL[0], size: 22, best: ARCADE_best('cam'), ph: 'prep', t: 55, useCol: true, useDet: true, sc: 1 };
-  G.sd = Math.floor(Math.random() * 1e6); G.hs = Math.random() < .5 ? 0 : 20 + Math.random() * 300 | 0; ARCADE_CAM_ORD = Array.from({ length: 24 }, (_, i) => i).sort(() => Math.random() - .5);
+  G.sd = Math.floor(Math.random() * 1e6); G.hs = Math.random() < .5 ? 0 : 20 + Math.random() * 300 | 0; ARCADE_CAM_ORD = Array.from({ length: 32 }, (_, i) => i).sort(() => Math.random() - .5);
   ARCADE_bindKey(ARCADE_CAM_key);
-  ARCADE_State.stop = () => { G.run = false; cancelAnimationFrame(G.raf); ARCADE_CAM = null; };
+  ARCADE_State.stop = () => { G.run = false; cancelAnimationFrame(G.raf); if (G.tut) cancelAnimationFrame(G.tut.raf); ARCADE_CAM = null; };
   ARCADE_hint('👆 Toca el fondo para <b>cargar tu pincel</b> con su color y/o detalle (marca ambos para los dos) · luego <b>píntalo tú</b>: a mano o 🪣 por sección · 📡 Eva tiene radar de detalle · 🦎 Grande = más lienzo · <kbd>Enter</kbd> = ¡Listo!');
   ARCADE_CAM_level();
+  { const openT = () => setTimeout(() => { if (ARCADE_CAM === G) ARCADE_CAM_tutOpen(); }, 450); try { if (!window.__camTutSeen && !localStorage.getItem('cam_tut_v1')) openT(); } catch (e) { if (!window.__camTutSeen) openT(); } }
   const loop = ts => { if (!G.run) return; const dt = G.last ? Math.min(0.05, (ts - G.last) / 1000) : 0; G.last = ts;
-    if (!ARCADE_State.paused) { if (G.ph === 'prep') { const s = Math.ceil(G.t); G.t -= dt; if (G.t <= 0) ARCADE_CAM_ready(); else if (Math.ceil(G.t) !== s) ARCADE_CAM_hud(); } else if (G.ph === 'search') ARCADE_CAM_search(dt); }
+    if (!ARCADE_State.paused && !G.tut) { if (G.ph === 'prep') { const s = Math.ceil(G.t); G.t -= dt; ARCADE_CAM_tfill(); if (G.t <= 0) ARCADE_CAM_ready(); else if (Math.ceil(G.t) !== s) ARCADE_CAM_hud(); } else if (G.ph === 'search') ARCADE_CAM_search(dt); }
     ARCADE_CAM_draw(); G.raf = requestAnimationFrame(loop); };
   G.raf = requestAnimationFrame(loop);
 }
