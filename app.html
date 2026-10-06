@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="atardecer" data-hw="1" data-hw-file="1"><head>
+<html lang="es" data-theme="atardecer" data-hw-file="1" data-hw="1"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -2187,7 +2187,50 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 #cam-stage .arcade-go span{font-size:clamp(14px,3.8vw,17px)!important;line-height:1.4;color:#fff!important}
 .cam-toast.on{background:#0b1c33!important;color:#fff!important;font-weight:800!important;font-size:clamp(13px,3.6vw,16px)!important;border:2px solid #22c3f2!important}
 </style>
-<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
+<style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style id="seg-premium-css">
+#seguimiento-admin-panel .seg-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.seg-clock{font-family:var(--font-display);font-weight:800;font-size:38px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.seg-date{color:var(--gris);font-size:13px;text-transform:capitalize;flex:1;min-width:120px}
+.seg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:12px}
+.seg-st{background:var(--glass);border:1px solid var(--glass-border);border-left:4px solid var(--c);border-radius:var(--radius-sm);padding:10px 12px;cursor:pointer;transition:var(--transition)}
+.seg-st:hover{background:var(--glass-hover)}.seg-st.on{box-shadow:0 0 0 2px var(--c) inset}
+.seg-st b{display:block;font-family:var(--font-display);font-size:26px;font-variant-numeric:tabular-nums}.seg-st span{color:var(--gris);font-size:12px}
+#seg-q{margin-bottom:14px}
+.seg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.seg-card{position:relative;overflow:hidden;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-sm);backdrop-filter:blur(10px)}
+.seg-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c)}
+.seg-card.seg-soon{animation:segPulse 1.8s ease-in-out infinite}
+@keyframes segPulse{50%{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent),var(--shadow-sm)}}
+@media(prefers-reduced-motion:reduce){.seg-card.seg-soon{animation:none}}
+.seg-top2{display:flex;align-items:center;gap:11px}
+.seg-ring{--p:0;width:58px;height:58px;border-radius:50%;padding:3px;flex:none;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--gris2) 0)}
+.seg-av{width:100%;height:100%;border-radius:50%;overflow:hidden;display:grid;place-items:center;font-weight:700;font-size:18px;color:#fff;background:linear-gradient(135deg,var(--azul2),#9b5cff);border:3px solid var(--negro2)}
+.seg-av img{width:100%;height:100%;object-fit:cover}
+.seg-nm{font-weight:650;font-size:14px;line-height:1.2;min-width:0}.seg-nm small{display:block;color:var(--gris);font-weight:500;font-size:11.5px;margin-top:3px}
+.seg-pill{margin-left:auto;font-size:11px;font-weight:700;padding:4px 9px;border-radius:99px;white-space:nowrap;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
+.seg-tm{font-family:var(--font-display);font-weight:800;font-size:36px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.seg-lb{color:var(--gris);font-size:12.5px;margin-top:-4px}
+.seg-bar{position:relative;display:flex;gap:2px;height:10px;border-radius:99px;overflow:hidden;background:var(--gris2)}
+.seg-bar i{display:block;height:100%}.seg-bar i.seg-done{opacity:.35}
+.seg-now{position:absolute;top:0;bottom:0;width:3px;margin-left:-1px;background:#fff;box-shadow:0 0 6px #fff}
+.seg-empty{grid-column:1/-1;text-align:center;color:var(--gris);padding:36px}
+.seg-note{margin-top:14px;color:var(--gris);font-size:12px}
+.seg-ctrl{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;padding:14px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-border)}
+.seg-ctrl-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}.seg-ctrl-h small{color:var(--gris);font-size:12.5px}
+.seg-g{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:var(--radius-sm);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:color-mix(in srgb,var(--c) 10%,transparent)}
+.seg-g.next{opacity:.8;border-style:dashed}
+.seg-g-n{font-family:var(--font-display);font-weight:800;font-size:30px;min-width:40px;text-align:center;color:var(--c);font-variant-numeric:tabular-nums}
+.seg-g-t{flex:1;min-width:0;font-size:13.5px;line-height:1.35}.seg-g-t small{display:block;color:var(--gris);font-size:12px;margin-top:2px}.seg-g-t small span{font-variant-numeric:tabular-nums;color:var(--blanco);font-weight:700}
+.seg-g-t details{margin-top:4px}.seg-g-t summary{cursor:pointer;color:var(--gris);font-size:12px}
+.seg-names{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.seg-names span{font-size:11.5px;padding:3px 8px;border-radius:99px;background:var(--glass);border:1px solid var(--glass-border)}
+.seg-crm{flex:none;border:0;border-radius:99px;padding:9px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#fff;background:var(--rojo);transition:var(--transition)}
+.seg-g.pend .seg-crm{animation:segPulse2 1.8s ease-in-out infinite}
+@keyframes segPulse2{50%{box-shadow:0 0 0 4px rgba(var(--rojo-rgb),.35)}}
+.seg-g.ok .seg-crm{background:var(--verde);animation:none}
+@media(prefers-reduced-motion:reduce){.seg-g.pend .seg-crm{animation:none}}
+@media(max-width:520px){.seg-g{flex-wrap:wrap}.seg-crm{width:100%}}
+#seguimiento-admin-panel:fullscreen{background:var(--negro);padding:24px;overflow:auto}
+</style></head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
@@ -2195,7 +2238,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando cuenta...</div>
+  <div class="loader-text" id="loader-text">Verificando información...</div>
 </div>
 <div class="toast-container" id="toasts"></div>
 
@@ -2710,7 +2753,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenos días,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -2801,7 +2844,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">18:51</div><button type="button" class="activity-del-btn" data-aid="51" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">18:51</div><button type="button" class="activity-del-btn" data-aid="50" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🔑</div><div class="activity-text"><strong>MELANYS</strong> inició sesión</div><div class="activity-time">18:50</div><button type="button" class="activity-del-btn" data-aid="49" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 05/10/2026</div><div class="activity-time">18:50</div><button type="button" class="activity-del-btn" data-aid="46" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno del 05/10/2026</div><div class="activity-time">18:49</div><button type="button" class="activity-del-btn" data-aid="45" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -3034,6 +3077,13 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="qc-left"><div class="qc-icon">🕒</div><div>
             <div class="qc-title">Horario Manual</div>
             <div class="qc-sub">Fija entrada y salida de un día; la semana se compensa sola</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-seguimiento" onclick="ADMIN_seleccionar('seguimiento-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">📡</div><div>
+            <div class="qc-title">Seguimiento de Turnos</div>
+            <div class="qc-sub">Tarjetas en vivo con cronómetro y línea de tiempo de cada asesor</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
@@ -3525,6 +3575,20 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
         </div>
         <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="COND_guardar()">💾 Guardar esta condición para reutilizarla</button>
         <div id="cond-guardadas-list" class="consultas-list" style="margin-top:10px"></div>
+      </div>
+
+      <!-- ── Seguimiento de turnos en vivo ── -->
+      <div class="malla-panel admin-subpanel" id="seguimiento-admin-panel" style="display: none;">
+        <div class="section-header">
+          <div class="section-title">📡 Seguimiento de Turnos</div>
+          <div class="section-sub">Quién está en turno, en break o en almuerzo ahora mismo, con cronómetro y línea de tiempo</div>
+        </div>
+        <div class="seg-top"><div class="seg-clock" id="seg-clock">--:--:--</div><div class="seg-date" id="seg-date"></div><button class="btn btn-secondary" onclick="SEG_full()">⛶ Pantalla completa</button></div>
+        <div class="seg-ctrl" id="seg-ctrl"></div>
+        <div class="seg-stats" id="seg-stats"></div>
+        <input class="form-input" id="seg-q" type="search" placeholder="Buscar asesor…">
+        <div class="seg-grid" id="seg-grid"></div>
+        <div class="seg-note" id="seg-note"></div>
       </div>
 
       <!-- ── Horario manual: fijar entrada/salida de un día y compensar la semana ── -->
@@ -5355,12 +5419,12 @@ const MALLA_BASELINE_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BRE
  08/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 05/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+05/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	6:30:00	a.	m.	3:30:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	11:10:00	a.	m.	8:00:00
  06/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  07/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  09/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+10/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
  05/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  06/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  07/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -7328,6 +7392,7 @@ const DELEG_PANEL_PERM_MAP = {
   'mover-admin-panel': 'mover',
   'condicion-admin-panel': 'mover',
   'horario-manual-admin-panel': 'mover',
+  'seguimiento-admin-panel': 'turnos',
   'break-admin-panel': 'mover',
   'agregar-turno-admin-panel': 'mover',
   'ausencia-admin-panel': 'ausencia',
@@ -8557,7 +8622,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-06.0603';
+const TB_APP_VERSION = '2026-10-06.0615';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -9015,6 +9080,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'mover-admin-panel') MOVER_populateSelect();
   if (panelId === 'condicion-admin-panel') COND_populate();
   if (panelId === 'horario-manual-admin-panel') HM_populate();
+  if (panelId === 'seguimiento-admin-panel' && window.SEG_abrir) SEG_abrir();
   if (panelId === 'break-admin-panel') BRK_populate();
   if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
   if (panelId === 'agregar-turno-admin-panel') AT_abrir();
@@ -9231,6 +9297,7 @@ function F3_initTurns() {
     'team-panel': 'admin-btn-team', 'mover-admin-panel': 'admin-btn-mover',
     'condicion-admin-panel': 'admin-btn-condicion',
     'horario-manual-admin-panel': 'admin-btn-horario-manual',
+    'seguimiento-admin-panel': 'admin-btn-seguimiento',
     'break-admin-panel': 'admin-btn-break',
     'agregar-turno-admin-panel': 'admin-btn-agregar',
     'swap-dias-admin-panel': 'admin-btn-swap',
@@ -10328,7 +10395,7 @@ function TB_CAMBIOS_init() {
 // el const ya exista.
 TB_CAMBIOS_init();
 
-const TB_HORAS_DEFAULT = {"2026-10-05|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"10/10","otraISO":"2026-10-10","cond":true},"2026-10-10|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"origen","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true},"2026-10-07|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"1","min":60,"otraFecha":"08/10","otraISO":"2026-10-08"},"2026-10-10|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"06/10","otraISO":"2026-10-06"},"2026-10-08|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"07/10","otraISO":"2026-10-07"}};
+const TB_HORAS_DEFAULT = {"2026-09-29|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-30|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"2","min":120,"repartido":60,"otraFecha":"29/09, 30/09","otras":["2026-09-29","2026-09-30"],"reparto":[{"fecha":"2026-09-29","min":30},{"fecha":"2026-09-30","min":30}],"cond":true}};
 function TB_HORAS_init() {
   try {
     const embebidos = TB_HORAS_DEFAULT || {};
@@ -17608,4 +17675,138 @@ function BUZON_updateBadge() {
 </script>
 
 
+<script id="seg-premium-js">
+/* ═══ SEGUIMIENTO DE TURNOS EN VIVO (modo programado, según la malla de hoy) ═══ */
+(function () {
+  const K = {
+    turno: { n: 'En turno', c: '#10b981' }, break: { n: 'En break', c: '#f59e0b' },
+    almuerzo: { n: 'Almuerzo', c: '#f0673c' }, pend: { n: 'Pendiente', c: '#6c8cff' }, salio: { n: 'Salió', c: '#98a2b3' }
+  };
+  const pad = n => String(n).padStart(2, '0');
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const fm = m => { m = ((Math.round(m) % 1440) + 1440) % 1440; const h = Math.floor(m / 60), x = m % 60; return ((h % 12) || 12) + ':' + pad(x) + (h < 12 ? ' a. m.' : ' p. m.'); };
+  const hms = s => { s = Math.floor(s); const h = Math.floor(s / 3600); return (h ? pad(h) + ':' : '') + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60); };
+  const cache = new WeakMap();
+  let filter = 'all', term = '', sig = '';
+
+  function build(r) {
+    let c = cache.get(r); if (c) return c;
+    const ini = F3_toMin(r.entrada); let fin = F3_toMin(r.salida); if (fin <= ini) fin += 1440;
+    const abs = v => { let a = F3_parse12hToMin(v); if (a == null) return null; if (a < ini) a += 1440; return a; };
+    const get = l => { const d = (r.detalle || []).find(x => x.label === l); return d ? abs(d.value) : null; };
+    const seg = [], b1 = get('Break 1'), b2 = get('Break 2'), sa = get('Salida almuerzo'), ra = get('Regreso almuerzo');
+    if (b1 != null) seg.push({ k: 'break', n: 'Break 1', s: b1, e: b1 + 15 });
+    if (b2 != null) seg.push({ k: 'break', n: 'Break 2', s: b2, e: b2 + 15 });
+    if (sa != null) { let e = ra != null && ra > sa ? ra : sa + 60; seg.push({ k: 'almuerzo', n: 'Almuerzo', s: sa, e }); }
+    seg.sort((a, b) => a.s - b.s);
+    c = { ini, fin, seg }; cache.set(r, c); return c;
+  }
+  function calc(r, m) {
+    const { ini, fin, seg } = build(r);
+    let k, rem, lab, p, cur = null;
+    const nxt = [...seg.filter(s => s.s > m).map(s => [s.s, s.n]), [fin, 'Salida']][0];
+    if (m < ini) { k = 'pend'; rem = (ini - m) * 60; lab = 'Inicia turno en'; p = 0; }
+    else if (m >= fin) { k = 'salio'; rem = (m - fin) * 60; lab = 'Salió hace'; p = 100; }
+    else {
+      cur = seg.find(s => m >= s.s && m < s.e) || null;
+      if (cur) { k = cur.k; rem = (cur.e - m) * 60; lab = 'Termina ' + cur.n.toLowerCase() + ' en'; p = (m - cur.s) / (cur.e - cur.s) * 100; }
+      else {
+        k = 'turno'; rem = (nxt[0] - m) * 60; lab = nxt[1] + ' en';
+        const prev = [ini, ...seg.filter(s => s.e <= m).map(s => s.e)].pop(); p = (m - prev) / (nxt[0] - prev) * 100;
+      }
+    }
+    return { k, cur, rem: Math.max(0, rem), lab, p: Math.min(100, Math.max(0, p)), soon: (k === 'turno' || k === 'break' || k === 'almuerzo') && rem <= 120 };
+  }
+  function bar(r, m) {
+    const { ini, fin, seg } = build(r), parts = []; let pos = ini;
+    seg.forEach(s => { if (s.s > pos) parts.push(['turno', pos, s.s]); parts.push([s.k, s.s, s.e]); pos = s.e; });
+    if (fin > pos) parts.push(['turno', pos, fin]);
+    const h = parts.map(([k, s, e]) => `<i class="${e <= m ? 'seg-done' : ''}" style="flex:${e - s};background:${K[k].c}" title="${K[k].n} ${fm(s)} – ${fm(e)}"></i>`).join('');
+    const x = Math.min(100, Math.max(0, (m - ini) / (fin - ini) * 100));
+    return `<div class="seg-bar">${h}<span class="seg-now" style="left:${x}%"></span></div>`;
+  }
+  function rowsHoy() {
+    const hoy = MALLA_todayISO(), vistos = new Set(), out = [];
+    (MALLA_DATA || []).forEach(r => {
+      if (r.fechaISO !== hoy || r.estado !== 'ACTIVO' || !r.entrada || !r.salida) return;
+      if (r.entrada === '00:00' && r.salida === '00:00') return;
+      if (vistos.has(r.nombreNorm)) return; vistos.add(r.nombreNorm); out.push(r);
+    });
+    return out;
+  }
+  function inicial(n) { return n.split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join(''); }
+
+
+  let rev = {}, revDia = '', ctrlSig = '';
+  const loadRev = () => { const h = MALLA_todayISO(); if (revDia === h) return; revDia = h; try { rev = JSON.parse(localStorage.getItem('tb_seg_crm_' + h)) || {}; } catch (e) { rev = {}; } };
+  const saveRev = () => { try { localStorage.setItem('tb_seg_crm_' + revDia, JSON.stringify(rev)); } catch (e) { } };
+  function grupos(rows, m) {
+    const act = {}, prox = {};
+    rows.forEach(({ r, c }) => {
+      if (c.cur) { const key = c.cur.k + '-' + c.cur.s + '-' + c.cur.e; (act[key] = act[key] || { key, k: c.cur.k, s: c.cur.s, e: c.cur.e, n: [] }).n.push(r.nombre); }
+      else if (c.k === 'turno') {
+        const nx = build(r).seg.find(x => x.s > m && x.s - m <= 10);
+        if (nx) { const key = nx.k + '-' + nx.s + '-' + nx.e; (prox[key] = prox[key] || { key, k: nx.k, s: nx.s, e: nx.e, n: [] }).n.push(r.nombre); }
+      }
+    });
+    const f = o => Object.values(o).sort((a, b) => a.s - b.s);
+    return { act: f(act), prox: f(prox) };
+  }
+  function ctrlHTML(g, enTurno, m) {
+    const tx = k => k === 'almuerzo' ? 'almuerzo' : 'break', ic = k => k === 'almuerzo' ? '🍽️' : '☕';
+    const names = n => n.slice().sort((a, b) => a.localeCompare(b)).map(x => `<span>${esc(x)}</span>`).join('');
+    const total = g.act.reduce((a, x) => a + x.n.length, 0);
+    let h = `<div class="seg-ctrl-h"><b>🎯 Control en este momento</b><small>${total ? total + ' de ' + enTurno + ' en turno deberían estar en pausa' : 'Nadie debería estar en pausa ahora'}</small></div>`;
+    h += g.act.map(x => { const r = rev[x.key]; return `<div class="seg-g ${r ? 'ok' : 'pend'}" style="--c:${K[x.k].c}"><div class="seg-g-n">${x.n.length}</div><div class="seg-g-t"><b>${ic(x.k)} ${x.n.length} ${x.n.length === 1 ? 'debería estar' : 'deberían estar'} en ${tx(x.k)}</b> de ${fm(x.s)} a ${fm(x.e)}<small>Termina en <span class="seg-g-rem" data-e="${x.e}">${hms((x.e - m) * 60)}</span></small><details><summary>Ver quiénes</summary><div class="seg-names">${names(x.n)}</div></details></div><button class="seg-crm" onclick="SEG_crm('${x.key}')">${r ? '✓ CRM revisado ' + r : 'Revisar CRM'}</button></div>`; }).join('');
+    h += g.prox.map(x => `<div class="seg-g next" style="--c:${K[x.k].c}"><div class="seg-g-n">${x.n.length}</div><div class="seg-g-t"><b>${ic(x.k)} Próximo: ${x.n.length} a ${tx(x.k)}</b> de ${fm(x.s)} a ${fm(x.e)}<small>Empieza en <span class="seg-g-rem" data-e="${x.s}">${hms((x.s - m) * 60)}</span></small><details><summary>Ver quiénes</summary><div class="seg-names">${names(x.n)}</div></details></div></div>`).join('');
+    return h;
+  }
+
+  function tick(force) {
+    const panel = document.getElementById('seguimiento-admin-panel');
+    if (!panel || panel.style.display === 'none') return;
+    const d = new Date(), m = d.getHours() * 60 + d.getMinutes() + d.getSeconds() / 60;
+    document.getElementById('seg-clock').textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    document.getElementById('seg-date').textContent = d.toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+    const base = rowsHoy(), rows = base.map(r => ({ r, c: calc(r, m) }));
+    const cnt = {}; rows.forEach(x => cnt[x.c.k] = (cnt[x.c.k] || 0) + 1);
+    const G = [['all', 'Total', '#ffffff', rows.length], ['turno', 'En turno', K.turno.c, cnt.turno || 0], ['break', 'En break', K.break.c, cnt.break || 0], ['almuerzo', 'Almuerzo', K.almuerzo.c, cnt.almuerzo || 0], ['pend', 'Pendientes', K.pend.c, cnt.pend || 0], ['salio', 'Salieron', K.salio.c, cnt.salio || 0]];
+    const ord = { break: 0, almuerzo: 0, turno: 1, pend: 2, salio: 3 };
+    const list = rows.filter(x => (filter === 'all' || x.c.k === filter) && x.r.nombre.toLowerCase().includes(term))
+      .sort((a, b) => ord[a.c.k] - ord[b.c.k] || a.c.rem - b.c.rem);
+    loadRev();
+    const gr = grupos(rows, m), enTurno = rows.filter(x => ['turno', 'break', 'almuerzo'].includes(x.c.k)).length;
+    const cs = JSON.stringify([gr.act.map(x => [x.key, x.n.length, rev[x.key] || 0]), gr.prox.map(x => [x.key, x.n.length]), enTurno]);
+    if (force || cs !== ctrlSig) { ctrlSig = cs; document.getElementById('seg-ctrl').innerHTML = ctrlHTML(gr, enTurno, m); }
+    document.querySelectorAll('#seg-ctrl .seg-g-rem').forEach(el => { el.textContent = hms((+el.dataset.e - m) * 60); });
+    const s2 = filter + '|' + term + '|' + G.map(g => g[3]).join(',') + '|' + list.map(x => x.r.nombreNorm + ':' + x.c.k).join(',');
+    if (force || s2 !== sig) {
+      sig = s2;
+      document.getElementById('seg-stats').innerHTML = G.map(g => `<div class="seg-st ${filter === g[0] ? 'on' : ''}" style="--c:${g[2]}" onclick="SEG_filtro('${g[0]}')"><b>${g[3]}</b><span>${g[1]}</span></div>`).join('');
+      document.getElementById('seg-grid').innerHTML = list.length ? list.map(({ r, c }) => {
+        let foto = null; try { foto = ADMPHOTO_get(r.nombre); } catch (e) { }
+        return `<article class="seg-card" data-n="${esc(r.nombreNorm)}" style="--c:${K[c.k].c}"><div class="seg-top2"><div class="seg-ring" style="--p:${c.p}"><div class="seg-av">${foto ? `<img src="${foto}" alt="">` : esc(inicial(r.nombre))}</div></div><div class="seg-nm">${esc(r.nombre)}<small>${esc(r.entradaDisplay || '')} – ${esc(r.salidaDisplay || '')}</small></div><span class="seg-pill">${K[c.k].n}</span></div><div class="seg-tm">${hms(c.rem)}</div><div class="seg-lb">${c.lab}</div>${bar(r, m)}</article>`;
+      }).join('') : '<div class="seg-empty">No hay asesores para este filtro hoy.</div>';
+      document.getElementById('seg-note').textContent = base.length ? 'Estados según la malla de hoy (horario programado), no según lo que cada asesor marca.' : 'No hay turnos activos cargados para hoy en la malla.';
+    } else {
+      list.forEach(({ r, c }) => {
+        const el = document.querySelector('.seg-card[data-n="' + r.nombreNorm + '"]'); if (!el) return;
+        el.querySelector('.seg-tm').textContent = hms(c.rem);
+        el.querySelector('.seg-lb').textContent = c.lab;
+        el.querySelector('.seg-ring').style.setProperty('--p', c.p);
+        el.querySelector('.seg-now').style.left = Math.min(100, Math.max(0, (m - build(r).ini) / (build(r).fin - build(r).ini) * 100)) + '%';
+        el.classList.toggle('seg-soon', c.soon);
+      });
+    }
+  }
+  window.SEG_abrir = () => { sig = ''; tick(true); };
+  window.SEG_crm = key => { loadRev(); if (rev[key]) delete rev[key]; else { const d = new Date(); rev[key] = pad(d.getHours()) + ':' + pad(d.getMinutes()); } saveRev(); ctrlSig = ''; tick(true); };
+  window.SEG_filtro = f => { filter = f; tick(true); };
+  window.SEG_full = () => { const p = document.getElementById('seguimiento-admin-panel'); if (document.fullscreenElement) document.exitFullscreen(); else if (p.requestFullscreen) p.requestFullscreen(); };
+  document.addEventListener('input', e => { if (e.target && e.target.id === 'seg-q') { term = e.target.value.toLowerCase().trim(); tick(true); } });
+  setInterval(() => { try { tick(false); } catch (e) { console.error('SEG', e); } }, 1000);
+  window.__SEG_test = { calc, build, grupos };
+})();
+
+</script>
 </body></html>
