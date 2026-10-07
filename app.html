@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="atardecer" data-hw-file="1" data-hw="1"><head>
+<html lang="es" data-theme="atardecer" data-hw-file="1" data-hw="1"><head><script id="tb-llave-boot">
+/*TB_LLAVE:BOOT — NO ELIMINAR. Foto de las novedades guardadas en este dispositivo ANTES de que la app arranque. */
+(function(){try{var K=['tb_malla_rawtext_v1','tb_breaks_v1','tb_horas_movidas_v1','tb_turnos_cambiados_v1','tb_turnos_agregados_v1','tb_dias_intercambiados_v1','tb_condiciones_horario_v1'],b={};K.forEach(function(k){try{b[k]=localStorage.getItem(k)}catch(e){b[k]=null}});window.__TB_LLAVE={keys:K,boot:b,t:Date.now()};}catch(e){}})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -2188,48 +2191,73 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .cam-toast.on{background:#0b1c33!important;color:#fff!important;font-weight:800!important;font-size:clamp(13px,3.6vw,16px)!important;border:2px solid #22c3f2!important}
 </style>
 <style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style id="seg-premium-css">
-#seguimiento-admin-panel .seg-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
-.seg-clock{font-family:var(--font-display);font-weight:800;font-size:38px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
-.seg-date{color:var(--gris);font-size:13px;text-transform:capitalize;flex:1;min-width:120px}
-.seg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:12px}
-.seg-st{background:var(--glass);border:1px solid var(--glass-border);border-left:4px solid var(--c);border-radius:var(--radius-sm);padding:10px 12px;cursor:pointer;transition:var(--transition)}
-.seg-st:hover{background:var(--glass-hover)}.seg-st.on{box-shadow:0 0 0 2px var(--c) inset}
-.seg-st b{display:block;font-family:var(--font-display);font-size:26px;font-variant-numeric:tabular-nums}.seg-st span{color:var(--gris);font-size:12px}
-#seg-q{margin-bottom:14px}
-.seg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.seg-card{position:relative;overflow:hidden;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-sm);backdrop-filter:blur(10px)}
-.seg-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c)}
-.seg-card.seg-soon{animation:segPulse 1.8s ease-in-out infinite}
-@keyframes segPulse{50%{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent),var(--shadow-sm)}}
-@media(prefers-reduced-motion:reduce){.seg-card.seg-soon{animation:none}}
-.seg-top2{display:flex;align-items:center;gap:11px}
-.seg-ring{--p:0;width:58px;height:58px;border-radius:50%;padding:3px;flex:none;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--gris2) 0)}
-.seg-av{width:100%;height:100%;border-radius:50%;overflow:hidden;display:grid;place-items:center;font-weight:700;font-size:18px;color:#fff;background:linear-gradient(135deg,var(--azul2),#9b5cff);border:3px solid var(--negro2)}
-.seg-av img{width:100%;height:100%;object-fit:cover}
-.seg-nm{font-weight:650;font-size:14px;line-height:1.2;min-width:0}.seg-nm small{display:block;color:var(--gris);font-weight:500;font-size:11.5px;margin-top:3px}
-.seg-pill{margin-left:auto;font-size:11px;font-weight:700;padding:4px 9px;border-radius:99px;white-space:nowrap;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
-.seg-tm{font-family:var(--font-display);font-weight:800;font-size:36px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
-.seg-lb{color:var(--gris);font-size:12.5px;margin-top:-4px}
-.seg-bar{position:relative;display:flex;gap:2px;height:10px;border-radius:99px;overflow:hidden;background:var(--gris2)}
-.seg-bar i{display:block;height:100%}.seg-bar i.seg-done{opacity:.35}
-.seg-now{position:absolute;top:0;bottom:0;width:3px;margin-left:-1px;background:#fff;box-shadow:0 0 6px #fff}
-.seg-empty{grid-column:1/-1;text-align:center;color:var(--gris);padding:36px}
-.seg-note{margin-top:14px;color:var(--gris);font-size:12px}
-.seg-ctrl{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;padding:14px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-border)}
-.seg-ctrl-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}.seg-ctrl-h small{color:var(--gris);font-size:12.5px}
-.seg-g{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:var(--radius-sm);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:color-mix(in srgb,var(--c) 10%,transparent)}
-.seg-g.next{opacity:.8;border-style:dashed}
-.seg-g-n{font-family:var(--font-display);font-weight:800;font-size:30px;min-width:40px;text-align:center;color:var(--c);font-variant-numeric:tabular-nums}
-.seg-g-t{flex:1;min-width:0;font-size:13.5px;line-height:1.35}.seg-g-t small{display:block;color:var(--gris);font-size:12px;margin-top:2px}.seg-g-t small span{font-variant-numeric:tabular-nums;color:var(--blanco);font-weight:700}
-.seg-g-t details{margin-top:4px}.seg-g-t summary{cursor:pointer;color:var(--gris);font-size:12px}
-.seg-names{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.seg-names span{font-size:11.5px;padding:3px 8px;border-radius:99px;background:var(--glass);border:1px solid var(--glass-border)}
-.seg-crm{flex:none;border:0;border-radius:99px;padding:9px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#fff;background:var(--rojo);transition:var(--transition)}
-.seg-g.pend .seg-crm{animation:segPulse2 1.8s ease-in-out infinite}
-@keyframes segPulse2{50%{box-shadow:0 0 0 4px rgba(var(--rojo-rgb),.35)}}
-.seg-g.ok .seg-crm{background:var(--verde);animation:none}
-@media(prefers-reduced-motion:reduce){.seg-g.pend .seg-crm{animation:none}}
-@media(max-width:520px){.seg-g{flex-wrap:wrap}.seg-crm{width:100%}}
+#seguimiento-admin-panel{position:relative}
+.sg-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--glass-border)}
+.sg-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-weight:700}
+.sg-title{font-family:var(--font-display);font-size:24px;font-weight:800;letter-spacing:-.02em;margin:2px 0}
+.sg-date{color:var(--gris);font-size:13px;text-transform:capitalize}
+.sg-hr{display:flex;align-items:center;gap:12px}
+.sg-clock{font-family:var(--font-display);font-weight:800;font-size:34px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1;padding:8px 14px;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border)}
+.sg-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px;margin-bottom:14px}
+.sg-st{position:relative;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:12px 14px 12px 16px;cursor:pointer;transition:var(--transition);overflow:hidden}
+.sg-st::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.sg-st:hover{background:var(--glass-hover)}.sg-st.on{box-shadow:0 0 0 2px var(--c) inset}
+.sg-st b{display:block;font-family:var(--font-display);font-size:28px;line-height:1.05;font-variant-numeric:tabular-nums}.sg-st span{color:var(--gris);font-size:12px}
+.sg-ctrl{margin-bottom:14px;padding:14px;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-border)}
+.sg-ctrl-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:10px}.sg-ctrl-h b{font-size:14px;letter-spacing:.02em}.sg-ctrl-h small{color:var(--gris);font-size:12.5px}
+.sg-ctrl-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.sg-g{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:var(--radius-sm);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:color-mix(in srgb,var(--c) 10%,transparent)}
+.sg-g.next{opacity:.78;border-style:dashed}
+.sg-g-n{font-family:var(--font-display);font-weight:800;font-size:30px;min-width:40px;text-align:center;color:var(--c);font-variant-numeric:tabular-nums}
+.sg-g-t{flex:1;min-width:0;font-size:13.5px;line-height:1.35}.sg-g-t small{display:block;color:var(--gris);font-size:12px;margin-top:2px}.sg-g-t small span{font-variant-numeric:tabular-nums;font-weight:700;color:inherit}
+.sg-g-t details{margin-top:4px}.sg-g-t summary{cursor:pointer;color:var(--gris);font-size:12px}
+.sg-names{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.sg-names span{font-size:11.5px;padding:3px 8px;border-radius:99px;background:var(--glass);border:1px solid var(--glass-border)}
+.sg-crm{flex:none;border:0;border-radius:99px;padding:9px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#fff;background:var(--rojo)}
+.sg-g.pend .sg-crm{animation:sgPulse2 1.8s ease-in-out infinite}.sg-g.ok .sg-crm{background:var(--verde);animation:none}
+@keyframes sgPulse2{50%{box-shadow:0 0 0 4px rgba(var(--rojo-rgb,229,9,20),.35)}}
+.sg-tools{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}.sg-tools input{flex:1;min-width:180px}
+.sg-ent{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;align-items:center;-webkit-overflow-scrolling:touch}
+.sg-ent-l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);white-space:nowrap;margin-right:2px}
+.sg-ent button{flex:none;border:1px solid var(--glass-border);background:var(--glass);color:inherit;border-radius:99px;padding:7px 13px;font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.sg-ent button i{font-style:normal;color:var(--gris);margin-left:4px}.sg-ent button.on{background:var(--rojo);border-color:var(--rojo);color:#fff}.sg-ent button.on i{color:#fff}
+.sg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.sg-card{position:relative;overflow:hidden;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-sm)}
+.sg-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c)}
+.sg-card.soon{animation:sgPulse 1.8s ease-in-out infinite}.sg-card.aus{opacity:.85}
+@keyframes sgPulse{50%{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent),var(--shadow-sm)}}
+@media(prefers-reduced-motion:reduce){.sg-card.soon,.sg-g.pend .sg-crm{animation:none}}
+.sg-top{display:flex;align-items:center;gap:11px}
+.sg-ring{--p:0;width:54px;height:54px;border-radius:50%;padding:3px;flex:none;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--gris2) 0)}
+.sg-av{width:100%;height:100%;border-radius:50%;overflow:hidden;display:grid;place-items:center;font-weight:700;font-size:17px;color:#fff;background:linear-gradient(135deg,var(--azul2),#9b5cff);border:3px solid var(--negro2)}.sg-av img{width:100%;height:100%;object-fit:cover}
+.sg-nm{font-weight:650;font-size:14.5px;line-height:1.2;min-width:0;flex:1}.sg-nm small{display:block;color:var(--gris);font-weight:500;font-size:12px;margin-top:3px}
+.sg-pill{font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
+.sg-x{border:1px solid var(--glass-border);background:var(--glass);border-radius:10px;width:32px;height:32px;cursor:pointer;font-size:14px;color:inherit}.sg-x:hover{background:var(--glass-hover)}
+.sg-now{font-size:12.5px;color:var(--gris);min-height:18px}.sg-now b{color:inherit;font-variant-numeric:tabular-nums}
+.sg-tl{display:flex;padding-top:2px}
+.sg-n{flex:1;min-width:0;text-align:center;position:relative;padding:0 2px}
+.sg-n::before{content:"";position:absolute;top:25px;left:50%;right:-50%;height:2px;background:var(--glass-border)}.sg-n:last-child::before{display:none}.sg-n.done::before{background:var(--verde)}
+.sg-t{height:16px;line-height:16px;font-size:11px;color:var(--gris);font-variant-numeric:tabular-nums}
+.sg-dot{position:relative;z-index:1;width:12px;height:12px;border-radius:50%;margin:4px auto 6px;border:2px solid var(--gris);background:var(--gris2)}
+.sg-n.done .sg-dot{background:var(--verde);border-color:var(--verde);box-shadow:0 0 8px rgba(16,185,129,.5)}
+.sg-n.current .sg-dot{background:var(--rojo);border-color:var(--rojo);animation:glowPulse 2s infinite}
+.sg-l{font-size:12px;font-weight:600;line-height:1.25}
+.sg-s{font-size:10.5px;color:var(--gris);margin-top:2px}.sg-n.done .sg-s{color:var(--verde)}.sg-n.current .sg-s{color:var(--rojo2)}.sg-n.aj .sg-s{color:#f59e0b;font-weight:700}
+.sg-c{font-size:11px;color:var(--rojo2);font-variant-numeric:tabular-nums;font-weight:700;min-height:14px}
+.sg-empty{grid-column:1/-1;text-align:center;color:var(--gris);padding:40px}.sg-note{margin-top:16px;color:var(--gris);font-size:12px}
+.sg-modal{display:none;position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.6);align-items:flex-start;justify-content:center;padding:60px 16px;backdrop-filter:blur(4px)}
+.sg-box{width:100%;max-width:380px;background:var(--negro2);border:1px solid var(--glass-border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:8px}
+.sg-box h3{margin:0}.sg-box label{font-size:12px;color:var(--gris);margin-top:6px}.sg-m-b{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
 #seguimiento-admin-panel:fullscreen{background:var(--negro);padding:24px;overflow:auto}
+@media(max-width:520px){.sg-grid{grid-template-columns:1fr}.sg-l{font-size:11px}.sg-clock{font-size:26px}.sg-g{flex-wrap:wrap}.sg-crm{width:100%}}
+/* Llave de novedades */
+.ll-code{display:flex;flex-direction:column;gap:2px;padding:16px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(16,185,129,.16),var(--glass));border:1px solid rgba(16,185,129,.4);margin-bottom:12px}
+.ll-code small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}.ll-code b{font-family:var(--font-mono,ui-monospace,monospace);font-size:24px;letter-spacing:.06em}.ll-code span{color:var(--gris);font-size:12.5px}
+.ll-alert{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:var(--radius-sm);background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.45);margin-bottom:12px}.ll-alert span{font-size:12.5px;color:var(--gris)}
+.ll-ok{padding:12px 14px;border-radius:var(--radius-sm);background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);margin-bottom:12px;font-size:13px}
+.ll-list{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}.ll-list>div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--glass-border);font-size:13px}
+.ll-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.ll-h{margin:6px 0 8px;font-size:13px;color:var(--gris)}
+.ll-aviso{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:9999;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:#92400e;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font-size:13px}
+.ll-aviso span{flex:1;min-width:200px}.ll-aviso button{border:0;border-radius:99px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer}
 </style></head>
 <body>
 
@@ -3083,7 +3111,14 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="quick-card" id="admin-btn-seguimiento" onclick="ADMIN_seleccionar('seguimiento-admin-panel')" style="display: flex;">
           <div class="qc-left"><div class="qc-icon">📡</div><div>
             <div class="qc-title">Seguimiento de Turnos</div>
-            <div class="qc-sub">Tarjetas en vivo con cronómetro y línea de tiempo de cada asesor</div>
+            <div class="qc-sub">Tarjetas en vivo con timeline, control por ventana, filtros y ausencias</div>
+          </div></div>
+          <div class="qc-arrow">→</div>
+        </div>
+        <div class="quick-card" id="admin-btn-llave" onclick="ADMIN_seleccionar('llave-admin-panel')" style="display: flex;">
+          <div class="qc-left"><div class="qc-icon">🔐</div><div>
+            <div class="qc-title">Llave de Novedades</div>
+            <div class="qc-sub">Protege minutos extra, horas movidas y ajustes de cada versión nueva</div>
           </div></div>
           <div class="qc-arrow">→</div>
         </div>
@@ -3579,16 +3614,19 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
 
       <!-- ── Seguimiento de turnos en vivo ── -->
       <div class="malla-panel admin-subpanel" id="seguimiento-admin-panel" style="display: none;">
-        <div class="section-header">
-          <div class="section-title">📡 Seguimiento de Turnos</div>
-          <div class="section-sub">Quién está en turno, en break o en almuerzo ahora mismo, con cronómetro y línea de tiempo</div>
-        </div>
-        <div class="seg-top"><div class="seg-clock" id="seg-clock">--:--:--</div><div class="seg-date" id="seg-date"></div><button class="btn btn-secondary" onclick="SEG_full()">⛶ Pantalla completa</button></div>
-        <div class="seg-ctrl" id="seg-ctrl"></div>
-        <div class="seg-stats" id="seg-stats"></div>
-        <input class="form-input" id="seg-q" type="search" placeholder="Buscar asesor…">
-        <div class="seg-grid" id="seg-grid"></div>
-        <div class="seg-note" id="seg-note"></div>
+        <div class="sg-head"><div><div class="sg-eyebrow">Centro de control</div><div class="sg-title">Seguimiento de turnos</div><div class="sg-date" id="sg-date"></div></div><div class="sg-hr"><div class="sg-clock" id="sg-clock">--:--:--</div><button class="btn btn-secondary" onclick="SEG_full()" title="Pantalla completa">⛶</button></div></div>
+        <div class="sg-stats" id="sg-stats"></div>
+        <div class="sg-ctrl" id="sg-ctrl"></div>
+        <div class="sg-tools"><input class="form-input" id="sg-q" type="search" placeholder="Buscar asesor…"></div>
+        <div class="sg-ent" id="sg-ent"></div>
+        <div class="sg-grid" id="sg-grid"></div>
+        <div class="sg-note" id="sg-note"></div>
+      </div>
+
+      <!-- ── Llave de novedades (protección) ── -->
+      <div class="malla-panel admin-subpanel" id="llave-admin-panel" style="display: none;">
+        <div class="section-header"><div class="section-title">🔐 Llave de Novedades</div><div class="section-sub">Protege minutos extra de break y almuerzo, horas movidas, cambios y ausencias cuando subes un HTML nuevo</div></div>
+        <div id="llave-cont"></div>
       </div>
 
       <!-- ── Horario manual: fijar entrada/salida de un día y compensar la semana ── -->
@@ -4653,12 +4691,20 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-consultas" class="deleg-perm-part"> 👑 Log de consultas</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-malla" class="deleg-perm-part"> 🗂️ Actualizar malla de turnos</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-turnos" class="deleg-perm-part"> 👥 Turnos de los asesores</label>
-            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-mover" class="deleg-perm-part"> ↔️ Mover horas entre días</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-mover" class="deleg-perm-part"> ↔️ Mover horas entre días (incluye condición, horario manual, break, agregar e intercambiar)</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-ausencia" class="deleg-perm-part"> 🚫 Marcar ausencia total</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-solicitudes" class="deleg-perm-part"> 🔄 Solicitudes de cambio</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-incapacidades" class="deleg-perm-part"> 🏥 Ver incapacidades</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-accesos" class="deleg-perm-part"> 🔐 Historial de accesos</label>
             <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-accesoCompartido" class="deleg-perm-part"> 📂 Acceso compartido (carpeta de red)</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-seguimiento" class="deleg-perm-part"> 📡 Seguimiento de turnos (panel en vivo)</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-condicion" class="deleg-perm-part"> ⚖️ Condición especial de horario</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-horarioManual" class="deleg-perm-part"> 🕒 Horario manual</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-breakAlm" class="deleg-perm-part"> ☕ Break y almuerzo</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-agregar" class="deleg-perm-part"> ➕ Agregar turno a un día</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-swap" class="deleg-perm-part"> 🔁 Intercambiar días de un asesor</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-fotos" class="deleg-perm-part"> 🖼️ Fotos de asesores</label>
+            <label class="deleg-perm-item"><input type="checkbox" id="deleg-perm-llave" class="deleg-perm-part"> 🔐 Llave de novedades</label>
           </div>
         </div>
         <button class="btn btn-primary w-full" style="margin-top:10px" onclick="DELEG_grantHandler()">
@@ -7386,23 +7432,25 @@ const DELEGATES_KEY = 'tb_delegated_admins_v1';
 // Mapa panel → llave de permiso. 'delegate-panel' y 'sheet-panel' quedan
 // siempre reservados solo para el superadmin (ya estaba así antes).
 const DELEG_PANEL_PERM_MAP = {
-  'consultas-panel': 'consultas',
-  'malla-panel': 'malla',
-  'team-panel': 'turnos',
-  'mover-admin-panel': 'mover',
-  'condicion-admin-panel': 'mover',
-  'horario-manual-admin-panel': 'mover',
-  'seguimiento-admin-panel': 'turnos',
-  'break-admin-panel': 'mover',
-  'agregar-turno-admin-panel': 'mover',
-  'ausencia-admin-panel': 'ausencia',
-  'swap-dias-admin-panel': 'mover',
-  'solicitudes-admin-panel': 'solicitudes',
-  'incap-admin-panel': 'incapacidades',
-  'accesos-admin-panel': 'accesos',
-  'shared-access-panel': 'accesoCompartido'
+  'consultas-panel': ['consultas'],
+  'malla-panel': ['malla'],
+  'team-panel': ['turnos'],
+  'mover-admin-panel': ['mover'],
+  'fotos-admin-panel': ['fotos'],
+  'condicion-admin-panel': ['condicion', 'mover'],
+  'horario-manual-admin-panel': ['horarioManual', 'mover'],
+  'seguimiento-admin-panel': ['seguimiento', 'turnos'],
+  'llave-admin-panel': ['llave'],
+  'break-admin-panel': ['breakAlm', 'mover'],
+  'agregar-turno-admin-panel': ['agregar', 'mover'],
+  'ausencia-admin-panel': ['ausencia'],
+  'swap-dias-admin-panel': ['swap', 'mover'],
+  'solicitudes-admin-panel': ['solicitudes'],
+  'incap-admin-panel': ['incapacidades'],
+  'accesos-admin-panel': ['accesos'],
+  'shared-access-panel': ['accesoCompartido']
 };
-const DELEG_PERM_KEYS = ['consultas','malla','turnos','mover','ausencia','solicitudes','incapacidades','accesos','accesoCompartido'];
+const DELEG_PERM_KEYS = ['consultas','malla','turnos','seguimiento','mover','condicion','horarioManual','breakAlm','agregar','swap','ausencia','fotos','solicitudes','incapacidades','accesos','llave','accesoCompartido'];
 function DELEG_load() { try { return JSON.parse(localStorage.getItem(DELEGATES_KEY)) || {}; } catch { return {}; } }
 function DELEG_save(all) { try { localStorage.setItem(DELEGATES_KEY, JSON.stringify(all)); } catch {} }
 
@@ -7453,8 +7501,8 @@ function DELEG_hasPermPanel(panelId) {
   if (!currentUser.isDelegated) return true; // no debería pasar, pero no bloquea admins no-delegados
   const perms = currentUser.delegPerms || { todo: true };
   if (perms.todo) return true;
-  const key = DELEG_PANEL_PERM_MAP[panelId];
-  return !!(key && perms[key]);
+  const keys = [].concat(DELEG_PANEL_PERM_MAP[panelId] || []);
+  return keys.some(k => !!perms[k]);
 }
 
 function DELEG_onTodoToggle() {
@@ -7507,7 +7555,9 @@ function DELEG_revokeHandler(norm, nombreCorto) {
 const DELEG_PERM_LABELS = {
   todo: '👑 Todo', consultas: '👑 Consultas', malla: '🗂️ Malla', turnos: '👥 Turnos de asesores',
   mover: '↔️ Mover horas', ausencia: '🚫 Ausencias', solicitudes: '🔄 Solicitudes',
-  incapacidades: '🏥 Incapacidades', accesos: '🔐 Historial de accesos', accesoCompartido: '📂 Acceso compartido'
+  incapacidades: '🏥 Incapacidades', accesos: '🔐 Historial de accesos', accesoCompartido: '📂 Acceso compartido',
+  seguimiento: '📡 Seguimiento de turnos', condicion: '⚖️ Condición especial', horarioManual: '🕒 Horario manual', breakAlm: '☕ Break y almuerzo',
+  agregar: '➕ Agregar turno', swap: '🔁 Intercambiar días', fotos: '🖼️ Fotos de asesores', llave: '🔐 Llave de novedades'
 };
 function DELEG_render() {
   const cont = document.getElementById('deleg-list');
@@ -8622,7 +8672,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-06.0615';
+const TB_APP_VERSION = '2026-10-07.0559';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -9081,6 +9131,7 @@ function ADMIN_seleccionar(panelId) {
   if (panelId === 'condicion-admin-panel') COND_populate();
   if (panelId === 'horario-manual-admin-panel') HM_populate();
   if (panelId === 'seguimiento-admin-panel' && window.SEG_abrir) SEG_abrir();
+  if (panelId === 'llave-admin-panel' && window.LLAVE_render) LLAVE_render();
   if (panelId === 'break-admin-panel') BRK_populate();
   if (panelId === 'ausencia-admin-panel') AUSENCIA_populateSelect();
   if (panelId === 'agregar-turno-admin-panel') AT_abrir();
@@ -9298,6 +9349,7 @@ function F3_initTurns() {
     'condicion-admin-panel': 'admin-btn-condicion',
     'horario-manual-admin-panel': 'admin-btn-horario-manual',
     'seguimiento-admin-panel': 'admin-btn-seguimiento',
+    'llave-admin-panel': 'admin-btn-llave',
     'break-admin-panel': 'admin-btn-break',
     'agregar-turno-admin-panel': 'admin-btn-agregar',
     'swap-dias-admin-panel': 'admin-btn-swap',
@@ -10855,7 +10907,7 @@ function TB_BREAKS_init() {
       const a = JSON.stringify(local[k].dur || null), b = JSON.stringify(emb[k].dur || null);
       if (!local[k].l && a !== b) { if (emb[k].dur) local[k].dur = emb[k].dur; else delete local[k].dur; cambio = true; }
     });
-    Object.keys(local).forEach(k => { if (!(k in emb) && !local[k].l && local[k].dur) { delete local[k].dur; cambio = true; } });
+    /*TB_PROTEGIDO: ya no se borran los minutos extra de break/almuerzo guardados aquí que el archivo no trae (así se perdían al subir un HTML nuevo).*/
     if (cambio) BRK_save(local);
   } catch (e) { console.error('TB_BREAKS_init error:', e); }
 }
@@ -14492,6 +14544,11 @@ ARCADE_FYA_LV.push(["####################", "#..................#", "#..........
 ["####################", "#..................#", "#..................#", "#..................#", "#..................#", "#.............FA...#", "#............####..#", "#..................#", "#..........####....#", "#......b...........#", "#......#####.......#", "#....r.............#", "#...####...........#", "#fa..GGGG....LL....#", "####################"],
 ["####################", "#........#.........#", "#........#.........#", "#........#...FA.r..#", "#........#...####..#", "#........#.....b...#", "#........#..####...#", "#........#.........#", "#........#..####...#", "#........#.........#", "#........D####.....#", "#........D.........#", "#........D...####..#", "#faGGBGG.D.....B...#", "####################"],
 ["####################", "#.......#..........#", "#.......#..........#", "#.......#..........#", "#.......#..........#", "#.......#......AF..#", "#.......#.....###..#", "#.......#.....r....#", "#.......#....####..#", "#.......#.b........#", "#.......D.##.......#", "#.......D..........#", "#.......D.##.......#", "#faLLBLLD..B.......#", "####################"]);
+/* ARREGLO DE DISEÑO (niveles 22-26 y 28-33): en el piso de la derecha el personaje caía y no podía volver a subir.
+   Se agregó un escalón en la fila 12 de cada uno; cada nivel se verificó con las mismas físicas del juego. */
+[[21, "#...######..###....#"], [22, "#....####....###...#"], [23, "#....####....###...#"], [24, "#....#########.....#"], [25, "#..######......###.#"],
+ [27, "#....####.###......#"], [28, "#..##.###..........#"], [29, "#..###.###.........#"], [30, "#..###.......###...#"], [31, "#...##.###.........#"], [32, "#..####.......###..#"]]
+  .forEach(([n, row]) => { if (ARCADE_FYA_LV[n] && ARCADE_FYA_LV[n].length === 15) ARCADE_FYA_LV[n][12] = row; });
 function ARCADE_FYA_max() { try { return Math.min(ARCADE_FYA_LV.length - 1, +localStorage.getItem('tb_fya_max') || 0); } catch { return 0; } }
 function ARCADE_FYA_nav(d) { const G = ARCADE_FYA; if (!G) return; const m = G.n + d; if (m >= 0 && m <= ARCADE_FYA_max()) ARCADE_FYA_start(m); }
 function ARCADE_FYA_start(n) {
@@ -14504,7 +14561,7 @@ function ARCADE_FYA_start(n) {
     ARCADE_FYA_LV[n].forEach(r => rows.push(r));
   }
   const area = document.getElementById('arcade-game-area');
-  area.innerHTML = '<div class="arcade-fya"><canvas id="arcade-fya-canvas" class="arcade-canvas" width="320" height="240"></canvas><div class="arcade-fya-ctl"><button class="arcade-dpad-btn" data-k="p" title="Nivel anterior">⏮</button><button class="arcade-dpad-btn" data-k="l">◀</button><button class="arcade-dpad-btn" data-k="j">⤒</button><button class="arcade-dpad-btn" data-k="r">▶</button><button class="arcade-dpad-btn" data-k="s">🔁</button><button class="arcade-dpad-btn" data-k="n" title="Nivel siguiente (si ya lo desbloqueaste)">⏭</button></div></div>';
+  area.innerHTML = '<div class="arcade-fya"><canvas id="arcade-fya-canvas" class="arcade-canvas" width="320" height="240"></canvas><div class="arcade-fya-ctl"><button class="arcade-dpad-btn" data-k="p" title="Nivel anterior">⏮</button><button class="arcade-dpad-btn" data-k="l">◀</button><button class="arcade-dpad-btn" data-k="j">⤒</button><button class="arcade-dpad-btn" data-k="r">▶</button><button class="arcade-dpad-btn" data-k="s">🔁</button><button class="arcade-dpad-btn" data-k="x" title="Reiniciar nivel (R)">↻</button><button class="arcade-dpad-btn" data-k="n" title="Nivel siguiente (si ya lo desbloqueaste)">⏭</button></div></div>';
   const G = { n, map: rows.map(r => r.split('')), ch: [], act: 0, k: {}, gems: 0, parts: [], t: 0, dead: 0, won: 0, open: false, running: true, last: 0, done: false };
   G.map.forEach((row, y) => row.forEach((c, x) => {
     if (c === 'f' || c === 'a') { G.ch[c === 'f' ? 0 : 1] = { x: x * 16 + 2, y: y * 16 + 2, vx: 0, vy: 0, w: 11, h: 14, g: false, ty: c === 'f' ? 0 : 1, door: false }; row[x] = '.'; }
@@ -14512,13 +14569,13 @@ function ARCADE_FYA_start(n) {
   G.cv = document.getElementById('arcade-fya-canvas'); G.cx = G.cv.getContext('2d');
   area.querySelectorAll('button').forEach(b => {
     const k = b.dataset.k;
-    const on = e => { e.preventDefault(); if (k === 's') G.act ^= 1; else if (k === 'p' || k === 'n') ARCADE_FYA_nav(k === 'n' ? 1 : -1); else G.k[k] = true; };
+    const on = e => { e.preventDefault(); if (k === 's') G.act ^= 1; else if (k === 'p' || k === 'n') ARCADE_FYA_nav(k === 'n' ? 1 : -1); else if (k === 'x') ARCADE_FYA_start(G.n); else G.k[k] = true; };
     const off = e => { e.preventDefault(); if (k !== 's' && k !== 'p' && k !== 'n') G.k[k] = false; };
     b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off);
   });
   ARCADE_FYA = G;
   document.addEventListener('keydown', ARCADE_FYA_key); document.addEventListener('keyup', ARCADE_FYA_key);
-  ARCADE_hint('<kbd>←</kbd> <kbd>→</kbd> o <kbd>A</kbd> <kbd>D</kbd> mover · <kbd>↑</kbd> o <kbd>W</kbd> saltar · <kbd>Espacio</kbd> cambiar Fuego/Agua');
+  ARCADE_hint('<kbd>←</kbd> <kbd>→</kbd> o <kbd>A</kbd> <kbd>D</kbd> mover · <kbd>↑</kbd> o <kbd>W</kbd> saltar · <kbd>Espacio</kbd> cambiar Fuego/Agua · <kbd>R</kbd> reiniciar nivel');
   ARCADE_FYA_hud();
   G.raf = requestAnimationFrame(ARCADE_FYA_loop);
 }
@@ -14532,6 +14589,7 @@ function ARCADE_FYA_key(e) {
   const m = { arrowleft: 'l', a: 'l', arrowright: 'r', d: 'r', arrowup: 'j', w: 'j' }[k];
   if (m) { G.k[m] = d; e.preventDefault(); }
   else if (d && !e.repeat && (k === ' ' || k === 'q' || k === 'shift')) { G.act ^= 1; e.preventDefault(); }
+  else if (d && !e.repeat && k === 'r') { ARCADE_FYA_start(G.n); e.preventDefault(); }
 }
 function ARCADE_FYA_hit(G, c) {
   const x0 = Math.floor(c.x / 16), x1 = Math.floor((c.x + c.w - 0.01) / 16), y0 = Math.floor(c.y / 16), y1 = Math.floor((c.y + c.h - 0.01) / 16);
@@ -17676,136 +17734,241 @@ function BUZON_updateBadge() {
 
 
 <script id="seg-premium-js">
-/* ═══ SEGUIMIENTO DE TURNOS EN VIVO (modo programado, según la malla de hoy) ═══ */
+/* ═══ SEGUIMIENTO DE TURNOS EN VIVO · modo programado (según la malla de hoy) ═══
+   Usa los mismos cálculos del timeline del asesor (minutos extra de break/almuerzo, pausas unificadas). */
 (function () {
-  const K = {
-    turno: { n: 'En turno', c: '#10b981' }, break: { n: 'En break', c: '#f59e0b' },
-    almuerzo: { n: 'Almuerzo', c: '#f0673c' }, pend: { n: 'Pendiente', c: '#6c8cff' }, salio: { n: 'Salió', c: '#98a2b3' }
-  };
+  const K = { turno: { n: 'En turno', c: '#10b981' }, break: { n: 'En break', c: '#f59e0b' }, almuerzo: { n: 'Almuerzo', c: '#f0673c' }, pend: { n: 'Pendiente', c: '#6c8cff' }, salio: { n: 'Salió', c: '#98a2b3' }, aus: { n: 'Ausente', c: '#ef4444' } };
+  const AUS = { INCAPACIDAD: '🏥 Incapacidad', PERMISO: '📋 Permiso', SUSPENSION: '⛔ Suspensión' };
   const pad = n => String(n).padStart(2, '0');
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const fm = m => { m = ((Math.round(m) % 1440) + 1440) % 1440; const h = Math.floor(m / 60), x = m % 60; return ((h % 12) || 12) + ':' + pad(x) + (h < 12 ? ' a. m.' : ' p. m.'); };
-  const hms = s => { s = Math.floor(s); const h = Math.floor(s / 3600); return (h ? pad(h) + ':' : '') + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60); };
-  const cache = new WeakMap();
-  let filter = 'all', term = '', sig = '';
+  const ct = t => String(t || '').replace(/\s*a\.\s*m\./i, 'a').replace(/\s*p\.\s*m\./i, 'p');
+  const rest = s => TL_fmtRestante(Math.max(0, s) * 1000, true);
+  const $ = id => document.getElementById(id);
+  const cache = new Map();
+  let filter = 'all', ent = 'all', term = '', sig = '', ctrlSig = '', rev = {}, revDia = '', fotos = {};
 
-  function build(r) {
-    let c = cache.get(r); if (c) return c;
-    const ini = F3_toMin(r.entrada); let fin = F3_toMin(r.salida); if (fin <= ini) fin += 1440;
-    const abs = v => { let a = F3_parse12hToMin(v); if (a == null) return null; if (a < ini) a += 1440; return a; };
-    const get = l => { const d = (r.detalle || []).find(x => x.label === l); return d ? abs(d.value) : null; };
-    const seg = [], b1 = get('Break 1'), b2 = get('Break 2'), sa = get('Salida almuerzo'), ra = get('Regreso almuerzo');
-    if (b1 != null) seg.push({ k: 'break', n: 'Break 1', s: b1, e: b1 + 15 });
-    if (b2 != null) seg.push({ k: 'break', n: 'Break 2', s: b2, e: b2 + 15 });
-    if (sa != null) { let e = ra != null && ra > sa ? ra : sa + 60; seg.push({ k: 'almuerzo', n: 'Almuerzo', s: sa, e }); }
-    seg.sort((a, b) => a.s - b.s);
-    c = { ini, fin, seg }; cache.set(r, c); return c;
+  function eventos(r, force) {
+    const c = cache.get(r.nombreNorm); if (c && !force && c.r === r && Date.now() - c.t < 15000) return c.v;
+    const fus = BRK_fusion(r.fechaISO, r.nombreNorm), e0 = F3_toMin(r.entrada), s0 = TL_salAbs(r);
+    const ev = [{ k: 'inicio', ic: '🟢', sh: 'Inicio', time: r.entradaDisplay || r.entrada, rel: e0, dur: 15, ord: 0 }];
+    MALLA_ordenarDetalle(r.detalle).forEach(d => {
+      const det = TL_detalleHora(d, r), min = det ? det.abs : null, hora = det ? det.texto : d.value, alm = /almuerzo/i.test(d.label);
+      const gi = BRK_idxLabel(d.label), dur = gi >= 0 ? BRK_durIdx(r.fechaISO, r.nombreNorm, gi) : (alm ? 60 : 15);
+      if (fus && d.label === fus[1]) return;
+      if (fus && d.label === fus[0] && min !== null) { const tot = BRK_durEfectiva(r.fechaISO, r.nombreNorm, fus[0]) + BRK_durEfectiva(r.fechaISO, r.nombreNorm, fus[1]); ev.push({ k: 'almuerzo', ic: '🔗', sh: 'Unificado', time: hora, rel: min, dur: tot, ord: MALLA_rangoAux(fus[0]) + 1, aj: true }); return; }
+      if (min !== null) ev.push({ k: alm ? 'almuerzo' : 'break', ic: alm ? '🍽️' : '☕', sh: BRK_nombreLabel(d.label), time: hora, rel: min, dur, ord: MALLA_rangoAux(d.label) + 1, aj: dur !== (alm ? 60 : 15) });
+    });
+    ev.push({ k: 'fin', ic: '🔴', sh: 'Fin', time: r.salidaDisplay || r.salida, rel: s0, dur: 15, ord: 99 });
+    ev.sort((a, b) => (a.rel - b.rel) || (a.ord - b.ord));
+    const v = { ev, ent: e0, sal: s0 }; cache.set(r.nombreNorm, { t: Date.now(), r, v }); return v;
   }
-  function calc(r, m) {
-    const { ini, fin, seg } = build(r);
-    let k, rem, lab, p, cur = null;
-    const nxt = [...seg.filter(s => s.s > m).map(s => [s.s, s.n]), [fin, 'Salida']][0];
-    if (m < ini) { k = 'pend'; rem = (ini - m) * 60; lab = 'Inicia turno en'; p = 0; }
-    else if (m >= fin) { k = 'salio'; rem = (m - fin) * 60; lab = 'Salió hace'; p = 100; }
-    else {
-      cur = seg.find(s => m >= s.s && m < s.e) || null;
-      if (cur) { k = cur.k; rem = (cur.e - m) * 60; lab = 'Termina ' + cur.n.toLowerCase() + ' en'; p = (m - cur.s) / (cur.e - cur.s) * 100; }
-      else {
-        k = 'turno'; rem = (nxt[0] - m) * 60; lab = nxt[1] + ' en';
-        const prev = [ini, ...seg.filter(s => s.e <= m).map(s => s.e)].pop(); p = (m - prev) / (nxt[0] - prev) * 100;
-      }
-    }
-    return { k, cur, rem: Math.max(0, rem), lab, p: Math.min(100, Math.max(0, p)), soon: (k === 'turno' || k === 'break' || k === 'almuerzo') && rem <= 120 };
+  function estado(v, now) {
+    let k, cur = null;
+    if (now < v.ent) k = 'pend'; else if (now >= v.sal) k = 'salio';
+    else { cur = v.ev.find(e => (e.k === 'break' || e.k === 'almuerzo') && now >= e.rel && now < e.rel + e.dur) || null; k = cur ? cur.k : 'turno'; }
+    return { k, cur, nxt: v.ev.find(e => e.rel > now) || null };
   }
-  function bar(r, m) {
-    const { ini, fin, seg } = build(r), parts = []; let pos = ini;
-    seg.forEach(s => { if (s.s > pos) parts.push(['turno', pos, s.s]); parts.push([s.k, s.s, s.e]); pos = s.e; });
-    if (fin > pos) parts.push(['turno', pos, fin]);
-    const h = parts.map(([k, s, e]) => `<i class="${e <= m ? 'seg-done' : ''}" style="flex:${e - s};background:${K[k].c}" title="${K[k].n} ${fm(s)} – ${fm(e)}"></i>`).join('');
-    const x = Math.min(100, Math.max(0, (m - ini) / (fin - ini) * 100));
-    return `<div class="seg-bar">${h}<span class="seg-now" style="left:${x}%"></span></div>`;
+  function lineaAhora(s, v, now) {
+    if (s.k === 'pend') return `Inicia en <b>${rest((v.ent - now) * 60)}</b>`;
+    if (s.k === 'salio') return `Turno finalizado a las ${esc(v.ev[v.ev.length - 1].time)}`;
+    if (s.cur) return `${s.cur.ic} ${esc(s.cur.sh)} · termina en <b>${rest((s.cur.rel + s.cur.dur - now) * 60)}</b>`;
+    return s.nxt ? `Siguiente: ${s.nxt.ic} ${esc(s.nxt.sh)} a las ${esc(s.nxt.time)} · en <b>${rest((s.nxt.rel - now) * 60)}</b>` : '';
   }
   function rowsHoy() {
-    const hoy = MALLA_todayISO(), vistos = new Set(), out = [];
+    const hoy = MALLA_todayISO(), vistos = new Set(), act = [], aus = [];
     (MALLA_DATA || []).forEach(r => {
-      if (r.fechaISO !== hoy || r.estado !== 'ACTIVO' || !r.entrada || !r.salida) return;
-      if (r.entrada === '00:00' && r.salida === '00:00') return;
-      if (vistos.has(r.nombreNorm)) return; vistos.add(r.nombreNorm); out.push(r);
+      if (r.fechaISO !== hoy || vistos.has(r.nombreNorm)) return;
+      if (AUS[r.estado]) { vistos.add(r.nombreNorm); aus.push(r); return; }
+      if (r.estado !== 'ACTIVO' || !r.entrada || !r.salida || (r.entrada === '00:00' && r.salida === '00:00')) return;
+      vistos.add(r.nombreNorm); act.push(r);
     });
-    return out;
+    return { act, aus };
   }
-  function inicial(n) { return n.split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join(''); }
+  const ini = n => n.split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('');
+  const puedeAus = () => { try { return DELEG_hasPermPanel('ausencia-admin-panel'); } catch (e) { return false; } };
 
-
-  let rev = {}, revDia = '', ctrlSig = '';
+  /* ── Control por ventana + Revisar CRM ── */
   const loadRev = () => { const h = MALLA_todayISO(); if (revDia === h) return; revDia = h; try { rev = JSON.parse(localStorage.getItem('tb_seg_crm_' + h)) || {}; } catch (e) { rev = {}; } };
   const saveRev = () => { try { localStorage.setItem('tb_seg_crm_' + revDia, JSON.stringify(rev)); } catch (e) { } };
-  function grupos(rows, m) {
+  function grupos(rows, now) {
     const act = {}, prox = {};
-    rows.forEach(({ r, c }) => {
-      if (c.cur) { const key = c.cur.k + '-' + c.cur.s + '-' + c.cur.e; (act[key] = act[key] || { key, k: c.cur.k, s: c.cur.s, e: c.cur.e, n: [] }).n.push(r.nombre); }
-      else if (c.k === 'turno') {
-        const nx = build(r).seg.find(x => x.s > m && x.s - m <= 10);
-        if (nx) { const key = nx.k + '-' + nx.s + '-' + nx.e; (prox[key] = prox[key] || { key, k: nx.k, s: nx.s, e: nx.e, n: [] }).n.push(r.nombre); }
-      }
+    rows.forEach(x => {
+      const add = (o, e) => { const key = e.k + '-' + e.rel + '-' + (e.rel + e.dur); (o[key] = o[key] || { key, k: e.k, s: e.rel, e: e.rel + e.dur, n: [] }).n.push(x.r.nombre); };
+      if (x.s.cur) add(act, x.s.cur);
+      else if (x.s.k === 'turno') { const nx = x.v.ev.find(e => (e.k === 'break' || e.k === 'almuerzo') && e.rel > now && e.rel - now <= 10); if (nx) add(prox, nx); }
     });
-    const f = o => Object.values(o).sort((a, b) => a.s - b.s);
-    return { act: f(act), prox: f(prox) };
+    const f = o => Object.values(o).sort((a, b) => a.s - b.s); return { act: f(act), prox: f(prox) };
   }
-  function ctrlHTML(g, enTurno, m) {
+  function ctrlHTML(g, enTurno, now) {
     const tx = k => k === 'almuerzo' ? 'almuerzo' : 'break', ic = k => k === 'almuerzo' ? '🍽️' : '☕';
     const names = n => n.slice().sort((a, b) => a.localeCompare(b)).map(x => `<span>${esc(x)}</span>`).join('');
     const total = g.act.reduce((a, x) => a + x.n.length, 0);
-    let h = `<div class="seg-ctrl-h"><b>🎯 Control en este momento</b><small>${total ? total + ' de ' + enTurno + ' en turno deberían estar en pausa' : 'Nadie debería estar en pausa ahora'}</small></div>`;
-    h += g.act.map(x => { const r = rev[x.key]; return `<div class="seg-g ${r ? 'ok' : 'pend'}" style="--c:${K[x.k].c}"><div class="seg-g-n">${x.n.length}</div><div class="seg-g-t"><b>${ic(x.k)} ${x.n.length} ${x.n.length === 1 ? 'debería estar' : 'deberían estar'} en ${tx(x.k)}</b> de ${fm(x.s)} a ${fm(x.e)}<small>Termina en <span class="seg-g-rem" data-e="${x.e}">${hms((x.e - m) * 60)}</span></small><details><summary>Ver quiénes</summary><div class="seg-names">${names(x.n)}</div></details></div><button class="seg-crm" onclick="SEG_crm('${x.key}')">${r ? '✓ CRM revisado ' + r : 'Revisar CRM'}</button></div>`; }).join('');
-    h += g.prox.map(x => `<div class="seg-g next" style="--c:${K[x.k].c}"><div class="seg-g-n">${x.n.length}</div><div class="seg-g-t"><b>${ic(x.k)} Próximo: ${x.n.length} a ${tx(x.k)}</b> de ${fm(x.s)} a ${fm(x.e)}<small>Empieza en <span class="seg-g-rem" data-e="${x.s}">${hms((x.s - m) * 60)}</span></small><details><summary>Ver quiénes</summary><div class="seg-names">${names(x.n)}</div></details></div></div>`).join('');
-    return h;
+    let h = `<div class="sg-ctrl-h"><b>Control en este momento</b><small>${total ? total + ' de ' + enTurno + ' en turno deberían estar en pausa' : 'Nadie debería estar en pausa ahora'}</small></div><div class="sg-ctrl-g">`;
+    h += g.act.map(x => { const r = rev[x.key]; return `<div class="sg-g ${r ? 'ok' : 'pend'}" style="--c:${K[x.k].c}"><div class="sg-g-n">${x.n.length}</div><div class="sg-g-t"><b>${ic(x.k)} ${x.n.length === 1 ? 'debería estar' : 'deberían estar'} en ${tx(x.k)}</b> de ${TL_fmt12(x.s)} a ${TL_fmt12(x.e)}<small>Termina en <span class="sg-g-rem" data-e="${x.e}">${rest((x.e - now) * 60)}</span></small><details><summary>Ver quiénes</summary><div class="sg-names">${names(x.n)}</div></details></div><button class="sg-crm" onclick="SEG_crm('${x.key}')">${r ? '✓ CRM revisado ' + r : 'Revisar CRM'}</button></div>`; }).join('');
+    h += g.prox.map(x => `<div class="sg-g next" style="--c:${K[x.k].c}"><div class="sg-g-n">${x.n.length}</div><div class="sg-g-t"><b>${ic(x.k)} Próximo: ${x.n.length} a ${tx(x.k)}</b> de ${TL_fmt12(x.s)} a ${TL_fmt12(x.e)}<small>Empieza en <span class="sg-g-rem" data-e="${x.s}">${rest((x.s - now) * 60)}</span></small><details><summary>Ver quiénes</summary><div class="sg-names">${names(x.n)}</div></details></div></div>`).join('');
+    return h + '</div>';
+  }
+
+  /* ── Tarjeta ── */
+  function foto(nombre) { if (!(nombre in fotos)) { try { fotos[nombre] = ADMPHOTO_get(nombre) || null; } catch (e) { fotos[nombre] = null; } } return fotos[nombre]; }
+  function avatar(r, c, p) { const f = foto(r.nombre); return `<div class="sg-ring" style="--c:${c};--p:${p}"><div class="sg-av">${f ? `<img src="${f}" alt="">` : esc(ini(r.nombre))}</div></div>`; }
+  function cardAus(r) {
+    return `<article class="sg-card aus" data-n="${esc(r.nombreNorm)}" style="--c:${K.aus.c}"><div class="sg-top">${avatar(r, K.aus.c, 100)}<div class="sg-nm">${esc(r.nombre)}<small>Sin turno hoy</small></div><span class="sg-pill">${AUS[r.estado]}</span></div><div class="sg-now">Marcado como ausente en la malla</div></article>`;
+  }
+  function card(x, now) {
+    const { r, v, s } = x, c = K[s.k].c, nodes = v.ev.map((e, i) => {
+      const st = TL_estadoEvento(now, e.rel, e.dur), pausa = e.k === 'break' || e.k === 'almuerzo';
+      return `<div class="sg-n ${st}${e.aj ? ' aj' : ''}" title="${esc(e.ic + ' ' + e.sh + ' · ' + e.time + (pausa ? ' · ' + BRK_fmtDur(e.dur) : ''))}"><div class="sg-t">${esc(ct(e.time))}</div><div class="sg-dot"></div><div class="sg-l">${e.ic} ${esc(e.sh)}</div><div class="sg-s">${st === 'done' ? '✓ Listo' : st === 'current' ? '⚡ Ahora' : '⏳'}${pausa ? ` · ${BRK_fmtDur(e.dur)}` : ''}</div><div class="sg-c" data-i="${i}"></div></div>`;
+    }).join('');
+    const p = s.k === 'salio' ? 100 : s.k === 'pend' ? 0 : (now - v.ent) / (v.sal - v.ent) * 100;
+    return `<article class="sg-card" data-n="${esc(r.nombreNorm)}" style="--c:${c}"><div class="sg-top">${avatar(r, c, Math.max(0, Math.min(100, p)))}<div class="sg-nm">${esc(r.nombre)}<small>${esc(r.entradaDisplay || r.entrada)} – ${esc(r.salidaDisplay || r.salida)}</small></div><span class="sg-pill">${K[s.k].n}</span>${puedeAus() ? `<button class="sg-x" title="Marcar ausencia" onclick="SEG_aus('${esc(r.nombre)}')">🚫</button>` : ''}</div><div class="sg-now"></div><div class="sg-tl">${nodes}</div></article>`;
   }
 
   function tick(force) {
-    const panel = document.getElementById('seguimiento-admin-panel');
-    if (!panel || panel.style.display === 'none') return;
-    const d = new Date(), m = d.getHours() * 60 + d.getMinutes() + d.getSeconds() / 60;
-    document.getElementById('seg-clock').textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-    document.getElementById('seg-date').textContent = d.toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
-    const base = rowsHoy(), rows = base.map(r => ({ r, c: calc(r, m) }));
-    const cnt = {}; rows.forEach(x => cnt[x.c.k] = (cnt[x.c.k] || 0) + 1);
-    const G = [['all', 'Total', '#ffffff', rows.length], ['turno', 'En turno', K.turno.c, cnt.turno || 0], ['break', 'En break', K.break.c, cnt.break || 0], ['almuerzo', 'Almuerzo', K.almuerzo.c, cnt.almuerzo || 0], ['pend', 'Pendientes', K.pend.c, cnt.pend || 0], ['salio', 'Salieron', K.salio.c, cnt.salio || 0]];
-    const ord = { break: 0, almuerzo: 0, turno: 1, pend: 2, salio: 3 };
-    const list = rows.filter(x => (filter === 'all' || x.c.k === filter) && x.r.nombre.toLowerCase().includes(term))
-      .sort((a, b) => ord[a.c.k] - ord[b.c.k] || a.c.rem - b.c.rem);
-    loadRev();
-    const gr = grupos(rows, m), enTurno = rows.filter(x => ['turno', 'break', 'almuerzo'].includes(x.c.k)).length;
+    const panel = $('seguimiento-admin-panel'); if (!panel || panel.style.display === 'none') return;
+    const d = new Date(); loadRev();
+    $('sg-clock').textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    $('sg-date').textContent = d.toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+    const { act, aus } = rowsHoy();
+    const rows = act.map(r => { const v = eventos(r, force), now = TL_nowAbs(r), s = estado(v, now); return { r, v, s, now }; });
+    const cnt = {}; rows.forEach(x => cnt[x.s.k] = (cnt[x.s.k] || 0) + 1);
+    const enTurno = rows.filter(x => ['turno', 'break', 'almuerzo'].includes(x.s.k)).length;
+    const gr = grupos(rows, rows.length ? rows[0].now : 0);
+    const nowC = rows.length ? rows[0].now : d.getHours() * 60 + d.getMinutes() + d.getSeconds() / 60;
     const cs = JSON.stringify([gr.act.map(x => [x.key, x.n.length, rev[x.key] || 0]), gr.prox.map(x => [x.key, x.n.length]), enTurno]);
-    if (force || cs !== ctrlSig) { ctrlSig = cs; document.getElementById('seg-ctrl').innerHTML = ctrlHTML(gr, enTurno, m); }
-    document.querySelectorAll('#seg-ctrl .seg-g-rem').forEach(el => { el.textContent = hms((+el.dataset.e - m) * 60); });
-    const s2 = filter + '|' + term + '|' + G.map(g => g[3]).join(',') + '|' + list.map(x => x.r.nombreNorm + ':' + x.c.k).join(',');
+    if (force || cs !== ctrlSig) { ctrlSig = cs; $('sg-ctrl').innerHTML = ctrlHTML(gr, enTurno, nowC); }
+    document.querySelectorAll('#sg-ctrl .sg-g-rem').forEach(el => { el.textContent = rest((+el.dataset.e - nowC) * 60); });
+    const G = [['all', 'En malla hoy', '#cbd5e1', rows.length + aus.length], ['turno', 'En turno', K.turno.c, cnt.turno || 0], ['break', 'En break', K.break.c, cnt.break || 0], ['almuerzo', 'Almuerzo', K.almuerzo.c, cnt.almuerzo || 0], ['pend', 'Pendientes', K.pend.c, cnt.pend || 0], ['salio', 'Salieron', K.salio.c, cnt.salio || 0], ['aus', 'Ausentes', K.aus.c, aus.length]];
+    const entMap = {}; rows.forEach(x => { const m = F3_toMin(x.r.entrada); (entMap[m] = entMap[m] || { l: x.r.entradaDisplay || x.r.entrada, n: 0 }).n++; });
+    const entList = Object.keys(entMap).map(Number).sort((a, b) => a - b);
+    const okEnt = x => ent === 'all' || F3_toMin(x.r.entrada) === +ent, okTerm = n => n.toLowerCase().includes(term);
+    const ord = { break: 0, almuerzo: 0, turno: 1, pend: 2, salio: 3 };
+    const key = x => x.s.cur ? x.s.cur.rel + x.s.cur.dur - x.now : (x.s.nxt ? x.s.nxt.rel - x.now : 0);
+    let list = [], listAus = [];
+    if (filter === 'aus') listAus = aus.filter(r => okTerm(r.nombre));
+    else { list = rows.filter(x => (filter === 'all' || x.s.k === filter) && okEnt(x) && okTerm(x.r.nombre)).sort((a, b) => ord[a.s.k] - ord[b.s.k] || key(a) - key(b)); if (filter === 'all' && ent === 'all') listAus = aus.filter(r => okTerm(r.nombre)); }
+    const s2 = [filter, ent, term, G.map(g => g[3]).join(','), list.map(x => x.r.nombreNorm + ':' + x.s.k + ':' + x.v.ev.map(e => TL_estadoEvento(x.now, e.rel, e.dur)[0] + e.dur).join('')).join(','), listAus.map(r => r.nombreNorm).join(','), puedeAus()].join('|');
     if (force || s2 !== sig) {
       sig = s2;
-      document.getElementById('seg-stats').innerHTML = G.map(g => `<div class="seg-st ${filter === g[0] ? 'on' : ''}" style="--c:${g[2]}" onclick="SEG_filtro('${g[0]}')"><b>${g[3]}</b><span>${g[1]}</span></div>`).join('');
-      document.getElementById('seg-grid').innerHTML = list.length ? list.map(({ r, c }) => {
-        let foto = null; try { foto = ADMPHOTO_get(r.nombre); } catch (e) { }
-        return `<article class="seg-card" data-n="${esc(r.nombreNorm)}" style="--c:${K[c.k].c}"><div class="seg-top2"><div class="seg-ring" style="--p:${c.p}"><div class="seg-av">${foto ? `<img src="${foto}" alt="">` : esc(inicial(r.nombre))}</div></div><div class="seg-nm">${esc(r.nombre)}<small>${esc(r.entradaDisplay || '')} – ${esc(r.salidaDisplay || '')}</small></div><span class="seg-pill">${K[c.k].n}</span></div><div class="seg-tm">${hms(c.rem)}</div><div class="seg-lb">${c.lab}</div>${bar(r, m)}</article>`;
-      }).join('') : '<div class="seg-empty">No hay asesores para este filtro hoy.</div>';
-      document.getElementById('seg-note').textContent = base.length ? 'Estados según la malla de hoy (horario programado), no según lo que cada asesor marca.' : 'No hay turnos activos cargados para hoy en la malla.';
-    } else {
-      list.forEach(({ r, c }) => {
-        const el = document.querySelector('.seg-card[data-n="' + r.nombreNorm + '"]'); if (!el) return;
-        el.querySelector('.seg-tm').textContent = hms(c.rem);
-        el.querySelector('.seg-lb').textContent = c.lab;
-        el.querySelector('.seg-ring').style.setProperty('--p', c.p);
-        el.querySelector('.seg-now').style.left = Math.min(100, Math.max(0, (m - build(r).ini) / (build(r).fin - build(r).ini) * 100)) + '%';
-        el.classList.toggle('seg-soon', c.soon);
-      });
+      $('sg-stats').innerHTML = G.map(g => `<div class="sg-st ${filter === g[0] ? 'on' : ''}" style="--c:${g[2]}" onclick="SEG_filtro('${g[0]}')"><b>${g[3]}</b><span>${g[1]}</span></div>`).join('');
+      $('sg-ent').innerHTML = `<span class="sg-ent-l">Hora de entrada</span><button class="${ent === 'all' ? 'on' : ''}" onclick="SEG_ent('all')">Todas</button>` + entList.map(m => `<button class="${ent !== 'all' && +ent === m ? 'on' : ''}" onclick="SEG_ent(${m})">${esc(entMap[m].l)} <i>${entMap[m].n}</i></button>`).join('');
+      $('sg-grid').innerHTML = (list.length || listAus.length) ? list.map(x => card(x, x.now)).join('') + listAus.map(cardAus).join('') : '<div class="sg-empty">No hay asesores para este filtro hoy.</div>';
+      $('sg-note').textContent = rows.length + aus.length ? 'Estados según la malla de hoy (horario programado), incluyendo los minutos extra de break y almuerzo. No reflejan lo que cada asesor marca.' : 'No hay turnos cargados para hoy en la malla.';
     }
+    list.forEach(x => {
+      const el = document.querySelector('.sg-card[data-n="' + CSS.escape(x.r.nombreNorm) + '"]'); if (!el) return;
+      el.querySelector('.sg-now').innerHTML = lineaAhora(x.s, x.v, x.now);
+      el.querySelectorAll('.sg-c').forEach(cEl => { const e = x.v.ev[+cEl.dataset.i]; cEl.textContent = TL_estadoEvento(x.now, e.rel, e.dur) === 'current' ? rest((e.rel + e.dur - x.now) * 60) : ''; });
+      const p = x.s.k === 'salio' ? 100 : x.s.k === 'pend' ? 0 : (x.now - x.v.ent) / (x.v.sal - x.v.ent) * 100; el.querySelector('.sg-ring').style.setProperty('--p', Math.max(0, Math.min(100, p)));
+      el.classList.toggle('soon', !!(x.s.nxt && x.s.k === 'turno' && x.s.nxt.rel - x.now <= 2) || !!(x.s.cur && x.s.cur.rel + x.s.cur.dur - x.now <= 2));
+    });
   }
-  window.SEG_abrir = () => { sig = ''; tick(true); };
-  window.SEG_crm = key => { loadRev(); if (rev[key]) delete rev[key]; else { const d = new Date(); rev[key] = pad(d.getHours()) + ':' + pad(d.getMinutes()); } saveRev(); ctrlSig = ''; tick(true); };
+
+  /* ── Ausencia desde el panel ── */
+  function modal() {
+    let m = $('sg-modal'); if (m) return m; m = document.createElement('div'); m.id = 'sg-modal'; m.className = 'sg-modal';
+    m.innerHTML = `<div class="sg-box"><h3>🚫 Marcar ausencia</h3><p id="sg-m-n"></p><label>Tipo de ausencia</label><select class="form-input" id="sg-m-t"><option value="INCAPACIDAD">🏥 Incapacidad</option><option value="PERMISO">📋 Permiso</option><option value="SUSPENSION">⛔ Suspensión</option></select><label>Hasta (opcional, si dura varios días)</label><input type="date" class="form-input" id="sg-m-h"><div class="sg-m-b"><button class="btn btn-secondary" onclick="SEG_cerrar()">Cancelar</button><button class="btn btn-primary" onclick="SEG_ausOk()">Aplicar ausencia</button></div></div>`;
+    $('seguimiento-admin-panel').appendChild(m); return m;
+  }
+  let ausNombre = '';
+  window.SEG_aus = n => { if (!puedeAus()) { showToast('error', '🔒 Sin permiso', 'No tienes permiso para marcar ausencias.'); return; } ausNombre = n; const m = modal(); $('sg-m-n').textContent = n + ' · hoy'; $('sg-m-h').value = ''; m.style.display = 'flex'; };
+  window.SEG_cerrar = () => { const m = $('sg-modal'); if (m) m.style.display = 'none'; };
+  window.SEG_ausOk = () => {
+    const tipo = $('sg-m-t').value, hoy = MALLA_todayISO(); let h = $('sg-m-h').value || hoy; if (h < hoy) h = hoy;
+    const n = MALLA_setEstadoRango(ausNombre, hoy, h, tipo); SEG_cerrar();
+    if (!n) { showToast('error', '⚠️ No se pudo marcar', 'No hay turno de esa persona en ese rango.'); return; }
+    showToast('success', '✅ Ausencia aplicada', ausNombre.split(' ')[0] + ': ' + n + ' día(s) como ' + AUS[tipo] + '.');
+    try { fase2AddActivity('🚫', `<strong>${esc(ausNombre.split(' ')[0])}</strong> marcado como <strong>${AUS[tipo]}</strong> (${n} día${n === 1 ? '' : 's'})`, 'cambio'); } catch (e) { }
+    try { TEAM_render(); } catch (e) { } cache.clear(); tick(true);
+    setTimeout(async () => { try { if (!(await TB_promptDescargarOSeguir('La ausencia ya quedó aplicada en la malla. ¿Descargas ya el HTML y el Excel, o sigues configurando?'))) return; if (MALLA_downloadUpdatedHTML('Turno_' + MALLA_todayISO() + '_ausencia.html')) showToast('success', '⬇️ HTML actualizado', 'Se descargó con la ausencia ya aplicada. Publícalo cuando quieras.'); MALLA_exportExcel('Malla-Modificada_' + MALLA_todayISO() + '_ausencia.xlsx'); } catch (e) { } }, 400);
+  };
+  window.SEG_abrir = () => { sig = ''; ctrlSig = ''; cache.clear(); fotos = {}; tick(true); };
   window.SEG_filtro = f => { filter = f; tick(true); };
-  window.SEG_full = () => { const p = document.getElementById('seguimiento-admin-panel'); if (document.fullscreenElement) document.exitFullscreen(); else if (p.requestFullscreen) p.requestFullscreen(); };
-  document.addEventListener('input', e => { if (e.target && e.target.id === 'seg-q') { term = e.target.value.toLowerCase().trim(); tick(true); } });
+  window.SEG_ent = e => { ent = e; tick(true); };
+  window.SEG_crm = key => { loadRev(); if (rev[key]) delete rev[key]; else { const d = new Date(); rev[key] = pad(d.getHours()) + ':' + pad(d.getMinutes()); } saveRev(); ctrlSig = ''; tick(true); };
+  window.SEG_full = () => { const p = $('seguimiento-admin-panel'); if (document.fullscreenElement) document.exitFullscreen(); else if (p.requestFullscreen) p.requestFullscreen(); };
+  document.addEventListener('input', e => { if (e.target && e.target.id === 'sg-q') { term = e.target.value.toLowerCase().trim(); tick(true); } });
+  window.__SEG_T = { eventos, estado, grupos };
   setInterval(() => { try { tick(false); } catch (e) { console.error('SEG', e); } }, 1000);
-  window.__SEG_test = { calc, build, grupos };
+})();
+
+</script>
+<script id="tb-llave-js">
+/*TB_LLAVE:PROTECCION v1 — NO ELIMINAR NI REESCRIBIR AL MEJORAR ESTE HTML.
+  Protege novedades especiales: minutos extra de break/almuerzo, horas movidas, cambios de turno,
+  turnos agregados, intercambios, condiciones de horario y las líneas de la malla que fueron editadas
+  (ausencias, pausas). Si un HTML nuevo las pisa, el admin las recupera desde aquí. */
+(function () {
+  const L = window.__TB_LLAVE; if (!L) return;
+  const HK = 'tb_llave_hist_v1', NOMBRES = { tb_breaks_v1: 'Ajustes de break / almuerzo', tb_horas_movidas_v1: 'Horas movidas', tb_turnos_cambiados_v1: 'Cambios de turno', tb_turnos_agregados_v1: 'Turnos agregados', tb_dias_intercambiados_v1: 'Días intercambiados', tb_condiciones_horario_v1: 'Condiciones especiales', malla: 'Líneas de la malla editadas (ausencias, pausas)' };
+  const rd = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
+  const wr = (k, v) => { try { localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); return true; } catch (e) { return false; } };
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function keyOf(line) {
+    const t = (line || '').trim().split(/\s+/); if (t.length < 3 || !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(t[0])) return null;
+    const [d, m, y] = t[0].split('/').map(Number), rest = t.slice(2); let i = rest.findIndex(x => /^\d{1,2}:\d{2}:\d{2}$/.test(x)); if (i === -1) i = rest.length;
+    let n = rest.slice(0, i); if (i === rest.length) while (n.length > 1 && /^(inicio|fin)$/i.test(n[n.length - 1])) n = n.slice(0, -1);
+    return y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0') + '|' + normalizeName(n.join(' '));
+  }
+  const norm = s => (s || '').trim().replace(/\s+/g, ' ');
+  function lineasEditadas(raw) { /* líneas del texto de malla que difieren del archivo */
+    const out = {}; if (!raw) return out; const base = {};
+    String(MALLA_RAW_DEFAULT || '').split(/\r?\n/).forEach(l => { const k = keyOf(l); if (k) base[k] = norm(l); });
+    raw.split(/\r?\n/).forEach(l => { const k = keyOf(l); if (k && k in base && norm(l) !== base[k]) out[k] = l; });
+    return out;
+  }
+  function foto(src) { const d = {}; L.keys.forEach(k => { if (k === 'tb_malla_rawtext_v1') return; const v = src[k]; if (v) { try { const o = JSON.parse(v); if (o && Object.keys(o).length) d[k] = o; } catch (e) { } } });
+    const m = lineasEditadas(src['tb_malla_rawtext_v1']); if (Object.keys(m).length) d.malla = m; return d; }
+  function contar(d) { const c = {}; Object.keys(d).forEach(k => c[k] = Object.keys(d[k]).length); return c; }
+  function hash(o) { const s = JSON.stringify(o); let h = 5381; for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16).toUpperCase().padStart(8, '0'); }
+  const iso = o => JSON.stringify(o);
+  let hist = rd(HK) || [];
+  /* 1) Guardar la foto previa al arranque (si cambió) */
+  try {
+    const f = foto(L.boot);
+    if (Object.keys(f).length && (!hist.length || iso(hist[0].d) !== iso(f))) { hist.unshift({ t: L.t, d: f }); hist = hist.slice(0, 6); wr(HK, hist); }
+  } catch (e) { console.error('LLAVE foto', e); }
+  /* 2) Detectar lo que el arranque pisó */
+  function perdidas() {
+    const res = { total: 0, det: {} }; if (!hist.length) return res; const s = hist[0].d;
+    Object.keys(s).forEach(k => {
+      if (k === 'malla') { let raw = ''; try { raw = TB_rawMallaActual(); } catch (e) { } const cur = {}; raw.split(/\r?\n/).forEach(l => { const kk = keyOf(l); if (kk) cur[kk] = norm(l); });
+        const n = Object.keys(s.malla).filter(kk => kk in cur && cur[kk] !== norm(s.malla[kk])).length; if (n) { res.det.malla = n; res.total += n; } return; }
+      const cur = rd(k) || {}; const n = Object.keys(s[k]).filter(kk => iso(cur[kk]) !== iso(s[k][kk])).length; if (n) { res.det[k] = n; res.total += n; } });
+    return res;
+  }
+  function restaurar(snap) {
+    const s = (snap || hist[0] || {}).d; if (!s) return 0; let n = 0;
+    Object.keys(s).forEach(k => {
+      if (k === 'malla') { let raw = ''; try { raw = TB_rawMallaActual(); } catch (e) { return; } const lines = raw.split(/\r?\n/), idx = {}; lines.forEach((l, i) => { const kk = keyOf(l); if (kk) idx[kk] = i; });
+        let ch = 0; Object.keys(s.malla).forEach(kk => { if (kk in idx && norm(lines[idx[kk]]) !== norm(s.malla[kk])) { lines[idx[kk]] = s.malla[kk]; ch++; } });
+        if (ch) { const nr = lines.join('\n'), p = MALLA_parseText(nr); if (p.length) { MALLA_DATA = p; MALLA_LAST_RAW_TEXT = nr; wr('tb_malla_rawtext_v1', nr); MALLA_persist(); n += ch; } } return; }
+      const cur = rd(k) || {}; let ch2 = 0; Object.keys(s[k]).forEach(kk => { if (iso(cur[kk]) !== iso(s[k][kk])) { cur[kk] = s[k][kk]; ch2++; } }); if (ch2) { wr(k, cur); n += ch2; } });
+    return n;
+  }
+  function codigo() { try { return 'LLAVE-' + hash(foto(Object.fromEntries(L.keys.map(k => [k, localStorage.getItem(k)])))); } catch (e) { return 'LLAVE-?'; } }
+  const fecha = t => new Date(t).toLocaleString('es-CO', { day: '2-digit', month: 'short', hour: 'numeric', minute: '2-digit' });
+  function detTxt(d) { return Object.keys(d).map(k => (NOMBRES[k] || k) + ': ' + d[k]).join(' · '); }
+  function render() {
+    const el = document.getElementById('llave-cont'); if (!el) return; const p = perdidas(), cur = foto(Object.fromEntries(L.keys.map(k => [k, localStorage.getItem(k)]))), c = contar(cur);
+    const total = Object.values(c).reduce((a, b) => a + b, 0);
+    el.innerHTML = `<div class="ll-code"><small>Llave de protección</small><b>${codigo()}</b><span>${total} novedades protegidas en este dispositivo</span></div>
+      ${p.total ? `<div class="ll-alert"><b>⚠️ Este archivo no trae ${p.total} novedades que tenías guardadas</b><span>${esc(detTxt(p.det))}</span><button class="btn btn-primary" onclick="LLAVE_restaurar()">♻️ Restaurar mis novedades</button></div>` : `<div class="ll-ok">✓ Nada se ha perdido: todas las novedades guardadas siguen aplicadas.</div>`}
+      <div class="ll-list">${Object.keys(c).map(k => `<div><span>${NOMBRES[k] || k}</span><b>${c[k]}</b></div>`).join('') || '<div><span>Aún no hay novedades especiales registradas.</span></div>'}</div>
+      <div class="ll-btns"><button class="btn btn-secondary" onclick="LLAVE_descargar()">⬇️ Descargar respaldo</button><label class="btn btn-secondary" style="cursor:pointer">⬆️ Cargar respaldo<input type="file" accept=".json" style="display:none" onchange="LLAVE_cargar(this)"></label>${p.total ? '<button class="btn btn-secondary" onclick="LLAVE_aceptar()">Descartar aviso</button>' : ''}</div>
+      <h4 class="ll-h">Copias automáticas (${hist.length})</h4><div class="ll-list">${hist.map((h, i) => `<div><span>${fecha(h.t)} · ${esc(detTxt(contar(h.d)))}</span><button class="btn btn-secondary" onclick="LLAVE_restaurar(${i})">Restaurar</button></div>`).join('')}</div>`;
+  }
+  function aviso() { const p = perdidas(); const a = document.getElementById('ll-aviso'); if (!a) return; if (!p.total || sessionStorage.getItem('tb_ll_ok') === '1') { a.style.display = 'none'; return; }
+    a.style.display = 'flex'; a.innerHTML = `<span>⚠️ Este HTML no trae <b>${p.total}</b> novedades que tenías (${esc(detTxt(p.det))})</span><button onclick="LLAVE_restaurar()">Restaurar</button><button onclick="LLAVE_aceptar()">Descartar</button>`; }
+  window.LLAVE_restaurar = i => { const n = restaurar(typeof i === 'number' ? hist[i] : null); if (typeof showToast === 'function') showToast(n ? 'success' : 'info', n ? '♻️ Novedades restauradas' : 'Sin cambios', n ? n + ' novedades recuperadas. Recargando…' : 'No había nada que restaurar.'); if (n) setTimeout(() => location.reload(), 900); else { render(); aviso(); } };
+  window.LLAVE_aceptar = () => { try { sessionStorage.setItem('tb_ll_ok', '1'); } catch (e) { } const f = foto(Object.fromEntries(L.keys.map(k => [k, localStorage.getItem(k)]))); hist.unshift({ t: Date.now(), d: f }); hist = hist.slice(0, 6); wr(HK, hist); render(); aviso(); };
+  window.LLAVE_descargar = () => { const b = new Blob([JSON.stringify({ llave: codigo(), t: Date.now(), hist }, null, 1)], { type: 'application/json' }), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'respaldo-novedades_' + MALLA_todayISO() + '.json'; a.click(); };
+  window.LLAVE_cargar = inp => { const f = inp.files && inp.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { const o = JSON.parse(r.result); if (!o.hist || !o.hist.length) throw 0; hist = o.hist.concat(hist).slice(0, 6); wr(HK, hist); LLAVE_restaurar(0); } catch (e) { showToast('error', '❌ Respaldo inválido', 'No es un archivo de respaldo de novedades.'); } }; r.readAsText(f); };
+  window.LLAVE_render = render;
+  /* aviso fijo para el admin, apenas inicia sesión */
+  const bar = document.createElement('div'); bar.id = 'll-aviso'; bar.className = 'll-aviso'; bar.style.display = 'none'; document.body.appendChild(bar);
+  let avisado = false; setInterval(() => { try { if (!avisado && typeof currentUser !== 'undefined' && currentUser && currentUser.isAdmin) { avisado = true; aviso(); } } catch (e) { } }, 1500);
+  window.__LLAVE_TEST = { keyOf, foto, lineasEditadas };
 })();
 
 </script>
