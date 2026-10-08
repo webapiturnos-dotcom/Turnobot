@@ -2258,7 +2258,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .ll-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.ll-h{margin:6px 0 8px;font-size:13px;color:var(--gris)}
 .ll-aviso{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:9999;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:#92400e;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font-size:13px}
 .ll-aviso span{flex:1;min-width:200px}.ll-aviso button{border:0;border-radius:99px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer}
-</style></head>
+</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
@@ -2266,9 +2266,15 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 ═══════════════════════════════════════════════════ -->
 <div class="loader-wrap" id="loader">
   <div class="loader"></div>
-  <div class="loader-text" id="loader-text">Verificando información...</div>
+  <div class="loader-text" id="loader-text">Actualizando...</div>
 </div>
-<div class="toast-container" id="toasts"></div>
+<div class="toast-container" id="toasts"><div class="toast success" data-expires="1791501647554">
+    <div class="toast-icon">✅</div>
+    <div class="toast-body">
+      <div class="toast-title">✅ Aprobada</div>
+      <div class="toast-msg">La solicitud se actualizó en la Sheet.</div>
+    </div>
+    <button class="toast-close" type="button" aria-label="Cerrar" onclick="TOAST_dismiss(this.closest('.toast'))">✕</button></div></div>
 
 <!-- ── Banner de Modo Asesor: navegación real como si Moi hubiese
      entrado con el usuario/contraseña de ese asesor, para pruebas ── -->
@@ -2767,7 +2773,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 04/10/2026 · 1803</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 07/10/2026 · 0559</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -2781,7 +2787,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 
     <div class="home-content">
       <div class="home-greeting">
-        <div class="greeting-hello" id="greeting-hello">Buenos días,</div>
+        <div class="greeting-hello" id="greeting-hello">Buenas tardes,</div>
         <div class="greeting-name"><span id="home-name">Moi 👑</span></div>
         <div style="display:none">
           <span class="greeting-role">
@@ -2872,7 +2878,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>KAREN</strong> consultó su turno</div><div class="activity-time">18:20</div><button type="button" class="activity-del-btn" data-aid="3" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">18:20</div><button type="button" class="activity-del-btn" data-aid="2" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -3204,11 +3210,11 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:50 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">06:49 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">18:50</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">18:49</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:27 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">BRIANIS MILETH TORRES MÁRQUEZ</span><span style="color:var(--gris);font-size:11px">06:26 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">KAREN LISETH DE LA ASUNCION CERVANTES</span><span style="color:var(--gris);font-size:11px">01:42 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">12:38 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
-      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: block;">
+      <div class="malla-panel admin-subpanel" id="malla-panel" style="display: none;">
         <div class="section-header">
           <div class="section-title">🗂️ Actualizar Malla de Turnos</div>
           <div class="section-sub">Sube el nuevo archivo y todo el equipo se actualiza</div>
@@ -3218,9 +3224,9 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         </div>
         <div id="malla-autofix-box">
     <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;border:1px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.10);">
-      🛠️ <b>6 falla(s) corregida(s) automáticamente</b> · 🚨 <b style="color:#dc2626">2 de corrección urgente</b>
+      🛠️ <b>7 falla(s) corregida(s) automáticamente</b> · 🚨 <b style="color:#dc2626">2 de corrección urgente</b>
       <pre id="malla-autofix-msg" style="white-space:pre-wrap;font-family:inherit;font-size:12px;margin:8px 0 0;">Reporte automático de la malla (TurnoBot)
-6 falla(s) corregida(s) automáticamente · 2 de corrección urgente.
+7 falla(s) corregida(s) automáticamente · 2 de corrección urgente.
 
 🚨 DE CORRECCIÓN URGENTE (no se pudo arreglar con seguridad):
 • CINDY PATRICIA ALVAREZ GUTIERREZ — Horario: sin entrada/salida (la malla dice "Inicio" o 12:00 a. m.) · asesor ACTIVO sin horario asignado · 10/10/2026 (esa semana ya completa 42 h: probablemente es descanso; si no, hay que quitarle horas a otro día)
@@ -3229,9 +3235,10 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 ✅ Corregidas automáticamente:
 • EVERLIN SANDRY MORENO LOPEZ — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 09/10/2026 (5 días)
 • JOCELINE CAROLINE DE LA ROSA GOMEZ — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 09/10/2026 (5 días)
+• JULIETH PAOLA PERALTA MARTINEZ — Break 1: 11:45 p. m. → 11:45 a. m. · 09/10/2026
 • KAREN LISETH DE LA ASUNCION CERVANTES — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 09/10/2026 (5 días)
 • KATHERINE PAOLA ARIAS JARAMILLO — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 09/10/2026 (5 días)
-• VIVIANA ESTER CUMPLIDO VALENCIA — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 09/10/2026 (5 días)
+• VIVIANA ESTER CUMPLIDO VALENCIA — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 08/10/2026 (4 días)
 • YULISSA LILIANA PEREZ SALCEDO — Break 1: 11:45 p. m. → 11:45 a. m. · 05/10/2026 al 09/10/2026 (5 días)
 
 Causa probable: error de digitación en el archivo de turnos de origen (a. m./p. m., horarios sin asignar, horas que no cuadran). Se sugiere corregirlo en la fuente para las próximas mallas.</pre>
@@ -4735,13 +4742,23 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       </div>
 
       <!-- ── Solicitudes de cambio de turno recibidas (solo admin) ── -->
-      <div class="malla-panel admin-subpanel" id="solicitudes-admin-panel" style="display: none;">
+      <div class="malla-panel admin-subpanel" id="solicitudes-admin-panel" style="display: block;">
         <div class="section-header">
           <div class="section-title">🔄 Solicitudes de Cambio de Turno</div>
           <div class="section-sub">Aprueba o rechaza lo que llega a la Sheet</div>
         </div>
         <button class="btn btn-secondary w-full" style="margin-bottom:10px" onclick="TB_renderSolicitudesAdmin(true)">🔄 Actualizar</button>
         <div class="team-list" id="solicitudes-admin-list"><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA 🔄 JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">Fecha: 2026-10-09T00:00:00.000Z · Novedad familiar</div>
+        <div class="team-row-sub" style="color:var(--verde)">Estado: aprobado</div>
+      </div></div><div class="team-row">
+      <div style="flex:1">
+        <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA 🔄 JULIETH PAOLA PERALTA MARTINEZ</div>
+        <div class="team-row-sub">Fecha: 2026-10-09T00:00:00.000Z · Novedad. Familar</div>
+        <div class="team-row-sub" style="color:var(--naranja)">Estado: pendiente</div>
+      </div><div style="display: flex; gap: 6px;"><button class="deleg-row-btn">✅</button><button class="deleg-row-btn">❌</button></div></div><div class="team-row">
       <div style="flex:1">
         <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA 🔄 JULIETH PAOLA PERALTA MARTINEZ</div>
         <div class="team-row-sub">Fecha: 2026-09-25T00:00:00.000Z · Novedad familiar medica</div>
@@ -5389,7 +5406,7 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  06/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  07/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  08/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 09/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+09/10/2026	ACTIVO	JULIETH	PAOLA	PERALTA	MARTINEZ	10:30:00	a.	m.	7:00:00	p.	m.	11:45:00	p.	m.	4:45:00	p.	m.	2:00:00	p.	m.	7:30:00
  10/10/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
@@ -5415,17 +5432,17 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
  08/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 05/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+05/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:00:00	a.	m.	4:00:00	p.	m.	10:00:00	a.	m.	12:00:00	a.	m.	1:00:00	p.	m.	8:00:00
  06/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
-07/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 08/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 09/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+07/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	11:00:00	a.	m.	7:00:00	p.	m.	12:00:00	p.	m.	4:45:00	p.	m.	2:00:00	p.	m.	7:00:00
+08/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:15:00	a.	m.	3:30:00	p.	m.	10:00:00	a.	m.	12:00:00	a.	m.	1:00:00	p.	m.	7:15:00
+09/10/2026	ACTIVO	NEVIS	CAROLINA	JIMENEZ	MARMOL	7:15:00	a.	m.	3:30:00	p.	m.	10:00:00	a.	m.	12:00:00	a.	m.	1:00:00	p.	m.	7:15:00
  10/10/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
  07/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 09/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+09/10/2026	ACTIVO	VIVIANA	ESTER	CUMPLIDO	VALENCIA	7:00:00	a.	m.	3:30:00	p.	m.	9:30:00	a.	m.	12:00:00	a.	m.	12:30:00	p.	m.	7:30:00
  10/10/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   9:36:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:24:00
  06/10/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   9:36:00 a. m.   7:00:00 p. m.   11:45:00 p. m.   4:45:00 p. m.   2:30:00 p. m.   8:24:00
@@ -5465,12 +5482,12 @@ const MALLA_BASELINE_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BRE
  08/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  09/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
  10/10/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
-05/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	6:30:00	a.	m.	3:30:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	11:10:00	a.	m.	8:00:00
+ 05/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  06/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  07/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  08/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
  09/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
-10/10/2026	ACTIVO	CARLOS	ENRIQUE	GUZMAN	JIMENEZ	8:00:00	a.	m.	12:00:00	p.	m.	9:10:00	a.	m.	12:00:00	a.	m.	12:00:00	a.	m.	4:00:00
+ 10/10/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
  05/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  06/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
  07/10/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
@@ -8672,7 +8689,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-07.0559';
+const TB_APP_VERSION = '2026-10-08.1822';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -10426,7 +10443,7 @@ function CAMBIO_get(fechaISO, norm) {
 // cuando llega una malla con fechas realmente nuevas (ver
 // MALLA_checkNewDatesAndResetHistory), nunca por publicar de nuevo el mismo
 // archivo.
-const TB_CAMBIOS_DEFAULT = {"2026-09-22|NEVIS CAROLINA JIMENEZ MARMOL":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-22|JULIETH PAOLA PERALTA MARTINEZ":"NEVIS CAROLINA JIMENEZ MARMOL","2026-09-25|VIVIANA ESTER CUMPLIDO VALENCIA":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-25|JULIETH PAOLA PERALTA MARTINEZ":"VIVIANA ESTER CUMPLIDO VALENCIA"};
+const TB_CAMBIOS_DEFAULT = {"2026-09-22|NEVIS CAROLINA JIMENEZ MARMOL":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-22|JULIETH PAOLA PERALTA MARTINEZ":"NEVIS CAROLINA JIMENEZ MARMOL","2026-09-25|VIVIANA ESTER CUMPLIDO VALENCIA":"JULIETH PAOLA PERALTA MARTINEZ","2026-09-25|JULIETH PAOLA PERALTA MARTINEZ":"VIVIANA ESTER CUMPLIDO VALENCIA","2026-10-09|VIVIANA ESTER CUMPLIDO VALENCIA":"JULIETH PAOLA PERALTA MARTINEZ","2026-10-09|JULIETH PAOLA PERALTA MARTINEZ":"VIVIANA ESTER CUMPLIDO VALENCIA"};
 function TB_CAMBIOS_init() {
   try {
     const embebidos = TB_CAMBIOS_DEFAULT || {};
@@ -10447,7 +10464,7 @@ function TB_CAMBIOS_init() {
 // el const ya exista.
 TB_CAMBIOS_init();
 
-const TB_HORAS_DEFAULT = {"2026-09-29|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-30|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"28/09","otraISO":"2026-09-28","cond":true},"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"2","min":120,"repartido":60,"otraFecha":"29/09, 30/09","otras":["2026-09-29","2026-09-30"],"reparto":[{"fecha":"2026-09-29","min":30},{"fecha":"2026-09-30","min":30}],"cond":true}};
+const TB_HORAS_DEFAULT = {"2026-10-05|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"10/10","otraISO":"2026-10-10","cond":true},"2026-10-10|CARLOS ENRIQUE GUZMAN JIMENEZ":{"tipo":"origen","horas":"0.5","min":30,"repartido":30,"otraFecha":"05/10","otras":["2026-10-05"],"reparto":[{"fecha":"2026-10-05","min":30}],"cond":true},"2026-10-07|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"0.5","min":30,"otraFecha":"08/10, 09/10","otras":["2026-10-08","2026-10-09"]},"2026-10-10|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"1","min":60,"otraFecha":"06/10","otraISO":"2026-10-06"},"2026-10-08|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"0.3","min":15,"otraFecha":"05/10","otraISO":"2026-10-05"},"2026-10-09|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"0.3","min":15,"otraFecha":"05/10","otraISO":"2026-10-05"},"2026-10-05|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"destino","horas":"0.5","min":30,"otraFecha":"08/10, 09/10","otras":["2026-10-08","2026-10-09"]},"2026-10-06|NEVIS CAROLINA JIMENEZ MARMOL":{"tipo":"origen","horas":"0.5","min":30,"otraFecha":"08/10, 09/10","otras":["2026-10-08","2026-10-09"]}};
 function TB_HORAS_init() {
   try {
     const embebidos = TB_HORAS_DEFAULT || {};
@@ -10888,7 +10905,7 @@ function HORAS_registrarCondicion(fechaFijaISO, norm, detalle, cambioFijoMin, fe
 //   en un registro aparte (igual que HORAS_registrar) que también se hornea.
 // ══════════════════════════════════════════════════
 const BREAKS_KEY = 'tb_breaks_v1';
-const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]},"2026-09-29|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}}};
+const TB_BREAKS_DEFAULT = {"2026-09-28|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Almuerzo eliminado por condición especial: jornada de 7h sin almuerzo, solo breaks (la hora del almuerzo queda sumada al horario)"]},"2026-09-29|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|EVERLIN SANDRY MORENO LOPEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|GREY MAR NORIEGA ALGARIN":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JOCELINE CAROLINE DE LA ROSA GOMEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|JUAN DAVID ECHEVERRIA PRINCE":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KAREN LISETH DE LA ASUNCION CERVANTES":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|KATHERINE PAOLA ARIAS JARAMILLO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|MELANYS DANIELA SOBRINO DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|VIVIANA ESTER CUMPLIDO VALENCIA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-29|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-09-30|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-01|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-02|YULISSA LILIANA PEREZ SALCEDO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|ADRIANA ANILLO BOLIVAR":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|ADRIANA ANILLO BOLIVAR":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|ADRIANA ANILLO BOLIVAR":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|ALEXANDRA HURTADO BARROSO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|ALEXANDRA HURTADO BARROSO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|ALEXANDRA HURTADO BARROSO":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|ANDREA CAROLINA AGUERO ARENAS":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|ANDREA CAROLINA AGUERO ARENAS":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|ANDREA CAROLINA AGUERO ARENAS":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|BRIANIS MILETH TORRES MARQUEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|CARLOS ENRIQUE GUZMAN JIMENEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|CARLOS ENRIQUE GUZMAN JIMENEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|CARLOS ENRIQUE GUZMAN JIMENEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|CINDY PATRICIA ALVAREZ GUTIERREZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|CINDY PATRICIA ALVAREZ GUTIERREZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|CINDY PATRICIA ALVAREZ GUTIERREZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|ELIACID DAVID SANDOVAL PORRAS":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|ELIACID DAVID SANDOVAL PORRAS":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|ELIACID DAVID SANDOVAL PORRAS":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|JENNIFER MORALES MENDOZA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|JENNIFER MORALES MENDOZA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|JENNIFER MORALES MENDOZA":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|JULIETH PAOLA PERALTA MARTINEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|JULIETH PAOLA PERALTA MARTINEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|JULIETH PAOLA PERALTA MARTINEZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-07|MARIA DE LOS ANGELES PANTOJA DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|MARIA DE LOS ANGELES PANTOJA DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|MARIA DE LOS ANGELES PANTOJA DE LA HOZ":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-08|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}},"2026-10-09|NEVIS CAROLINA JIMENEZ MARMOL":{"unif":null,"notas":["Break 1: +15 min (ahora dura 30 min)"],"dur":{"0":15}}};
 const BRK_LABELS = ['Break 1', 'Break 2', 'Salida almuerzo'];   // = MALLA_AUX_LABEL
 const BRK_NOMBRES = ['Break 1', 'Break 2', 'Almuerzo'];
 const BRK_DUR = [15, 15, 60];                                   // minutos
@@ -17971,5 +17988,5 @@ function BUZON_updateBadge() {
   window.__LLAVE_TEST = { keyOf, foto, lineasEditadas };
 })();
 
-</script>
+</script><div id="ll-aviso" class="ll-aviso" style="display: none;"></div>
 </body></html>
