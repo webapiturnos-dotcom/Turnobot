@@ -8954,7 +8954,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-14.0538';
+const TB_APP_VERSION = '2026-10-14.0724';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -11981,12 +11981,14 @@ function TB_LOCK_pedirAutorizacion() {
       '<div style="display:flex;gap:8px;margin-top:10px">' +
         '<button type="button" class="btn btn-secondary" id="tb-lock-cancel" style="flex:1">Cancelar</button>' +
         '<button type="button" class="btn btn-primary" id="tb-lock-ok" style="flex:1">Autorizar</button>' +
-      '</div></div>';
+      '</div>' +
+      '<button type="button" class="btn btn-secondary" id="tb-lock-liberar" style="width:100%;margin-top:8px">🔓 Liberar y cerrar la sesión pegada</button>' +
+      '</div>';
   document.body.appendChild(m);
   const cerrar = () => m.remove();
   m.querySelector('#tb-lock-cancel').onclick = cerrar;
   m.addEventListener('click', ev => { if (ev.target === m) cerrar(); });
-  const enviar = () => {
+  const enviar = (cerrarSesion) => {
     const err = m.querySelector('#tb-lock-err');
     const espera = TB_LOCK_State.bloqueadoHasta - Date.now();
     if (espera > 0) { err.textContent = `Demasiados intentos. Espera ${Math.ceil(espera / 1000)} s.`; return; }
@@ -11996,7 +11998,8 @@ function TB_LOCK_pedirAutorizacion() {
       TB_LOCK_escribir(TB_LOCK_PROV_KEY, 0);
       TB_LOCK_State.fallos = 0;
       cerrar(); TB_LOCK_pintar();
-      if (typeof showToast === 'function') showToast('success', '🔓 Salida autorizada', 'Ya se puede cerrar la pestaña.');
+      if (cerrarSesion === true) { try { TB_SEG_liberar('código de seguridad'); } catch (e) { console.error(e); } }
+      else if (typeof showToast === 'function') showToast('success', '🔓 Salida autorizada', 'Ya se puede cerrar la pestaña.');
     } else {
       TB_LOCK_State.fallos++;
       if (TB_LOCK_State.fallos >= 5) { TB_LOCK_State.fallos = 0; TB_LOCK_State.bloqueadoHasta = Date.now() + 60000; err.textContent = 'Demasiados intentos. Espera 60 s.'; }
@@ -12004,15 +12007,16 @@ function TB_LOCK_pedirAutorizacion() {
       m.querySelector('#tb-lock-pin').value = '';
     }
   };
-  m.querySelector('#tb-lock-ok').onclick = enviar;
-  m.querySelector('#tb-lock-pin').addEventListener('keydown', ev => { if (ev.key === 'Enter') enviar(); });
+  m.querySelector('#tb-lock-ok').onclick = () => enviar(false);
+  m.querySelector('#tb-lock-liberar').onclick = () => enviar(true);
+  m.querySelector('#tb-lock-pin').addEventListener('keydown', ev => { if (ev.key === 'Enter') enviar(false); });
   setTimeout(() => { const i = m.querySelector('#tb-lock-user'); if (i) i.focus(); }, 50);
 }
 // Candado "desde que se abre": en la versión de oficina queda armado desde el primer
 // segundo (aunque aún nadie haya iniciado sesión). Al entrar un asesor pasa a durar hasta
 // el fin de su turno; si entra el admin (o el asesor no tiene turno pendiente) se libera.
 const TB_LOCK_PROV_KEY = 'tb_lock_prov_v1';
-const TB_LOCK_PROV_MS = 12 * 3600 * 1000;
+const TB_LOCK_PROV_MS = 5 * 60 * 1000;   // antes 12 h: con nadie dentro, una pestaña olvidada dejaba el equipo "pegado"
 function TB_LOCK_armarAlAbrir() {
   try {
     if (!TB_MODO_OFICINA_DEFAULT) return;
@@ -12034,6 +12038,90 @@ if (TB_MODO_OFICINA_DEFAULT) {
   setInterval(TB_LOCK_evaluar, 5000);
   setTimeout(TB_LOCK_evaluar, 1500);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) TB_LOCK_evaluar(); });
+}
+
+
+// ══════════════════════════════════════════════════
+//   SEGURO ANTI-SESIÓN PEGADA (solo versión de OFICINA)
+//   Problema: el HTML vive en una carpeta compartida y se abre en equipos que usan
+//   varias personas. Si alguien (p. ej. el admin) dejaba su sesión abierta, la
+//   siguiente persona encontraba la app "pegada" en esa cuenta y el candado de
+//   pestaña no la dejaba salir.
+//   Protecciones:
+//     1) Cierre por inactividad: sin tocar la pantalla durante TB_SEG_INACT_MS se
+//        cierra la sesión (aviso de 60 s con botón "Seguir aquí"). Aplica al admin,
+//        a delegados y a asesores SIN turno pendiente. Un asesor con turno por
+//        terminar NO se cierra (necesita los avisos de break/almuerzo), salvo tope
+//        de seguridad de TB_SEG_TOPE_MS sin ninguna actividad.
+//     2) Cierre de sesión libera el candado del navegador de esa pestaña.
+//     3) Código de seguridad: desde el candado 🔒 (Autorizar salida) el admin puede
+//        "Liberar y cerrar la sesión pegada" en cualquier momento.
+// ══════════════════════════════════════════════════
+const TB_SEG_INACT_MS = 10 * 60 * 1000;      // inactividad que cierra la sesión (sin turno pendiente / admin)
+const TB_SEG_AVISO_MS = 60 * 1000;           // aviso previo
+const TB_SEG_TOPE_MS = 12 * 3600 * 1000;     // tope absoluto sin actividad, aun con turno pendiente
+const TB_SEG = { ultima: Date.now(), aviso: false };
+function TB_SEG_pendiente(u) {
+  try {
+    if (!u || u.isAdmin || u.isDelegated) return false;
+    return TB_LOCK_finTurno(u) > 0;
+  } catch { return true; }   // ante un error, se trata como turno pendiente (no cierra); el tope igual aplica
+}
+function TB_SEG_banner(segundos) {
+  let b = document.getElementById('tb-seg-aviso');
+  if (segundos === null) { if (b) b.remove(); return; }
+  if (!b) {
+    b = document.createElement('div');
+    b.id = 'tb-seg-aviso';
+    b.style.cssText = 'position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:99997;' +
+      'background:rgba(10,10,15,.96);color:#f0f0f5;border:1px solid rgba(var(--rojo-rgb),.7);border-radius:14px;padding:10px 14px;' +
+      'font:500 13px var(--font-body,sans-serif);display:flex;align-items:center;gap:12px;max-width:94vw;box-shadow:0 8px 28px rgba(0,0,0,.5);';
+    b.innerHTML = '<span id="tb-seg-txt"></span><button type="button" id="tb-seg-seguir" class="btn btn-primary" style="padding:6px 12px;white-space:nowrap">Seguir aquí</button>';
+    b.querySelector('#tb-seg-seguir').onclick = () => TB_SEG_actividad(true);
+    document.body.appendChild(b);
+  }
+  b.querySelector('#tb-seg-txt').textContent = '⏳ Sin actividad: la sesión se cerrará en ' + segundos + ' s';
+}
+function TB_SEG_actividad(forzar) {
+  const ahora = Date.now();
+  if (!forzar && ahora - TB_SEG.ultima < 1000) return;   // sin trabajo extra en cada mousemove
+  TB_SEG.ultima = ahora;
+  if (TB_SEG.aviso) { TB_SEG.aviso = false; TB_SEG_banner(null); }
+}
+// Cierra la sesión de esta pestaña y deja el candado libre para la siguiente persona.
+function TB_SEG_liberar(motivo) {
+  try {
+    TB_SEG.aviso = false; TB_SEG_banner(null);
+    const m = document.getElementById('tb-lock-modal'); if (m) m.remove();
+    TB_LOCK_escribir(TB_LOCK_OK_KEY, TB_LOCK_leer(TB_LOCK_KEY));   // autoriza la salida de esta pestaña
+    TB_LOCK_escribir(TB_LOCK_PROV_KEY, 0);
+    if (currentUser && typeof doLogout === 'function') doLogout();
+    else if (typeof showScreen === 'function') showScreen('splash');
+    TB_LOCK_pintar();
+    TB_SEG.ultima = Date.now();
+    if (typeof showToast === 'function') showToast('info', '🔓 Sesión liberada', 'Cerrada por ' + motivo + '. Ya puede ingresar otra persona.');
+  } catch (e) { console.error('TB_SEG_liberar error:', e); }
+}
+function TB_SEG_tick() {
+  try {
+    const u = currentUser;
+    if (!u) { TB_SEG_banner(null); return; }
+    const inactivo = Date.now() - TB_SEG.ultima;
+    if (inactivo >= TB_SEG_TOPE_MS) { TB_SEG_liberar('inactividad prolongada'); return; }
+    if (TB_SEG_pendiente(u)) { if (TB_SEG.aviso) { TB_SEG.aviso = false; TB_SEG_banner(null); } return; }
+    if (inactivo >= TB_SEG_INACT_MS) { TB_SEG_liberar('inactividad'); return; }
+    if (inactivo >= TB_SEG_INACT_MS - TB_SEG_AVISO_MS) {
+      TB_SEG.aviso = true;
+      TB_SEG_banner(Math.max(0, Math.ceil((TB_SEG_INACT_MS - inactivo) / 1000)));
+    } else if (TB_SEG.aviso) { TB_SEG.aviso = false; TB_SEG_banner(null); }
+  } catch (e) { console.error('TB_SEG_tick error:', e); }
+}
+if (TB_MODO_OFICINA_DEFAULT) {
+  ['mousemove', 'mousedown', 'keydown', 'touchstart', 'wheel', 'click'].forEach(ev =>
+    window.addEventListener(ev, () => TB_SEG_actividad(false), { passive: true, capture: true }));
+  document.addEventListener('scroll', () => TB_SEG_actividad(false), { passive: true, capture: true });
+  setInterval(TB_SEG_tick, 2000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) TB_SEG_tick(); });
 }
 
 // ── Mascota EVA: interactiva pero decorativa, no afecta ninguna función
