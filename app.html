@@ -880,8 +880,8 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .lb-side-L .lb-paper::after{background:linear-gradient(270deg,rgba(60,35,10,.34),rgba(60,35,10,.08) 7%,transparent 16%),linear-gradient(90deg,rgba(60,35,10,.1),transparent 4%)}
 .lb-root.night .lb-paper{color:#d8ccb4;background:radial-gradient(ellipse at 50% 0%,rgba(255,235,200,.07),transparent 62%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .8 0 0 0 0 .6 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(#27221d,#1d1915)}
 .lb-inner{position:absolute;left:calc(var(--pw)*.115);right:calc(var(--pw)*.105);top:calc(var(--ph)*.085);bottom:calc(var(--ph)*.1);overflow:hidden;
-  font-family:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua','Hoefler Text',Georgia,serif;font-size:var(--fs);line-height:1.58;text-align:justify;hyphens:auto;-webkit-hyphens:auto;font-kerning:normal}
-.lb-meas{visibility:hidden;pointer-events:none}
+  font-family:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua','Hoefler Text',Georgia,serif;font-size:var(--fs);line-height:1.58;text-align:justify;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere;font-kerning:normal}
+.lb-meas{visibility:hidden;pointer-events:none;right:auto;width:calc(var(--pw)*.78)}
 .lb-side-L .lb-inner{left:calc(var(--pw)*.105);right:calc(var(--pw)*.115)}
 .lb-p{margin:0;text-indent:1.45em}.lb-p.first,.lb-p.cont{text-indent:0}.lb-p.more{text-align-last:justify}
 .lb-p.dc::first-letter{float:left;font-size:3.5em;line-height:.8;padding:.07em .1em 0 0;color:#8c5b1e;font-weight:600}
@@ -920,6 +920,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .lb-card textarea:focus{border-color:#e0b867;box-shadow:0 0 0 3px rgba(224,184,103,.2)}
 .lb-prev{min-height:18px;margin:8px 2px 12px;font:600 12px system-ui,sans-serif;color:#9fe0b0}
 .lb-prev.err{color:#ff9d8c}
+.lb-rep{list-style:none;margin:8px 0;padding:0;font:600 13px/1.5 system-ui,sans-serif;color:#f3e6c8}.lb-rep li{margin:6px 0}
 .lb-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .lb-file{position:relative;overflow:hidden}.lb-file input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .lb-toc{display:flex;flex-direction:column;gap:6px;margin:10px 0 14px}
@@ -8954,7 +8955,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-14.0724';
+const TB_APP_VERSION = '2026-10-15.0658';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -13310,7 +13311,11 @@ function LEER_mk(it) {
 function LEER_paginar(caps) {
   const m = LEER.meas, pages = [];
   m.innerHTML = '';
-  const over = () => m.scrollHeight > m.clientHeight + 1;
+  const over = () => {
+    if (m.scrollHeight > m.clientHeight) return true;
+    const lc = m.lastElementChild; if (!lc) return false;
+    return lc.getBoundingClientRect().bottom > m.getBoundingClientRect().bottom + 0.5;
+  };
   caps.forEach((c, ci) => {
     const q = [{ t: 'open', c, pi: 0 }];
     let first = true;
@@ -13321,7 +13326,7 @@ function LEER_paginar(caps) {
     let pk = 0;
     const flush = () => { if (m.firstChild) { pages.push({ h: m.innerHTML, ci, k: ci * 100000 + pk }); m.innerHTML = ''; } };
     let guard = 0;
-    while (q.length && guard++ < 20000) {
+    while (q.length && guard++ < 400000) {
       const it = q.shift(), el = LEER_mk(it);
       if (!m.firstChild) pk = it.pi || 0;
       m.appendChild(el);
@@ -13452,7 +13457,14 @@ function LEER_layout(keepKey) {
   b.style.setProperty('--pw', pw + 'px'); b.style.setProperty('--ph', ph + 'px'); b.style.setProperty('--fs', fs + 'px');
   G.slotR.style.left = (G.spread ? pw : 0) + 'px'; G.slotL.style.left = '0px';
   G.caps = LEER_allCaps();
-  const pages = LEER_paginar(G.caps);
+  G.meas.style.bottom = '';
+  let pages = LEER_paginar(G.caps), v = LEER_verify(G.caps, pages), tries = 0;
+  // Autocorrección: si alguna línea se cortara, se paginan de nuevo con más margen de seguridad
+  while (!v.ok && tries++ < 6) {
+    G.meas.style.bottom = 'calc(var(--ph)*.1 + ' + (tries * 5) + 'px)';
+    pages = LEER_paginar(G.caps); v = LEER_verify(G.caps, pages);
+  }
+  G.test = v;
   G.faces = [{ cover: true, k: -1 }].concat(pages);
   let key = keepKey === true ? (G.faces[LEER_curFace()] ? G.faces[LEER_curFace()].k : -1) : keepKey;
   if (keepKey === true && G.s === 0) key = -1;
@@ -13466,7 +13478,7 @@ function LEER_start() {
   ARCADE_setScore('📚 Leer · ADICCIÓN');
   const night = LEER_ls(LEER_K.night, 0) ? ' night' : '';
   area.innerHTML = '<div class="lb-root' + night + '" id="lb-root">' +
-    '<div class="lb-bar"><button type="button" onclick="LEER_toc()">☰ Índice</button><span class="lb-grow"></span>' +
+    '<div class="lb-bar"><button type="button" onclick="LEER_toc()">☰ Índice</button><button type="button" onclick="LEER_paste()" aria-label="Agregar capítulo">➕ Capítulo</button><button type="button" onclick="LEER_testBook()" aria-label="Probar el libro">🧪</button><span class="lb-grow"></span>' +
     '<button type="button" onclick="LEER_fsz(-1)" aria-label="Letra más pequeña">A−</button><button type="button" onclick="LEER_fsz(1)" aria-label="Letra más grande">A+</button>' +
     '<button type="button" id="lb-nt" onclick="LEER_night()">' + (night ? '☀️' : '🌙') + '</button></div>' +
     '<div class="lb-stage" id="lb-stage"><div class="lb-book" id="lb-book" lang="es"><div class="lb-inner lb-meas" id="lb-meas"></div><div class="lb-slot lb-side-L" id="lb-sl"></div><div class="lb-slot lb-side-R" id="lb-sr"></div></div></div>' +
@@ -13503,6 +13515,82 @@ function LEER_start() {
   requestAnimationFrame(() => { if (LEER === G) LEER_layout(LEER_ls(LEER_K.pos, -1)); });
 }
 
+// ---------- prueba: texto pegado vs páginas ----------
+// Compara párrafo por párrafo el texto original con lo que quedó en las páginas y revisa,
+// en una página real (izquierda y derecha), que ninguna línea se salga del marco.
+function LEER_verify(caps, pages) {
+  const G = LEER;
+  const res = { ok: true, paginas: 0, parrSrc: 0, parrPag: 0, palSrc: 0, palPag: 0, cortadas: 0, malas: [], textoOk: true, diff: '' };
+  const norm = s => String(s).replace(/\s+/g, ' ').trim();
+  const src = [];
+  caps.forEach(c => c.p.forEach(t => { if (t !== '---') src.push(norm(t)); }));
+  const got = [];
+  const tmp = document.createElement('div');
+  const slot = document.createElement('div');
+  slot.style.cssText = 'visibility:hidden;pointer-events:none';
+  slot.innerHTML = '<div class="lb-paper"><div class="lb-inner"></div></div>';
+  G.book.appendChild(slot);
+  const inner = slot.querySelector('.lb-inner');
+  try {
+    pages.forEach((p, i) => {
+      if (p.end) return;
+      res.paginas++;
+      let cut = 0;
+      ['R', 'L'].forEach(side => {
+        slot.className = 'lb-slot lb-side-' + side;
+        inner.innerHTML = p.h;
+        const ir = inner.getBoundingClientRect(), k = inner.offsetHeight ? ir.height / inner.offsetHeight : 1;
+        const H = inner.clientHeight, W = inner.clientWidth;
+        let n = 0;
+        if (inner.scrollHeight > H + 1) n++;
+        inner.querySelectorAll('p,div,h2').forEach(el => {
+          const rg = document.createRange(); rg.selectNodeContents(el);
+          for (const r of rg.getClientRects()) {
+            if ((r.bottom - ir.top) / k > H + 0.75 || (r.right - ir.left) / k > W + 0.75) n++;
+          }
+        });
+        cut = Math.max(cut, n);
+      });
+      if (cut) { res.cortadas += cut; res.malas.push(i + 1); }
+      tmp.innerHTML = p.h;
+      tmp.querySelectorAll('p.lb-p').forEach(el => {
+        const t = norm(el.textContent);
+        if (el.classList.contains('cont') && got.length) got[got.length - 1] += ' ' + t; else got.push(t);
+      });
+    });
+  } finally { slot.remove(); }
+  res.parrSrc = src.length; res.parrPag = got.length;
+  res.palSrc = src.join(' ').split(' ').filter(Boolean).length;
+  res.palPag = got.join(' ').split(' ').filter(Boolean).length;
+  const n = Math.max(src.length, got.length);
+  for (let i = 0; i < n; i++) {
+    if (src[i] !== got[i]) {
+      res.textoOk = false;
+      res.diff = 'Párrafo ' + (i + 1) + ': «' + (src[i] || '(falta)').slice(0, 60) + '…» ≠ «' + (got[i] || '(falta)').slice(0, 60) + '…»';
+      break;
+    }
+  }
+  res.ok = res.textoOk && res.cortadas === 0;
+  return res;
+}
+function LEER_testHtml(v) {
+  const f = n => Number(n).toLocaleString('es');
+  let h = '<ul class="lb-rep">' +
+    '<li>' + (v.textoOk ? '✅' : '❌') + ' Texto: ' + f(v.palSrc) + ' palabras en el original · ' + f(v.palPag) + ' en las páginas (' + f(v.parrSrc) + ' / ' + f(v.parrPag) + ' párrafos)</li>' +
+    '<li>' + (v.cortadas ? '❌' : '✅') + ' Líneas cortadas: ' + v.cortadas + (v.malas.length ? ' (págs. ' + v.malas.slice(0, 12).join(', ') + ')' : '') + ' · ' + f(v.paginas) + ' páginas revisadas (izquierda y derecha)</li></ul>';
+  if (v.diff) h += '<p class="lb-sub" style="color:#ff9d8c">' + LEER_esc(v.diff) + '</p>';
+  h += '<p class="lb-sub"><b>' + (v.ok ? '✔ Todo cuadra: ninguna línea se corta y no falta nada del texto.' : '✖ Hay algo por revisar.') + '</b><br>Medido con el tamaño de pantalla y de letra actuales.</p>';
+  return h;
+}
+function LEER_testBook() {
+  const G = LEER; if (!G || G.busy) return;
+  const v = LEER_verify(G.caps, G.faces.slice(1));
+  G.test = v;
+  LEER_openModal('<h3>🧪 Prueba del libro</h3><p class="lb-sub">Texto original vs. páginas del libro</p>' + LEER_testHtml(v) +
+    '<div class="lb-row"><button type="button" class="lb-btn" onclick="LEER_closeModal()">Cerrar</button></div>');
+  try { showToast(v.ok ? 'success' : 'error', '🧪 Prueba del libro', v.ok ? 'Todo cuadra: ninguna línea cortada.' : 'Hay líneas cortadas o texto distinto. Abre la prueba para ver el detalle.'); } catch {}
+}
+
 // ---------- controles ----------
 function LEER_fsz(d) {
   const G = LEER; if (!G || G.busy) return;
@@ -13527,7 +13615,7 @@ function LEER_toc() {
   const extra = LEER_ls(LEER_K.caps, []).length;
   let h = '<h3>Índice</h3><p class="lb-sub">ADICCIÓN · MOI</p><div class="lb-toc"><button type="button" onclick="LEER_goFace(0)"><span>Portada</span><small></small></button>';
   G.caps.forEach((c, i) => { h += '<button type="button" onclick="LEER_goFace(' + first[i] + ')"><span>' + LEER_esc(c.label + (c.titulo ? ' · ' + c.titulo : '')) + '</span><small>pág. ' + first[i] + '</small></button>'; });
-  h += '</div><div class="lb-row"><button type="button" class="lb-btn" onclick="LEER_goFace(' + (G.faces.length - 1) + ')">Ir al final</button><button type="button" class="lb-btn ghost" onclick="LEER_closeModal()">Cerrar</button></div>';
+  h += '</div><div class="lb-row"><button type="button" class="lb-btn" onclick="LEER_goFace(' + (G.faces.length - 1) + ')">Ir al final</button><button type="button" class="lb-btn" onclick="LEER_paste()">➕ Agregar capítulo</button><button type="button" class="lb-btn ghost" onclick="LEER_testBook()">🧪 Probar libro</button><button type="button" class="lb-btn ghost" onclick="LEER_closeModal()">Cerrar</button></div>';
   if (extra) h += '<button type="button" class="lb-danger" onclick="LEER_quitarUltimo()">🗑 Quitar el último capítulo agregado</button>';
   LEER_openModal(h);
 }
@@ -13564,6 +13652,16 @@ function LEER_prevTxt() {
   const words = caps.reduce((n, c) => n + c.p.join(' ').split(/\s+/).length, 0);
   pv.className = 'lb-prev';
   pv.textContent = '✔ ' + (caps.length > 1 ? caps.length + ' capítulos: ' : '') + caps.map(c => c.label + (c.titulo ? ' · ' + c.titulo : '')).join(' | ') + ' — ' + words.toLocaleString('es') + ' palabras';
+  // prueba en seco: ¿el texto pegado cabe bien en las páginas?
+  clearTimeout(LEER_prevTxt._t);
+  LEER_prevTxt._t = setTimeout(() => {
+    if (!LEER || !document.getElementById('lb-pv')) return;
+    try {
+      const v = LEER_verify(caps, LEER_paginar(caps));
+      pv.className = 'lb-prev' + (v.ok ? '' : ' err');
+      pv.textContent += v.ok ? ' · 🧪 Prueba OK: ' + v.paginas + ' págs., 0 líneas cortadas' : ' · 🧪 Revisar: ' + (v.diff || v.cortadas + ' líneas cortadas');
+    } catch {}
+  }, 350);
 }
 function LEER_addTxt() {
   const G = LEER, t = document.getElementById('lb-ta'); if (!G || !t) return;
@@ -13576,7 +13674,7 @@ function LEER_addTxt() {
   LEER_layout(-1);
   const f = G.faces.findIndex((p, i) => i > 0 && !p.end && p.ci === startCi);
   LEER_goFace(f > 0 ? f : 1);
-  try { showToast('success', '📖 Capítulo agregado', caps.map(c => c.label).join(', ') + ' ya está en tu libro.'); } catch {}
+  try { showToast('success', '📖 Capítulo agregado', caps.map(c => c.label).join(', ') + ' ya está en tu libro.' + (G.test ? (G.test.ok ? ' 🧪 Prueba OK: nada se corta.' : ' 🧪 Revisa la prueba (botón 🧪).') : '')); } catch {}
 }
 // Abre el libro directo, sin pasar por el menú de juegos
 function LEER_open() {
