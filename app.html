@@ -2236,6 +2236,342 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 #tb-eva-wrap.tb-eva-enojada .tbp-hover,#tb-eva-wrap.tb-eva-enojada .tbp-pulse{animation-duration:.5s}
 @media (prefers-reduced-motion:reduce){.tbp-hover,.tbp-body,.tbp-shadow,.tbp-pulse,.tbp-spin,.tbp-glint,.tbp-halo{animation:none!important}}
 </style>
+<style id="tb-auth-premium">
+/* ═══════════════════════════════════════════════════════════════════
+   INICIO · LOGIN · REGISTRO · RECUPERAR — capa visual sólida (v2)
+   Solo estilo: no toca funciones ni ids. Usa los colores del tema
+   activo (--rojo, --rojo2, --rojo-rgb); el inicio conserva su azul.
+   Para quitarla: borra este bloque y los <div class="tb-fx"> de las
+   pantallas (el resto del archivo queda como estaba).
+═══════════════════════════════════════════════════════════════════ */
+#screen-login, #screen-register, #screen-forgot {
+  --tb-surface:#111118; --tb-field:#0a0a0f; --tb-line:rgba(255,255,255,.09); --tb-line-2:rgba(255,255,255,.17);
+  background:transparent; isolation:isolate;
+}
+
+/* ── Fondo: rejilla de puntos fija + un solo resplandor superior ── */
+.tb-fx { position:sticky; top:0; height:0; width:100%; flex:none; z-index:0; pointer-events:none; }
+.tb-fx-in { position:absolute; left:0; top:0; width:100%; height:100vh; height:100dvh; overflow:hidden; }
+.tb-fx-in::before {
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.075) 1px,transparent 1.3px); background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 65% at 50% 35%,#000 10%,transparent 78%);
+  mask-image:radial-gradient(ellipse 85% 65% at 50% 35%,#000 10%,transparent 78%);
+}
+.tb-fx-in::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 38% at 50% 0,rgba(var(--rojo-rgb),.16),transparent 72%); }
+
+/* ── Tarjeta sólida ── */
+#screen-login .login-wrap, #screen-register .register-wrap, #screen-forgot .forgot-wrap {
+  position:relative; z-index:1; flex:0 0 auto; margin:24px auto; width:calc(100% - 32px); max-width:420px;
+  padding:32px 28px 28px; border-radius:16px;
+  background:var(--tb-surface); border:1px solid var(--tb-line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 40px 80px -40px rgba(0,0,0,.95);
+  animation:tbCardIn .6s cubic-bezier(.2,.7,.2,1) backwards;
+}
+#screen-login .login-wrap::before, #screen-register .register-wrap::before, #screen-forgot .forgot-wrap::before {
+  content:''; position:absolute; left:28px; right:28px; top:-1px; height:2px; border-radius:0 0 2px 2px; pointer-events:none;
+  background:linear-gradient(90deg,var(--rojo),var(--rojo2) 55%,transparent); transform-origin:left;
+  animation:tbLine .9s .2s cubic-bezier(.2,.7,.2,1) backwards;
+}
+@keyframes tbCardIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+@keyframes tbLine { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+
+/* ── Volver ── */
+#screen-login .back-btn, #screen-register .back-btn, #screen-forgot .back-btn {
+  align-self:flex-start; margin-bottom:26px; padding:0; font-size:13px; color:var(--gris);
+  background:none; border:0; transition:color .2s;
+}
+#screen-login .back-btn:hover, #screen-register .back-btn:hover, #screen-forgot .back-btn:hover { color:var(--blanco); }
+
+/* ── Cabecera de login (alineada a la izquierda) ── */
+#screen-login .login-logo { text-align:left; margin-bottom:28px; }
+#screen-login .login-logo-icon {
+  width:52px; height:52px; border-radius:14px; margin:0 0 20px; animation:none;
+  background:var(--tb-field); border:1px solid var(--tb-line-2); box-shadow:none;
+}
+#screen-login .login-logo-icon img { width:76%; height:76%; }
+#screen-login .login-title, #screen-register .register-title, #screen-forgot .forgot-title {
+  font-size:24px; font-weight:700; letter-spacing:-.02em; line-height:1.2; margin-bottom:6px; color:var(--blanco);
+}
+#screen-login .login-sub, #screen-register .register-sub, #screen-forgot .forgot-sub { font-size:14px; color:var(--gris); line-height:1.5; }
+#screen-register .register-sub { margin-bottom:24px; }
+#screen-login .admin-welcome { border-radius:12px; text-align:left; display:none; }
+#screen-login .admin-welcome.show { display:block; }
+
+/* ── Cabecera de registro ── */
+#screen-register .register-header { padding:0 0 18px; margin-bottom:24px; border-bottom:1px solid var(--tb-line); }
+#screen-register .register-header>div:first-child { box-shadow:none; }
+#screen-register .register-logo-sep { background:var(--tb-line-2); height:24px; }
+#screen-register .register-logo-mpc { font-size:17px; }
+
+/* ── Campos ── */
+#screen-login .login-form, #screen-register .register-form { gap:18px; }
+#screen-login .form-label, #screen-register .form-label, #screen-forgot .form-label,
+#screen-login .pin-label, #screen-register .pin-label, #screen-forgot .pin-label {
+  font-size:13px; font-weight:500; letter-spacing:0; text-transform:none; color:rgba(240,240,245,.74);
+}
+#screen-login .form-input, #screen-register .form-input, #screen-forgot .form-input, #screen-register .form-select {
+  background-color:var(--tb-field); border:1px solid var(--tb-line); border-radius:10px; padding:13px 14px; font-size:15px;
+  transition:border-color .2s,box-shadow .2s;
+}
+#screen-login .input-wrap .form-input { width:100%; box-sizing:border-box; padding-right:44px; }
+#screen-login .form-input:hover, #screen-register .form-input:hover, #screen-forgot .form-input:hover, #screen-register .form-select:hover { border-color:var(--tb-line-2); }
+#screen-login .form-input:focus, #screen-register .form-input:focus, #screen-forgot .form-input:focus, #screen-register .form-select:focus {
+  border-color:var(--rojo2); background-color:var(--tb-field); box-shadow:0 0 0 3px rgba(var(--rojo-rgb),.22);
+}
+#screen-login .form-input::placeholder, #screen-register .form-input::placeholder, #screen-forgot .form-input::placeholder { color:rgba(136,136,160,.7); }
+#screen-login .form-input:-webkit-autofill, #screen-register .form-input:-webkit-autofill, #screen-forgot .form-input:-webkit-autofill {
+  -webkit-text-fill-color:#f0f0f5; -webkit-box-shadow:0 0 0 1000px #15151d inset; caret-color:#fff;
+}
+#screen-login .input-icon {
+  font-size:0; width:18px; height:18px; right:14px; opacity:.5; cursor:default; pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition:opacity .2s;
+}
+#screen-login .input-wrap:focus-within .input-icon { opacity:.9; }
+#screen-register .form-select {
+  padding-right:40px; background-repeat:no-repeat; background-position:right 14px center;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+#screen-register .rol-badge { border-radius:8px; padding:7px 12px; }
+
+/* ── PIN ── */
+#screen-login .pin-group, #screen-register .pin-group, #screen-forgot .pin-group { gap:10px; }
+#screen-login .pin-inputs, #screen-register .pin-inputs, #screen-forgot .pin-inputs { gap:10px; justify-content:flex-start; }
+#screen-login .pin-input, #screen-register .pin-input, #screen-forgot .pin-input {
+  width:clamp(48px,14vw,56px); height:clamp(52px,15vw,58px); font-size:22px; border-radius:10px;
+  background-color:var(--tb-field); border:1px solid var(--tb-line); transition:border-color .2s,box-shadow .2s;
+}
+#screen-login .pin-input:focus, #screen-register .pin-input:focus, #screen-forgot .pin-input:focus {
+  border-color:var(--rojo2); background-color:var(--tb-field); box-shadow:0 0 0 3px rgba(var(--rojo-rgb),.22);
+}
+#screen-login .pin-input:valid, #screen-register .pin-input:valid, #screen-forgot .pin-input:valid { border-color:rgba(var(--rojo-rgb),.6); }
+
+/* ── Botón principal ── */
+#screen-login .btn-primary, #screen-register .btn-primary, #screen-forgot .btn-primary,
+#screen-splash .btn-primary {
+  border-radius:10px; padding:14px 20px; font-size:15px; font-weight:600; letter-spacing:.01em;
+  background:var(--rojo); background-image:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 10px 24px -12px rgba(var(--rojo-rgb),.9);
+  transition:filter .2s,transform .2s,box-shadow .2s;
+}
+#screen-login .btn-primary:hover, #screen-register .btn-primary:hover, #screen-forgot .btn-primary:hover,
+#screen-splash .btn-primary:hover { filter:brightness(1.1); transform:translateY(-1px); }
+#screen-login .btn-primary:active, #screen-register .btn-primary:active, #screen-forgot .btn-primary:active,
+#screen-splash .btn-primary:active { transform:none; filter:brightness(.96); }
+
+/* ── Enlaces ── */
+#screen-login .btn-ghost[style*="inline"], #screen-register .btn-ghost[style*="inline"] { font-weight:600; text-underline-offset:3px; }
+#screen-login .btn-ghost[style*="inline"]:hover, #screen-register .btn-ghost[style*="inline"]:hover { text-decoration:underline; }
+#screen-login .login-wrap>.mt-auto { margin-top:24px!important; padding-top:20px; border-top:1px solid var(--tb-line); }
+
+/* ── Mensajes ── */
+#screen-login .error-msg, #screen-register .error-msg, #screen-forgot .error-msg {
+  background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.32); border-radius:10px; text-align:left; font-size:13px; padding:11px 14px;
+}
+#screen-register .success-msg { border-radius:10px; text-align:left; }
+
+/* ═══ PANTALLA DE INICIO ═══ */
+#screen-splash { background:#050c1e; }
+#screen-splash::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(rgba(160,185,255,.1) 1px,transparent 1.3px); background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 62% at 50% 38%,#000 8%,transparent 76%);
+  mask-image:radial-gradient(ellipse 85% 62% at 50% 38%,#000 8%,transparent 76%);
+}
+#screen-splash::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 55% 34% at 50% 0,rgba(37,99,235,.30),transparent 72%); }
+#screen-splash .splash-particles { display:none; }
+#screen-splash .splash-content { position:relative; z-index:1; width:100%; max-width:360px; gap:0; padding:40px 28px 32px; animation:none; }
+#screen-splash .logo-mpc-wrap { width:92px; height:92px; margin-bottom:30px; animation:none; }
+#screen-splash .logo-mpc-wrap::before { inset:-7px; background:none; border:1px solid rgba(96,140,255,.4); opacity:1; animation:none; }
+#screen-splash .logo-mpc-inner { inset:0; background:#0a1535; border:1px solid rgba(160,185,255,.28); }
+#screen-splash .splash-title { font-size:44px; font-weight:800; letter-spacing:-.035em; line-height:1.05; margin-bottom:12px; }
+#screen-splash .splash-sub { font-size:14px; letter-spacing:.01em; color:rgba(160,185,255,.72); }
+#screen-splash .splash-btns { max-width:320px; gap:10px; margin-top:38px; }
+#screen-splash .btn-primary {
+  background:#2563eb; background-image:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 28px -14px rgba(37,99,235,.95);
+}
+#screen-splash .btn-secondary { background:transparent; border:1px solid rgba(160,185,255,.3); border-radius:10px; color:rgba(220,232,255,.95); box-shadow:none; }
+#screen-splash .btn-secondary:hover { background:rgba(37,99,235,.1); border-color:rgba(130,165,255,.6); transform:none; }
+#screen-splash .splash-dev-credit { width:100%; margin-top:46px; padding-top:18px; border-top:1px solid rgba(160,185,255,.14); font-size:12px; }
+
+/* Una sola secuencia de entrada en el inicio */
+@keyframes tbRise { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+#screen-splash .splash-content>* { animation:tbRise .7s cubic-bezier(.2,.7,.2,1) backwards; }
+#screen-splash .splash-content>*:nth-child(1) { animation-delay:.05s; }
+#screen-splash .splash-content>*:nth-child(2) { animation-delay:.16s; }
+#screen-splash .splash-content>*:nth-child(3) { animation-delay:.28s; }
+#screen-splash .splash-content>*:nth-child(4) { animation-delay:.42s; }
+
+@media (max-width:420px) {
+  #screen-login .login-wrap, #screen-register .register-wrap, #screen-forgot .forgot-wrap { width:calc(100% - 20px); margin:10px auto; padding:26px 20px 24px; }
+}
+#screen-login :focus-visible, #screen-register :focus-visible, #screen-forgot :focus-visible, #screen-splash :focus-visible { outline:2px solid var(--rojo2); outline-offset:3px; }
+#screen-login .form-input:focus-visible, #screen-register .form-input:focus-visible, #screen-forgot .form-input:focus-visible,
+#screen-register .form-select:focus-visible, #screen-login .pin-input:focus-visible, #screen-register .pin-input:focus-visible, #screen-forgot .pin-input:focus-visible { outline:none; }
+@media (prefers-reduced-motion:reduce) {
+  #screen-splash *, #screen-login *, #screen-register *, #screen-forgot *,
+  #screen-login *::before, #screen-register *::before, #screen-forgot *::before { animation:none!important; transition:none!important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOVIMIENTO PREMIUM (v3) — sobre la base sólida. Solo transform,
+   opacity y filter (ligero para celulares). Se apaga con
+   "reducir movimiento" del dispositivo.
+═══════════════════════════════════════════════════════════════════ */
+@property --tb-ang { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes tbSpin { to { --tb-ang:360deg; } }
+@keyframes tbRingRev { to { transform:rotate(-360deg); } }
+@keyframes tbSheen { 0%,55% { transform:translateX(-120%); } 100% { transform:translateX(120%); } }
+@keyframes tbBtnSheen { 0%,60% { left:-60%; } 100% { left:130%; } }
+@keyframes tbIn { from { opacity:0; transform:translateY(14px); filter:blur(5px); } to { opacity:1; transform:none; filter:blur(0); } }
+
+/* ── INICIO: logo ── */
+#screen-splash .logo-mpc-wrap {
+  border-radius:50%; translate:var(--px,0) var(--py,0); transition:translate .6s cubic-bezier(.2,.7,.2,1);
+  animation:tbLogoIn 1.1s cubic-bezier(.2,.8,.2,1) backwards, tbFloat 7s ease-in-out 1.2s infinite;
+}
+@keyframes tbLogoIn { from { opacity:0; transform:scale(.68); filter:blur(10px); } to { opacity:1; transform:none; filter:blur(0); } }
+@keyframes tbFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+#screen-splash .logo-mpc-wrap::before {
+  inset:-9px; border:0; padding:1.5px; border-radius:50%; opacity:1;
+  background:conic-gradient(from var(--tb-ang),rgba(96,140,255,.14) 0 52%,rgba(96,140,255,0) 56%,#2563eb 84%,#cfe0ff 97%,rgba(96,140,255,.14) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:tbSpin 4.2s linear infinite;
+}
+#screen-splash .logo-mpc-wrap::after {
+  content:''; position:absolute; inset:-22px; border-radius:50%; pointer-events:none;
+  border:1px dashed rgba(130,165,255,.26); animation:tbRingRev 46s linear infinite;
+}
+#screen-splash .logo-mpc-inner { animation:tbPulse 3.8s ease-out 1.3s infinite; }
+@keyframes tbPulse {
+  0% { box-shadow:0 0 0 0 rgba(37,99,235,.40),0 0 52px -14px rgba(37,99,235,.55); }
+  72%,100% { box-shadow:0 0 0 48px rgba(37,99,235,0),0 0 52px -14px rgba(37,99,235,.55); }
+}
+#screen-splash .logo-mpc-inner::after {
+  content:''; position:absolute; inset:-40%; pointer-events:none;
+  background:linear-gradient(110deg,transparent 44%,rgba(255,255,255,.32) 50%,transparent 56%);
+  transform:translateX(-120%); animation:tbSheen 6.5s ease-in-out 1.8s infinite;
+}
+
+/* ── INICIO: secuencia de entrada (logo → título → subtítulo → botones → crédito) ── */
+#screen-splash .splash-content>*:nth-child(2) { animation:none; }
+#screen-splash .splash-title { animation:tbTitleIn 1.1s cubic-bezier(.2,.7,.2,1) .4s backwards; }
+@keyframes tbTitleIn { from { opacity:0; letter-spacing:.09em; filter:blur(10px); transform:translateY(8px); } to { opacity:1; letter-spacing:-.035em; filter:blur(0); transform:none; } }
+#screen-splash .splash-sub { animation:tbIn .9s cubic-bezier(.2,.7,.2,1) .85s backwards; }
+#screen-splash .splash-content>*:nth-child(3) { animation:none; }
+#screen-splash .splash-btns>* { animation:tbIn .8s cubic-bezier(.2,.7,.2,1) backwards; }
+#screen-splash .splash-btns>*:nth-child(1) { animation-delay:1.05s; }
+#screen-splash .splash-btns>*:nth-child(2) { animation-delay:1.18s; }
+#screen-splash .splash-content>*:nth-child(4) { animation:tbIn .9s cubic-bezier(.2,.7,.2,1) 1.4s backwards; }
+#screen-splash .splash-dev-credit { position:relative; }
+#screen-splash .splash-dev-credit::before {
+  content:''; position:absolute; left:0; top:-1px; width:100%; height:1px; transform-origin:left;
+  background:linear-gradient(90deg,rgba(96,140,255,.9),transparent); animation:tbLine 1.2s cubic-bezier(.2,.7,.2,1) 1.5s backwards;
+}
+/* resplandor de fondo que respira */
+#screen-splash::after { animation:tbBreathe 7s ease-in-out infinite alternate; }
+@keyframes tbBreathe { from { opacity:.65; } to { opacity:1; } }
+/* botones */
+#screen-splash .btn-primary::before, #screen-login .btn-primary::before, #screen-register .btn-primary::before, #screen-forgot .btn-primary::before {
+  content:''; position:absolute; top:0; bottom:0; left:-60%; width:45%; pointer-events:none; transform:skewX(-20deg);
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.34),transparent); animation:tbBtnSheen 6s ease-in-out 2.2s infinite;
+}
+#screen-splash .btn-secondary {
+  background-image:linear-gradient(rgba(37,99,235,.14),rgba(37,99,235,.14)); background-repeat:no-repeat; background-size:0 100%; background-position:left;
+  transition:background-size .45s cubic-bezier(.2,.7,.2,1),border-color .25s;
+}
+#screen-splash .btn-secondary:hover { background-size:100% 100%; }
+
+/* ── LOGIN / REGISTRO / RECUPERAR ── */
+#screen-login .login-wrap::before, #screen-register .register-wrap::before, #screen-forgot .forgot-wrap::before {
+  background:linear-gradient(100deg,transparent 42%,rgba(255,255,255,.9) 50%,transparent 58%) 130% 0/300% 100% no-repeat,linear-gradient(90deg,var(--rojo),var(--rojo2) 55%,transparent);
+  animation:tbLine .9s .2s cubic-bezier(.2,.7,.2,1) backwards, tbLineShine 6s ease-in-out 1.6s infinite;
+}
+@keyframes tbLineShine { 0%,45% { background-position:130% 0,0 0; } 100% { background-position:-30% 0,0 0; } }
+#screen-login .login-wrap::after, #screen-register .register-wrap::after, #screen-forgot .forgot-wrap::after {
+  content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .5s;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%),rgba(var(--rojo-rgb),.09),transparent 62%);
+}
+#screen-login .login-wrap:hover::after, #screen-register .register-wrap:hover::after, #screen-forgot .forgot-wrap:hover::after { opacity:1; }
+
+/* logo de login: anillo de luz que recorre el borde + destello */
+#screen-login .login-logo { position:relative; animation:tbLogoIn2 .9s cubic-bezier(.2,.8,.2,1) .15s backwards; }
+@keyframes tbLogoIn2 { from { opacity:0; transform:translateY(10px) scale(.94); filter:blur(6px); } to { opacity:1; transform:none; filter:blur(0); } }
+#screen-login .login-logo::before {
+  content:''; position:absolute; left:-5px; top:-5px; width:62px; height:62px; border-radius:19px; padding:1.5px; pointer-events:none;
+  background:conic-gradient(from var(--tb-ang),rgba(255,255,255,.07) 0 58%,rgba(var(--rojo-rgb),0) 62%,var(--rojo) 86%,#fff 97%,rgba(255,255,255,.07) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:tbSpin 3.8s linear infinite;
+}
+#screen-login .login-logo-icon { position:relative; overflow:hidden; }
+#screen-login .login-logo-icon::after {
+  content:''; position:absolute; inset:-60%; pointer-events:none;
+  background:linear-gradient(110deg,transparent 44%,rgba(255,255,255,.3) 50%,transparent 56%);
+  transform:translateX(-120%); animation:tbSheen 6s ease-in-out 1.6s infinite;
+}
+#screen-login .login-logo-icon img { animation:tbMark 1s cubic-bezier(.2,.9,.3,1.2) .35s backwards; }
+@keyframes tbMark { from { opacity:0; transform:scale(.6) rotate(-8deg); } to { opacity:1; transform:none; } }
+
+/* entrada escalonada de la cabecera y los campos */
+#screen-login .login-form>*:not(.error-msg):not(.success-msg), #screen-register .register-form>*:not(.error-msg):not(.success-msg),
+#screen-forgot .forgot-step.active>*:not(.error-msg):not(.success-msg),
+#screen-login .login-title, #screen-login .login-sub, #screen-login .login-wrap>.mt-auto,
+#screen-register .register-header, #screen-register .register-title, #screen-register .register-sub {
+  animation:tbIn .75s cubic-bezier(.2,.7,.2,1) backwards; animation-delay:calc(var(--i,0)*70ms + 300ms);
+}
+#screen-login .login-title { --i:0; } #screen-login .login-sub { --i:1; }
+#screen-register .register-header { --i:-1; } #screen-register .register-title { --i:0; } #screen-register .register-sub { --i:1; }
+.login-form>*:nth-child(1), .register-form>*:nth-child(1), .forgot-step>*:nth-child(1) { --i:2; }
+.login-form>*:nth-child(2), .register-form>*:nth-child(2), .forgot-step>*:nth-child(2) { --i:3; }
+.login-form>*:nth-child(3), .register-form>*:nth-child(3), .forgot-step>*:nth-child(3) { --i:4; }
+.login-form>*:nth-child(4), .register-form>*:nth-child(4), .forgot-step>*:nth-child(4) { --i:5; }
+.login-form>*:nth-child(5), .register-form>*:nth-child(5) { --i:6; }
+.login-form>*:nth-child(6), .register-form>*:nth-child(6) { --i:7; }
+.register-form>*:nth-child(7) { --i:8; } .register-form>*:nth-child(8) { --i:9; } .register-form>*:nth-child(9) { --i:10; }
+#screen-login .login-wrap>.mt-auto { --i:7; }
+
+/* campos: línea de acento que se abre desde el centro al enfocar */
+#screen-login .form-input, #screen-register .form-input:not(select), #screen-forgot .form-input {
+  background-image:linear-gradient(90deg,var(--rojo),var(--rojo2)); background-repeat:no-repeat; background-position:center bottom; background-size:0 2px;
+  transition:border-color .2s,box-shadow .25s,background-size .4s cubic-bezier(.2,.7,.2,1);
+}
+#screen-login .form-input:focus, #screen-register .form-input:focus, #screen-forgot .form-input:focus { background-size:100% 2px; }
+#screen-login .form-group:focus-within>.form-label, #screen-register .form-group:focus-within>.form-label, #screen-forgot .form-group:focus-within>.form-label,
+#screen-login .pin-group:focus-within .pin-label, #screen-register .pin-group:focus-within .pin-label, #screen-forgot .pin-group:focus-within .pin-label { color:var(--blanco); }
+#screen-login .form-label, #screen-register .form-label, #screen-forgot .form-label, #screen-login .pin-label, #screen-register .pin-label, #screen-forgot .pin-label { transition:color .25s; }
+
+/* PIN: al llenar una casilla hace un pulso con onda */
+#screen-login .pin-input, #screen-register .pin-input, #screen-forgot .pin-input { transition:border-color .2s,box-shadow .25s,transform .25s; }
+#screen-login .pin-input:focus, #screen-register .pin-input:focus, #screen-forgot .pin-input:focus { transform:translateY(-2px); }
+#screen-login .pin-input:valid, #screen-register .pin-input:valid, #screen-forgot .pin-input:valid { animation:tbPinFill .5s cubic-bezier(.2,.9,.3,1.3); }
+@keyframes tbPinFill {
+  0% { transform:scale(.86); box-shadow:0 0 0 0 rgba(var(--rojo-rgb),.55); }
+  55% { transform:scale(1.06); }
+  100% { transform:scale(1); box-shadow:0 0 0 11px rgba(var(--rojo-rgb),0); }
+}
+
+/* errores: una sacudida corta y contenida */
+#screen-login .error-msg.show, #screen-register .error-msg.show, #screen-forgot .error-msg.show { animation:tbShake .45s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes tbShake { 10%,90% { transform:translateX(-1px); } 20%,80% { transform:translateX(2px); } 30%,50%,70% { transform:translateX(-4px); } 40%,60% { transform:translateX(4px); } }
+
+/* enlaces: subrayado que crece */
+#screen-login .btn-ghost[style*="inline"], #screen-register .btn-ghost[style*="inline"] {
+  background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat; padding-bottom:2px!important; transition:background-size .35s cubic-bezier(.2,.7,.2,1),color .2s;
+}
+#screen-login .btn-ghost[style*="inline"]:hover, #screen-register .btn-ghost[style*="inline"]:hover { background-size:100% 1.5px; text-decoration:none; }
+#screen-login .back-btn, #screen-register .back-btn, #screen-forgot .back-btn { transition:color .2s,transform .3s cubic-bezier(.2,.7,.2,1); }
+#screen-login .back-btn:hover, #screen-register .back-btn:hover, #screen-forgot .back-btn:hover { transform:translateX(-4px); }
+
+@media (prefers-reduced-motion:reduce) {
+  #screen-splash *, #screen-splash *::before, #screen-splash *::after, #screen-splash::after,
+  #screen-login *::after { animation:none!important; transition:none!important; }
+}
+</style>
+
 <style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style id="arc-solar-css">
 #arcade-menu .arcade-grid{display:none}
 .arc-bub{align-self:center;background:#fff;color:#0b1c33!important;font-weight:800;font-size:clamp(13px,3.6vw,16px)!important;padding:7px 16px;border-radius:999px;margin:4px 0 6px!important;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
@@ -2638,10 +2974,10 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
       </div>
       <div class="splash-btns">
         <button class="btn btn-primary" onclick="showScreen('login')">
-          🔒 Iniciar Sesión
+          Iniciar sesión
         </button>
         <button class="btn btn-secondary" onclick="showScreen('register')">
-          📝 Registrarse
+          Crear cuenta
         </button>
       </div>
       <div class="splash-dev-credit">Desarrollado por <strong>Moisés Rojas</strong></div>
@@ -2652,6 +2988,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
        LOGIN
   ══════════════════ -->
   <div class="screen" id="screen-login">
+      <div class="tb-fx" aria-hidden="true"><div class="tb-fx-in"></div></div>
     <div class="login-wrap">
 
       <button class="back-btn" onclick="showScreen('splash')">← Volver</button>
@@ -2685,10 +3022,10 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="pin-group">
           <div class="pin-label">Contraseña (4 dígitos)</div>
           <div class="pin-inputs" id="pin-inputs">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="0" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="1" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="2" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="3" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="0" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="1" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="2" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="3" onkeyup="pinNext(this, event)">
           </div>
         </div>
 
@@ -2717,6 +3054,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
        REGISTRO
   ══════════════════ -->
   <div class="screen" id="screen-register">
+      <div class="tb-fx" aria-hidden="true"><div class="tb-fx-in"></div></div>
     <div class="register-wrap">
 
       <button class="back-btn" onclick="showScreen('splash')">← Volver</button>
@@ -2766,10 +3104,10 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="pin-group">
           <div class="pin-label">Contraseña (4 dígitos)</div>
           <div class="pin-inputs" id="reg-pin-inputs">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="0" data-group="reg" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="1" data-group="reg" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="2" data-group="reg" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="3" data-group="reg" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="0" data-group="reg" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="1" data-group="reg" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="2" data-group="reg" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="3" data-group="reg" onkeyup="pinNext(this, event)">
           </div>
         </div>
 
@@ -2794,6 +3132,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
        RECUPERAR CONTRASEÑA
   ══════════════════ -->
   <div class="screen" id="screen-forgot">
+      <div class="tb-fx" aria-hidden="true"><div class="tb-fx-in"></div></div>
     <div class="forgot-wrap">
       <button class="back-btn" onclick="showScreen('login')">← Volver al login</button>
       <div class="forgot-title">Recuperar Contraseña</div>
@@ -2815,10 +3154,10 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         <div class="pin-group">
           <div class="pin-label">Nueva contraseña (4 dígitos)</div>
           <div class="pin-inputs" id="forgot-pin-inputs">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="0" data-group="forgot" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="1" data-group="forgot" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="2" data-group="forgot" onkeyup="pinNext(this, event)">
-            <input type="password" class="pin-input" maxlength="1" inputmode="numeric" data-index="3" data-group="forgot" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="0" data-group="forgot" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="1" data-group="forgot" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="2" data-group="forgot" onkeyup="pinNext(this, event)">
+            <input type="password" class="pin-input" required maxlength="1" inputmode="numeric" data-index="3" data-group="forgot" onkeyup="pinNext(this, event)">
           </div>
         </div>
         <div class="error-msg" id="forgot-err2"></div>
@@ -8939,7 +9278,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-10-17.1728';
+const TB_APP_VERSION = '2026-10-17.1810';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -18807,4 +19146,24 @@ function BUZON_updateBadge() {
 })();
 
 </script><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div>
+<script id="tb-auth-fx">
+/* Inicio/Login/Registro — solo visual: la tarjeta y el logo reaccionan suavemente al cursor (no afecta pantallas táctiles). */
+(function () {
+  try {
+    var CARD = '#screen-login .login-wrap,#screen-register .register-wrap,#screen-forgot .forgot-wrap';
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var w = e.target && e.target.closest && e.target.closest(CARD);
+      if (w) { var r = w.getBoundingClientRect(); w.style.setProperty('--mx', (e.clientX - r.left) + 'px'); w.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+      var s = document.getElementById('screen-splash');
+      if (s && s.classList.contains('active')) {
+        var l = s.querySelector('.logo-mpc-wrap'); if (!l) return;
+        l.style.setProperty('--px', ((e.clientX / innerWidth - .5) * 14).toFixed(1) + 'px');
+        l.style.setProperty('--py', ((e.clientY / innerHeight - .5) * 10).toFixed(1) + 'px');
+      }
+    }, { passive: true });
+  } catch (e) { }
+})();
+</script>
+
 </body></html>
