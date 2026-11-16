@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="morado" data-hw-file="0"><head><script id="tb-llave-boot">
+<html lang="es" data-theme="morado" data-hw-file="0" data-nv="1" data-nv-file="0"><head><script id="tb-llave-boot">
 /*TB_LLAVE:BOOT — NO ELIMINAR. Foto de las novedades guardadas en este dispositivo ANTES de que la app arranque. */
 (function(){try{var K=['tb_malla_rawtext_v1','tb_breaks_v1','tb_horas_movidas_v1','tb_turnos_cambiados_v1','tb_turnos_agregados_v1','tb_dias_intercambiados_v1','tb_condiciones_horario_v1'],b={};K.forEach(function(k){try{b[k]=localStorage.getItem(k)}catch(e){b[k]=null}});window.__TB_LLAVE={keys:K,boot:b,t:Date.now()};}catch(e){}})();
 </script>
@@ -19,6 +19,8 @@
 // Halloween (capa solo visual, ver bloque HALLOWEEN): el archivo trae data-hw="1" si se publicó con Halloween;
 // la preferencia de este dispositivo (tb_halloween) manda sobre eso.
 (function(){ try { document.documentElement.setAttribute('data-hw-file', document.documentElement.getAttribute('data-hw') === '1' ? '1' : '0'); } catch(e) {} try { var h = localStorage.getItem('tb_halloween'); if (h === '0') document.documentElement.removeAttribute('data-hw'); else if (h === '1') document.documentElement.setAttribute('data-hw', '1'); } catch(e) {} })();
+// Navidad (capa solo visual, bloque NAVIDAD): data-nv="1" = publicado con Navidad; la preferencia tb_navidad de este dispositivo (admin) manda.
+(function(){ try { document.documentElement.setAttribute('data-nv-file', document.documentElement.getAttribute('data-nv') === '1' ? '1' : '0'); } catch(e) {} try { var n = localStorage.getItem('tb_navidad'); if (n === '0') document.documentElement.removeAttribute('data-nv'); else if (n === '1') { document.documentElement.setAttribute('data-nv', '1'); document.documentElement.removeAttribute('data-hw'); } } catch(e) {} })();
 </script>
 <style>
 /* ═══════════════════════════════════════════════════
@@ -219,6 +221,57 @@ html[data-hw="1"] #hw-fx { display:block; }
   html[data-hw="1"] #screen-splash::before, html[data-hw="1"] .splash-content::after { animation: none; }
 }
 /* HALLOWEEN · FIN */
+
+/* ═══════════ NAVIDAD · INICIO (capa SOLO VISUAL, todo bajo html[data-nv="1"]) ═══════════
+   Se apaga con "🎄 Modo Navidad" (Perfil). Para borrarla: elimina de NAVIDAD · INICIO a FIN (CSS y JS). */
+html[data-nv="1"]{--rojo:#e63946;--rojo2:#ff6b6b;--rojo-rgb:230,57,70;--negro:#040c08;--negro2:#08150e;--negro3:#0f2218;--azul:#14532d;--azul2:#86efac;--gris:#9db8a8;--gris2:#1d3a2b;--verde:#4ade80;--naranja:#fbbf24;--glass:rgba(120,220,160,.055);--glass-border:rgba(150,230,180,.18);--glass-hover:rgba(230,57,70,.10);--shadow:0 20px 60px rgba(0,0,0,.65)}
+html[data-nv="1"] #app{background:radial-gradient(circle at 90% 4%,rgba(255,214,120,.20) 0,transparent 170px),radial-gradient(ellipse at 12% 0%,rgba(22,163,74,.20) 0%,transparent 55%),radial-gradient(ellipse at 88% 100%,rgba(230,57,70,.13) 0%,transparent 55%),linear-gradient(180deg,#07150e 0%,#040c08 100%)}
+html[data-nv="1"] ::selection{background:rgba(230,57,70,.5);color:#fff}
+html[data-nv="1"] ::-webkit-scrollbar-thumb{background:linear-gradient(#e63946,#16a34a);border-radius:6px}
+html[data-nv="1"] .app-header{background:linear-gradient(180deg,rgba(8,24,16,.96),rgba(5,15,10,.92));border-bottom:1px solid rgba(251,191,36,.38);box-shadow:0 6px 28px rgba(22,163,74,.2)}
+html[data-nv="1"] .header-logo{text-shadow:0 0 16px rgba(230,57,70,.5)}
+html[data-nv="1"] .header-logo::after{content:' 🎄';font-size:.9em;filter:drop-shadow(0 0 8px rgba(74,222,128,.8))}
+html[data-nv="1"] .bottom-nav{background:linear-gradient(0deg,rgba(5,15,10,.97),rgba(9,26,17,.95));border-top:1px solid rgba(251,191,36,.38);box-shadow:0 -8px 30px rgba(22,163,74,.22)}
+html[data-nv="1"] .nav-item.active{color:var(--naranja);text-shadow:0 0 12px rgba(251,191,36,.7)}
+html[data-nv="1"] .nav-item.active .nav-icon{filter:drop-shadow(0 0 8px rgba(251,191,36,.8))}
+html[data-nv="1"] .card,html[data-nv="1"] .turno-card,html[data-nv="1"] .malla-panel,html[data-nv="1"] .quick-card,html[data-nv="1"] .team-row{background:linear-gradient(160deg,rgba(24,80,50,.34),rgba(7,20,13,.64));border:1px solid rgba(150,230,180,.20);box-shadow:0 10px 34px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05)}
+html[data-nv="1"] .quick-card:hover,html[data-nv="1"] .team-row:hover{border-color:rgba(251,191,36,.6);box-shadow:0 10px 34px rgba(0,0,0,.5),0 0 26px rgba(230,57,70,.25)}
+html[data-nv="1"] .turno-card{border-color:rgba(251,191,36,.38)}
+html[data-nv="1"] .turno-card-nombre,html[data-nv="1"] .section-title,html[data-nv="1"] .splash-title{text-shadow:0 0 20px rgba(251,191,36,.32)}
+html[data-nv="1"] .btn-primary{background:linear-gradient(135deg,#e63946 0%,#b91c2c 55%,#7f1220 100%);box-shadow:0 4px 26px rgba(230,57,70,.45),inset 0 1px 0 rgba(255,255,255,.25);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+html[data-nv="1"] .btn-primary:hover{box-shadow:0 8px 36px rgba(230,57,70,.65),0 0 0 1px rgba(251,191,36,.5)}
+html[data-nv="1"] .btn-secondary{border-color:rgba(150,230,180,.30)}
+html[data-nv="1"] .btn-secondary:hover{border-color:rgba(251,191,36,.6)}
+html[data-nv="1"] .form-input:focus{box-shadow:0 0 0 3px rgba(74,222,128,.2)}
+html[data-nv="1"] .date-chip{border-color:rgba(150,230,180,.22)}
+html[data-nv="1"] .date-chip.active{background:linear-gradient(135deg,#e63946,#15803d);box-shadow:0 4px 22px rgba(230,57,70,.5)}
+html[data-nv="1"] .toast{background:rgba(7,20,13,.96);border:1px solid rgba(251,191,36,.3);box-shadow:0 10px 34px rgba(0,0,0,.6),0 0 20px rgba(22,163,74,.25)}
+html[data-nv="1"] #screen-splash{background:radial-gradient(circle at 82% 14%,rgba(255,236,170,.26) 0,transparent 200px),radial-gradient(ellipse at 20% 15%,rgba(22,163,74,.32) 0%,transparent 55%),radial-gradient(ellipse at 70% 90%,rgba(230,57,70,.2) 0%,transparent 55%),radial-gradient(ellipse at 50% 50%,#0a1c12 0%,#030905 100%)}
+html[data-nv="1"] .particle{background:radial-gradient(circle,#fff 0%,transparent 70%);opacity:.2}
+html[data-nv="1"] .particle:nth-child(2n){background:radial-gradient(circle,#4ade80 0%,transparent 70%);opacity:.2}
+html[data-nv="1"] .logo-mpc-wrap::before{background:conic-gradient(#e63946,#16a34a,#fbbf24,#e63946);opacity:.75}
+html[data-nv="1"] .logo-mpc-inner{background:linear-gradient(145deg,#0d2518,#07140d);border-color:rgba(251,191,36,.45)}
+html[data-nv="1"] .splash-title span{color:var(--naranja)}
+html[data-nv="1"] .splash-content::after{content:'🎄';font-size:30px;filter:drop-shadow(0 0 14px rgba(74,222,128,.9));animation:nvBob 2.8s ease-in-out infinite}
+html[data-nv="1"] #tb-eva-wrap::before{content:'';position:absolute;left:3px;top:-16px;width:40px;height:30px;z-index:3;pointer-events:none;transform:rotate(-9deg);transform-origin:50% 100%;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 44'><path d='M10 36 Q14 10 40 6 Q34 16 50 36 Z' fill='%23d62839'/><rect x='6' y='33' width='48' height='9' rx='4.5' fill='%23fff'/><circle cx='42' cy='7' r='5' fill='%23fff'/></svg>") center/contain no-repeat;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+html[data-nv="1"] #tb-eva-platform{background:linear-gradient(135deg,#e63946,#15803d);box-shadow:0 4px 16px rgba(230,57,70,.5)}
+html[data-nv="1"] #tb-eva-mute{background:rgba(7,20,13,.94);border-color:rgba(251,191,36,.5)}
+#nv-fx{position:fixed;inset:0;z-index:101;pointer-events:none;overflow:hidden;display:none}
+html[data-nv="1"] #nv-fx{display:block}
+#nv-fx .nv-vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 60%,rgba(2,8,4,.45) 100%)}
+#nv-fx .nv-lights{position:absolute;left:0;right:0;top:0;height:22px;border-top:2px solid rgba(40,60,45,.9);border-radius:0 0 50% 50%/0 0 14px 14px}
+#nv-fx .nv-lights i{position:absolute;width:9px;height:12px;margin-left:-4px;border-radius:50% 50% 55% 55%;background:var(--c);box-shadow:0 0 10px 3px var(--c);animation:nvBlink 1.8s ease-in-out infinite}
+#nv-fx .nv-bau{position:absolute;top:0;width:0;height:var(--h);transform-origin:50% 0;animation:nvSwing 4.2s ease-in-out infinite}
+#nv-fx .nv-bau u{position:absolute;left:0;top:0;width:1px;height:calc(100% - 22px);background:rgba(230,225,200,.55)}
+#nv-fx .nv-bau b{position:absolute;left:-12px;bottom:0;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0 3px,var(--c1) 4px,var(--c2) 78%);box-shadow:0 0 12px var(--c1),inset 0 -3px 6px rgba(0,0,0,.35)}
+#nv-fx .nv-bau b::before{content:'';position:absolute;left:8px;top:-5px;width:8px;height:6px;border-radius:2px;background:#e8c35a}
+#nv-fx .nv-sn{position:absolute;top:-24px;color:#fff;opacity:0;animation:nvFall linear infinite;text-shadow:0 0 6px rgba(200,230,255,.8)}
+@keyframes nvBlink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes nvSwing{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes nvFall{0%{transform:translate3d(0,0,0);opacity:0}10%{opacity:.9}100%{transform:translate3d(var(--dx,20px),108vh,0) rotate(200deg);opacity:.1}}
+@keyframes nvBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-6px) rotate(3deg)}}
+@media (prefers-reduced-motion:reduce){#nv-fx .nv-lights i,#nv-fx .nv-bau,#nv-fx .nv-sn{animation:none!important}#nv-fx .nv-sn{display:none}html[data-nv="1"] .splash-content::after{animation:none}}
+/* NAVIDAD · FIN */
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html, body { height:100%; overflow:hidden; background:var(--negro); color:var(--blanco); font-family:var(--font-body); }
@@ -2707,7 +2760,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
 .ll-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.ll-h{margin:6px 0 8px;font-size:13px;color:var(--gris)}
 .ll-aviso{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:9999;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:#92400e;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);font-size:13px}
 .ll-aviso span{flex:1;min-width:200px}.ll-aviso button{border:0;border-radius:99px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer}
-</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
+</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style><style>#mi-calc-panel,#admin-calc-block{display:none!important}</style></head>
 <body>
 
 <!-- ═══════════════════════════════════════════════════
@@ -2717,7 +2770,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
   <div class="loader"></div>
   <div class="loader-text" id="loader-text">Leyendo archivo...</div>
 </div>
-<div class="toast-container" id="toasts"><div class="toast info" data-expires="1794260840586">
+<div class="toast-container" id="toasts"><div class="toast info" data-expires="1794860371182">
     <div class="toast-icon">ℹ️</div>
     <div class="toast-body">
       <div class="toast-title">📖 Libro: 8 capítulos incrustados</div>
@@ -3200,7 +3253,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
     <div class="app-header">
       <div>
         <div class="header-logo">Turno<span>Bot</span></div>
-        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 08/11/2026 · 1341</div>
+        <div id="tb-build-info" style="font-size:11px;color:var(--gris);margin-top:2px;">Publicado 09/11/2026 · 1705</div>
       </div>
       <button type="button" onclick="event.stopPropagation(); TB_refrescarApp()" title="Actualizar" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:13px;cursor:pointer;padding:6px 10px;display:flex;align-items:center;gap:4px;">🔄 Actualizar</button>
       <div class="header-user" onclick="showMainScreen('profile')">
@@ -3305,7 +3358,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">⚡ Actividad Reciente</div>
           <button type="button" onclick="fase2ClearActivity()" style="background:none;border:1px solid var(--glass-border);border-radius:8px;color:var(--gris);font-size:11px;cursor:pointer;padding:4px 8px;">🗑️ Borrar todo</button>
         </div>
-        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>MELANYS</strong> consultó su turno</div><div class="activity-time">16:45</div><button type="button" class="activity-del-btn" data-aid="2" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
+        <div class="activity-list" id="activity-list"><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JUAN</strong> consultó su turno</div><div class="activity-time">15:19</div><button type="button" class="activity-del-btn" data-aid="1343" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JUAN</strong> consultó su turno</div><div class="activity-time">15:19</div><button type="button" class="activity-del-btn" data-aid="1342" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>YULISSA</strong> consultó su turno</div><div class="activity-time">15:19</div><button type="button" class="activity-del-btn" data-aid="1341" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JUAN</strong> consultó su turno</div><div class="activity-time">15:19</div><button type="button" class="activity-del-btn" data-aid="1340" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div><div class="activity-item"><div class="activity-icon">🕐</div><div class="activity-text"><strong>JUAN</strong> consultó su turno</div><div class="activity-time">15:19</div><button type="button" class="activity-del-btn" data-aid="1339" onclick="fase2DeleteActivity(this)" title="Borrar">✕</button></div></div>
       </div>
 
       <!-- ── FASE 3 CONNECTOR: Turno rápido card ─ -->
@@ -3637,7 +3690,7 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
           <div class="section-title">👑 Log de Consultas</div>
           <div class="section-sub">Quién consultó qué turno</div>
         </div>
-        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">MELANYS DANIELA SOBRINO DE LA HOZ</span><span style="color:var(--gris);font-size:11px">01:24 p. m.</span></div></div>
+        <div class="consultas-list" id="consultas-list"><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">03:07 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">03:06 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">YULISSA LILIANA PEREZ SALCEDO</span><span style="color:var(--gris);font-size:11px">01:44 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">11:40 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">11:40 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">YULISSA LILIANA PEREZ SALCEDO</span><span style="color:var(--gris);font-size:11px">08:06 a. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">EVERLIN SANDRY MORENO LOPEZ</span><span style="color:var(--gris);font-size:11px">11:22 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">EVERLIN SANDRY MORENO LOPEZ</span><span style="color:var(--gris);font-size:11px">11:22 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">ALEXANDRA HURTADO BARROSO</span><span style="color:var(--gris);font-size:11px">10:47 p. m.</span></div><div class="consulta-item"><span>🕐</span><span style="flex:1">JUAN DAVID ECHEVERRIA PRINCE</span><span style="color:var(--gris);font-size:11px">05:38 p. m.</span></div></div>
       </div>
 
       <!-- ── Actualizar malla (solo admin) ── -->
@@ -3651,14 +3704,12 @@ body.tb-eva-foto #tb-eva-foto-panel { display:flex; }
         </div>
         <div id="malla-autofix-box">
     <div class="malla-status" style="margin-top:10px;font-size:12px;line-height:1.5;border:1px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.10);">
-      🛠️ <b>0 falla(s) corregida(s) automáticamente</b> · 🚨 <b style="color:#dc2626">3 de corrección urgente</b>
+      🛠️ <b>0 falla(s) corregida(s) automáticamente</b> · 🚨 <b style="color:#dc2626">1 de corrección urgente</b>
       <pre id="malla-autofix-msg" style="white-space:pre-wrap;font-family:inherit;font-size:12px;margin:8px 0 0;">Reporte automático de la malla (TurnoBot)
-0 falla(s) corregida(s) automáticamente · 3 de corrección urgente.
+0 falla(s) corregida(s) automáticamente · 1 de corrección urgente.
 
 🚨 DE CORRECCIÓN URGENTE (no se pudo arreglar con seguridad):
-• BRIANIS MILETH TORRES MÁRQUEZ — Horario: sin entrada/salida (la malla dice "Inicio" o 12:00 a. m.) · asesor ACTIVO sin horario asignado · 14/11/2026 (esa semana ya completa 42 h: probablemente es descanso; si no, hay que quitarle horas a otro día)
-• CINDY PATRICIA ALVAREZ GUTIERREZ — Horario: sin entrada/salida (la malla dice "Inicio" o 12:00 a. m.) · asesor ACTIVO sin horario asignado · 14/11/2026 (esa semana ya completa 42 h: probablemente es descanso; si no, hay que quitarle horas a otro día)
-• YULISSA LILIANA PEREZ SALCEDO — Horario: sin entrada/salida (la malla dice "Inicio" o 12:00 a. m.) · asesor ACTIVO sin horario asignado · 14/11/2026 (esa semana ya completa 42 h: probablemente es descanso; si no, hay que quitarle horas a otro día)
+• CINDY PATRICIA ALVAREZ GUTIERREZ — Horario: sin entrada/salida (la malla dice "Inicio" o 12:00 a. m.) · asesor ACTIVO sin horario asignado · 21/11/2026 (esa semana lleva 33h 45m de 42 h: se puede agregar turno desde Administración → Agregar Turno a un Día)
 
 Causa probable: error de digitación en el archivo de turnos de origen (a. m./p. m., horarios sin asignar, horas que no cuadran). Se sugiere corregirlo en la fuente para las próximas mallas.</pre>
       <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="MALLA_copiarReporteAutofix()">📋 Copiar mensaje para el supervisor</button>
@@ -3704,7 +3755,7 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
           <div class="section-title">🔑 Acceso Compartido (carpeta de red)</div>
           <div class="section-sub">Cada asesor solo ve su propio usuario y contraseña</div>
         </div>
-        <div class="malla-status" id="shared-status-count">20 cuenta(s) · IP: 192.168.130.36</div>
+        <div class="malla-status" id="shared-status-count">0 cuenta(s) · IP: sin definir</div>
 
         <div style="margin-top:10px">
           <label style="font-size:12px;color:var(--gris);display:block;margin-bottom:6px;">IP o ruta del servidor de la carpeta compartida</label>
@@ -4391,14 +4442,14 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> ANDREA CAROLINA AGUERO ARENAS</div>
-        <div class="team-row-sub">🔑 33 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/11, 08:27 a. m. · 6/11, 11:51 a. m. · 3/11, 08:07 a. m.</div>
+        <div class="team-row-sub">🔑 35 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 10:17 p. m. · 8/11, 01:48 p. m. · 7/11, 08:27 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> JOCELINE CAROLINE DE LA ROSA GOMEZ</div>
-        <div class="team-row-sub">🔑 40 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/11, 08:37 p. m. · 6/11, 08:36 p. m. · 3/11, 05:27 a. m.</div>
+        <div class="team-row-sub">🔑 43 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 01:59 p. m. · 8/11, 01:46 p. m. · 8/11, 01:44 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4409,8 +4460,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name"> MARIA DE LOS ANGELES PANTOJA DE LA HOZ</div>
-        <div class="team-row-sub">🔑 18 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/11, 07:23 p. m. · 17/10, 05:57 p. m. · 10/10, 06:17 p. m.</div>
+        <div class="team-row-sub">🔑 19 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 02:10 p. m. · 5/11, 07:23 p. m. · 17/10, 05:57 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4427,14 +4478,14 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ADRIANA ANILLO BOLÍVAR</div>
-        <div class="team-row-sub">🔑 19 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">17/10, 05:41 p. m. · 13/10, 08:33 a. m. · 13/10, 08:33 a. m.</div>
+        <div class="team-row-sub">🔑 22 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">9/11, 09:28 a. m. · 8/11, 02:17 p. m. · 8/11, 02:16 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ALEXANDRA HURTADO BARROSO</div>
-        <div class="team-row-sub">🔑 43 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/11, 10:41 p. m. · 5/11, 07:48 p. m. · 31/10, 02:29 p. m.</div>
+        <div class="team-row-sub">🔑 45 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">15/11, 10:47 p. m. · 8/11, 05:28 p. m. · 5/11, 10:41 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4445,14 +4496,14 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">BRIANIS MILETH TORRES MÁRQUEZ</div>
-        <div class="team-row-sub">🔑 30 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/11, 07:48 a. m. · 5/11, 07:46 p. m. · 2/11, 11:32 p. m.</div>
+        <div class="team-row-sub">🔑 33 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">15/11, 03:39 p. m. · 8/11, 02:34 p. m. · 8/11, 02:34 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">CARLOS ENRIQUE GUZMAN JIMENEZ</div>
-        <div class="team-row-sub">🔑 45 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">2/11, 10:33 p. m. · 27/10, 07:45 a. m. · 25/10, 09:13 p. m.</div>
+        <div class="team-row-sub">🔑 47 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">10/11, 10:05 a. m. · 8/11, 07:38 p. m. · 2/11, 10:33 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4487,8 +4538,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">ELIACID DAVID SANDOVAL PORRAS</div>
-        <div class="team-row-sub">🔑 30 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">7/11, 02:25 a. m. · 5/11, 08:03 p. m. · 2/11, 08:58 p. m.</div>
+        <div class="team-row-sub">🔑 31 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 01:47 p. m. · 7/11, 02:25 a. m. · 5/11, 08:03 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4499,8 +4550,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">EVERLIN SANDRY MORENO LOPEZ</div>
-        <div class="team-row-sub">🔑 22 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">25/10, 07:06 p. m. · 21/10, 07:34 p. m. · 17/10, 07:51 p. m.</div>
+        <div class="team-row-sub">🔑 25 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">15/11, 11:21 p. m. · 15/11, 11:21 p. m. · 8/11, 01:43 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4541,26 +4592,26 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JUAN DAVID ECHEVERRIA PRINCE</div>
-        <div class="team-row-sub">🔑 51 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">8/11, 10:57 a. m. · 8/11, 10:56 a. m. · 7/11, 11:02 p. m.</div>
+        <div class="team-row-sub">🔑 63 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">16/11, 03:07 p. m. · 16/11, 03:06 p. m. · 16/11, 11:40 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">JULIETH PAOLA PERALTA MARTINEZ</div>
-        <div class="team-row-sub">🔑 25 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/11, 07:55 p. m. · 6/11, 12:19 p. m. · 5/11, 07:35 p. m.</div>
+        <div class="team-row-sub">🔑 27 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">13/11, 05:33 a. m. · 8/11, 01:42 p. m. · 6/11, 07:55 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KAREN LISETH DE LA ASUNCION CERVANTES</div>
-        <div class="team-row-sub">🔑 92 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">6/11, 08:59 a. m. · 5/11, 07:23 p. m. · 5/11, 08:52 a. m.</div>
+        <div class="team-row-sub">🔑 99 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">13/11, 12:29 p. m. · 11/11, 07:10 p. m. · 11/11, 06:39 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">KATHERINE PAOLA ARIAS JARAMILLO</div>
-        <div class="team-row-sub">🔑 18 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/11, 08:18 p. m. · 3/11, 06:05 a. m. · 17/10, 06:05 p. m.</div>
+        <div class="team-row-sub">🔑 19 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 01:46 p. m. · 5/11, 08:18 p. m. · 3/11, 06:05 a. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4577,14 +4628,14 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">MELANYS DANIELA SOBRINO DE LA HOZ</div>
-        <div class="team-row-sub">🔑 93 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">8/11, 01:34 p. m. · 8/11, 01:32 p. m. · 8/11, 01:32 p. m.</div>
+        <div class="team-row-sub">🔑 94 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 01:44 p. m. · 8/11, 01:34 p. m. · 8/11, 01:32 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">NEVIS CAROLINA JIMENEZ MARMOL</div>
-        <div class="team-row-sub">🔑 35 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">5/11, 07:29 p. m. · 2/11, 10:56 p. m. · 25/10, 10:48 p. m.</div>
+        <div class="team-row-sub">🔑 37 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 04:32 p. m. · 8/11, 01:57 p. m. · 5/11, 07:29 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4601,8 +4652,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">VIVIANA ESTER CUMPLIDO VALENCIA</div>
-        <div class="team-row-sub">🔑 28 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">2/11, 09:23 a. m. · 25/10, 01:17 p. m. · 17/10, 05:52 p. m.</div>
+        <div class="team-row-sub">🔑 29 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">8/11, 01:49 p. m. · 2/11, 09:23 a. m. · 25/10, 01:17 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
@@ -4625,8 +4676,8 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div><div class="team-row" style="cursor: pointer;">
       <div style="flex:1">
         <div class="team-row-name">YULISSA LILIANA PEREZ SALCEDO</div>
-        <div class="team-row-sub">🔑 49 accesos en total</div>
-        <div class="team-row-sub" style="margin-top:4px">8/11, 12:38 p. m. · 8/11, 10:42 a. m. · 8/11, 08:41 a. m.</div>
+        <div class="team-row-sub">🔑 57 accesos en total</div>
+        <div class="team-row-sub" style="margin-top:4px">16/11, 01:44 p. m. · 16/11, 08:06 a. m. · 15/11, 05:37 p. m.</div>
       </div>
       <div style="align-self:center; opacity:.5; font-size:18px">›</div></div></div>
       </div>
@@ -5545,6 +5596,19 @@ Causa probable: error de digitación en el archivo de turnos de origen (a. m./p.
           <div style="font-size:11px; color:var(--gris); margin-top:4px;">Capa solo visual (colores, niebla, murciélagos, telarañas y Eva con sombrero). Mientras esté activa, manda sobre el tema de color. Al quitarla, todo vuelve a la versión Original y se conservan todas las mejoras de funciones. Se publica con el HTML según como la dejes.</div>
           <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="HW_set(false)">🧹 Quitar Halloween y volver a la versión Original</button>
         </div>
+        <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--glass-border);">
+          <label style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;">
+            <span>🎄 Modo Navidad</span>
+            <input type="checkbox" class="nv-chk" onchange="NV_set(this.checked)" style="width:20px; height:20px;">
+          </label>
+          <div style="font-size:11px; color:var(--gris); margin-top:4px;">Capa solo visual: colores, luces, bolas colgantes, nieve y Eva con gorro. Al activarla se apaga Halloween. Al quitarla todo vuelve a la versión Original y se conservan todas las mejoras y novedades.</div>
+          <label style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; margin-top:10px;">
+            <span>🔔 Tono navideño de vez en cuando</span>
+            <input type="checkbox" class="nv-tono-chk" onchange="NV_setTono(this.checked)" style="width:20px; height:20px;">
+          </label>
+          <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="NV_tocarTono()">🎵 Probar tono</button>
+          <button class="btn btn-secondary w-full" style="margin-top:8px" onclick="NV_set(false)">🧹 Quitar Navidad y volver a la versión Original</button>
+        </div>
       </div>
 
       <div class="profile-section" id="profile-admin-link" style="display: block;">
@@ -5755,126 +5819,126 @@ let sessionToken = null;
 //   reales cargados desde el archivo de Moisés.
 // ══════════════════════════════════════════════════
 const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I   BREAK II   ALMUERZO   Horas
- 09/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 10/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 11/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 12/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 13/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 14/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ
- 09/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 10/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 11/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 12/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 13/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 14/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ
- 09/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
-10/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 10/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 11/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 12/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 13/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 14/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO`;
+ 16/11/2026   DESCANSO   ADRIANA ANILLO BOLÍVAR
+ 17/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   ALEXANDRA HURTADO BARROSO
+ 17/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   ANDREA CAROLINA AGUERO ARENAS
+ 17/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   BRIANIS MILETH TORRES MÁRQUEZ
+ 17/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   CARLOS ENRIQUE GUZMAN JIMENEZ
+ 17/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   CINDY PATRICIA ALVAREZ GUTIERREZ
+ 17/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
+ 18/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 19/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 20/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 21/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   12:00:00 a. m.   Inicio   Inicio   Inicio
+ 16/11/2026   DESCANSO   ELIACID DAVID SANDOVAL PORRAS
+ 17/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   EVERLIN SANDRY MORENO LOPEZ
+ 17/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   GREY MAR NORIEGA ALGARIN
+ 17/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JENNIFER MORALES MENDOZA
+ 17/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JOCELINE CAROLINE DE LA ROSA GOMEZ
+ 17/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JUAN DAVID ECHEVERRIA PRINCE
+ 17/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JULIETH PAOLA PERALTA MARTINEZ
+ 17/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   KAREN LISETH DE LA ASUNCION CERVANTES
+ 17/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+21/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   KATHERINE PAOLA ARIAS JARAMILLO
+ 17/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ
+ 17/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   MELANYS DANIELA SOBRINO DE LA HOZ
+ 17/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   NEVIS CAROLINA JIMENEZ MARMOL
+ 17/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   12:00:00 a. m. 1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   VIVIANA ESTER CUMPLIDO VALENCIA
+ 17/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   YULISSA LILIANA PEREZ SALCEDO
+ 17/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00`;
 
 // Línea base de la malla (para la hoja "Cambios de Turno" del Excel, ver
 // MALLA_detectarCambiosDeTurno). Se incrusta igual que MALLA_RAW_DEFAULT al
@@ -5883,126 +5947,126 @@ const MALLA_RAW_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I 
 // "malla inicial cargada vs. descargada" sin importar cuántas veces se
 // vuelva a publicar el mismo periodo.
 const MALLA_BASELINE_DEFAULT = `Fecha   Estado   Nombre   ENTRADA   SALIDA   BREAK I   BREAK II   ALMUERZO   Horas
- 09/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 10/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 11/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 12/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 13/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 14/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ
- 09/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 10/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
- 11/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 12/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 13/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
- 14/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ
- 09/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
-10/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 10/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 11/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 12/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 13/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
- 14/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
- 09/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 10/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 11/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 12/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 13/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   7:00:00 a. m.   4:24:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 p. m.   8:24:00
- 14/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO`;
+ 16/11/2026   DESCANSO   ADRIANA ANILLO BOLÍVAR
+ 17/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ADRIANA ANILLO BOLÍVAR   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   ALEXANDRA HURTADO BARROSO
+ 17/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ALEXANDRA HURTADO BARROSO   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   ANDREA CAROLINA AGUERO ARENAS
+ 17/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ANDREA CAROLINA AGUERO ARENAS   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   BRIANIS MILETH TORRES MÁRQUEZ
+ 17/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   BRIANIS MILETH TORRES MÁRQUEZ   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   CARLOS ENRIQUE GUZMAN JIMENEZ
+ 17/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   CARLOS ENRIQUE GUZMAN JIMENEZ   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   CINDY PATRICIA ALVAREZ GUTIERREZ
+ 17/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:15:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:15:00
+ 18/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 19/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 20/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   8:00:00 a. m.   5:30:00 p. m.   9:30:00 a. m.   2:45:00 p. m.   12:00:00 p. m.   8:30:00
+ 21/11/2026   ACTIVO   CINDY PATRICIA ALVAREZ GUTIERREZ   12:00:00 a. m.   Inicio   Inicio   Inicio
+ 16/11/2026   DESCANSO   ELIACID DAVID SANDOVAL PORRAS
+ 17/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   ELIACID DAVID SANDOVAL PORRAS   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   EVERLIN SANDRY MORENO LOPEZ
+ 17/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   EVERLIN SANDRY MORENO LOPEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   GREY MAR NORIEGA ALGARIN
+ 17/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   GREY MAR NORIEGA ALGARIN   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JENNIFER MORALES MENDOZA
+ 17/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JENNIFER MORALES MENDOZA   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JOCELINE CAROLINE DE LA ROSA GOMEZ
+ 17/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JOCELINE CAROLINE DE LA ROSA GOMEZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JUAN DAVID ECHEVERRIA PRINCE
+ 17/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JUAN DAVID ECHEVERRIA PRINCE   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   JULIETH PAOLA PERALTA MARTINEZ
+ 17/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   JULIETH PAOLA PERALTA MARTINEZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   KAREN LISETH DE LA ASUNCION CERVANTES
+ 17/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m.   12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+21/11/2026   ACTIVO   KAREN LISETH DE LA ASUNCION CERVANTES   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   KATHERINE PAOLA ARIAS JARAMILLO
+ 17/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   KATHERINE PAOLA ARIAS JARAMILLO   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ
+ 17/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   7:00:00 a. m.   3:30:00 p. m.   10:00:00 a. m.   12:00:00 a. m. 1:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   MARIA DE LOS ANGELES PANTOJA DE LA HOZ   8:00:00 a. m.   12:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   MELANYS DANIELA SOBRINO DE LA HOZ
+ 17/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   4:30:00 p. m.   1:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   MELANYS DANIELA SOBRINO DE LA HOZ   10:30:00 a. m.   3:00:00 p. m.   1:30:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   NEVIS CAROLINA JIMENEZ MARMOL
+ 17/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   10:30:00 a. m.   7:00:00 p. m.   12:00:00 p. m.   12:00:00 a. m. 1:30:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   7:00:00 a. m.   3:30:00 p. m.   9:30:00 a. m.   12:00:00 a. m. 12:30:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   NEVIS CAROLINA JIMENEZ MARMOL   8:00:00 a. m.   12:30:00 p. m.   9:50:00 a. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   VIVIANA ESTER CUMPLIDO VALENCIA
+ 17/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   VIVIANA ESTER CUMPLIDO VALENCIA   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00
+ 16/11/2026   DESCANSO   YULISSA LILIANA PEREZ SALCEDO
+ 17/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 18/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 19/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 20/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   7:00:00 p. m.   11:45:00 a. m.   4:45:00 p. m.   2:00:00 p. m.   7:30:00
+ 21/11/2026   ACTIVO   YULISSA LILIANA PEREZ SALCEDO   10:30:00 a. m.   3:00:00 p. m.   1:00:00 p. m.   12:00:00 a. m. 12:00:00 a. m. 4:30:00`;
 
 const MALLA_STORAGE_KEY = 'tb_malla_data_v1';
 const ACCOUNTS_KEY = 'tb_accounts_v1';
@@ -8376,7 +8440,7 @@ function HW_fxMontar() {
   document.body.appendChild(fx);
 }
 function HW_pintarControles() {
-  HW_sincronizarRol();
+  HW_sincronizarRol(); try { NV_pintarControles(); } catch {}
   const on = HW_activo();
   document.querySelectorAll('.hw-chk').forEach(c => { c.checked = on; });
 }
@@ -8395,6 +8459,7 @@ function HW_sincronizarRol() {
 }
 function HW_set(on) {
   if (!HW_puedeCambiar()) return;
+  if (on && typeof NV_apagar === 'function') NV_apagar();
   try { localStorage.setItem(HW_KEY, on ? '1' : '0'); } catch {}
   HW_aplicar(!!on);
   HW_pintarControles();
@@ -8403,6 +8468,83 @@ function HW_set(on) {
 if (HW_activo()) HW_fxMontar();
 HW_pintarControles();
 // HALLOWEEN · FIN (JS)
+
+// ═══════════════════════════════════════════════════════════════════
+//  NAVIDAD · INICIO (JS) — solo efectos visuales y un tono ocasional.
+//  No toca turnos, malla, voz, cuentas ni la Llave de novedades. NV_set(false) lo apaga todo.
+// ═══════════════════════════════════════════════════════════════════
+const NV_KEY = 'tb_navidad', NV_TONO = 'tb_nv_tono', NV_LAST = 'tb_nv_tono_t';
+const NV_TONO_PROB = 0.30, NV_TONO_ESPERA_H = 8; // ~3 de cada 10 aperturas, y nunca más de 1 vez cada 8 h
+function NV_activo() { return document.documentElement.getAttribute('data-nv') === '1'; }
+function NV_fxHTML() {
+  const rnd = (a, b) => a + Math.random() * (b - a), C = ['#ff3b4a', '#ffd23f', '#3ddc84', '#4aa8ff'];
+  let h = '<div class="nv-vig"></div><div class="nv-lights">';
+  for (let i = 0; i < 18; i++) h += `<i style="left:${((i + .5) * 100 / 18).toFixed(1)}%;top:${i % 2 ? 7 : 3}px;--c:${C[i % 4]};animation-delay:${(-(i % 5) * .37).toFixed(2)}s"></i>`;
+  h += '</div>';
+  const B = [['#ff4d5a', '#a3141f'], ['#ffd23f', '#b8860b'], ['#3ddc84', '#0f6b3a'], ['#4aa8ff', '#1b4f9c'], ['#ff4d5a', '#a3141f']];
+  B.forEach((b, i) => { h += `<div class="nv-bau" style="left:${12 + i * 19 + rnd(-3, 3)}%;--h:${Math.round(rnd(44, 92))}px;--c1:${b[0]};--c2:${b[1]};animation-delay:${(-rnd(0, 4)).toFixed(1)}s"><u></u><b></b></div>`; });
+  for (let i = 0; i < 26; i++) h += `<s class="nv-sn" style="left:${Math.round(rnd(0, 100))}%;font-size:${Math.round(rnd(9, 18))}px;--dx:${Math.round(rnd(-50, 50))}px;animation-duration:${rnd(9, 18).toFixed(1)}s;animation-delay:${(-rnd(0, 16)).toFixed(1)}s">❄</s>`;
+  return h;
+}
+function NV_fxQuitar() { document.querySelectorAll('#nv-fx').forEach(e => e.remove()); }
+function NV_fxMontar() { NV_fxQuitar(); const fx = document.createElement('div'); fx.id = 'nv-fx'; fx.setAttribute('aria-hidden', 'true'); fx.innerHTML = NV_fxHTML(); document.body.appendChild(fx); }
+function NV_aplicar(on) {
+  if (on) { document.documentElement.setAttribute('data-nv', '1'); NV_fxMontar(); }
+  else { document.documentElement.removeAttribute('data-nv'); NV_fxQuitar(); }
+  void document.documentElement.offsetHeight;
+}
+function NV_apagar() { try { localStorage.setItem(NV_KEY, '0'); } catch {} NV_aplicar(false); try { NV_pintarControles(); } catch {} }
+function NV_puedeCambiar() { return !!(typeof currentUser !== 'undefined' && currentUser && currentUser.isAdmin); }
+function NV_sincronizarRol() {
+  if (NV_puedeCambiar()) return;
+  try { localStorage.removeItem(NV_KEY); } catch {}
+  const deArchivo = document.documentElement.getAttribute('data-nv-file') === '1';
+  if (deArchivo !== NV_activo()) NV_aplicar(deArchivo);
+}
+function NV_pintarControles() {
+  NV_sincronizarRol();
+  const on = NV_activo(); let t = true; try { t = localStorage.getItem(NV_TONO) !== '0'; } catch {}
+  document.querySelectorAll('.nv-chk').forEach(c => { c.checked = on; });
+  document.querySelectorAll('.nv-tono-chk').forEach(c => { c.checked = t; });
+}
+function NV_set(on) {
+  if (!NV_puedeCambiar()) return;
+  try { localStorage.setItem(NV_KEY, on ? '1' : '0'); } catch {}
+  if (on) { try { localStorage.setItem('tb_halloween', '0'); } catch {} if (typeof HW_aplicar === 'function') HW_aplicar(false); }
+  NV_aplicar(!!on); NV_pintarControles();
+  try { showToast('info', on ? '🎄 Navidad activada' : '🧹 Navidad quitada', on ? 'Puedes quitarla cuando quieras desde el Perfil.' : 'Volviste a la versión Original. Las mejoras se conservan.'); } catch {}
+  if (on) NV_tocarTono();
+}
+function NV_setTono(on) { try { localStorage.setItem(NV_TONO, on ? '1' : '0'); } catch {} }
+// Tono breve (primeras notas de "Jingle Bells", sintetizadas; sin archivos externos)
+function NV_tocarTono() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+    const a = new AC(), t0 = a.currentTime + .05, F = { C: 523.25, D: 587.33, E: 659.25, G: 783.99 };
+    const S = [['E', 0, .22], ['E', .25, .22], ['E', .5, .45], ['E', 1, .22], ['E', 1.25, .22], ['E', 1.5, .45], ['E', 2, .22], ['G', 2.25, .22], ['C', 2.5, .3], ['D', 2.85, .15], ['E', 3.1, .8]];
+    S.forEach(([n, st, d]) => {
+      [1, 2.01].forEach((m, k) => {
+        const o = a.createOscillator(), g = a.createGain(); o.type = 'sine'; o.frequency.value = F[n] * m;
+        const v = (k ? .018 : .07); g.gain.setValueAtTime(0, t0 + st); g.gain.linearRampToValueAtTime(v, t0 + st + .015); g.gain.exponentialRampToValueAtTime(.0001, t0 + st + d + .5);
+        o.connect(g); g.connect(a.destination); o.start(t0 + st); o.stop(t0 + st + d + .55);
+      });
+    });
+    setTimeout(() => { try { a.close(); } catch {} }, 5200);
+  } catch {}
+}
+// "De vez en cuando": una tirada por apertura; suena en el primer toque (los navegadores exigen un gesto) y con enfriamiento.
+function NV_tonoTalVez() {
+  try {
+    if (!NV_activo() || localStorage.getItem(NV_TONO) === '0' || Math.random() >= NV_TONO_PROB) return;
+    if (Date.now() - (+localStorage.getItem(NV_LAST) || 0) < NV_TONO_ESPERA_H * 36e5) return;
+    const ir = () => { ['pointerdown', 'keydown'].forEach(e => document.removeEventListener(e, ir, true)); if (!NV_activo()) return; try { localStorage.setItem(NV_LAST, String(Date.now())); } catch {} setTimeout(NV_tocarTono, 350); };
+    ['pointerdown', 'keydown'].forEach(e => document.addEventListener(e, ir, true));
+  } catch {}
+}
+if (NV_activo()) NV_fxMontar();
+NV_pintarControles();
+NV_tonoTalVez();
+// NAVIDAD · FIN (JS)
 
 // ── Temas de color (solo cambian variables CSS vía data-theme) ──
 const THEME_KEY = 'tb_theme';
@@ -9164,7 +9306,7 @@ async function tryAutoLogin() {
 // cualquier actualización del HTML. Lo único que lo reinicia es cargar una
 // malla (PDF/texto) con fechas que nunca se habían visto — ver
 // MALLA_checkNewDatesAndResetHistory / AH_pruneDates.
-const TB_APP_VERSION = '2026-11-09.1705';
+const TB_APP_VERSION = '2026-11-16.1527';
 const TB_VERSION_KEY = 'tb_app_version';
 let TB_lastSyncOk = null;
 function TB_renderBuildInfo() {
@@ -19346,7 +19488,7 @@ function BUZON_updateBadge() {
   window.__LLAVE_TEST = { keyOf, foto, lineasEditadas };
 })();
 
-</script><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div>
+</script><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div><div id="ll-aviso" class="ll-aviso" style="display: none;"></div>
 <script id="tb-auth-fx">
 /* Inicio/Login/Registro — solo visual: la tarjeta y el logo reaccionan suavemente al cursor (no afecta pantallas táctiles). */
 (function () {
